@@ -37,7 +37,7 @@ steps:
       event:
         - push
 
-  - name: docker
+  - name: docker build and push
     image: plugins/docker
     settings:
       username:
@@ -46,6 +46,9 @@ steps:
         from_secret: registry_password
       repo: keeet/web-app
       dockerfile: ./Dockerfile
+      tags:
+        - latest
+        - ${DRONE_COMMIT_SHA}
 
 volumes:
   - name: cache
