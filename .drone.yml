@@ -11,6 +11,9 @@ steps:
     volumes:
       - name: cache
         path: /cache
+    when:
+      event:
+        - push
 
   - name: build
     image: node:10
@@ -20,10 +23,6 @@ steps:
     when:
       event:
         - push
-      branch:
-        - master
-        - feat-*
-        - fix-*
 
   - name: rebuild-cache
     image: drillster/drone-volume-cache
@@ -34,6 +33,19 @@ steps:
     volumes:
       - name: cache
         path: /cache
+    when:
+      event:
+        - push
+
+  - name: docker
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: registry_username
+      password:
+        from_secret: registry_password
+      repo: keeet/web-app
+      dockerfile: ./Dockerfile
 
 volumes:
   - name: cache
