@@ -49,6 +49,11 @@ steps:
       tags:
         - latest
         - ${DRONE_COMMIT_SHA}
+    when:
+      event:
+        - push
+      branch:
+        - master
 
   - name: deploy to k8s
     image: roffe/kubectl:v1.13.2
@@ -61,6 +66,11 @@ steps:
       - envsubst < k8s.deployment.template.yml > k8s.deployment.yml && envsubst < k8s.service.template.yml > k8s.service.yml
       - kubectl apply -f k8s.deployment.yml && kubectl apply -f k8s.service.yml
       - kubectl rollout status deployment/web-app
+    when:
+      event:
+        - push
+      branch:
+        - master
 
 
 volumes:
