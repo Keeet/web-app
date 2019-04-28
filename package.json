@@ -15,7 +15,8 @@
   "dependencies": {
     "cross-env": "^5.2.0",
     "nuxt": "^2.4.0",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "consola": "latest"
   },
   "devDependencies": {
     "nodemon": "^1.18.9",
