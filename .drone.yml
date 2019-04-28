@@ -2,53 +2,64 @@ kind: pipeline
 name: default
 
 steps:
-  - name: restore-cache
-    image: drillster/drone-volume-cache
-    settings:
-      restore: true
-      mount:
-        - ./node_modules
-    volumes:
-      - name: cache
-        path: /cache
-    when:
-      event:
-        - push
+#  - name: restore-cache
+#    image: drillster/drone-volume-cache
+#    settings:
+#      restore: true
+#      mount:
+#        - ./node_modules
+#    volumes:
+#      - name: cache
+#        path: /cache
+#    when:
+#      event:
+#        - push
+#
+#  - name: build
+#    image: node:10
+#    commands:
+#      - npm install
+#      - npm run build
+#    when:
+#      event:
+#        - push
+#
+#  - name: rebuild-cache
+#    image: drillster/drone-volume-cache
+#    settings:
+#      rebuild: true
+#      mount:
+#        - ./node_modules
+#    volumes:
+#      - name: cache
+#        path: /cache
+#    when:
+#      event:
+#        - push
+#
+#  - name: docker build and push
+#    image: plugins/docker
+#    settings:
+#      username:
+#        from_secret: registry_username
+#      password:
+#        from_secret: registry_password
+#      repo: keeet/web-app
+#      dockerfile: ./Dockerfile
+#      tags:
+#        - latest
+#        - ${DRONE_COMMIT_SHA}
 
-  - name: build
-    image: node:10
+  - name: deploy to k8s
+    image: roffe/kubectl:v1.13.2
+    environment:
+      KUBECONFIG: .kubeconfig
+      KUBECONFIG_CONTENT:
+        from_secret: kubeconfig
     commands:
-      - npm install
-      - npm run build
-    when:
-      event:
-        - push
+      - echo $KUBECONFIG_CONTENT | base64 -d > $(echo $KUBECONFIG)
+      - kubectl get pods
 
-  - name: rebuild-cache
-    image: drillster/drone-volume-cache
-    settings:
-      rebuild: true
-      mount:
-        - ./node_modules
-    volumes:
-      - name: cache
-        path: /cache
-    when:
-      event:
-        - push
-
-  - name: docker build and push
-    image: plugins/docker
-    settings:
-      username:
-        from_secret: registry_username
-      password:
-        from_secret: registry_password
-      repo: keeet/web-app
-      dockerfile: ./Dockerfile
-      tags:
-        - latest
-        - ${DRONE_COMMIT_SHA}
 
 volumes:
   - name: cache
