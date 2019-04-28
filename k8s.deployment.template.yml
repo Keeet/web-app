@@ -1,0 +1,13 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: web-app
+spec:
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+        - name: web-app
+          image: keeet/web-app:${DRONE_COMMIT_SHA}

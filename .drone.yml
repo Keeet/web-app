@@ -58,7 +58,9 @@ steps:
         from_secret: kubeconfig
     commands:
       - echo $KUBECONFIG_CONTENT | base64 -d > $(echo $KUBECONFIG)
-      - kubectl get pods
+      - envsubst < k8s.deployment.template.yml > k8s.deployment.yml && envsubst < k8s.service.template.yml > k8s.service.yml
+      - kubectl apply -f k8s.deployment.yml && kubectl apply -f k8s.service.yml
+      - kubectl rollout status deployment/web-app
 
 
 volumes:
