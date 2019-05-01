@@ -8,6 +8,10 @@ module.exports = {
     host: '0.0.0.0'
   },
 
+  router: {
+    middleware: 'unauthenticated'
+  },
+
   /*
   ** Headers of the page
   */
@@ -38,13 +42,20 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/auth',
+    '~/plugins/axios'
   ],
 
   /*
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios'
   ],
+
+  axios: {
+    baseURL: 'https://api.keeet.io'
+  },
 
   /*
   ** Build configuration
