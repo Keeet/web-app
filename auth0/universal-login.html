@@ -585,9 +585,8 @@
     }
 
     function showLoading() {
-      hideForm().then(function () {
-        document.getElementById('loading').classList.remove('hidden')
-      })
+      document.getElementById('loading').classList.remove('hidden')
+      hideForm()
     }
 
     function hideLoading() {
