@@ -13,7 +13,10 @@ export default {
       } else {
         this.$router.push('/')
       }
-    }).catch(() => { this.$router.push('/') })
+    }).catch((err) => {
+      alert(err)
+      this.$router.push('/')
+    })
   }
 }
 </script>
