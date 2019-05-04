@@ -14,7 +14,6 @@ export default {
         this.$router.push('/')
       }
     }).catch((err) => {
-      alert(JSON.stringify(err))
       // eslint-disable-next-line no-console
       console.error(err)
       this.$router.push('/')
