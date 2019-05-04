@@ -27,6 +27,8 @@ p {
 }
 
 .logo {
+  position: relative;
+  z-index: 1;
   text-align: center;
   margin-top: 40px;
 }
@@ -138,7 +140,8 @@ p {
 #message {
   opacity: 0;
   transition: all 0.3s;
-  position: absolute;
+  position: fixed;
+  z-index: 0;
   top: 20px;
   right: 50%;
   transform: translateX(50%) scale(0.9);
@@ -153,6 +156,7 @@ p {
   border: 1px solid #ff3f34;
 }
 #message.active {
+  z-index: 2;
   opacity: 1;
   transform: translateX(50%) scale(1);
 }
