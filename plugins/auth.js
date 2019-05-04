@@ -25,7 +25,7 @@ class AuthService {
         domain: authConfig.DOMAIN,
         redirectUri: this.baseRedirectUri,
         clientID: authConfig.CLIENT_ID,
-        responseType: 'id_token',
+        responseType: 'token',
         scope: 'openid profile email',
         audience: authConfig.AUDIENCE
       })
@@ -47,7 +47,7 @@ class AuthService {
           reject(err)
         } else {
           this.localLogin(authResult)
-          resolve(authResult.idToken)
+          resolve(authResult)
         }
       })
     })
@@ -80,8 +80,8 @@ class AuthService {
   }
 
   localLogin(authResult) {
-    Cookie.set('auth', authResult.idToken)
-    this.store.commit('setAccessToken', authResult.idToken)
+    Cookie.set('auth', authResult.accessToken)
+    this.store.commit('setAccessToken', authResult.accessToken)
   }
 
   logOut() {
