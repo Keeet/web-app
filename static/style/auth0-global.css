@@ -17,6 +17,13 @@ input::placeholder {
   color: #d2dae2;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
 a {
   text-decoration: none;
   color: #0fbcf9;
@@ -107,6 +114,7 @@ p {
   border: none;
   border-radius: 3px;
   transition: transform 0.5s;
+  font-weight: 500;
 }
 .form-button.colored {
   background-color: #0fbcf9;
