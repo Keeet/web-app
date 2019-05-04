@@ -81,118 +81,8 @@
 
 <body>
 <div class="wrapper">
-  <div class="logo">
-    <h1 class="logo-text">Keeet</h1>
-  </div>
   <div id="loading" class="hidden">
     <img src="https://app.keeet.io/animated/loading.svg" />
-  </div>
-  <div id="form" class="hidden">
-    <div class="form-header">
-      <h2 class="form-header-title login">Login</h2>
-      <h2 class="form-header-title register">Sign up</h2>
-      <h2 class="form-header-title registerMail">Sign up with email</h2>
-      <h2 class="form-header-title resetPassword">Reset password</h2>
-    </div>
-    <form id="form-body" onsubmit="return false;" method="post">
-      <div class="form-register-name registerMail">
-        <input
-          type="text"
-          class="form-input half"
-          id="first-name"
-          placeholder="First name">
-        <input
-          type="text"
-          class="form-input half"
-          id="last-name"
-          placeholder="Last name">
-      </div>
-      <input
-        type="email"
-        class="form-input login registerMail resetPassword"
-        id="email"
-        placeholder="Email">
-      <button
-        type="submit"
-        id="btn-resetPassword"
-        class="form-button resetPassword colored">
-        Reset password
-      </button>
-      <input
-        type="password"
-        class="form-input login registerMail"
-        id="password"
-        placeholder="Password">
-      <input
-        type="password"
-        class="form-input registerMail"
-        id="password-confirm"
-        placeholder="Confirm password">
-      <div class="form-forgot-password login">
-        <span id="btn-showResetPassword" class="form-forgot-password-button">Reset your password</span>
-      </div>
-      <button
-        type="submit"
-        id="btn-login"
-        class="form-button login colored">
-        Login
-      </button>
-      <div class="register-menu register">
-        <button
-          type="submit"
-          id="btn-showRegisterMail"
-          class="form-button colored">
-          Sign up with email
-        </button>
-        <p class="register-menu-or">
-          or
-        </p>
-      </div>
-      <div class="form-terms-and-conditions registerMail">
-        <div class="form-terms-and-conditions-checkbox">
-          <input type="checkbox" id="terms-and-conditions-agreed" />
-          <label id="terms-and-conditions-agreed-label" for="terms-and-conditions-agreed">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"/>
-            </svg>
-          </label>
-        </div>
-        <p class="form-terms-and-conditions-text">
-          I agree to the
-          <a href="https://keeet.io" target="_blank">Terms and Services</a> and
-          <a href="https://keeet.io" target="_blank">Privacy Policy</a>
-        </p>
-      </div>
-      <button
-        type="submit"
-        id="btn-register"
-        class="form-button registerMail colored">
-        Sign up
-      </button>
-      <button
-        type="submit"
-        id="btn-google"
-        class="form-button login register white">
-        <img class="form-button-icon" src="https://app.keeet.io/icons/googleloginlogo.png" />
-        <span class="login">
-          Login with Google
-        </span>
-        <span class="register">
-          Sign up with Google
-        </span>
-      </button>
-      <div class="form-footer login">
-        <span class="form-footer-question">Don't have an account?</span>
-        <span id="btn-showRegister" class="form-footer-button">Sign up</span>
-      </div>
-      <div class="form-footer register registerMail">
-        <span class="form-switch-question">Already have an account?</span>
-        <span class="btn-showLogin form-footer-button">Login</span>
-      </div>
-      <div class="form-footer resetPassword">
-        <span class="btn-showLogin form-footer-button">Back to Login</span>
-      </div>
-    </form>
   </div>
   <div id="message">
     <div class="message-inner">
@@ -211,6 +101,132 @@
       </div>
       <p id="message-text"></p>
     </div>
+  </div>
+  <div class="content">
+    <div class="logo">
+      <h1 class="logo-text">Keeet</h1>
+    </div>
+    <div id="form" class="hidden">
+      <div class="form-header">
+        <h2 class="form-header-title login">Login</h2>
+        <h2 class="form-header-title register">Sign up</h2>
+        <h2 class="form-header-title registerMail">Sign up with email</h2>
+        <h2 class="form-header-title resetPassword">Reset password</h2>
+      </div>
+      <form id="form-body" onsubmit="return false;" method="post">
+        <div class="form-register-name registerMail">
+          <input
+            type="text"
+            class="form-input half"
+            id="first-name"
+            placeholder="First name">
+          <input
+            type="text"
+            class="form-input half"
+            id="last-name"
+            placeholder="Last name">
+        </div>
+        <input
+          type="email"
+          class="form-input login registerMail resetPassword"
+          id="email"
+          placeholder="Email">
+        <button
+          type="submit"
+          id="btn-resetPassword"
+          class="form-button resetPassword colored">
+          Reset password
+        </button>
+        <input
+          type="password"
+          class="form-input login registerMail"
+          id="password"
+          placeholder="Password">
+        <input
+          type="password"
+          class="form-input registerMail"
+          id="password-confirm"
+          placeholder="Confirm password">
+        <div class="form-forgot-password login">
+          <span id="btn-showResetPassword" class="form-forgot-password-button">Reset your password</span>
+        </div>
+        <button
+          type="submit"
+          id="btn-login"
+          class="form-button login colored">
+          Login
+        </button>
+        <div class="register-menu register">
+          <button
+            type="submit"
+            id="btn-showRegisterMail"
+            class="form-button colored">
+            Sign up with email
+          </button>
+          <p class="register-menu-or">
+            or
+          </p>
+        </div>
+        <div class="form-terms-and-conditions registerMail">
+          <div class="form-terms-and-conditions-checkbox">
+            <input type="checkbox" id="terms-and-conditions-agreed" />
+            <label id="terms-and-conditions-agreed-label" for="terms-and-conditions-agreed">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M9 18c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 15.6 19.3 5.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z"/>
+              </svg>
+            </label>
+          </div>
+          <p class="form-terms-and-conditions-text">
+            I agree to the
+            <a href="https://keeet.io" target="_blank">Terms and Services</a> and
+            <a href="https://keeet.io" target="_blank">Privacy Policy</a>
+          </p>
+        </div>
+        <button
+          type="submit"
+          id="btn-register"
+          class="form-button registerMail colored">
+          Sign up
+        </button>
+        <button
+          type="submit"
+          id="btn-google"
+          class="form-button login register white">
+          <img class="form-button-icon" src="https://app.keeet.io/icons/googleloginlogo.png" />
+          <span class="login">
+          Login with Google
+        </span>
+          <span class="register">
+          Sign up with Google
+        </span>
+        </button>
+        <div class="form-footer login">
+          <span class="form-footer-question">Don't have an account?</span>
+          <span id="btn-showRegister" class="form-footer-button">Sign up</span>
+        </div>
+        <div class="form-footer register registerMail">
+          <span class="form-switch-question">Already have an account?</span>
+          <span class="btn-showLogin form-footer-button">Login</span>
+        </div>
+        <div class="form-footer resetPassword">
+          <span class="btn-showLogin form-footer-button">Back to Login</span>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="footer">
+    <div class="footer-logo">
+      <a href="https://keeet.io">Keeet</a>
+    </div>
+    <p class="footer-nav-item">
+      <a href="https://keeet.io">Imprint</a>
+    </p>
+    <p class="footer-nav-item">
+      <a href="https://keeet.io">Terms of Service</a>
+    </p>
+    <p class="footer-nav-item">
+      <a href="https://keeet.io">Privacy Policy</a>
+    </p>
   </div>
 </div>
 
