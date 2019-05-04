@@ -36,6 +36,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    '~/assets/style/global.scss'
   ],
 
   /*
@@ -43,7 +44,8 @@ module.exports = {
   */
   plugins: [
     '~/plugins/auth',
-    '~/plugins/axios'
+    '~/plugins/axios',
+    '~/plugins/fetch'
   ],
 
   /*

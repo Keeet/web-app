@@ -1,12 +1,16 @@
 const cookieParser = process.server ? require('cookieparser') : undefined
 
 export const state = () => ({
-  accessToken: null
+  accessToken: null,
+  user: null
 })
 
 export const mutations = {
   setAccessToken(state, accessToken) {
     state.accessToken = accessToken
+  },
+  setUser(state, user) {
+    state.user = user
   }
 }
 
