@@ -200,6 +200,18 @@
           Sign up with Google
         </span>
         </button>
+        <button
+          type="submit"
+          id="btn-linkedin"
+          class="form-button login register white">
+          <img class="form-button-icon" src="https://app.keeet.io/icons/linkedinlogobutton.png" />
+          <span class="login">
+          Login with Linkedin
+        </span>
+          <span class="register">
+          Sign up with Linkedin
+        </span>
+        </button>
         <div class="form-footer login">
           <span class="form-footer-question">Don't have an account?</span>
           <span id="btn-showRegister" class="form-footer-button">Sign up</span>
@@ -355,6 +367,18 @@
       });
     }
 
+    function loginWithLinkedin() {
+      showLoading()
+      webAuth.authorize({
+        connection: 'linkedin'
+      }, function (err) {
+        if (err) {
+          hideLoading()
+          showError(err.description);
+        }
+      });
+    }
+
     function hideAll() {
       return new Promise(function (resolve) {
         hideForm().then(function () {
@@ -421,6 +445,7 @@
 
     document.getElementById('btn-login').addEventListener('click', login);
     document.getElementById('btn-google').addEventListener('click', loginWithGoogle);
+    document.getElementById('btn-linkedin').addEventListener('click', loginWithLinkedin);
     document.getElementById('btn-register').addEventListener('click', signup);
     document.getElementById('btn-resetPassword').addEventListener('click', resetPassword);
     document.getElementById('btn-showRegister').addEventListener('click', showRegister);
