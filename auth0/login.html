@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Keeet - LogIn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Keeet - Login</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+  <link href="../static/style/auth0-global.css" rel="stylesheet">
 </head>
 
 <style>
@@ -16,123 +17,16 @@
     display: none;
   }
 
-  body {
-    background-color: #f6f9fa;
-    font-family: 'Roboto', sans-serif, Arial;
-    font-size: 15px;
-  }
-
-  .wrapper {
-    color: #485460;
-  }
-
-  input, button {
-    font-size: 100%;
-    color: #485460;
-  }
-
-  input::placeholder {
-    color: #d2dae2;
-  }
-
-  a {
-    text-decoration: none;
-    color: #0fbcf9;
-  }
-
-  p {
-    margin: 0;
-  }
-
-  .logo {
-    text-align: center;
-    margin-top: 40px;
-  }
-  @media only screen and (min-width: 600px) {
-    .logo {
-      margin-top: 120px;
-    }
-  }
-  .logo-text {
-    font-size: 300%;
-    font-weight: 700;
-    color: #0fbcf9;
-  }
-
-  #loading {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.4s;
-    opacity: 1;
-    width: 80px;
-    margin: 0 auto;
-  }
-  #loading.hidden {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.95);
-  }
-  #loading img {
-    width: 100%;
-  }
-
-  #form {
-    width: 90%;
-    max-width: 400px;
-    margin: 20px auto 100px;
-    transition: all 0.4s;
-    opacity: 1;
-  }
-  @media only screen and (min-width: 600px) {
-    #form {
-      margin-top: 40px;
-    }
-  }
-  #form.hidden {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  .form-header-title {
-    text-align: center;
-    color: #0fbcf9;
-    font-weight: 500;
-    font-size: 160%;
-  }
-  .form-input {
-    width: 100%;
-    padding: 14px 16px;
-    box-sizing: border-box;
-    margin: 8px 0;
-    border: 1px solid #d2dae2;
-    border-radius: 3px;
-  }
-  .form-input.half {
-    width: 48%;
-  }
   .form-forgot-password {
     margin: 5px 0;
     text-align: right;
     font-size: 90%;
   }
-  .form-button {
-    position: relative;
-    margin: 8px 0;
-    padding: 14px 16px;
-    width: 100%;
-    box-sizing: border-box;
-    border: none;
-    border-radius: 3px;
-    transition: transform 0.5s;
+  .form-forgot-password-button {
+    color: #0fbcf9;
   }
-  .form-button:hover {
+  .form-forgot-password-button:hover {
     cursor: pointer;
-    transform: scale(1.02)
-  }
-  .form-button-icon {
-    float: left;
-    height: 16px;
-    transform: scale(1.4);
   }
   .form-register-name {
     display: flex;
@@ -178,122 +72,10 @@
   #terms-and-conditions-agreed-label:hover {
     cursor: pointer;
   }
-  .form-forgot-password-button {
-     color: #0fbcf9;
-   }
-  .form-forgot-password-button:hover {
-    cursor: pointer;
-  }
-  #btn-login,
-  #btn-register,
-  #btn-resetPassword,
-  #btn-showRegisterMail {
-    background-color: #0fbcf9;
-    color: #fff;
-  }
-  #btn-google {
-    background-color: #fff;
-    border: 1px solid #d2dae2;
-  }
 
   .register-menu-or {
     margin: 15px 0;
     text-align: center;
-  }
-
-  .form-footer {
-    margin-top: 30px;
-    text-align: center;
-  }
-  .form-footer-button {
-    color: #0fbcf9;
-  }
-  .form-footer-button:hover {
-    cursor: pointer;
-  }
-
-  #message {
-    opacity: 0;
-    transition: all 0.3s;
-    position: absolute;
-    top: 20px;
-    right: 50%;
-    transform: translateX(50%) scale(0.9);
-    width: 90%;
-    max-width: 400px;
-    border: 1px solid #0fbcf9;
-    border-radius: 5px;
-    background-color: #fff;
-  }
-  #message.error {
-    color: #ff3f34;
-    border: 1px solid #ff3f34;
-  }
-  #message.active {
-    opacity: 1;
-    transform: translateX(50%) scale(1);
-  }
-  @media only screen and (min-width: 1000px) {
-    #message {
-      right: 5%;
-      transform: scale(0.9);
-      top: 85px;
-      max-width: 280px;
-    }
-    #message.active {
-      transform: scale(1);
-    }
-  }
-
-  .message-inner {
-    position: relative;
-  }
-  .message-cross {
-    position: absolute;
-    left: -10px;
-    top: -10px;
-  }
-  .message-cross-inner {
-    display: none;
-    position: relative;
-    width: 20px;
-    height: 20px;
-    border-radius: 100%;
-  }
-  #message:not(.error) .message-cross-inner.message {
-    display: block;
-    background-color: #0fbcf9;
-  }
-  #message.error .message-cross-inner.error {
-    display: block;
-    background-color: #ff3f34;
-  }
-  .message-cross svg {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 8px;
-    fill: #fff;
-  }
-  #message-close {
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    padding: 5px 8px;
-  }
-  #message-close:hover {
-    cursor: pointer;
-  }
-  #message-close svg {
-    width: 10px;
-    fill: #485460;
-  }
-  #message.error #message-close svg {
-    fill: #ff3f34;
-  }
-  #message-text {
-    padding: 30px 20px;
   }
 </style>
 
@@ -333,7 +115,7 @@
       <button
         type="submit"
         id="btn-resetPassword"
-        class="form-button resetPassword">
+        class="form-button resetPassword colored">
         Reset password
       </button>
       <input
@@ -352,14 +134,14 @@
       <button
         type="submit"
         id="btn-login"
-        class="form-button login">
+        class="form-button login colored">
         Login
       </button>
       <div class="register-menu register">
         <button
           type="submit"
           id="btn-showRegisterMail"
-          class="form-button">
+          class="form-button colored">
           Sign up with email
         </button>
         <p class="register-menu-or">
@@ -384,13 +166,13 @@
       <button
         type="submit"
         id="btn-register"
-        class="form-button registerMail">
+        class="form-button registerMail colored">
         Sign up
       </button>
       <button
         type="submit"
         id="btn-google"
-        class="form-button login register">
+        class="form-button login register white">
         <img class="form-button-icon" src="https://app.keeet.io/icons/googleloginlogo.png" />
         <span class="login">
           Login with Google
@@ -443,6 +225,7 @@
 
 <script src="https://cdn.auth0.com/js/auth0/9.10/auth0.min.js"></script>
 <script src="https://cdn.auth0.com/js/polyfills/1.0/object-assign.min.js"></script>
+<script src="https://app.keeet.io/js/auth0-global.js"></script>
 <script>
   window.addEventListener('load', function () {
 
@@ -556,19 +339,7 @@
       });
     }
 
-    function hideForm() {
-      document.getElementById('form').classList.add('hidden')
-      return new Promise(function (resolve) {
-        window.setTimeout(resolve, 400);
-      });
-    }
-
-    function showForm() {
-      document.getElementById('form').classList.remove('hidden')
-    }
-
     function hideAll() {
-      document.getElementById('form').classList.add('hidden')
       return new Promise(function (resolve) {
         hideForm().then(function () {
           Array.from(document.querySelectorAll('.login,.register,.registerMail,.resetPassword')).forEach(item => {
@@ -582,18 +353,6 @@
           resolve()
         })
       })
-    }
-
-    function showLoading() {
-      document.getElementById('loading').classList.remove('hidden')
-      hideForm()
-    }
-
-    function hideLoading() {
-      document.getElementById('loading').classList.add('hidden')
-      window.setTimeout(function () {
-        showForm()
-      }, 400);
     }
 
     function setRequired(inputId, required) {
@@ -642,32 +401,6 @@
         })
         showForm()
       })
-    }
-
-    var errorTimeout = null
-
-    function showError(message) {
-      showMessage(message, true)
-    }
-
-    function showMessage(message, error = false) {
-      if (error) {
-        document.getElementById('message').classList.add('error');
-      } else {
-        document.getElementById('message').classList.remove('error');
-      }
-      document.getElementById('message').classList.add('active');
-      document.getElementById('message-text').innerHTML = message;
-      if (errorTimeout) {
-        clearTimeout(errorTimeout)
-      }
-      errorTimeout = setTimeout(function () {
-        hideMessage()
-      }, 10000)
-    }
-
-    function hideMessage() {
-      document.getElementById('message').classList.remove('active');
     }
 
     document.getElementById('btn-login').addEventListener('click', login);
