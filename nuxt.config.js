@@ -59,7 +59,7 @@ module.exports = {
   */
   modules: [
     '@nuxtjs/axios',
-    'nuxt-rfg-icon',
+    ['nuxt-rfg-icon', { staticPath: '/_favicons/', masterPicture: 'static/favicon.png' }],
     '@nuxtjs/manifest',
     '@nuxtjs/style-resources'
   ],

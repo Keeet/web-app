@@ -2,8 +2,8 @@
 
 Changing the Favicon:
 
-- delete `/static/icons` directory
-- put new icon to `/static/icon.png`
+- delete `/static/_favicons` directory
+- put new icon to `/static/favicon.png`
 - run `npm run build`
 
-`nuxt-rfg-icon` will then fetch new icons.
+`nuxt-rfg-icon` will then generate new icons.
