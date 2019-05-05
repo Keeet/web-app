@@ -281,7 +281,7 @@
       domain: config.auth0Domain,
       clientID: config.clientID,
       redirectUri: config.callbackURL,
-      responseType: 'token'
+      responseType: 'token id_token'
     }, config.internalOptions);
 
     var webAuth = new auth0.WebAuth(params);

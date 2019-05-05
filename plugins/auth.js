@@ -25,7 +25,7 @@ class AuthService {
         domain: authConfig.DOMAIN,
         redirectUri: this.baseRedirectUri,
         clientID: authConfig.CLIENT_ID,
-        responseType: 'token',
+        responseType: 'token id_token',
         scope: 'openid profile email',
         audience: authConfig.AUDIENCE
       })
@@ -74,18 +74,19 @@ class AuthService {
     return new Promise((resolve, reject) => {
       this.renewTokens().then(resolve).catch(() => {
         redirect(`/auth/login?redirectUrl=${encodeURI(redirectUrl)}`)
-        reject(Error('server side request (no checkSession usable) OR third party cookies disabled (no silent login)'))
+        reject(Error('server side request (no checkSession usable) OR third party cookies disabled (no silent login) OR Google Login'))
       })
     })
   }
 
   localLogin(authResult) {
     Cookie.set('auth', authResult.accessToken)
-    this.store.commit('setAccessToken', authResult.accessToken)
+    Cookie.set('id_token', authResult.idToken)
+    this.store.commit('setTokens', authResult)
   }
 
   logOut() {
-    this.store.commit('setAccessToken', null)
+    this.store.commit('setTokens', null)
     Cookie.remove('auth')
     this.webAuth.logout({
       returnTo: window.location.origin
@@ -94,9 +95,13 @@ class AuthService {
 
   isAuthenticated() {
     const accessToken = this.store.state.accessToken
+    const idToken = this.store.state.idToken
+    const now = Date.now()
     return (
       accessToken !== null &&
-      Date.now() < jwtDecode(accessToken).exp * 1000
+      idToken !== null &&
+      now < jwtDecode(accessToken).exp * 1000 &&
+      now < jwtDecode(idToken).exp * 1000
     )
   }
 }
