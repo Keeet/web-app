@@ -12,12 +12,36 @@ const config = {
       email: 'mika@keeet.io',
       createdAt: '2019-05-04T22:43:15Z',
       updatedAt: '2019-05-04T22:43:15Z'
+    },
+    mockDataNoCompany: {
+      id: 'u1',
+      authId: 'a1',
+      firstName: 'Mika',
+      lastName: 'Hally',
+      email: 'mika@keeet.io',
+      createdAt: '2019-05-04T22:43:15Z',
+      updatedAt: '2019-05-04T22:43:15Z'
+    }
+  },
+  COMPANY: {
+    path: '/company',
+    mutation: 'setCompany',
+    key: 'company',
+    mockData: {
+      id: 'c1',
+      name: 'Keeet UG',
+      street: 'Rosenthaler Strasse',
+      houseNb: '101',
+      zip: '10369',
+      country: 'Deutschland',
+      createdAt: '2019-05-04T22:43:15Z',
+      updatedAt: '2019-05-04T22:43:15Z'
     }
   }
 }
 
 export default function ({ $axios, store }, inject) {
-  inject('fetch', (resources, forced = false) => {
+  inject('fetch', (resources, forced = false, mockDataKey) => {
     const promises = resources.map((resource) => {
       return new Promise((resolve) => {
         if (!config[resource]) {
@@ -30,8 +54,8 @@ export default function ({ $axios, store }, inject) {
           resolve('ALREADY_FETCHED')
           return
         }
-        if (mockData) {
-          store.commit(mutation, mockData)
+        if (mockData || mockDataKey) {
+          store.commit(mutation, mockDataKey ? config[resource][mockDataKey] : mockData)
           resolve()
           return
         }

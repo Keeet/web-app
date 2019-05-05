@@ -5,7 +5,8 @@ export const state = () => ({
   accessToken: null,
   idToken: null,
   auth0User: null,
-  user: null
+  user: null,
+  company: null
 })
 
 export const mutations = {
@@ -23,6 +24,9 @@ export const mutations = {
   },
   setUser(state, user) {
     state.user = user
+  },
+  setCompany(state, company) {
+    state.company = company
   }
 }
 

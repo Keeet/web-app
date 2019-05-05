@@ -5,6 +5,7 @@ body {
   background-color: $grey-light;
   font-family: 'Roboto', sans-serif, Arial;
   font-size: 15px;
+  color: $grey-dark;
 }
 
 a {
@@ -14,4 +15,20 @@ a {
 
 p {
   margin: 0;
+}
+
+a:focus, button:focus {
+  outline: none;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+option:not(:checked) {
+  color: black;
 }

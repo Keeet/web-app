@@ -1,0 +1,26 @@
+.select {
+  position: relative;
+  padding: 8px 0;
+
+  .select-title {
+    position: relative;
+    z-index: 1;
+    font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 90%;
+  }
+
+  .select-field {
+    padding: 14px 16px;
+    box-sizing: border-box;
+    border: 1px solid #d2dae2;
+    border-radius: 3px;
+    width: 100%;
+    background-color: #fff;
+    background-image: url(../../../assets/icons/dropdown.png);
+    background-repeat: no-repeat;
+    background-position: calc(100% - 15px) 20px;
+    background-size: 13px;
+    appearance: none;
+  }
+}

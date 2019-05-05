@@ -8,7 +8,7 @@ import Dashboard from '../components/Dashboard/Dashboard'
 export default {
   components: { Dashboard },
   fetch({ app: { $fetch } }) {
-    return $fetch(['USER'])
+    return $fetch(['USER'], false, 'mockDataNoCompany')
   }
 }
 </script>
