@@ -32,3 +32,11 @@ select:-moz-focusring {
 option:not(:checked) {
   color: black;
 }
+
+input, select {
+  font-size: 100%;
+}
+
+input::placeholder {
+  color: $grey-mid-dark;
+}
