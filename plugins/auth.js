@@ -86,8 +86,8 @@ class AuthService {
   }
 
   logOut() {
-    this.store.commit('setTokens', null)
     Cookie.remove('auth')
+    Cookie.remove('id_token')
     this.webAuth.logout({
       returnTo: window.location.origin
     })

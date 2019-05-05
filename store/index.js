@@ -11,12 +11,6 @@ export const state = () => ({
 
 export const mutations = {
   setTokens(state, tokens) {
-    if (!tokens) {
-      state.accessToken = null
-      state.idToken = null
-      state.auth0User = null
-      return
-    }
     const { accessToken, idToken } = tokens
     state.accessToken = accessToken
     state.idToken = idToken
