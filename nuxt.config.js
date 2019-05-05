@@ -39,6 +39,12 @@ module.exports = {
     '~/assets/style/global.scss'
   ],
 
+  styleResources: {
+    scss: [
+      'assets/style/vars.scss'
+    ]
+  },
+
   /*
   ** Plugins to load before mounting the App
   */
@@ -54,7 +60,8 @@ module.exports = {
   modules: [
     '@nuxtjs/axios',
     'nuxt-rfg-icon',
-    '@nuxtjs/manifest'
+    '@nuxtjs/manifest',
+    '@nuxtjs/style-resources'
   ],
 
   axios: {

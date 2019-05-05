@@ -1,0 +1,30 @@
+.footer {
+  background-color: #fff;
+  color: $grey;
+  box-shadow: 0 -3px 6px 0 rgba(0, 0, 0, 0.02);
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+
+  .footer-logo {
+    font-weight: 700;
+    font-size: 120%;
+    margin: 0 30px;
+    transition: transform 0.4s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .footer-nav-item {
+    margin: 0 20px;
+    color: $grey;
+    transition: color 0.4s;
+
+    &:hover {
+      color: $grey-mid-dark;
+      cursor: pointer;
+    }
+  }
+}

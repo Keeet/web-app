@@ -5,6 +5,7 @@
 <script>
 export default {
   name: 'Callback',
+  layout: 'blank',
   mounted() {
     this.$auth.handleAuthentication().then(() => {
       const { redirectUrl } = this.$route.query
