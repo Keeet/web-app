@@ -143,7 +143,7 @@
           id="email"
           placeholder="Email">
         <button
-          type="submit"
+          type="button"
           id="btn-resetPassword"
           class="form-button resetPassword colored">
           Reset password
@@ -162,14 +162,14 @@
           <span id="btn-showResetPassword" class="form-forgot-password-button">Reset your password</span>
         </div>
         <button
-          type="submit"
+          type="button"
           id="btn-login"
           class="form-button login colored">
           Login
         </button>
         <div class="register-menu register">
           <button
-            type="submit"
+            type="button"
             id="btn-showRegisterMail"
             class="form-button colored">
             Sign up with email
@@ -194,7 +194,7 @@
           </p>
         </div>
         <button
-          type="submit"
+          type="button"
           id="btn-register"
           class="form-button registerMail colored">
           Sign up
@@ -390,6 +390,10 @@
       });
     }
 
+    function setButtonSubmit(id, isSubmit) {
+      document.getElementById(id).type = isSubmit ? 'submit': 'button'
+    }
+
     function hideAll() {
       return new Promise(function (resolve) {
         hideForm().then(function () {
@@ -401,6 +405,10 @@
           setRequired('email', false);
           setRequired('password', false);
           setRequired('password-confirm', false);
+
+          setButtonSubmit('btn-login', false);
+          setButtonSubmit('btn-register', false);
+          setButtonSubmit('btn-resetPassword', false);
           resolve()
         })
       })
@@ -429,6 +437,7 @@
         Array.from(document.getElementsByClassName('registerMail')).forEach(item => {
           item.classList.add('active');
         })
+        setButtonSubmit('btn-register', true);
         showForm()
       })
     }
@@ -440,6 +449,7 @@
         Array.from(document.getElementsByClassName('login')).forEach(item => {
           item.classList.add('active');
         })
+        setButtonSubmit('btn-login', true);
         showForm()
       })
     }
@@ -450,6 +460,7 @@
         Array.from(document.getElementsByClassName('resetPassword')).forEach(item => {
           item.classList.add('active');
         })
+        setButtonSubmit('btn-resetPassword', true);
         showForm()
       })
     }
