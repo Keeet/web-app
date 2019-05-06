@@ -1,0 +1,11 @@
+{
+  "owner": {
+    "firstName": "Blair",
+    "lastName": "Taylor",
+    "profileImage": "/img/sample-project-owner.jpg"
+  },
+  "title": "Sample Project",
+  "description": "This is a sample project. See how we organize all gathered user insights in our timeline.",
+  "createdAt": "2019-05-04T22:43:15Z",
+  "updatedAt": "2019-05-04T22:43:15Z"
+}

@@ -14,14 +14,10 @@
     </div>
     <div v-if="!projects.length" class="dashboard-projects">
       <DashboardProject
-        title="Sample Project"
-        description="This is a sample project. See how we organize all gathered user insights in our timeline."
-        :created-at="new Date().toISOString()"
-        :owner="{
-          firstName: 'Mika',
-          lastName: 'Hally',
-          profileImage: '/img/sample-project-owner.jpg'
-        }"
+        :title="sampleProject.title"
+        :description="sampleProject.description"
+        :created-at="$store.state.user.createdAt"
+        :owner="sampleProject.owner"
       />
       <DashboardProjectEmpty />
       <DashboardProjectEmpty />
@@ -44,14 +40,17 @@ import OverlayModal from '../_shared/OverlayModal/OverlayModal'
 import CompanyForm from '../_shared/CompanyForm/CompanyForm'
 import Headline from '../_shared/Headline/Headline'
 import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
+import sampleProject from '../../assets/samples/sampleProject'
 import DashboardProject from './DashboardProject/DashboardProject'
 import DashboardProjectEmpty from './DashboardProjectEmpty/DashboardProjectEmpty'
+
 export default {
   name: 'Dashboard',
   components: { ButtonCircle, DashboardProjectEmpty, DashboardProject, Headline, CompanyForm, OverlayModal },
   data() {
     return {
-      loading: false
+      loading: false,
+      sampleProject
     }
   },
   computed: {
