@@ -71,6 +71,82 @@ const config = {
       }
     ],
     mockDataEmpty: []
+  },
+  PERSONAS: {
+    path: '/personas',
+    mutation: 'setPersonas',
+    key: 'personas',
+    mockData: [
+      {
+        id: '30fc1872-ecc3-4639-b2bb-a94054d1d8ee',
+        updatedAt: '2019-05-04T22:43:15Z',
+        createdAt: '2019-05-04T22:43:15Z',
+        name: 'Chantal',
+        icon: 'CHANTAL',
+        screenerQuestions: [
+          {
+            value: 'A',
+            id: '0248537a-31f0-4405-9936-96ea806321be',
+            updatedAt: '2019-05-04T22:43:15Z',
+            createdAt: '2019-05-04T22:43:15Z'
+          },
+          {
+            value: 'B',
+            id: 'e1918233-2fe0-43e3-82d2-1efae7723d86',
+            updatedAt: '2019-05-04T22:43:15Z',
+            createdAt: '2019-05-04T22:43:15Z'
+          }
+        ],
+        demographicDataReq: {
+          id: '5993eca3-8b46-4a69-90ee-d1d1ffc7037b',
+          updatedAt: '2019-05-04T22:43:15Z',
+          createdAt: '2019-05-04T22:43:15Z',
+          minAge: 18,
+          maxAge: 30,
+          occupations: [
+            'STUDENT'
+          ],
+          gender: [
+            'MALE'
+          ]
+        }
+      },
+      {
+        id: '30fc1872-ecc3-4639-b2bb-a94054d1d8ee',
+        updatedAt: '2019-05-04T22:43:15Z',
+        createdAt: '2019-05-04T22:43:15Z',
+        name: 'Mika',
+        icon: 'MIKA',
+        screenerQuestions: [
+          {
+            value: 'A',
+            id: '0248537a-31f0-4405-9936-96ea806321be',
+            updatedAt: '2019-05-04T22:43:15Z',
+            createdAt: '2019-05-04T22:43:15Z'
+          },
+          {
+            value: 'B',
+            id: 'e1918233-2fe0-43e3-82d2-1efae7723d86',
+            updatedAt: '2019-05-04T22:43:15Z',
+            createdAt: '2019-05-04T22:43:15Z'
+          }
+        ],
+        demographicDataReq: {
+          id: '5993eca3-8b46-4a69-90ee-d1d1ffc7037b',
+          updatedAt: '2019-05-04T22:43:15Z',
+          createdAt: '2019-05-04T22:43:15Z',
+          minAge: 18,
+          maxAge: 30,
+          occupations: [
+            'STUDENT'
+          ],
+          gender: [
+            'MALE'
+          ]
+        }
+      }
+    ],
+    mockDataEmpty: []
   }
 }
 

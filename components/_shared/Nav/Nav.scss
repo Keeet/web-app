@@ -24,6 +24,11 @@
 
     .nav-item {
       margin: 0 20px;
+      transition: color 0.4s;
+
+      &.active {
+        color: $blue-primary
+      }
     }
   }
 

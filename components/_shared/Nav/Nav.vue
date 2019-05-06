@@ -6,12 +6,12 @@
           Keeet
         </nuxt-link>
       </div>
-      <p class="nav-item">
+      <p class="nav-item" :class="{active: path === '/'}">
         <nuxt-link to="/">
           Dashboard
         </nuxt-link>
       </p>
-      <p class="nav-item">
+      <p class="nav-item" :class="{active: path === '/personas'}">
         <nuxt-link to="/personas">
           Personas
         </nuxt-link>
@@ -30,7 +30,12 @@
 
 <script>
 export default {
-  name: 'Nav'
+  name: 'Nav',
+  computed: {
+    path() {
+      return this.$route.path
+    }
+  }
 }
 </script>
 
