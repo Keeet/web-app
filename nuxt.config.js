@@ -52,7 +52,8 @@ module.exports = {
     '~/plugins/auth',
     '~/plugins/axios',
     '~/plugins/fetch',
-    '~/plugins/icons'
+    '~/plugins/icons',
+    '~/plugins/directives'
   ],
 
   /*

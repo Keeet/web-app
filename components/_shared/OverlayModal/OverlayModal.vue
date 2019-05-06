@@ -1,8 +1,13 @@
 <template>
   <div class="overlay-modal">
-    <div class="overlay-modal-bg" @click="close" />
     <div class="overlay-modal-box">
-      <div class="overlay-modal-box-inner">
+      <div
+        v-closable="{
+          exclude: [],
+          handler: 'close'
+        }"
+        class="overlay-modal-box-inner"
+      >
         <div v-if="!noClose" class="overlay-modal-box-close" @click="close">
           <IconCancel />
         </div>
