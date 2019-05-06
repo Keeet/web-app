@@ -1,28 +1,17 @@
 <template>
-  <div />
+  <AuthCallback />
 </template>
 
 <script>
+import AuthCallback from '../../components/AuthCallback/AuthCallback'
 export default {
   name: 'Callback',
+  components: { AuthCallback },
   layout: 'blank',
-  mounted() {
-    this.$auth.handleAuthentication().then(() => {
-      const { redirectUrl } = this.$route.query
-      if (redirectUrl) {
-        this.$router.push(decodeURI(redirectUrl))
-      } else {
-        this.$router.push('/')
-      }
-    }).catch((err) => {
-      // eslint-disable-next-line no-console
-      console.error(err)
-      this.$router.push('/')
-    })
+  head() {
+    return {
+      title: 'Keeet - Verify your email'
+    }
   }
 }
 </script>
-
-<style scoped>
-
-</style>

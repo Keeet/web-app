@@ -14,6 +14,8 @@ const authConfig = {
   REDIRECT_PATH: '/auth/callback'
 }
 
+const SCOPE = 'openid profile email read:missions read:personas read:projects write:billing write:missions write:personas write:projects write:roles write:users'
+
 class AuthService {
   constructor({ store }) {
     this.store = store
@@ -26,7 +28,7 @@ class AuthService {
         redirectUri: this.baseRedirectUri,
         clientID: authConfig.CLIENT_ID,
         responseType: 'token id_token',
-        scope: 'openid profile email',
+        scope: SCOPE,
         audience: authConfig.AUDIENCE
       })
     }

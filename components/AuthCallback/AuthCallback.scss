@@ -1,0 +1,19 @@
+.not-verified {
+  width: 90%;
+  max-width: 400px;
+  margin: 100px auto;
+
+  .not-verified-title {
+    text-align: center;
+    color: #0fbcf9;
+    font-weight: 500;
+    font-size: 160%;
+    margin-bottom: 50px;
+  }
+
+  .not-verified-description {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 300;
+  }
+}
