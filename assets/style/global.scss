@@ -40,3 +40,10 @@ input, select {
 input::placeholder {
   color: $grey-mid-dark;
 }
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
