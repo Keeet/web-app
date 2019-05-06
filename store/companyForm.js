@@ -2,6 +2,7 @@ const defaultState = {
   name: '',
   street: '',
   houseNb: '',
+  addressDescription: '',
   zip: '',
   country: 'DE'
 }
@@ -11,10 +12,11 @@ export const state = () => (defaultState)
 export const mutations = {
   init(state, company) {
     if (company) {
-      const { name, street, houseNb, zip, country } = company
+      const { name, street, houseNb, addressDescription, zip, country } = company
       state.name = name
       state.street = street
       state.houseNb = houseNb
+      state.addressDescription = addressDescription
       state.zip = zip
       state.country = country
     } else {
@@ -29,6 +31,9 @@ export const mutations = {
   },
   setHouseNb(state, houseNb) {
     state.houseNb = houseNb
+  },
+  setAddressDescription(state, addressDescription) {
+    state.addressDescription = addressDescription
   },
   setZip(state, zip) {
     state.zip = zip

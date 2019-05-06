@@ -35,6 +35,13 @@
         </div>
       </div>
       <Input
+        title="Additional"
+        placeholder="third backyard"
+        :value="store.addressDescription"
+        mutation="companyForm/setAddressDescription"
+        :error="null"
+      />
+      <Input
         title="ZIP*"
         placeholder="10369"
         :value="store.zip"

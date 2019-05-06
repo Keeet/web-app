@@ -65,7 +65,7 @@ export default {
     companySubmitted() {
       this.loading = true
       this.$auth.renewTokens().then(() => {
-        this.$fetch([{ name: 'USER' }])
+        this.$fetch([{ name: 'USER', forced: true }, { name: 'COMPANY' }])
       }).catch(() => {
         this.$router.push(`/auth/login?redirectUrl=${encodeURI('/')}`)
       })

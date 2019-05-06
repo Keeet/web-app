@@ -32,6 +32,7 @@ const config = {
       name: 'Keeet UG',
       street: 'Rosenthaler Strasse',
       houseNb: '101',
+      addressDescription: 'third backyard',
       zip: '10369',
       country: 'Deutschland',
       createdAt: '2019-05-04T22:43:15Z',
