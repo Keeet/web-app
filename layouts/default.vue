@@ -1,7 +1,7 @@
 <template>
   <div class="default">
+    <Nav />
     <div class="content">
-      <Nav />
       <nuxt />
     </div>
     <Footer />
@@ -24,6 +24,9 @@ export default {
     justify-content: space-between;
   }
   .content {
-    padding-top: 100px;
+    padding: 120px 0;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 </style>

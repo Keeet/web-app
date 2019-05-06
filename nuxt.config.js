@@ -53,7 +53,8 @@ module.exports = {
     '~/plugins/axios',
     '~/plugins/fetch',
     '~/plugins/icons',
-    '~/plugins/directives'
+    '~/plugins/directives',
+    { src: '~/plugins/timeago', ssr: false }
   ],
 
   /*
