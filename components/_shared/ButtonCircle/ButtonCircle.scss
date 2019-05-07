@@ -5,6 +5,11 @@
   border-radius: 100%;
   transition: transform 0.4s;
 
+  &.large {
+    width: 70px;
+    height: 70px;
+  }
+
   &:hover {
     cursor: pointer;
     transform: scale(1.1)
@@ -21,6 +26,15 @@
 
   &.CREATE {
     background-color: rgba($blue-primary, 0.2)
+  }
+
+  &.ARROW_RIGHT {
+    background-color: #fff;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.07);
+
+    svg {
+      fill: $grey;
+    }
   }
 }
 

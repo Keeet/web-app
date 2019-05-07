@@ -6,6 +6,8 @@ import Loading from '../static/animated/loading.svg'
 import IconPlus from '../assets/icons/plus.svg'
 import IconCalendarOutline from '../assets/icons/calendar-empty-page-outline.svg'
 import IconStartHereDashboard from '../assets/icons/start-here-dashboard.svg'
+import IconArrowRight from '../assets/icons/arrow-right.svg'
+import IconArrowDown from '../assets/icons/arrow-down.svg'
 
 import IconPersonaChantal from '../assets/icons/persona-chantal.svg'
 import IconPersonaDustin from '../assets/icons/persona-dustin.svg'
@@ -22,6 +24,8 @@ Vue.component('IconCheck', IconCheck)
 Vue.component('IconPlus', IconPlus)
 Vue.component('IconCalendarOutline', IconCalendarOutline)
 Vue.component('IconStartHereDashboard', IconStartHereDashboard)
+Vue.component('IconArrowRight', IconArrowRight)
+Vue.component('IconArrowDown', IconArrowDown)
 
 Vue.component('IconPersonaChantal', IconPersonaChantal)
 Vue.component('IconPersonaDustin', IconPersonaDustin)

@@ -1,0 +1,72 @@
+.personas-sidebar {
+  $width: 500px;
+
+  position: fixed;
+  top: 0;
+  right: -$width - 100px;
+  bottom: 0;
+  width: 90%;
+  max-width: $width;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #fff;
+  transition: right 1s;
+  display: flex;
+  flex-direction: column;
+
+  &.active {
+    right: 0;
+  }
+
+  .personas-sidebar-close {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .personas-sidebar-head {
+    position: relative;
+    padding: 100px 30px 20px 30px;
+    display: flex;
+    align-items: baseline;
+    border-bottom: 3px solid rgba($grey, 0.16);
+
+    .personas-sidebar-head-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+    }
+
+    .personas-sidebar-head-img {
+      position: relative;
+      width: 150px;
+
+      .personas-sidebar-head-img-button {
+        width: 130px;
+        margin: 0 auto;
+        transform: scale(0.8);
+        transition: transform 0.4s;
+
+        &:hover {
+          transform: scale(0.9)
+        }
+      }
+
+      .personas-sidebar-head-img-name {
+        position: absolute;
+        left: 180px;
+        top: 50px;
+        font-size: 150%;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .personas-sidebar-body {
+    padding: 30px 50px;
+    overflow-y: auto;
+  }
+}

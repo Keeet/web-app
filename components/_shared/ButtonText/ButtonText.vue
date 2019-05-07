@@ -1,5 +1,5 @@
 <template>
-  <div class="button-text" @click="$emit('click')">
+  <div class="button-text" :class="[type, { noHoverEffect }]" @click="$emit('click')">
     <div v-show="disabled" class="button-text-disabled" />
     <button class="button-text-item" :class="{disabled}">
       {{ text }}
@@ -8,6 +8,11 @@
 </template>
 
 <script>
+const TYPES = {
+  BLUE: 'BLUE',
+  GREY: 'GREY'
+}
+
 export default {
   name: 'ButtonText',
   props: {
@@ -18,6 +23,20 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    type: {
+      type: String,
+      default: TYPES.BLUE,
+      validator: value => Object.values(TYPES).includes(value)
+    },
+    noHoverEffect: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data() {
+    return {
+      TYPES
     }
   }
 }

@@ -1,9 +1,16 @@
 .persona-icon {
   transition: transform 0.4s;
 
-  &:hover {
+  &:not(.noClick):hover {
     cursor: pointer;
     transform: scale(1.1);
+  }
+
+  &.whiteBg {
+
+    .persona-icon-image {
+      background-color: #fff !important;
+    }
   }
 
   .persona-icon-image {
@@ -12,34 +19,6 @@
     height: 150px;
     border-radius: 100%;
     overflow: hidden;
-
-    &.chantal {
-      background-color: $persona-chantal;
-    }
-    &.dustin {
-      background-color: $persona-dustin;
-    }
-    &.jacqueline {
-      background-color: $persona-jacqueline;
-    }
-    &.jason {
-      background-color: $persona-jason;
-    }
-    &.justin {
-      background-color: $persona-justin;
-    }
-    &.kevin {
-      background-color: $persona-kevin;
-    }
-    &.mandy {
-      background-color: $persona-mandy;
-    }
-    &.marvin {
-      background-color: $persona-marvin;
-    }
-    &.mika {
-      background-color: $persona-mika;
-    }
 
     svg {
       position: absolute;

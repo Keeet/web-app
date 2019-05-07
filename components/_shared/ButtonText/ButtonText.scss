@@ -20,14 +20,28 @@
     box-sizing: border-box;
     border: none;
     border-radius: 3px;
-    transition: transform 0.5s;
     font-weight: 500;
-    background-color: #0fbcf9;
-    color: #fff;
 
     &:hover {
       cursor: pointer;
+    }
+  }
+
+  &:not(.noHoverEffect) {
+    transition: transform 0.5s;
+
+    &:hover {
       transform: scale(1.02)
     }
+  }
+
+  &.BLUE .button-text-item {
+    background-color: #0fbcf9;
+    color: #fff;
+  }
+
+  &.GREY .button-text-item {
+    background-color: rgba($grey, 0.4);
+    color: #485460;
   }
 }
