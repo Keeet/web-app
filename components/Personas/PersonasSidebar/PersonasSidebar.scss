@@ -9,7 +9,7 @@
   max-width: $width;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: #fff;
-  transition: right 1s;
+  transition: right 0.7s;
   display: flex;
   flex-direction: column;
 
@@ -27,7 +27,7 @@
 
   .personas-sidebar-head {
     position: relative;
-    padding: 100px 30px 20px 30px;
+    padding: 100px 30px 0 30px;
     display: flex;
     align-items: baseline;
     border-bottom: 3px solid rgba($grey, 0.16);

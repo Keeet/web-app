@@ -6,8 +6,8 @@
   transition: transform 0.4s;
 
   &.large {
-    width: 70px;
-    height: 70px;
+    width: 65px;
+    height: 65px;
   }
 
   &:hover {
@@ -33,7 +33,7 @@
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.07);
 
     svg {
-      fill: $grey;
+      fill: $grey-dark;
     }
   }
 }

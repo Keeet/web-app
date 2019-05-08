@@ -85,13 +85,13 @@ const config = {
         icon: 'CHANTAL',
         screenerQuestions: [
           {
-            value: 'A',
+            value: 'Has to be a customer at either Netflix or Amazon Prime.',
             id: '0248537a-31f0-4405-9936-96ea806321be',
             updatedAt: '2019-05-04T22:43:15Z',
             createdAt: '2019-05-04T22:43:15Z'
           },
           {
-            value: 'B',
+            value: 'Has to spend at least around 2 hours per week on Netflix or Amazon Prime.',
             id: 'e1918233-2fe0-43e3-82d2-1efae7723d86',
             updatedAt: '2019-05-04T22:43:15Z',
             createdAt: '2019-05-04T22:43:15Z'
@@ -119,13 +119,13 @@ const config = {
         icon: 'MIKA',
         screenerQuestions: [
           {
-            value: 'A',
+            value: 'Must live in a flat sharing community in Berlin.',
             id: '0248537a-31f0-4405-9936-96ea806321be',
             updatedAt: '2019-05-04T22:43:15Z',
             createdAt: '2019-05-04T22:43:15Z'
           },
           {
-            value: 'B',
+            value: 'Has to spend at least around 2 hours per week on Netflix or Amazon Prime.',
             id: 'e1918233-2fe0-43e3-82d2-1efae7723d86',
             updatedAt: '2019-05-04T22:43:15Z',
             createdAt: '2019-05-04T22:43:15Z'

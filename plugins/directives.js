@@ -12,21 +12,32 @@ Vue.directive('closable', {
       e.stopPropagation()
       // Get the handler method name and the exclude array
       // from the object used in v-closable
-      const { handler, exclude } = binding.value
+      const { handler, exclude, excludeClasses } = binding.value
 
       // This variable indicates if the clicked element is excluded
       let clickedOnExcludedEl = false
-      exclude.forEach((refName) => {
-        // We only run this code if we haven't detected
-        // any excluded element yet
-        if (!clickedOnExcludedEl) {
-          // Get the element using the reference name
-          const excludedEl = vnode.context.$refs[refName]
-          // See if this excluded element
-          // is the same element the user just clicked on
-          clickedOnExcludedEl = excludedEl.contains(e.target)
-        }
-      })
+      if (exclude) {
+        exclude.forEach((refName) => {
+          // We only run this code if we haven't detected
+          // any excluded element yet
+          if (!clickedOnExcludedEl) {
+            // Get the element using the reference name
+            const excludedEl = vnode.context.$refs[refName]
+            // See if this excluded element
+            // is the same element the user just clicked on
+            clickedOnExcludedEl = excludedEl.contains(e.target)
+          }
+        })
+      }
+      if (excludeClasses) {
+        excludeClasses.forEach((className) => {
+          Array.from(document.getElementsByClassName(className)).forEach((excludedEl) => {
+            if (!clickedOnExcludedEl) {
+              clickedOnExcludedEl = excludedEl.contains(e.target)
+            }
+          })
+        })
+      }
 
       // We check to see if the clicked element is not
       // the dialog element and not excluded

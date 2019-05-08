@@ -10,6 +10,8 @@
   table.personas-sidebar-table-content {
     width: 100%;
     border-collapse: collapse;
+    border-radius: 3px;
+    overflow: hidden;
 
     tr {
       background-color: rgba($grey, 0.2);

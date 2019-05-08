@@ -1,5 +1,8 @@
 <template>
-  <div class="personas-sidebar" :class="{ active }">
+  <div
+    class="personas-sidebar"
+    :class="{ active }"
+  >
     <div class="personas-sidebar-close">
       <ButtonCircle type="ARROW_RIGHT" large @click="$emit('close')" />
     </div>
@@ -20,8 +23,8 @@
       <PersonasSidebarHeadItem :value="formattedAge" label="Age" />
     </div>
     <div class="personas-sidebar-body">
-      <PersonasSidebarTable title="General Criteria" :rows="generalCriteria" />
-      <PersonasSidebarTable title="Special Criteria" :rows="specialCriteria" />
+      <PersonasSidebarTable v-if="generalCriteria.length" title="General Criteria" :rows="generalCriteria" />
+      <PersonasSidebarTable v-if="specialCriteria.length" title="Special Criteria" :rows="specialCriteria" />
     </div>
   </div>
 </template>
@@ -50,7 +53,7 @@ export default {
     formattedGender() {
       const genders = this.persona.demographicDataReq.gender
       if (!genders.length) {
-        return '-'
+        return 'n/a'
       } else {
         return firstLetterUppercase(genders[0])
       }
@@ -60,7 +63,7 @@ export default {
       if (minAge && maxAge) {
         return `${minAge} - ${maxAge}`
       } else {
-        return '-'
+        return 'n/a'
       }
     },
     generalCriteria() {
@@ -72,20 +75,12 @@ export default {
       ]
     },
     specialCriteria() {
-      return [
-        {
-          label: '#1',
-          value: 'Has to be a customer at either Netflix or Amazon Prime.'
-        },
-        {
-          label: '#2',
-          value: 'Has to spend at least around 2 hours per week on Netflix or Amazon Prime.'
-        },
-        {
-          label: '#3',
-          value: 'Must live in a flat sharing community in Berlin.'
+      return this.persona.screenerQuestions.map((question, x) => {
+        return {
+          label: `#${x + 1}`,
+          value: question.value
         }
-      ]
+      })
     }
   }
 }
