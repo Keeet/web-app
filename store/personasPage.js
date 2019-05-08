@@ -1,7 +1,8 @@
 export const state = () => ({
   sidebarPersona: null,
   sidebarActive: false,
-  deletePopup: false
+  deletePopup: false,
+  deletePending: false
 })
 
 export const mutations = {
@@ -16,5 +17,8 @@ export const mutations = {
   },
   hideDeletePopup(state) {
     state.deletePopup = false
+  },
+  setDeletePending(state, pending) {
+    state.deletePending = pending
   }
 }

@@ -36,6 +36,7 @@
         v-show="personasPageStore.deletePopup"
         :text="`Do you really want to delete the persona ${sidebarPersona.name}?`"
         :context="sidebarPersona"
+        :loading="personasPageStore.deletePending"
         trigger-class="personas-sidebar-head-delete"
         @confirm="deletePersona"
         @cancel="hideDeletePopup"
@@ -91,9 +92,13 @@ export default {
       this.$store.commit('personasPage/hideDeletePopup')
     },
     deletePersona(persona) {
-      // this.$axios.$post('/persona', persona)
-      this.hideDeletePopup()
-      this.closeSidebar()
+      this.$store.commit('personasPage/setDeletePending', true)
+      window.setTimeout(() => {
+        // this.$axios.$post('/persona', persona)
+        this.hideDeletePopup()
+        this.closeSidebar()
+        this.$store.commit('personasPage/setDeletePending', false)
+      }, 1000)
     }
   }
 }

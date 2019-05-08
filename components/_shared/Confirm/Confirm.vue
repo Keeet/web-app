@@ -3,6 +3,7 @@
     <OverlayModal
       :title="title"
       :trigger-class="triggerClass"
+      :loading="loading"
       reduced-margins
       @close="cancel"
     >
@@ -47,6 +48,10 @@ export default {
     triggerClass: {
       type: String,
       default: null
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {

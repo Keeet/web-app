@@ -8,7 +8,7 @@
         }"
         class="overlay-modal-box-inner"
       >
-        <div v-show="!loading" class="overlay-modal-box-loading" :class="{active: loading}">
+        <div v-show="loading" class="overlay-modal-box-loading" :class="{active: loading}">
           <Loading />
         </div>
         <div v-if="!noClose" class="overlay-modal-box-close" @click="close">
