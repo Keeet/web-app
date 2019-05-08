@@ -36,5 +36,14 @@
       fill: $grey-dark;
     }
   }
+
+  &.ARROW_LEFT {
+    background-color: #fff;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.07);
+
+    svg {
+      fill: $grey-dark;
+    }
+  }
 }
 

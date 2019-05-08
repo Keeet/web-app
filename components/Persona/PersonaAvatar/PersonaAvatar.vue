@@ -6,7 +6,7 @@
         placeholder="Persona Name"
         mutation="personaForm/setName"
         :value="personaForm.name"
-        :max-characters="12"
+        :max-characters="15"
       />
     </div>
     <div class="persona-avatar-icons">

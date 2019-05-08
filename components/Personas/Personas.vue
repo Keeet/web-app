@@ -6,7 +6,9 @@
         <div v-if="!personas.length" class="personas-create-start">
           <IconStartHereDashboard />
         </div>
-        <ButtonCircle type="CREATE" @click="create" />
+        <nuxt-link to="/personas/create">
+          <ButtonCircle type="CREATE" />
+        </nuxt-link>
       </div>
     </div>
     <div class="personas-icons">
@@ -73,9 +75,6 @@ export default {
     }
   },
   methods: {
-    create() {
-      this.$fetch([{ name: 'PERSONAS', forced: true }])
-    },
     openSidebar(persona) {
       this.$store.commit('personasPage/setSidebarPersona', persona)
       this.$store.commit('personasPage/setSidebarActive', true)

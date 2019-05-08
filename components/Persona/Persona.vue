@@ -1,5 +1,8 @@
 <template>
   <div class="persona">
+    <div class="persona-cancel">
+      <ButtonCircle type="ARROW_LEFT" @click="$router.back()" />
+    </div>
     <Headline text="Create your avatar" center />
     <PersonaStep :show-prev="false" :valid="step1Valid">
       <PersonaAvatar />
@@ -9,11 +12,12 @@
 
 <script>
 import Headline from '../_shared/Headline/Headline'
+import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
 import PersonaAvatar from './PersonaAvatar/PersonaAvatar'
 import PersonaStep from './PersonaStep/PersonaStep'
 export default {
   name: 'Persona',
-  components: { PersonaStep, PersonaAvatar, Headline },
+  components: { ButtonCircle, PersonaStep, PersonaAvatar, Headline },
   computed: {
     s() {
       return this.$store.state.personaForm
