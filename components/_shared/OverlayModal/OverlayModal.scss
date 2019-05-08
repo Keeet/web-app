@@ -20,6 +20,24 @@
     .overlay-modal-box-inner {
       position: relative;
 
+      .overlay-modal-box-loading {
+        position: absolute;
+        z-index: 0;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.4s;
+        opacity: 0;
+
+        &.active {
+          opacity: 1;
+        }
+
+        svg {
+          width: 70px;
+        }
+      }
+
       .overlay-modal-box-close {
         position: absolute;
         right: 10px;
@@ -38,6 +56,15 @@
 
       .overlay-modal-box-content {
         padding: 50px 10% 30px;
+        position: relative;
+        z-index: 1;
+        opacity: 1;
+        transition: all 0.4s;
+
+        &.hidden {
+          transform: scale(0.9);
+          opacity: 0;
+        }
 
         .overlay-modal-box-content-title {
           font-weight: 700;

@@ -1,7 +1,12 @@
 <template>
   <div class="dashboard">
-    <OverlayModal v-if="!$store.state.user.companyId" title="Last Step" no-close>
-      <CompanyForm :loading="loading" @submit="companySubmitted" />
+    <OverlayModal
+      v-if="!$store.state.user.companyId"
+      title="Last Step"
+      no-close
+      :loading="loading"
+    >
+      <CompanyForm @submit="companySubmitted" />
     </OverlayModal>
     <div class="dashboard-head">
       <Headline text="Projects" />

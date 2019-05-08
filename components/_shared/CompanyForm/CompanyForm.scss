@@ -1,46 +1,15 @@
 .company-form {
-  position: relative;
 
-  .company-form-loading {
-    position: absolute;
-    z-index: 0;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.4s;
-    opacity: 0;
+  .company-form-street {
+    display: flex;
+    justify-content: space-between;
 
-    &.active {
-      opacity: 1;
+    .company-form-street-name {
+      width: 60%;
     }
 
-    svg {
-      width: 70px;
-    }
-  }
-
-  .company-form-content {
-    position: relative;
-    z-index: 1;
-    opacity: 1;
-    transition: all 0.4s;
-
-    &.hidden {
-      transform: scale(0.9);
-      opacity: 0;
-    }
-
-    .company-form-street {
-      display: flex;
-      justify-content: space-between;
-
-      .company-form-street-name {
-        width: 60%;
-      }
-
-      .company-form-street-nb {
-        width: 35%;
-      }
+    .company-form-street-nb {
+      width: 35%;
     }
   }
 }

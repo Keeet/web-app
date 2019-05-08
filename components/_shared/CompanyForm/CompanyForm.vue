@@ -1,66 +1,61 @@
 <template>
   <div class="company-form">
-    <div class="company-form-loading" :class="{active: loading}">
-      <Loading />
-    </div>
-    <div class="company-form-content" :class="{hidden: loading}">
-      <Input
-        title="Company name*"
-        placeholder="Keeet"
-        :value="store.name"
-        mutation="companyForm/setName"
-        :error="nameError"
-        :disable-error="!showErrors"
-      />
-      <div class="company-form-street">
-        <div class="company-form-street-name">
-          <Input
-            title="Street*"
-            placeholder="Rosenthaler Strasse"
-            :value="store.street"
-            mutation="companyForm/setStreet"
-            :error="streetError"
-            :disable-error="!showErrors"
-          />
-        </div>
-        <div class="company-form-street-nb">
-          <Input
-            title="Number*"
-            placeholder="101"
-            :value="store.houseNb"
-            mutation="companyForm/setHouseNb"
-            :error="houseNbError"
-            :disable-error="!showErrors"
-          />
-        </div>
+    <Input
+      title="Company name*"
+      placeholder="Keeet"
+      :value="store.name"
+      mutation="companyForm/setName"
+      :error="nameError"
+      :disable-error="!showErrors"
+    />
+    <div class="company-form-street">
+      <div class="company-form-street-name">
+        <Input
+          title="Street*"
+          placeholder="Rosenthaler Strasse"
+          :value="store.street"
+          mutation="companyForm/setStreet"
+          :error="streetError"
+          :disable-error="!showErrors"
+        />
       </div>
-      <Input
-        title="Additional"
-        placeholder="third backyard"
-        :value="store.addressDescription"
-        mutation="companyForm/setAddressDescription"
-        :error="null"
-      />
-      <Input
-        title="ZIP*"
-        placeholder="10369"
-        :value="store.zip"
-        mutation="companyForm/setZip"
-        :error="zipError"
-        :disable-error="!showErrors"
-      />
-      <Select
-        title="Country*"
-        :options="[{
-          label: 'Deutschland',
-          value: 'DE'
-        }]"
-        :value="store.country"
-        mutation="companyForm/setCountry"
-        readonly
-      />
-      <ButtonText text="Go" :disabled="!formValid" @click="submitForm" />
+      <div class="company-form-street-nb">
+        <Input
+          title="Number*"
+          placeholder="101"
+          :value="store.houseNb"
+          mutation="companyForm/setHouseNb"
+          :error="houseNbError"
+          :disable-error="!showErrors"
+        />
+      </div>
     </div>
+    <Input
+      title="Additional"
+      placeholder="third backyard"
+      :value="store.addressDescription"
+      mutation="companyForm/setAddressDescription"
+      :error="null"
+    />
+    <Input
+      title="ZIP*"
+      placeholder="10369"
+      :value="store.zip"
+      mutation="companyForm/setZip"
+      :error="zipError"
+      :disable-error="!showErrors"
+    />
+    <Select
+      title="Country*"
+      :options="[{
+        label: 'Deutschland',
+        value: 'DE'
+      }]"
+      :value="store.country"
+      mutation="companyForm/setCountry"
+      readonly
+    />
+    <ButtonText text="Go" :disabled="!formValid" @click="submitForm" />
   </div>
 </template>
 
@@ -75,10 +70,6 @@ export default {
     id: {
       type: String,
       default: null
-    },
-    loading: {
-      type: Boolean,
-      default: false
     }
   },
   data() {

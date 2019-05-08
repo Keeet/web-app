@@ -8,10 +8,13 @@
         }"
         class="overlay-modal-box-inner"
       >
+        <div class="overlay-modal-box-loading" :class="{active: loading}">
+          <Loading />
+        </div>
         <div v-if="!noClose" class="overlay-modal-box-close" @click="close">
           <IconCancel />
         </div>
-        <div class="overlay-modal-box-content">
+        <div class="overlay-modal-box-content" :class="{hidden: loading}">
           <p v-if="title" class="overlay-modal-box-content-title">
             {{ title }}
           </p>
@@ -31,6 +34,10 @@ export default {
       required: true
     },
     noClose: {
+      type: Boolean,
+      default: false
+    },
+    loading: {
       type: Boolean,
       default: false
     }
