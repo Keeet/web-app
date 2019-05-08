@@ -10,6 +10,7 @@
 <script>
 const TYPES = {
   BLUE: 'BLUE',
+  BLUE_BORDER: 'BLUE_BORDER',
   GREY: 'GREY'
 }
 

@@ -40,6 +40,17 @@
       height: 200px;
     }
 
+    .personas-sidebar-head-delete {
+      position: absolute;
+      right: 20px;
+      top: 80px;
+      width: 15px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
     .personas-sidebar-head-img {
       position: relative;
       width: 150px;

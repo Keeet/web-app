@@ -37,12 +37,18 @@
   }
 
   &.BLUE .button-text-item {
-    background-color: #0fbcf9;
+    background-color: $blue-primary;
     color: #fff;
+  }
+
+  &.BLUE_BORDER .button-text-item {
+    border: 1px solid $blue-primary;
+    color: $blue-primary;
+    background-color: transparent;
   }
 
   &.GREY .button-text-item {
     background-color: rgba($grey, 0.4);
-    color: #485460;
+    color: $grey-dark;
   }
 }

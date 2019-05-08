@@ -3,19 +3,19 @@
     <div class="overlay-modal-box">
       <div
         v-closable="{
-          exclude: [],
+          excludeClasses: triggerClass ? [triggerClass] : [],
           handler: 'close'
         }"
         class="overlay-modal-box-inner"
       >
-        <div class="overlay-modal-box-loading" :class="{active: loading}">
+        <div v-show="!loading" class="overlay-modal-box-loading" :class="{active: loading}">
           <Loading />
         </div>
         <div v-if="!noClose" class="overlay-modal-box-close" @click="close">
           <IconCancel />
         </div>
-        <div class="overlay-modal-box-content" :class="{hidden: loading}">
-          <p v-if="title" class="overlay-modal-box-content-title">
+        <div class="overlay-modal-box-content" :class="{hidden: loading, reducedMargins}">
+          <p v-if="title" class="overlay-modal-box-content-title" :class="{reducedMargins}">
             {{ title }}
           </p>
           <slot />
@@ -38,6 +38,14 @@ export default {
       default: false
     },
     loading: {
+      type: Boolean,
+      default: false
+    },
+    triggerClass: {
+      type: String,
+      default: null
+    },
+    reducedMargins: {
       type: Boolean,
       default: false
     }

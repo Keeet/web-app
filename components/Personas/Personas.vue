@@ -19,15 +19,26 @@
     </div>
     <div
       v-closable="{
-        excludeClasses: ['personas-icons-item'],
+        excludeClasses: ['personas-icons-item', 'personas-delete-popup'],
         handler: 'closeSidebar'
       }"
       class="personas-sidebar"
     >
       <PersonasSidebar
         :active="personasPageStore.sidebarActive"
-        :persona="personasPageStore.sidebarPersona || samplePersona"
+        :persona="sidebarPersona"
         @close="closeSidebar"
+        @delete="showDeletePopup"
+      />
+    </div>
+    <div class="personas-delete-popup">
+      <Confirm
+        v-show="personasPageStore.deletePopup"
+        :text="`Do you really want to delete the persona ${sidebarPersona.name}?`"
+        :context="sidebarPersona"
+        trigger-class="personas-sidebar-head-delete"
+        @confirm="deletePersona"
+        @cancel="hideDeletePopup"
       />
     </div>
   </div>
@@ -38,22 +49,26 @@ import Headline from '../_shared/Headline/Headline'
 import samplePersona from '../../assets/samples/samplePersona'
 import PersonaIcon from '../_shared/PersonaIcon/PersonaIcon'
 import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
+import Confirm from '../_shared/Confirm/Confirm'
 import PersonasSidebar from './PersonasSidebar/PersonasSidebar'
 
 export default {
   name: 'Persona',
-  components: { PersonasSidebar, ButtonCircle, PersonaIcon, Headline },
+  components: { Confirm, PersonasSidebar, ButtonCircle, PersonaIcon, Headline },
   data() {
     return {
       samplePersona
     }
   },
   computed: {
-    personas() {
-      return this.$store.state.personas
-    },
     personasPageStore() {
       return this.$store.state.personasPage
+    },
+    sidebarPersona() {
+      return this.personasPageStore.sidebarPersona || samplePersona
+    },
+    personas() {
+      return this.$store.state.personas
     }
   },
   methods: {
@@ -65,7 +80,20 @@ export default {
       this.$store.commit('personasPage/setSidebarActive', true)
     },
     closeSidebar() {
-      this.$store.commit('personasPage/setSidebarActive', false)
+      if (this.personasPageStore.sidebarActive) {
+        this.$store.commit('personasPage/setSidebarActive', false)
+      }
+    },
+    showDeletePopup() {
+      this.$store.commit('personasPage/showDeletePopup')
+    },
+    hideDeletePopup() {
+      this.$store.commit('personasPage/hideDeletePopup')
+    },
+    deletePersona(persona) {
+      // this.$axios.$post('/persona', persona)
+      this.hideDeletePopup()
+      this.closeSidebar()
     }
   }
 }

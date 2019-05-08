@@ -17,6 +17,10 @@
     box-shadow: 0 2px 8px 0 rgba(72, 84, 96, 0.25);
     border-radius: 5px;
 
+    &.reducedMargins {
+      margin-bottom: 30px;
+    }
+
     .overlay-modal-box-inner {
       position: relative;
 
@@ -40,6 +44,7 @@
 
       .overlay-modal-box-close {
         position: absolute;
+        z-index: 2;
         right: 10px;
         top: 10px;
         width: 13px;
@@ -66,10 +71,18 @@
           opacity: 0;
         }
 
+        &.reducedMargins {
+          padding-bottom: 15px;
+        }
+
         .overlay-modal-box-content-title {
           font-weight: 700;
           font-size: 150%;
           margin-bottom: 40px;
+
+          &.reducedMargins {
+            margin-bottom: 20px;
+          }
         }
       }
     }

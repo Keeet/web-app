@@ -4,10 +4,13 @@
     :class="{ active }"
   >
     <div class="personas-sidebar-close">
-      <ButtonCircle type="ARROW_RIGHT" large @click="$emit('close')" />
+      <ButtonCircle type="ARROW_RIGHT" large @click="close" />
     </div>
     <div class="personas-sidebar-head">
       <div class="personas-sidebar-head-bg" :class="`${persona.icon.toLowerCase()}-bg`" />
+      <div class="personas-sidebar-head-delete">
+        <IconDelete @click="$emit('delete')" />
+      </div>
       <div class="personas-sidebar-head-img">
         <div class="personas-sidebar-head-img-icon">
           <PersonaIcon :icon="persona.icon" :white-bg="true" :no-click="true" />
@@ -50,6 +53,9 @@ export default {
     }
   },
   computed: {
+    personasPageStore() {
+      return this.$store.state.personasPage
+    },
     formattedGender() {
       const genders = this.persona.demographicDataReq.gender
       if (!genders.length) {
@@ -81,6 +87,11 @@ export default {
           value: question.value
         }
       })
+    }
+  },
+  methods: {
+    close() {
+      this.$emit('close')
     }
   }
 }

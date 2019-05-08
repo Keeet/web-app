@@ -1,0 +1,17 @@
+.confirm {
+
+  .confirm-labels {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    .confirm-labels-confirm {
+      margin-right: 20px;
+      width: 80px;
+    }
+
+    .confirm-labels-cancel {
+      width: 80px;
+    }
+  }
+}

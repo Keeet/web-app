@@ -1,6 +1,7 @@
 export const state = () => ({
   sidebarPersona: null,
-  sidebarActive: false
+  sidebarActive: false,
+  deletePopup: false
 })
 
 export const mutations = {
@@ -9,5 +10,11 @@ export const mutations = {
   },
   setSidebarActive(state, sidebarActive) {
     state.sidebarActive = sidebarActive
+  },
+  showDeletePopup(state) {
+    state.deletePopup = true
+  },
+  hideDeletePopup(state) {
+    state.deletePopup = false
   }
 }
