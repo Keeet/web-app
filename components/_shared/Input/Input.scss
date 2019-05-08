@@ -2,24 +2,49 @@
   position: relative;
   padding: 8px 0;
 
-  .input-title {
-    position: relative;
-    z-index: 1;
-    font-weight: 500;
-    margin-bottom: 5px;
-    font-size: 90%;
+  &.DEFAULT {
+
+    .input-title {
+      position: relative;
+      z-index: 1;
+      font-weight: 500;
+      margin-bottom: 5px;
+      font-size: 90%;
+    }
+
+    .input-field {
+      padding: 14px 16px;
+      box-sizing: border-box;
+      border: 1px solid $grey;
+      border-radius: 3px;
+      width: 100%;
+      transition: border 0.4s;
+
+      &.error {
+        border: 1px solid $red-error;
+      }
+    }
   }
 
-  .input-field {
-    padding: 14px 16px;
-    box-sizing: border-box;
-    border: 1px solid #d2dae2;
-    border-radius: 3px;
-    width: 100%;
-    transition: border 0.4s;
+  &.UNDERLINED_LARGE {
 
-    &.error {
-      border: 1px solid $red-error;
+    .input-title {
+      display: none;
+    }
+
+    .input-field {
+      padding: 10px 0;
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+      border-bottom: 2px solid $grey-dark;
+      font-size: 150%;
+      width: 100%;
+
+      &::placeholder {
+        color: $grey;
+        font-weight: 500;
+      }
     }
   }
 

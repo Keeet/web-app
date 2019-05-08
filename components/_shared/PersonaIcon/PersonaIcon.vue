@@ -1,6 +1,6 @@
 <template>
-  <div class="persona-icon" :class="{ whiteBg, noClick }" @click="click">
-    <div class="persona-icon-image" :class="`${icon.toLowerCase()}-bg`">
+  <div class="persona-icon" :class="{ whiteBg, noClick, disabled }" @click="click">
+    <div class="persona-icon-image" :class="[`${icon.toLowerCase()}-bg`, { small }]">
       <IconPersonaChantal v-if="icon === ICONS.CHANTAL" />
       <IconPersonaDustin v-if="icon === ICONS.DUSTIN" />
       <IconPersonaJacqueline v-if="icon === ICONS.JACQUELINE" />
@@ -37,6 +37,14 @@ export default {
       default: false
     },
     noClick: {
+      type: Boolean,
+      default: false
+    },
+    small: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
       type: Boolean,
       default: false
     }

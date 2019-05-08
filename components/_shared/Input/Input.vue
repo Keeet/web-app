@@ -1,15 +1,16 @@
 <template>
-  <div class="input">
+  <div class="input" :class="type">
     <p v-if="title" class="input-title">
       {{ title }}
     </p>
     <input
+      v-model="message"
       class="input-field"
       :class="{error: showError}"
       :placeholder="placeholder"
-      v-model="message"
       :readonly="readonly"
-    />
+      :maxlength="maxCharacters || 524288"
+    >
     <p class="input-error" :class="{active: showError}">
       {{ error }}
     </p>
@@ -17,9 +18,19 @@
 </template>
 
 <script>
+const TYPES = {
+  DEFAULT: 'DEFAULT',
+  UNDERLINED_LARGE: 'UNDERLINED_LARGE'
+}
+
 export default {
   name: 'Input',
   props: {
+    type: {
+      type: String,
+      default: TYPES.DEFAULT,
+      validator: value => Object.values(TYPES).includes(value)
+    },
     title: {
       type: String,
       default: null
@@ -47,6 +58,10 @@ export default {
     readonly: {
       type: Boolean,
       default: false
+    },
+    maxCharacters: {
+      type: Number,
+      default: null
     }
   },
   computed: {
@@ -55,7 +70,9 @@ export default {
         return this.value
       },
       set(value) {
-        this.$store.commit(this.mutation, value)
+        if (!this.maxCharacters || this.maxCharacters >= value.length) {
+          this.$store.commit(this.mutation, value)
+        }
       }
     },
     showError() {

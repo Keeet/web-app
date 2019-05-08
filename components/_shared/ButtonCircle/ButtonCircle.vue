@@ -1,14 +1,14 @@
 <template>
   <div class="button-circle" :class="[type, { large }]" @click="$emit('click')">
     <IconPlus v-if="type === TYPES.CREATE" class="icon-plus" />
-    <IconArrowRight v-if="type === TYPES.ARROW_RIGHT" class="icon-arrow-right" />
+    <IconAngleRight v-if="type === TYPES.ANGLE_RIGHT" class="icon-angle-right" />
   </div>
 </template>
 
 <script>
 const TYPES = {
   CREATE: 'CREATE',
-  ARROW_RIGHT: 'ARROW_RIGHT'
+  ANGLE_RIGHT: 'ANGLE_RIGHT'
 }
 
 export default {

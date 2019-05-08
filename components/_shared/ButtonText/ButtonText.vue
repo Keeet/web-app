@@ -1,8 +1,10 @@
 <template>
   <div class="button-text" :class="[type, { noHoverEffect }]" @click="$emit('click')">
     <div v-show="disabled" class="button-text-disabled" />
-    <button class="button-text-item" :class="{disabled}">
-      {{ text }}
+    <button class="button-text-item" :class="{disabled, leftArrowActive, rightArrowActive}">
+      <IconArrowLeft v-if="leftArrowActive" class="button-text-item-arrow" />
+      <span class="button-text-item-text">{{ text }}</span>
+      <IconArrowRight v-if="rightArrowActive" class="button-text-item-arrow" />
     </button>
   </div>
 </template>
@@ -12,6 +14,11 @@ const TYPES = {
   BLUE: 'BLUE',
   BLUE_BORDER: 'BLUE_BORDER',
   GREY: 'GREY'
+}
+
+const ARROWS = {
+  LEFT: 'LEFT',
+  RIGHT: 'RIGHT'
 }
 
 export default {
@@ -30,6 +37,11 @@ export default {
       default: TYPES.BLUE,
       validator: value => Object.values(TYPES).includes(value)
     },
+    arrow: {
+      type: String,
+      default: null,
+      validator: value => Object.values(ARROWS).includes(value)
+    },
     noHoverEffect: {
       type: Boolean,
       default: false
@@ -37,7 +49,16 @@ export default {
   },
   data() {
     return {
-      TYPES
+      TYPES,
+      ARROWS
+    }
+  },
+  computed: {
+    leftArrowActive() {
+      return this.arrow && this.arrow === ARROWS.LEFT
+    },
+    rightArrowActive() {
+      return this.arrow && this.arrow === ARROWS.RIGHT
     }
   }
 }

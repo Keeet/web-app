@@ -1,0 +1,24 @@
+.persona-avatar {
+
+  .persona-avatar-name {
+    margin-bottom: 50px;
+  }
+
+  .persona-avatar-icons {
+
+    .persona-avatar-icons-headline {
+      font-size: 150%;
+      font-weight: 500;
+    }
+
+    .persona-avatar-icons-content {
+      margin-top: 50px;
+
+      .persona-avatar-icons-content-row {
+        display: flex;
+        justify-content: space-between;
+        margin: 40px 0;
+      }
+    }
+  }
+}

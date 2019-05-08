@@ -4,7 +4,7 @@
     :class="{ active }"
   >
     <div class="personas-sidebar-close">
-      <ButtonCircle type="ARROW_RIGHT" large @click="close" />
+      <ButtonCircle type="ANGLE_RIGHT" large @click="close" />
     </div>
     <div class="personas-sidebar-head">
       <div class="personas-sidebar-head-bg" :class="`${persona.icon.toLowerCase()}-bg`" />

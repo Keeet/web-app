@@ -6,8 +6,10 @@ import Loading from '../static/animated/loading.svg'
 import IconPlus from '../assets/icons/plus.svg'
 import IconCalendarOutline from '../assets/icons/calendar-empty-page-outline.svg'
 import IconStartHereDashboard from '../assets/icons/start-here-dashboard.svg'
+import IconAngleRight from '../assets/icons/angle-right.svg'
+import IconAngleDown from '../assets/icons/angle-down.svg'
 import IconArrowRight from '../assets/icons/arrow-right.svg'
-import IconArrowDown from '../assets/icons/arrow-down.svg'
+import IconArrowLeft from '../assets/icons/arrow-left.svg'
 import IconDelete from '../assets/icons/delete.svg'
 
 import IconPersonaChantal from '../assets/icons/persona-chantal.svg'
@@ -25,8 +27,10 @@ Vue.component('IconCheck', IconCheck)
 Vue.component('IconPlus', IconPlus)
 Vue.component('IconCalendarOutline', IconCalendarOutline)
 Vue.component('IconStartHereDashboard', IconStartHereDashboard)
+Vue.component('IconAngleRight', IconAngleRight)
+Vue.component('IconAngleDown', IconAngleDown)
 Vue.component('IconArrowRight', IconArrowRight)
-Vue.component('IconArrowDown', IconArrowDown)
+Vue.component('IconArrowLeft', IconArrowLeft)
 Vue.component('IconDelete', IconDelete)
 
 Vue.component('IconPersonaChantal', IconPersonaChantal)

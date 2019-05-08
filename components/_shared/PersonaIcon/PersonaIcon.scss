@@ -1,4 +1,6 @@
 .persona-icon {
+  transition: opacity 0.4s;
+
 
   &:not(.noClick):hover {
     cursor: pointer;
@@ -11,12 +13,21 @@
     }
   }
 
+  &.disabled {
+    opacity: 0.2;
+  }
+
   .persona-icon-image {
     position: relative;
     width: 150px;
     height: 150px;
     border-radius: 100%;
     overflow: hidden;
+
+    &.small {
+      width: 100px;
+      height: 100px;
+    }
 
     svg {
       position: absolute;

@@ -26,6 +26,25 @@
     &:hover {
       cursor: pointer;
     }
+
+    .button-text-item-arrow {
+      width: 15px;
+      padding-bottom: 1px;
+    }
+
+    &.leftArrowActive {
+
+      .button-text-item-text {
+        margin-left: 5px;
+      }
+    }
+
+    &.rightArrowActive {
+
+      .button-text-item-text {
+        margin-right: 5px;
+      }
+    }
   }
 
   &:not(.noHoverEffect) {
@@ -39,16 +58,28 @@
   &.BLUE .button-text-item {
     background-color: $blue-primary;
     color: #fff;
+
+    .button-text-item-arrow {
+      fill: #fff;
+    }
   }
 
   &.BLUE_BORDER .button-text-item {
     border: 1px solid $blue-primary;
     color: $blue-primary;
     background-color: transparent;
+
+    .button-text-item-arrow {
+      fill: $blue-primary;
+    }
   }
 
   &.GREY .button-text-item {
     background-color: rgba($grey, 0.4);
     color: $grey-dark;
+
+    .button-text-item-arrow {
+      fill: $grey-dark;
+    }
   }
 }

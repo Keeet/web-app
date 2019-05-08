@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Personas from '../components/Personas/Personas'
+import Personas from '../../components/Personas/Personas'
 export default {
   name: 'PersonasPage',
   components: { Personas },

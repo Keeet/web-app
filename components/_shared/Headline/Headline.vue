@@ -1,5 +1,5 @@
 <template>
-  <h1 class="headline">
+  <h1 class="headline" :class="{center}">
     {{ text }}
   </h1>
 </template>
@@ -11,6 +11,10 @@ export default {
     text: {
       type: String,
       required: true
+    },
+    center: {
+      type: Boolean,
+      default: false
     }
   }
 }
