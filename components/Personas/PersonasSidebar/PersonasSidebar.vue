@@ -37,8 +37,9 @@ import ButtonText from '../../_shared/ButtonText/ButtonText'
 import PersonaIcon from '../../_shared/PersonaIcon/PersonaIcon'
 import PersonasSidebarHeadItem from '../PersonasSidebarHeadItem/PersonasSidebarHeadItem'
 import PersonasSidebarTable from '../PersonasSidebarTable/PersonasSidebarTable'
-import { firstLetterUppercase } from '../../../utils/stringUtils'
 import ButtonCircle from '../../_shared/ButtonCircle/ButtonCircle'
+import { PERSONA_OCCUPATION_LABELS, PERSONA_GENDER_LABELS } from '../../constants'
+
 export default {
   name: 'PersonasSidebar',
   components: { ButtonCircle, PersonasSidebarTable, PersonasSidebarHeadItem, PersonaIcon, ButtonText },
@@ -57,11 +58,11 @@ export default {
       return this.$store.state.personasPage
     },
     formattedGender() {
-      const genders = this.persona.demographicDataReq.gender
+      const genders = this.persona.demographicDataReq.genders
       if (!genders.length) {
         return 'n/a'
       } else {
-        return firstLetterUppercase(genders[0])
+        return PERSONA_GENDER_LABELS[genders[0]]
       }
     },
     formattedAge() {
@@ -76,7 +77,7 @@ export default {
       return [
         {
           label: 'Occupation',
-          value: this.persona.demographicDataReq.occupations.map(item => firstLetterUppercase(item)).join(', ')
+          value: this.persona.demographicDataReq.occupations.map(item => PERSONA_OCCUPATION_LABELS[item]).join(', ')
         }
       ]
     },

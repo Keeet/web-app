@@ -31,7 +31,9 @@
     "minAge": 18,
     "maxAge": 30,
     "occupations": [
-      "STUDENT"
+      "STUDENT",
+      "PART_TIME_EMPLOYEE",
+      "UNEMPLOYED"
     ],
     "genders": [
       "MALE"
