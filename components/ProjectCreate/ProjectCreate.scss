@@ -1,0 +1,23 @@
+.project-create {
+
+  .persona-create-cancel {
+    position: absolute;
+    top: 120px;
+    left: 5%;
+  }
+
+  .project-create-form {
+    margin: 60px auto;
+    width: 90%;
+    max-width: 400px;
+
+    .project-create-form-input {
+      margin-top: 80px;
+    }
+
+    .project-create-form-submit {
+      width: 150px;
+      float: right;
+    }
+  }
+}

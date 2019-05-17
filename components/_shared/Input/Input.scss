@@ -46,6 +46,14 @@
         color: $grey;
         font-weight: 500;
       }
+
+      &.error {
+        border-bottom: 2px solid $red-error;
+      }
+    }
+
+    .input-error {
+      top: 0;
     }
   }
 

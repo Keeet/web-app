@@ -55,7 +55,7 @@
       mutation="companyForm/setCountry"
       readonly
     />
-    <ButtonText text="Go" :disabled="!formValid" @click="submitForm" />
+    <ButtonText text="Go" :disabled="!formValid" @click="submitForm" @disabledClick="showErrors = true" />
   </div>
 </template>
 
@@ -98,10 +98,6 @@ export default {
   },
   methods: {
     submitForm() {
-      if (!this.formValid) {
-        this.showErrors = true
-        return
-      }
       if (this.id === null) {
         // TODO: implement API
         // CREATE

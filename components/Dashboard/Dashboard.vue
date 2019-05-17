@@ -76,7 +76,7 @@ export default {
       })
     },
     create() {
-      this.$fetch([{ name: 'PROJECTS', forced: true }])
+      this.$router.push('/project/create')
     }
   }
 }
