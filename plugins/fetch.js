@@ -106,7 +106,7 @@ const config = {
           occupations: [
             'STUDENT'
           ],
-          gender: [
+          genders: [
             'MALE'
           ]
         }
@@ -140,7 +140,7 @@ const config = {
           occupations: [
             'STUDENT'
           ],
-          gender: [
+          genders: [
             'MALE'
           ]
         }

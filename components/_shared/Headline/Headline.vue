@@ -1,7 +1,12 @@
 <template>
-  <h1 class="headline" :class="{center}">
-    {{ text }}
-  </h1>
+  <div class="headline" :class="{center, hasSubline: subline !== null}">
+    <h1 class="headline-main">
+      {{ text }}
+    </h1>
+    <p class="headline-subline">
+      {{ subline }}
+    </p>
+  </div>
 </template>
 
 <script>
@@ -11,6 +16,10 @@ export default {
     text: {
       type: String,
       required: true
+    },
+    subline: {
+      type: String,
+      default: null
     },
     center: {
       type: Boolean,

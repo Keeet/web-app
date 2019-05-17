@@ -1,5 +1,5 @@
 <template>
-  <div class="persona-step">
+  <div class="persona-step" :class="{active, large}">
     <slot />
     <div class="persona-step-nav">
       <ButtonText v-if="showNext" text="Next" type="BLUE" arrow="RIGHT" :disabled="!valid" />
@@ -14,6 +14,10 @@ export default {
   name: 'PersonaStep',
   components: { ButtonText },
   props: {
+    active: {
+      type: Boolean,
+      default: false
+    },
     showNext: {
       type: Boolean,
       default: true
@@ -25,6 +29,10 @@ export default {
     valid: {
       type: Boolean,
       default: true
+    },
+    large: {
+      type: Boolean,
+      default: false
     }
   }
 }

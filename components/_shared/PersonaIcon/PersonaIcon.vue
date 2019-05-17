@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { PERSONA_ICONS as ICONS } from '../constants'
+import { PERSONA_ICONS as ICONS } from '../../constants'
 
 export default {
   name: 'PersonaIcon',

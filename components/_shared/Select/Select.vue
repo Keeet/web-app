@@ -4,14 +4,14 @@
       {{ title }}
     </p>
     <select
-      class="select-field"
       v-model="message"
+      class="select-field"
       :disabled="readonly"
     >
       <option
-        class="select-option"
         v-for="(option, index) in options"
         :key="index"
+        class="select-option"
         :value="option.value"
       >
         {{ option.label }}

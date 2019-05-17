@@ -1,6 +1,6 @@
 <template>
-  <div class="button-circle" :class="[type, { large }]" @click="$emit('click')">
-    <IconPlus v-if="type === TYPES.CREATE" class="icon-plus" />
+  <div class="button-circle" :class="[type, { large, noHover }]" @click="$emit('click')">
+    <IconPlus v-if="[TYPES.CREATE, TYPES.CREATE_SMALL].includes(type)" class="icon-plus" />
     <IconAngleRight v-if="type === TYPES.ANGLE_RIGHT" class="icon-angle-right" />
     <IconArrowLeft v-if="type === TYPES.ARROW_LEFT" class="icon-arrow-left" />
   </div>
@@ -9,17 +9,13 @@
 <script>
 const TYPES = {
   CREATE: 'CREATE',
+  CREATE_SMALL: 'CREATE_SMALL',
   ANGLE_RIGHT: 'ANGLE_RIGHT',
   ARROW_LEFT: 'ARROW_LEFT'
 }
 
 export default {
   name: 'ButtonCircle',
-  data() {
-    return {
-      TYPES
-    }
-  },
   props: {
     type: {
       type: String,
@@ -29,6 +25,15 @@ export default {
     large: {
       type: Boolean,
       default: false
+    },
+    noHover: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data() {
+    return {
+      TYPES
     }
   }
 }

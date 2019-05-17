@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { PERSONA_ICONS } from '../../_shared/constants'
+import { PERSONA_ICONS } from '../../constants'
 import PersonaIcon from '../../_shared/PersonaIcon/PersonaIcon'
 import Input from '../../_shared/Input/Input'
 export default {

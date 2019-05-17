@@ -10,7 +10,7 @@
     height: 65px;
   }
 
-  &:hover {
+  &:not(.noHover):hover {
     cursor: pointer;
     transform: scale(1.1)
   }
@@ -25,7 +25,22 @@
   }
 
   &.CREATE {
-    background-color: rgba($blue-primary, 0.2)
+    background-color: rgba($blue-primary, 0.2);
+
+    svg {
+      fill: $blue-primary;
+    }
+  }
+
+  &.CREATE_SMALL {
+    background-color: $blue-primary;
+    width: 30px;
+    height: 30px;
+
+    svg {
+      fill: #fff;
+      width: 13px;
+    }
   }
 
   &.ANGLE_RIGHT {

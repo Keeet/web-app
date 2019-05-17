@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard-project-empty">
-    <div class="dashboard-project-empty-title"></div>
-    <div class="dashboard-project-empty-image"></div>
+    <div class="dashboard-project-empty-title" />
+    <div class="dashboard-project-empty-image" />
   </div>
 </template>
 

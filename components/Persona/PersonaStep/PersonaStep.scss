@@ -1,6 +1,18 @@
 .persona-step {
+  width: 400px;
+  margin: 70px auto 0;
+  display: none;
+
+  &.active {
+    display: block;
+  }
+
+  &.large {
+    width: 700px;
+  }
 
   .persona-step-nav {
+    margin-top: 40px;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
