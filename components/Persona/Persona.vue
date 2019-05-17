@@ -4,7 +4,7 @@
       <ButtonCircle type="ARROW_LEFT" @click="$router.back()" />
     </div>
     <PersonaStep :show-prev="false" :valid="step1Valid" :active="s.activeStep === 0">
-      <Headline text="Create your avatar" center />
+      <Headline :text="avatarHeadline" center />
       <PersonaAvatar />
     </PersonaStep>
     <PersonaStep :valid="true" large :active="s.activeStep === 1">
@@ -47,6 +47,9 @@ export default {
     },
     submitButtonLabel() {
       return this.s.id ? `Update Persona ${this.s.name}` : `Create Persona ${this.s.name}`
+    },
+    avatarHeadline() {
+      return this.s.id ? 'Update your avatar' : 'Create your avatar'
     }
   },
   methods: {

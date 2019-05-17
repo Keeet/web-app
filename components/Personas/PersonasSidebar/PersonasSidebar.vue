@@ -93,7 +93,7 @@ export default {
   methods: {
     editPersona() {
       this.$store.commit('personaForm/init', this.persona)
-      this.$router.push('/personas/create')
+      this.$router.push('/personas/edit')
     },
     close() {
       this.$emit('close')
