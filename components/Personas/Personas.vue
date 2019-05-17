@@ -19,13 +19,7 @@
         <PersonaIcon :icon="persona.icon" :name="persona.name" @click="openSidebar(persona)" />
       </div>
     </div>
-    <div
-      v-closable="{
-        excludeClasses: ['personas-icons-item', 'personas-delete-popup'],
-        handler: 'closeSidebar'
-      }"
-      class="personas-sidebar"
-    >
+    <div class="personas-sidebar">
       <PersonasSidebar
         :active="personasPageStore.sidebarActive"
         :persona="sidebarPersona"

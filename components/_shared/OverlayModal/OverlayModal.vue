@@ -1,13 +1,7 @@
 <template>
   <div class="overlay-modal">
     <div class="overlay-modal-box">
-      <div
-        v-closable="{
-          excludeClasses: triggerClass ? [triggerClass] : [],
-          handler: 'close'
-        }"
-        class="overlay-modal-box-inner"
-      >
+      <div class="overlay-modal-box-inner">
         <div v-show="loading" class="overlay-modal-box-loading" :class="{active: loading}">
           <Loading />
         </div>
