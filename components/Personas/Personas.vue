@@ -6,9 +6,7 @@
         <div v-if="!personas.length" class="personas-create-start">
           <IconStartHereDashboard />
         </div>
-        <nuxt-link to="/personas/create">
-          <ButtonCircle type="CREATE" />
-        </nuxt-link>
+        <ButtonCircle type="CREATE" @click="createPersona" />
       </div>
     </div>
     <div class="personas-icons">
@@ -92,6 +90,10 @@ export default {
         this.closeSidebar()
         this.$store.commit('personasPage/setDeletePending', false)
       }, 1000)
+    },
+    createPersona() {
+      this.$store.commit('personaForm/init')
+      this.$router.push('/personas/create')
     }
   }
 }

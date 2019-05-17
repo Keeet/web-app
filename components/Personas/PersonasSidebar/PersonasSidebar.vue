@@ -19,7 +19,7 @@
           {{ persona.name }}
         </p>
         <div class="personas-sidebar-head-img-button">
-          <ButtonText text="Edit persona" type="GREY" />
+          <ButtonText text="Edit persona" type="GREY" @click="editPersona" />
         </div>
       </div>
       <PersonasSidebarHeadItem :value="formattedGender" label="Gender" />
@@ -91,6 +91,10 @@ export default {
     }
   },
   methods: {
+    editPersona() {
+      this.$store.commit('personaForm/init', this.persona)
+      this.$router.push('/personas/create')
+    },
     close() {
       this.$emit('close')
     }

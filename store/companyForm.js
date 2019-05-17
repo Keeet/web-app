@@ -1,4 +1,5 @@
 const defaultState = {
+  id: null,
   name: '',
   street: '',
   houseNb: '',
@@ -12,7 +13,8 @@ export const state = () => (defaultState)
 export const mutations = {
   init(state, company) {
     if (company) {
-      const { name, street, houseNb, addressDescription, zip, country } = company
+      const { id, name, street, houseNb, addressDescription, zip, country } = company
+      state.id = id
       state.name = name
       state.street = street
       state.houseNb = houseNb
@@ -20,7 +22,9 @@ export const mutations = {
       state.zip = zip
       state.country = country
     } else {
-      state = defaultState
+      for (const key in defaultState) {
+        state[key] = defaultState[key]
+      }
     }
   },
   setName(state, name) {

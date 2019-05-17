@@ -1,5 +1,5 @@
 <template>
-  <div class="button-text" :class="[type, { noHoverEffect }]" @click="$emit('click')">
+  <div class="button-text" :class="[type, { noHoverEffect }]" @click="onClick">
     <div v-show="disabled" class="button-text-disabled" />
     <button class="button-text-item" :class="{disabled, leftArrowActive, rightArrowActive}">
       <IconArrowLeft v-if="leftArrowActive" class="button-text-item-arrow" />
@@ -59,6 +59,13 @@ export default {
     },
     rightArrowActive() {
       return this.arrow && this.arrow === ARROWS.RIGHT
+    }
+  },
+  methods: {
+    onClick() {
+      if (!this.disabled) {
+        this.$emit('click')
+      }
     }
   }
 }

@@ -2,8 +2,28 @@
   <div class="persona-step" :class="{active, large}">
     <slot />
     <div class="persona-step-nav">
-      <ButtonText v-if="showNext" text="Next" type="BLUE" arrow="RIGHT" :disabled="!valid" />
-      <ButtonText v-if="showPrev" text="Back" type="BLUE_BORDER" arrow="LEFT" />
+      <ButtonText
+        v-if="showNext && !submit"
+        text="Next"
+        type="BLUE"
+        arrow="RIGHT"
+        :disabled="!valid"
+        @click="$store.commit('personaForm/nextStep')"
+      />
+      <ButtonText
+        v-if="submit"
+        :text="submit"
+        type="BLUE"
+        :disabled="!valid"
+        @click="$emit('submit')"
+      />
+      <ButtonText
+        v-if="showPrev"
+        text="Back"
+        type="BLUE_BORDER"
+        arrow="LEFT"
+        @click="$store.commit('personaForm/previousStep')"
+      />
     </div>
   </div>
 </template>
@@ -33,6 +53,10 @@ export default {
     large: {
       type: Boolean,
       default: false
+    },
+    submit: {
+      type: String,
+      default: null
     }
   }
 }
