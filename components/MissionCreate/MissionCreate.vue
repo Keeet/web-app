@@ -3,7 +3,13 @@
     <ButtonCircle type="ARROW_LEFT" @click="$router.back()" />
     <div class="mission-create-body">
       <Headline text="What do you want to do?" center />
-      <div class="mission-create-types">
+      <div
+        class="mission-create-types"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-once="true"
+        data-aos-delay="500"
+      >
         <MissionCreateType :type="MISSIONS.IN_HOUSE" />
         <MissionCreateType :type="MISSIONS.REMOTE" />
         <MissionCreateType :type="MISSIONS.SURVEY" coming-soon />
