@@ -48,3 +48,9 @@ export const MISSIONS = {
   USABILITY_LAB: 'USABILITY_LAB',
   SURVEY: 'SURVEY'
 }
+export const MISSION_LABELS = {
+  IN_HOUSE: 'In-House',
+  REMOTE: 'Remote',
+  USABILITY_LAB: 'Usability Lab',
+  SURVEY: 'Survey'
+}

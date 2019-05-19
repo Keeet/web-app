@@ -1,0 +1,14 @@
+.mission-create {
+
+  .mission-create-body {
+    width: 90%;
+    max-width: 800px;
+    margin: 100px auto 50px;
+
+    .mission-create-types {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 60px;
+    }
+  }
+}

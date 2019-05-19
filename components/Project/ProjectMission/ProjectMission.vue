@@ -41,15 +41,8 @@
 
 <script>
 import { getLocaleDateString, isSameDay } from '../../../utils/dateUtils'
-import { MISSIONS } from '../../constants'
+import { MISSIONS, MISSION_LABELS } from '../../constants'
 import ProjectMissionSection from '../ProjectMissionSection/ProjectMissionSection'
-
-const MISSION_LABELS = {
-  IN_HOUSE: 'In-House',
-  REMOTE: 'Remote',
-  USABILITY_LAB: 'Usability Lab',
-  SURVEY: 'Survey'
-}
 
 export default {
   name: 'ProjectMission',

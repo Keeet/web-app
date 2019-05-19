@@ -6,7 +6,9 @@
     <div class="project-missions">
       <ProjectMissionsEmpty v-if="hasMissions" />
       <div class="project-missions-create">
-        <ButtonCircle type="CREATE" />
+        <nuxt-link to="/missions/create">
+          <ButtonCircle type="CREATE" />
+        </nuxt-link>
         <IconStartHereMission v-if="hasMissions" />
       </div>
       <div class="project-missions-timeline">
