@@ -33,11 +33,11 @@ option:not(:checked) {
   color: black;
 }
 
-input, select {
+input, select, textarea {
   font-size: 100%;
 }
 
-input::placeholder {
+input::placeholder, textarea::placeholder {
   color: $grey-mid-dark;
 }
 
@@ -46,6 +46,16 @@ select:focus,
 textarea:focus,
 button:focus {
   outline: none;
+}
+
+textarea {
+  font-family: inherit;
+}
+
+.text-overflow-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .chantal-bg {

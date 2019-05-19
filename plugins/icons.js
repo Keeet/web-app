@@ -11,6 +11,7 @@ import IconAngleDown from '../assets/icons/angle-down.svg'
 import IconArrowRight from '../assets/icons/arrow-right.svg'
 import IconArrowLeft from '../assets/icons/arrow-left.svg'
 import IconDelete from '../assets/icons/delete.svg'
+import IconPencil from '../assets/icons/pencil.svg'
 
 import IconPersonaChantal from '../assets/icons/persona-chantal.svg'
 import IconPersonaDustin from '../assets/icons/persona-dustin.svg'
@@ -32,6 +33,7 @@ Vue.component('IconAngleDown', IconAngleDown)
 Vue.component('IconArrowRight', IconArrowRight)
 Vue.component('IconArrowLeft', IconArrowLeft)
 Vue.component('IconDelete', IconDelete)
+Vue.component('IconPencil', IconPencil)
 
 Vue.component('IconPersonaChantal', IconPersonaChantal)
 Vue.component('IconPersonaDustin', IconPersonaDustin)

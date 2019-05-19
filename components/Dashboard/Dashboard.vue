@@ -35,6 +35,7 @@
         :description="project.description"
         :created-at="project.createdAt"
         :owner="project.owner"
+        @click="$router.push(`/projects/${project.id}`)"
       />
     </div>
   </div>
@@ -76,7 +77,7 @@ export default {
       })
     },
     create() {
-      this.$router.push('/project/create')
+      this.$router.push('/projects/create')
     }
   }
 }

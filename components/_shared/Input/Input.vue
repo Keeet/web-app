@@ -4,6 +4,7 @@
       {{ title }}
     </p>
     <input
+      v-if="!textarea"
       v-model="message"
       class="input-field"
       :class="{error: showError}"
@@ -11,6 +12,15 @@
       :readonly="readonly"
       :maxlength="maxCharacters || 524288"
     >
+    <textarea
+      v-else
+      v-model="message"
+      class="input-field textarea"
+      :class="{error: showError}"
+      :placeholder="placeholder"
+      :readonly="readonly"
+      :maxlength="maxCharacters || 524288"
+    />
     <p class="input-error" :class="{active: showError}">
       {{ error }}
     </p>
@@ -62,6 +72,10 @@ export default {
     maxCharacters: {
       type: Number,
       default: null
+    },
+    textarea: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {

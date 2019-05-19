@@ -1,12 +1,11 @@
 .personas-sidebar {
-  $width: 500px;
-
   position: fixed;
+  z-index: 1;
   top: 0;
-  right: -$width - 100px;
+  right: -$sidebar-width - 100px;
   bottom: 0;
   width: 90%;
-  max-width: $width;
+  max-width: $sidebar-width;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: #fff;
   transition: right 0.7s;

@@ -72,6 +72,103 @@ const config = {
     ],
     mockDataEmpty: []
   },
+  PROJECT: {
+    path: '/project/{id}',
+    mutation: 'setProject',
+    key: 'project',
+    mockData: {
+      id: 'p1',
+      companyId: 'c1',
+      owner: {
+        firstName: 'Mika',
+        lastName: 'Hally',
+        profileImage: 'https://media.licdn.com/dms/image/C5603AQF4zYm5IZIdkg/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=pOTiQ54Atrb-Duk-K9PX-DKEIVOdoBqxGXoEZznqgNA'
+      },
+      title: 'Project A',
+      description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
+      createdAt: '2019-05-04T22:43:15Z',
+      updatedAt: '2019-05-04T22:43:15Z',
+      missions: [
+        {
+          startDate: '2019-06-06T15:42:38.032Z',
+          demographicDataReq: {
+            id: '5b9eeb55-e429-41f4-b0b9-2477ddc7f929',
+            updatedAt: '2019-05-08T17:17:55.796Z',
+            createdAt: '2019-05-08T17:17:55.796Z',
+            minAge: 18,
+            maxAge: 30,
+            occupations: [
+              'STUDENT'
+            ],
+            gender: [
+              'MALE'
+            ]
+          },
+          id: 'ad9e746a-ada5-45ef-8c95-0d963c056cb7',
+          updatedAt: '2019-05-08T17:17:55.876Z',
+          createdAt: '2019-05-08T17:17:55.798Z',
+          type: 'REMOTE',
+          description: 'bla bla',
+          screenerQuestions: [
+            {
+              value: 'A',
+              id: '8056c88e-f31f-476a-a101-8c988965617c',
+              updatedAt: '2019-05-08T17:17:55.798Z',
+              createdAt: '2019-05-08T17:17:55.798Z'
+            },
+            {
+              value: 'B',
+              id: '00651ba0-8c5f-494b-a16a-4a7bf85fd258',
+              updatedAt: '2019-05-08T17:17:55.798Z',
+              createdAt: '2019-05-08T17:17:55.798Z'
+            }
+          ],
+          owner: {
+            id: '93c254cb-26af-4d6d-8fcc-e1522887788c',
+            updatedAt: '2019-05-08T17:17:11.596Z',
+            createdAt: '2019-05-08T17:17:08.755Z',
+            auth0Id: 'google-oauth2|110273771171828458843',
+            firstName: 'henrik',
+            lastName: 'engelbrink',
+            email: 'henrik@keeet.io',
+            profileImage: 'adas'
+          },
+          duration: 60,
+          sessions: [
+            {
+              startsAt: '2019-06-06T15:42:38.032Z',
+              id: 'db43d968-f248-419f-aeaa-6e6420f3550d',
+              updatedAt: '2019-05-08T17:20:02.293Z',
+              createdAt: '2019-05-08T17:17:55.799Z',
+              testUser: {
+                firstName: 'Henrik',
+                lastName: 'Engelbrink',
+                email: 'hengel2810@gmail.com',
+                phone: '123456789',
+                id: 'f0e33d68-0f24-4035-b98c-94a3fc5eeee7',
+                updatedAt: '2019-05-08T17:20:02.286Z',
+                createdAt: '2019-05-08T17:20:02.286Z'
+              }
+            },
+            {
+              startsAt: '2019-06-06T17:42:38.032Z',
+              id: '7f94cf90-71d1-414b-b882-59dcbbb039e4',
+              updatedAt: '2019-05-08T17:17:55.799Z',
+              createdAt: '2019-05-08T17:17:55.799Z',
+              testUser: null
+            },
+            {
+              startsAt: '2019-06-06T16:42:38.032Z',
+              id: '8893f3d8-5b19-44ba-8227-d22a03afd72b',
+              updatedAt: '2019-05-08T17:17:55.799Z',
+              createdAt: '2019-05-08T17:17:55.799Z',
+              testUser: null
+            }
+          ]
+        }
+      ]
+    }
+  },
   PERSONAS: {
     path: '/personas',
     mutation: 'setPersonas',
@@ -154,7 +251,7 @@ export default function ({ $axios, store }, inject) {
   inject('fetch', (resources) => {
     const promises = resources.map((resource) => {
       return new Promise((resolve) => {
-        const { name, forced, mockDataKey } = resource
+        const { name, forced, mockDataKey, id } = resource
         if (!config[name]) {
           // eslint-disable-next-line no-console
           console.error(`resource ${name} is not configured`)
@@ -170,7 +267,8 @@ export default function ({ $axios, store }, inject) {
           resolve()
           return
         }
-        $axios.get(path).then((res) => {
+        const pathWithParams = path.replace('{id}', id)
+        $axios.get(pathWithParams).then((res) => {
           store.commit(mutation, res)
           resolve()
         })

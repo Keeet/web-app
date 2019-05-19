@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard-project">
+  <div class="dashboard-project" @click="$emit('click')">
     <div class="dashboard-project-rows">
       <div class="dashboard-project-text">
         <p class="dashboard-project-text-title">
