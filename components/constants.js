@@ -41,3 +41,10 @@ export const PERSONA_OCCUPATION_LABELS = {
   PUPIL: 'Pupil',
   APPRENTICE: 'Apprentice'
 }
+
+export const MISSIONS = {
+  IN_HOUSE: 'IN_HOUSE',
+  REMOTE: 'REMOTE',
+  USABILITY_LAB: 'USABILITY_LAB',
+  SURVEY: 'SURVEY'
+}

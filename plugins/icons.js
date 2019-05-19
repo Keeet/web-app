@@ -6,6 +6,7 @@ import Loading from '../static/animated/loading.svg'
 import IconPlus from '../assets/icons/plus.svg'
 import IconCalendarOutline from '../assets/icons/calendar-empty-page-outline.svg'
 import IconStartHereDashboard from '../assets/icons/start-here-dashboard.svg'
+import IconStartHereMission from '../assets/icons/start-here-mission.svg'
 import IconAngleRight from '../assets/icons/angle-right.svg'
 import IconAngleDown from '../assets/icons/angle-down.svg'
 import IconArrowRight from '../assets/icons/arrow-right.svg'
@@ -28,6 +29,7 @@ Vue.component('IconCheck', IconCheck)
 Vue.component('IconPlus', IconPlus)
 Vue.component('IconCalendarOutline', IconCalendarOutline)
 Vue.component('IconStartHereDashboard', IconStartHereDashboard)
+Vue.component('IconStartHereMission', IconStartHereMission)
 Vue.component('IconAngleRight', IconAngleRight)
 Vue.component('IconAngleDown', IconAngleDown)
 Vue.component('IconArrowRight', IconArrowRight)

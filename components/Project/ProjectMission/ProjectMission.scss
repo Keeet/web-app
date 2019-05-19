@@ -1,0 +1,97 @@
+.project-mission {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
+
+  .project-mission-icon {
+    position: relative;
+    width: 130px;
+    border-radius: 5px;
+    text-align: center;
+    flex-shrink: 0;
+
+    &.IN_HOUSE {
+      background-color: $mission-in-house;
+    }
+
+    &.REMOTE {
+      background-color: $mission-remote;
+    }
+
+    &.USABILITY_LAB {
+      background-color: $mission-usability-lab;
+    }
+
+    &.SURVEY {
+      background-color: $mission-survey;
+    }
+
+    .project-mission-icon-inner {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+
+      svg {
+        fill: #fff;
+        width: 20px;
+      }
+
+      .project-mission-icon-text {
+        color: #fff;
+        font-weight: 500;
+        margin-top: 8px;
+      }
+    }
+  }
+
+  .project-mission-info {
+    display: flex;
+    margin-left: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.07);
+    align-items: center;
+    flex-grow: 1;
+
+    .project-mission-info-label {
+      position: relative;
+      background-color: rgba($grey, 0.5);
+      color: $grey-dark;
+      width: 40px;
+      height: 100%;
+      flex-shrink: 0;
+
+      .project-mission-info-label-text {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(-90deg);
+        font-size: 80%;
+      }
+    }
+
+    .project-mission-date {
+      padding: 5px 0;
+    }
+
+    .project-mission-owner {
+      display: flex;
+      align-items: center;
+
+      .project-mission-owner-img {
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+      }
+
+      .project-mission-owner-name {
+        margin-left: 5px;
+      }
+    }
+
+    .project-mission-description {
+      padding: 5px 0;
+    }
+  }
+}

@@ -23,6 +23,7 @@
         :description="sampleProject.description"
         :created-at="$store.state.user.createdAt"
         :owner="sampleProject.owner"
+        @click="$router.push('/projects/sample')"
       />
       <DashboardProjectEmpty />
       <DashboardProjectEmpty />

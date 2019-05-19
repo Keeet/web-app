@@ -1,0 +1,22 @@
+.project-missions-empty {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  text-align: center;
+
+  img {
+    width: 100%;
+  }
+
+  .project-missions-empty-title {
+    font-size: 110%;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  .project-missions-empty-text {
+    color: $grey;
+  }
+}

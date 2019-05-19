@@ -1,1 +1,66 @@
+$sidebar-width: 400px;
 
+.project {
+
+  .project-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: $sidebar-width;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    overflow-y: auto;
+  }
+
+  .project-missions {
+    position: relative;
+    min-height: calc(100vh - #{$footer-min-height} - 170px);
+    margin: 120px 50px 50px $sidebar-width + 50px;
+    box-sizing: border-box;
+
+    .project-missions-create {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      svg {
+        position: absolute;
+        width: 50px;
+        right: 65px;
+        top: 20px;
+      }
+    }
+
+    .project-missions-timeline {
+      position: relative;
+      margin: 0 auto;
+      max-width: 900px;
+
+      .project-missions-timeline-line {
+        position: absolute;
+        z-index: 0;
+        left: 65px;
+        top: 0;
+        bottom: 0;
+        background-color: $grey-mid-dark;
+        width: 1px;
+      }
+
+      .project-missions-timeline-month {
+        margin-bottom: 50px;
+
+        .project-missions-timeline-month-label {
+          position: relative;
+          z-index: 1;
+          background-color: #fff;
+          box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.07);
+          text-align: center;
+          padding: 10px;
+          width: 110px;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}

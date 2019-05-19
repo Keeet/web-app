@@ -108,7 +108,7 @@ const config = {
           updatedAt: '2019-05-08T17:17:55.876Z',
           createdAt: '2019-05-08T17:17:55.798Z',
           type: 'REMOTE',
-          description: 'bla bla',
+          description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
           screenerQuestions: [
             {
               value: 'A',
@@ -131,7 +131,7 @@ const config = {
             firstName: 'henrik',
             lastName: 'engelbrink',
             email: 'henrik@keeet.io',
-            profileImage: 'adas'
+            profileImage: 'https://media.licdn.com/dms/image/C5603AQF4zYm5IZIdkg/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=pOTiQ54Atrb-Duk-K9PX-DKEIVOdoBqxGXoEZznqgNA'
           },
           duration: 60,
           sessions: [
@@ -167,6 +167,19 @@ const config = {
           ]
         }
       ]
+    },
+    mockDataNoMissions: {
+      id: 'p1',
+      companyId: 'c1',
+      owner: {
+        firstName: 'Mika',
+        lastName: 'Hally',
+        profileImage: 'https://media.licdn.com/dms/image/C5603AQF4zYm5IZIdkg/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=pOTiQ54Atrb-Duk-K9PX-DKEIVOdoBqxGXoEZznqgNA'
+      },
+      title: 'Project A',
+      description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
+      createdAt: '2019-05-04T22:43:15Z',
+      updatedAt: '2019-05-04T22:43:15Z'
     }
   },
   PERSONAS: {

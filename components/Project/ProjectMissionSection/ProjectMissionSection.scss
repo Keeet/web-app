@@ -1,0 +1,34 @@
+.project-mission-section {
+  padding: 10px 20px;
+  margin: 10px 0;
+
+  &:not(.noBorder) {
+    border-right: 1px solid $grey;
+  }
+
+  &.noShrink {
+    flex-shrink: 0;
+  }
+
+  .project-mission-section-headline {
+
+    &.IN_HOUSE {
+      color: $mission-in-house;
+    }
+
+    &.REMOTE {
+      color: $mission-remote;
+    }
+
+    &.USABILITY_LAB {
+      color: $mission-usability-lab;
+    }
+
+    &.SURVEY {
+      color: $mission-survey;
+    }
+  }
+  .project-mission-section-content {
+    margin-top: 8px;
+  }
+}
