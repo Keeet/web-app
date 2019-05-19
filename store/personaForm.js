@@ -13,7 +13,8 @@ const defaultState = {
   occupationsOpened: false,
   newScreenerQuestion: '',
   activeStep: 0,
-  inProgress: true
+  inProgress: true,
+  pending: false
 }
 
 export const state = () => (defaultState)
@@ -47,6 +48,7 @@ export const mutations = {
         state.occupationsOpened = true
       }
       state.activeStep = defaultState.activeStep
+      state.pending = defaultState.pending
       state.inProgress = false
     } else if (!state.inProgress) {
       for (const key in defaultState) {
@@ -116,7 +118,11 @@ export const mutations = {
   previousStep(state) {
     state.activeStep--
   },
+  pending(state) {
+    state.pending = true
+  },
   submitted(state) {
+    state.pending = false
     state.inProgress = false
   }
 }

@@ -1,6 +1,11 @@
 <template>
   <div class="overlay-modal">
-    <div class="overlay-modal-box">
+    <div
+      class="overlay-modal-box"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      data-aos-once="true"
+    >
       <div class="overlay-modal-box-inner">
         <div v-show="loading" class="overlay-modal-box-loading" :class="{active: loading}">
           <Loading />

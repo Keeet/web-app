@@ -3,26 +3,31 @@
     <div class="persona-cancel">
       <ButtonCircle type="ARROW_LEFT" @click="$router.back()" />
     </div>
-    <PersonaStep :show-prev="false" :valid="step1Valid" :active="s.activeStep === 0">
-      <Headline :text="avatarHeadline" center />
-      <PersonaAvatar />
-    </PersonaStep>
-    <PersonaStep :valid="true" large :active="s.activeStep === 1">
-      <Headline
-        text="What is your desired target group?"
-        subline="Please define your exact criteria to ensure we can recruit the exact target group."
-        center
-      />
-      <PersonaCriteria />
-    </PersonaStep>
-    <PersonaStep :valid="true" large :active="s.activeStep === 2" :submit="submitButtonLabel" @submit="submit">
-      <Headline
-        text="Special criteria"
-        subline="Based on the criteria, we will create open screening questions to find matching candidates."
-        center
-      />
-      <PersonaSpecialCriteria />
-    </PersonaStep>
+    <div v-show="!pending" class="persona-form">
+      <PersonaStep :show-prev="false" :valid="step1Valid" :active="s.activeStep === 0">
+        <Headline :text="avatarHeadline" center />
+        <PersonaAvatar />
+      </PersonaStep>
+      <PersonaStep :valid="true" large :active="s.activeStep === 1">
+        <Headline
+          text="What is your desired target group?"
+          subline="Please define your exact criteria to ensure we can recruit the exact target group."
+          center
+        />
+        <PersonaCriteria />
+      </PersonaStep>
+      <PersonaStep :valid="true" large :active="s.activeStep === 2" :submit="submitButtonLabel" @submit="submit">
+        <Headline
+          text="Special criteria"
+          subline="Based on the criteria, we will create open screening questions to find matching candidates."
+          center
+        />
+        <PersonaSpecialCriteria />
+      </PersonaStep>
+    </div>
+    <div v-show="pending" class="persona-pending">
+      <Loading />
+    </div>
   </div>
 </template>
 
@@ -50,6 +55,9 @@ export default {
     },
     avatarHeadline() {
       return this.s.id ? 'Update your avatar' : 'Create your avatar'
+    },
+    pending() {
+      return this.$store.state.personaForm.pending
     }
   },
   methods: {
@@ -71,8 +79,11 @@ export default {
       } else {
         // UPDATE
       }
-      this.$store.commit('personaForm/submitted')
-      this.$router.push('/personas')
+      this.$store.commit('personaForm/pending')
+      window.setTimeout(() => {
+        this.$store.commit('personaForm/submitted')
+        this.$router.push('/personas')
+      }, 1000)
     }
   }
 }

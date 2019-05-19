@@ -6,16 +6,16 @@
           Keeet
         </nuxt-link>
       </div>
-      <p class="nav-item" :class="{active: path === '/'}">
-        <nuxt-link to="/">
+      <nuxt-link to="/">
+        <p class="nav-item" :class="{active: path === '/'}">
           Dashboard
-        </nuxt-link>
-      </p>
-      <p class="nav-item" :class="{active: path === '/personas'}">
-        <nuxt-link to="/personas">
+        </p>
+      </nuxt-link>
+      <nuxt-link to="/personas">
+        <p class="nav-item" :class="{active: path === '/personas'}">
           Personas
-        </nuxt-link>
-      </p>
+        </p>
+      </nuxt-link>
     </div>
     <div class="nav-profile">
       <div class="nav-profile-img">

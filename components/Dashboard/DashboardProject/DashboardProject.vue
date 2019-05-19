@@ -1,22 +1,24 @@
 <template>
-  <div class="dashboard-project" @click="$emit('click')">
-    <div class="dashboard-project-rows">
-      <div class="dashboard-project-text">
-        <p class="dashboard-project-text-title">
-          {{ title }}
-        </p>
-        <p class="dashboard-project-text-description">
-          {{ descriptionFormatted }}
-        </p>
+  <div class="dashboard-project">
+    <div class="dashboard-project-inner">
+      <div class="dashboard-project-rows">
+        <div class="dashboard-project-text">
+          <p class="dashboard-project-text-title">
+            {{ title }}
+          </p>
+          <p class="dashboard-project-text-description">
+            {{ descriptionFormatted }}
+          </p>
+        </div>
+        <div class="dashboard-project-owner">
+          <img :src="owner.profileImage" :title="`${owner.firstName} ${owner.lastName}`">
+        </div>
       </div>
-      <div class="dashboard-project-owner">
-        <img :src="owner.profileImage" :title="`${owner.firstName} ${owner.lastName}`">
-      </div>
-    </div>
-    <div class="dashboard-project-footer">
-      <div class="dashboard-project-footer-created">
-        <IconCalendarOutline />
-        <timeago v-if="createdAt" :datetime="createdAt" :auto-update="1" />
+      <div class="dashboard-project-footer">
+        <div class="dashboard-project-footer-created">
+          <IconCalendarOutline />
+          <timeago v-if="createdAt" :datetime="createdAt" :auto-update="1" />
+        </div>
       </div>
     </div>
   </div>

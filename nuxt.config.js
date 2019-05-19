@@ -36,7 +36,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/style/global.scss'
+    '~/assets/style/global.scss',
+    'aos/dist/aos.css'
   ],
 
   styleResources: {
@@ -54,7 +55,8 @@ module.exports = {
     '~/plugins/fetch',
     '~/plugins/icons',
     '~/plugins/directives',
-    { src: '~/plugins/timeago', ssr: false }
+    { src: '~/plugins/timeago', ssr: false },
+    { src: '~/plugins/aos.js', ssr: false }
   ],
 
   /*

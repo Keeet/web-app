@@ -5,18 +5,25 @@
     </div>
     <div class="project-create-form">
       <Headline text="Give your project a name!" center />
-      <div class="project-create-form-input">
-        <Input
-          type="UNDERLINED_LARGE"
-          :value="s.title"
-          :error="titleError"
-          mutation="projectForm/setTitle"
-          placeholder="Project Name"
-          :disable-error="!showErrors"
-        />
-      </div>
-      <div class="project-create-form-submit">
-        <ButtonText text="Create" :disabled="!formValid" @click="submit" @disabledClick="showErrors = true" />
+      <div
+        data-aos="fade-in"
+        data-aos-duration="1000"
+        data-aos-once="true"
+        :data-aos-delay="600"
+      >
+        <div class="project-create-form-input">
+          <Input
+            type="UNDERLINED_LARGE"
+            :value="s.title"
+            :error="titleError"
+            mutation="projectForm/setTitle"
+            placeholder="Project Name"
+            :disable-error="!showErrors"
+          />
+        </div>
+        <div class="project-create-form-submit">
+          <ButtonText text="Create" :disabled="!formValid" @click="submit" @disabledClick="showErrors = true" />
+        </div>
       </div>
     </div>
   </div>
@@ -46,6 +53,8 @@ export default {
     submit() {
       // TODO: API submit
       const id = '12345'
+      this.$store.commit('projectForm/submitted')
+      this.$fetch([{ name: 'PROJECT', id, forced: true, mockDataKey: 'mockDataNoMissions' }])
       this.$router.push(`/projects/${id}`)
     }
   }

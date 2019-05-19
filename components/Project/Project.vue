@@ -3,30 +3,57 @@
     <div class="project-sidebar">
       <ProjectSidebar />
     </div>
+    <OverlayModal
+      v-if="projectForm.overlayOpened"
+      title="Edit Project"
+      :loading="projectForm.pending"
+      @close="$store.commit('projectForm/setOverlayOpened', false)"
+    >
+      <ProjectForm />
+    </OverlayModal>
     <div class="project-missions">
-      <ProjectMissionsEmpty v-if="hasMissions" />
+      <ProjectMissionsEmpty v-if="!hasMissions" />
       <div class="project-missions-create">
         <nuxt-link to="/missions/create">
           <ButtonCircle type="CREATE" />
         </nuxt-link>
-        <IconStartHereMission v-if="hasMissions" />
+        <IconStartHereMission v-if="!hasMissions" />
       </div>
-      <div class="project-missions-timeline">
+      <div v-if="hasMissions" class="project-missions-timeline">
         <div
           v-for="(missionGroup, x) in missionsGroupedPerMonth"
           :key="x"
           class="project-missions-timeline-month"
         >
-          <div class="project-missions-timeline-month-label">
+          <div
+            class="project-missions-timeline-month-label"
+            data-aos="fade-up"
+            data-aos-duration="800"
+            :data-aos-delay="(missionGroup.missions[0].index + x) * 200"
+            data-aos-once="true"
+            data-aos-anchor=".project-missions-timeline"
+          >
             {{ missionGroup.month }}
           </div>
           <ProjectMission
             v-for="(mission, y) in missionGroup.missions"
             :key="y"
             :mission="mission"
+            data-aos="fade-up"
+            data-aos-duration="800"
+            :data-aos-delay="(mission.index + x + 1) * 200"
+            data-aos-once="true"
+            data-aos-anchor=".project-missions-timeline"
           />
         </div>
-        <div class="project-missions-timeline-line" />
+        <div
+          class="project-missions-timeline-line"
+          data-aos="fade-in"
+          data-aos-duration="800"
+          :data-aos-delay="1000"
+          data-aos-once="true"
+          data-aos-anchor=".project-missions-timeline"
+        />
       </div>
     </div>
   </div>
@@ -35,25 +62,34 @@
 <script>
 import { getMonthName } from '../../utils/dateUtils'
 import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
+import OverlayModal from '../_shared/OverlayModal/OverlayModal'
 import ProjectSidebar from './ProjectSidebar/ProjectSidebar'
 import ProjectMissionsEmpty from './ProjectMissionsEmpty/ProjectMissionsEmpty'
 import ProjectMission from './ProjectMission/ProjectMission'
+import ProjectForm from './ProjectForm/ProjectForm'
 export default {
   name: 'Project',
-  components: { ProjectMission, ProjectMissionsEmpty, ButtonCircle, ProjectSidebar },
+  components: { ProjectForm, OverlayModal, ProjectMission, ProjectMissionsEmpty, ButtonCircle, ProjectSidebar },
   computed: {
     project() {
       return this.$store.state.project
     },
+    projectForm() {
+      return this.$store.state.projectForm
+    },
     hasMissions() {
-      return !this.project.missions || !this.project.missions.length
+      return this.project.missions && this.project.missions.length
     },
     missionsGroupedPerMonth() {
+      if (!this.hasMissions) {
+        return []
+      }
       const sortedByLatest = this.project.missions.slice()
         .sort((a, b) => new Date(a.createdAt) < new Date(b.createdAt) ? 1 : -1)
 
       const grouped = []
       let currentMonth = null
+      let index = 0
 
       sortedByLatest.forEach((mission) => {
         const d = new Date(mission.createdAt)
@@ -65,12 +101,13 @@ export default {
         if (currentMonth !== month) {
           grouped.push({
             month: isCurrentMonth ? 'this month' : this.getMonthLabel(d),
-            missions: [mission]
+            missions: [{ ...mission, index }]
           })
           currentMonth = month
         } else {
-          grouped[grouped.length - 1].missions.push(mission)
+          grouped[grouped.length - 1].missions.push({ ...mission, index })
         }
+        index++
       })
       return grouped
     }

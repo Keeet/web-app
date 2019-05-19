@@ -1,5 +1,11 @@
 <template>
-  <div class="headline" :class="{center, hasSubline: subline !== null}">
+  <div
+    class="headline"
+    :class="{center, hasSubline: subline !== null}"
+    data-aos="zoom-in-up"
+    data-aos-duration="1000"
+    data-aos-once="true"
+  >
     <h1 class="headline-main">
       {{ text }}
     </h1>

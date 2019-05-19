@@ -4,7 +4,8 @@ const defaultState = {
   description: '',
 
   overlayOpened: false,
-  pending: false
+  pending: false,
+  inProgress: true
 }
 
 export const state = () => (defaultState)
@@ -19,7 +20,8 @@ export const mutations = {
 
       state.overlayOpened = defaultState.overlayOpened
       state.pending = defaultState.pending
-    } else {
+      state.inProgress = false
+    } else if (!state.inProgress) {
       for (const key in defaultState) {
         state[key] = defaultState[key]
       }
@@ -40,5 +42,6 @@ export const mutations = {
   },
   submitted(state) {
     state.pending = false
+    state.inProgress = false
   }
 }

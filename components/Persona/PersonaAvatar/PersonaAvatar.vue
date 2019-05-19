@@ -25,7 +25,7 @@
             :icon="personaIcon"
             :disabled="personaForm.icon && personaIcon !== personaForm.icon"
             small
-            @click="setIcon(personaIcon)"
+            @click.native="setIcon(personaIcon)"
           />
         </div>
       </div>

@@ -23,10 +23,23 @@
         :description="sampleProject.description"
         :created-at="$store.state.user.createdAt"
         :owner="sampleProject.owner"
-        @click="$router.push('/projects/sample')"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-once="true"
+        @click.native="$router.push('/projects/sample')"
       />
-      <DashboardProjectEmpty />
-      <DashboardProjectEmpty />
+      <DashboardProjectEmpty
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-delay="300"
+        data-aos-once="true"
+      />
+      <DashboardProjectEmpty
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-delay="600"
+        data-aos-once="true"
+      />
     </div>
     <div v-else class="dashboard-projects">
       <DashboardProject
@@ -36,7 +49,12 @@
         :description="project.description"
         :created-at="project.createdAt"
         :owner="project.owner"
-        @click="$router.push(`/projects/${project.id}`)"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-once="true"
+        :data-aos-delay="300 * index"
+        data-aos-anchor=".dashboard-projects"
+        @click.native="$router.push(`/projects/${project.id}`)"
       />
     </div>
   </div>
@@ -78,6 +96,7 @@ export default {
       })
     },
     create() {
+      this.$store.commit('projectForm/init')
       this.$router.push('/projects/create')
     }
   }

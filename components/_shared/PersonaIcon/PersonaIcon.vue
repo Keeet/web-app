@@ -1,5 +1,5 @@
 <template>
-  <div class="persona-icon" :class="{ whiteBg, noClick, disabled }" @click="click">
+  <div class="persona-icon" :class="{ whiteBg, noClick, disabled }">
     <div class="persona-icon-image" :class="[`${icon.toLowerCase()}-bg`, { small }]">
       <IconPersonaChantal v-if="icon === ICONS.CHANTAL" />
       <IconPersonaDustin v-if="icon === ICONS.DUSTIN" />
@@ -52,13 +52,6 @@ export default {
   data() {
     return {
       ICONS
-    }
-  },
-  methods: {
-    click() {
-      if (!this.noClick) {
-        this.$emit('click')
-      }
     }
   }
 }

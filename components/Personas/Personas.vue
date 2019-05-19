@@ -11,10 +11,25 @@
     </div>
     <div class="personas-icons">
       <div v-if="!personas.length" class="personas-icons-item">
-        <PersonaIcon :icon="samplePersona.icon" :name="samplePersona.name" @click="openSidebar(samplePersona)" />
+        <PersonaIcon
+          :icon="samplePersona.icon"
+          :name="samplePersona.name"
+          data-aos="zoom-in"
+          data-aos-duration="1000"
+          data-aos-once="true"
+          @click.native="openSidebar(samplePersona)"
+        />
       </div>
       <div v-for="(persona, x) in personas" :key="x" class="personas-icons-item">
-        <PersonaIcon :icon="persona.icon" :name="persona.name" @click="openSidebar(persona)" />
+        <PersonaIcon
+          :icon="persona.icon"
+          :name="persona.name"
+          data-aos="zoom-in"
+          data-aos-duration="1000"
+          data-aos-once="true"
+          :data-aos-delay="300 * x"
+          @click.native="openSidebar(persona)"
+        />
       </div>
     </div>
     <div class="personas-sidebar">
@@ -27,7 +42,7 @@
     </div>
     <div class="personas-delete-popup">
       <Confirm
-        v-show="personasPageStore.deletePopup"
+        v-if="personasPageStore.deletePopup"
         :text="`Do you really want to delete the persona ${sidebarPersona.name}?`"
         :context="sidebarPersona"
         :loading="personasPageStore.deletePending"
