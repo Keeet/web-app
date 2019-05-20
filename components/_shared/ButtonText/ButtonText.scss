@@ -48,14 +48,6 @@
     }
   }
 
-  &:not(.noHoverEffect) {
-    transition: transform 0.5s;
-
-    &:hover {
-      transform: scale(1.02)
-    }
-  }
-
   &.BLUE .button-text-item {
     background-color: $blue-primary;
     color: #fff;

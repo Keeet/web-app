@@ -12,13 +12,13 @@
         </nuxt-link>
       </div>
       <div class="project-sidebar-head">
-        <p class="project-sidebar-headline text-overflow-ellipsis">
+        <p class="project-sidebar-headline text-overflow-ellipsis" @click="editProject">
           {{ project.title }}
         </p>
         <div class="project-sidebar-head-edit">
           <IconPencil @click="editProject" />
         </div>
-        <p class="project-sidebar-head-description">
+        <p class="project-sidebar-head-description" @click="editProject">
           {{ project.description }}
         </p>
       </div>

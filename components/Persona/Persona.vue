@@ -4,11 +4,11 @@
       <ButtonCircle type="ARROW_LEFT" @click="$router.back()" />
     </div>
     <div v-show="!pending" class="persona-form">
-      <PersonaStep :show-prev="false" :valid="step1Valid" :active="s.activeStep === 0">
+      <PersonaStep :show-prev="false" :valid="step1Valid" :active="activeStep === 0">
         <Headline :text="avatarHeadline" center />
         <PersonaAvatar />
       </PersonaStep>
-      <PersonaStep :valid="true" large :active="s.activeStep === 1">
+      <PersonaStep :valid="true" large :active="activeStep === 1">
         <Headline
           text="What is your desired target group?"
           subline="Please define your exact criteria to ensure we can recruit the exact target group."
@@ -16,7 +16,7 @@
         />
         <PersonaCriteria />
       </PersonaStep>
-      <PersonaStep :valid="true" large :active="s.activeStep === 2" :submit="submitButtonLabel" @submit="submit">
+      <PersonaStep :valid="true" large :active="activeStep === 2" :submit="submitButtonLabel" @submit="submit">
         <Headline
           text="Special criteria"
           subline="Based on the criteria, we will create open screening questions to find matching candidates."
@@ -58,6 +58,14 @@ export default {
     },
     pending() {
       return this.$store.state.personaForm.pending
+    },
+    activeStep() {
+      return this.s.activeStep
+    }
+  },
+  watch: {
+    activeStep() {
+      window.scrollTo(0, 0)
     }
   },
   methods: {

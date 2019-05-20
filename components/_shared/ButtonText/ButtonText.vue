@@ -1,5 +1,5 @@
 <template>
-  <div class="button-text" :class="[type, { noHoverEffect }]" @click="onClick">
+  <div class="button-text" :class="type" @click="onClick">
     <div v-show="disabled" class="button-text-disabled" />
     <button class="button-text-item" :class="{disabled, leftArrowActive, rightArrowActive}">
       <IconArrowLeft v-if="leftArrowActive" class="button-text-item-arrow" />
@@ -41,10 +41,6 @@ export default {
       type: String,
       default: null,
       validator: value => Object.values(ARROWS).includes(value)
-    },
-    noHoverEffect: {
-      type: Boolean,
-      default: false
     }
   },
   data() {

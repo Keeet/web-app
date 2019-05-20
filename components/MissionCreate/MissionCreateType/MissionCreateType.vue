@@ -1,10 +1,10 @@
 <template>
   <div class="mission-create-type" :class="{ comingSoon }">
     <div class="mission-create-type-icon" :class="type">
-      <IconPencil v-if="type === MISSIONS.IN_HOUSE" />
-      <IconPencil v-if="type === MISSIONS.REMOTE" />
-      <IconPencil v-if="type === MISSIONS.SURVEY" />
-      <IconPencil v-if="type === MISSIONS.USABILITY_LAB" />
+      <IconMissionInHouse v-if="type === MISSIONS.IN_HOUSE" />
+      <IconMissionRemote v-if="type === MISSIONS.REMOTE" />
+      <IconMissionSurvey v-if="type === MISSIONS.SURVEY" />
+      <IconMissionUsabilityLab v-if="type === MISSIONS.USABILITY_LAB" />
     </div>
     <p class="mission-create-type-title">
       {{ MISSION_LABELS[type] }}

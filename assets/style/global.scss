@@ -35,6 +35,8 @@ option:not(:checked) {
 
 input, select, textarea {
   font-size: 100%;
+  color: $grey-dark;
+  font-family: inherit;
 }
 
 input::placeholder, textarea::placeholder {

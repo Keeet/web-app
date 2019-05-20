@@ -14,6 +14,10 @@ import IconArrowLeft from '../assets/icons/arrow-left.svg'
 import IconDelete from '../assets/icons/delete.svg'
 import IconPencil from '../assets/icons/pencil.svg'
 import IconError404 from '../assets/icons/error-404.svg'
+import MissionInHouse from '../assets/icons/mission-in-house.svg'
+import MissionRemote from '../assets/icons/mission-remote.svg'
+import MissionSurvey from '../assets/icons/mission-survey.svg'
+import MissionUsabilityLab from '../assets/icons/mission-usability-lab.svg'
 
 import IconPersonaChantal from '../assets/icons/persona-chantal.svg'
 import IconPersonaDustin from '../assets/icons/persona-dustin.svg'
@@ -38,6 +42,10 @@ Vue.component('IconArrowLeft', IconArrowLeft)
 Vue.component('IconDelete', IconDelete)
 Vue.component('IconPencil', IconPencil)
 Vue.component('IconError404', IconError404)
+Vue.component('IconMissionInHouse', MissionInHouse)
+Vue.component('IconMissionRemote', MissionRemote)
+Vue.component('IconMissionSurvey', MissionSurvey)
+Vue.component('IconMissionUsabilityLab', MissionUsabilityLab)
 
 Vue.component('IconPersonaChantal', IconPersonaChantal)
 Vue.component('IconPersonaDustin', IconPersonaDustin)

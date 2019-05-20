@@ -2,10 +2,10 @@
   <div class="project-mission">
     <div class="project-mission-icon" :class="mission.type">
       <div class="project-mission-icon-inner">
-        <IconPencil v-if="mission.type === IN_HOUSE" />
-        <IconPencil v-if="mission.type === REMOTE" />
-        <IconPencil v-if="mission.type === SURVEY" />
-        <IconPencil v-if="mission.type === USABILITY_LAB" />
+        <IconMissionInHouse v-if="mission.type === IN_HOUSE" />
+        <IconMissionRemote v-if="mission.type === REMOTE" />
+        <IconMissionSurvey v-if="mission.type === SURVEY" />
+        <IconMissionUsabilityLab v-if="mission.type === USABILITY_LAB" />
         <p class="project-mission-icon-text">
           {{ MISSION_LABELS[mission.type] }}
         </p>
@@ -17,7 +17,7 @@
           Info
         </p>
       </div>
-      <ProjectMissionSection :headline="dateLabel" :type="mission.type">
+      <ProjectMissionSection headline="Date" :type="mission.type">
         <p class="project-mission-date">
           {{ date }}
         </p>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { getLocaleDateString, isSameDay } from '../../../utils/dateUtils'
+import { getLocaleDateString } from '../../../utils/dateUtils'
 import { MISSIONS, MISSION_LABELS } from '../../constants'
 import ProjectMissionSection from '../ProjectMissionSection/ProjectMissionSection'
 
@@ -68,7 +68,7 @@ export default {
       return this.mission.description
     },
     descriptionFormatted() {
-      const maxLength = 150
+      const maxLength = 100
       if (this.description.length > maxLength) {
         return `${this.description.substr(0, maxLength)}...`
       }
@@ -80,18 +80,9 @@ export default {
     date() {
       if (this.hasConductingDate) {
         const start = new Date(this.mission.startDate)
-        const end = this.mission.endDate ? new Date(this.mission.endDate) : null
-        if (!end || isSameDay(start, end)) {
-          return getLocaleDateString(start)
-        }
-        return `${getLocaleDateString(start)}- ${getLocaleDateString(end)}`
+        return getLocaleDateString(start)
       }
       return getLocaleDateString(new Date(this.mission.createdAt))
-    },
-    dateLabel() {
-      return this.hasConductingDate
-        ? 'Date'
-        : 'Created at'
     }
   }
 }
