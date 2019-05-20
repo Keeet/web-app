@@ -1,0 +1,88 @@
+.mission-create-form {
+  position: relative;
+
+  .mission-create-form-body {
+    width: calc(100% - 330px);
+
+    .mission-create-form-section {
+      margin-bottom: 30px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .mission-create-form-name {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .mission-create-form-participants {
+      width: 155px;
+    }
+  }
+
+  .mission-create-form-submit {
+    position: fixed;
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    height: 0;
+
+    .mission-create-form-submit-inner {
+      float: right;
+      width: 300px;
+
+      .mission-create-form-submit-box {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.07);
+
+        .mission-create-form-submit-head {
+          display: flex;
+          align-items: center;
+          padding: 10px 15px;
+          background-color: $grey-light;
+
+          .mission-create-form-submit-head-icon {
+            position: relative;
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+
+            &.IN_HOUSE {
+              background-color: $mission-in-house;
+            }
+
+            &.REMOTE {
+              background-color: $mission-remote;
+            }
+
+            svg {
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%, -50%);
+              width: 50%;
+              fill: #fff;
+            }
+          }
+
+          .mission-create-form-submit-head-text {
+            margin-left: 15px;
+          }
+        }
+
+        .mission-create-form-submit-body {
+          padding: 15px;
+        }
+      }
+
+      .mission-create-form-submit-buttons {
+        margin-top: 30px;
+      }
+    }
+  }
+}

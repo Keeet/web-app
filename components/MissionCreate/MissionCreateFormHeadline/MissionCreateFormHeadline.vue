@@ -1,5 +1,5 @@
 <template>
-  <p class="mission-create-form-headline">
+  <p class="mission-create-form-headline" :class="{ underlined }">
     {{ text }}
   </p>
 </template>
@@ -11,6 +11,10 @@ export default {
     text: {
       type: String,
       required: true
+    },
+    underlined: {
+      type: Boolean,
+      default: false
     }
   }
 }

@@ -1,5 +1,5 @@
 const defaultState = {
-  type: null,
+  type: 'IN_HOUSE',
   title: '',
   persona: null,
   nbParticipants: 5,
