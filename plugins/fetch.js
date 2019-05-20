@@ -108,6 +108,7 @@ const config = {
           updatedAt: '2019-05-08T17:17:55.876Z',
           createdAt: '2019-05-08T17:17:55.798Z',
           type: 'REMOTE',
+          title: 'Internal mission name',
           description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
           screenerQuestions: [
             {
@@ -188,7 +189,7 @@ const config = {
     key: 'personas',
     mockData: [
       {
-        id: '30fc1872-ecc3-4639-b2bb-a94054d1d8ee',
+        id: '40fc1872-ecc3-4639-b2bb-a94054d1d8ee',
         updatedAt: '2019-05-04T22:43:15Z',
         createdAt: '2019-05-04T22:43:15Z',
         name: 'Chantal',

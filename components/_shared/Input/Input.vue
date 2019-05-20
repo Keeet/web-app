@@ -21,7 +21,7 @@
       :readonly="readonly"
       :maxlength="maxCharacters || 524288"
     />
-    <p class="input-error" :class="{active: showError}">
+    <p class="input-error" :class="{active: showError, noTitle: !title}">
       {{ error }}
     </p>
   </div>
@@ -73,6 +73,10 @@ export default {
       type: Number,
       default: null
     },
+    numbersOnly: {
+      type: Boolean,
+      default: false
+    },
     textarea: {
       type: Boolean,
       default: false
@@ -84,9 +88,7 @@ export default {
         return this.value
       },
       set(value) {
-        if (!this.maxCharacters || this.maxCharacters >= value.length) {
-          this.$store.commit(this.mutation, value)
-        }
+        this.$store.commit(this.mutation, value)
       }
     },
     showError() {

@@ -1,0 +1,20 @@
+.mission-create-form-duration-item {
+  width: 70px;
+  padding: 14px;
+  border-radius: 5px;
+  border: solid 1px $grey;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 15px 10px;
+  font-weight: 500;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.active {
+    background-color: $blue-primary;
+    border-color: $blue-primary;
+    color: #fff
+  }
+}

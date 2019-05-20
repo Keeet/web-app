@@ -29,6 +29,17 @@
       height: 100px;
     }
 
+    &.adjustSize {
+      width: 100%;
+      height: auto;
+
+      &:after {
+        content: "";
+        display: block;
+        padding-bottom: 100%;
+      }
+    }
+
     svg {
       position: absolute;
       left: 50%;

@@ -6,3 +6,7 @@ export const specialCharsToDashes = (string, lowerCase = true) => {
   const s = string.replace(/[^a-z0-9_]+/gi, '-')
   return lowerCase ? s.toLowerCase() : s
 }
+
+export const isNum = (string) => {
+  return /^\d+$/.test(string)
+}

@@ -12,6 +12,8 @@ const defaultState = {
   gendersOpened: false,
   occupationsOpened: false,
   newScreenerQuestion: '',
+  missionEntrypoint: false,
+  showSaveTemp: false,
   activeStep: 0,
   inProgress: true,
   pending: false
@@ -111,6 +113,12 @@ export const mutations = {
       return
     }
     state.newScreenerQuestion = value
+  },
+  setMissionEntrypoint(state) {
+    state.missionEntrypoint = true
+  },
+  setShowSaveTemp(state, value) {
+    state.showSaveTemp = value
   },
   nextStep(state) {
     state.activeStep++

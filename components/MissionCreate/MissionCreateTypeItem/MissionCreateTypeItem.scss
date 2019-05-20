@@ -1,0 +1,78 @@
+.mission-create-type-item {
+  background-color: #fff;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.07);
+  padding: 40px 0;
+  text-align: center;
+  width: 22%;
+  box-sizing: border-box;
+  transition: box-shadow 0.4s;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.10);
+  }
+
+  .mission-create-type-item-icon {
+    position: relative;
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+    margin: 0 auto 20px;
+
+    &.IN_HOUSE {
+      background-color: $mission-in-house;
+    }
+
+    &.REMOTE {
+      background-color: $mission-remote;
+    }
+
+    &.USABILITY_LAB {
+      background-color: $mission-usability-lab;
+    }
+
+    &.SURVEY {
+      background-color: $mission-survey;
+    }
+
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      fill: #fff;
+    }
+  }
+
+  .mission-create-type-item-title {
+    font-weight: 500;
+    font-size: 120%;
+  }
+
+  &.comingSoon {
+    padding-bottom: 5px;
+
+    &:hover {
+      cursor: default;
+    }
+
+    .mission-create-type-item-icon {
+      background-color: $grey;
+      background-image: linear-gradient(226deg, #808e9b, #d2dae2);
+
+      svg {
+        fill: #fff;
+      }
+    }
+
+    .mission-create-type-item-title {
+      color: $grey;
+    }
+
+    .mission-create-type-item-coming-soon {
+      color: $grey;
+      margin-top: 5px;
+    }
+  }
+}

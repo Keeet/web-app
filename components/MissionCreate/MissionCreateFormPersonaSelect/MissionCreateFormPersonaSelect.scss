@@ -1,0 +1,18 @@
+.mission-create-form-persona-select {
+  width: 300px;
+
+  .mission-create-form-persona-select-option {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+
+    .mission-create-form-persona-select-option-icon {
+      width: 35px;
+      height: 35px;
+    }
+
+    .mission-create-form-persona-select-option-title {
+      margin-left: 15px;
+    }
+  }
+}

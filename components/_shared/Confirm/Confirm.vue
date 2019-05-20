@@ -5,14 +5,14 @@
       :trigger-class="triggerClass"
       :loading="loading"
       reduced-margins
-      @close="cancel"
+      @close="$emit('close')"
     >
       <p class="confirm-text">
         {{ text }}
       </p>
       <div class="confirm-labels">
-        <ButtonText class="confirm-labels-confirm" :text="labelConfirm" @click="$emit('confirm', context)" />
-        <ButtonText class="confirm-labels-cancel" :text="labelCancel" type="BLUE_BORDER" @click="cancel" />
+        <ButtonText class="confirm-labels-confirm" :text="labelConfirm" @click="$emit('confirm')" />
+        <ButtonText class="confirm-labels-cancel" :text="labelCancel" type="BLUE_BORDER" @click="$emit('cancel')" />
       </div>
     </OverlayModal>
   </div>
@@ -41,10 +41,6 @@ export default {
       type: String,
       default: 'No'
     },
-    context: {
-      type: Object,
-      required: true
-    },
     triggerClass: {
       type: String,
       default: null
@@ -52,11 +48,6 @@ export default {
     loading: {
       type: Boolean,
       default: false
-    }
-  },
-  methods: {
-    cancel() {
-      this.$emit('cancel')
     }
   }
 }

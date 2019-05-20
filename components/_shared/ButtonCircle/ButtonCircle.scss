@@ -10,6 +10,22 @@
     height: 65px;
   }
 
+  &.adjustWidth {
+    width: 100%;
+    height: auto;
+
+    &:after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+
+    svg {
+      width: 40%;
+      height: 40%;
+    }
+  }
+
   &:not(.noHover):hover {
     cursor: pointer;
     transform: scale(1.1)
@@ -29,6 +45,14 @@
 
     svg {
       fill: $blue-primary;
+    }
+  }
+
+  &.CREATE_GREY {
+    background-color: $grey;
+
+    svg {
+      fill: #fff;
     }
   }
 

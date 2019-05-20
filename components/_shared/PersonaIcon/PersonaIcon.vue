@@ -1,6 +1,6 @@
 <template>
   <div class="persona-icon" :class="{ whiteBg, noClick, disabled }">
-    <div class="persona-icon-image" :class="[`${icon.toLowerCase()}-bg`, { small }]">
+    <div class="persona-icon-image" :class="[`${icon.toLowerCase()}-bg`, { small, adjustSize }]">
       <IconPersonaChantal v-if="icon === ICONS.CHANTAL" />
       <IconPersonaDustin v-if="icon === ICONS.DUSTIN" />
       <IconPersonaJacqueline v-if="icon === ICONS.JACQUELINE" />
@@ -41,6 +41,10 @@ export default {
       default: false
     },
     small: {
+      type: Boolean,
+      default: false
+    },
+    adjustSize: {
       type: Boolean,
       default: false
     },

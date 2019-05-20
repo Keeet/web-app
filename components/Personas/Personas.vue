@@ -51,11 +51,11 @@
       <Confirm
         v-if="personasPageStore.deletePopup"
         :text="`Do you really want to delete the persona ${sidebarPersona.name}?`"
-        :context="sidebarPersona"
         :loading="personasPageStore.deletePending"
         trigger-class="personas-sidebar-head-delete"
-        @confirm="deletePersona"
+        @confirm="deletePersona(sidebarPersona)"
         @cancel="hideDeletePopup"
+        @close="hideDeletePopup"
       />
     </div>
   </div>

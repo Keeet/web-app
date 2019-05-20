@@ -1,0 +1,42 @@
+<template>
+  <div class="mission-create-type-item" :class="{ comingSoon }">
+    <div class="mission-create-type-item-icon" :class="type">
+      <IconMissionInHouse v-if="type === MISSIONS.IN_HOUSE" />
+      <IconMissionRemote v-if="type === MISSIONS.REMOTE" />
+      <IconMissionSurvey v-if="type === MISSIONS.SURVEY" />
+      <IconMissionUsabilityLab v-if="type === MISSIONS.USABILITY_LAB" />
+    </div>
+    <p class="mission-create-type-item-title">
+      {{ MISSION_LABELS[type] }}
+    </p>
+    <p v-if="comingSoon" class="mission-create-type-item-coming-soon">
+      Coming soon
+    </p>
+  </div>
+</template>
+
+<script>
+import { MISSIONS, MISSION_LABELS } from '../../constants'
+
+export default {
+  name: 'MissionCreateTypeItem',
+  props: {
+    type: {
+      type: String,
+      required: true,
+      validator: value => Object.values(MISSIONS).includes(value)
+    },
+    comingSoon: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data() {
+    return { MISSIONS, MISSION_LABELS }
+  }
+}
+</script>
+
+<style scoped lang="scss">
+  @import "MissionCreateTypeItem";
+</style>

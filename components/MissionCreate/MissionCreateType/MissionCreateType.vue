@@ -1,38 +1,37 @@
 <template>
-  <div class="mission-create-type" :class="{ comingSoon }">
-    <div class="mission-create-type-icon" :class="type">
-      <IconMissionInHouse v-if="type === MISSIONS.IN_HOUSE" />
-      <IconMissionRemote v-if="type === MISSIONS.REMOTE" />
-      <IconMissionSurvey v-if="type === MISSIONS.SURVEY" />
-      <IconMissionUsabilityLab v-if="type === MISSIONS.USABILITY_LAB" />
+  <div class="mission-create-type">
+    <Headline text="What do you want to do?" center />
+    <div
+      class="mission-create-type-items"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      data-aos-once="true"
+      data-aos-delay="500"
+    >
+      <MissionCreateTypeItem :type="IN_HOUSE" @click.native="select(IN_HOUSE)" />
+      <MissionCreateTypeItem :type="REMOTE" @click.native="select(REMOTE)" />
+      <MissionCreateTypeItem :type="SURVEY" coming-soon @click.native="select(SURVEY)" />
+      <MissionCreateTypeItem :type="USABILITY_LAB" coming-soon @click.native="select(USABILITY_LAB)" />
     </div>
-    <p class="mission-create-type-title">
-      {{ MISSION_LABELS[type] }}
-    </p>
-    <p v-if="comingSoon" class="mission-create-type-coming-soon">
-      Coming soon
-    </p>
   </div>
 </template>
 
 <script>
-import { MISSIONS, MISSION_LABELS } from '../../constants'
-
+import { MISSIONS } from '../../constants'
+import Headline from '../../_shared/Headline/Headline'
+import MissionCreateTypeItem from '../MissionCreateTypeItem/MissionCreateTypeItem'
 export default {
   name: 'MissionCreateType',
-  props: {
-    type: {
-      type: String,
-      required: true,
-      validator: value => Object.values(MISSIONS).includes(value)
-    },
-    comingSoon: {
-      type: Boolean,
-      default: false
-    }
-  },
+  components: { MissionCreateTypeItem, Headline },
   data() {
-    return { MISSIONS, MISSION_LABELS }
+    const { IN_HOUSE, REMOTE, SURVEY, USABILITY_LAB } = MISSIONS
+    return { IN_HOUSE, REMOTE, SURVEY, USABILITY_LAB }
+  },
+  methods: {
+    select(type) {
+      this.$store.commit('missionForm/setType', type)
+      this.$store.commit('missionForm/nextStep')
+    }
   }
 }
 </script>
