@@ -5,6 +5,8 @@ const defaultState = {
   nbParticipants: 5,
   duration: 60,
   language: 'EN',
+  location: null,
+  locationId: 'COMPANY',
 
   activeStep: 1,
   inProgress: true,
@@ -16,11 +18,13 @@ const defaultState = {
 export const state = () => (defaultState)
 
 export const mutations = {
-  init(state) {
+  init(state, company) {
     if (!state.inProgress) {
       for (const key in defaultState) {
         state[key] = defaultState[key]
       }
+      const { name, street, houseNb, addressDescription, zip, city, country } = company
+      state.location = { name, street, houseNb, addressDescription, zip, city, country }
     }
   },
   setType(state, type) {
@@ -40,6 +44,10 @@ export const mutations = {
   },
   setLanguage(state, language) {
     state.language = language
+  },
+  setLocation(state, location) {
+    state.locationId = location.id ? location.id : defaultState.locationId
+    state.location = location
   },
 
   pending(state) {

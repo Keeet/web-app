@@ -8,7 +8,7 @@ export default {
   name: 'Create',
   components: { MissionCreate },
   fetch({ app: { $fetch } }) {
-    return $fetch([{ name: 'USER' }, { name: 'PERSONAS' }])
+    return $fetch([{ name: 'USER' }, { name: 'PERSONAS' }, { name: 'COMPANY' }])
   }
 }
 </script>

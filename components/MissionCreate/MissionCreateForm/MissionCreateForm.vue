@@ -37,6 +37,10 @@
           <MissionCreateFormHeadline text="In what language do you want to interview?" underlined />
           <MissionCreateFormLanguage />
         </div>
+        <div v-if="s.type === IN_HOUSE" class="mission-create-form-section">
+          <MissionCreateFormHeadline text="Where does the interview / test takes place?" underlined />
+          <MissionCreateFormLocation />
+        </div>
       </MissionCreateFormBox>
     </div>
     <div class="mission-create-form-submit">
@@ -44,11 +48,11 @@
         <div class="mission-create-form-submit-box">
           <div class="mission-create-form-submit-head">
             <div class="mission-create-form-submit-head-icon" :class="s.type">
-              <IconMissionInHouse v-if="s.type === MISSIONS.IN_HOUSE" />
-              <IconMissionRemote v-if="s.type === MISSIONS.REMOTE" />
+              <IconMissionInHouse v-if="s.type === IN_HOUSE" />
+              <IconMissionRemote v-if="s.type === REMOTE" />
             </div>
             <div class="mission-create-form-submit-head-text">
-              Remote Mission
+              {{ MISSION_LABELS[s.type] }} Mission
             </div>
           </div>
           <div class="mission-create-form-submit-body">
@@ -66,7 +70,7 @@
 
 <script>
 import { isNum } from '../../../utils/stringUtils'
-import { MISSIONS } from '../../constants'
+import { MISSIONS, MISSION_LABELS } from '../../constants'
 import MissionCreateFormBox from '../MissionCreateFormBox/MissionCreateFormBox'
 import MissionCreateFormHeadline from '../MissionCreateFormHeadline/MissionCreateFormHeadline'
 import Input from '../../_shared/Input/Input'
@@ -74,11 +78,13 @@ import MissionCreateFormPersonaSelect from '../MissionCreateFormPersonaSelect/Mi
 import MissionCreateFormDuration from '../MissionCreateFormDuration/MissionCreateFormDuration'
 import MissionCreateFormLanguage from '../MissionCreateFormLanguage/MissionCreateFormLanguage'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
+import MissionCreateFormLocation from '../MissionCreateFormLocation/MissionCreateFormLocation'
 export default {
   name: 'MissionCreateForm',
-  components: { ButtonText, MissionCreateFormLanguage, MissionCreateFormDuration, MissionCreateFormPersonaSelect, Input, MissionCreateFormHeadline, MissionCreateFormBox },
+  components: { MissionCreateFormLocation, ButtonText, MissionCreateFormLanguage, MissionCreateFormDuration, MissionCreateFormPersonaSelect, Input, MissionCreateFormHeadline, MissionCreateFormBox },
   data() {
-    return { showErrors: false, MISSIONS }
+    const { IN_HOUSE, REMOTE } = MISSIONS
+    return { showErrors: false, IN_HOUSE, REMOTE, MISSION_LABELS }
   },
   computed: {
     s() {
