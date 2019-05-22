@@ -7,6 +7,7 @@ const defaultState = {
   language: 'EN',
   location: null,
   locationId: 'COMPANY',
+  locationFormOpened: false,
 
   activeStep: 1,
   inProgress: true,
@@ -48,6 +49,12 @@ export const mutations = {
   setLocation(state, location) {
     state.locationId = location.id ? location.id : defaultState.locationId
     state.location = location
+  },
+  openLocationForm(state) {
+    state.locationFormOpened = true
+  },
+  closeLocationForm(state) {
+    state.locationFormOpened = false
   },
 
   pending(state) {

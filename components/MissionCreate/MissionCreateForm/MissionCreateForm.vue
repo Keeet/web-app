@@ -23,7 +23,7 @@
           <div class="mission-create-form-participants">
             <Input
               mutation="missionForm/setNbParticipants"
-              :value="s.nbParticipants"
+              :value="s.nbParticipants.toString()"
               :error="nbParticipantsError"
               numbers-only
             />

@@ -37,14 +37,28 @@
       mutation="companyForm/setAddressDescription"
       :error="null"
     />
-    <Input
-      title="ZIP*"
-      placeholder="10369"
-      :value="store.zip"
-      mutation="companyForm/setZip"
-      :error="zipError"
-      :disable-error="!showErrors"
-    />
+    <div class="company-form-city">
+      <div class="company-form-city-name">
+        <Input
+          title="City*"
+          placeholder="Berlin"
+          :value="store.city"
+          mutation="companyForm/setCity"
+          :error="cityError"
+          :disable-error="!showErrors"
+        />
+      </div>
+      <div class="company-form-city-zip">
+        <Input
+          title="ZIP*"
+          placeholder="10369"
+          :value="store.zip"
+          mutation="companyForm/setZip"
+          :error="zipError"
+          :disable-error="!showErrors"
+        />
+      </div>
+    </div>
     <Select
       title="Country*"
       :options="[{
@@ -87,12 +101,14 @@ export default {
     streetError() { return this.store.street !== '' ? null : 'required' },
     houseNbError() { return this.store.houseNb !== '' ? null : 'required' },
     zipError() { return this.store.zip.match(/^[0-9]+$/) ? null : 'must be a number' },
+    cityError() { return this.store.city !== '' ? null : 'required' },
     countryError() { return this.store.country !== '' ? null : 'required' },
     formValid() {
       return (
         !this.nameError &&
         !this.streetError &&
         !this.houseNbError &&
+        !this.cityError &&
         !this.zipError &&
         !this.countryError
       )

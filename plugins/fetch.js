@@ -36,6 +36,19 @@ const config = {
       zip: '10369',
       city: 'Berlin',
       country: 'DE',
+      locations: [],
+      createdAt: '2019-05-04T22:43:15Z',
+      updatedAt: '2019-05-04T22:43:15Z'
+    },
+    mockDataWithLocation: {
+      id: 'c1',
+      name: 'Keeet UG',
+      street: 'Rosenthaler Strasse',
+      houseNb: '101',
+      addressDescription: 'third backyard',
+      zip: '10369',
+      city: 'Berlin',
+      country: 'DE',
       locations: [
         {
           id: '609eeb55-e429-41f4-b0b9-2477ddc7f929',

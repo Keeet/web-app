@@ -1,14 +1,14 @@
 .company-form {
 
-  .company-form-street {
+  .company-form-street, .company-form-city {
     display: flex;
     justify-content: space-between;
 
-    .company-form-street-name {
+    .company-form-street-name, .company-form-city-name {
       width: 60%;
     }
 
-    .company-form-street-nb {
+    .company-form-street-nb, .company-form-city-zip {
       width: 35%;
     }
   }

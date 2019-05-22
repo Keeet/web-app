@@ -12,15 +12,17 @@
       :active="location.id === s.locationId"
       @click.native="setLocation(location)"
     />
-    <MissionCreateFormLocationItem create />
+    <MissionCreateFormLocationItem create @click.native="openLocationForm" />
+    <MissionCreateFormLocationForm v-if="s.locationFormOpened" />
   </div>
 </template>
 
 <script>
 import MissionCreateFormLocationItem from '../MissionCreateFormLocationItem/MissionCreateFormLocationItem'
+import MissionCreateFormLocationForm from '../MissionCreateFormLocationForm/MissionCreateFormLocationForm'
 export default {
   name: 'MissionCreateFormLocation',
-  components: { MissionCreateFormLocationItem },
+  components: { MissionCreateFormLocationForm, MissionCreateFormLocationItem },
   computed: {
     s() {
       return this.$store.state.missionForm
@@ -39,6 +41,10 @@ export default {
     },
     setLocation(location) {
       this.$store.commit('missionForm/setLocation', location)
+    },
+    openLocationForm() {
+      this.$store.commit('locationForm/init')
+      this.$store.commit('missionForm/openLocationForm')
     }
   }
 }

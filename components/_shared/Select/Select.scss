@@ -22,5 +22,9 @@
     background-position: calc(100% - 15px) 20px;
     background-size: 13px;
     appearance: none;
+
+    &:disabled {
+      color: $grey-mid-dark;
+    }
   }
 }
