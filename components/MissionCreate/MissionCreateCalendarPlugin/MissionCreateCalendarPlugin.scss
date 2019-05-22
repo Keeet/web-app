@@ -1,0 +1,171 @@
+.fc {
+  color: $grey-dark;
+
+  * {
+    font-size: 100% !important;
+  }
+
+  .fc-toolbar.fc-header-toolbar {
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    margin-left: 60px;
+  }
+
+  .fc-button {
+
+    &:active, &:focus {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    &.fc-today-button {
+      border-radius: 30px;
+      border: solid 1px $grey;
+      background-color: #ffffff;
+      color: $blue-primary;
+      font-weight: 500;
+      padding: 10px 20px;
+
+      &:active, &:focus {
+        background-color: #fff;
+        color: $blue-primary;
+        border: solid 1px $grey;
+      }
+    }
+
+    &.fc-next-button, &.fc-prev-button {
+      border-radius: 100%;
+      border: solid 1px $grey;
+      background-color: #fff;
+      color: $grey;
+      width: 45px;
+      height: 45px;
+      padding: 0;
+      margin: 0 3px;
+
+      .fc-icon {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px !important;
+      }
+    }
+  }
+
+  .fc-left {
+    margin-left: 20px;
+  }
+
+  .fc-view-container {
+    background-color: #fff;
+
+    .fc-widget-header {
+      margin-right: 0 !important;
+      border: none;
+
+      .fc-widget-header-days-custom {
+        border: 1px solid $grey;
+        border-left: none;
+        padding: 20px 5px;
+
+        .fc-widget-header-days-custom-day {
+          font-size: 110% !important;
+          margin-bottom: 5px;
+        }
+
+        .fc-widget-header-days-custom-month {
+          font-size: 90% !important;
+          font-weight: 300;
+        }
+      }
+
+      .fc-day-header:nth-child(2) .fc-widget-header-days-custom {
+        border-left: 1px solid $grey;
+        border-radius: 5px 0 0 0;
+      }
+
+      .fc-day-header:last-child .fc-widget-header-days-custom {
+        border-radius: 0 5px 0 0;
+      }
+    }
+
+    .fc-axis {
+      border: none !important;
+      padding: 0 10px 0 0;
+      width: 60px !important;
+      box-sizing: border-box;
+      color: $grey-mid-dark;
+      font-size: 90% !important;
+      background-color: $grey-light;
+    }
+
+    .fc-body {
+
+      .fc-widget-content {
+        border-right: 1px solid $grey !important;
+
+        &:not(.fc-day) {
+          border-left: none !important;
+          border-top: none !important;
+          border-bottom: none !important;
+        }
+
+        .fc-scroller {
+          height: auto !important;
+        }
+
+        .fc-slats {
+
+          tr:not(.fc-minor) td:not(.fc-time) {
+            border-top: 1px solid $grey !important;
+          }
+
+          .fc-minor:last-child td {
+            border-bottom: 1px solid grey !important;
+          }
+        }
+
+
+        .fc-highlight {
+          background-color: rgba($blue-primary, 0.5) !important;
+        }
+      }
+    }
+  }
+
+  .fc-today {
+    background-color: rgba($blue-primary, 0.1) !important;
+  }
+  .fc-now-indicator {
+    border-color: $blue-primary;
+    border-width: 1px;
+  }
+
+  // needs to be here since its draggable and parents do change
+  .fc-time-grid-event {
+    background-color: $blue-primary;
+    border: none;
+    padding: 10px;
+
+    .fc-time {
+      white-space: normal;
+    }
+
+    .close {
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 6;
+      padding: 5px 10px;
+    }
+  }
+
+  .fc-divider.fc-widget-header {
+    display: block !important;
+    margin-left: 60px;
+    background-color: $grey;
+    height: 1px;
+    padding: 0;
+  }
+}

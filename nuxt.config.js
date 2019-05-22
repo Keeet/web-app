@@ -56,7 +56,8 @@ module.exports = {
     '~/plugins/icons',
     '~/plugins/directives',
     { src: '~/plugins/timeago', ssr: false },
-    { src: '~/plugins/aos.js', ssr: false }
+    { src: '~/plugins/aos.js', ssr: false },
+    { src: '~/plugins/missionCreateCalendar.js', ssr: false }
   ],
 
   /*

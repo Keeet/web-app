@@ -11,8 +11,21 @@
         {{ text }}
       </p>
       <div class="confirm-labels">
-        <ButtonText class="confirm-labels-confirm" :text="labelConfirm" @click="$emit('confirm')" />
-        <ButtonText class="confirm-labels-cancel" :text="labelCancel" type="BLUE_BORDER" @click="$emit('cancel')" />
+        <ButtonText
+          class="confirm-labels-confirm"
+          :class="{ fullWidth }"
+          :text="labelConfirm"
+          :arrow="labelConfirmArrow"
+          @click="$emit('confirm')"
+        />
+        <ButtonText
+          v-if="labelCancel"
+          class="confirm-labels-cancel"
+          :class="{ fullWidth }"
+          :text="labelCancel"
+          type="BLUE_BORDER"
+          @click="$emit('cancel')"
+        />
       </div>
     </OverlayModal>
   </div>
@@ -21,6 +34,12 @@
 <script>
 import OverlayModal from '../OverlayModal/OverlayModal'
 import ButtonText from '../ButtonText/ButtonText'
+
+const ARROWS = {
+  LEFT: 'LEFT',
+  RIGHT: 'RIGHT'
+}
+
 export default {
   name: 'Confirm',
   components: { ButtonText, OverlayModal },
@@ -37,6 +56,11 @@ export default {
       type: String,
       default: 'Yes'
     },
+    labelConfirmArrow: {
+      type: String,
+      default: null,
+      validator: value => Object.values(ARROWS).includes(value)
+    },
     labelCancel: {
       type: String,
       default: 'No'
@@ -46,6 +70,10 @@ export default {
       default: null
     },
     loading: {
+      type: Boolean,
+      default: false
+    },
+    fullWidth: {
       type: Boolean,
       default: false
     }

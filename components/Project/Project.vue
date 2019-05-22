@@ -115,13 +115,12 @@ export default {
   methods: {
     getMonthLabel(date) {
       const now = new Date()
-      const month = date.getMonth()
       const year = date.getFullYear()
       const currentYear = now.getFullYear()
 
       return (year === currentYear)
-        ? getMonthName(month)
-        : `${getMonthName(month)} ${year}`
+        ? getMonthName(now)
+        : `${getMonthName(now)} ${year}`
     }
   }
 }

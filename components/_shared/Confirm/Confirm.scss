@@ -5,13 +5,16 @@
     justify-content: center;
     margin-top: 20px;
 
-    .confirm-labels-confirm {
-      margin-right: 20px;
+    .confirm-labels-confirm, .confirm-labels-cancel {
       width: 80px;
+
+      &.fullWidth {
+        width: auto;
+      }
     }
 
-    .confirm-labels-cancel {
-      width: 80px;
+    .confirm-labels-confirm {
+      margin-right: 20px;
     }
   }
 }

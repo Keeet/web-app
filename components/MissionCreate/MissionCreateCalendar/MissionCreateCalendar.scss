@@ -1,0 +1,48 @@
+.mission-create-calendar {
+  position: relative;
+  margin: 30px 0;
+
+  .mission-create-calendar-menu {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    text-align: right;
+
+    .mission-create-calendar-menu-count {
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+      color: $blue-primary;
+      margin-bottom: 5px;
+
+      &:not(.valid) {
+        color: $red-error;
+      }
+
+      svg {
+        width: 20px;
+        fill: $blue-primary;
+        margin-left: 8px;
+      }
+    }
+
+    .mission-create-calendar-menu-reset {
+      color: $grey-mid-dark;
+      font-size: 90%;
+      transition: color 0.4s;
+
+      &.disabled {
+        color: $grey;
+
+        &:hover {
+          cursor: default;
+        }
+      }
+
+      &:not(.disabled):hover {
+        cursor: pointer;
+        color: $grey-dark;
+      }
+    }
+  }
+}

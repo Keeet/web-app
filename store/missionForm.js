@@ -8,8 +8,10 @@ const defaultState = {
   location: null,
   locationId: 'COMPANY',
   locationFormOpened: false,
+  sessions: [],
+  sessionErrorPopup: false,
 
-  activeStep: 1,
+  activeStep: 2,
   inProgress: true,
   pending: false,
 
@@ -55,6 +57,31 @@ export const mutations = {
   },
   closeLocationForm(state) {
     state.locationFormOpened = false
+  },
+  addSession(state, session) {
+    const sessions = state.sessions.slice()
+    sessions.push(session)
+    state.sessions = sessions
+  },
+  changeSession(state, changedSession) {
+    const sessions = state.sessions.slice()
+    const toChange = sessions.filter(s => s.id === changedSession.id)[0]
+    const { start, end } = changedSession
+    toChange.start = start
+    toChange.end = end
+    state.sessions = sessions
+  },
+  removeSession(state, sessionId) {
+    state.sessions = state.sessions.filter(s => s.id !== sessionId)
+  },
+  resetSessions(state) {
+    state.sessions = []
+  },
+  showSessionErrorPopup(state) {
+    state.sessionErrorPopup = true
+  },
+  hideSessionErrorPopup(state) {
+    state.sessionErrorPopup = false
   },
 
   pending(state) {
