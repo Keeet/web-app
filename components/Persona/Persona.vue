@@ -1,29 +1,49 @@
 <template>
   <div class="persona">
     <div class="persona-cancel">
-      <ButtonCircle type="ARROW_LEFT" @click="$router.back()" />
+      <ButtonCircle type="ARROW_LEFT" @click="a" />
     </div>
     <div v-show="!pending" class="persona-form">
-      <PersonaStep :show-prev="false" :valid="step1Valid" :active="activeStep === 0">
+      <FormStep
+        :show-prev="false"
+        :valid="step1Valid"
+        :active="activeStep === 0"
+        :next-step-mutation="nextMut"
+        :prev-step-mutation="prevMut"
+      >
         <Headline :text="avatarHeadline" center />
         <PersonaAvatar />
-      </PersonaStep>
-      <PersonaStep :valid="true" large :active="activeStep === 1">
+      </FormStep>
+      <FormStep
+        :valid="true"
+        large
+        :active="activeStep === 1"
+        :next-step-mutation="nextMut"
+        :prev-step-mutation="prevMut"
+      >
         <Headline
           text="What is your desired target group?"
           subline="Please define your exact criteria to ensure we can recruit the exact target group."
           center
         />
         <PersonaCriteria />
-      </PersonaStep>
-      <PersonaStep :valid="true" large :active="activeStep === 2" :submit="submitButtonLabel" @submit="submit">
+      </FormStep>
+      <FormStep
+        :valid="true"
+        large
+        :active="activeStep === 2"
+        :submit="submitButtonLabel"
+        :next-step-mutation="nextMut"
+        :prev-step-mutation="prevMut"
+        @submit="submit"
+      >
         <Headline
           text="Special criteria"
           subline="Based on the criteria, we will create open screening questions to find matching candidates."
           center
         />
         <PersonaSpecialCriteria />
-      </PersonaStep>
+      </FormStep>
     </div>
     <Confirm
       v-if="s.showSaveTemp"
@@ -44,13 +64,19 @@ import uuidv4 from 'uuid/v4'
 import Headline from '../_shared/Headline/Headline'
 import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
 import Confirm from '../_shared/Confirm/Confirm'
+import FormStep from '../_shared/FormStep/FormStep'
 import PersonaAvatar from './PersonaAvatar/PersonaAvatar'
-import PersonaStep from './PersonaStep/PersonaStep'
 import PersonaCriteria from './PersonaCriteria/PersonaCriteria'
 import PersonaSpecialCriteria from './PersonaSpecialCriteria/PersonaSpecialCriteria'
 export default {
   name: 'Persona',
-  components: { Confirm, PersonaSpecialCriteria, PersonaCriteria, ButtonCircle, PersonaStep, PersonaAvatar, Headline },
+  components: { FormStep, Confirm, PersonaSpecialCriteria, PersonaCriteria, ButtonCircle, PersonaAvatar, Headline },
+  data() {
+    return {
+      nextMut: 'personaForm/nextStep',
+      prevMut: 'personaForm/previousStep'
+    }
+  },
   computed: {
     s() {
       return this.$store.state.personaForm
@@ -129,6 +155,13 @@ export default {
       this.$store.commit('missionForm/addTempPersona', persona)
       this.$store.commit('missionForm/setPersona', persona)
       this.$router.push('/missions/create')
+    },
+    cancel() {
+      if (this.s.activeStep === 0) {
+        this.$router.back()
+      } else {
+        this.$store.commit('personaForm/previousStep')
+      }
     }
   }
 }

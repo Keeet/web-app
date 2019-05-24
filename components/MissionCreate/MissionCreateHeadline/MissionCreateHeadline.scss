@@ -1,0 +1,22 @@
+.mission-create-headline {
+  font-weight: 500;
+  margin: 20px 0 40px;
+
+  .mission-create-headline-main {
+    font-size: 160%;
+    margin: 0 0 30px;
+    line-height: 30px;
+  }
+
+  .mission-create-headline-sub {
+    margin: 20px 0 5px;
+  }
+
+  .mission-create-headline-line {
+    height: 1px;
+    background-color: $grey-dark;
+    max-width: 600px;
+    border: none;
+    margin: 0;
+  }
+}

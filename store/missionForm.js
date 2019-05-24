@@ -9,9 +9,10 @@ const defaultState = {
   locationId: 'COMPANY',
   locationFormOpened: false,
   sessions: [],
+  activeCalendarDay: null,
   sessionErrorPopup: false,
 
-  activeStep: 2,
+  activeStep: 0,
   inProgress: true,
   pending: false,
 
@@ -77,6 +78,9 @@ export const mutations = {
   resetSessions(state) {
     state.sessions = []
   },
+  setActiveCalendarDay(state, date) {
+    state.activeCalendarDay = date
+  },
   showSessionErrorPopup(state) {
     state.sessionErrorPopup = true
   },
@@ -84,6 +88,12 @@ export const mutations = {
     state.sessionErrorPopup = false
   },
 
+  nextStep(state) {
+    state.activeStep++
+  },
+  previousStep(state) {
+    state.activeStep--
+  },
   pending(state) {
     state.pending = true
   },

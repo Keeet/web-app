@@ -1,11 +1,11 @@
 <template>
   <div
     v-if="active"
-    class="persona-step"
+    class="form-step"
     :class="{large}"
   >
     <div
-      data-aos="fade-up"
+      data-aos="fade-in"
       data-aos-duration="1500"
       data-aos-once="true"
     >
@@ -18,14 +18,14 @@
       data-aos-delay="500"
       data-aos-anchor=".content"
     >
-      <div class="persona-step-nav">
+      <div class="form-step-nav">
         <ButtonText
           v-if="showNext && !submit"
           text="Next"
           type="BLUE"
           arrow="RIGHT"
           :disabled="!valid"
-          @click="$store.commit('personaForm/nextStep')"
+          @click="$store.commit(nextStepMutation)"
         />
         <ButtonText
           v-if="submit"
@@ -39,7 +39,7 @@
           text="Back"
           type="BLUE_BORDER"
           arrow="LEFT"
-          @click="$store.commit('personaForm/previousStep')"
+          @click="$store.commit(prevStepMutation)"
         />
       </div>
     </div>
@@ -49,7 +49,7 @@
 <script>
 import ButtonText from '../../_shared/ButtonText/ButtonText'
 export default {
-  name: 'PersonaStep',
+  name: 'FormStep',
   components: { ButtonText },
   props: {
     active: {
@@ -75,11 +75,19 @@ export default {
     submit: {
       type: String,
       default: null
+    },
+    nextStepMutation: {
+      type: String,
+      required: true
+    },
+    prevStepMutation: {
+      type: String,
+      required: true
     }
   }
 }
 </script>
 
-<style scoped lang="scss">
-  @import "PersonaStep";
+<style lang="scss" scoped>
+  @import "FormStep";
 </style>

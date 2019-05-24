@@ -59,15 +59,20 @@
 
   .fc-view-container {
     background-color: #fff;
+    border-radius: 5px;
+    border-right: 1px solid $grey;
 
     .fc-widget-header {
-      margin-right: 0 !important;
       border: none;
 
       .fc-widget-header-days-custom {
         border: 1px solid $grey;
         border-left: none;
         padding: 20px 5px;
+
+        &.today {
+          color: $blue-primary;
+        }
 
         .fc-widget-header-days-custom-day {
           font-size: 110% !important;
@@ -86,7 +91,7 @@
       }
 
       .fc-day-header:last-child .fc-widget-header-days-custom {
-        border-radius: 0 5px 0 0;
+        border-right: none;
       }
     }
 
@@ -103,7 +108,7 @@
     .fc-body {
 
       .fc-widget-content {
-        border-right: 1px solid $grey !important;
+        border-right: none !important;
 
         &:not(.fc-day) {
           border-left: none !important;
@@ -112,10 +117,17 @@
         }
 
         .fc-scroller {
-          height: auto !important;
+          height: calc(100vh - 300px) !important;
+          min-height: 380px;
+          max-height: 570px;
+          overflow: auto;
         }
 
         .fc-slats {
+
+          td {
+            height: 15px !important;
+          }
 
           tr:not(.fc-minor) td:not(.fc-time) {
             border-top: 1px solid $grey !important;
@@ -134,8 +146,11 @@
     }
   }
 
+  .fc-nonbusiness {
+    background-color: rgba($grey, 0.7) !important;
+  }
   .fc-today {
-    background-color: rgba($blue-primary, 0.1) !important;
+    background-color: transparent !important;
   }
   .fc-now-indicator {
     border-color: $blue-primary;
@@ -146,7 +161,7 @@
   .fc-time-grid-event {
     background-color: $blue-primary;
     border: none;
-    padding: 10px;
+    padding: 5px 15px 5px 5px;
 
     .fc-time {
       white-space: normal;

@@ -59,7 +59,7 @@
             You have in total 3 more testers free for this month.
           </div>
         </div>
-        <div class="mission-create-form-submit-buttons">
+        <div v-if="[USABILITY_LAB, SURVEY].includes(s.type)" class="mission-create-form-submit-buttons">
           <ButtonText type="GREY" text="Cancel" />
           <ButtonText text="Save and Continue" />
         </div>
@@ -83,8 +83,8 @@ export default {
   name: 'MissionCreateForm',
   components: { MissionCreateFormLocation, ButtonText, MissionCreateFormLanguage, MissionCreateFormDuration, MissionCreateFormPersonaSelect, Input, MissionCreateFormHeadline, MissionCreateFormBox },
   data() {
-    const { IN_HOUSE, REMOTE } = MISSIONS
-    return { showErrors: false, IN_HOUSE, REMOTE, MISSION_LABELS }
+    const { IN_HOUSE, REMOTE, USABILITY_LAB, SURVEY } = MISSIONS
+    return { showErrors: false, IN_HOUSE, REMOTE, USABILITY_LAB, SURVEY, MISSION_LABELS }
   },
   computed: {
     s() {
@@ -92,7 +92,15 @@ export default {
     },
     titleError() { return this.s.title !== '' ? null : 'required' },
     nbParticipantsError() { return isNum(this.s.nbParticipants) ? null : 'must be a number' },
-    durationError() { return isNum(this.s.duration) ? null : 'must be a number' }
+    durationError() {
+      if (!isNum(this.s.duration)) {
+        return 'must be a number'
+      }
+      if (parseInt(this.s.duration) < 30) {
+        return 'must be bigger than 30'
+      }
+      return null
+    }
   }
 }
 </script>

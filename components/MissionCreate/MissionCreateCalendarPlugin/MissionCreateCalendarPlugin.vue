@@ -10,25 +10,21 @@
       :now-indicator="true"
       :editable="true"
       :event-duration-editable="false"
-      :event-constraint="{
-        startTime: '09:00',
-        endTime: '18:00'
-      }"
       slot-duration="00:15:00"
       slot-label-interval="01:00"
-      min-time="09:00:00"
-      max-time="18:00:00"
       scroll-time="09:00:00"
+      :business-hours="true"
       :select-overlap="(e) => e.rendering !== 'background'"
       :column-header-html="getColumnHeaderHtml"
       :slot-label-format="getSlotLabel"
-      :default-date="getFirstValidDateString()"
+      :default-date="getDefaultDate()"
       :events="allEvents"
       @dateClick="dateClick"
       @select="select"
       @eventDrop="eventChange"
       @eventResize="eventChange"
       @eventRender="eventRender"
+      @dayRender="dayRender"
     />
     <Confirm
       v-if="s.sessionErrorPopup"
@@ -49,7 +45,14 @@ import uuidv4 from 'uuid/v4'
 import FullCalendar from '@fullcalendar/vue'
 import interactionPlugin from '@fullcalendar/interaction'
 import timeGridPlugin from '@fullcalendar/timegrid'
-import { addDays, addMinutes, stripISOTime, getWeekDayName, getMonthName } from '../../../utils/dateUtils'
+import {
+  addDays,
+  addMinutes,
+  stripISOTime,
+  getWeekDayName,
+  getMonthName,
+  isSameDay
+} from '../../../utils/dateUtils'
 import Confirm from '../../_shared/Confirm/Confirm'
 
 export default {
@@ -68,7 +71,8 @@ export default {
       return this.$refs.fullCalendar.getApi()
     },
     allEvents() {
-      const events = this.s.sessions.slice()
+      const events = []
+      const markedDays = []
       events.push({
         start: '2000-01-01',
         end: this.getFirstValidDateString(),
@@ -76,13 +80,47 @@ export default {
         rendering: 'background',
         color: '#d2dae2'
       })
+      this.s.sessions.forEach((session) => {
+        if (markedDays.filter(marked => isSameDay(marked, session.start)).length === 0) {
+          const end = new Date(session.start.getTime())
+          addDays(end, 1)
+          events.push({
+            start: stripISOTime(session.start),
+            end: stripISOTime(end),
+            rendering: 'background',
+            color: '#b7e0ef'
+          })
+          markedDays.push(session.start)
+        }
+      })
+      this.s.sessions.forEach((session) => {
+        events.push(session)
+      })
       return events
     },
     s() {
       return this.$store.state.missionForm
+    },
+    duration() {
+      return parseInt(this.s.duration)
     }
   },
+  created() {
+    this.s.sessions.forEach((session) => {
+      const newSession = { ...session }
+      const end = new Date(newSession.start.getTime())
+      addMinutes(end, this.duration)
+      newSession.end = end
+      this.$store.commit('missionForm/changeSession', newSession)
+    })
+  },
   methods: {
+    dayRender(e) {
+      const { date } = e
+      if (date.getDay() === 1 && (!this.s.activeCalendarDay || !isSameDay(this.s.activeCalendarDay, date))) {
+        this.$store.commit('missionForm/setActiveCalendarDay', date)
+      }
+    },
     dateClick(e) {
       const { date } = e
       if (date > this.getFirstValidDate()) {
@@ -101,7 +139,7 @@ export default {
     },
     addNewEvent(start) {
       const end = new Date(start.getTime())
-      addMinutes(end, this.s.duration)
+      addMinutes(end, this.duration)
       this.$store.commit('missionForm/addSession', { id: uuidv4(), start, end })
     },
     eventChange(e) {
@@ -115,6 +153,12 @@ export default {
     },
     removeEvent(event) {
       this.$store.commit('missionForm/removeSession', event.id)
+    },
+    getDefaultDate() {
+      if (!this.s.activeCalendarDay) {
+        return this.getFirstValidDateString()
+      }
+      return stripISOTime(this.s.activeCalendarDay)
     },
     getFirstValidDate() {
       const d = new Date()
@@ -133,8 +177,9 @@ export default {
       return stripISOTime(this.getFirstValidDate())
     },
     getColumnHeaderHtml(date) {
+      const today = isSameDay(date, new Date()) ? ' today' : ''
       return `
-        <div class="fc-widget-header-days-custom">
+        <div class="fc-widget-header-days-custom${today}">
           <p class="fc-widget-header-days-custom-day">${getWeekDayName(date)}</p>
           <p class="fc-widget-header-days-custom-month">${getMonthName(date).substr(0, 3)} ${date.getUTCDate() + 1}</p>
         </div>
