@@ -1,28 +1,18 @@
 {
-  "updatedAt": "2019-05-04T22:43:15Z",
-  "createdAt": "2019-05-04T22:43:15Z",
   "name": "Kevin",
   "icon": "KEVIN",
   "screenerQuestions": [
     {
-      "value": "Has to be a customer at either Netflix or Amazon Prime.",
-      "updatedAt": "2019-05-04T22:43:15Z",
-      "createdAt": "2019-05-04T22:43:15Z"
+      "value": "Has to be a customer at either Netflix or Amazon Prime."
     },
     {
-      "value": "Has to spend at least around 2 hours per week on Netflix or Amazon Prime.",
-      "updatedAt": "2019-05-04T22:43:15Z",
-      "createdAt": "2019-05-04T22:43:15Z"
+      "value": "Has to spend at least around 2 hours per week on Netflix or Amazon Prime."
     },
     {
-      "value": "Must live in a flat sharing community in Berlin.",
-      "updatedAt": "2019-05-04T22:43:15Z",
-      "createdAt": "2019-05-04T22:43:15Z"
+      "value": "Must live in a flat sharing community in Berlin."
     }
   ],
   "demographicDataReq": {
-    "updatedAt": "2019-05-04T22:43:15Z",
-    "createdAt": "2019-05-04T22:43:15Z",
     "minAge": 18,
     "maxAge": 30,
     "occupations": [

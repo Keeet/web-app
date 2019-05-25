@@ -12,6 +12,10 @@
     text-align: center;
     flex-shrink: 0;
 
+    &:hover {
+      cursor: pointer;
+    }
+
     &.IN_HOUSE {
       background-color: $mission-in-house;
     }
@@ -56,6 +60,10 @@
     background-color: #fff;
     border-radius: 5px;
     overflow: hidden;
+
+    &:hover {
+      cursor: pointer;
+    }
 
     .project-mission-info-label {
       position: relative;

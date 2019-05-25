@@ -84,6 +84,13 @@ export default function (context, inject) {
           screenerQuestions
         }
       })
+    },
+    updateMissionMetadata({ id, title, description }) {
+      // TODO: confirm endpoint with backend
+      return $axios('PUT', `/missions/${id}/metadata`, {
+        title,
+        description
+      })
     }
   })
 }

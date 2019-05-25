@@ -1,8 +1,6 @@
 <template>
   <div class="project">
-    <div class="project-sidebar">
-      <ProjectSidebar />
-    </div>
+    <ProjectSidebar />
     <OverlayModal
       v-if="projectForm.overlayOpened"
       title="Edit Project"

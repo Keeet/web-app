@@ -1,6 +1,6 @@
 <template>
   <div class="project-mission">
-    <div class="project-mission-icon" :class="mission.type">
+    <div class="project-mission-icon" :class="mission.type" @click="openMission">
       <div class="project-mission-icon-inner">
         <IconMissionInHouse v-if="mission.type === IN_HOUSE" />
         <IconMissionRemote v-if="mission.type === REMOTE" />
@@ -11,7 +11,7 @@
         </p>
       </div>
     </div>
-    <div class="project-mission-info">
+    <div class="project-mission-info" @click="openMission">
       <div class="project-mission-info-label">
         <p class="project-mission-info-label-text">
           Info
@@ -83,6 +83,11 @@ export default {
         return getLocaleDateString(start)
       }
       return getLocaleDateString(new Date(this.mission.createdAt))
+    }
+  },
+  methods: {
+    openMission() {
+      this.$router.push(`/missions/${this.mission.id}`)
     }
   }
 }

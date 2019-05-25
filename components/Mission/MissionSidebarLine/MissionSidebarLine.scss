@@ -1,0 +1,29 @@
+.mission-sidebar-line {
+  display: flex;
+  align-items: center;
+  padding: 5px 50px;
+  margin: 0 -50px;
+
+  &.greyBg {
+    background-color: $grey-light;
+  }
+
+  .mission-sidebar-line-icon {
+    width: 60px;
+    height: 60px;
+
+    &:not(.PERSONA) {
+      display: flex;
+      align-items: center;
+    }
+
+    &.LANGUAGE, &.DURATION, &.NB_PARTICIPANTS {
+      padding: 0 8px;
+      width: 44px;
+    }
+  }
+
+  .mission-sidebar-line-text {
+    margin-left: 15px;
+  }
+}
