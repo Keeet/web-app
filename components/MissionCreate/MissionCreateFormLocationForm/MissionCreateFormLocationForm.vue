@@ -28,9 +28,9 @@
           <Input
             title="Number*"
             placeholder="101"
-            :value="s.houseNb"
-            mutation="locationForm/setHouseNb"
-            :error="houseNbError"
+            :value="s.houseNumber"
+            mutation="locationForm/setHouseNumber"
+            :error="houseNumberError"
             :disable-error="!showErrors"
           />
         </div>
@@ -57,9 +57,9 @@
           <Input
             title="ZIP*"
             placeholder="10369"
-            :value="s.zip"
-            mutation="locationForm/setZip"
-            :error="zipError"
+            :value="s.zipCode"
+            mutation="locationForm/setZipCode"
+            :error="zipCodeError"
             :disable-error="!showErrors"
           />
         </div>
@@ -100,17 +100,17 @@ export default {
     },
     nameError() { return this.s.name !== '' ? null : 'required' },
     streetError() { return this.s.street !== '' ? null : 'required' },
-    houseNbError() { return this.s.houseNb !== '' ? null : 'required' },
-    zipError() { return this.s.zip.match(/^[0-9]+$/) ? null : 'must be a number' },
+    houseNumberError() { return this.s.houseNumber !== '' ? null : 'required' },
+    zipCodeError() { return this.s.zipCode.match(/^[0-9]+$/) ? null : 'must be a number' },
     cityError() { return this.s.city !== '' ? null : 'required' },
     countryError() { return this.s.country !== '' ? null : 'required' },
     formValid() {
       return (
         !this.nameError &&
         !this.streetError &&
-        !this.houseNbError &&
+        !this.houseNumberError &&
         !this.cityError &&
-        !this.zipError &&
+        !this.zipCodeError &&
         !this.countryError
       )
     }

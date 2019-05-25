@@ -2,7 +2,7 @@ const MOCK_PROMISE = () => {
   return new Promise((resolve) => {
     window.setTimeout(() => {
       resolve({ data: { id: '12345' } })
-    }, 1000)
+    }, 500)
   })
 }
 

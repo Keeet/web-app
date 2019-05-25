@@ -31,8 +31,8 @@ export default {
       return this.$store.state.company
     },
     companyLocation() {
-      const { name, street, houseNb, addressDescription, zip, city, country } = this.company
-      return { name, street, houseNb, addressDescription, zip, city, country }
+      const { name, street, houseNumber, addressDescription, zipCode, city, country } = this.company
+      return { name, street, houseNumber, addressDescription, zipCode, city, country }
     }
   },
   methods: {

@@ -7,11 +7,11 @@
         </div>
         <div class="mission-create-form-location-item-content-address">
           <p>{{ location.name }}</p>
-          <p>{{ location.street }} {{ location.houseNb }}</p>
+          <p>{{ location.street }} {{ location.houseNumber }}</p>
           <p v-if="location.addressDescription">
             {{ location.addressDescription }}
           </p>
-          <p>{{ location.zip }} {{ location.city }}</p>
+          <p>{{ location.zipCode }} {{ location.city }}</p>
           <p>{{ COUNTRY_NAMES[location.country] }}</p>
         </div>
       </div>

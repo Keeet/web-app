@@ -32,8 +32,8 @@ export const mutations = {
       for (const key in defaultState) {
         state[key] = defaultState[key]
       }
-      const { name, street, houseNb, addressDescription, zip, city, country } = company
-      state.location = { name, street, houseNb, addressDescription, zip, city, country }
+      const { name, street, houseNumber, addressDescription, zipCode, city, country } = company
+      state.location = { name, street, houseNumber, addressDescription, zipCode, city, country }
       state.locationId = COMPANY_LOCATION_ID
       state.projectId = project.id
     }

@@ -41,7 +41,7 @@
 <script>
 import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
 import FormStep from '../_shared/FormStep/FormStep'
-import { MISSION_LABELS } from '../constants'
+import { MISSIONS, MISSION_LABELS } from '../constants'
 import Loading from '../_shared/Loading/Loading'
 import MissionCreateType from './MissionCreateType/MissionCreateType'
 import MissionCreateForm from './MissionCreateForm/MissionCreateForm'
@@ -93,22 +93,28 @@ export default {
     },
     buildMission() {
       const { projectId, type, title, description, duration, persona, sessions, location } = this.s
-      const { country, city, zipCode, street, houseNumber, addressDescription } = location
-      return {
+      const mission = {
         projectId,
         type,
         title,
         description,
         duration,
         persona,
-        sessions: sessions.map(session => session.start.toISOString()),
-        country,
-        city,
-        zipCode,
-        street,
-        houseNumber,
-        addressDescription
+        sessions: sessions.map(session => session.start.toISOString())
       }
+      if (type === MISSIONS.IN_HOUSE) {
+        const { country, city, zipCode, street, houseNumber, addressDescription } = location
+        return {
+          ...mission,
+          country,
+          city,
+          zipCode,
+          street,
+          houseNumber,
+          addressDescription
+        }
+      }
+      return mission
     },
     submit() {
       const { projectId } = this.s
