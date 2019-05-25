@@ -19,6 +19,7 @@
             mutation="projectForm/setTitle"
             placeholder="Project Name"
             :disable-error="!showErrors"
+            @enter="() => { formValid ? submit() : showErrors = true }"
           />
         </div>
         <div class="project-create-form-submit">

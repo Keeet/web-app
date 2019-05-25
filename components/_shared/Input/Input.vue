@@ -11,6 +11,7 @@
       :placeholder="placeholder"
       :readonly="readonly"
       :maxlength="maxCharacters || 524288"
+      @keyup.enter="$emit('enter')"
     >
     <textarea
       v-else
