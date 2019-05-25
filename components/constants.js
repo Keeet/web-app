@@ -58,3 +58,12 @@ export const MISSION_LABELS = {
 export const COUNTRY_NAMES = {
   DE: 'Germany'
 }
+
+export const LANGUAGES = {
+  DE: 'DE',
+  EN: 'EN'
+}
+export const LANGUAGE_LABELS = {
+  DE: 'German',
+  EN: 'English'
+}

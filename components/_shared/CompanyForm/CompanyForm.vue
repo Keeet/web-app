@@ -3,7 +3,7 @@
     <Input
       title="Company name*"
       placeholder="Keeet"
-      :value="store.name"
+      :value="s.name"
       mutation="companyForm/setName"
       :error="nameError"
       :disable-error="!showErrors"
@@ -13,7 +13,7 @@
         <Input
           title="Street*"
           placeholder="Rosenthaler Strasse"
-          :value="store.street"
+          :value="s.street"
           mutation="companyForm/setStreet"
           :error="streetError"
           :disable-error="!showErrors"
@@ -23,7 +23,7 @@
         <Input
           title="Number*"
           placeholder="101"
-          :value="store.houseNb"
+          :value="s.houseNb"
           mutation="companyForm/setHouseNb"
           :error="houseNbError"
           :disable-error="!showErrors"
@@ -33,7 +33,7 @@
     <Input
       title="Additional"
       placeholder="third backyard"
-      :value="store.addressDescription"
+      :value="s.addressDescription"
       mutation="companyForm/setAddressDescription"
       :error="null"
     />
@@ -42,7 +42,7 @@
         <Input
           title="City*"
           placeholder="Berlin"
-          :value="store.city"
+          :value="s.city"
           mutation="companyForm/setCity"
           :error="cityError"
           :disable-error="!showErrors"
@@ -52,7 +52,7 @@
         <Input
           title="ZIP*"
           placeholder="10369"
-          :value="store.zip"
+          :value="s.zip"
           mutation="companyForm/setZip"
           :error="zipError"
           :disable-error="!showErrors"
@@ -65,7 +65,7 @@
         label: COUNTRY_NAMES['DE'],
         value: 'DE'
       }]"
-      :value="store.country"
+      :value="s.country"
       mutation="companyForm/setCountry"
       readonly
     />
@@ -94,15 +94,15 @@ export default {
     }
   },
   computed: {
-    store() {
+    s() {
       return this.$store.state.companyForm
     },
-    nameError() { return this.store.name !== '' ? null : 'required' },
-    streetError() { return this.store.street !== '' ? null : 'required' },
-    houseNbError() { return this.store.houseNb !== '' ? null : 'required' },
-    zipError() { return this.store.zip.match(/^[0-9]+$/) ? null : 'must be a number' },
-    cityError() { return this.store.city !== '' ? null : 'required' },
-    countryError() { return this.store.country !== '' ? null : 'required' },
+    nameError() { return this.s.name !== '' ? null : 'required' },
+    streetError() { return this.s.street !== '' ? null : 'required' },
+    houseNbError() { return this.s.houseNb !== '' ? null : 'required' },
+    zipError() { return this.s.zip.match(/^[0-9]+$/) ? null : 'must be a number' },
+    cityError() { return this.s.city !== '' ? null : 'required' },
+    countryError() { return this.s.country !== '' ? null : 'required' },
     formValid() {
       return (
         !this.nameError &&
@@ -116,16 +116,11 @@ export default {
   },
   methods: {
     submitForm() {
-      if (this.id === null) {
-        // TODO: implement API
-        // CREATE
-        // this.$axios.post('/company', this.store).then(() => {
-        //   this.$emit('submit')
-        // })
-      } else {
-        // UPDATE
-      }
-      this.$emit('submit')
+      this.$store.commit('companyForm/pending')
+      this.$push.upsertCompany(this.s).then(() => {
+        this.$store.commit('companyForm/submitted')
+        this.$emit('submit')
+      })
     }
   }
 }

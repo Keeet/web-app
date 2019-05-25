@@ -11,32 +11,36 @@
     </div>
     <div class="personas-icons">
       <div
-        v-if="!personas.length"
-        class="personas-icons-item"
         data-aos="zoom-in-up"
         data-aos-duration="1000"
         data-aos-once="true"
       >
-        <PersonaIcon
-          :icon="samplePersona.icon"
-          :name="samplePersona.name"
-          @click.native="openSidebar(samplePersona)"
-        />
+        <div
+          v-if="!personas.length"
+          class="personas-icons-item"
+        >
+          <PersonaIcon
+            :icon="samplePersona.icon"
+            :name="samplePersona.name"
+            @click.native="openSidebar(samplePersona)"
+          />
+        </div>
       </div>
       <div
         v-for="(persona, x) in personas"
         :key="x"
-        class="personas-icons-item"
         data-aos="zoom-in-up"
         data-aos-duration="1000"
         data-aos-once="true"
         :data-aos-delay="300 * x"
       >
-        <PersonaIcon
-          :icon="persona.icon"
-          :name="persona.name"
-          @click.native="openSidebar(persona)"
-        />
+        <div class="personas-icons-item">
+          <PersonaIcon
+            :icon="persona.icon"
+            :name="persona.name"
+            @click.native="openSidebar(persona)"
+          />
+        </div>
       </div>
     </div>
     <div class="personas-sidebar">

@@ -1,7 +1,7 @@
 <template>
   <div class="mission-create-form">
     <div class="mission-create-form-body">
-      <MissionCreateFormBox>
+      <MissionCreateBox>
         <MissionCreateFormHeadline text="Internal mission name" />
         <div class="mission-create-form-name">
           <Input
@@ -12,11 +12,11 @@
             :error="titleError"
           />
         </div>
-      </MissionCreateFormBox>
-      <MissionCreateFormBox>
+      </MissionCreateBox>
+      <MissionCreateBox>
         <div class="mission-create-form-section">
           <MissionCreateFormHeadline text="Target group" />
-          <MissionCreateFormPersonaSelect />
+          <MissionCreateFormPersonaSelect :error="showErrors && personaError ? personaError : null" />
         </div>
         <div class="mission-create-form-section">
           <MissionCreateFormHeadline text="Number of participants" />
@@ -41,7 +41,7 @@
           <MissionCreateFormHeadline text="Where does the interview / test takes place?" underlined />
           <MissionCreateFormLocation />
         </div>
-      </MissionCreateFormBox>
+      </MissionCreateBox>
     </div>
     <div class="mission-create-form-submit">
       <div class="mission-create-form-submit-inner">
@@ -71,7 +71,7 @@
 <script>
 import { isNum } from '../../../utils/stringUtils'
 import { MISSIONS, MISSION_LABELS } from '../../constants'
-import MissionCreateFormBox from '../MissionCreateFormBox/MissionCreateFormBox'
+import MissionCreateBox from '../MissionCreateBox/MissionCreateBox'
 import MissionCreateFormHeadline from '../MissionCreateFormHeadline/MissionCreateFormHeadline'
 import Input from '../../_shared/Input/Input'
 import MissionCreateFormPersonaSelect from '../MissionCreateFormPersonaSelect/MissionCreateFormPersonaSelect'
@@ -81,16 +81,23 @@ import ButtonText from '../../_shared/ButtonText/ButtonText'
 import MissionCreateFormLocation from '../MissionCreateFormLocation/MissionCreateFormLocation'
 export default {
   name: 'MissionCreateForm',
-  components: { MissionCreateFormLocation, ButtonText, MissionCreateFormLanguage, MissionCreateFormDuration, MissionCreateFormPersonaSelect, Input, MissionCreateFormHeadline, MissionCreateFormBox },
+  components: { MissionCreateFormLocation, ButtonText, MissionCreateFormLanguage, MissionCreateFormDuration, MissionCreateFormPersonaSelect, Input, MissionCreateFormHeadline, MissionCreateBox },
+  props: {
+    showErrors: {
+      type: Boolean,
+      required: true
+    }
+  },
   data() {
     const { IN_HOUSE, REMOTE, USABILITY_LAB, SURVEY } = MISSIONS
-    return { showErrors: false, IN_HOUSE, REMOTE, USABILITY_LAB, SURVEY, MISSION_LABELS }
+    return { IN_HOUSE, REMOTE, USABILITY_LAB, SURVEY, MISSION_LABELS }
   },
   computed: {
     s() {
       return this.$store.state.missionForm
     },
     titleError() { return this.s.title !== '' ? null : 'required' },
+    personaError() { return this.s.persona ? null : 'required' },
     nbParticipantsError() { return isNum(this.s.nbParticipants) ? null : 'must be a number' },
     durationError() {
       if (!isNum(this.s.duration)) {
@@ -100,6 +107,21 @@ export default {
         return 'must be bigger than 30'
       }
       return null
+    },
+    valid() {
+      return (
+        !this.titleError &&
+        !this.personaError &&
+        !this.nbParticipantsError &&
+        !this.durationError
+      )
+    }
+  },
+  watch: {
+    valid(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        this.$store.commit('missionForm/setFormValid', newValue)
+      }
     }
   }
 }

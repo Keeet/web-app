@@ -18,14 +18,15 @@
       data-aos-delay="500"
       data-aos-anchor=".content"
     >
-      <div class="form-step-nav">
+      <div class="form-step-nav" :class="{onlyPrev: !showNext && !submit && showPrev}">
         <ButtonText
           v-if="showNext && !submit"
           text="Next"
           type="BLUE"
           arrow="RIGHT"
           :disabled="!valid"
-          @click="$store.commit(nextStepMutation)"
+          @click="next"
+          @disabledClick="invalidNext"
         />
         <ButtonText
           v-if="submit"
@@ -33,13 +34,14 @@
           type="BLUE"
           :disabled="!valid"
           @click="$emit('submit')"
+          @disabledClick="invalidNext"
         />
         <ButtonText
           v-if="showPrev"
           text="Back"
           type="BLUE_BORDER"
           arrow="LEFT"
-          @click="$store.commit(prevStepMutation)"
+          @click="prev"
         />
       </div>
     </div>
@@ -78,11 +80,26 @@ export default {
     },
     nextStepMutation: {
       type: String,
-      required: true
+      default: null
     },
     prevStepMutation: {
       type: String,
-      required: true
+      default: null
+    }
+  },
+  methods: {
+    next() {
+      if (this.nextStepMutation) {
+        this.$store.commit(this.nextStepMutation)
+      }
+    },
+    prev() {
+      if (this.prevStepMutation) {
+        this.$store.commit(this.prevStepMutation)
+      }
+    },
+    invalidNext() {
+      this.$emit('invalidNext')
     }
   }
 }

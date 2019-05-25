@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import IconCancel from '../static/icons/cancel.svg'
 import IconCheck from '../static/icons/check.svg'
-import Loading from '../static/animated/loading.svg'
+import IconLoading from '../static/animated/loading.svg'
 
 import IconPlus from '../assets/icons/plus.svg'
 import IconCalendarOutline from '../assets/icons/calendar-empty-page-outline.svg'
@@ -21,6 +21,8 @@ import MissionUsabilityLab from '../assets/icons/mission-usability-lab.svg'
 import IconLocation from '../assets/icons/location.svg'
 import IconLanguageEnglish from '../assets/icons/language-english.svg'
 import IconLanguageGerman from '../assets/icons/language-german.svg'
+import IconProfile from '../assets/icons/profile.svg'
+import IconStopWatch from '../assets/icons/stop-watch.svg'
 
 import IconPersonaChantal from '../assets/icons/persona-chantal.svg'
 import IconPersonaDustin from '../assets/icons/persona-dustin.svg'
@@ -52,6 +54,8 @@ Vue.component('IconMissionUsabilityLab', MissionUsabilityLab)
 Vue.component('IconLocation', IconLocation)
 Vue.component('IconLanguageEnglish', IconLanguageEnglish)
 Vue.component('IconLanguageGerman', IconLanguageGerman)
+Vue.component('IconProfile', IconProfile)
+Vue.component('IconStopWatch', IconStopWatch)
 
 Vue.component('IconPersonaChantal', IconPersonaChantal)
 Vue.component('IconPersonaDustin', IconPersonaDustin)
@@ -63,4 +67,4 @@ Vue.component('IconPersonaMandy', IconPersonaMandy)
 Vue.component('IconPersonaMarvin', IconPersonaMarvin)
 Vue.component('IconPersonaMika', IconPersonaMika)
 
-Vue.component('Loading', Loading)
+Vue.component('IconLoading', IconLoading)

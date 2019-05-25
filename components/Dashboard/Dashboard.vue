@@ -4,7 +4,7 @@
       v-if="!$store.state.user.companyId"
       title="Last Step"
       no-close
-      :loading="loading"
+      :loading="companyForm.pending"
     >
       <CompanyForm @submit="companySubmitted" />
     </OverlayModal>
@@ -74,13 +74,15 @@ export default {
   components: { ButtonCircle, DashboardProjectEmpty, DashboardProject, Headline, CompanyForm, OverlayModal },
   data() {
     return {
-      loading: false,
       sampleProject
     }
   },
   computed: {
     projects() {
       return this.$store.state.projects
+    },
+    companyForm() {
+      return this.$store.state.companyForm
     }
   },
   beforeMount() {
@@ -88,9 +90,12 @@ export default {
   },
   methods: {
     companySubmitted() {
-      this.loading = true
+      this.$store.commit('companyForm/pending')
+      // renew token to get token with company id
       this.$auth.renewTokens().then(() => {
-        this.$fetch([{ name: 'USER', forced: true }, { name: 'COMPANY' }])
+        this.$fetch([{ name: 'USER', forced: true }, { name: 'COMPANY' }]).then(() => {
+          this.$store.commit('companyForm/submitted')
+        })
       }).catch(() => {
         this.$router.push(`/auth/login?redirectUrl=${encodeURI('/')}`)
       })

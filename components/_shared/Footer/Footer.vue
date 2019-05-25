@@ -12,7 +12,6 @@
     <p class="footer-nav-item">
       <a href="https://keeet.io/legal/terms.html" target="_blank">Privacy Policy</a>
     </p>
-    <!-- TODO: logout should not be in Footer -->
     <p class="footer-nav-item" @click="$auth.logOut()">
       Logout
     </p>

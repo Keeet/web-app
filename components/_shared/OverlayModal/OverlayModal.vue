@@ -1,23 +1,24 @@
 <template>
   <div class="overlay-modal">
     <div
-      class="overlay-modal-box"
       data-aos="fade-up"
       data-aos-duration="1000"
-      data-aos-once="true"
+      :data-aos-once="true"
     >
-      <div class="overlay-modal-box-inner">
-        <div v-show="loading" class="overlay-modal-box-loading" :class="{active: loading}">
-          <Loading />
-        </div>
-        <div v-if="!noClose" class="overlay-modal-box-close" @click="close">
-          <IconCancel />
-        </div>
-        <div class="overlay-modal-box-content" :class="{hidden: loading, reducedMargins}">
-          <p v-if="title" class="overlay-modal-box-content-title" :class="{reducedMargins}">
-            {{ title }}
-          </p>
-          <slot />
+      <div class="overlay-modal-box">
+        <div class="overlay-modal-box-inner">
+          <div v-show="loading" class="overlay-modal-box-loading" :class="{active: loading}">
+            <Loading />
+          </div>
+          <div v-if="!noClose" class="overlay-modal-box-close" @click="close">
+            <IconCancel />
+          </div>
+          <div class="overlay-modal-box-content" :class="{hidden: loading, reducedMargins}">
+            <p v-if="title" class="overlay-modal-box-content-title" :class="{reducedMargins}">
+              {{ title }}
+            </p>
+            <slot />
+          </div>
         </div>
       </div>
     </div>
@@ -25,8 +26,10 @@
 </template>
 
 <script>
+import Loading from '../Loading/Loading'
 export default {
   name: 'OverlayModal',
+  components: { Loading },
   props: {
     title: {
       type: String,

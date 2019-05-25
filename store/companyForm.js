@@ -6,7 +6,9 @@ const defaultState = {
   addressDescription: '',
   zip: '',
   city: '',
-  country: 'DE'
+  country: 'DE',
+
+  pending: false
 }
 
 export const state = () => (defaultState)
@@ -23,6 +25,8 @@ export const mutations = {
       state.city = city
       state.zip = zip
       state.country = country
+
+      state.pending = false
     } else {
       for (const key in defaultState) {
         state[key] = defaultState[key]
@@ -49,5 +53,12 @@ export const mutations = {
   },
   setCountry(state, country) {
     state.country = country
+  },
+
+  pending(state) {
+    state.pending = true
+  },
+  submitted(state) {
+    state.pending = false
   }
 }

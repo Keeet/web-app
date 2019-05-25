@@ -117,21 +117,16 @@ export default {
   },
   methods: {
     submitForm() {
-      // TODO: implement API
-      // CREATE
-      // this.$axios.post('/company/{id}/location', this.store).then(() => {
-      //   this.$emit('submit')
-      // })
-      const newLocationId = '609eeb55-e429-41f4-b0b9-2477ddc7f929'
       this.$store.commit('locationForm/pending')
-      window.setTimeout(() => {
+      this.$push.createCompanyAddress(this.s).then((res) => {
+        const { id } = res.data
         this.$fetch([{ name: 'COMPANY', forced: true, mockDataKey: 'mockDataWithLocation' }]).then(() => {
-          const newLocation = this.$store.state.company.locations.filter(l => l.id === newLocationId)[0]
+          const newLocation = this.$store.state.company.locations.filter(l => l.id === id)[0]
           this.$store.commit('missionForm/setLocation', newLocation)
           this.$store.commit('locationForm/submitted')
           this.$store.commit('missionForm/closeLocationForm')
         })
-      }, 1000)
+      })
     }
   }
 }

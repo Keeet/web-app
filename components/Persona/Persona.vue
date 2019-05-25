@@ -1,7 +1,7 @@
 <template>
   <div class="persona">
     <div class="persona-cancel">
-      <ButtonCircle type="ARROW_LEFT" @click="a" />
+      <ButtonCircle type="ARROW_LEFT" @click="cancel" />
     </div>
     <div v-show="!pending" class="persona-form">
       <FormStep
@@ -53,9 +53,7 @@
       @cancel="submitTempForMission"
       @close="$store.commit('personaForm/setShowSaveTemp', false)"
     />
-    <div v-show="pending" class="persona-pending">
-      <Loading />
-    </div>
+    <Loading v-show="pending" fixed-center />
   </div>
 </template>
 
@@ -65,12 +63,13 @@ import Headline from '../_shared/Headline/Headline'
 import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
 import Confirm from '../_shared/Confirm/Confirm'
 import FormStep from '../_shared/FormStep/FormStep'
+import Loading from '../_shared/Loading/Loading'
 import PersonaAvatar from './PersonaAvatar/PersonaAvatar'
 import PersonaCriteria from './PersonaCriteria/PersonaCriteria'
 import PersonaSpecialCriteria from './PersonaSpecialCriteria/PersonaSpecialCriteria'
 export default {
   name: 'Persona',
-  components: { FormStep, Confirm, PersonaSpecialCriteria, PersonaCriteria, ButtonCircle, PersonaAvatar, Headline },
+  components: { Loading, FormStep, Confirm, PersonaSpecialCriteria, PersonaCriteria, ButtonCircle, PersonaAvatar, Headline },
   data() {
     return {
       nextMut: 'personaForm/nextStep',
@@ -104,6 +103,11 @@ export default {
       window.scrollTo(0, 0)
     }
   },
+  mounted() {
+    if (!this.s.init) {
+      this.$router.push('/personas')
+    }
+  },
   methods: {
     buildPersona(generateId = false) {
       const { id, name, icon, minAge, maxAge, genders, occupations, screenerQuestions } = this.s
@@ -123,18 +127,10 @@ export default {
       if (this.s.showSaveTemp) {
         this.$store.commit('personaForm/setShowSaveTemp', false)
       }
-      // const req = this.buildPersona()
-      if (this.s.id === null) {
-        // TODO: implement API
-        // CREATE
-        // this.$axios.post('/personas', this.store).then(() => {
-        //   this.$emit('submit')
-        // })
-      } else {
-        // UPDATE
-      }
+
       this.$store.commit('personaForm/pending')
-      window.setTimeout(() => {
+      const req = this.buildPersona()
+      this.$push.upsertPersona(req).then(() => {
         this.$store.commit('personaForm/submitted')
         this.$fetch([{ name: 'PERSONAS', forced: true }]).then(() => {
           const createdPersona = this.$store.state.personas.filter(p => p.name === this.s.name)[0]
@@ -147,7 +143,7 @@ export default {
 
           this.$router.push('/personas')
         })
-      }, 1000)
+      })
     },
     submitTempForMission() {
       const persona = this.buildPersona(true)

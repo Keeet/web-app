@@ -8,6 +8,7 @@ const defaultState = {
   occupations: [],
   screenerQuestions: [],
 
+  init: false,
   ageOpened: false,
   gendersOpened: false,
   occupationsOpened: false,
@@ -57,6 +58,7 @@ export const mutations = {
         state[key] = defaultState[key]
       }
     }
+    state.init = true
   },
   setName(state, name) {
     state.name = name

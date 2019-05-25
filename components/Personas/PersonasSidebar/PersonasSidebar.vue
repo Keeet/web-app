@@ -8,7 +8,7 @@
     </div>
     <div class="personas-sidebar-head">
       <div class="personas-sidebar-head-bg" :class="`${persona.icon.toLowerCase()}-bg`" />
-      <div class="personas-sidebar-head-delete">
+      <div v-if="!isSample" class="personas-sidebar-head-delete">
         <IconDelete @click="$emit('delete')" />
       </div>
       <div class="personas-sidebar-head-img">
@@ -19,7 +19,7 @@
           {{ persona.name }}
         </p>
         <div class="personas-sidebar-head-img-button">
-          <ButtonText text="Edit persona" type="GREY" @click="editPersona" />
+          <ButtonText v-if="!isSample" text="Edit persona" type="GREY" @click="editPersona" />
         </div>
       </div>
       <PersonasSidebarHeadItem :value="formattedGender" label="Gender" />
@@ -54,6 +54,9 @@ export default {
     }
   },
   computed: {
+    isSample() {
+      return !this.persona.id
+    },
     personasPageStore() {
       return this.$store.state.personasPage
     },

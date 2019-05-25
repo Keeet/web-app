@@ -12,6 +12,13 @@
     }
   }
 
+  &.error {
+
+    .select-custom-head {
+      border: 1px solid $red-error;
+    }
+  }
+
   .select-custom-head {
     padding-right: 16px;
     display: flex;
@@ -20,6 +27,7 @@
     background-color: #fff;
     border-radius: 3px;
     border: 1px solid $grey;
+    transition: border 0.5s;
 
     &:hover {
       cursor: pointer;
@@ -53,6 +61,24 @@
         cursor: pointer;
         background-color: $grey-light;
       }
+    }
+  }
+
+  .select-custom-error {
+    position: absolute;
+    z-index: 0;
+    top: -20px;
+    right: 3px;
+    color: $red-error;
+    font-size: 75%;
+    font-weight: 500;
+    transition: all 0.4s;
+    opacity: 0;
+    transform: scale(0.8);
+
+    &.active {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 }

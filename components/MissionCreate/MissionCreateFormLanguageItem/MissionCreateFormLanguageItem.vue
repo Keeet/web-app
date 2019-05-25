@@ -5,8 +5,7 @@
     @click="$store.commit('missionForm/setLanguage', language)"
   >
     <div class="mission-create-form-language-item-icon">
-      <IconLanguageEnglish v-if="language === EN" />
-      <IconLanguageGerman v-if="language === DE" />
+      <LanguageIcon :language="language" />
     </div>
     <div class="mission-create-form-language-item-text">
       {{ LANGUAGE_LABELS[language] }}
@@ -15,16 +14,12 @@
 </template>
 
 <script>
-const LANGUAGES = {
-  DE: 'DE',
-  EN: 'EN'
-}
-const LANGUAGE_LABELS = {
-  DE: 'German',
-  EN: 'English'
-}
+import { LANGUAGES, LANGUAGE_LABELS } from '../../constants'
+import LanguageIcon from '../../_shared/LanguageIcon/LanguageIcon'
+
 export default {
   name: 'MissionCreateFormLanguageItem',
+  components: { LanguageIcon },
   props: {
     language: {
       type: String,
@@ -37,8 +32,7 @@ export default {
     }
   },
   data() {
-    const { DE, EN } = LANGUAGES
-    return { DE, EN, LANGUAGE_LABELS }
+    return { LANGUAGE_LABELS }
   }
 }
 </script>

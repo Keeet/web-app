@@ -16,7 +16,7 @@
           {{ project.title }}
         </p>
         <div class="project-sidebar-head-edit">
-          <IconPencil @click="editProject" />
+          <IconPencil v-if="!isSample" @click="editProject" />
         </div>
         <p class="project-sidebar-head-description" @click="editProject">
           {{ project.description }}
@@ -45,12 +45,17 @@ export default {
   computed: {
     project() {
       return this.$store.state.project
+    },
+    isSample() {
+      return !this.project.id
     }
   },
   methods: {
     editProject() {
-      this.$store.commit('projectForm/init', this.project)
-      this.$store.commit('projectForm/setOverlayOpened', true)
+      if (!this.isSample) {
+        this.$store.commit('projectForm/init', this.project)
+        this.$store.commit('projectForm/setOverlayOpened', true)
+      }
     }
   }
 }

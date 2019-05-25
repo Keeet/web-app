@@ -1,0 +1,25 @@
+.mission-create-summary {
+
+  .mission-create-summary-body {
+    width: calc(100% - 330px);
+  }
+
+  .mission-create-summary-submit {
+    position: fixed;
+    top: 309px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    height: 0;
+
+    .mission-create-summary-submit-inner {
+      float: right;
+      width: 300px;
+
+      .mission-create-summary-submit-button {
+        margin: 30px 0 -15px;
+      }
+    }
+  }
+}

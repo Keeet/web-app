@@ -3,6 +3,7 @@
     <SelectCustom
       :value="s.persona ? s.persona.id : null"
       :options="selectPersonaOptions"
+      :error="error"
       placeholder="Choose persona"
       @select="select"
     >
@@ -47,6 +48,12 @@ import ButtonCircle from '../../_shared/ButtonCircle/ButtonCircle'
 export default {
   name: 'MissionCreateFormPersonaSelect',
   components: { ButtonCircle, PersonaIcon, SelectCustom },
+  props: {
+    error: {
+      type: String,
+      default: null
+    }
+  },
   computed: {
     s() {
       return this.$store.state.missionForm

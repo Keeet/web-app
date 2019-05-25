@@ -12,7 +12,7 @@ export default {
   components: { Project },
   fetch({ app: { $fetch }, params, store }) {
     const { id } = params
-    const fetchCfg = [{ name: 'USER' }]
+    const fetchCfg = [{ name: 'USER' }, { name: 'COMPANY' }]
 
     if (id === 'sample') {
       store.commit('setProject', sampleProject)

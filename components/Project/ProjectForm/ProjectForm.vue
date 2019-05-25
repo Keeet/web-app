@@ -39,12 +39,11 @@ export default {
   },
   methods: {
     submit() {
-      // TODO: API submit
       this.$store.commit('projectForm/pending')
-      window.setTimeout(() => {
+      this.$push.upsertProject(this.s).then(() => {
         this.$store.commit('projectForm/submitted')
         this.$store.commit('projectForm/setOverlayOpened', false)
-      }, 1000)
+      })
     }
   }
 }

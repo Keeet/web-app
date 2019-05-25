@@ -3,7 +3,7 @@
     <div class="project-create-cancel">
       <ButtonCircle type="ARROW_LEFT" @click="$router.back()" />
     </div>
-    <div class="project-create-form">
+    <div v-if="!s.pending" class="project-create-form">
       <Headline text="Give your project a name!" center />
       <div
         data-aos="fade-in"
@@ -26,6 +26,7 @@
         </div>
       </div>
     </div>
+    <Loading v-if="s.pending" fixed-center />
   </div>
 </template>
 
@@ -34,9 +35,10 @@ import Headline from '../_shared/Headline/Headline'
 import Input from '../_shared/Input/Input'
 import ButtonText from '../_shared/ButtonText/ButtonText'
 import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
+import Loading from '../_shared/Loading/Loading'
 export default {
   name: 'ProjectCreate',
-  components: { ButtonCircle, ButtonText, Input, Headline },
+  components: { Loading, ButtonCircle, ButtonText, Input, Headline },
   data() {
     return { showErrors: false }
   },
@@ -51,11 +53,13 @@ export default {
   },
   methods: {
     submit() {
-      // TODO: API submit
-      const id = '12345'
-      this.$store.commit('projectForm/submitted')
-      this.$fetch([{ name: 'PROJECT', id, forced: true, mockDataKey: 'mockDataNoMissions' }])
-      this.$router.push(`/projects/${id}`)
+      this.$store.commit('projectForm/pending')
+      this.$push.upsertProject(this.s).then((res) => {
+        const { id } = res.data
+        this.$store.commit('projectForm/submitted')
+        this.$fetch([{ name: 'PROJECT', id, forced: true, mockDataKey: 'mockDataNoMissions' }])
+        this.$router.push(`/projects/${id}`)
+      })
     }
   }
 }

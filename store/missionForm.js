@@ -1,17 +1,20 @@
 const defaultState = {
-  type: 'IN_HOUSE',
+  projectId: null,
+  type: null,
   title: '',
   persona: null,
   nbParticipants: 5,
   duration: 60,
-  language: 'EN',
+  language: 'DE',
   location: null,
-  locationId: 'COMPANY',
+  locationId: null,
   locationFormOpened: false,
+  formValid: false,
   sessions: [],
   activeCalendarDay: null,
   sessionErrorPopup: false,
 
+  init: false,
   activeStep: 0,
   inProgress: true,
   pending: false,
@@ -21,15 +24,20 @@ const defaultState = {
 
 export const state = () => (defaultState)
 
+const COMPANY_LOCATION_ID = 'COMPANY'
+
 export const mutations = {
-  init(state, company) {
-    if (!state.inProgress) {
+  init(state, { company, project }) {
+    if (!state.inProgress || !state.init) {
       for (const key in defaultState) {
         state[key] = defaultState[key]
       }
       const { name, street, houseNb, addressDescription, zip, city, country } = company
       state.location = { name, street, houseNb, addressDescription, zip, city, country }
+      state.locationId = COMPANY_LOCATION_ID
+      state.projectId = project.id
     }
+    state.init = true
   },
   setType(state, type) {
     state.type = type
@@ -50,7 +58,7 @@ export const mutations = {
     state.language = language
   },
   setLocation(state, location) {
-    state.locationId = location.id ? location.id : defaultState.locationId
+    state.locationId = location.id ? location.id : COMPANY_LOCATION_ID
     state.location = location
   },
   openLocationForm(state) {
@@ -58,6 +66,9 @@ export const mutations = {
   },
   closeLocationForm(state) {
     state.locationFormOpened = false
+  },
+  setFormValid(state, valid) {
+    state.formValid = valid
   },
   addSession(state, session) {
     const sessions = state.sessions.slice()

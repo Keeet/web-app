@@ -51,7 +51,8 @@ import {
   stripISOTime,
   getWeekDayName,
   getMonthName,
-  isSameDay
+  isSameDay,
+  getAmPmHours
 } from '../../../utils/dateUtils'
 import Confirm from '../../_shared/Confirm/Confirm'
 
@@ -187,11 +188,7 @@ export default {
     },
     getSlotLabel(e) {
       const date = e.date.marker
-      let hours = date.getUTCHours()
-      const ampm = hours >= 12 ? 'PM' : 'AM'
-      hours = hours % 12
-      hours = hours === 0 ? 12 : hours
-      return `${hours} ${ampm}`
+      return getAmPmHours(date)
     },
     showSessionErrorPopup() {
       this.$store.commit('missionForm/showSessionErrorPopup')

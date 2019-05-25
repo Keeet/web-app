@@ -18,6 +18,19 @@ export function getWeekDayName(date) {
   return names[date.getDay()]
 }
 
+export function getAmPmHours(date) {
+  return `${getAmPmHoursValue(date)} ${getAmPm(date)}`
+}
+
+export function getAmPmTime(date) {
+  const intHours = getAmPmHoursValue(date)
+  const hours = intHours >= 10 ? intHours : `0${intHours}`
+  const intMinutes = date.getMinutes()
+  const minutes = intMinutes >= 10 ? intMinutes : `0${intMinutes}`
+
+  return `${hours}:${minutes} ${getAmPm(date)}`
+}
+
 export function isSameDay(d1, d2) {
   return (
     d1.getFullYear() === d2.getFullYear() &&
@@ -42,4 +55,16 @@ export function stripISOTime(date) {
   const month = intMonth >= 10 ? intMonth : `0${intMonth}`
 
   return `${date.getFullYear()}-${month}-${day}`
+}
+
+function getAmPm(date) {
+  const hours = date.getUTCHours()
+  return hours >= 12 ? 'PM' : 'AM'
+}
+
+function getAmPmHoursValue(date) {
+  let hours = date.getUTCHours()
+  hours = hours % 12
+  hours = hours === 0 ? 12 : hours
+  return hours
 }

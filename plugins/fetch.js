@@ -51,7 +51,7 @@ const config = {
       country: 'DE',
       locations: [
         {
-          id: '609eeb55-e429-41f4-b0b9-2477ddc7f929',
+          id: '12345',
           name: 'Keeet UG',
           street: 'Rosenthaler Strasse',
           houseNb: '101',
@@ -243,7 +243,7 @@ const config = {
             'STUDENT'
           ],
           genders: [
-            'MALE'
+            'FEMALE'
           ]
         }
       },
@@ -297,7 +297,8 @@ export default function ({ $axios, store }, inject) {
           return
         }
         const { path, mutation, key, mockData } = config[name]
-        if (!forced && store.state[key] !== undefined && store.state[key] !== null) {
+        const alreadyFetched = store.state[key] && (!id || id === store.state[key].id)
+        if (!forced && alreadyFetched) {
           resolve('ALREADY_FETCHED')
           return
         }

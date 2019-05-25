@@ -3,10 +3,6 @@
     <h2 class="mission-create-headline-main">
       {{ text }}
     </h2>
-    <p v-if="subtitle" class="mission-create-headline-sub">
-      {{ subtitle }}
-    </p>
-    <hr v-if="subtitle" class="mission-create-headline-line"/>
   </div>
 </template>
 
@@ -17,10 +13,6 @@ export default {
     text: {
       type: String,
       required: true
-    },
-    subtitle: {
-      type: String,
-      default: null
     }
   }
 }

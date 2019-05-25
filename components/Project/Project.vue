@@ -13,10 +13,8 @@
     </OverlayModal>
     <div class="project-missions">
       <ProjectMissionsEmpty v-if="!hasMissions" />
-      <div class="project-missions-create">
-        <nuxt-link to="/missions/create">
-          <ButtonCircle type="CREATE" />
-        </nuxt-link>
+      <div v-if="!isSample" class="project-missions-create">
+        <ButtonCircle type="CREATE" @click="createMission" />
         <IconStartHereMission v-if="!hasMissions" />
       </div>
       <div v-if="hasMissions" class="project-missions-timeline">
@@ -74,6 +72,9 @@ export default {
     project() {
       return this.$store.state.project
     },
+    isSample() {
+      return !this.project.id
+    },
     projectForm() {
       return this.$store.state.projectForm
     },
@@ -121,6 +122,13 @@ export default {
       return (year === currentYear)
         ? getMonthName(now)
         : `${getMonthName(now)} ${year}`
+    },
+    createMission() {
+      this.$store.commit('missionForm/init', {
+        company: this.$store.state.company,
+        project: this.project
+      })
+      this.$router.push('/missions/create')
     }
   }
 }

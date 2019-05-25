@@ -1,5 +1,5 @@
 <template>
-  <div class="select-custom" :class="{ opened }">
+  <div class="select-custom" :class="{ opened, error }">
     <div class="select-custom-head" @click="switchDropdown">
       <div v-if="!value" class="select-custom-head-empty">
         <p class="select-custom-head-placeholder">
@@ -22,6 +22,9 @@
         <slot :name="option" />
       </div>
     </div>
+    <p class="select-custom-error" :class="{active: error}">
+      {{ error }}
+    </p>
   </div>
 </template>
 
@@ -38,6 +41,10 @@ export default {
       required: true
     },
     value: {
+      type: String,
+      default: null
+    },
+    error: {
       type: String,
       default: null
     }

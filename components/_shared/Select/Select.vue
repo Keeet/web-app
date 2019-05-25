@@ -1,5 +1,5 @@
 <template>
-  <div class="select">
+  <div class="select" :class="{ error }">
     <p v-if="title" class="select-title">
       {{ title }}
     </p>
@@ -17,6 +17,9 @@
         {{ option.label }}
       </option>
     </select>
+    <p class="select-error" :class="{active: error}">
+      {{ error }}
+    </p>
   </div>
 </template>
 
@@ -43,6 +46,10 @@ export default {
     mutation: {
       type: String,
       required: true
+    },
+    error: {
+      type: String,
+      default: null
     }
   },
   computed: {
