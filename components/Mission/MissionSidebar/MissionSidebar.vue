@@ -3,6 +3,7 @@
     :cancel-path="`/projects/${mission.projectId}`"
     :title="mission.title"
     :description="mission.description"
+    :disable-edit-head="isSample"
     :disable-animation="missionPage.disableSidebarAnimation"
     @editHead="editMissionMetadata"
   >
@@ -21,7 +22,7 @@
       <div class="mission-sidebar-recruited-progress">
         <div
           class="mission-sidebar-recruited-progress-done"
-          :class="{ showProgress }"
+          :class="{ showProgress, noAnimation: missionPage.disableSidebarAnimation }"
           :style="{ width: (recruitedCount / mission.sessions.length * 100) + '%' }"
         />
       </div>
@@ -68,13 +69,20 @@ export default {
       return this.$store.state.missionPage
     },
     recruitedCount() {
-      return this.mission.sessions.filter(session => !!session.name).length
+      return this.mission.sessions.filter(session => !!session.firstName || !!session.lastName).length
     },
     isInHouse() {
       return this.mission.type === MISSIONS.IN_HOUSE
+    },
+    isSample() {
+      return this.$store.state.mission.id.startsWith('sample')
     }
   },
   mounted() {
+    if (this.missionPage.disableSidebarAnimation) {
+      this.showProgress = true
+      return
+    }
     window.setTimeout(() => {
       this.showProgress = true
     }, 2000)

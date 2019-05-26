@@ -4,6 +4,7 @@ import IconCheck from '../static/icons/check.svg'
 import IconLoading from '../static/animated/loading.svg'
 
 import IconPlus from '../assets/icons/plus.svg'
+import IconPlusSlim from '../assets/icons/plus-slim.svg'
 import IconCalendarOutline from '../assets/icons/calendar-empty-page-outline.svg'
 import IconStartHereDashboard from '../assets/icons/start-here-dashboard.svg'
 import IconStartHereMission from '../assets/icons/start-here-mission.svg'
@@ -25,6 +26,10 @@ import IconProfile from '../assets/icons/profile.svg'
 import IconStopWatch from '../assets/icons/stop-watch.svg'
 import IconPhone from '../assets/icons/phone.svg'
 import IconEnvelope from '../assets/icons/envelope.svg'
+import IconInsightGeneric from '../assets/icons/insight-generic.svg'
+import IconInsightAirtable from '../assets/icons/insight-airtable.svg'
+import IconInsightGoogleDocs from '../assets/icons/insight-google-docs.svg'
+import IconInsightVideo from '../assets/icons/insight-video.svg'
 
 import IconPersonaChantal from '../assets/icons/persona-chantal.svg'
 import IconPersonaDustin from '../assets/icons/persona-dustin.svg'
@@ -39,6 +44,7 @@ import IconPersonaMika from '../assets/icons/persona-mika.svg'
 Vue.component('IconCancel', IconCancel)
 Vue.component('IconCheck', IconCheck)
 Vue.component('IconPlus', IconPlus)
+Vue.component('IconPlusSlim', IconPlusSlim)
 Vue.component('IconCalendarOutline', IconCalendarOutline)
 Vue.component('IconStartHereDashboard', IconStartHereDashboard)
 Vue.component('IconStartHereMission', IconStartHereMission)
@@ -60,6 +66,10 @@ Vue.component('IconProfile', IconProfile)
 Vue.component('IconStopWatch', IconStopWatch)
 Vue.component('IconPhone', IconPhone)
 Vue.component('IconEnvelope', IconEnvelope)
+Vue.component('IconInsightGeneric', IconInsightGeneric)
+Vue.component('IconInsightAirtable', IconInsightAirtable)
+Vue.component('IconInsightGoogleDocs', IconInsightGoogleDocs)
+Vue.component('IconInsightVideo', IconInsightVideo)
 
 Vue.component('IconPersonaChantal', IconPersonaChantal)
 Vue.component('IconPersonaDustin', IconPersonaDustin)

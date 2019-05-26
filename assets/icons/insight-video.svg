@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 57.537 44.258">
+  <g id="Gruppe_1121" data-name="Gruppe 1121" transform="translate(-19435 -16865.639)">
+    <rect id="Rechteck_749" data-name="Rechteck 749" width="44.258" height="57.536" transform="translate(19492.537 16865.639) rotate(90)" fill="#f2f2f2"/>
+    <g id="Gruppe_1119" data-name="Gruppe 1119" transform="translate(18696.141 16178)">
+      <rect id="Rechteck_419" data-name="Rechteck 419" width="3.258" height="6.536" transform="translate(746.896 689.639) rotate(90)" fill="#cecece"/>
+      <rect id="Rechteck_420" data-name="Rechteck 420" width="3.258" height="6.536" transform="translate(754.896 689.639) rotate(90)" fill="#cecece"/>
+      <rect id="Rechteck_421" data-name="Rechteck 421" width="3.258" height="6.536" transform="translate(762.896 689.639) rotate(90)" fill="#cecece"/>
+      <rect id="Rechteck_422" data-name="Rechteck 422" width="3.258" height="6.536" transform="translate(770.896 689.639) rotate(90)" fill="#cecece"/>
+      <rect id="Rechteck_423" data-name="Rechteck 423" width="3.258" height="6.536" transform="translate(778.896 689.639) rotate(90)" fill="#cecece"/>
+      <rect id="Rechteck_424" data-name="Rechteck 424" width="3.258" height="6.536" transform="translate(786.896 689.639) rotate(90)" fill="#cecece"/>
+      <rect id="Rechteck_425" data-name="Rechteck 425" width="3.258" height="6.536" transform="translate(794.896 689.639) rotate(90)" fill="#cecece"/>
+    </g>
+    <g id="Gruppe_1120" data-name="Gruppe 1120" transform="translate(18696.141 16215)">
+      <rect id="Rechteck_419-2" data-name="Rechteck 419" width="3.258" height="6.536" transform="translate(746.896 689.639) rotate(90)" fill="#cecece"/>
+      <rect id="Rechteck_420-2" data-name="Rechteck 420" width="3.258" height="6.536" transform="translate(754.896 689.639) rotate(90)" fill="#cecece"/>
+      <rect id="Rechteck_421-2" data-name="Rechteck 421" width="3.258" height="6.536" transform="translate(762.896 689.639) rotate(90)" fill="#cecece"/>
+      <rect id="Rechteck_422-2" data-name="Rechteck 422" width="3.258" height="6.536" transform="translate(770.896 689.639) rotate(90)" fill="#cecece"/>
+      <rect id="Rechteck_423-2" data-name="Rechteck 423" width="3.258" height="6.536" transform="translate(778.896 689.639) rotate(90)" fill="#cecece"/>
+      <rect id="Rechteck_424-2" data-name="Rechteck 424" width="3.258" height="6.536" transform="translate(786.896 689.639) rotate(90)" fill="#cecece"/>
+      <rect id="Rechteck_425-2" data-name="Rechteck 425" width="3.258" height="6.536" transform="translate(794.896 689.639) rotate(90)" fill="#cecece"/>
+    </g>
+    <g id="play-button_1_" data-name="play-button (1)" transform="translate(19453 16876.918)">
+      <path id="Pfad_912" data-name="Pfad 912" d="M11.041,1.1A9.937,9.937,0,1,1,1.1,11.041,9.948,9.948,0,0,1,11.041,1.1m0-1.1A11.041,11.041,0,1,0,22.082,11.041,11.042,11.042,0,0,0,11.041,0Z" fill="#ff5e57"/>
+      <path id="Pfad_913" data-name="Pfad 913" d="M154.724,111.912l-5.879-3.869c-1.015-.668-1.845-.22-1.845.995v8.143c0,1.215.831,1.664,1.848,1l5.873-3.844A1.345,1.345,0,0,0,154.724,111.912Zm-.784,1.612-5.221,3.416c-.339.222-.616.072-.616-.333v-7c0-.4.277-.554.615-.331l5.222,3.437A.448.448,0,0,1,153.94,113.523Z" transform="translate(-139.271 -102.069)" fill="#ff5e57"/>
+      <path id="Pfad_914" data-name="Pfad 914" d="M8.441,15.355V6.5l.572-.18,6.6,4.5-.3.82-4.205,2.781-2.1,1.32Z" fill="#ff5e57"/>
+    </g>
+  </g>
+</svg>

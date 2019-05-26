@@ -27,10 +27,7 @@ export default {
     const fetchCfg = [{ name: 'USER' }]
 
     if (id.startsWith('sample-')) {
-      const mission = sampleProject.missions.filter(m => m.id === id)
-      if (mission.length) {
-        store.commit('setMission', { ...mission[0], projectId: 'sample' })
-      }
+      store.commit('setMission', { ...sampleProject.missions[0], projectId: 'sample' })
     } else {
       fetchCfg.push({ name: 'MISSION', id })
     }

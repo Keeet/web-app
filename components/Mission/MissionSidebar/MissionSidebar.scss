@@ -34,7 +34,10 @@
       top: 0;
       bottom: 0;
       background-color: $green;
-      transition: width 1s;
+
+      &:not(.noAnimation) {
+        transition: width 1s;
+      }
 
       &:not(.showProgress) {
         width: 0 !important;

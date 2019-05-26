@@ -213,40 +213,18 @@ const config = {
     mutation: 'setMission',
     key: 'mission',
     mockData: {
+      projectId: 'p1',
       startDate: '2019-06-06T15:42:38.032Z',
-      demographicDataReq: {
-        id: '5b9eeb55-e429-41f4-b0b9-2477ddc7f929',
-        updatedAt: '2019-05-08T17:17:55.796Z',
-        createdAt: '2019-05-08T17:17:55.796Z',
-        minAge: 18,
-        maxAge: 30,
-        occupations: [
-          'STUDENT'
-        ],
-        gender: [
-          'MALE'
-        ]
-      },
       id: 'ad9e746a-ada5-45ef-8c95-0d963c056cb7',
       updatedAt: '2019-05-08T17:17:55.876Z',
       createdAt: '2019-05-08T17:17:55.798Z',
       type: 'REMOTE',
       title: 'Internal mission name',
       description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-      screenerQuestions: [
-        {
-          value: 'A',
-          id: '8056c88e-f31f-476a-a101-8c988965617c',
-          updatedAt: '2019-05-08T17:17:55.798Z',
-          createdAt: '2019-05-08T17:17:55.798Z'
-        },
-        {
-          value: 'B',
-          id: '00651ba0-8c5f-494b-a16a-4a7bf85fd258',
-          updatedAt: '2019-05-08T17:17:55.798Z',
-          createdAt: '2019-05-08T17:17:55.798Z'
-        }
-      ],
+      persona: {
+        name: 'Kevin',
+        icon: 'KEVIN'
+      },
       owner: {
         id: '93c254cb-26af-4d6d-8fcc-e1522887788c',
         updatedAt: '2019-05-08T17:17:11.596Z',
@@ -257,6 +235,7 @@ const config = {
         email: 'henrik@keeet.io',
         profileImage: 'https://media.licdn.com/dms/image/C5603AQF4zYm5IZIdkg/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=pOTiQ54Atrb-Duk-K9PX-DKEIVOdoBqxGXoEZznqgNA'
       },
+      language: 'EN',
       duration: 60,
       sessions: [
         {
@@ -264,29 +243,41 @@ const config = {
           id: 'db43d968-f248-419f-aeaa-6e6420f3550d',
           updatedAt: '2019-05-08T17:20:02.293Z',
           createdAt: '2019-05-08T17:17:55.799Z',
-          testUser: {
-            firstName: 'Henrik',
-            lastName: 'Engelbrink',
-            email: 'hengel2810@gmail.com',
-            phone: '123456789',
-            id: 'f0e33d68-0f24-4035-b98c-94a3fc5eeee7',
-            updatedAt: '2019-05-08T17:20:02.286Z',
-            createdAt: '2019-05-08T17:20:02.286Z'
-          }
+          firstName: 'Henrik',
+          lastName: 'Engelbrink',
+          email: 'hengel2810@gmail.com',
+          phone: '123456789'
         },
         {
           startsAt: '2019-06-06T17:42:38.032Z',
           id: '7f94cf90-71d1-414b-b882-59dcbbb039e4',
           updatedAt: '2019-05-08T17:17:55.799Z',
-          createdAt: '2019-05-08T17:17:55.799Z',
-          testUser: null
+          createdAt: '2019-05-08T17:17:55.799Z'
         },
         {
           startsAt: '2019-06-06T16:42:38.032Z',
           id: '8893f3d8-5b19-44ba-8227-d22a03afd72b',
           updatedAt: '2019-05-08T17:17:55.799Z',
-          createdAt: '2019-05-08T17:17:55.799Z',
-          testUser: null
+          createdAt: '2019-05-08T17:17:55.799Z'
+        }
+      ],
+      insights: [
+        {
+          title: 'Interview Insights',
+          linkType: 'GOOGLE_DOCS',
+          description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
+          url: 'https://google.com'
+        },
+        {
+          title: 'Interview Insights',
+          linkType: 'AIR_TABLE',
+          description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
+          url: 'https://airtable.com'
+        },
+        {
+          title: 'Kevin',
+          duration: 4078,
+          vimeoUrl: 'https://vimeo.de'
         }
       ]
     }

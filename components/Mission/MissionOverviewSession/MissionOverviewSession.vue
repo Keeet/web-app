@@ -7,8 +7,8 @@
       {{ formattedTime }}
     </p>
     <div class="mission-overview-session-contact border-left">
-      <MissionOverviewSessionIcon type="PHONE" :href="`tel:${session.phone}`" :disabled="!recruited" />
-      <MissionOverviewSessionIcon type="EMAIL" :href="`mailto:${session.email}`" :disabled="!recruited" />
+      <MissionOverviewSessionIcon type="PHONE" :href="`tel:${session.phone}`" :disabled="!recruited || isSample" />
+      <MissionOverviewSessionIcon type="EMAIL" :href="`mailto:${session.email}`" :disabled="!recruited || isSample" />
     </div>
     <div v-if="mission.type === MISSIONS.REMOTE" class="mission-overview-session-remote-call border-left">
       <p class="mission-overview-session-remote-call-button" :class="{ disabled: !recruited }">
@@ -40,11 +40,17 @@ export default {
     mission() {
       return this.$store.state.mission
     },
+    isSample() {
+      return this.$store.state.mission.id.startsWith('sample')
+    },
     recruited() {
-      return !!this.session.name
+      return this.session.firstName || this.session.lastName
     },
     formattedName() {
-      return this.session.name || '-'
+      if (!this.recruited) {
+        return '-'
+      }
+      return `${this.session.firstName} ${this.session.lastName}`
     },
     formattedTime() {
       const start = new Date(this.session.startsAt)

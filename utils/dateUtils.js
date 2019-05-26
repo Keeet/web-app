@@ -90,3 +90,25 @@ export function groupByDay(entities, dateKey, resultEntitiesKey, sortByLatest = 
   })
   return entitiesByDay
 }
+
+export function getDurationWithUnits(seconds) {
+  const resSeconds = seconds % 60
+  let res = `${resSeconds}sec`
+  seconds -= resSeconds
+  if (seconds === 0) return res
+
+  let minutes = seconds / 60
+  const resMinutes = minutes % 60
+  res = `${resMinutes}min ${res}`
+  minutes -= resMinutes
+  if (minutes === 0) return res
+
+  let hours = minutes / 60
+  const resHours = hours % 24
+  res = `${resHours}h ${res}`
+  hours -= resHours
+  if (hours === 0) return res
+
+  const days = hours / 24
+  return `${days}d ${res}`
+}

@@ -12,6 +12,7 @@
     <div class="mission-body">
       <MissionNav />
       <MissionOverview v-if="missionPage.activePage === MISSION_PAGES.OVERVIEW" />
+      <MissionInsights v-if="missionPage.activePage === MISSION_PAGES.INSIGHTS" />
     </div>
   </div>
 </template>
@@ -23,9 +24,10 @@ import MissionMetadataForm from './MissionMetadataForm/MissionMetadataForm'
 import MissionSidebar from './MissionSidebar/MissionSidebar'
 import MissionNav from './MissionNav/MissionNav'
 import MissionOverview from './MissionOverview/MissionOverview'
+import MissionInsights from './MissionInsights/MissionInsights'
 export default {
   name: 'Mission',
-  components: { MissionOverview, MissionNav, MissionSidebar, OverlayModal, MissionMetadataForm },
+  components: { MissionInsights, MissionOverview, MissionNav, MissionSidebar, OverlayModal, MissionMetadataForm },
   data() {
     return {
       MISSION_PAGES

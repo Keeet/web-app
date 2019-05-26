@@ -59,6 +59,24 @@ export const MISSION_PAGES = {
   INSIGHTS: 'INSIGHTS'
 }
 
+export const MISSION_INSIGHTS = {
+  RECORDING: 'RECORDING',
+  LINK: 'LINK'
+}
+export const MISSION_INSIGHT_LABELS = {
+  RECORDING: 'Record'
+}
+export const MISSION_INSIGHT_LINKS = {
+  GENERIC: 'GENERIC',
+  GOOGLE_DOCS: 'GOOGLE_DOCS',
+  AIR_TABLE: 'AIR_TABLE'
+}
+export const MISSION_INSIGHT_LINK_LABELS = {
+  GENERIC: 'Link',
+  GOOGLE_DOCS: 'Google Docs',
+  AIR_TABLE: 'Airtable'
+}
+
 export const COUNTRY_NAMES = {
   DE: 'Germany'
 }
