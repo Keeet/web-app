@@ -91,6 +91,14 @@ export default function (context, inject) {
         title,
         description
       })
+    },
+    createMissionInsightLink({ missionId, url, title, description, linkType }) {
+      return $axios('POST', `/missions/${missionId}/insights/link`, {
+        title,
+        linkType,
+        description,
+        url
+      })
     }
   })
 }

@@ -13,7 +13,11 @@
           :insight="insight"
           type="LINK"
         />
-        <MissionInsightsItem v-if="!isSample" create />
+        <MissionInsightsItem
+          v-if="!isSample"
+          create
+          @click.native="createMissionInsightLink"
+        />
       </div>
     </div>
     <div
@@ -35,17 +39,22 @@
         />
       </div>
     </div>
+    <MissionInsightsForm v-if="missionPage.insightFormOpened" />
   </div>
 </template>
 
 <script>
 import MissionInsightsItem from '../MissionInsightsItem/MissionInsightsItem'
+import MissionInsightsForm from '../MissionInsightsForm/MissionInsightsForm'
 export default {
   name: 'MissionInsights',
-  components: { MissionInsightsItem },
+  components: { MissionInsightsForm, MissionInsightsItem },
   computed: {
     mission() {
       return this.$store.state.mission
+    },
+    missionPage() {
+      return this.$store.state.missionPage
     },
     isSample() {
       return this.$store.state.mission.id.startsWith('sample')
@@ -55,6 +64,12 @@ export default {
     },
     recordingInsights() {
       return this.mission.insights.filter(insight => !!insight.vimeoUrl)
+    }
+  },
+  methods: {
+    createMissionInsightLink() {
+      this.$store.commit('missionInsightsForm/init', this.mission)
+      this.$store.commit('missionPage/openInsightForm')
     }
   }
 }
