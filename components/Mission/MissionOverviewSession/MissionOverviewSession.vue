@@ -10,7 +10,7 @@
       <MissionOverviewSessionIcon type="PHONE" :href="`tel:${session.phone}`" :disabled="!recruited" />
       <MissionOverviewSessionIcon type="EMAIL" :href="`mailto:${session.email}`" :disabled="!recruited" />
     </div>
-    <div class="mission-overview-session-remote-call border-left">
+    <div v-if="mission.type === MISSIONS.REMOTE" class="mission-overview-session-remote-call border-left">
       <p class="mission-overview-session-remote-call-button" :class="{ disabled: !recruited }">
         Start call
       </p>
@@ -19,11 +19,17 @@
 </template>
 
 <script>
+import { MISSIONS } from '../../constants'
 import MissionOverviewSessionIcon from '../MissionOverviewSessionIcon/MissionOverviewSessionIcon'
 import { addMinutes, getAmPmTime } from '../../../utils/dateUtils'
 export default {
   name: 'MissionOverviewSession',
   components: { MissionOverviewSessionIcon },
+  data() {
+    return {
+      MISSIONS
+    }
+  },
   props: {
     session: {
       type: Object,
