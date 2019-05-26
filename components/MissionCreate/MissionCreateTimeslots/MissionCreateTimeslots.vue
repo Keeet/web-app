@@ -24,7 +24,7 @@
 
 <script>
 import MissionCreateBox from '../MissionCreateBox/MissionCreateBox'
-import { getAmPmTime, getLocaleDateString, getWeekDayName, isSameDay } from '../../../utils/dateUtils'
+import { getAmPmTime, getLocaleDateString, getWeekDayName, groupByDay } from '../../../utils/dateUtils'
 export default {
   name: 'MissionCreateTimeslots',
   components: { MissionCreateBox },
@@ -33,24 +33,7 @@ export default {
       return this.$store.state.missionForm
     },
     sessionsByDay() {
-      const sessions = this.s.sessions
-        .slice()
-        .sort((a, b) => a.start > b.start ? 1 : -1)
-
-      const sessionsByDay = []
-      let currentDayDate = null
-      sessions.forEach((session) => {
-        if (!currentDayDate || !isSameDay(session.start, currentDayDate)) {
-          sessionsByDay.push({
-            date: session.start,
-            sessions: [session]
-          })
-          currentDayDate = session.start
-        } else {
-          sessionsByDay.slice(-1)[0].sessions.push(session)
-        }
-      })
-      return sessionsByDay
+      return groupByDay(this.s.sessions, 'start', 'sessions')
     }
   },
   methods: {

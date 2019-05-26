@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar-left">
     <div
-      data-aos="fade-right"
+      :data-aos="!disableAnimation ? 'fade-right' : null"
       data-aos-duration="1000"
       data-aos-once="true"
       data-aos-delay="500"
@@ -48,6 +48,10 @@ export default {
       required: true
     },
     disableEditHead: {
+      type: Boolean,
+      default: false
+    },
+    disableAnimation: {
       type: Boolean,
       default: false
     }

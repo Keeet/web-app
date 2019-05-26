@@ -1,0 +1,22 @@
+.mission-nav {
+  padding-bottom: 20px;
+  border-bottom: 2px solid $grey;
+  display: flex;
+
+  .mission-nav-item {
+    font-size: 120%;
+    margin-right: 80px;
+
+
+    .mission-nav-item-label {
+      padding: 20px 0;
+      color: $grey;
+      border-bottom: 2px solid $grey;
+
+      &.active {
+        color: $grey-dark;
+        border-bottom-color: $blue-primary;
+      }
+    }
+  }
+}

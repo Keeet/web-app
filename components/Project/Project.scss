@@ -3,7 +3,7 @@
   .project-missions {
     position: relative;
     min-height: calc(100vh - #{$footer-min-height} - 170px);
-    margin: 120px 50px 50px $sidebar-width + 50px;
+    margin: 120px 50px 50px $sidebar-left-width + 50px;
     box-sizing: border-box;
 
     .project-missions-create {

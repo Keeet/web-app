@@ -54,6 +54,10 @@ export const MISSION_LABELS = {
   USABILITY_LAB: 'Usability Lab',
   SURVEY: 'Survey'
 }
+export const MISSION_PAGES = {
+  OVERVIEW: 'OVERVIEW',
+  INSIGHTS: 'INSIGHTS'
+}
 
 export const COUNTRY_NAMES = {
   DE: 'Germany'

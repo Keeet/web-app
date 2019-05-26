@@ -23,6 +23,8 @@ import IconLanguageEnglish from '../assets/icons/language-english.svg'
 import IconLanguageGerman from '../assets/icons/language-german.svg'
 import IconProfile from '../assets/icons/profile.svg'
 import IconStopWatch from '../assets/icons/stop-watch.svg'
+import IconPhone from '../assets/icons/phone.svg'
+import IconEnvelope from '../assets/icons/envelope.svg'
 
 import IconPersonaChantal from '../assets/icons/persona-chantal.svg'
 import IconPersonaDustin from '../assets/icons/persona-dustin.svg'
@@ -56,6 +58,8 @@ Vue.component('IconLanguageEnglish', IconLanguageEnglish)
 Vue.component('IconLanguageGerman', IconLanguageGerman)
 Vue.component('IconProfile', IconProfile)
 Vue.component('IconStopWatch', IconStopWatch)
+Vue.component('IconPhone', IconPhone)
+Vue.component('IconEnvelope', IconEnvelope)
 
 Vue.component('IconPersonaChantal', IconPersonaChantal)
 Vue.component('IconPersonaDustin', IconPersonaDustin)

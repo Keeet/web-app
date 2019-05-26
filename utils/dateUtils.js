@@ -68,3 +68,25 @@ function getAmPmHoursValue(date) {
   hours = hours === 0 ? 12 : hours
   return hours
 }
+
+export function groupByDay(entities, dateKey, resultEntitiesKey, sortByLatest = false) {
+  entities = entities
+    .slice()
+    .sort((a, b) => a[dateKey] > b[dateKey] ? (sortByLatest ? -1 : 1) : (sortByLatest ? 1 : -1))
+
+  const entitiesByDay = []
+  let currentDayDate = null
+  entities.forEach((entity) => {
+    if (!currentDayDate || !isSameDay(entity[dateKey], currentDayDate)) {
+      const newEntity = {
+        date: entity[dateKey]
+      }
+      newEntity[resultEntitiesKey] = [entity]
+      entitiesByDay.push(newEntity)
+      currentDayDate = entity[dateKey]
+    } else {
+      entitiesByDay.slice(-1)[0][resultEntitiesKey].push(entity)
+    }
+  })
+  return entitiesByDay
+}

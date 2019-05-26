@@ -3,6 +3,7 @@
     :cancel-path="`/projects/${mission.projectId}`"
     :title="mission.title"
     :description="mission.description"
+    :disable-animation="missionPage.disableSidebarAnimation"
     @editHead="editMissionMetadata"
   >
     <div class="mission-sidebar-recruited">
@@ -62,6 +63,9 @@ export default {
   computed: {
     mission() {
       return this.$store.state.mission
+    },
+    missionPage() {
+      return this.$store.state.missionPage
     },
     recruitedCount() {
       return this.mission.sessions.filter(session => !!session.name).length
