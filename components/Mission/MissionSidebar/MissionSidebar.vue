@@ -21,7 +21,7 @@
         <div
           class="mission-sidebar-recruited-progress-done"
           :class="{ showProgress }"
-          :style="{ width: recruitedCount / mission.sessions.length * 100 + 'px' }"
+          :style="{ width: (recruitedCount / mission.sessions.length * 100) + '%' }"
         />
       </div>
     </div>
