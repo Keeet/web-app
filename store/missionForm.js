@@ -3,6 +3,7 @@ const defaultState = {
   type: null,
   title: '',
   persona: null,
+  personaDropdownOpened: false,
   nbParticipants: 5,
   duration: 60,
   language: 'DE',
@@ -47,6 +48,9 @@ export const mutations = {
   },
   setPersona(state, persona) {
     state.persona = persona
+  },
+  switchPersonaDropdown(state) {
+    state.personaDropdownOpened = !state.personaDropdownOpened
   },
   setNbParticipants(state, nbParticipants) {
     state.nbParticipants = nbParticipants

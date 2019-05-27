@@ -3,7 +3,8 @@ import { ACCOUNT_PAGES } from '../components/constants'
 export const state = () => ({
   activePage: null,
   disableAnimation: false,
-  showEditCompany: false
+  showEditCompany: false,
+  roleDropdownOpenedIndex: null
 })
 
 export const mutations = {
@@ -21,5 +22,11 @@ export const mutations = {
   },
   hideEditCompany(state) {
     state.showEditCompany = false
+  },
+  openRoleDropdown(state, index) {
+    state.roleDropdownOpenedIndex = index
+  },
+  closeRoleDropdown(state) {
+    state.roleDropdownOpenedIndex = null
   }
 }

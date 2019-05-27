@@ -1,0 +1,38 @@
+.account-team-role {
+  width: 150px;
+  padding: 15px;
+
+  &.active {
+
+    .account-team-role-head {
+      color: $blue-primary;
+
+      svg {
+        fill: $blue-primary;
+      }
+    }
+  }
+
+  .account-team-role-head {
+    display: flex;
+    justify-content: space-between;
+
+    .account-team-role-head-title {
+      margin-bottom: 5px;
+    }
+
+    .account-team-role-head-icon {
+      width: 20px;
+      height: 20px;
+
+      svg {
+        width: 100%;
+      }
+    }
+  }
+
+  .account-team-role-description {
+    color: $grey-mid-dark;
+    font-size: 90%;
+  }
+}

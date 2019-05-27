@@ -1,0 +1,14 @@
+.account-team-box {
+  padding: 40px;
+  width: 48%;
+  box-sizing: border-box;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.07);
+  background-color: #fff;
+
+  .account-team-box-headline {
+    color: $blue-primary;
+    font-size: 110%;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+}

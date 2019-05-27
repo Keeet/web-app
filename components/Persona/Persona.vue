@@ -4,16 +4,18 @@
       <ButtonCircle type="ARROW_LEFT" @click="cancel" />
     </div>
     <div v-show="!pending" class="persona-form">
-      <FormStep
-        :show-prev="false"
-        :valid="step1Valid"
-        :active="activeStep === 0"
-        :next-step-mutation="nextMut"
-        :prev-step-mutation="prevMut"
-      >
-        <Headline :text="avatarHeadline" center />
-        <PersonaAvatar />
-      </FormStep>
+      <div class="persona-form-avatar">
+        <FormStep
+          :show-prev="false"
+          :valid="step1Valid"
+          :active="activeStep === 0"
+          :next-step-mutation="nextMut"
+          :prev-step-mutation="prevMut"
+        >
+          <Headline :text="avatarHeadline" center />
+          <PersonaAvatar />
+        </FormStep>
+      </div>
       <FormStep
         :valid="true"
         large

@@ -40,7 +40,7 @@ export default {
   methods: {
     submit() {
       this.$store.commit('missionMetadataForm/pending')
-      this.$push.updateMissionMetadata(this.s).then(() => {
+      this.$push.updateMission(this.s).then(() => {
         this.$store.commit('missionMetadataForm/submitted')
         this.$store.commit('missionMetadataForm/setOverlayOpened', false)
       })

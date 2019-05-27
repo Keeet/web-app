@@ -96,9 +96,9 @@ export const LANGUAGE_LABELS = {
 }
 
 export const ROLES = {
-  ADMIN: 'ADMIN',
+  VIEWER: 'VIEWER',
   USER: 'USER',
-  VIEWER: 'VIEWER'
+  ADMIN: 'ADMIN'
 }
 export const ROLE_LABELS = {
   ADMIN: 'Admin',

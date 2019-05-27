@@ -22,6 +22,7 @@
       />
     </div>
     <AccountProfile v-if="accountPage.activePage === ACCOUNT_PAGES.PROFILE" />
+    <AccountTeam v-if="accountPage.activePage === ACCOUNT_PAGES.TEAM" />
   </div>
 </template>
 
@@ -30,9 +31,10 @@ import { ACCOUNT_PAGES } from '../constants'
 import Headline from '../_shared/Headline/Headline'
 import NavUnderlined from '../_shared/NavUnderlined/NavUnderlined'
 import AccountProfile from './AccountProfile/AccountProfile'
+import AccountTeam from './AccountTeam/AccountTeam'
 export default {
   name: 'Account',
-  components: { AccountProfile, NavUnderlined, Headline },
+  components: { AccountTeam, AccountProfile, NavUnderlined, Headline },
   data() {
     return { ACCOUNT_PAGES }
   },

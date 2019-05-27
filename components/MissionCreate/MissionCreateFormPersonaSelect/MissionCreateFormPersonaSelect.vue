@@ -1,11 +1,13 @@
 <template>
   <div class="mission-create-form-persona-select">
     <SelectCustom
+      :opened="s.personaDropdownOpened"
       :value="s.persona ? s.persona.id : null"
       :options="selectPersonaOptions"
       :error="error"
       placeholder="Choose persona"
       @select="select"
+      @clickHead="$store.commit('missionForm/switchPersonaDropdown')"
     >
       <template v-if="s.persona" slot="selected">
         <div class="mission-create-form-persona-select-option">
@@ -74,6 +76,7 @@ export default {
   },
   methods: {
     select(personaId) {
+      this.$store.commit('missionForm/switchPersonaDropdown')
       if (personaId === 'new') {
         this.$store.commit('personaForm/init')
         this.$store.commit('personaForm/setMissionEntrypoint')

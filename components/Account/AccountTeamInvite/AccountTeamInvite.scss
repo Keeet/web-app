@@ -1,0 +1,40 @@
+.account-team-invite {
+  position: relative;
+
+  .account-team-invite-form {
+
+    &.hidden {
+      opacity: 0;
+    }
+
+    .account-team-invite-form-rows {
+      display: flex;
+      justify-content: space-between;
+
+      .account-team-invite-form-role {
+        width: 180px;
+        margin-top: 10px;
+
+        .account-team-invite-form-role-selected {
+          padding: 15px;
+
+          .account-team-invite-form-role-selected-label {
+            color: $grey;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .account-team-invite-loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    svg {
+      width: 50px;
+    }
+  }
+}

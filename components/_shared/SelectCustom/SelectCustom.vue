@@ -1,7 +1,7 @@
 <template>
   <div class="select-custom" :class="{ opened, error }">
-    <div class="select-custom-head" @click="switchDropdown">
-      <div v-if="!value" class="select-custom-head-empty">
+    <div class="select-custom-head" :class="{ noHeadBorder, smallAngle }" @click="$emit('clickHead')">
+      <div v-if="!value && placeholder" class="select-custom-head-empty">
         <p class="select-custom-head-placeholder">
           {{ placeholder }}
         </p>
@@ -17,7 +17,7 @@
         :key="x"
         class="select-custom-options-item"
         :class="{ selected: value === option }"
-        @click="select(option)"
+        @click="$emit('select', option)"
       >
         <slot :name="option" />
       </div>
@@ -32,13 +32,17 @@
 export default {
   name: 'SelectCustom',
   props: {
+    opened: {
+      type: Boolean,
+      default: false
+    },
     options: {
       type: Array,
       required: true
     },
     placeholder: {
       type: String,
-      required: true
+      default: null
     },
     value: {
       type: String,
@@ -47,18 +51,14 @@ export default {
     error: {
       type: String,
       default: null
-    }
-  },
-  data() {
-    return { opened: false }
-  },
-  methods: {
-    switchDropdown() {
-      this.opened = !this.opened
     },
-    select(option) {
-      this.$emit('select', option)
-      this.switchDropdown()
+    noHeadBorder: {
+      type: Boolean,
+      default: false
+    },
+    smallAngle: {
+      type: Boolean,
+      default: false
     }
   }
 }

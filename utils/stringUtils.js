@@ -10,3 +10,7 @@ export const specialCharsToDashes = (string, lowerCase = true) => {
 export const isNum = (string) => {
   return /^\d+$/.test(string)
 }
+
+export const isEmail = (string) => {
+  return /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(string)
+}

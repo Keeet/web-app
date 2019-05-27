@@ -38,6 +38,12 @@ export default function (context, inject) {
       })
     },
 
+    updateUserRole({ id, role }) {
+      return $axios('PUT', `/users/${id}/role`, {
+        role
+      })
+    },
+
     inviteUser({ email, role }) {
       return $axios('POST', `/invitations`, {
         email,
@@ -95,7 +101,7 @@ export default function (context, inject) {
         }
       })
     },
-    updateMissionMetadata({ id, title, description }) {
+    updateMission({ id, title, description }) {
       return $axios('PUT', `/missions/${id}`, {
         title,
         description

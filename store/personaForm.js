@@ -58,6 +58,7 @@ export const mutations = {
         state[key] = defaultState[key]
       }
     }
+    state.missionEntrypoint = false
     state.init = true
   },
   setName(state, name) {

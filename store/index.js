@@ -28,8 +28,8 @@ export const mutations = {
   setCompany(state, company) {
     state.company = company
   },
-  setCompanyUsers(state, companyUser) {
-    state.companyUser = companyUser
+  setCompanyUsers(state, companyUsers) {
+    state.companyUsers = companyUsers
   },
   setProjects(state, projects) {
     state.projects = projects
