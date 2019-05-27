@@ -3,7 +3,7 @@
     <AccountTeamBox :title="`Members (${companyUsers.length + 1})`">
       <AccountTeamMembers />
     </AccountTeamBox>
-    <AccountTeamBox title="Invite members">
+    <AccountTeamBox title="Invite members" :aos-delay="400">
       <AccountTeamInvite />
     </AccountTeamBox>
   </div>
