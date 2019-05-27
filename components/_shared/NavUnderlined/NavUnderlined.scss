@@ -1,14 +1,14 @@
-.mission-nav {
+.nav-underlined {
   padding-bottom: 20px;
   border-bottom: 2px solid $grey;
   display: flex;
 
-  .mission-nav-item {
+  .nav-underlined-item {
     font-size: 120%;
     margin-right: 80px;
 
 
-    .mission-nav-item-label {
+    .nav-underlined-item-label {
       padding: 20px 0;
       color: $grey;
       border-bottom: 2px solid $grey;

@@ -1,0 +1,19 @@
+[
+  {
+    "title": "Interview Insights",
+    "linkType": "GOOGLE_DOCS",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr",
+    "url": "https://google.com"
+  },
+  {
+    "title": "Interview Insights",
+    "linkType": "AIR_TABLE",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr",
+    "url": "https://airtable.com"
+  },
+  {
+    "title": "Kevin",
+    "duration": 4078,
+    "vimeoUrl": "https://vimeo.de"
+  }
+]

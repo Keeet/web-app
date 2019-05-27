@@ -71,7 +71,7 @@ export default {
         url,
         linkType: this.getLinkType(url)
       }).then(() => {
-        this.$fetch([{ name: 'MISSION', id: missionId, forced: true }]).then(() => {
+        this.$fetch([{ name: 'MISSION_INSIGHTS', id: missionId, forced: true }]).then(() => {
           this.$store.commit('missionInsightsForm/submitted')
           this.$store.commit('missionPage/closeInsightForm')
         })

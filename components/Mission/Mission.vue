@@ -10,7 +10,21 @@
       <MissionMetadataForm />
     </OverlayModal>
     <div class="mission-body">
-      <MissionNav />
+      <NavUnderlined
+        :items="[
+          {
+            page: MISSION_PAGES.OVERVIEW,
+            label: 'Overview',
+            link: `/missions/${mission.id}/overview`
+          },
+          {
+            page: MISSION_PAGES.INSIGHTS,
+            label: 'Insights',
+            link: `/missions/${mission.id}/insights`
+          }
+        ]"
+        :active-page="missionPage.activePage"
+      />
       <MissionOverview v-if="missionPage.activePage === MISSION_PAGES.OVERVIEW" />
       <MissionInsights v-if="missionPage.activePage === MISSION_PAGES.INSIGHTS" />
     </div>
@@ -20,14 +34,14 @@
 <script>
 import { MISSION_PAGES } from '../constants'
 import OverlayModal from '../_shared/OverlayModal/OverlayModal'
+import NavUnderlined from '../_shared/NavUnderlined/NavUnderlined'
 import MissionMetadataForm from './MissionMetadataForm/MissionMetadataForm'
 import MissionSidebar from './MissionSidebar/MissionSidebar'
-import MissionNav from './MissionNav/MissionNav'
 import MissionOverview from './MissionOverview/MissionOverview'
 import MissionInsights from './MissionInsights/MissionInsights'
 export default {
   name: 'Mission',
-  components: { MissionInsights, MissionOverview, MissionNav, MissionSidebar, OverlayModal, MissionMetadataForm },
+  components: { NavUnderlined, MissionInsights, MissionOverview, MissionSidebar, OverlayModal, MissionMetadataForm },
   data() {
     return {
       MISSION_PAGES

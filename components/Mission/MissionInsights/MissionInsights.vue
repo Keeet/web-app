@@ -53,6 +53,9 @@ export default {
     mission() {
       return this.$store.state.mission
     },
+    insights() {
+      return this.$store.state.missionInsights
+    },
     missionPage() {
       return this.$store.state.missionPage
     },
@@ -60,10 +63,10 @@ export default {
       return this.$store.state.mission.id.startsWith('sample')
     },
     linkInsights() {
-      return this.mission.insights.filter(insight => !!insight.linkType)
+      return this.insights.filter(insight => !!insight.linkType)
     },
     recordingInsights() {
-      return this.mission.insights.filter(insight => !!insight.vimeoUrl)
+      return this.insights.filter(insight => !!insight.vimeoUrl)
     }
   },
   methods: {

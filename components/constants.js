@@ -77,6 +77,11 @@ export const MISSION_INSIGHT_LINK_LABELS = {
   AIR_TABLE: 'Airtable'
 }
 
+export const ACCOUNT_PAGES = {
+  PROFILE: 'PROFILE',
+  TEAM: 'TEAM'
+}
+
 export const COUNTRY_NAMES = {
   DE: 'Germany'
 }

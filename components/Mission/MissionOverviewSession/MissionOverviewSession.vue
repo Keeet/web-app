@@ -44,13 +44,14 @@ export default {
       return this.$store.state.mission.id.startsWith('sample')
     },
     recruited() {
-      return this.session.firstName || this.session.lastName
+      return this.session.testUser
     },
     formattedName() {
       if (!this.recruited) {
         return '-'
       }
-      return `${this.session.firstName} ${this.session.lastName}`
+      const { firstName, lastName } = this.session.testUser
+      return `${firstName} ${lastName}`
     },
     formattedTime() {
       const start = new Date(this.session.startsAt)

@@ -10,6 +10,7 @@ const config = {
       firstName: 'Mika',
       lastName: 'Hally',
       email: 'mika@keeet.io',
+      role: 'ADMIN',
       createdAt: '2019-05-04T22:43:15Z',
       updatedAt: '2019-05-04T22:43:15Z'
     },
@@ -19,12 +20,13 @@ const config = {
       firstName: 'Mika',
       lastName: 'Hally',
       email: 'mika@keeet.io',
+      role: 'ADMIN',
       createdAt: '2019-05-04T22:43:15Z',
       updatedAt: '2019-05-04T22:43:15Z'
     }
   },
   COMPANY: {
-    path: '/company',
+    path: '/companies',
     mutation: 'setCompany',
     key: 'company',
     mockData: {
@@ -98,7 +100,7 @@ const config = {
     mockDataEmpty: []
   },
   PROJECT: {
-    path: '/project/{id}',
+    path: '/projects/{id}',
     mutation: 'setProject',
     key: 'project',
     mockData: {
@@ -170,10 +172,7 @@ const config = {
                 firstName: 'Henrik',
                 lastName: 'Engelbrink',
                 email: 'hengel2810@gmail.com',
-                phone: '123456789',
-                id: 'f0e33d68-0f24-4035-b98c-94a3fc5eeee7',
-                updatedAt: '2019-05-08T17:20:02.286Z',
-                createdAt: '2019-05-08T17:20:02.286Z'
+                phone: '123456789'
               }
             },
             {
@@ -243,10 +242,12 @@ const config = {
           id: 'db43d968-f248-419f-aeaa-6e6420f3550d',
           updatedAt: '2019-05-08T17:20:02.293Z',
           createdAt: '2019-05-08T17:17:55.799Z',
-          firstName: 'Henrik',
-          lastName: 'Engelbrink',
-          email: 'hengel2810@gmail.com',
-          phone: '123456789'
+          testUser: {
+            firstName: 'Henrik',
+            lastName: 'Engelbrink',
+            email: 'hengel2810@gmail.com',
+            phone: '123456789'
+          }
         },
         {
           startsAt: '2019-06-06T17:42:38.032Z',
@@ -260,27 +261,32 @@ const config = {
           updatedAt: '2019-05-08T17:17:55.799Z',
           createdAt: '2019-05-08T17:17:55.799Z'
         }
-      ],
-      insights: [
-        {
-          title: 'Interview Insights',
-          linkType: 'GOOGLE_DOCS',
-          description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
-          url: 'https://google.com'
-        },
-        {
-          title: 'Interview Insights',
-          linkType: 'AIR_TABLE',
-          description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
-          url: 'https://airtable.com'
-        },
-        {
-          title: 'Kevin',
-          duration: 4078,
-          vimeoUrl: 'https://vimeo.de'
-        }
       ]
     }
+  },
+  MISSION_INSIGHTS: {
+    path: '/missions/{id}/insights',
+    mutation: 'setMissionInsights',
+    key: 'missionInsights',
+    mockData: [
+      {
+        title: 'Interview Insights',
+        linkType: 'GOOGLE_DOCS',
+        description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
+        url: 'https://google.com'
+      },
+      {
+        title: 'Interview Insights',
+        linkType: 'AIR_TABLE',
+        description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
+        url: 'https://airtable.com'
+      },
+      {
+        title: 'Kevin',
+        duration: 4078,
+        vimeoUrl: 'https://vimeo.de'
+      }
+    ]
   },
   PERSONAS: {
     path: '/personas',
@@ -357,6 +363,12 @@ const config = {
       }
     ],
     mockDataEmpty: []
+  },
+  COMPANY_USERS: {
+    path: '/companies/users',
+    mutation: 'setCompanyUsers',
+    key: 'companyUsers'
+    // TODO mockData
   }
 }
 

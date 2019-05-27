@@ -69,7 +69,7 @@ export default {
       return this.$store.state.missionPage
     },
     recruitedCount() {
-      return this.mission.sessions.filter(session => !!session.firstName || !!session.lastName).length
+      return this.mission.sessions.filter(session => !!session.testUser).length
     },
     isInHouse() {
       return this.mission.type === MISSIONS.IN_HOUSE

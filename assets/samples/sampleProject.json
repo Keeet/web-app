@@ -35,56 +35,45 @@
       "sessions": [
         {
           "startsAt": "2019-06-06T09:00:00Z",
-          "firstName": "Tim",
-          "lastName": "Helman",
-          "phone": "+4915224679362",
-          "email": "tim.helman@keeet.io"
+          "testUser": {
+            "firstName": "Tim",
+            "lastName": "Helman",
+            "phone": "+4915224679362",
+            "email": "tim.helman@keeet.io"
+          }
         },
         {
           "startsAt": "2019-06-06T12:00:00Z"
         },
         {
           "startsAt": "2019-06-06T13:15:00Z",
-          "firstName": "Lucas",
-          "lastName": "Meindl",
-          "phone": "+4915224679362",
-          "email": "lucas.meindl@keeet.io"
+          "testUser": {
+            "firstName": "Lucas",
+            "lastName": "Meindl",
+            "phone": "+4915224679362",
+            "email": "lucas.meindl@keeet.io"
+          }
         },
         {
           "startsAt": "2019-08-06T06:30:00Z",
-          "firstName": "Stephan",
-          "lastName": "Hemberg",
-          "phone": "+4915224679362",
-          "email": "stephan.hemberg@keeet.io"
+          "testUser": {
+            "firstName": "Stephan",
+            "lastName": "Hemberg",
+            "phone": "+4915224679362",
+            "email": "stephan.hemberg@keeet.io"
+          }
         },
         {
           "startsAt": "2019-08-06T08:00:00Z",
-          "firstName": "Louis",
-          "lastName": "Withney",
-          "phone": "+4915224679362",
-          "email": "louis.withney@keeet.io"
+          "testUser": {
+            "firstName": "Louis",
+            "lastName": "Withney",
+            "phone": "+4915224679362",
+            "email": "louis.withney@keeet.io"
+          }
         },
         {
           "startsAt": "2019-06-06T11:00:00Z"
-        }
-      ],
-      "insights": [
-        {
-          "title": "Interview Insights",
-          "linkType": "GOOGLE_DOCS",
-          "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr",
-          "url": "https://google.com"
-        },
-        {
-          "title": "Interview Insights",
-          "linkType": "AIR_TABLE",
-          "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr",
-          "url": "https://airtable.com"
-        },
-        {
-          "title": "Kevin",
-          "duration": 4078,
-          "vimeoUrl": "https://vimeo.de"
         }
       ]
     },

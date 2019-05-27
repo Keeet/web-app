@@ -4,6 +4,7 @@
 
 <script>
 import sampleProject from '../../../assets/samples/sampleProject'
+import sampleMissionInsights from '../../../assets/samples/sampleMissionInsights'
 import Mission from '../../../components/Mission/Mission'
 
 export default {
@@ -11,13 +12,17 @@ export default {
   layout: 'defaultWithoutWrapper',
   components: { Mission },
   fetch({ app: { $fetch }, params, store, route }) {
-    if (route.path.endsWith('insights')) {
+    const IS_INSIGHT = route.path.endsWith('insights')
+    const IS_OVERVIEW = route.path.endsWith('overview')
+    const IS_INDEX = !IS_INSIGHT && !IS_OVERVIEW
+
+    if (IS_INSIGHT) {
       store.commit('missionPage/showInsights')
-    } else {
+    } else if (IS_OVERVIEW || IS_INDEX) {
       store.commit('missionPage/showOverview')
     }
 
-    if (route.path.endsWith('overview') || route.path.endsWith('insights')) {
+    if (IS_INSIGHT || IS_OVERVIEW) {
       store.commit('missionPage/disableSidebarAnimation', true)
     } else {
       store.commit('missionPage/disableSidebarAnimation', false)
@@ -28,8 +33,14 @@ export default {
 
     if (id.startsWith('sample-')) {
       store.commit('setMission', { ...sampleProject.missions[0], projectId: 'sample' })
+      if (IS_INSIGHT) {
+        store.commit('setMissionInsights', { ...sampleMissionInsights })
+      }
     } else {
       fetchCfg.push({ name: 'MISSION', id })
+      if (IS_INSIGHT) {
+        fetchCfg.push({ name: 'MISSION_INSIGHTS', id })
+      }
     }
     return $fetch(fetchCfg)
   }

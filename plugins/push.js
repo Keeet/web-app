@@ -27,7 +27,7 @@ export default function (context, inject) {
     },
 
     createCompanyAddress({ name, street, houseNumber, addressDescription, zipCode, city, country }) {
-      return $axios('POST', '/companies/address', {
+      return $axios('POST', '/companies/locations', {
         name,
         street,
         houseNumber,
@@ -35,6 +35,13 @@ export default function (context, inject) {
         zipCode,
         city,
         country
+      })
+    },
+
+    inviteUser({ email, role }) {
+      return $axios('POST', `/invitations`, {
+        email,
+        role
       })
     },
 
@@ -53,6 +60,7 @@ export default function (context, inject) {
         screenerQuestions
       })
     },
+    // TODO delete persona
 
     upsertProject({ id, title, description }) {
       const method = !id ? 'POST' : 'PUT'
@@ -86,8 +94,7 @@ export default function (context, inject) {
       })
     },
     updateMissionMetadata({ id, title, description }) {
-      // TODO: confirm endpoint with backend
-      return $axios('PUT', `/missions/${id}/metadata`, {
+      return $axios('PUT', `/missions/${id}`, {
         title,
         description
       })
