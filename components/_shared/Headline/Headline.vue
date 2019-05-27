@@ -2,7 +2,7 @@
   <div
     class="headline"
     :class="{center, hasSubline: subline !== null}"
-    data-aos="zoom-in-up"
+    :data-aos="!disableAnimation ? 'zoom-in-up' : ''"
     data-aos-duration="1000"
     data-aos-once="true"
   >
@@ -28,6 +28,10 @@ export default {
       default: null
     },
     center: {
+      type: Boolean,
+      default: false
+    },
+    disableAnimation: {
       type: Boolean,
       default: false
     }

@@ -69,7 +69,12 @@
       mutation="companyForm/setCountry"
       readonly
     />
-    <ButtonText text="Go" :disabled="!formValid" @click="submitForm" @disabledClick="showErrors = true" />
+    <ButtonText
+      :text="edit ? 'Save changes' : 'Go'"
+      :disabled="!formValid"
+      @click="submitForm"
+      @disabledClick="showErrors = true"
+    />
   </div>
 </template>
 
@@ -85,6 +90,10 @@ export default {
     id: {
       type: String,
       default: null
+    },
+    edit: {
+      type: Boolean,
+      default: false
     }
   },
   data() {

@@ -2,7 +2,7 @@ import { MISSION_PAGES } from '../components/constants'
 
 export const state = () => ({
   activePage: null,
-  disableSidebarAnimation: false,
+  disableAnimation: false,
   insightFormOpened: false
 })
 
@@ -13,8 +13,8 @@ export const mutations = {
   showInsights(state) {
     state.activePage = MISSION_PAGES.INSIGHTS
   },
-  disableSidebarAnimation(state, value) {
-    state.disableSidebarAnimation = value
+  disableAnimation(state, value) {
+    state.disableAnimation = value
   },
   openInsightForm(state) {
     state.insightFormOpened = true

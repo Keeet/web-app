@@ -1,0 +1,25 @@
+.account-profile-item {
+  background-color: #fff;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.07);
+  display: flex;
+  padding: 30px 50px;
+  border-radius: 5px;
+  margin: 50px 0;
+
+  .account-profile-item-icon {
+    width: 120px;
+    margin-right: 40px;
+    align-self: center;
+  }
+
+  .account-profile-item-text {
+    flex-grow: 1;
+    align-self: center;
+    line-height: 170%;
+  }
+
+  .account-profile-item-button {
+    align-self: flex-start;
+    margin-top: -15px;
+  }
+}

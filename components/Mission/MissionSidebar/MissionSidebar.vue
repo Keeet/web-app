@@ -4,7 +4,7 @@
     :title="mission.title"
     :description="mission.description"
     :disable-edit-head="isSample"
-    :disable-animation="missionPage.disableSidebarAnimation"
+    :disable-animation="missionPage.disableAnimation"
     @editHead="editMissionMetadata"
   >
     <div class="mission-sidebar-recruited">
@@ -22,7 +22,7 @@
       <div class="mission-sidebar-recruited-progress">
         <div
           class="mission-sidebar-recruited-progress-done"
-          :class="{ showProgress, noAnimation: missionPage.disableSidebarAnimation }"
+          :class="{ showProgress, noAnimation: missionPage.disableAnimation }"
           :style="{ width: (recruitedCount / mission.sessions.length * 100) + '%' }"
         />
       </div>
@@ -79,7 +79,7 @@ export default {
     }
   },
   mounted() {
-    if (this.missionPage.disableSidebarAnimation) {
+    if (this.missionPage.disableAnimation) {
       this.showProgress = true
       return
     }

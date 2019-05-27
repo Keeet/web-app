@@ -17,14 +17,16 @@
         </p>
       </nuxt-link>
     </div>
-    <div class="nav-profile">
-      <div class="nav-profile-img">
-        <img :src="$store.state.auth0User.picture">
+    <nuxt-link to="/account">
+      <div class="nav-profile">
+        <div class="nav-profile-img">
+          <img :src="$store.state.user.profileImage">
+        </div>
+        <p class="nav-profile-welcome">
+          Hello, {{ $store.state.user.firstName }}!
+        </p>
       </div>
-      <p class="nav-profile-welcome">
-        Hello, {{ $store.state.user.firstName }}!
-      </p>
-    </div>
+    </nuxt-link>
   </div>
 </template>
 

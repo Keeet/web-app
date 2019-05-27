@@ -11,6 +11,7 @@ const config = {
       lastName: 'Hally',
       email: 'mika@keeet.io',
       role: 'ADMIN',
+      profileImage: 'https://media.licdn.com/dms/image/C5603AQF4zYm5IZIdkg/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=pOTiQ54Atrb-Duk-K9PX-DKEIVOdoBqxGXoEZznqgNA',
       createdAt: '2019-05-04T22:43:15Z',
       updatedAt: '2019-05-04T22:43:15Z'
     },
@@ -21,6 +22,7 @@ const config = {
       lastName: 'Hally',
       email: 'mika@keeet.io',
       role: 'ADMIN',
+      profileImage: 'https://media.licdn.com/dms/image/C5603AQF4zYm5IZIdkg/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=pOTiQ54Atrb-Duk-K9PX-DKEIVOdoBqxGXoEZznqgNA',
       createdAt: '2019-05-04T22:43:15Z',
       updatedAt: '2019-05-04T22:43:15Z'
     }
@@ -367,8 +369,42 @@ const config = {
   COMPANY_USERS: {
     path: '/companies/users',
     mutation: 'setCompanyUsers',
-    key: 'companyUsers'
-    // TODO mockData
+    key: 'companyUsers',
+    mockData: [
+      {
+        id: 'u2',
+        authId: 'a2',
+        firstName: 'Stephan',
+        lastName: 'Hemberg',
+        email: 'stephan.hemberg@keeet.io',
+        role: 'VIEWER',
+        profileImage: 'https://media.licdn.com/dms/image/C5603AQF4zYm5IZIdkg/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=pOTiQ54Atrb-Duk-K9PX-DKEIVOdoBqxGXoEZznqgNA',
+        createdAt: '2019-05-04T22:43:15Z',
+        updatedAt: '2019-05-04T22:43:15Z'
+      },
+      {
+        id: 'u3',
+        authId: 'a3',
+        firstName: 'Louis',
+        lastName: 'Withney',
+        email: 'louis.withney@keeet.io',
+        role: 'USER',
+        profileImage: 'https://media.licdn.com/dms/image/C5603AQF4zYm5IZIdkg/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=pOTiQ54Atrb-Duk-K9PX-DKEIVOdoBqxGXoEZznqgNA',
+        createdAt: '2019-05-04T22:43:15Z',
+        updatedAt: '2019-05-04T22:43:15Z'
+      },
+      {
+        id: 'u4',
+        authId: 'a4',
+        firstName: 'Tom',
+        lastName: 'Jackson',
+        email: 'tom.jackson@keeet.io',
+        role: 'USER',
+        profileImage: 'https://media.licdn.com/dms/image/C5603AQF4zYm5IZIdkg/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=pOTiQ54Atrb-Duk-K9PX-DKEIVOdoBqxGXoEZznqgNA',
+        createdAt: '2019-05-04T22:43:15Z',
+        updatedAt: '2019-05-04T22:43:15Z'
+      }
+    ]
   }
 }
 

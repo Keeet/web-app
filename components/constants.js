@@ -94,3 +94,14 @@ export const LANGUAGE_LABELS = {
   DE: 'German',
   EN: 'English'
 }
+
+export const ROLES = {
+  ADMIN: 'ADMIN',
+  USER: 'USER',
+  VIEWER: 'VIEWER'
+}
+export const ROLE_LABELS = {
+  ADMIN: 'Admin',
+  USER: 'User',
+  VIEWER: 'Viewer'
+}

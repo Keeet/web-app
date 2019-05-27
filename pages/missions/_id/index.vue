@@ -23,9 +23,9 @@ export default {
     }
 
     if (IS_INSIGHT || IS_OVERVIEW) {
-      store.commit('missionPage/disableSidebarAnimation', true)
+      store.commit('missionPage/disableAnimation', true)
     } else {
-      store.commit('missionPage/disableSidebarAnimation', false)
+      store.commit('missionPage/disableAnimation', false)
     }
 
     const { id } = params
@@ -34,7 +34,7 @@ export default {
     if (id.startsWith('sample-')) {
       store.commit('setMission', { ...sampleProject.missions[0], projectId: 'sample' })
       if (IS_INSIGHT) {
-        store.commit('setMissionInsights', { ...sampleMissionInsights })
+        store.commit('setMissionInsights', sampleMissionInsights)
       }
     } else {
       fetchCfg.push({ name: 'MISSION', id })

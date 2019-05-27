@@ -24,6 +24,7 @@
           }
         ]"
         :active-page="missionPage.activePage"
+        :disable-animation="missionPage.disableAnimation"
       />
       <MissionOverview v-if="missionPage.activePage === MISSION_PAGES.OVERVIEW" />
       <MissionInsights v-if="missionPage.activePage === MISSION_PAGES.INSIGHTS" />

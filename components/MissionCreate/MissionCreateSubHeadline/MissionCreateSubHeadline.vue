@@ -3,7 +3,7 @@
     <p class="mission-create-sub-headline-text">
       {{ text }}
     </p>
-    <hr class="mission-create-sub-headline-line"/>
+    <hr class="mission-create-sub-headline-line">
   </div>
 </template>
 

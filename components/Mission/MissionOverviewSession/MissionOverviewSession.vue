@@ -25,15 +25,15 @@ import { addMinutes, getAmPmTime } from '../../../utils/dateUtils'
 export default {
   name: 'MissionOverviewSession',
   components: { MissionOverviewSessionIcon },
-  data() {
-    return {
-      MISSIONS
-    }
-  },
   props: {
     session: {
       type: Object,
       required: true
+    }
+  },
+  data() {
+    return {
+      MISSIONS
     }
   },
   computed: {
