@@ -109,13 +109,15 @@ export default {
       this.$store.commit('personasPage/hideDeletePopup')
     },
     deletePersona(persona) {
+      const { id } = persona
       this.$store.commit('personasPage/setDeletePending', true)
-      window.setTimeout(() => {
-        // this.$axios.$post('/persona', persona)
-        this.hideDeletePopup()
-        this.closeSidebar()
-        this.$store.commit('personasPage/setDeletePending', false)
-      }, 1000)
+      this.$push.deletePersona({ id }).then(() => {
+        this.$fetch([{ name: 'PERSONAS', forced: true }]).then(() => {
+          this.hideDeletePopup()
+          this.closeSidebar()
+          this.$store.commit('personasPage/setDeletePending', false)
+        })
+      })
     },
     createPersona() {
       this.$store.commit('personaForm/init')

@@ -60,7 +60,9 @@ export default function (context, inject) {
         screenerQuestions
       })
     },
-    // TODO delete persona
+    deletePersona({ id }) {
+      return $axios('DELETE', `/personas/${id}`)
+    },
 
     upsertProject({ id, title, description }) {
       const method = !id ? 'POST' : 'PUT'
