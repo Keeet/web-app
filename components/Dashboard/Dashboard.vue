@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
     <OverlayModal
-      v-if="!$store.state.user.companyId"
+      v-if="!$store.state.tokenCompanyId"
       title="Last Step"
       no-close
       :loading="companyForm.pending"
@@ -11,13 +11,13 @@
     <div class="dashboard-head">
       <Headline text="Projects" />
       <div class="dashboard-create">
-        <div v-if="!projects.length" class="dashboard-create-start">
+        <div v-if="!projects || !projects.length" class="dashboard-create-start">
           <IconStartHereDashboard />
         </div>
         <ButtonCircle type="CREATE" @click="create" />
       </div>
     </div>
-    <div v-if="!projects.length" class="dashboard-projects">
+    <div v-if="!projects || !projects.length" class="dashboard-projects">
       <DashboardProject
         :title="sampleProject.title"
         :description="sampleProject.description"

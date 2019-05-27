@@ -7,6 +7,8 @@
         mutation="personaForm/setName"
         :value="personaForm.name"
         :max-characters="15"
+        :error="nameError"
+        :disable-error="!showErrors"
       />
     </div>
     <div class="persona-avatar-icons">
@@ -40,6 +42,16 @@ import Input from '../../_shared/Input/Input'
 export default {
   name: 'PersonaAvatar',
   components: { Input, PersonaIcon },
+  props: {
+    nameError: {
+      type: String,
+      default: null
+    },
+    showErrors: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       PERSONA_ICONS

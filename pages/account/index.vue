@@ -15,10 +15,8 @@ export default {
     const fetchCfg = [{ name: 'USER' }]
 
     if (IS_TEAM) {
-      store.commit('accountPage/showTeam')
       fetchCfg.push({ name: 'COMPANY_USERS' })
     } else if (IS_INDEX || IS_PROFILE) {
-      store.commit('accountPage/showProfile')
       fetchCfg.push({ name: 'COMPANY' })
     }
 
@@ -28,7 +26,13 @@ export default {
       store.commit('accountPage/disableAnimation', false)
     }
 
-    return $fetch(fetchCfg)
+    return $fetch(fetchCfg).then(() => {
+      if (IS_TEAM) {
+        store.commit('accountPage/showTeam')
+      } else if (IS_INDEX || IS_PROFILE) {
+        store.commit('accountPage/showProfile')
+      }
+    })
   }
 }
 </script>

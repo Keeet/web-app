@@ -4,10 +4,10 @@
       :user="user"
     />
     <AccountTeamMembersItem
-      v-for="(user, x) in companyUsers"
+      v-for="(companyUser, x) in companyUsers"
       :key="x"
       :index="x"
-      :user="user"
+      :user="companyUser"
     />
   </div>
 </template>

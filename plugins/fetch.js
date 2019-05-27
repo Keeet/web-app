@@ -1,6 +1,8 @@
+const USE_MOCKS = false
+
 const config = {
   USER: {
-    path: '/user',
+    path: '/users',
     mutation: 'setUser',
     key: 'user',
     mockData: {
@@ -424,16 +426,17 @@ export default function ({ $axios, store }, inject) {
           resolve('ALREADY_FETCHED')
           return
         }
-        if (mockData || mockDataKey) {
+        if (USE_MOCKS && (mockData || mockDataKey)) {
           store.commit(mutation, mockDataKey ? config[name][mockDataKey] : mockData)
           resolve()
           return
         }
         const pathWithParams = path.replace('{id}', id)
         $axios.get(pathWithParams).then((res) => {
-          store.commit(mutation, res)
+          store.commit(mutation, res.data)
           resolve()
-        })
+          // eslint-disable-next-line no-console
+        }).catch(console.error)
       })
     })
     return Promise.all(promises)

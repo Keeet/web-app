@@ -77,10 +77,14 @@ export default {
       }
     },
     generalCriteria() {
+      const occupations = this.persona.demographicDataReq.occupations
+      if (!occupations.length) {
+        return []
+      }
       return [
         {
           label: 'Occupation',
-          value: this.persona.demographicDataReq.occupations.map(item => PERSONA_OCCUPATION_LABELS[item]).join(', ')
+          value: occupations.map(item => PERSONA_OCCUPATION_LABELS[item]).join(', ')
         }
       ]
     },
