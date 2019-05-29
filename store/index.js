@@ -5,6 +5,7 @@ export const state = () => ({
   accessToken: null,
   idToken: null,
   auth0User: null,
+  tokenCompanyId: null,
   user: null,
   company: null,
   companyUsers: null,
@@ -21,6 +22,7 @@ export const mutations = {
     state.accessToken = accessToken
     state.idToken = idToken
     state.auth0User = jwtDecode(idToken)
+    state.tokenCompanyId = jwtDecode(accessToken)['https://keeet.io/companyId']
   },
   setUser(state, user) {
     state.user = user
@@ -32,7 +34,16 @@ export const mutations = {
     state.companyUsers = companyUsers
   },
   setProjects(state, projects) {
-    state.projects = projects
+    state.projects = projects.map((project) => {
+      return {
+        ...project,
+        owner: {
+          firstName: project.ownerFirstName,
+          lastName: project.ownerLastName,
+          profileImage: project.ownerProfileImage
+        }
+      }
+    })
   },
   setProject(state, project) {
     state.project = project
@@ -44,7 +55,17 @@ export const mutations = {
     state.missionInsights = missionInsights
   },
   setPersonas(state, personas) {
-    state.personas = personas
+    state.personas = personas.map((persona) => {
+      return {
+        ...persona,
+        demographicDataReq: persona.demographicDataReq
+          ? persona.demographicDataReq
+          : {
+            occupations: [],
+            genders: []
+          }
+      }
+    })
   }
 }
 

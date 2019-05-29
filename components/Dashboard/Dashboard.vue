@@ -1,23 +1,23 @@
 <template>
   <div class="dashboard">
     <OverlayModal
-      v-if="!$store.state.user.companyId"
+      v-if="!$store.state.tokenCompanyId"
       title="Last Step"
       no-close
       :loading="companyForm.pending"
     >
-      <CompanyForm @submit="companySubmitted" />
+      <CompanyForm />
     </OverlayModal>
     <div class="dashboard-head">
       <Headline text="Projects" />
       <div class="dashboard-create">
-        <div v-if="!projects.length" class="dashboard-create-start">
+        <div v-if="!projects || !projects.length" class="dashboard-create-start">
           <IconStartHereDashboard />
         </div>
         <ButtonCircle type="CREATE" @click="create" />
       </div>
     </div>
-    <div v-if="!projects.length" class="dashboard-projects">
+    <div v-if="!projects || !projects.length" class="dashboard-projects">
       <DashboardProject
         :title="sampleProject.title"
         :description="sampleProject.description"
@@ -89,17 +89,6 @@ export default {
     this.$store.commit('companyForm/init')
   },
   methods: {
-    companySubmitted() {
-      this.$store.commit('companyForm/pending')
-      // renew token to get token with company id
-      this.$auth.renewTokens().then(() => {
-        this.$fetch([{ name: 'USER', forced: true }, { name: 'COMPANY' }]).then(() => {
-          this.$store.commit('companyForm/submitted')
-        })
-      }).catch(() => {
-        this.$router.push(`/auth/login?redirectUrl=${encodeURI('/')}`)
-      })
-    },
     create() {
       this.$store.commit('projectForm/init')
       this.$router.push('/projects/create')

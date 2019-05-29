@@ -1,9 +1,9 @@
 <template>
-  <div class="personas-sidebar-head-item">
-    <p class="personas-sidebar-head-item-value">
+  <div class="persona-sidebar-head-item">
+    <p class="persona-sidebar-head-item-value">
       {{ value }}
     </p>
-    <p class="personas-sidebar-head-item-label">
+    <p class="persona-sidebar-head-item-label">
       {{ label }}
     </p>
   </div>
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'PersonasSidebarHeadItem',
+  name: 'PersonaSidebarHeadItem',
   props: {
     value: {
       type: String,
@@ -26,5 +26,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "PersonasSidebarHeadItem";
+  @import "PersonaSidebarHeadItem";
 </style>

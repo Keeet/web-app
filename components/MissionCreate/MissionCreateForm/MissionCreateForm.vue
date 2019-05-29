@@ -120,8 +120,16 @@ export default {
   watch: {
     valid(newValue, oldValue) {
       if (newValue !== oldValue) {
-        this.$store.commit('missionForm/setFormValid', newValue)
+        this.commitValidity()
       }
+    }
+  },
+  mounted() {
+    this.commitValidity()
+  },
+  methods: {
+    commitValidity() {
+      this.$store.commit('missionForm/setFormValid', this.valid)
     }
   }
 }

@@ -16,12 +16,6 @@ export default {
     const IS_OVERVIEW = route.path.endsWith('overview')
     const IS_INDEX = !IS_INSIGHT && !IS_OVERVIEW
 
-    if (IS_INSIGHT) {
-      store.commit('missionPage/showInsights')
-    } else if (IS_OVERVIEW || IS_INDEX) {
-      store.commit('missionPage/showOverview')
-    }
-
     if (IS_INSIGHT || IS_OVERVIEW) {
       store.commit('missionPage/disableAnimation', true)
     } else {
@@ -42,7 +36,13 @@ export default {
         fetchCfg.push({ name: 'MISSION_INSIGHTS', id })
       }
     }
-    return $fetch(fetchCfg)
+    return $fetch(fetchCfg).then(() => {
+      if (IS_INSIGHT) {
+        store.commit('missionPage/showInsights')
+      } else if (IS_OVERVIEW || IS_INDEX) {
+        store.commit('missionPage/showOverview')
+      }
+    })
   }
 }
 </script>

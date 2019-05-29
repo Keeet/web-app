@@ -4,10 +4,10 @@
       :user="user"
     />
     <AccountTeamMembersItem
-      v-for="(user, x) in companyUsers"
+      v-for="(companyUser, x) in companyUsers"
       :key="x"
       :index="x"
-      :user="user"
+      :user="companyUser"
     />
   </div>
 </template>
@@ -22,7 +22,8 @@ export default {
       return this.$store.state.user
     },
     companyUsers() {
-      return this.$store.state.companyUsers
+      const companyUsers = this.$store.state.companyUsers.slice()
+      return companyUsers.filter(user => user.id !== this.user.id)
     }
   }
 }

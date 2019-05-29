@@ -69,6 +69,9 @@ export default {
     },
     descriptionFormatted() {
       const maxLength = 100
+      if (!this.description) {
+        return '-'
+      }
       if (this.description.length > maxLength) {
         return `${this.description.substr(0, maxLength)}...`
       }

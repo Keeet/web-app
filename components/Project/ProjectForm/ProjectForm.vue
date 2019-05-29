@@ -32,6 +32,9 @@ export default {
     s() {
       return this.$store.state.projectForm
     },
+    project() {
+      return this.$store.state.project
+    },
     titleError() { return this.s.title !== '' ? null : 'required' },
     formValid() {
       return !this.titleError
@@ -39,10 +42,13 @@ export default {
   },
   methods: {
     submit() {
+      const { id } = this.project
       this.$store.commit('projectForm/pending')
       this.$push.upsertProject(this.s).then(() => {
-        this.$store.commit('projectForm/submitted')
-        this.$store.commit('projectForm/setOverlayOpened', false)
+        this.$fetch([{ name: 'PROJECT', id, forced: true }]).then(() => {
+          this.$store.commit('projectForm/submitted')
+          this.$store.commit('projectForm/setOverlayOpened', false)
+        })
       })
     }
   }

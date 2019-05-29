@@ -1,6 +1,6 @@
 <template>
   <div class="account-team">
-    <AccountTeamBox :title="`Members (${companyUsers.length + 1})`">
+    <AccountTeamBox :title="`Members (${companyUsers.length})`">
       <AccountTeamMembers />
     </AccountTeamBox>
     <AccountTeamBox title="Invite members" :aos-delay="400">

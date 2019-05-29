@@ -44,9 +44,11 @@
       </div>
     </div>
     <div class="personas-sidebar">
-      <PersonasSidebar
+      <PersonaSidebar
         :active="personasPageStore.sidebarActive"
         :persona="sidebarPersona"
+        :readonly="!sidebarPersona.id"
+        @edit="editPersona"
         @close="closeSidebar"
         @delete="showDeletePopup"
       />
@@ -71,11 +73,11 @@ import samplePersona from '../../assets/samples/samplePersona'
 import PersonaIcon from '../_shared/PersonaIcon/PersonaIcon'
 import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
 import Confirm from '../_shared/Confirm/Confirm'
-import PersonasSidebar from './PersonasSidebar/PersonasSidebar'
+import PersonaSidebar from '../_shared/PersonaSidebar/PersonaSidebar'
 
 export default {
   name: 'Persona',
-  components: { Confirm, PersonasSidebar, ButtonCircle, PersonaIcon, Headline },
+  components: { PersonaSidebar, Confirm, ButtonCircle, PersonaIcon, Headline },
   data() {
     return {
       samplePersona
@@ -122,6 +124,10 @@ export default {
     createPersona() {
       this.$store.commit('personaForm/init')
       this.$router.push('/personas/create')
+    },
+    editPersona(persona) {
+      this.$store.commit('personaForm/init', persona)
+      this.$router.push('/personas/edit')
     }
   }
 }

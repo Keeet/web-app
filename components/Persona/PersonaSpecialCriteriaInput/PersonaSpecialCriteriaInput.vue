@@ -58,6 +58,9 @@ export default {
       if (!this.isNew && this.value === '') {
         this.deleteItem()
       }
+      if (this.isNew && this.value !== '') {
+        this.addItem()
+      }
     },
     addItem() {
       if (this.value !== '') {

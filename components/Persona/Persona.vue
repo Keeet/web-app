@@ -11,9 +11,10 @@
           :active="activeStep === 0"
           :next-step-mutation="nextMut"
           :prev-step-mutation="prevMut"
+          @invalidNext="showStep1Errors = true"
         >
           <Headline :text="avatarHeadline" center />
-          <PersonaAvatar />
+          <PersonaAvatar :name-error="nameError" :show-errors="showStep1Errors || isUpdate" />
         </FormStep>
       </div>
       <FormStep
@@ -75,14 +76,32 @@ export default {
   data() {
     return {
       nextMut: 'personaForm/nextStep',
-      prevMut: 'personaForm/previousStep'
+      prevMut: 'personaForm/previousStep',
+      showStep1Errors: false
     }
   },
   computed: {
     s() {
       return this.$store.state.personaForm
     },
-    nameError() { return this.s.name !== '' ? null : 'required' },
+    isUpdate() {
+      return !!this.s.id
+    },
+    nameError() {
+      const name = this.s.name
+      if (name === '') {
+        return 'required'
+      }
+      const sameNamePersonas = this.$store.state.personas.filter(p => p.name === name)
+      const sameNamePersona = sameNamePersonas.length ? sameNamePersonas[0] : null
+      if (sameNamePersona) {
+        const isSameOnUpdate = this.s.id === sameNamePersona.id
+        if (!isSameOnUpdate) {
+          return 'Name already in use'
+        }
+      }
+      return null
+    },
     iconError() { return this.s.icon !== null ? null : 'required' },
     step1Valid() {
       return !this.nameError && !this.iconError
@@ -105,11 +124,6 @@ export default {
       window.scrollTo(0, 0)
     }
   },
-  mounted() {
-    if (!this.s.init) {
-      this.$router.push('/personas')
-    }
-  },
   methods: {
     buildPersona(generateId = false) {
       const { id, name, icon, minAge, maxAge, genders, occupations, screenerQuestions } = this.s
@@ -118,7 +132,7 @@ export default {
         name,
         icon,
         demographicDataReq: { minAge, maxAge, genders, occupations },
-        screenerQuestions
+        screenerQuestions: screenerQuestions.map(sq => sq.value)
       }
     },
     submit(skipSaveTemp = false) {
@@ -135,10 +149,15 @@ export default {
       this.$push.upsertPersona(req).then(() => {
         this.$store.commit('personaForm/submitted')
         this.$fetch([{ name: 'PERSONAS', forced: true }]).then(() => {
-          const createdPersona = this.$store.state.personas.filter(p => p.name === this.s.name)[0]
+          const upsertedPersona = this.$store.state.personas.filter(p => p.name === this.s.name)[0]
+
+          const sidebarPersona = this.$store.state.personasPage.sidebarPersona
+          if (sidebarPersona && sidebarPersona.id === upsertedPersona.id) {
+            this.$store.commit('personasPage/setSidebarPersona', upsertedPersona)
+          }
 
           if (this.s.missionEntrypoint) {
-            this.$store.commit('missionForm/setPersona', createdPersona)
+            this.$store.commit('missionForm/setPersona', upsertedPersona)
             this.$router.push('/missions/create')
             return
           }

@@ -40,6 +40,8 @@ import { MISSION_INSIGHT_LINKS } from '../../constants'
 import OverlayModal from '../../_shared/OverlayModal/OverlayModal'
 import Input from '../../_shared/Input/Input'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
+import { isLink } from '../../../utils/stringUtils'
+
 export default {
   name: 'MissionInsightsForm',
   components: { ButtonText, Input, OverlayModal },
@@ -53,7 +55,18 @@ export default {
     mission() {
       return this.$store.state.mission
     },
-    urlError() { return this.s.url !== '' ? null : 'required' },
+    urlError() {
+      if (this.s.url === '') {
+        return 'required'
+      }
+      if (!isLink(this.s.url)) {
+        if (!this.s.url.startsWith('http://') && !this.s.url.startsWith('https://') && isLink(`https://${this.s.url}`)) {
+          return null
+        }
+        return 'invalid url'
+      }
+      return null
+    },
     titleError() { return this.s.title !== '' ? null : 'required' },
     valid() {
       return !this.urlError && !this.titleError
@@ -68,7 +81,7 @@ export default {
         missionId,
         title,
         description,
-        url,
+        url: url.startsWith('http://') || url.startsWith('https://') ? url : `https://${url}`,
         linkType: this.getLinkType(url)
       }).then(() => {
         this.$fetch([{ name: 'MISSION_INSIGHTS', id: missionId, forced: true }]).then(() => {

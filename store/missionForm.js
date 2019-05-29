@@ -20,7 +20,8 @@ const defaultState = {
   inProgress: true,
   pending: false,
 
-  tempPersonas: []
+  tempPersonas: [],
+  personaSidebarActive: false
 }
 
 export const state = () => (defaultState)
@@ -47,7 +48,10 @@ export const mutations = {
     state.title = title
   },
   setPersona(state, persona) {
-    state.persona = persona
+    state.persona = {
+      ...persona,
+      screenerQuestions: persona.screenerQuestions.map(sq => sq.value)
+    }
   },
   switchPersonaDropdown(state) {
     state.personaDropdownOpened = !state.personaDropdownOpened

@@ -2,7 +2,7 @@
   <SidebarLeft
     :cancel-path="`/projects/${mission.projectId}`"
     :title="mission.title"
-    :description="mission.description"
+    :description="description"
     :disable-edit-head="isSample"
     :disable-animation="missionPage.disableAnimation"
     @editHead="editMissionMetadata"
@@ -76,6 +76,13 @@ export default {
     },
     isSample() {
       return this.$store.state.mission.id.startsWith('sample')
+    },
+    description() {
+      const descr = this.mission.description
+      if (!descr) {
+        return 'Enter you mission description here to explain what you want to achieve with this research session...'
+      }
+      return descr.replace(/\n/g, '<br />')
     }
   },
   mounted() {

@@ -18,9 +18,9 @@
         <div class="sidebar-left-head-edit">
           <IconPencil v-if="!disableEditHead" @click="editHead" />
         </div>
-        <p class="sidebar-left-head-description" @click="editHead">
-          {{ description }}
-        </p>
+        <div class="sidebar-left-head-description" @click="editHead">
+          <pre>{{ description }}</pre>
+        </div>
       </div>
       <div class="sidebar-left-body">
         <slot />

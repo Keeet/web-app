@@ -12,7 +12,7 @@
       title="Description"
       :value="s.description"
       mutation="missionMetadataForm/setDescription"
-      placeholder="Enter you mission description here to explain what you want to achieve with this research session …"
+      placeholder="Enter you mission description here to explain what you want to achieve with this research session..."
       textarea
     />
     <ButtonText text="Update" :disabled="!formValid" @click="submit" @disabledClick="showErrors = true" />

@@ -5,7 +5,10 @@
     </p>
     <div class="mission-create-summary-persona-body">
       <div class="mission-create-summary-persona-icon">
-        <PersonaIcon :icon="persona.icon" adjust-size />
+        <PersonaIcon
+          :icon="persona.icon"
+          adjust-size
+        />
       </div>
       <div class="mission-create-summary-persona-info">
         <p class="mission-create-summary-persona-info-name">
