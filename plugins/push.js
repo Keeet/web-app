@@ -14,11 +14,11 @@ export default function (context, inject) {
 
     upsertCompany({ id, name, country, city, zipCode, street, houseNumber, addressDescription }) {
       const method = !id ? 'post' : 'put'
-      const url = !id ? '/companies' : `/companies/${id}`
       return $axios({
         method,
-        url,
+        url: '/companies',
         data: {
+          id,
           name,
           country,
           city,
@@ -106,7 +106,7 @@ export default function (context, inject) {
       })
     },
 
-    createMission({ projectId, type, title, description, duration, sessions, country, city, zipCode, street, houseNumber, addressDescription, persona: { name, icon, demographicDataReq: { minAge, maxAge, occupations, genders }, screenerQuestions } }) {
+    createMission({ projectId, type, title, description, duration, language, sessions, country, city, zipCode, street, houseNumber, addressDescription, persona: { name, icon, demographicDataReq: { minAge, maxAge, occupations, genders }, screenerQuestions } }) {
       return $axios({
         method: 'post',
         url: '/missions',
@@ -116,6 +116,7 @@ export default function (context, inject) {
           title,
           description,
           duration,
+          language,
           sessions,
           country,
           city,

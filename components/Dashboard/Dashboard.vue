@@ -6,7 +6,7 @@
       no-close
       :loading="companyForm.pending"
     >
-      <CompanyForm @submit="companySubmitted" />
+      <CompanyForm />
     </OverlayModal>
     <div class="dashboard-head">
       <Headline text="Projects" />
@@ -89,17 +89,6 @@ export default {
     this.$store.commit('companyForm/init')
   },
   methods: {
-    companySubmitted() {
-      this.$store.commit('companyForm/pending')
-      // renew token to get token with company id
-      this.$auth.renewTokens().then(() => {
-        this.$fetch([{ name: 'USER', forced: true }, { name: 'COMPANY' }]).then(() => {
-          this.$store.commit('companyForm/submitted')
-        })
-      }).catch(() => {
-        this.$router.push(`/auth/login?redirectUrl=${encodeURI('/')}`)
-      })
-    },
     create() {
       this.$store.commit('projectForm/init')
       this.$router.push('/projects/create')

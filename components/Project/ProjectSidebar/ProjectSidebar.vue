@@ -3,7 +3,7 @@
     <SidebarLeft
       cancel-path="/"
       :title="project.title"
-      :description="project.description"
+      :description="description"
       :disable-edit-head="isSample"
       @editHead="editProject"
     >
@@ -30,6 +30,9 @@ export default {
     },
     isSample() {
       return !this.project.id
+    },
+    description() {
+      return this.project.description || 'Enter you project description here to explain what you want to achieve with this research session...'
     }
   },
   methods: {

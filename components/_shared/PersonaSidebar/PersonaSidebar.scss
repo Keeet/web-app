@@ -1,4 +1,4 @@
-.personas-sidebar {
+.persona-sidebar {
   position: fixed;
   z-index: 1;
   top: 0;
@@ -16,7 +16,7 @@
     right: 0;
   }
 
-  .personas-sidebar-close {
+  .persona-sidebar-close {
     position: absolute;
     z-index: 1;
     left: 0;
@@ -24,14 +24,14 @@
     transform: translate(-50%, -50%);
   }
 
-  .personas-sidebar-head {
+  .persona-sidebar-head {
     position: relative;
     padding: 100px 30px 0 30px;
     display: flex;
     align-items: baseline;
     border-bottom: 3px solid rgba($grey, 0.16);
 
-    .personas-sidebar-head-bg {
+    .persona-sidebar-head-bg {
       position: absolute;
       top: 0;
       left: 0;
@@ -39,7 +39,7 @@
       height: 200px;
     }
 
-    .personas-sidebar-head-delete {
+    .persona-sidebar-head-delete {
       position: absolute;
       right: 20px;
       top: 80px;
@@ -50,11 +50,11 @@
       }
     }
 
-    .personas-sidebar-head-img {
+    .persona-sidebar-head-img {
       position: relative;
       width: 150px;
 
-      .personas-sidebar-head-img-button {
+      .persona-sidebar-head-img-button {
         width: 130px;
         min-height: 36px; // if button is missing in sample persona
         margin: 0 auto;
@@ -66,7 +66,7 @@
         }
       }
 
-      .personas-sidebar-head-img-name {
+      .persona-sidebar-head-img-name {
         position: absolute;
         left: 180px;
         top: 50px;
@@ -76,7 +76,7 @@
     }
   }
 
-  .personas-sidebar-body {
+  .persona-sidebar-body {
     padding: 30px 50px;
     overflow-y: auto;
   }

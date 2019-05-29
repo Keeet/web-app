@@ -1,33 +1,38 @@
 <template>
   <div
-    class="personas-sidebar"
+    class="persona-sidebar"
     :class="{ active }"
   >
-    <div class="personas-sidebar-close">
-      <ButtonCircle type="ANGLE_RIGHT" large @click="close" />
+    <div class="persona-sidebar-close">
+      <ButtonCircle type="ANGLE_RIGHT" large @click="$emit('close')" />
     </div>
-    <div class="personas-sidebar-head">
-      <div class="personas-sidebar-head-bg" :class="`${persona.icon.toLowerCase()}-bg`" />
-      <div v-if="!isSample" class="personas-sidebar-head-delete">
+    <div class="persona-sidebar-head">
+      <div class="persona-sidebar-head-bg" :class="`${persona.icon.toLowerCase()}-bg`" />
+      <div v-if="!readonly" class="persona-sidebar-head-delete">
         <IconDelete @click="$emit('delete')" />
       </div>
-      <div class="personas-sidebar-head-img">
-        <div class="personas-sidebar-head-img-icon">
+      <div class="persona-sidebar-head-img">
+        <div class="persona-sidebar-head-img-icon">
           <PersonaIcon :icon="persona.icon" :white-bg="true" :no-click="true" />
         </div>
-        <p class="personas-sidebar-head-img-name" :class="`${persona.icon.toLowerCase()}-bg-font`">
+        <p class="persona-sidebar-head-img-name" :class="`${persona.icon.toLowerCase()}-bg-font`">
           {{ persona.name }}
         </p>
-        <div class="personas-sidebar-head-img-button">
-          <ButtonText v-if="!isSample" text="Edit persona" type="GREY" @click="editPersona" />
+        <div class="persona-sidebar-head-img-button">
+          <ButtonText
+            v-if="!readonly"
+            text="Edit persona"
+            type="GREY"
+            @click="$emit('edit', persona)"
+          />
         </div>
       </div>
-      <PersonasSidebarHeadItem :value="formattedGender" label="Gender" />
-      <PersonasSidebarHeadItem :value="formattedAge" label="Age" />
+      <PersonaSidebarHeadItem :value="formattedGender" label="Gender" />
+      <PersonaSidebarHeadItem :value="formattedAge" label="Age" />
     </div>
-    <div class="personas-sidebar-body">
-      <PersonasSidebarTable v-if="generalCriteria.length" title="General Criteria" :rows="generalCriteria" />
-      <PersonasSidebarTable v-if="specialCriteria.length" title="Special Criteria" :rows="specialCriteria" />
+    <div class="persona-sidebar-body">
+      <PersonaSidebarTable v-if="generalCriteria.length" title="General Criteria" :rows="generalCriteria" />
+      <PersonaSidebarTable v-if="specialCriteria.length" title="Special Criteria" :rows="specialCriteria" />
     </div>
   </div>
 </template>
@@ -35,14 +40,14 @@
 <script>
 import ButtonText from '../../_shared/ButtonText/ButtonText'
 import PersonaIcon from '../../_shared/PersonaIcon/PersonaIcon'
-import PersonasSidebarHeadItem from '../PersonasSidebarHeadItem/PersonasSidebarHeadItem'
-import PersonasSidebarTable from '../PersonasSidebarTable/PersonasSidebarTable'
 import ButtonCircle from '../../_shared/ButtonCircle/ButtonCircle'
 import { PERSONA_OCCUPATION_LABELS, PERSONA_GENDER_LABELS } from '../../constants'
+import PersonaSidebarHeadItem from './PersonaSidebarHeadItem/PersonaSidebarHeadItem'
+import PersonaSidebarTable from './PersonaSidebarTable/PersonaSidebarTable'
 
 export default {
-  name: 'PersonasSidebar',
-  components: { ButtonCircle, PersonasSidebarTable, PersonasSidebarHeadItem, PersonaIcon, ButtonText },
+  name: 'PersonaSidebar',
+  components: { PersonaSidebarTable, PersonaSidebarHeadItem, ButtonCircle, PersonaIcon, ButtonText },
   props: {
     persona: {
       type: Object,
@@ -51,15 +56,13 @@ export default {
     active: {
       type: Boolean,
       default: false
+    },
+    readonly: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
-    isSample() {
-      return !this.persona.id
-    },
-    personasPageStore() {
-      return this.$store.state.personasPage
-    },
     formattedGender() {
       const genders = this.persona.demographicDataReq.genders
       if (!genders.length) {
@@ -96,19 +99,10 @@ export default {
         }
       })
     }
-  },
-  methods: {
-    editPersona() {
-      this.$store.commit('personaForm/init', this.persona)
-      this.$router.push('/personas/edit')
-    },
-    close() {
-      this.$emit('close')
-    }
   }
 }
 </script>
 
 <style scoped lang="scss">
-  @import "PersonasSidebar";
+  @import "PersonaSidebar";
 </style>

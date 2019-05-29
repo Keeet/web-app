@@ -22,7 +22,8 @@ export default {
       return this.$store.state.user
     },
     companyUsers() {
-      return this.$store.state.companyUsers
+      const companyUsers = this.$store.state.companyUsers.slice()
+      return companyUsers.filter(user => user.id !== this.user.id)
     }
   }
 }

@@ -92,13 +92,14 @@ export default {
       }
     },
     buildMission() {
-      const { projectId, type, title, description, duration, persona, sessions, location } = this.s
+      const { projectId, type, title, description, duration, language, persona, sessions, location } = this.s
       const mission = {
         projectId,
         type,
         title,
         description,
         duration,
+        language,
         persona,
         sessions: sessions.map(session => session.start.toISOString())
       }

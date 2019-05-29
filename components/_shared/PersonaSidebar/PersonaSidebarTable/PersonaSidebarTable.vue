@@ -1,19 +1,19 @@
 <template>
-  <div class="personas-sidebar-table">
-    <p class="personas-sidebar-table-headline">
+  <div class="persona-sidebar-table">
+    <p class="persona-sidebar-table-headline">
       {{ title }}
     </p>
-    <table class="personas-sidebar-table-content">
+    <table class="persona-sidebar-table-content">
       <tbody>
         <tr
           v-for="(row, x) in rows"
           :key="x"
           :class="{ dark: (x+1)%2 }"
         >
-          <td class="personas-sidebar-table-content-label">
+          <td class="persona-sidebar-table-content-label">
             {{ row.label }}
           </td>
-          <td class="personas-sidebar-table-content-value">
+          <td class="persona-sidebar-table-content-value">
             {{ row.value }}
           </td>
         </tr>
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'PersonasSidebarTable',
+  name: 'PersonaSidebarTable',
   props: {
     title: {
       type: String,
@@ -39,5 +39,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "PersonasSidebarTable";
+  @import "PersonaSidebarTable";
 </style>
