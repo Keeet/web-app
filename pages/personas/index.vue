@@ -8,7 +8,7 @@ export default {
   name: 'PersonasPage',
   components: { Personas },
   fetch({ app: { $fetch } }) {
-    return $fetch([{ name: 'USER' }, { name: 'PERSONAS', mockDataKey: 'mockDataEmpty' }])
+    return $fetch([{ name: 'USER' }, { name: 'PERSONAS' }])
   }
 }
 </script>

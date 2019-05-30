@@ -84,10 +84,8 @@ export default {
         url: url.startsWith('http://') || url.startsWith('https://') ? url : `https://${url}`,
         linkType: this.getLinkType(url)
       }).then(() => {
-        this.$fetch([{ name: 'MISSION_INSIGHTS', id: missionId, forced: true }]).then(() => {
-          this.$store.commit('missionInsightsForm/submitted')
-          this.$store.commit('missionPage/closeInsightForm')
-        })
+        this.$store.commit('missionInsightsForm/submitted')
+        this.$store.commit('missionPage/closeInsightForm')
       })
     },
     getLinkType(url) {

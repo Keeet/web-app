@@ -76,7 +76,7 @@ import Confirm from '../_shared/Confirm/Confirm'
 import PersonaSidebar from '../_shared/PersonaSidebar/PersonaSidebar'
 
 export default {
-  name: 'Persona',
+  name: 'Personas',
   components: { PersonaSidebar, Confirm, ButtonCircle, PersonaIcon, Headline },
   data() {
     return {
@@ -114,11 +114,9 @@ export default {
       const { id } = persona
       this.$store.commit('personasPage/setDeletePending', true)
       this.$push.deletePersona({ id }).then(() => {
-        this.$fetch([{ name: 'PERSONAS', forced: true }]).then(() => {
-          this.hideDeletePopup()
-          this.closeSidebar()
-          this.$store.commit('personasPage/setDeletePending', false)
-        })
+        this.hideDeletePopup()
+        this.closeSidebar()
+        this.$store.commit('personasPage/setDeletePending', false)
       })
     },
     createPersona() {

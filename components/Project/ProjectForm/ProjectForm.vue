@@ -32,23 +32,28 @@ export default {
     s() {
       return this.$store.state.projectForm
     },
-    project() {
-      return this.$store.state.project
+    projects() {
+      return this.$store.state.projects
     },
-    titleError() { return this.s.title !== '' ? null : 'required' },
+    titleError() {
+      if (this.s.title === '') {
+        return 'required'
+      }
+      if (this.projects.filter(p => p.id !== this.s.id).map(p => p.title).includes(this.s.title)) {
+        return 'name already used'
+      }
+      return null
+    },
     formValid() {
       return !this.titleError
     }
   },
   methods: {
     submit() {
-      const { id } = this.project
       this.$store.commit('projectForm/pending')
       this.$push.upsertProject(this.s).then(() => {
-        this.$fetch([{ name: 'PROJECT', id, forced: true }]).then(() => {
-          this.$store.commit('projectForm/submitted')
-          this.$store.commit('projectForm/setOverlayOpened', false)
-        })
+        this.$store.commit('projectForm/submitted')
+        this.$store.commit('projectForm/setOverlayOpened', false)
       })
     }
   }

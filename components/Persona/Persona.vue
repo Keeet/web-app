@@ -147,23 +147,20 @@ export default {
       this.$store.commit('personaForm/pending')
       const req = this.buildPersona()
       this.$push.upsertPersona(req).then(() => {
-        this.$store.commit('personaForm/submitted')
-        this.$fetch([{ name: 'PERSONAS', forced: true }]).then(() => {
-          const upsertedPersona = this.$store.state.personas.filter(p => p.name === this.s.name)[0]
+        const upsertedPersona = this.$store.state.personas.filter(p => p.name === this.s.name)[0]
 
-          const sidebarPersona = this.$store.state.personasPage.sidebarPersona
-          if (sidebarPersona && sidebarPersona.id === upsertedPersona.id) {
-            this.$store.commit('personasPage/setSidebarPersona', upsertedPersona)
-          }
+        const sidebarPersona = this.$store.state.personasPage.sidebarPersona
+        if (sidebarPersona && sidebarPersona.id === upsertedPersona.id) {
+          this.$store.commit('personasPage/setSidebarPersona', upsertedPersona)
+        }
 
-          if (this.s.missionEntrypoint) {
-            this.$store.commit('missionForm/setPersona', upsertedPersona)
-            this.$router.push('/missions/create')
-            return
-          }
+        if (this.s.missionEntrypoint) {
+          this.$store.commit('missionForm/setPersona', upsertedPersona)
+          this.$router.push('/missions/create', () => { this.$store.commit('personaForm/submitted') })
+          return
+        }
 
-          this.$router.push('/personas')
-        })
+        this.$router.push('/personas', () => { this.$store.commit('personaForm/submitted') })
       })
     },
     submitTempForMission() {

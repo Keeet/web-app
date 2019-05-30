@@ -96,11 +96,9 @@ export default {
       if (role !== this.user.role) {
         const { id } = this.user
         this.pendingRole = role
-        this.$push.updateUserRole({ id, role }).then(() => {
-          this.$fetch([{ name: 'COMPANY_USERS', forced: true }]).then(() => {
-            this.pendingRole = null
-            this.$store.commit('accountPage/closeRoleDropdown')
-          })
+        this.$push.updateCompanyUserRole({ id, role }).then(() => {
+          this.pendingRole = null
+          this.$store.commit('accountPage/closeRoleDropdown')
         })
       }
     }

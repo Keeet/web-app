@@ -10,7 +10,7 @@ export default {
   fetch({ app: { $fetch }, store }) {
     const fetchCfg = [{ name: 'USER' }]
     if (store.state.tokenCompanyId) {
-      fetchCfg.push({ name: 'PROJECTS', mockDataKey: 'mockDataEmpty' })
+      fetchCfg.push({ name: 'PROJECTS' })
     }
     return $fetch(fetchCfg)
   }

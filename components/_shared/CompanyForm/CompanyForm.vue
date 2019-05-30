@@ -130,19 +130,8 @@ export default {
     submitForm() {
       this.$store.commit('companyForm/pending')
       this.$push.upsertCompany(this.s).then(() => {
-        if (this.onCreate) {
-          // renew token to get token with company id
-          this.$auth.renewTokens().then(() => {
-            this.$fetch([{ name: 'USER', forced: true }, { name: 'COMPANY' }]).then(() => {
-              this.$store.commit('companyForm/submitted')
-            })
-          }).catch(() => {
-            this.$router.push(`/auth/login?redirectUrl=${encodeURI('/')}`)
-          })
-        } else {
-          this.$fetch([{ name: 'COMPANY', forced: true }])
-          this.$store.commit('companyForm/submitted')
-        }
+        this.$store.commit('companyForm/submitted')
+        this.$emit('submit')
       })
     }
   }

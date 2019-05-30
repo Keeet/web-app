@@ -8,7 +8,7 @@ export default {
   name: 'Create',
   components: { ProjectCreate },
   fetch({ app: { $fetch } }) {
-    return $fetch([{ name: 'USER' }])
+    return $fetch([{ name: 'USER' }, { name: 'PROJECTS' }])
   }
 }
 </script>

@@ -9,7 +9,7 @@ module.exports = {
   },
 
   router: {
-    middleware: ['unauthenticated']
+    middleware: ['unauthenticated', 'redirect']
   },
 
   /*

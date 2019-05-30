@@ -1,30 +1,33 @@
 <template>
-  <div class="mission-insights-item" :class="{ create }">
+  <div
+    class="mission-insights-item"
+    :class="{ create }"
+    :title="insight ? insight.url : ''"
+    @click="openUrl"
+  >
     <div v-if="create" class="mission-insights-item-new">
       <IconPlusSlim />
     </div>
     <div v-else>
-      <a :href="insight.url" target="_blank">
-        <div class="mission-insights-item-head">
-          <div class="mission-insights-item-head-icon">
-            <IconInsightVideo v-if="type === RECORDING" />
-            <IconInsightGeneric v-else-if="insight.linkType === GENERIC" />
-            <IconInsightGoogleDocs v-else-if="insight.linkType === GOOGLE_DOCS" />
-            <IconInsightAirtable v-else-if="insight.linkType === AIR_TABLE" />
-          </div>
-          <p class="mission-insights-item-head-title">
-            {{ headTitle }}
-          </p>
+      <div class="mission-insights-item-head">
+        <div class="mission-insights-item-head-icon">
+          <IconInsightVideo v-if="type === RECORDING" />
+          <IconInsightGeneric v-else-if="insight.linkType === GENERIC" />
+          <IconInsightGoogleDocs v-else-if="insight.linkType === GOOGLE_DOCS" />
+          <IconInsightAirtable v-else-if="insight.linkType === AIR_TABLE" />
         </div>
-        <div class="mission-insights-item-body">
-          <p class="mission-insights-item-body-title">
-            {{ insight.title }}
-          </p>
-          <p class="mission-insights-item-body-description">
-            {{ description }}
-          </p>
-        </div>
-      </a>
+        <p class="mission-insights-item-head-title">
+          {{ headTitle }}
+        </p>
+      </div>
+      <div class="mission-insights-item-body">
+        <p class="mission-insights-item-body-title">
+          {{ insight.title }}
+        </p>
+        <p class="mission-insights-item-body-description">
+          {{ description }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -70,6 +73,13 @@ export default {
           return getDurationWithUnits(this.insight.duration)
       }
       return null
+    }
+  },
+  methods: {
+    openUrl() {
+      if (!this.create && !!this.insight.url) {
+        window.open(this.insight.url, '_blank')
+      }
     }
   }
 }

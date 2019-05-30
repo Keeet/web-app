@@ -83,11 +83,9 @@ export default {
     inviteUser() {
       const { email, role } = this.s
       this.$store.commit('userInviteForm/pending')
-      this.$push.inviteUser({ email, role }).then(() => {
-        this.$fetch([{ name: 'COMPANY_USERS', forced: true }]).then(() => {
-          this.$store.commit('userInviteForm/init', ROLES.USER)
-          this.$store.commit('userInviteForm/submitted')
-        })
+      this.$push.inviteCompanyUser({ email, role }).then(() => {
+        this.$store.commit('userInviteForm/init', ROLES.USER)
+        this.$store.commit('userInviteForm/submitted')
       })
     }
   }

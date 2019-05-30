@@ -77,12 +77,6 @@ export default {
       window.scrollTo(0, 0)
     }
   },
-  mounted() {
-    if (!this.s.init) {
-      // project unknown
-      this.$router.push('/')
-    }
-  },
   methods: {
     cancel() {
       if (this.s.activeStep === 0) {
@@ -121,10 +115,7 @@ export default {
       const { projectId } = this.s
       this.$store.commit('missionForm/pending')
       this.$push.createMission(this.buildMission()).then(() => {
-        this.$fetch([{ name: 'PROJECT', id: projectId, forced: true }]).then(() => {
-          this.$store.commit('missionForm/submitted')
-          this.$router.push(`/projects/${projectId}`)
-        })
+        this.$router.push(`/projects/${projectId}`, () => { this.$store.commit('missionForm/submitted') })
       })
     }
   }

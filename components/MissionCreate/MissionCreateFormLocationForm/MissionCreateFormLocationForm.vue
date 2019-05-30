@@ -119,13 +119,11 @@ export default {
     submitForm() {
       this.$store.commit('locationForm/pending')
       this.$push.createCompanyAddress(this.s).then((res) => {
-        const { id } = res.data
-        this.$fetch([{ name: 'COMPANY', forced: true, mockDataKey: 'mockDataWithLocation' }]).then(() => {
-          const newLocation = this.$store.state.company.locations.filter(l => l.id === id)[0]
-          this.$store.commit('missionForm/setLocation', newLocation)
-          this.$store.commit('locationForm/submitted')
-          this.$store.commit('missionForm/closeLocationForm')
-        })
+        const { id } = res
+        const newLocation = this.$store.state.company.locations.filter(l => l.id === id)[0]
+        this.$store.commit('missionForm/setLocation', newLocation)
+        this.$store.commit('locationForm/submitted')
+        this.$store.commit('missionForm/closeLocationForm')
       })
     }
   }

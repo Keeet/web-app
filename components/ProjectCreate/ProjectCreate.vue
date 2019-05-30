@@ -47,7 +47,18 @@ export default {
     s() {
       return this.$store.state.projectForm
     },
-    titleError() { return this.s.title !== '' ? null : 'required' },
+    projects() {
+      return this.$store.state.projects
+    },
+    titleError() {
+      if (this.s.title === '') {
+        return 'required'
+      }
+      if (this.projects.map(p => p.title).includes(this.s.title)) {
+        return 'name already used'
+      }
+      return null
+    },
     formValid() {
       return !this.titleError
     }
@@ -55,11 +66,9 @@ export default {
   methods: {
     submit() {
       this.$store.commit('projectForm/pending')
-      this.$push.upsertProject(this.s).then((res) => {
-        const { id } = res.data
-        this.$store.commit('projectForm/submitted')
-        this.$fetch([{ name: 'PROJECT', id, forced: true, mockDataKey: 'mockDataNoMissions' }])
-        this.$router.push(`/projects/${id}`)
+      this.$push.upsertProject(this.s).then((data) => {
+        const { id } = data
+        this.$router.push(`/projects/${id}`, () => { this.$store.commit('projectForm/submitted') })
       })
     }
   }
