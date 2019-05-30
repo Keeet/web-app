@@ -12,9 +12,6 @@ module.exports = {
     middleware: ['unauthenticated', 'redirect']
   },
 
-  /*
-  ** Headers of the page
-  */
   head: {
     title: 'Keeet | User Research Made Easy',
     meta: [
@@ -27,14 +24,8 @@ module.exports = {
     ]
   },
 
-  /*
-  ** Customize the progress-bar color
-  */
-  loading: { color: '#fff' },
+  loading: false,
 
-  /*
-  ** Global CSS
-  */
   css: [
     '~/assets/style/global.scss',
     'aos/dist/aos.css'
@@ -46,9 +37,6 @@ module.exports = {
     ]
   },
 
-  /*
-  ** Plugins to load before mounting the App
-  */
   plugins: [
     '~/plugins/auth',
     '~/plugins/axios',
@@ -58,12 +46,10 @@ module.exports = {
     '~/plugins/directives',
     { src: '~/plugins/timeago', ssr: false },
     { src: '~/plugins/aos.js', ssr: false },
+    { src: '~/plugins/ellipsis.js', ssr: false },
     { src: '~/plugins/missionCreateCalendar.js', ssr: false }
   ],
 
-  /*
-  ** Nuxt.js modules
-  */
   modules: [
     '@nuxtjs/axios',
     ['nuxt-rfg-icon', { staticPath: '/_favicons/', masterPicture: 'static/favicon.png' }],
@@ -75,9 +61,6 @@ module.exports = {
     baseURL: 'https://api.keeet.io'
   },
 
-  /*
-  ** Build configuration
-  */
   build: {
     /*
     ** You can extend webpack config here

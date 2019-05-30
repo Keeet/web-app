@@ -30,9 +30,16 @@
           </p>
         </div>
       </ProjectMissionSection>
-      <ProjectMissionSection headline="Description" :type="mission.type" no-border>
+      <ProjectMissionSection headline="Description" :type="mission.type" is-description no-border>
         <p class="project-mission-description">
-          {{ descriptionFormatted }}
+          <ellipsis
+            :text="descriptionFormatted"
+            :line-num="3"
+            font-size="18px"
+            font-family="Roboto"
+            left="..."
+            tag-name="span"
+          />
         </p>
       </ProjectMissionSection>
     </div>
@@ -68,12 +75,8 @@ export default {
       return this.mission.description
     },
     descriptionFormatted() {
-      const maxLength = 100
       if (!this.description) {
         return '-'
-      }
-      if (this.description.length > maxLength) {
-        return `${this.description.substr(0, maxLength)}...`
       }
       return this.description
     },

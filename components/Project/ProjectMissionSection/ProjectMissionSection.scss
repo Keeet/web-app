@@ -10,6 +10,14 @@
     flex-shrink: 0;
   }
 
+  &.isDescription {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 110px;
+    box-sizing: border-box;
+  }
+
   .project-mission-section-headline {
 
     &.IN_HOUSE {

@@ -1,5 +1,5 @@
 <template>
-  <div class="project-mission-section" :class="{ noBorder, noShrink }">
+  <div class="project-mission-section" :class="{ noBorder, noShrink, isDescription }">
     <p class="project-mission-section-headline" :class="type">
       {{ headline }}
     </p>
@@ -29,6 +29,10 @@ export default {
       default: false
     },
     noShrink: {
+      type: Boolean,
+      default: false
+    },
+    isDescription: {
       type: Boolean,
       default: false
     }
