@@ -18,7 +18,7 @@
     </div>
     <div class="account-team-members-item-role">
       <SelectCustom
-        v-if="myUser.role === ROLES.ADMIN && myUser.id !== user.id"
+        v-if="$hasRole('ADMIN') && myUser.id !== user.id"
         :opened="index === accountPage.roleDropdownOpenedIndex"
         :value="user.role"
         :options="selectRoleOptions"
@@ -68,7 +68,6 @@ export default {
   },
   data() {
     return {
-      ROLES,
       ROLE_LABELS,
       pendingRole: null
     }

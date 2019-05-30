@@ -15,7 +15,7 @@
         <p>{{ formattedRole }}</p>
       </template>
     </AccountProfileItem>
-    <AccountProfileItem button-text="Edit Company" :aos-delay="400" @clickButton="editCompany">
+    <AccountProfileItem :button-text="$hasRole('ADMIN') ? 'Edit Company' : null" :aos-delay="400" @clickButton="editCompany">
       <template slot="icon">
         <IconLocation />
       </template>

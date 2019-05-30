@@ -2,7 +2,7 @@
   <div class="personas">
     <div class="personas-head">
       <Headline text="Persona" />
-      <div class="personas-create">
+      <div v-if="$hasAnyRole(['ADMIN', 'USER'])" class="personas-create">
         <div v-if="!personas.length" class="personas-create-start">
           <IconStartHereDashboard />
         </div>
@@ -47,7 +47,7 @@
       <PersonaSidebar
         :active="personasPageStore.sidebarActive"
         :persona="sidebarPersona"
-        :readonly="!sidebarPersona.id"
+        :readonly="!sidebarPersona.id || !$hasAnyRole(['ADMIN', 'USER'])"
         @edit="editPersona"
         @close="closeSidebar"
         @delete="showDeletePopup"

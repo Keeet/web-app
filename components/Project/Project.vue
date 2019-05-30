@@ -11,7 +11,7 @@
     </OverlayModal>
     <div class="project-missions">
       <ProjectMissionsEmpty v-if="!hasMissions" />
-      <div v-if="!isSample" class="project-missions-create">
+      <div v-if="!isSample && $hasAnyRole(['ADMIN', 'USER'])" class="project-missions-create">
         <ButtonCircle type="CREATE" @click="createMission" />
         <IconStartHereMission v-if="!hasMissions" />
       </div>

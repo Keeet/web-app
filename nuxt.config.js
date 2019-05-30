@@ -44,6 +44,7 @@ module.exports = {
     '~/plugins/push',
     '~/plugins/icons',
     '~/plugins/directives',
+    '~/plugins/helpers',
     { src: '~/plugins/timeago', ssr: false },
     { src: '~/plugins/aos.js', ssr: false },
     { src: '~/plugins/ellipsis.js', ssr: false },

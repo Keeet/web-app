@@ -3,7 +3,7 @@
     <AccountTeamBox :title="`Members (${companyUsers.length})`">
       <AccountTeamMembers />
     </AccountTeamBox>
-    <AccountTeamBox title="Invite members" :aos-delay="400">
+    <AccountTeamBox v-if="$hasRole('ADMIN')" title="Invite members" :aos-delay="400">
       <AccountTeamInvite />
     </AccountTeamBox>
   </div>

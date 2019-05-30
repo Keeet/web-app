@@ -10,7 +10,7 @@
     </OverlayModal>
     <div class="dashboard-head">
       <Headline text="Projects" />
-      <div class="dashboard-create">
+      <div v-if="$hasAnyRole(['ADMIN', 'USER'])" class="dashboard-create">
         <div v-if="!projects || !projects.length" class="dashboard-create-start">
           <IconStartHereDashboard />
         </div>

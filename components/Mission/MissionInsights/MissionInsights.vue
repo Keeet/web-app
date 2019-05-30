@@ -14,7 +14,7 @@
           type="LINK"
         />
         <MissionInsightsItem
-          v-if="!isSample"
+          v-if="!isSample && $hasAnyRole(['ADMIN', 'USER'])"
           create
           @click.native="createMissionInsightLink"
         />

@@ -4,7 +4,7 @@
       cancel-path="/"
       :title="project.title"
       :description="description"
-      :disable-edit-head="isSample"
+      :disable-edit-head="isSample || !$hasAnyRole(['ADMIN', 'USER'])"
       @editHead="editProject"
     >
       <SidebarLeftHeadline text="Owner" />

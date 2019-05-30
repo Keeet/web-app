@@ -3,7 +3,7 @@
     :cancel-path="`/projects/${mission.projectId}`"
     :title="mission.title"
     :description="description"
-    :disable-edit-head="isSample"
+    :disable-edit-head="isSample || !$hasAnyRole(['ADMIN', 'USER'])"
     :disable-animation="missionPage.disableAnimation"
     @editHead="editMissionMetadata"
   >
