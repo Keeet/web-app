@@ -35,6 +35,7 @@
       </FormStep>
     </div>
     <Loading v-if="s.pending" fixed-center />
+    <MissionCreateSubmittedPopup v-if="s.submittedPopup" />
   </div>
 </template>
 
@@ -49,10 +50,11 @@ import MissionCreateCalendar from './MissionCreateCalendar/MissionCreateCalendar
 import MissionCreateHeadline from './MissionCreateHeadline/MissionCreateHeadline'
 import MissionCreateSubHeadline from './MissionCreateSubHeadline/MissionCreateSubHeadline'
 import MissionCreateSummary from './MissionCreateSummary/MissionCreateSummary'
+import MissionCreateSubmittedPopup from './MissionCreateSubmittedPopup/MissionCreateSubmittedPopup'
 
 export default {
   name: 'MissionCreate',
-  components: { Loading, MissionCreateSummary, MissionCreateSubHeadline, MissionCreateHeadline, FormStep, MissionCreateCalendar, MissionCreateForm, MissionCreateType, ButtonCircle },
+  components: { MissionCreateSubmittedPopup, Loading, MissionCreateSummary, MissionCreateSubHeadline, MissionCreateHeadline, FormStep, MissionCreateCalendar, MissionCreateForm, MissionCreateType, ButtonCircle },
   data() {
     return {
       nextMut: 'missionForm/nextStep',
@@ -112,10 +114,9 @@ export default {
       return mission
     },
     submit() {
-      const { projectId } = this.s
       this.$store.commit('missionForm/pending')
       this.$push.createMission(this.buildMission()).then(() => {
-        this.$router.push(`/projects/${projectId}`, () => { this.$store.commit('missionForm/submitted') })
+        this.$store.commit('missionForm/showSubmittedPopup')
       })
     }
   }

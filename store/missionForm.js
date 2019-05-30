@@ -14,6 +14,7 @@ const defaultState = {
   sessions: [],
   activeCalendarDay: null,
   sessionErrorPopup: false,
+  submittedPopup: false,
 
   init: false,
   activeStep: 0,
@@ -30,7 +31,7 @@ const COMPANY_LOCATION_ID = 'COMPANY'
 
 export const mutations = {
   init(state, { company, project }) {
-    if (!state.inProgress || !state.init) {
+    if (!state.inProgress || !state.init || project.id !== state.projectId) {
       for (const key in defaultState) {
         state[key] = defaultState[key]
       }
@@ -105,6 +106,12 @@ export const mutations = {
   },
   hideSessionErrorPopup(state) {
     state.sessionErrorPopup = false
+  },
+  showSubmittedPopup(state) {
+    state.submittedPopup = true
+  },
+  hideSubmittedPopup(state) {
+    state.submittedPopup = false
   },
 
   nextStep(state) {
