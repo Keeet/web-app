@@ -1,4 +1,4 @@
-export default function ({ store, redirect, route: { path } }) {
+export default function ({ store, redirect, route: { path }, query: { invitationId } }) {
   if (!path.startsWith('/auth')) {
     if (path === '/personas/create' || path === '/personas/edit') {
       if (!store.state.personaForm.init) {
@@ -11,6 +11,12 @@ export default function ({ store, redirect, route: { path } }) {
       }
     }
     if (path !== '/' && !store.state.tokenCompanyId) {
+      return redirect('/')
+    }
+
+    // invitationId is passed to login screen using the redirect url -> _invitationId.vue
+    // this rule removes the query-param again after successful login
+    if (invitationId) {
       return redirect('/')
     }
   }
