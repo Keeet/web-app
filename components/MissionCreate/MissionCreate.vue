@@ -115,7 +115,8 @@ export default {
     },
     submit() {
       this.$store.commit('missionForm/pending')
-      this.$push.createMission(this.buildMission()).then(() => {
+      this.$push.createMission(this.buildMission()).then(({ id }) => {
+        this.$store.commit('missionForm/setSubmittedMissionId', id)
         this.$store.commit('missionForm/showSubmittedPopup')
       })
     }

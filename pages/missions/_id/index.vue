@@ -9,7 +9,7 @@ import Mission from '../../../components/Mission/Mission'
 
 export default {
   name: 'Id',
-  layout: 'defaultWithoutWrapper',
+  layout: 'defaultLean',
   components: { Mission },
   fetch({ app: { $fetch }, params, store, route }) {
     const IS_INSIGHT = route.path.endsWith('insights')

@@ -6,6 +6,7 @@
 import Persona from '../../components/Persona/Persona'
 export default {
   name: 'PersonaPage',
+  layout: 'defaultNoFooter',
   components: { Persona },
   fetch({ app: { $fetch } }) {
     return $fetch([{ name: 'USER' }, { name: 'PERSONAS' }])

@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     done() {
-      this.$router.push(`/projects/${this.s.projectId}`, () => {
+      this.$router.push(`/missions/${this.s.submittedMissionId}`, () => {
         this.$store.commit('missionForm/hideSubmittedPopup')
         this.$store.commit('missionForm/submitted')
       })

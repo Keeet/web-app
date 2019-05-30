@@ -1,17 +1,45 @@
 .mission-create-summary {
+  position: relative;
 
   .mission-create-summary-body {
     width: calc(100% - 330px);
   }
 
   .mission-create-summary-submit {
-    position: fixed;
-    top: 309px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 1200px;
-    height: 0;
+
+    &.FIXED, .mission-create-summary-submit-ref {
+      position: fixed;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1200px;
+      height: 0;
+    }
+
+    &.ABSOLUTE_TOP, &.ABSOLUTE_BOTTOM {
+      position: absolute;
+      left: 0;
+      right: 0;
+
+      .mission-create-form-submit-inner {
+        position: absolute;
+        right: 0;
+      }
+
+      &.ABSOLUTE_TOP {
+        top: 30px;
+      }
+
+      &.ABSOLUTE_BOTTOM {
+        bottom: -30px;
+
+        .mission-create-form-submit-inner {
+          bottom: 0;
+        }
+      }
+    }
+
 
     .mission-create-summary-submit-inner {
       float: right;

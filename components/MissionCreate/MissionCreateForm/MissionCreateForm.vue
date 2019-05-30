@@ -43,7 +43,8 @@
         </div>
       </MissionCreateBox>
     </div>
-    <div class="mission-create-form-submit">
+    <div class="mission-create-form-submit" :class="submitBoxPositioning">
+      <div class="mission-create-form-submit-ref" />
       <div class="mission-create-form-submit-inner">
         <div class="mission-create-form-submit-box">
           <div class="mission-create-form-submit-head">
@@ -79,6 +80,7 @@ import MissionCreateFormDuration from '../MissionCreateFormDuration/MissionCreat
 import MissionCreateFormLanguage from '../MissionCreateFormLanguage/MissionCreateFormLanguage'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
 import MissionCreateFormLocation from '../MissionCreateFormLocation/MissionCreateFormLocation'
+import { determineFixedOrAbsolute } from '../../../utils/scrollUtils'
 export default {
   name: 'MissionCreateForm',
   components: { MissionCreateFormLocation, ButtonText, MissionCreateFormLanguage, MissionCreateFormDuration, MissionCreateFormPersonaSelect, Input, MissionCreateFormHeadline, MissionCreateBox },
@@ -90,7 +92,7 @@ export default {
   },
   data() {
     const { IN_HOUSE, REMOTE, USABILITY_LAB, SURVEY } = MISSIONS
-    return { IN_HOUSE, REMOTE, USABILITY_LAB, SURVEY, MISSION_LABELS }
+    return { IN_HOUSE, REMOTE, USABILITY_LAB, SURVEY, MISSION_LABELS, submitBoxPositioning: null }
   },
   computed: {
     s() {
@@ -126,10 +128,25 @@ export default {
   },
   mounted() {
     this.commitValidity()
+    this.onScroll()
+    window.addEventListener('scroll', this.onScroll)
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.onScroll)
   },
   methods: {
     commitValidity() {
       this.$store.commit('missionForm/setFormValid', this.valid)
+    },
+    onScroll() {
+      const positioning = determineFixedOrAbsolute(
+        document.getElementsByClassName('mission-create-form-submit-ref')[0],
+        document.getElementsByClassName('mission-create-form-submit-inner')[0],
+        document.getElementsByClassName('mission-create-form')[0]
+      )
+      if (positioning !== this.submitBoxPositioning) {
+        this.submitBoxPositioning = positioning
+      }
     }
   }
 }

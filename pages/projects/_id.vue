@@ -8,7 +8,7 @@ import sampleProject from '../../assets/samples/sampleProject'
 
 export default {
   name: 'Id',
-  layout: 'defaultWithoutWrapper',
+  layout: 'defaultLean',
   components: { Project },
   fetch({ app: { $fetch }, params, store }) {
     const { id } = params

@@ -7,7 +7,14 @@
             {{ title }}
           </p>
           <p class="dashboard-project-text-description">
-            {{ descriptionFormatted }}
+            <ellipsis
+              :text="descriptionFormatted"
+              :line-num="3"
+              font-size="16px"
+              font-family="Roboto"
+              left="..."
+              tag-name="span"
+            />
           </p>
         </div>
         <div class="dashboard-project-owner">
@@ -34,7 +41,7 @@ export default {
     },
     description: {
       type: String,
-      default: 'This research project is about...'
+      default: null
     },
     createdAt: {
       type: String,
@@ -48,6 +55,9 @@ export default {
   computed: {
     descriptionFormatted() {
       const maxLength = 100
+      if (!this.description) {
+        return 'Enter you project description here to explain what you want to achieve with this research session'.substr(0, maxLength)
+      }
       if (this.description.length > maxLength) {
         return `${this.description.substr(0, maxLength)}...`
       }

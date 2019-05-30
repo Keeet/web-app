@@ -15,6 +15,7 @@ const defaultState = {
   activeCalendarDay: null,
   sessionErrorPopup: false,
   submittedPopup: false,
+  submittedMissionId: null,
 
   init: false,
   activeStep: 0,
@@ -112,6 +113,9 @@ export const mutations = {
   },
   hideSubmittedPopup(state) {
     state.submittedPopup = false
+  },
+  setSubmittedMissionId(state, missionId) {
+    state.submittedMissionId = missionId
   },
 
   nextStep(state) {
