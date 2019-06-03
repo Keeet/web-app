@@ -10,7 +10,7 @@
     >
       <MissionCreateTypeItem :type="IN_HOUSE" @click.native="select(IN_HOUSE)" />
       <MissionCreateTypeItem :type="REMOTE" @click.native="select(REMOTE)" />
-      <MissionCreateTypeItem :type="SURVEY" coming-soon />
+      <MissionCreateTypeItem :type="SURVEY" @click.native="select(SURVEY)" />
       <MissionCreateTypeItem :type="USABILITY_LAB" coming-soon />
     </div>
   </div>

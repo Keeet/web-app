@@ -92,7 +92,10 @@ export const LANGUAGES = {
 }
 export const LANGUAGE_LABELS = {
   DE: 'German',
-  EN: 'English'
+  EN: 'English',
+  FR: 'French',
+  ES: 'Spanish',
+  IT: 'Italian'
 }
 
 export const ROLES = {

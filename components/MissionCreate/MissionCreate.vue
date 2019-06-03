@@ -4,6 +4,7 @@
       <ButtonCircle class="mission-create-cancel" type="ARROW_LEFT" @click="cancel" />
       <MissionCreateType v-if="s.activeStep === 0" />
       <FormStep
+        v-if="[MISSIONS.IN_HOUSE, MISSIONS.REMOTE].includes(s.type)"
         :next-step-mutation="nextMut"
         :prev-step-mutation="prevMut"
         :active="s.activeStep === 1"
@@ -13,6 +14,9 @@
         <MissionCreateHeadline :text="`1 / 3 ${MISSION_LABELS[s.type]} Mission`" />
         <MissionCreateRecruitForm :show-errors="showFormErrors" />
       </FormStep>
+      <div v-else-if="s.type === MISSIONS.SURVEY">
+        <MissionCreateSurvey />
+      </div>
       <FormStep
         :next-step-mutation="nextMut"
         :prev-step-mutation="prevMut"
@@ -48,6 +52,7 @@ import MissionCreateType from './MissionCreateType/MissionCreateType'
 import MissionCreateRecruitCalendar from './MissionCreateRecruitCalendar/MissionCreateRecruitCalendar'
 import MissionCreateHeadline from './MissionCreateHeadline/MissionCreateHeadline'
 import MissionCreateSubHeadline from './MissionCreateSubHeadline/MissionCreateSubHeadline'
+import MissionCreateSurvey from './MissionCreateSurvey/MissionCreateSurvey'
 import MissionCreateRecruitSummary from './MissionCreateRecruitSummary/MissionCreateRecruitSummary'
 import MissionCreateRecruitSubmittedPopup
   from './MissionCreateRecruitSubmittedPopup/MissionCreateRecruitSubmittedPopup'
@@ -65,12 +70,14 @@ export default {
     FormStep,
     MissionCreateRecruitCalendar,
     MissionCreateType,
-    ButtonCircle
+    ButtonCircle,
+    MissionCreateSurvey
   },
   data() {
     return {
       nextMut: 'missionForm/nextStep',
       prevMut: 'missionForm/previousStep',
+      MISSIONS,
       MISSION_LABELS,
       showFormErrors: false
     }

@@ -1,5 +1,8 @@
 <template>
   <div class="mission-create-box" :class="{ littlePadding }">
+    <h2 v-if="headline" class="mission-create-box-headline">
+      {{ headline }}
+    </h2>
     <slot />
   </div>
 </template>
@@ -8,6 +11,10 @@
 export default {
   name: 'MissionCreateBox',
   props: {
+    headline: {
+      type: String,
+      default: null
+    },
     littlePadding: {
       type: Boolean,
       default: false
