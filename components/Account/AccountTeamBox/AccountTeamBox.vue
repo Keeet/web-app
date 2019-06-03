@@ -1,16 +1,18 @@
 <template>
   <div
-    class="account-team-box"
+    class="account-team-box-wrapper"
     data-aos="fade-up"
     data-aos-duration="800"
     :data-aos-delay="aosDelay"
     data-aos-once="true"
     data-aos-anchor="body"
   >
-    <p class="account-team-box-headline">
-      {{ title }}
-    </p>
-    <slot />
+    <div class="account-team-box">
+      <p class="account-team-box-headline">
+        {{ title }}
+      </p>
+      <slot />
+    </div>
   </div>
 </template>
 

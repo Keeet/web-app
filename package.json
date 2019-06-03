@@ -29,6 +29,7 @@
     "jwt-decode": "^2.2.0",
     "nuxt": "2.7.1",
     "nuxt-rfg-icon": "0.5.0",
+    "twilio-video": "^2.0.0-beta9",
     "uuid": "latest",
     "vue-slider-component": "^3.0.31",
     "vue-timeago": "5.1.2"
