@@ -1,11 +1,11 @@
 <template>
   <div class="nav">
     <div class="nav-text">
-      <div class="nav-logo">
-        <nuxt-link to="/">
-          Keeet
-        </nuxt-link>
-      </div>
+      <nuxt-link to="/">
+        <div class="nav-logo">
+          <Logo />
+        </div>
+      </nuxt-link>
       <nuxt-link to="/">
         <p class="nav-item" :class="{active: path === '/'}">
           Dashboard
@@ -31,8 +31,10 @@
 </template>
 
 <script>
+import Logo from '../Logo/Logo'
 export default {
   name: 'Nav',
+  components: { Logo },
   computed: {
     path() {
       return this.$route.path

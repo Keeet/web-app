@@ -11,6 +11,9 @@ export default {
   name: 'Id',
   layout: 'defaultLean',
   components: { Mission },
+  validate({ params: { id } }) {
+    return !!id
+  },
   fetch({ app: { $fetch }, params, store, route }) {
     const IS_INSIGHT = route.path.endsWith('insights')
     const IS_OVERVIEW = route.path.endsWith('overview')

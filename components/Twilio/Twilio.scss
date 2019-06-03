@@ -1,0 +1,141 @@
+.twilio-head {
+
+  .twilio-head-logo {
+    position: absolute;
+    z-index: 5;
+    height: 50px;
+    top: 20px;
+    left: 30px;
+    font-size: 180%;
+  }
+
+  .twilio-head-local-stream {
+    position: fixed;
+    z-index: 4;
+    top: 20px;
+    right: 20px;
+    width: 20%;
+    max-width: calc(30vh * 4/3);
+    max-height: 30vh;
+    overflow: hidden;
+
+    &:after {
+      content: "";
+      display: block;
+      padding-bottom: 75%;
+    }
+
+    video {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media only screen and (orientation:portrait) {
+      & {
+        width: 25%;
+        max-width: calc(30vh * 3/4);
+      }
+
+      &:after {
+        padding-bottom: 133.33333%;
+      }
+    }
+  }
+}
+
+.twilio-join {
+  position: fixed;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+
+  .twilio-join-loading-animation {
+    position: relative;
+    width: 60px;
+    margin: 0 auto;
+  }
+
+  .twilio-join-loading-text {
+    width: 90%;
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: center;
+
+    &:hover {
+      cursor: default;
+    }
+  }
+
+  .twilio-join-room-button {
+    width: 90%;
+    max-width: 300px;
+    margin: 0 auto;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.twilio-call {
+  position: relative;
+  z-index: 3;
+
+  .twilio-call-remote-stream {
+    background-color: #000;
+
+    video {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+
+      &.vertical {
+        object-fit: contain;
+      }
+
+      @media only screen and (orientation:portrait) {
+
+        & {
+          object-fit: contain;
+
+          &.vertical {
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+
+  .twilio-call-end {
+    position: fixed;
+    z-index: 4;
+    left: 50%;
+    bottom: 3%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    overflow: hidden;
+    background-color: #ff3f34;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 40px;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.crisp-client {
+  display: none;
+}
