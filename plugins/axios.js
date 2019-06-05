@@ -1,5 +1,8 @@
 export default function ({ $axios, app: { $auth }, redirect, store, route }) {
   $axios.interceptors.request.use(function (config) {
+    if (config.noAuth) {
+      return config
+    }
     return new Promise((resolve) => {
       if ($auth.isAuthenticated()) {
         resolve(setAccessToken(config, store.state.accessToken))

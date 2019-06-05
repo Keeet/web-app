@@ -10,9 +10,6 @@ export default function ({ store, redirect, route: { path }, query: { invitation
         return redirect('/')
       }
     }
-    if (path !== '/' && !store.state.tokenCompanyId) {
-      return redirect('/')
-    }
 
     // invitationId is passed to login screen using the redirect url -> _invitationId.vue
     // this rule removes the query-param again after successful login

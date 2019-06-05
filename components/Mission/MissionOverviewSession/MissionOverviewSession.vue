@@ -11,7 +11,11 @@
       <MissionOverviewSessionIcon type="EMAIL" :href="`mailto:${session.email}`" :disabled="!recruited || isSample" />
     </div>
     <div v-if="mission.type === MISSIONS.REMOTE" class="mission-overview-session-remote-call border-left">
-      <p class="mission-overview-session-remote-call-button" :class="{ disabled: !recruited }">
+      <p
+        class="mission-overview-session-remote-call-button"
+        :class="{ disabled: !recruited }"
+        @click="startCall"
+      >
         Start call
       </p>
     </div>
@@ -59,6 +63,14 @@ export default {
       addMinutes(end, this.mission.duration)
 
       return `${getAmPmTime(start)} - ${getAmPmTime(end)}`
+    }
+  },
+  methods: {
+    startCall() {
+      if (!this.recruited) {
+        return
+      }
+      this.$router.push(`/video-session/${this.session.id}/company`)
     }
   }
 }
