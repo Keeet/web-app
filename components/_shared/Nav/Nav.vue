@@ -16,6 +16,7 @@
           Personas
         </p>
       </nuxt-link>
+      <Staging />
     </div>
     <nuxt-link to="/account">
       <div class="nav-profile">
@@ -32,9 +33,10 @@
 
 <script>
 import Logo from '../Logo/Logo'
+import Staging from '../Staging/Staging'
 export default {
   name: 'Nav',
-  components: { Logo },
+  components: { Staging, Logo },
   computed: {
     path() {
       return this.$route.path

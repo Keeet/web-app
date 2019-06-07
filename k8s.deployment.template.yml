@@ -1,15 +1,15 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: web-app
+  name: web-app-${DRONE_BRANCH}
 spec:
   template:
     metadata:
       labels:
-        app: web-app
+        app: web-app-${DRONE_BRANCH}
     spec:
       containers:
-        - name: web-app
+        - name: web-app-${DRONE_BRANCH}
           image: keeet/web-app:${DRONE_COMMIT_SHA}
       imagePullSecrets:
         - name: regcred

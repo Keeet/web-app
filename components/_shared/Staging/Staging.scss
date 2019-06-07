@@ -1,0 +1,14 @@
+.staging {
+  font-size: 100%;
+  color: $grey-mid-dark;
+
+  svg {
+    margin-left: 5px;
+    width: 10px;
+    fill: $grey-mid-dark;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

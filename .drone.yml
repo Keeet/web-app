@@ -52,10 +52,8 @@ steps:
     when:
       event:
         - push
-      branch:
-        - master
 
-  - name: deploy to k8s
+  - name: deploy to k8s prod
     image: roffe/kubectl:v1.13.2
     environment:
       KUBECONFIG: .kubeconfig
@@ -63,14 +61,42 @@ steps:
         from_secret: kubeconfig
     commands:
       - echo $KUBECONFIG_CONTENT | base64 -d > $(echo $KUBECONFIG)
-      - envsubst < k8s.deployment.template.yml > k8s.deployment.yml && envsubst < k8s.service.template.yml > k8s.service.yml
-      - kubectl apply -f k8s.deployment.yml && kubectl apply -f k8s.service.yml
-      - kubectl rollout status deployment/web-app
+      - |
+        envsubst < k8s.deployment.template.yml > k8s.deployment.yml &&
+        envsubst < k8s.service.template.yml > k8s.service.yml
+      - |
+        kubectl apply -f k8s.deployment.yml &&
+        kubectl apply -f k8s.service.yml
+      - kubectl rollout status deployment/web-app-master
     when:
       event:
         - push
       branch:
         - master
+
+  - name: deploy to k8s staging
+    image: roffe/kubectl:v1.13.2
+    environment:
+      KUBECONFIG: .kubeconfig
+      KUBECONFIG_CONTENT:
+        from_secret: kubeconfig
+    commands:
+      - echo $KUBECONFIG_CONTENT | base64 -d > $(echo $KUBECONFIG)
+      - |
+        envsubst < k8s.deployment.template.yml > k8s.deployment.yml &&
+        envsubst < k8s.service.template.yml > k8s.service.yml &&
+        envsubst < k8s.staging-ingress.template.yml > k8s.staging-ingress.yml
+      - |
+        kubectl apply -f k8s.deployment.yml &&
+        kubectl apply -f k8s.service.yml &&
+        kubectl apply -f k8s.staging-ingress.yml
+      - kubectl rollout status deployment/web-app-$DRONE_BRANCH
+    when:
+      event:
+        - push
+      branch:
+        exclude:
+          - master
 
 
 volumes:
