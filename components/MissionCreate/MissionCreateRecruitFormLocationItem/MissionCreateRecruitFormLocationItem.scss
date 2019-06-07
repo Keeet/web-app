@@ -1,0 +1,62 @@
+.mission-create-recruit-form-location-item {
+  border-radius: 5px;
+  border: 2px solid $grey;
+  display: inline-block;
+  margin: 15px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.active {
+    border: 2px solid $blue-primary;
+  }
+
+  .mission-create-recruit-form-location-item-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .mission-create-recruit-form-location-item-content,
+    .mission-create-recruit-form-location-item-empty {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mission-create-recruit-form-location-item-content {
+      padding: 20px;
+
+      .mission-create-recruit-form-location-item-content-icon {
+        width: 70px;
+
+        svg {
+          width: 100%;
+        }
+      }
+
+      .mission-create-recruit-form-location-item-content-address {
+        font-size: 90%;
+        margin-left: 20px;
+      }
+    }
+
+    .mission-create-recruit-form-location-item-empty {
+      padding: 20px;
+
+      .mission-create-recruit-form-location-item-empty-icon {
+        width: 20px;
+
+        svg {
+          width: 100%;
+          fill: $grey-dark;
+        }
+      }
+
+      .mission-create-recruit-form-location-item-empty-text {
+        margin-left: 20px;
+      }
+    }
+  }
+}

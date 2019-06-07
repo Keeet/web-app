@@ -51,7 +51,7 @@ module.exports = {
     { src: '~/plugins/timeago', ssr: false },
     { src: '~/plugins/aos.js', ssr: false },
     { src: '~/plugins/ellipsis.js', ssr: false },
-    { src: '~/plugins/missionCreateCalendar.js', ssr: false },
+    { src: '~/plugins/missionCreateRecruitCalendar.js', ssr: false },
     { src: '~/plugins/twilioHelper.js', ssr: false }
   ],
 

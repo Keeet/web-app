@@ -1,0 +1,18 @@
+.mission-create-recruit-form-location-form {
+
+  .mission-create-recruit-form-location-form-street,
+  .mission-create-recruit-form-location-form-city {
+    display: flex;
+    justify-content: space-between;
+
+    .mission-create-recruit-form-location-form-street-name,
+    .mission-create-recruit-form-location-form-city-name {
+      width: 60%;
+    }
+
+    .mission-create-recruit-form-location-form-street-nb,
+    .mission-create-recruit-form-location-form-city-zip {
+      width: 35%;
+    }
+  }
+}

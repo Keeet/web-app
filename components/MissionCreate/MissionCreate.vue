@@ -11,7 +11,7 @@
         @invalidNext="showFormErrors = true"
       >
         <MissionCreateHeadline :text="`1 / 3 ${MISSION_LABELS[s.type]} Mission`" />
-        <MissionCreateForm :show-errors="showFormErrors" />
+        <MissionCreateRecruitForm :show-errors="showFormErrors" />
       </FormStep>
       <FormStep
         :next-step-mutation="nextMut"
@@ -23,7 +23,7 @@
           <MissionCreateHeadline :text="`2 / 3 ${MISSION_LABELS[s.type]} Mission`" />
           <MissionCreateSubHeadline text="When are you able to conduct the interview / test?" />
         </div>
-        <MissionCreateCalendar />
+        <MissionCreateRecruitCalendar />
       </FormStep>
       <FormStep
         :show-next="false"
@@ -31,11 +31,11 @@
         :active="s.activeStep === 3"
       >
         <MissionCreateHeadline :text="`3 / 3 ${MISSION_LABELS[s.type]} Mission`" />
-        <MissionCreateSummary @submit="submit" />
+        <MissionCreateRecruitSummary @submit="submit" />
       </FormStep>
     </div>
     <Loading v-if="s.pending" fixed-center />
-    <MissionCreateSubmittedPopup v-if="s.submittedPopup" />
+    <MissionCreateRecruitSubmittedPopup v-if="s.submittedPopup" />
   </div>
 </template>
 
@@ -45,16 +45,28 @@ import FormStep from '../_shared/FormStep/FormStep'
 import { MISSIONS, MISSION_LABELS } from '../constants'
 import Loading from '../_shared/Loading/Loading'
 import MissionCreateType from './MissionCreateType/MissionCreateType'
-import MissionCreateForm from './MissionCreateForm/MissionCreateForm'
-import MissionCreateCalendar from './MissionCreateCalendar/MissionCreateCalendar'
+import MissionCreateRecruitCalendar from './MissionCreateRecruitCalendar/MissionCreateRecruitCalendar'
 import MissionCreateHeadline from './MissionCreateHeadline/MissionCreateHeadline'
 import MissionCreateSubHeadline from './MissionCreateSubHeadline/MissionCreateSubHeadline'
-import MissionCreateSummary from './MissionCreateSummary/MissionCreateSummary'
-import MissionCreateSubmittedPopup from './MissionCreateSubmittedPopup/MissionCreateSubmittedPopup'
+import MissionCreateRecruitSummary from './MissionCreateRecruitSummary/MissionCreateRecruitSummary'
+import MissionCreateRecruitSubmittedPopup
+  from './MissionCreateRecruitSubmittedPopup/MissionCreateRecruitSubmittedPopup'
+import MissionCreateRecruitForm from './MissionCreateRecruitForm/MissionCreateRecruitForm'
 
 export default {
   name: 'MissionCreate',
-  components: { MissionCreateSubmittedPopup, Loading, MissionCreateSummary, MissionCreateSubHeadline, MissionCreateHeadline, FormStep, MissionCreateCalendar, MissionCreateForm, MissionCreateType, ButtonCircle },
+  components: {
+    MissionCreateRecruitForm,
+    MissionCreateRecruitSubmittedPopup,
+    MissionCreateRecruitSummary,
+    Loading,
+    MissionCreateSubHeadline,
+    MissionCreateHeadline,
+    FormStep,
+    MissionCreateRecruitCalendar,
+    MissionCreateType,
+    ButtonCircle
+  },
   data() {
     return {
       nextMut: 'missionForm/nextStep',
