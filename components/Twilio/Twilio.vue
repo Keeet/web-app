@@ -32,7 +32,7 @@
         <video id="remote-stream-video" :class="{ vertical: remoteVideoVertical }" />
       </div>
       <div class="twilio-call-end" @click="disconnect">
-        <img src="/img/end-call.png">
+        <IconEndCall />
       </div>
     </div>
   </div>

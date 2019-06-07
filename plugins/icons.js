@@ -28,6 +28,7 @@ import IconPhone from '../assets/icons/phone.svg'
 import IconEnvelope from '../assets/icons/envelope.svg'
 import IconProgress from '../assets/icons/progress.svg'
 import IconClock from '../assets/icons/clock.svg'
+import IconEndCall from '../assets/icons/end-call.svg'
 import IconInsightGeneric from '../assets/icons/insight-generic.svg'
 import IconInsightAirtable from '../assets/icons/insight-airtable.svg'
 import IconInsightGoogleDocs from '../assets/icons/insight-google-docs.svg'
@@ -70,6 +71,7 @@ Vue.component('IconPhone', IconPhone)
 Vue.component('IconEnvelope', IconEnvelope)
 Vue.component('IconProgress', IconProgress)
 Vue.component('IconClock', IconClock)
+Vue.component('IconEndCall', IconEndCall)
 Vue.component('IconInsightGeneric', IconInsightGeneric)
 Vue.component('IconInsightAirtable', IconInsightAirtable)
 Vue.component('IconInsightGoogleDocs', IconInsightGoogleDocs)
