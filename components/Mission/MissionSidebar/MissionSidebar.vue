@@ -78,11 +78,7 @@ export default {
       return this.$store.state.mission.id.startsWith('sample')
     },
     description() {
-      const descr = this.mission.description
-      if (!descr) {
-        return 'Enter you mission description here to explain what you want to achieve with this research session...'
-      }
-      return descr.replace(/\n/g, '<br />')
+      return this.mission.description || 'Enter you mission description here to explain what you want to achieve with this research session...'
     }
   },
   mounted() {
