@@ -6,7 +6,7 @@
       :screener-index="x"
       @delete="deleteScreenerQuestion(x)"
     />
-    <PersonaSpecialCriteriaInput placeholder="e.g. Mix of vegetarians and non-vegetarians" @add="addScreenerQuestion" />
+    <PersonaSpecialCriteriaInput placeholder="e.g. Must own a car." @add="addScreenerQuestion" />
   </div>
 </template>
 

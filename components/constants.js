@@ -18,7 +18,7 @@ export const PERSONA_GENDERS = {
 export const PERSONA_GENDER_LABELS = {
   MALE: 'Male',
   FEMALE: 'Female',
-  DIVERS: 'Divers'
+  DIVERS: 'non binary'
 }
 
 export const PERSONA_OCCUPATIONS = {
