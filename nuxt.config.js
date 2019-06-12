@@ -52,7 +52,8 @@ module.exports = {
     { src: '~/plugins/aos.js', ssr: false },
     { src: '~/plugins/ellipsis.js', ssr: false },
     { src: '~/plugins/missionCreateRecruitCalendar.js', ssr: false },
-    { src: '~/plugins/twilioHelper.js', ssr: false }
+    { src: '~/plugins/twilioHelper.js', ssr: false },
+    { src: '~/plugins/nuxtClientInit.js', ssr: false }
   ],
 
   modules: [
