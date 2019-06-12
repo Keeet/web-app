@@ -1,6 +1,7 @@
 <template>
   <div class="persona-special-criteria-input">
     <input
+      v-if="!(isNew && s.screenerQuestions.length >= 2)"
       v-model="value"
       class="persona-special-criteria-input-field"
       :placeholder="placeholder"

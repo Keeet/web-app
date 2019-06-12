@@ -25,8 +25,8 @@
         :prev-step-mutation="prevMut"
       >
         <Headline
-          text="What is your desired target group?"
-          subline="Please define your exact criteria to ensure we can recruit the exact target group."
+          text="Target your audience."
+          subline="Define demographic criteria to target your desired audience."
           center
         />
         <PersonaCriteria />
@@ -42,7 +42,7 @@
       >
         <Headline
           text="Special criteria"
-          subline="Based on the criteria, we will create open screening questions to find matching candidates."
+          subline="Choose up to 2 special criteria."
           center
         />
         <PersonaSpecialCriteria />
