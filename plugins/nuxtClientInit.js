@@ -1,17 +1,18 @@
-import { externalUrl } from '../utils/urlUtils'
+import { isAuthUrl, isExternalUrl } from '../utils/urlUtils'
 
 export default (context) => {
-  if (!externalUrl(context.route)) {
-    fetchUser(context)
-    window.setInterval(() => {
-      fetchUser(context)
-    }, 10000)
-  }
+  window.setInterval(() => {
+    fetchUserIfLoggedIn(context)
+  }, 10000)
 }
 
 const SESSION_USER_ROLE = 'SESSION_USER_ROLE'
 
-function fetchUser({ store, redirect, app: { $fetch, $auth } }) {
+function fetchUserIfLoggedIn({ store, redirect, route, app: { $fetch, $auth } }) {
+  if (!store.state.accessToken || isAuthUrl(route) || isExternalUrl(route)) {
+    return
+  }
+
   $fetch([{ name: 'USER', forced: true }]).then(() => {
     const { accessToken, user } = store.state
     const sessionUserRole = window.localStorage.getItem(SESSION_USER_ROLE)
