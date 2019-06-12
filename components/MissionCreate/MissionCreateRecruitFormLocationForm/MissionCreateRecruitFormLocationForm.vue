@@ -3,7 +3,7 @@
     <OverlayModal
       title="Add new location"
       :loading="s.pending"
-      @close="$store.commit('missionForm/closeLocationForm')"
+      @close="$store.commit('missionFormRecruit/closeLocationForm')"
     >
       <Input
         title="Name*"
@@ -96,7 +96,11 @@ export default {
   },
   computed: {
     s() {
-      return this.$store.state.locationForm
+      const { missionForm, missionFormRecruit } = this.$store.state
+      return {
+        ...missionForm,
+        recruit: missionFormRecruit
+      }
     },
     nameError() { return this.s.name !== '' ? null : 'required' },
     streetError() { return this.s.street !== '' ? null : 'required' },
@@ -121,9 +125,9 @@ export default {
       this.$push.createCompanyAddress(this.s).then((res) => {
         const { id } = res
         const newLocation = this.$store.state.company.locations.filter(l => l.id === id)[0]
-        this.$store.commit('missionForm/setLocation', newLocation)
+        this.$store.commit('missionFormRecruit/setLocation', newLocation)
         this.$store.commit('locationForm/submitted')
-        this.$store.commit('missionForm/closeLocationForm')
+        this.$store.commit('missionFormRecruit/closeLocationForm')
       })
     }
   }

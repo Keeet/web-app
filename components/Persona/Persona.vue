@@ -155,7 +155,7 @@ export default {
         }
 
         if (this.s.missionEntrypoint) {
-          this.$store.commit('missionForm/setPersona', upsertedPersona)
+          this.$store.commit('missionFormRecruit/setPersona', upsertedPersona)
           this.$router.push('/missions/create', () => { this.$store.commit('personaForm/submitted') })
           return
         }
@@ -166,8 +166,8 @@ export default {
     submitTempForMission() {
       const persona = this.buildPersona(true)
       this.$store.commit('personaForm/submitted')
-      this.$store.commit('missionForm/addTempPersona', persona)
-      this.$store.commit('missionForm/setPersona', persona)
+      this.$store.commit('missionFormRecruit/addTempPersona', persona)
+      this.$store.commit('missionFormRecruit/setPersona', persona)
       this.$router.push('/missions/create')
     },
     cancel() {

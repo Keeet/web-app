@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import { LANGUAGE_LABELS } from '../../../constants'
-import MissionCreateBox from '../../MissionCreateBox/MissionCreateBox'
-import Input from '../../../_shared/Input/Input'
-import Select from '../../../_shared/Select/Select'
+import { LANGUAGE_LABELS } from '../../constants'
+import MissionCreateBox from '../MissionCreateBox/MissionCreateBox'
+import Input from '../../_shared/Input/Input'
+import Select from '../../_shared/Select/Select'
 export default {
   name: 'MissionCreateSurveyDetails',
   components: { Select, Input, MissionCreateBox },

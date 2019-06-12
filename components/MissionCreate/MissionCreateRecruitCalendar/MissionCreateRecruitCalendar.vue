@@ -3,13 +3,13 @@
     <MissionCreateRecruitCalendarPlugin />
     <div class="mission-create-recruit-calendar-menu">
       <div class="mission-create-recruit-calendar-menu-count" :class="{ valid }">
-        <p>{{ s.sessions.length }} of {{ s.nbParticipants }} time slots selected</p>
+        <p>{{ s.recruit.sessions.length }} of {{ s.recruit.nbParticipants }} time slots selected</p>
         <IconCheck v-if="valid" />
       </div>
       <span
         class="mission-create-recruit-calendar-menu-reset"
-        :class="{ disabled: s.sessions.length === 0 }"
-        @click="$store.commit('missionForm/resetSessions')"
+        :class="{ disabled: s.recruit.sessions.length === 0 }"
+        @click="$store.commit('missionFormRecruit/resetSessions')"
       >reset</span>
     </div>
   </div>
@@ -20,10 +20,14 @@ export default {
   name: 'MissionCreateRecruitCalendar',
   computed: {
     s() {
-      return this.$store.state.missionForm
+      const { missionForm, missionFormRecruit } = this.$store.state
+      return {
+        ...missionForm,
+        recruit: missionFormRecruit
+      }
     },
     valid() {
-      return this.s.sessions.length >= this.s.nbParticipants
+      return this.s.recruit.sessions.length >= this.s.recruit.nbParticipants
     }
   }
 }

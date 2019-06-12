@@ -7,11 +7,11 @@
     />
     <MissionCreateRecruitSummaryIconsItem
       type="DURATION"
-      :text="`${s.duration} min`"
+      :text="`${s.recruit.duration} min`"
     />
     <MissionCreateRecruitSummaryIconsItem
       type="NB_PARTICIPANTS"
-      :text="`${s.nbParticipants} test users`"
+      :text="`${s.recruit.nbParticipants} test users`"
     />
   </div>
 </template>
@@ -29,7 +29,11 @@ export default {
   },
   computed: {
     s() {
-      return this.$store.state.missionForm
+      const { missionForm, missionFormRecruit } = this.$store.state
+      return {
+        ...missionForm,
+        recruit: missionFormRecruit
+      }
     }
   }
 }

@@ -4,13 +4,13 @@
       v-for="(duration, x) in PRESETS"
       :key="x"
       :duration="duration"
-      :active="duration === s.duration"
-      @click="$store.commit('missionForm/setDuration', duration)"
+      :active="duration === s.recruit.duration"
+      @click="$store.commit('missionFormRecruit/setDuration', duration)"
     />
     <div class="mission-create-recruit-form-duration-input">
       <Input
         :value="customDuration"
-        mutation="missionForm/setDuration"
+        mutation="missionFormRecruit/setDuration"
         placeholder="e.g. 120"
         :error="error"
       />
@@ -38,13 +38,17 @@ export default {
   },
   computed: {
     s() {
-      return this.$store.state.missionForm
+      const { missionForm, missionFormRecruit } = this.$store.state
+      return {
+        ...missionForm,
+        recruit: missionFormRecruit
+      }
     },
     customDuration() {
-      if (this.PRESETS.includes(this.s.duration)) {
+      if (this.PRESETS.includes(this.s.recruit.duration)) {
         return ''
       } else {
-        return this.s.duration
+        return this.s.recruit.duration
       }
     }
   }

@@ -1,21 +1,21 @@
 <template>
   <div class="mission-create-recruit-form-persona-select">
     <SelectCustom
-      :opened="s.personaDropdownOpened"
-      :value="s.persona ? s.persona.id : null"
+      :opened="s.recruit.personaDropdownOpened"
+      :value="s.recruit.persona ? s.recruit.persona.id : null"
       :options="selectPersonaOptions"
       :error="error"
       placeholder="Choose persona"
       @select="select"
-      @clickHead="$store.commit('missionForm/switchPersonaDropdown')"
+      @clickHead="$store.commit('missionFormRecruit/switchPersonaDropdown')"
     >
-      <template v-if="s.persona" slot="selected">
+      <template v-if="s.recruit.persona" slot="selected">
         <div class="mission-create-recruit-form-persona-select-option">
           <div class="mission-create-recruit-form-persona-select-option-icon">
-            <PersonaIcon :icon="s.persona.icon" adjust-size />
+            <PersonaIcon :icon="s.recruit.persona.icon" adjust-size />
           </div>
           <p class="mission-create-recruit-form-persona-select-option-title">
-            {{ s.persona.name }}
+            {{ s.recruit.persona.name }}
           </p>
         </div>
       </template>
@@ -58,14 +58,18 @@ export default {
   },
   computed: {
     s() {
-      return this.$store.state.missionForm
+      const { missionForm, missionFormRecruit } = this.$store.state
+      return {
+        ...missionForm,
+        recruit: missionFormRecruit
+      }
     },
     personas() {
       return this.$store.state.personas
     },
     allPersonas() {
       const personas = this.personas.slice()
-      this.s.tempPersonas.forEach(persona => personas.push(persona))
+      this.s.recruit.tempPersonas.forEach(persona => personas.push(persona))
       return personas
     },
     selectPersonaOptions() {
@@ -76,14 +80,14 @@ export default {
   },
   methods: {
     select(personaId) {
-      this.$store.commit('missionForm/switchPersonaDropdown')
+      this.$store.commit('missionFormRecruit/switchPersonaDropdown')
       if (personaId === 'new') {
         this.$store.commit('personaForm/init')
         this.$store.commit('personaForm/setMissionEntrypoint')
         this.$router.push('/personas/create')
       } else {
         const persona = this.allPersonas.filter(p => p.id === personaId)[0]
-        this.$store.commit('missionForm/setPersona', persona)
+        this.$store.commit('missionFormRecruit/setPersona', persona)
       }
     }
   }

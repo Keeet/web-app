@@ -3,94 +3,49 @@
     <div v-show="!s.pending" class="mission-create-body">
       <ButtonCircle class="mission-create-cancel" type="ARROW_LEFT" @click="cancel" />
       <MissionCreateType v-if="s.activeStep === 0" />
-      <FormStep
-        v-if="[MISSIONS.IN_HOUSE, MISSIONS.REMOTE].includes(s.type)"
-        :next-step-mutation="nextMut"
-        :prev-step-mutation="prevMut"
-        :active="s.activeStep === 1"
-        :valid="s.formValid"
-        @invalidNext="showFormErrors = true"
-      >
-        <MissionCreateHeadline :text="`1 / 3 ${MISSION_LABELS[s.type]} Mission`" />
-        <MissionCreateRecruitForm :show-errors="showFormErrors" />
-      </FormStep>
-      <div v-else-if="s.type === MISSIONS.SURVEY">
-        <MissionCreateSurvey />
-      </div>
-      <FormStep
-        :next-step-mutation="nextMut"
-        :prev-step-mutation="prevMut"
-        :active="s.activeStep === 2"
-        :valid="calendarValid"
-      >
-        <div class="mission-create-calendar-headline">
-          <MissionCreateHeadline :text="`2 / 3 ${MISSION_LABELS[s.type]} Mission`" />
-          <MissionCreateSubHeadline text="When are you able to conduct the interview / test?" />
-        </div>
-        <MissionCreateRecruitCalendar />
-      </FormStep>
-      <FormStep
-        :show-next="false"
-        :prev-step-mutation="prevMut"
-        :active="s.activeStep === 3"
-      >
-        <MissionCreateHeadline :text="`3 / 3 ${MISSION_LABELS[s.type]} Mission`" />
-        <MissionCreateRecruitSummary @submit="submit" />
-      </FormStep>
+      <MissionCreateRecruit v-else-if="[MISSIONS.IN_HOUSE, MISSIONS.REMOTE].includes(s.type)" />
+      <MissionCreateSurvey v-else-if="s.type === MISSIONS.SURVEY" />
     </div>
     <Loading v-if="s.pending" fixed-center />
-    <MissionCreateRecruitSubmittedPopup v-if="s.submittedPopup" />
+    <MissionCreateRecruitSubmittedPopup v-if="s.recruit.submittedPopup" />
   </div>
 </template>
 
 <script>
 import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
-import FormStep from '../_shared/FormStep/FormStep'
-import { MISSIONS, MISSION_LABELS } from '../constants'
+import { MISSIONS } from '../constants'
 import Loading from '../_shared/Loading/Loading'
 import MissionCreateType from './MissionCreateType/MissionCreateType'
-import MissionCreateRecruitCalendar from './MissionCreateRecruitCalendar/MissionCreateRecruitCalendar'
-import MissionCreateHeadline from './MissionCreateHeadline/MissionCreateHeadline'
-import MissionCreateSubHeadline from './MissionCreateSubHeadline/MissionCreateSubHeadline'
 import MissionCreateSurvey from './MissionCreateSurvey/MissionCreateSurvey'
-import MissionCreateRecruitSummary from './MissionCreateRecruitSummary/MissionCreateRecruitSummary'
 import MissionCreateRecruitSubmittedPopup
   from './MissionCreateRecruitSubmittedPopup/MissionCreateRecruitSubmittedPopup'
-import MissionCreateRecruitForm from './MissionCreateRecruitForm/MissionCreateRecruitForm'
+import MissionCreateRecruit from './MissionCreateRecruit/MissionCreateRecruit'
 
 export default {
   name: 'MissionCreate',
   components: {
-    MissionCreateRecruitForm,
+    MissionCreateRecruit,
     MissionCreateRecruitSubmittedPopup,
-    MissionCreateRecruitSummary,
     Loading,
-    MissionCreateSubHeadline,
-    MissionCreateHeadline,
-    FormStep,
-    MissionCreateRecruitCalendar,
     MissionCreateType,
     ButtonCircle,
     MissionCreateSurvey
   },
   data() {
     return {
-      nextMut: 'missionForm/nextStep',
-      prevMut: 'missionForm/previousStep',
-      MISSIONS,
-      MISSION_LABELS,
-      showFormErrors: false
+      MISSIONS
     }
   },
   computed: {
     s() {
-      return this.$store.state.missionForm
+      const { missionForm, missionFormRecruit } = this.$store.state
+      return {
+        ...missionForm,
+        recruit: missionFormRecruit
+      }
     },
     activeStep() {
       return this.s.activeStep
-    },
-    calendarValid() {
-      return this.s.sessions.length >= this.s.nbParticipants
     }
   },
   watch: {
@@ -105,39 +60,6 @@ export default {
       } else {
         this.$store.commit('missionForm/previousStep')
       }
-    },
-    buildMission() {
-      const { projectId, type, title, description, duration, language, persona, sessions, location } = this.s
-      const mission = {
-        projectId,
-        type,
-        title,
-        description,
-        duration,
-        language,
-        persona,
-        sessions: sessions.map(session => session.start.toISOString())
-      }
-      if (type === MISSIONS.IN_HOUSE) {
-        const { country, city, zipCode, street, houseNumber, addressDescription } = location
-        return {
-          ...mission,
-          country,
-          city,
-          zipCode,
-          street,
-          houseNumber,
-          addressDescription
-        }
-      }
-      return mission
-    },
-    submit() {
-      this.$store.commit('missionForm/pending')
-      this.$push.createMission(this.buildMission()).then(({ id }) => {
-        this.$store.commit('missionForm/setSubmittedMissionId', id)
-        this.$store.commit('missionForm/showSubmittedPopup')
-      })
     }
   }
 }

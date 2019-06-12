@@ -1,14 +1,16 @@
 <template>
   <div class="mission-create-survey">
     <MissionCreateSurveyDetails />
+    <MissionCreateSurveyCustomScreen />
   </div>
 </template>
 
 <script>
-import MissionCreateSurveyDetails from './MissionCreateSurveyDetails/MissionCreateSurveyDetails'
+import MissionCreateSurveyDetails from '../MissionCreateSurveyDetails/MissionCreateSurveyDetails'
+import MissionCreateSurveyCustomScreen from '../MissionCreateSurveyCustomScreen/MissionCreateSurveyCustomScreen'
 export default {
   name: 'MissionCreateSurvey',
-  components: { MissionCreateSurveyDetails }
+  components: { MissionCreateSurveyCustomScreen, MissionCreateSurveyDetails }
 }
 </script>
 

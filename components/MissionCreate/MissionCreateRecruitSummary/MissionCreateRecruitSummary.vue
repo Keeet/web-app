@@ -6,7 +6,7 @@
         <MissionCreateRecruitSummaryIcons />
       </MissionCreateBox>
       <MissionCreateSubHeadline text="See what time slots you did choose:" />
-      <MissionCreateTimeslots />
+      <MissionCreateRecruitTimeslots />
     </div>
     <div class="mission-create-recruit-summary-submit" :class="submitBoxPositioning">
       <div class="mission-create-recruit-summary-submit-ref" />
@@ -26,13 +26,13 @@
 import MissionCreateSubHeadline from '../MissionCreateSubHeadline/MissionCreateSubHeadline'
 import MissionCreateBox from '../MissionCreateBox/MissionCreateBox'
 import MissionCreateRecruitSummaryIcons from '../MissionCreateRecruitSummaryIcons/MissionCreateRecruitSummaryIcons'
-import MissionCreateTimeslots from '../MissionCreateTimeslots/MissionCreateTimeslots'
 import MissionCreateRecruitSummaryPersona from '../MissionCreateRecruitSummaryPersona/MissionCreateRecruitSummaryPersona'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
 import { determineFixedOrAbsolute } from '../../../utils/scrollUtils'
+import MissionCreateRecruitTimeslots from '../MissionCreateRecruitTimeslots/MissionCreateRecruitTimeslots'
 export default {
   name: 'MissionCreateRecruitSummary',
-  components: { ButtonText, MissionCreateRecruitSummaryPersona, MissionCreateTimeslots, MissionCreateRecruitSummaryIcons, MissionCreateBox, MissionCreateSubHeadline },
+  components: { MissionCreateRecruitTimeslots, ButtonText, MissionCreateRecruitSummaryPersona, MissionCreateRecruitSummaryIcons, MissionCreateBox, MissionCreateSubHeadline },
   data() {
     return {
       submitBoxPositioning: null

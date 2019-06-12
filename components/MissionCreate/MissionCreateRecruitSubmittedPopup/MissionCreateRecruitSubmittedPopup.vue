@@ -24,13 +24,17 @@ export default {
   components: { ButtonText, OverlayModal },
   computed: {
     s() {
-      return this.$store.state.missionForm
+      const { missionForm, missionFormRecruit } = this.$store.state
+      return {
+        ...missionForm,
+        recruit: missionFormRecruit
+      }
     }
   },
   methods: {
     done() {
       this.$router.push(`/missions/${this.s.submittedMissionId}`, () => {
-        this.$store.commit('missionForm/hideSubmittedPopup')
+        this.$store.commit('missionFormRecruit/hideSubmittedPopup')
         this.$store.commit('missionForm/submitted')
       })
     }

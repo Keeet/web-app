@@ -22,8 +22,8 @@
           <MissionCreateRecruitFormHeadline text="Number of participants" />
           <div class="mission-create-recruit-form-participants">
             <Input
-              mutation="missionForm/setNbParticipants"
-              :value="s.nbParticipants.toString()"
+              mutation="missionFormRecruit/setNbParticipants"
+              :value="s.recruit.nbParticipants.toString()"
               :error="nbParticipantsError"
               numbers-only
             />
@@ -96,16 +96,20 @@ export default {
   },
   computed: {
     s() {
-      return this.$store.state.missionForm
+      const { missionForm, missionFormRecruit } = this.$store.state
+      return {
+        ...missionForm,
+        recruit: missionFormRecruit
+      }
     },
     titleError() { return this.s.title !== '' ? null : 'required' },
-    personaError() { return this.s.persona ? null : 'required' },
-    nbParticipantsError() { return isNum(this.s.nbParticipants) ? null : 'must be a number' },
+    personaError() { return this.s.recruit.persona ? null : 'required' },
+    nbParticipantsError() { return isNum(this.s.recruit.nbParticipants) ? null : 'must be a number' },
     durationError() {
-      if (!isNum(this.s.duration)) {
+      if (!isNum(this.s.recruit.duration)) {
         return 'must be a number'
       }
-      if (parseInt(this.s.duration) < 30) {
+      if (parseInt(this.s.recruit.duration) < 30) {
         return 'must be bigger than 30'
       }
       return null
@@ -136,7 +140,7 @@ export default {
   },
   methods: {
     commitValidity() {
-      this.$store.commit('missionForm/setFormValid', this.valid)
+      this.$store.commit('missionFormRecruit/setFormValid', this.valid)
     },
     onScroll() {
       const positioning = determineFixedOrAbsolute(

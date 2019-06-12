@@ -1,18 +1,18 @@
 <template>
-  <div class="mission-create-timeslots">
+  <div class="mission-create-recruit-timeslots">
     <MissionCreateBox
       v-for="(sessionByDay, x) in sessionsByDay"
       :key="x"
     >
-      <div class="mission-create-timeslots-item">
-        <div class="mission-create-timeslots-item-date">
+      <div class="mission-create-recruit-timeslots-item">
+        <div class="mission-create-recruit-timeslots-item-date">
           {{ getFormattedDate(sessionByDay.date) }}
         </div>
-        <div class="mission-create-timeslots-item-sessions">
+        <div class="mission-create-recruit-timeslots-item-sessions">
           <div
             v-for="(session, y) in sessionByDay.sessions"
             :key="y"
-            class="mission-create-timeslots-item-sessions-item"
+            class="mission-create-recruit-timeslots-item-sessions-item"
           >
             {{ getFormattedSessionDate(session.start, session.end) }}
           </div>
@@ -26,14 +26,18 @@
 import MissionCreateBox from '../MissionCreateBox/MissionCreateBox'
 import { getAmPmTime, getLocaleDateString, getWeekDayName, groupByDay } from '../../../utils/dateUtils'
 export default {
-  name: 'MissionCreateTimeslots',
+  name: 'MissionCreateRecruitTimeslots',
   components: { MissionCreateBox },
   computed: {
     s() {
-      return this.$store.state.missionForm
+      const { missionForm, missionFormRecruit } = this.$store.state
+      return {
+        ...missionForm,
+        recruit: missionFormRecruit
+      }
     },
     sessionsByDay() {
-      return groupByDay(this.s.sessions, 'start', 'sessions')
+      return groupByDay(this.s.recruit.sessions, 'start', 'sessions')
     }
   },
   methods: {
@@ -48,5 +52,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "MissionCreateTimeslots";
+  @import "MissionCreateRecruitTimeslots";
 </style>

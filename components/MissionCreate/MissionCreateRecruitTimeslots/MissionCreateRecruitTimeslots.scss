@@ -1,20 +1,20 @@
-.mission-create-timeslots {
+.mission-create-recruit-timeslots {
 
-  .mission-create-timeslots-item {
+  .mission-create-recruit-timeslots-item {
     display: flex;
 
-    .mission-create-timeslots-item-date {
+    .mission-create-recruit-timeslots-item-date {
       width: 40%;
       font-weight: 500;
       flex-shrink: 0;
     }
 
-    .mission-create-timeslots-item-sessions {
+    .mission-create-recruit-timeslots-item-sessions {
       display: flex;
       flex-wrap: wrap;
       margin: -10px 0;
 
-      .mission-create-timeslots-item-sessions-item {
+      .mission-create-recruit-timeslots-item-sessions-item {
         padding: 8px;
         margin: 5px;
         background-color: $grey-light;

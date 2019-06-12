@@ -18,7 +18,11 @@ export default {
   components: { MissionCreateRecruitFormLanguageItem },
   computed: {
     s() {
-      return this.$store.state.missionForm
+      const { missionForm, missionFormRecruit } = this.$store.state
+      return {
+        ...missionForm,
+        recruit: missionFormRecruit
+      }
     }
   }
 }

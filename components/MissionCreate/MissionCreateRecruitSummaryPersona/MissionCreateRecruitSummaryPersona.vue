@@ -43,7 +43,7 @@ export default {
   components: { PersonaIcon },
   computed: {
     persona() {
-      return this.$store.state.missionForm.persona
+      return this.$store.state.missionFormRecruit.persona
     },
     formattedGender() {
       const genders = this.persona.demographicDataReq.genders
