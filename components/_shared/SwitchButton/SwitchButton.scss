@@ -1,31 +1,45 @@
 .switch-button {
-  position: relative;
-  border-radius: 25px;
-  width: 50px;
-  height: 25px;
-  background-color: $grey;
-  transition: background-color .4s;
+  display: flex;
+  align-items: center;
 
-  &:hover {
-    cursor: pointer;
+  .switch-button-label {
+    font-weight: 500;
+    margin-right: 8px;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
-  .switch-button-circle {
-    position: absolute;
-    left: 2px;
-    top: 2px;
-    width: 21px;
-    height: 21px;
-    border-radius: 100%;
-    background-color: #fff;
-    transition: left .5s;
-  }
+  .switch-button-icon {
+    position: relative;
+    border-radius: 25px;
+    width: 50px;
+    height: 25px;
+    background-color: $grey;
+    transition: background-color .2s;
 
-  &.on {
-    background-color: $blue-primary;
+    &:hover {
+      cursor: pointer;
+    }
 
-    .switch-button-circle {
-      left: 27px;
+    .switch-button-icon-circle {
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      width: 21px;
+      height: 21px;
+      border-radius: 100%;
+      background-color: #fff;
+      transition: left .2s;
+    }
+
+    &.on {
+      background-color: $blue-primary;
+
+      .switch-button-icon-circle {
+        left: 27px;
+      }
     }
   }
 }

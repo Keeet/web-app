@@ -1,0 +1,32 @@
+.mission-create-survey-custom-screen-color {
+  margin-top: 20px;
+  position: relative;
+
+  .mission-create-survey-custom-screen-color-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .mission-create-survey-custom-screen-color-head-text {
+      font-weight: 500;
+      font-size: 90%;
+    }
+
+    .mission-create-survey-custom-screen-color-head-selected {
+      width: 30px;
+      height: 30px;
+      border-radius: 100px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .mission-create-survey-custom-screen-color-picker {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    top: 40px;
+  }
+}

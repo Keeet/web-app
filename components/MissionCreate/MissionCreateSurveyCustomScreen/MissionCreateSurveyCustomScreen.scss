@@ -7,9 +7,14 @@
     .mission-create-survey-custom-screen-head-icon {
       width: 30px;
       margin-right: 25px;
+
+      img {
+        width: 100%;
+      }
     }
 
     .mission-create-survey-custom-screen-head-text {
+      flex-grow: 1;
 
       .mission-create-survey-custom-screen-head-text-headline {
         font-size: 130%;
@@ -17,9 +22,20 @@
         margin-bottom: 5px;
       }
     }
+  }
 
-    .mission-create-survey-custom-screen-head-switch {
+  .mission-create-survey-custom-screen-body {
+    margin: 40px 0 30px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
 
+    .mission-create-survey-custom-screen-body-left {
+      width: 60%;
+    }
+
+    .mission-create-survey-custom-screen-body-right {
+      width: 35%;
     }
   }
 }

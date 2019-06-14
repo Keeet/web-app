@@ -3,19 +3,48 @@
     <MissionCreateBox>
       <div class="mission-create-survey-custom-screen-head">
         <div class="mission-create-survey-custom-screen-head-icon">
-          <IconPencil />
+          <img v-if="type === TYPES.WELCOME" src="../../../assets/img/welcomeEmoji.png" />
+          <img v-else-if="type === TYPES.CLOSING" src="../../../assets/img/thankYouEmoji.png" />
         </div>
         <div class="mission-create-survey-custom-screen-head-text">
           <p class="mission-create-survey-custom-screen-head-text-headline">
-            Default Welcome Screen
+            {{ title }}
           </p>
           <p class="mission-create-survey-custom-screen-head-text-subheadline">
-            The first thing your audience will see - a great opportunity
-            to engage right away.
+            {{ subtitle }}
           </p>
         </div>
-        <div class="mission-create-survey-custom-screen-head-switch">
-          <SwitchButton :on="true" mutation="1" />
+        <SwitchButton
+          :on="sValues.opened"
+          :mutation="mutations.switchCustomize"
+          label="Customize"
+        />
+      </div>
+      <div v-show="sValues.opened" class="mission-create-survey-custom-screen-body">
+        <div class="mission-create-survey-custom-screen-body-left">
+          <Input
+            :value="sValues.title"
+            :mutation="mutations.setTitle"
+            title="Title"
+            :error="titleError"
+          />
+          <Input
+            :value="sValues.description"
+            :mutation="mutations.setDescription"
+            title="Message"
+            :error="descriptionError"
+            textarea
+          />
+        </div>
+        <div class="mission-create-survey-custom-screen-body-right">
+          <MissionCreateSurveyCustomScreenBranding
+            :logo-id-mutation="mutations.setLogoId"
+          />
+          <MissionCreateSurveyCustomScreenColor
+            :color-picker-opened="sValues.colorPickerOpened"
+            :open-color-picker-mutation="mutations.openColorPicker"
+            :close-color-picker-mutation="mutations.closeColorPicker"
+          />
         </div>
       </div>
     </MissionCreateBox>
@@ -25,9 +54,88 @@
 <script>
 import MissionCreateBox from '../MissionCreateBox/MissionCreateBox'
 import SwitchButton from '../../_shared/SwitchButton/SwitchButton'
+import Input from '../../_shared/Input/Input'
+import MissionCreateSurveyCustomScreenColor
+  from '../MissionCreateSurveyCustomScreenColor/MissionCreateSurveyCustomScreenColor'
+import MissionCreateSurveyCustomScreenBranding
+  from '../MissionCreateSurveyCustomScreenBranding/MissionCreateSurveyCustomScreenBranding'
+
+const TYPES = {
+  WELCOME: 'WELCOME',
+  CLOSING: 'CLOSING'
+}
+
+const MUTATIONS = {
+  WELCOME: {
+    switchCustomize: 'missionFormSurvey/switchCustomizeWelcome',
+    setTitle: 'missionFormSurvey/setWelcomeTitle',
+    setDescription: 'missionFormSurvey/setWelcomeDescription',
+    setLogoId: 'missionFormSurvey/setWelcomeLogoId',
+    openColorPicker: 'missionFormSurvey/openWelcomeColorPicker',
+    closeColorPicker: 'missionFormSurvey/closeWelcomeColorPicker'
+  },
+  CLOSING: {
+    switchCustomize: 'missionFormSurvey/switchCustomizeClosing',
+    setTitle: 'missionFormSurvey/setClosingTitle',
+    setDescription: 'missionFormSurvey/setClosingDescription',
+    setLogoId: 'missionFormSurvey/setClosingLogoId',
+    openColorPicker: 'missionFormSurvey/openClosingColorPicker',
+    closeColorPicker: 'missionFormSurvey/closeClosingColorPicker'
+  }
+}
+
 export default {
   name: 'MissionCreateSurveyCustomScreen',
-  components: { SwitchButton, MissionCreateBox }
+  components: { MissionCreateSurveyCustomScreenBranding, MissionCreateSurveyCustomScreenColor, Input, SwitchButton, MissionCreateBox },
+  props: {
+    type: {
+      type: String,
+      required: true,
+      validator: value => Object.values(TYPES).includes(value)
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    subtitle: {
+      type: String,
+      required: true
+    }
+  },
+  data() {
+    return { TYPES }
+  },
+  computed: {
+    s() {
+      return this.$store.state.missionFormSurvey
+    },
+    sValues() {
+      switch (this.type) {
+        case TYPES.WELCOME:
+          return {
+            opened: this.s.customizeWelcome,
+            title: this.s.welcomeTitle,
+            description: this.s.welcomeDescription,
+            logoId: this.s.welcomeLogoId,
+            colorPickerOpened: this.s.welcomeColorPickerOpened
+          }
+        case TYPES.CLOSING:
+          return {
+            opened: this.s.customizeClosing,
+            title: this.s.closingTitle,
+            description: this.s.closingDescription,
+            logoId: this.s.closingLogoId,
+            colorPickerOpened: this.s.closingColorPickerOpened
+          }
+      }
+      return null
+    },
+    mutations() {
+      return MUTATIONS[this.type]
+    },
+    titleError() { return this.sValues.title !== '' ? null : 'required' },
+    descriptionError() { return this.sValues.description !== '' ? null : 'required' }
+  }
 }
 </script>
 

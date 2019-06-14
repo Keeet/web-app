@@ -1,6 +1,11 @@
 <template>
   <div class="switch-button" @click="switchButton">
-    <div class="switch-button-circle" />
+    <p v-if="label" class="switch-button-label">
+      {{ label }}
+    </p>
+    <div class="switch-button-icon" :class="{ on }">
+      <div class="switch-button-icon-circle" />
+    </div>
   </div>
 </template>
 
@@ -15,6 +20,10 @@ export default {
     mutation: {
       type: String,
       required: true
+    },
+    label: {
+      type: String,
+      default: null
     }
   },
   methods: {

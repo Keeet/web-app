@@ -4,6 +4,7 @@ export default function ({ store, redirect, route: { path }, query: { invitation
       return redirect('/personas')
     }
   }
+  // TODO: uncomment
   // if (path === '/missions/create') {
   //   if (!store.state.missionForm.init) {
   //     return redirect('/')
