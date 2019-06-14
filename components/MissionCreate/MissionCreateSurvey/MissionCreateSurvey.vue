@@ -1,16 +1,21 @@
 <template>
   <div class="mission-create-survey">
-    <MissionCreateSurveyDetails />
-    <MissionCreateSurveyCustomScreen
-      type="WELCOME"
-      title="Default Welcome Screen"
-      subtitle="The first thing your audience will see - a great opportunity to engage right away."
-    />
-    <MissionCreateSurveyCustomScreen
-      type="CLOSING"
-      title="Default Thank You Screen"
-      subtitle="The last thing your audience will see. Thank your participants for their effort and time."
-    />
+    <div class="mission-create-survey-content">
+      <MissionCreateSurveyDetails />
+      <MissionCreateSurveyCustomScreen
+        type="WELCOME"
+        title="Default Welcome Screen"
+        subtitle="The first thing your audience will see - a great opportunity to engage right away."
+      />
+      <MissionCreateSurveyCustomScreen
+        type="CLOSING"
+        title="Default Thank You Screen"
+        subtitle="The last thing your audience will see. Thank your participants for their effort and time."
+      />
+    </div>
+    <div class="mission-create-survey-summary">
+      placeholder
+    </div>
   </div>
 </template>
 
