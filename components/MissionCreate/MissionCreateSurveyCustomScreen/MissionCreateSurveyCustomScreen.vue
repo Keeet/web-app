@@ -3,8 +3,8 @@
     <MissionCreateBox>
       <div class="mission-create-survey-custom-screen-head">
         <div class="mission-create-survey-custom-screen-head-icon">
-          <img v-if="type === TYPES.WELCOME" src="../../../assets/img/welcomeEmoji.png" />
-          <img v-else-if="type === TYPES.CLOSING" src="../../../assets/img/thankYouEmoji.png" />
+          <img v-if="type === TYPES.WELCOME" src="../../../assets/img/welcomeEmoji.png">
+          <img v-else-if="type === TYPES.CLOSING" src="../../../assets/img/thankYouEmoji.png">
         </div>
         <div class="mission-create-survey-custom-screen-head-text">
           <p class="mission-create-survey-custom-screen-head-text-headline">
@@ -35,6 +35,14 @@
             :error="descriptionError"
             textarea
           />
+          <Input
+            v-if="type === TYPES.CLOSING"
+            :value="s.redirectLink || ''"
+            mutation="missionFormSurvey/setRedirectLink"
+            title="Redirect Link"
+            placeholder="https://"
+            :error="redirectLinkError"
+          />
         </div>
         <div class="mission-create-survey-custom-screen-body-right">
           <MissionCreateSurveyCustomScreenBranding
@@ -59,6 +67,7 @@ import MissionCreateSurveyCustomScreenColor
   from '../MissionCreateSurveyCustomScreenColor/MissionCreateSurveyCustomScreenColor'
 import MissionCreateSurveyCustomScreenBranding
   from '../MissionCreateSurveyCustomScreenBranding/MissionCreateSurveyCustomScreenBranding'
+import { isHttpsLink } from '../../../utils/stringUtils'
 
 const TYPES = {
   WELCOME: 'WELCOME',
@@ -134,7 +143,11 @@ export default {
       return MUTATIONS[this.type]
     },
     titleError() { return this.sValues.title !== '' ? null : 'required' },
-    descriptionError() { return this.sValues.description !== '' ? null : 'required' }
+    descriptionError() { return this.sValues.description !== '' ? null : 'required' },
+    redirectLinkError() {
+      const link = this.s.redirectLink
+      return !link || isHttpsLink(link) ? null : 'invalid link (must start with https://)'
+    }
   }
 }
 </script>

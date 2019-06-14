@@ -9,7 +9,8 @@ const defaultState = {
   closingLogoId: null,
   welcomeColorPickerOpened: false,
   closingColorPickerOpened: false,
-  color: { hex: '#0FBCF9' }
+  color: { hex: '#0FBCF9' },
+  redirectLink: null
 }
 
 export const state = () => defaultState
@@ -58,5 +59,12 @@ export const mutations = {
   },
   closeClosingColorPicker(state) {
     state.closingColorPickerOpened = false
+  },
+  setRedirectLink(state, redirectLink) {
+    if (redirectLink === '') {
+      state.redirectLink = null
+      return
+    }
+    state.redirectLink = redirectLink
   }
 }
