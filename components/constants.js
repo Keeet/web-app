@@ -62,6 +62,14 @@ export const MISSION_SURVEY_ITEMS = {
   LIKERT: 'LIKERT',
   LINEAR_SCALE: 'LINEAR_SCALE'
 }
+export const MISSION_SURVEY_ITEM_LABELS = {
+  SHORT_TEXT: 'Short Text',
+  LONG_TEXT: 'Long Text',
+  SINGLE_SELECT: 'Single Select',
+  MULTI_SELECT: 'Multi Select',
+  LINEAR_SCALE: 'Linear Scale',
+  LIKERT: 'Likert'
+}
 export const MISSION_SURVEY_USABILITY_HUB_ITEMS = {
   FIRST_CLICK: 'FIRST_CLICK',
   FIVE_SECOND_TEST: 'FIVE_SECOND_TEST',

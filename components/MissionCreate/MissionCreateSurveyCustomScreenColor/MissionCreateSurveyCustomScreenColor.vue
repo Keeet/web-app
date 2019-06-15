@@ -59,7 +59,9 @@ export default {
       this.$store.commit(this.openColorPickerMutation)
     },
     closeColorPicker() {
-      this.$store.commit(this.closeColorPickerMutation)
+      if (this.colorPickerOpened) {
+        this.$store.commit(this.closeColorPickerMutation)
+      }
     }
   }
 }

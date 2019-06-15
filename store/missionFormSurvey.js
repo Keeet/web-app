@@ -1,3 +1,5 @@
+import { MISSION_SURVEY_ITEMS } from '../components/constants'
+
 const defaultState = {
   customizeWelcome: false,
   customizeClosing: false,
@@ -10,7 +12,21 @@ const defaultState = {
   welcomeColorPickerOpened: false,
   closingColorPickerOpened: false,
   color: { hex: '#0FBCF9' },
-  redirectLink: null
+  redirectLink: null,
+  items: []
+}
+
+const defaultStateItem = {
+  SHORT_TEXT: {
+    type: MISSION_SURVEY_ITEMS.SHORT_TEXT,
+    required: true,
+    text: ''
+  },
+  LONG_TEXT: {
+    type: MISSION_SURVEY_ITEMS.LONG_TEXT,
+    required: true,
+    text: ''
+  }
 }
 
 export const state = () => defaultState
@@ -66,5 +82,26 @@ export const mutations = {
       return
     }
     state.redirectLink = redirectLink
+  },
+
+  addItem(state, type) {
+    const items = state.items.slice()
+    items.push({ ...defaultStateItem[type] })
+    state.items = items
+  },
+  deleteItem(state, index) {
+    const items = state.items.slice()
+    items.splice(index, 1)
+    state.items = items
+  },
+  setItemQuestion(state, { index, question }) {
+    const items = state.items.slice()
+    items[index].text = question
+    state.items = items
+  },
+  setItemQuestionRequired(state, { index, required }) {
+    const items = state.items.slice()
+    items[index].required = required
+    state.items = items
   }
 }
