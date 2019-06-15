@@ -15,10 +15,16 @@ import IconArrowLeft from '../assets/icons/arrow-left.svg'
 import IconDelete from '../assets/icons/delete.svg'
 import IconPencil from '../assets/icons/pencil.svg'
 import IconError404 from '../assets/icons/error-404.svg'
-import MissionInHouse from '../assets/icons/mission-in-house.svg'
-import MissionRemote from '../assets/icons/mission-remote.svg'
-import MissionSurvey from '../assets/icons/mission-survey.svg'
-import MissionUsabilityLab from '../assets/icons/mission-usability-lab.svg'
+import IconMissionInHouse from '../assets/icons/mission-in-house.svg'
+import IconMissionRemote from '../assets/icons/mission-remote.svg'
+import IconMissionSurvey from '../assets/icons/mission-survey.svg'
+import IconMissionUsabilityLab from '../assets/icons/mission-usability-lab.svg'
+import IconMissionSurveyShortText from '../assets/icons/mission-survey-short-text.svg'
+import IconMissionSurveyLongText from '../assets/icons/mission-survey-long-text.svg'
+import IconMissionSurveySingleSelect from '../assets/icons/mission-survey-single-select.svg'
+import IconMissionSurveyMultiSelect from '../assets/icons/mission-survey-multi-select.svg'
+import IconMissionSurveyLikert from '../assets/icons/mission-survey-likert.svg'
+import IconMissionSurveyLinearScale from '../assets/icons/mission-survey-linear-scale.svg'
 import IconLocation from '../assets/icons/location.svg'
 import IconLanguageEnglish from '../assets/icons/language-english.svg'
 import IconLanguageGerman from '../assets/icons/language-german.svg'
@@ -58,10 +64,16 @@ Vue.component('IconArrowLeft', IconArrowLeft)
 Vue.component('IconDelete', IconDelete)
 Vue.component('IconPencil', IconPencil)
 Vue.component('IconError404', IconError404)
-Vue.component('IconMissionInHouse', MissionInHouse)
-Vue.component('IconMissionRemote', MissionRemote)
-Vue.component('IconMissionSurvey', MissionSurvey)
-Vue.component('IconMissionUsabilityLab', MissionUsabilityLab)
+Vue.component('IconMissionInHouse', IconMissionInHouse)
+Vue.component('IconMissionRemote', IconMissionRemote)
+Vue.component('IconMissionSurvey', IconMissionSurvey)
+Vue.component('IconMissionUsabilityLab', IconMissionUsabilityLab)
+Vue.component('IconMissionSurveyShortText', IconMissionSurveyShortText)
+Vue.component('IconMissionSurveyLongText', IconMissionSurveyLongText)
+Vue.component('IconMissionSurveySingleSelect', IconMissionSurveySingleSelect)
+Vue.component('IconMissionSurveyMultiSelect', IconMissionSurveyMultiSelect)
+Vue.component('IconMissionSurveyLikert', IconMissionSurveyLikert)
+Vue.component('IconMissionSurveyLinearScale', IconMissionSurveyLinearScale)
 Vue.component('IconLocation', IconLocation)
 Vue.component('IconLanguageEnglish', IconLanguageEnglish)
 Vue.component('IconLanguageGerman', IconLanguageGerman)

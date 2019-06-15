@@ -7,6 +7,7 @@
         title="Default Welcome Screen"
         subtitle="The first thing your audience will see - a great opportunity to engage right away."
       />
+      <MissionCreateSurveyAddBox />
       <MissionCreateSurveyCustomScreen
         type="CLOSING"
         title="Default Thank You Screen"
@@ -22,9 +23,10 @@
 <script>
 import MissionCreateSurveyDetails from '../MissionCreateSurveyDetails/MissionCreateSurveyDetails'
 import MissionCreateSurveyCustomScreen from '../MissionCreateSurveyCustomScreen/MissionCreateSurveyCustomScreen'
+import MissionCreateSurveyAddBox from '../MissionCreateSurveyAddBox/MissionCreateSurveyAddBox'
 export default {
   name: 'MissionCreateSurvey',
-  components: { MissionCreateSurveyCustomScreen, MissionCreateSurveyDetails }
+  components: { MissionCreateSurveyAddBox, MissionCreateSurveyCustomScreen, MissionCreateSurveyDetails }
 }
 </script>
 
