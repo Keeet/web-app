@@ -51,7 +51,8 @@ export default {
   components: { ButtonText, Logo, Loading },
   data() {
     return {
-      remoteVideoVertical: false
+      remoteVideoVertical: false,
+      localTrack: null
     }
   },
   computed: {
@@ -64,7 +65,8 @@ export default {
     }
   },
   mounted() {
-    this.$twilioHelper.setupLocalPreview().then(this.setLocaleVideoTrack)
+    // eslint-disable-next-line no-console
+    this.$twilioHelper.setupLocalPreview().then(this.setLocalVideoTrack).catch(console.error)
     this.$store.commit('twilio/showJoinButton')
 
     if (this.twilio.isCompany) {
@@ -78,6 +80,7 @@ export default {
   beforeDestroy() {
     window.removeEventListener('beforeunload', this.disconnect)
     document.getElementById(REMOTE_STREAM_VIDEO).removeEventListener('resize', this.onRemoteTrackResize)
+    this.stopLocalVideoTrack()
   },
   methods: {
     joinCall() {
@@ -108,8 +111,15 @@ export default {
       })
       participant.on('trackSubscribed', this.setRemoteVideoTrack)
     },
-    setLocaleVideoTrack(track) {
+    setLocalVideoTrack(track) {
       track.attach(`#${LOCAL_STREAM_VIDEO}`)
+      this.localTrack = track
+    },
+    stopLocalVideoTrack() {
+      if (this.localTrack) {
+        this.localTrack.mediaStreamTrack.stop()
+        this.localTrack.detach()
+      }
     },
     setRemoteVideoTrack(track) {
       if (track) {
@@ -136,8 +146,6 @@ export default {
     },
     onRemoteTrackResize() {
       const vid = document.getElementById(REMOTE_STREAM_VIDEO)
-      // eslint-disable-next-line no-console
-      console.log(vid.videoHeight, vid.videoWidth)
       this.remoteVideoVertical = vid.videoHeight > vid.videoWidth
     }
   }
