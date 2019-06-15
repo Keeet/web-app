@@ -1,0 +1,56 @@
+.mission-create-survey-item-select-question-choices {
+  margin-top: 30px;
+
+  .chosen {
+    opacity: 0;
+  }
+
+  .drag {
+    opacity: 1;
+  }
+}
+
+.mission-create-survey-item-select-question-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 5px;
+
+  .mission-create-survey-item-select-question-choices-add {
+    color: $grey;
+    margin-left: 20px;
+    font-weight: bold;
+
+    svg {
+      width: 12px;
+      fill: $grey;
+      margin-right: 18px;
+    }
+
+    &.active {
+      color: $grey-dark;
+
+      &.SINGLE_SELECT {
+        color: $mission-survey-single-select;
+
+        svg {
+          fill: $mission-survey-single-select;
+        }
+      }
+      &.MULTI_SELECT {
+        color: $mission-survey-multi-select;
+
+        svg {
+          fill: $mission-survey-multi-select;
+        }
+      }
+
+      svg {
+        fill: $grey-dark;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

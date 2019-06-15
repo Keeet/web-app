@@ -26,6 +26,20 @@ const defaultStateItem = {
     type: MISSION_SURVEY_ITEMS.LONG_TEXT,
     required: true,
     text: ''
+  },
+  SINGLE_SELECT: {
+    type: MISSION_SURVEY_ITEMS.SINGLE_SELECT,
+    required: true,
+    text: '',
+    choices: ['', ''],
+    otherAvailable: false
+  },
+  MULTI_SELECT: {
+    type: MISSION_SURVEY_ITEMS.MULTI_SELECT,
+    required: true,
+    text: '',
+    choices: ['', ''],
+    otherAvailable: false
   }
 }
 
@@ -102,6 +116,32 @@ export const mutations = {
   setItemQuestionRequired(state, { index, required }) {
     const items = state.items.slice()
     items[index].required = required
+    state.items = items
+  },
+  setItemSelectChoices(state, { itemIndex, choices }) {
+    const items = state.items.slice()
+    items[itemIndex].choices = choices
+    state.items = items
+  },
+  setItemSelectChoice(state, { itemIndex, choiceIndex, choice }) {
+    const items = state.items.slice()
+    items[itemIndex].choices[choiceIndex] = choice
+    state.items = items
+  },
+  addEmptyItemSelectChoice(state, itemIndex) {
+    const items = state.items.slice()
+    const choices = items[itemIndex].choices
+    choices.push('')
+    state.items = items
+  },
+  deleteItemSelectChoice(state, { itemIndex, choiceIndex }) {
+    const items = state.items.slice()
+    items[itemIndex].choices.splice(choiceIndex, 1)
+    state.items = items
+  },
+  switchItemSelectOtherAvailable(state, itemIndex) {
+    const items = state.items.slice()
+    items[itemIndex].otherAvailable = !items[itemIndex].otherAvailable
     state.items = items
   }
 }

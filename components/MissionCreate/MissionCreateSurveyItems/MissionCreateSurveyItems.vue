@@ -10,6 +10,10 @@
         :index="x"
         :item="item"
       />
+      <MissionCreateSurveyItemSelectQuestion
+        v-else-if="[SINGLE_SELECT, MULTI_SELECT].includes(item.type)"
+        :index="x"
+      />
     </div>
   </div>
 </template>
@@ -18,13 +22,15 @@
 import { MISSION_SURVEY_ITEMS } from '../../constants'
 import MissionCreateSurveyItemTextQuestion
   from '../MissionCreateSurveyItemTextQuestion/MissionCreateSurveyItemTextQuestion'
+import MissionCreateSurveyItemSelectQuestion
+  from '../MissionCreateSurveyItemSelectQuestion/MissionCreateSurveyItemSelectQuestion'
 
 export default {
   name: 'MissionCreateSurveyItems',
-  components: { MissionCreateSurveyItemTextQuestion },
+  components: { MissionCreateSurveyItemSelectQuestion, MissionCreateSurveyItemTextQuestion },
   data() {
-    const { SHORT_TEXT, LONG_TEXT } = MISSION_SURVEY_ITEMS
-    return { SHORT_TEXT, LONG_TEXT }
+    const { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT } = MISSION_SURVEY_ITEMS
+    return { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT }
   },
   computed: {
     items() {

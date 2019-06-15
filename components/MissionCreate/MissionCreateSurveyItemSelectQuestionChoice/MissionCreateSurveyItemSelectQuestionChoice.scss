@@ -1,0 +1,34 @@
+.mission-create-survey-item-select-question-choice {
+  display: flex;
+  align-items: center;
+  margin: 20px 0 20px 20px;
+
+  svg {
+    transition: fill .4s;
+    width: 100%;
+    fill: $grey-mid-dark;
+
+    &:hover {
+      cursor: pointer;
+      fill: $grey-dark;
+    }
+  }
+
+  .mission-create-survey-item-select-question-choice-icon {
+    width: 10px;
+    margin-right: 20px;
+  }
+
+  .mission-create-survey-item-select-question-choice-input {
+    flex-grow: 1;
+  }
+
+  .mission-create-survey-item-select-question-choice-delete {
+    width: 13px;
+    margin-left: 20px;
+
+    svg {
+      width: 100%;
+    }
+  }
+}

@@ -35,7 +35,8 @@
     "uuid": "latest",
     "vue-color": "2.7.0",
     "vue-slider-component": "^3.0.31",
-    "vue-timeago": "5.1.2"
+    "vue-timeago": "5.1.2",
+    "vuedraggable": "^2.21.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",

@@ -18,7 +18,7 @@
       delete
     </span>
     <div v-else class="dropzone-empty">
-      <IconPencil />
+      <IconFileImage />
       <p class="dropzone-empty-text">
         Upload a photo / logo
       </p>

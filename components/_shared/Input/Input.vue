@@ -1,5 +1,5 @@
 <template>
-  <div class="input" :class="type">
+  <div class="input" :class="[type, { noMargin }]">
     <p v-if="title" class="input-title">
       {{ title }}
     </p>
@@ -12,6 +12,7 @@
       :readonly="readonly"
       :maxlength="maxCharacters || 524288"
       @keyup.enter="$emit('enter')"
+      @focusout="$emit('focusout')"
     >
     <textarea
       v-else
@@ -60,7 +61,7 @@ export default {
     },
     mutation: {
       type: String,
-      required: true
+      default: null
     },
     value: {
       type: String,
@@ -81,6 +82,10 @@ export default {
     textarea: {
       type: Boolean,
       default: false
+    },
+    noMargin: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -89,7 +94,11 @@ export default {
         return this.value
       },
       set(value) {
-        this.$store.commit(this.mutation, value)
+        if (this.mutation) {
+          this.$store.commit(this.mutation, value)
+        } else {
+          this.$emit('change', value)
+        }
       }
     },
     showError() {

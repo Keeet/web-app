@@ -1,9 +1,10 @@
 import { isAuthUrl, isExternalUrl } from '../utils/urlUtils'
 
 export default (context) => {
-  window.setInterval(() => {
-    fetchUserIfLoggedIn(context)
-  }, 10000)
+  fetchUserIfLoggedIn(context)
+  // window.setInterval(() => {
+  //   fetchUserIfLoggedIn(context)
+  // }, 10000)
 }
 
 const SESSION_USER_ROLE = 'SESSION_USER_ROLE'

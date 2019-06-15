@@ -39,6 +39,8 @@ import IconInsightGeneric from '../assets/icons/insight-generic.svg'
 import IconInsightAirtable from '../assets/icons/insight-airtable.svg'
 import IconInsightGoogleDocs from '../assets/icons/insight-google-docs.svg'
 import IconInsightVideo from '../assets/icons/insight-video.svg'
+import IconFileImage from '../assets/icons/file-image.svg'
+import IconDragDrop from '../assets/icons/drag-drop.svg'
 
 import IconPersonaChantal from '../assets/icons/persona-chantal.svg'
 import IconPersonaDustin from '../assets/icons/persona-dustin.svg'
@@ -88,6 +90,8 @@ Vue.component('IconInsightGeneric', IconInsightGeneric)
 Vue.component('IconInsightAirtable', IconInsightAirtable)
 Vue.component('IconInsightGoogleDocs', IconInsightGoogleDocs)
 Vue.component('IconInsightVideo', IconInsightVideo)
+Vue.component('IconFileImage', IconFileImage)
+Vue.component('IconDragDrop', IconDragDrop)
 
 Vue.component('IconPersonaChantal', IconPersonaChantal)
 Vue.component('IconPersonaDustin', IconPersonaDustin)
