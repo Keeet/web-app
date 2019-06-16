@@ -40,6 +40,15 @@ const defaultStateItem = {
     text: '',
     choices: ['', ''],
     otherAvailable: false
+  },
+  LINEAR_SCALE: {
+    type: MISSION_SURVEY_ITEMS.LINEAR_SCALE,
+    required: true,
+    text: '',
+    startValue: 0,
+    startLabel: '',
+    endValue: 10,
+    endLabel: ''
   }
 }
 
@@ -142,6 +151,26 @@ export const mutations = {
   switchItemSelectOtherAvailable(state, itemIndex) {
     const items = state.items.slice()
     items[itemIndex].otherAvailable = !items[itemIndex].otherAvailable
+    state.items = items
+  },
+  setItemLinearScaleStartValue(state, { value, itemIndex }) {
+    const items = state.items.slice()
+    items[itemIndex].startValue = value
+    state.items = items
+  },
+  setItemLinearScaleStartLabel(state, { label, itemIndex }) {
+    const items = state.items.slice()
+    items[itemIndex].startLabel = label
+    state.items = items
+  },
+  setItemLinearScaleEndValue(state, { value, itemIndex }) {
+    const items = state.items.slice()
+    items[itemIndex].endValue = value
+    state.items = items
+  },
+  setItemLinearScaleEndLabel(state, { label, itemIndex }) {
+    const items = state.items.slice()
+    items[itemIndex].endLabel = label
     state.items = items
   }
 }

@@ -1,6 +1,9 @@
 .select {
   position: relative;
-  padding: 8px 0;
+
+  &:not(.noMargin) {
+    padding: 8px 0;
+  }
 
   &.error {
 

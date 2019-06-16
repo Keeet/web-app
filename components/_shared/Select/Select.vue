@@ -1,5 +1,5 @@
 <template>
-  <div class="select" :class="{ error }">
+  <div class="select" :class="{ error, noMargin }">
     <p v-if="title" class="select-title">
       {{ title }}
     </p>
@@ -40,16 +40,20 @@ export default {
       default: false
     },
     value: {
-      type: String,
+      type: [String, Number],
       required: true
     },
     mutation: {
       type: String,
-      required: true
+      default: null
     },
     error: {
       type: String,
       default: null
+    },
+    noMargin: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -58,7 +62,11 @@ export default {
         return this.value
       },
       set(value) {
-        this.$store.commit(this.mutation, value)
+        if (this.mutation) {
+          this.$store.commit(this.mutation, value)
+        } else {
+          this.$emit('change', value)
+        }
       }
     }
   }

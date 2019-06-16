@@ -1,31 +1,26 @@
 <template>
-  <MissionCreateSurveyItem
-    :type="item.type"
+  <MissionCreateSurveyItemQuestion
     :index="index"
-  >
-    <MissionCreateSurveyItemQuestion
-      :index="index"
-      :type="item.type"
-      :value="item.text"
-      :required="item.required"
-    />
-  </MissionCreateSurveyItem>
+    :type="item.type"
+    :value="item.text"
+    :required="item.required"
+  />
 </template>
 
 <script>
-import MissionCreateSurveyItem from '../MissionCreateSurveyItem/MissionCreateSurveyItem'
 import MissionCreateSurveyItemQuestion from '../MissionCreateSurveyItemQuestion/MissionCreateSurveyItemQuestion'
 export default {
   name: 'MissionCreateSurveyItemTextQuestion',
-  components: { MissionCreateSurveyItemQuestion, MissionCreateSurveyItem },
+  components: { MissionCreateSurveyItemQuestion },
   props: {
-    item: {
-      type: Object,
-      required: true
-    },
     index: {
       type: Number,
       required: true
+    }
+  },
+  computed: {
+    item() {
+      return this.$store.state.missionFormSurvey.items[this.index]
     }
   }
 }

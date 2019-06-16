@@ -1,0 +1,23 @@
+.mission-create-survey-item-linear-scale-question-border {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+
+  .mission-create-survey-item-linear-scale-question-border-select {
+    display: flex;
+    align-items: center;
+
+    .mission-create-survey-item-linear-scale-question-border-select-label {
+      width: 100px;
+    }
+
+    .mission-create-survey-item-linear-scale-question-border-select-dropdown {
+      width: 80px;
+    }
+  }
+
+  .mission-create-survey-item-linear-scale-question-border-input {
+    margin-left: 20px;
+    flex-grow: 1;
+  }
+}

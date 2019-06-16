@@ -1,8 +1,5 @@
 <template>
-  <MissionCreateSurveyItem
-    :type="item.type"
-    :index="index"
-  >
+  <div class="mission-create-survey-item-select-question">
     <MissionCreateSurveyItemQuestion
       :index="index"
       :type="item.type"
@@ -44,18 +41,17 @@
         @switch="switchOtherAvailable"
       />
     </div>
-  </MissionCreateSurveyItem>
+  </div>
 </template>
 
 <script>
-import MissionCreateSurveyItem from '../MissionCreateSurveyItem/MissionCreateSurveyItem'
 import MissionCreateSurveyItemQuestion from '../MissionCreateSurveyItemQuestion/MissionCreateSurveyItemQuestion'
 import MissionCreateSurveyItemSelectQuestionChoice
   from '../MissionCreateSurveyItemSelectQuestionChoice/MissionCreateSurveyItemSelectQuestionChoice'
 import SwitchButton from '../../_shared/SwitchButton/SwitchButton'
 export default {
   name: 'MissionCreateSurveyItemSelectQuestion',
-  components: { SwitchButton, MissionCreateSurveyItemSelectQuestionChoice, MissionCreateSurveyItemQuestion, MissionCreateSurveyItem },
+  components: { SwitchButton, MissionCreateSurveyItemSelectQuestionChoice, MissionCreateSurveyItemQuestion },
   props: {
     index: {
       type: Number,
