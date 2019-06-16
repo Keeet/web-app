@@ -1,24 +1,33 @@
 <template>
   <div class="mission-create-survey-items">
-    <MissionCreateSurveyItem
-      v-for="(item, x) in items"
-      :key="x"
-      :type="item.type"
-      :index="x"
+    <draggable
+      v-model="items"
+      handle=".mission-create-survey-item-head-drag"
+      ghost-class="ghost"
+      chosen-class="chosen"
+      drag-class="drag"
+      :animation="150"
     >
-      <MissionCreateSurveyItemSelectQuestion
-        v-if="[SINGLE_SELECT, MULTI_SELECT].includes(item.type)"
+      <MissionCreateSurveyItem
+        v-for="(item, x) in items"
+        :key="x"
+        :type="item.type"
         :index="x"
-      />
-      <MissionCreateSurveyItemLinearScaleQuestion
-        v-else-if="[LINEAR_SCALE].includes(item.type)"
-        :index="x"
-      />
-      <MissionCreateSurveyItemLikertQuestion
-        v-else-if="[LIKERT].includes(item.type)"
-        :index="x"
-      />
-    </MissionCreateSurveyItem>
+      >
+        <MissionCreateSurveyItemSelectQuestion
+          v-if="[SINGLE_SELECT, MULTI_SELECT].includes(item.type)"
+          :index="x"
+        />
+        <MissionCreateSurveyItemLinearScaleQuestion
+          v-else-if="[LINEAR_SCALE].includes(item.type)"
+          :index="x"
+        />
+        <MissionCreateSurveyItemLikertQuestion
+          v-else-if="[LIKERT].includes(item.type)"
+          :index="x"
+        />
+      </MissionCreateSurveyItem>
+    </draggable>
   </div>
 </template>
 
@@ -40,9 +49,18 @@ export default {
     return { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LINEAR_SCALE, LIKERT }
   },
   computed: {
-    items() {
-      return this.$store.state.missionFormSurvey.items
+    items: {
+      get() {
+        return this.$store.state.missionFormSurvey.items
+      },
+      set(value) {
+        this.$store.commit('missionFormSurvey/setItems', value)
+      }
     }
   }
 }
 </script>
+
+<style lang="scss">
+  @import "MissionCreateSurveyItems";
+</style>

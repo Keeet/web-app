@@ -13,6 +13,7 @@ const defaultState = {
   closingColorPickerOpened: false,
   color: { hex: '#0FBCF9' },
   redirectLink: null,
+  itemAddIndex: 0,
   items: []
 }
 
@@ -113,9 +114,16 @@ export const mutations = {
     state.redirectLink = redirectLink
   },
 
+  setItemAddIndex(state, index) {
+    state.itemAddIndex = index
+  },
   addItem(state, type) {
     const items = state.items.slice()
-    items.push({ ...defaultStateItem[type] })
+    items.splice(state.itemAddIndex, 0, { ...defaultStateItem[type] })
+    state.items = items
+    state.itemAddIndex = state.items.length
+  },
+  setItems(state, items) {
     state.items = items
   },
   deleteItem(state, index) {

@@ -5,6 +5,20 @@
     align-items: center;
     margin-bottom: 30px;
 
+    .mission-create-survey-item-head-drag {
+      height: 19px;
+      margin-right: 20px;
+
+      svg {
+        height: 100%;
+        fill: $grey-mid-dark;
+      }
+
+      &:hover {
+        cursor: move;
+      }
+    }
+
     .mission-create-survey-item-head-icon {
       display: flex;
       align-items: center;
