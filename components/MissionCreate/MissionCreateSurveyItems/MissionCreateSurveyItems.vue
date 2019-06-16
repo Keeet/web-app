@@ -6,12 +6,8 @@
       :type="item.type"
       :index="x"
     >
-      <MissionCreateSurveyItemTextQuestion
-        v-if="[SHORT_TEXT, LONG_TEXT].includes(item.type)"
-        :index="x"
-      />
       <MissionCreateSurveyItemSelectQuestion
-        v-else-if="[SINGLE_SELECT, MULTI_SELECT].includes(item.type)"
+        v-if="[SINGLE_SELECT, MULTI_SELECT].includes(item.type)"
         :index="x"
       />
       <MissionCreateSurveyItemLinearScaleQuestion
@@ -28,8 +24,6 @@
 
 <script>
 import { MISSION_SURVEY_ITEMS } from '../../constants'
-import MissionCreateSurveyItemTextQuestion
-  from '../MissionCreateSurveyItemTextQuestion/MissionCreateSurveyItemTextQuestion'
 import MissionCreateSurveyItemSelectQuestion
   from '../MissionCreateSurveyItemSelectQuestion/MissionCreateSurveyItemSelectQuestion'
 import MissionCreateSurveyItemLinearScaleQuestion
@@ -40,7 +34,7 @@ import MissionCreateSurveyItemLikertQuestion
 
 export default {
   name: 'MissionCreateSurveyItems',
-  components: { MissionCreateSurveyItemLikertQuestion, MissionCreateSurveyItem, MissionCreateSurveyItemLinearScaleQuestion, MissionCreateSurveyItemSelectQuestion, MissionCreateSurveyItemTextQuestion },
+  components: { MissionCreateSurveyItemLikertQuestion, MissionCreateSurveyItem, MissionCreateSurveyItemLinearScaleQuestion, MissionCreateSurveyItemSelectQuestion },
   data() {
     const { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LINEAR_SCALE, LIKERT } = MISSION_SURVEY_ITEMS
     return { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LINEAR_SCALE, LIKERT }

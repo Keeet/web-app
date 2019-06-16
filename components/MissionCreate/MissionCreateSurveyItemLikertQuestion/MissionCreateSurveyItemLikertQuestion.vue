@@ -1,11 +1,5 @@
 <template>
   <div class="mission-create-survey-item-likert-question">
-    <MissionCreateSurveyItemQuestion
-      :index="index"
-      :type="item.type"
-      :value="item.text"
-      :required="item.required"
-    />
     <div class="mission-create-survey-item-likert-question-form">
       <div class="mission-create-survey-item-likert-question-form-select">
         <Select
@@ -36,11 +30,10 @@
 
 <script>
 import { MISSION_SURVEY_ITEM_LIKERT, MISSION_SURVEY_ITEM_LIKERT_LABELS, MISSION_SURVEY_ITEM_LIKERT_OPTIONS } from '../../constants'
-import MissionCreateSurveyItemQuestion from '../MissionCreateSurveyItemQuestion/MissionCreateSurveyItemQuestion'
 import Select from '../../_shared/Select/Select'
 export default {
   name: 'MissionCreateSurveyItemLikertQuestion',
-  components: { Select, MissionCreateSurveyItemQuestion },
+  components: { Select },
   props: {
     index: {
       type: Number,

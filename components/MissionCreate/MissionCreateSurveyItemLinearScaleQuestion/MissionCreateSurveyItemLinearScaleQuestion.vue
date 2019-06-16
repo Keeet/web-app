@@ -1,11 +1,5 @@
 <template>
   <div class="mission-create-survey-item-linear-scale-question">
-    <MissionCreateSurveyItemQuestion
-      :index="index"
-      :type="item.type"
-      :value="item.text"
-      :required="item.required"
-    />
     <div class="mission-create-survey-item-linear-scale-question-form">
       <MissionCreateSurveyItemLinearScaleQuestionBorder :item="item" :index="index" :is-start="true" />
       <MissionCreateSurveyItemLinearScaleQuestionBorder :item="item" :index="index" :is-start="false" />
@@ -14,12 +8,11 @@
 </template>
 
 <script>
-import MissionCreateSurveyItemQuestion from '../MissionCreateSurveyItemQuestion/MissionCreateSurveyItemQuestion'
 import MissionCreateSurveyItemLinearScaleQuestionBorder
   from '../MissionCreateSurveyItemLinearScaleQuestionBorder/MissionCreateSurveyItemLinearScaleQuestionBorder'
 export default {
   name: 'MissionCreateSurveyItemLinearScaleQuestion',
-  components: { MissionCreateSurveyItemLinearScaleQuestionBorder, MissionCreateSurveyItemQuestion },
+  components: { MissionCreateSurveyItemLinearScaleQuestionBorder },
   props: {
     index: {
       type: Number,

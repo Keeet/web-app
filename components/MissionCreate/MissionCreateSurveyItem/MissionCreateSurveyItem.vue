@@ -15,6 +15,12 @@
       </div>
       <hr class="mission-create-survey-item-separator">
       <div class="mission-create-survey-item-body">
+        <MissionCreateSurveyItemQuestion
+          :index="index"
+          :type="item.type"
+          :value="item.text"
+          :required="item.required"
+        />
         <slot />
       </div>
     </div>
@@ -25,10 +31,11 @@
 import MissionCreateBox from '../MissionCreateBox/MissionCreateBox'
 import MissionCreateSurveyIcon from '../MissionCreateSurveyIcon/MissionCreateSurveyIcon'
 import { MISSION_SURVEY_ITEM_LABELS, MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_HUB_ITEMS } from '../../constants'
+import MissionCreateSurveyItemQuestion from '../MissionCreateSurveyItemQuestion/MissionCreateSurveyItemQuestion'
 
 export default {
   name: 'MissionCreateSurveyItem',
-  components: { MissionCreateSurveyIcon, MissionCreateBox },
+  components: { MissionCreateSurveyItemQuestion, MissionCreateSurveyIcon, MissionCreateBox },
   props: {
     type: {
       type: String,
@@ -42,6 +49,11 @@ export default {
   },
   data() {
     return { MISSION_SURVEY_ITEM_LABELS }
+  },
+  computed: {
+    item() {
+      return this.$store.state.missionFormSurvey.items[this.index]
+    }
   },
   methods: {
     deleteItem() {

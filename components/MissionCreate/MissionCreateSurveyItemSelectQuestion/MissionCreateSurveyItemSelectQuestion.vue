@@ -1,11 +1,5 @@
 <template>
   <div class="mission-create-survey-item-select-question">
-    <MissionCreateSurveyItemQuestion
-      :index="index"
-      :type="item.type"
-      :value="item.text"
-      :required="item.required"
-    />
     <div class="mission-create-survey-item-select-question-choices">
       <draggable
         v-model="choices"
@@ -45,13 +39,12 @@
 </template>
 
 <script>
-import MissionCreateSurveyItemQuestion from '../MissionCreateSurveyItemQuestion/MissionCreateSurveyItemQuestion'
 import MissionCreateSurveyItemSelectQuestionChoice
   from '../MissionCreateSurveyItemSelectQuestionChoice/MissionCreateSurveyItemSelectQuestionChoice'
 import SwitchButton from '../../_shared/SwitchButton/SwitchButton'
 export default {
   name: 'MissionCreateSurveyItemSelectQuestion',
-  components: { SwitchButton, MissionCreateSurveyItemSelectQuestionChoice, MissionCreateSurveyItemQuestion },
+  components: { SwitchButton, MissionCreateSurveyItemSelectQuestionChoice },
   props: {
     index: {
       type: Number,
