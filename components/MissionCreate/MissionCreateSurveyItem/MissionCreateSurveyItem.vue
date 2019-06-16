@@ -13,7 +13,7 @@
           <IconDelete />
         </div>
       </div>
-      <hr class="mission-create-survey-item-separator" />
+      <hr class="mission-create-survey-item-separator">
       <div class="mission-create-survey-item-body">
         <slot />
       </div>

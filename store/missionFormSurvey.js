@@ -49,6 +49,12 @@ const defaultStateItem = {
     startLabel: '',
     endValue: 10,
     endLabel: ''
+  },
+  LIKERT: {
+    type: MISSION_SURVEY_ITEMS.LIKERT,
+    required: true,
+    text: '',
+    answerType: 'AGREEMENT'
   }
 }
 
@@ -171,6 +177,11 @@ export const mutations = {
   setItemLinearScaleEndLabel(state, { label, itemIndex }) {
     const items = state.items.slice()
     items[itemIndex].endLabel = label
+    state.items = items
+  },
+  setItemLikertAnswerType(state, { answerType, itemIndex }) {
+    const items = state.items.slice()
+    items[itemIndex].answerType = answerType
     state.items = items
   }
 }

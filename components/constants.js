@@ -70,6 +70,30 @@ export const MISSION_SURVEY_ITEM_LABELS = {
   LINEAR_SCALE: 'Linear Scale',
   LIKERT: 'Likert'
 }
+export const MISSION_SURVEY_ITEM_LIKERT = {
+  AGREEMENT: 'AGREEMENT',
+  OCCURRENCE: 'OCCURRENCE',
+  IMPORTANCE: 'IMPORTANCE',
+  QUALITY: 'QUALITY',
+  COMPREHENSION: 'COMPREHENSION',
+  IMPRESSION: 'IMPRESSION'
+}
+export const MISSION_SURVEY_ITEM_LIKERT_LABELS = {
+  AGREEMENT: 'Agreement',
+  OCCURRENCE: 'Occurrence',
+  IMPORTANCE: 'Importance',
+  QUALITY: 'Quality',
+  COMPREHENSION: 'Comprehension',
+  IMPRESSION: 'Impression'
+}
+export const MISSION_SURVEY_ITEM_LIKERT_OPTIONS = {
+  AGREEMENT: ['Strongly disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'],
+  OCCURRENCE: ['Very rarely', 'Rarely', 'Occasionally', 'Frequently', 'Very frequently'],
+  IMPORTANCE: ['Unimportant', 'Off little importance', 'Moderately important', 'Important', 'Very important'],
+  QUALITY: ['Extremely poor', 'Below average', 'Average', 'Above average', 'Excellent'],
+  COMPREHENSION: ['Did not understand', 'Understood a little', 'Understood most of it', 'Understood very well'],
+  IMPRESSION: ['Very dissatisfied', 'Somewhat dissatisfied', 'Neutral', 'Somewhat satisfied', 'Very satisfied']
+}
 export const MISSION_SURVEY_USABILITY_HUB_ITEMS = {
   FIRST_CLICK: 'FIRST_CLICK',
   FIVE_SECOND_TEST: 'FIVE_SECOND_TEST',
