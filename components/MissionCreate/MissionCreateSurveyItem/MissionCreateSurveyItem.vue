@@ -8,7 +8,9 @@
             <IconDragDrop />
           </div>
           <div class="mission-create-survey-item-head-icon" :class="type">
-            <MissionCreateSurveyIcon :type="type" />
+            <div class="mission-create-survey-item-head-icon-inner">
+              <MissionCreateSurveyIcon :type="type" />
+            </div>
             <span>{{ index + 1 }}</span>
           </div>
           <p class="mission-create-survey-item-head-title">

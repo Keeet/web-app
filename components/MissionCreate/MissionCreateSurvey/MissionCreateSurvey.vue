@@ -15,9 +15,7 @@
         subtitle="The last thing your audience will see. Thank your participants for their effort and time."
       />
     </div>
-    <div class="mission-create-survey-summary">
-      placeholder
-    </div>
+    <MissionCreateSurveySummary />
   </div>
 </template>
 
@@ -26,13 +24,20 @@ import MissionCreateSurveyDetails from '../MissionCreateSurveyDetails/MissionCre
 import MissionCreateSurveyCustomScreen from '../MissionCreateSurveyCustomScreen/MissionCreateSurveyCustomScreen'
 import MissionCreateSurveyItems from '../MissionCreateSurveyItems/MissionCreateSurveyItems'
 import MissionCreateSurveyItemAdd from '../MissionCreateSurveyItemAdd/MissionCreateSurveyItemAdd'
+import MissionCreateSurveySummary from '../MissionCreateSurveySummary/MissionCreateSurveySummary'
 
 export default {
   name: 'MissionCreateSurvey',
-  components: { MissionCreateSurveyItemAdd, MissionCreateSurveyItems, MissionCreateSurveyCustomScreen, MissionCreateSurveyDetails },
+  components: { MissionCreateSurveySummary, MissionCreateSurveyItemAdd, MissionCreateSurveyItems, MissionCreateSurveyCustomScreen, MissionCreateSurveyDetails },
   computed: {
+    s() {
+      return {
+        ...this.$store.state.missionForm,
+        survey: this.$store.state.missionFormSurvey
+      }
+    },
     items() {
-      return this.$store.state.missionFormSurvey.items
+      return this.s.survey.items
     }
   }
 }

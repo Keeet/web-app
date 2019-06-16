@@ -1,18 +1,10 @@
 .mission-create-survey {
+  position: relative;
   display: flex;
   justify-content: space-between;
 
   .mission-create-survey-content {
-    width: 70%;
-  }
-
-  .mission-create-survey-summary {
-    margin: 30px 0;
-    width: 25%;
-    height: 300px;
-    background-color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    color: $grey;
+    margin: -30px 0;
+    width: calc(100% - 330px);
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="mission-create-recruit-submitted-popup">
     <OverlayModal title="Next steps" @close="done">
-      <IconClock />
+      <IconClockBlue />
       <p class="mission-create-recruit-submitted-popup-text">
         We have received your mission! It can take up to
         72 hours until we found fitting test users for you.

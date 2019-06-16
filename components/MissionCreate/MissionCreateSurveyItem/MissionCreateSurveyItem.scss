@@ -28,10 +28,20 @@
       border-radius: 5px;
       margin-right: 20px;
 
-      svg {
-        max-width: 20px;
-        max-height: 20px;
+      .mission-create-survey-item-head-icon-inner {
+        position: relative;
+        width: 20px;
+        height: 20px;
         margin-right: 10px;
+
+        svg {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          max-width: 100%;
+          max-height: 100%;
+        }
       }
 
       &.SHORT_TEXT {
@@ -76,6 +86,10 @@
         }
       }
     }
+  }
+
+  .mission-create-survey-item-body {
+    overflow-x: auto;
   }
 
   .mission-create-survey-item-separator {

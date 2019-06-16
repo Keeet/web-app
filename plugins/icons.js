@@ -34,6 +34,7 @@ import IconPhone from '../assets/icons/phone.svg'
 import IconEnvelope from '../assets/icons/envelope.svg'
 import IconProgress from '../assets/icons/progress.svg'
 import IconClock from '../assets/icons/clock.svg'
+import IconClockBlue from '../assets/icons/clock-blue.svg'
 import IconEndCall from '../assets/icons/end-call.svg'
 import IconInsightGeneric from '../assets/icons/insight-generic.svg'
 import IconInsightAirtable from '../assets/icons/insight-airtable.svg'
@@ -41,6 +42,7 @@ import IconInsightGoogleDocs from '../assets/icons/insight-google-docs.svg'
 import IconInsightVideo from '../assets/icons/insight-video.svg'
 import IconFileImage from '../assets/icons/file-image.svg'
 import IconDragDrop from '../assets/icons/drag-drop.svg'
+import IconLinkExternal from '../assets/icons/link-external.svg'
 
 import IconPersonaChantal from '../assets/icons/persona-chantal.svg'
 import IconPersonaDustin from '../assets/icons/persona-dustin.svg'
@@ -85,6 +87,7 @@ Vue.component('IconPhone', IconPhone)
 Vue.component('IconEnvelope', IconEnvelope)
 Vue.component('IconProgress', IconProgress)
 Vue.component('IconClock', IconClock)
+Vue.component('IconClockBlue', IconClockBlue)
 Vue.component('IconEndCall', IconEndCall)
 Vue.component('IconInsightGeneric', IconInsightGeneric)
 Vue.component('IconInsightAirtable', IconInsightAirtable)
@@ -92,6 +95,7 @@ Vue.component('IconInsightGoogleDocs', IconInsightGoogleDocs)
 Vue.component('IconInsightVideo', IconInsightVideo)
 Vue.component('IconFileImage', IconFileImage)
 Vue.component('IconDragDrop', IconDragDrop)
+Vue.component('IconLinkExternal', IconLinkExternal)
 
 Vue.component('IconPersonaChantal', IconPersonaChantal)
 Vue.component('IconPersonaDustin', IconPersonaDustin)

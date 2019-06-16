@@ -4,7 +4,6 @@
       v-model="items"
       handle=".mission-create-survey-item-head-drag"
       ghost-class="ghost"
-      chosen-class="chosen"
       drag-class="drag"
       :animation="150"
     >

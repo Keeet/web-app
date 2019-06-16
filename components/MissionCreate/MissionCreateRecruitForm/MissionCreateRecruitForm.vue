@@ -43,29 +43,11 @@
         </div>
       </MissionCreateBox>
     </div>
-    <div class="mission-create-recruit-form-submit" :class="submitBoxPositioning">
-      <div class="mission-create-recruit-form-submit-ref" />
-      <div class="mission-create-recruit-form-submit-inner">
-        <div class="mission-create-recruit-form-submit-box">
-          <div class="mission-create-recruit-form-submit-head">
-            <div class="mission-create-recruit-form-submit-head-icon" :class="s.type">
-              <IconMissionInHouse v-if="s.type === IN_HOUSE" />
-              <IconMissionRemote v-if="s.type === REMOTE" />
-            </div>
-            <div class="mission-create-recruit-form-submit-head-text">
-              {{ MISSION_LABELS[s.type] }} Mission
-            </div>
-          </div>
-          <div class="mission-create-recruit-form-submit-body">
-            You have in total 3 more testers free for this month.
-          </div>
-        </div>
-        <div v-if="[USABILITY_LAB, SURVEY].includes(s.type)" class="mission-create-recruit-form-submit-buttons">
-          <ButtonText type="GREY" text="Cancel" />
-          <ButtonText text="Save and Continue" />
-        </div>
-      </div>
-    </div>
+    <MissionCreateSideBox :type="s.type">
+      <template slot="body">
+        You have in total 3 more testers free for this month.
+      </template>
+    </MissionCreateSideBox>
   </div>
 </template>
 
@@ -78,12 +60,11 @@ import Input from '../../_shared/Input/Input'
 import MissionCreateRecruitFormPersonaSelect from '../MissionCreateRecruitFormPersonaSelect/MissionCreateRecruitFormPersonaSelect'
 import MissionCreateRecruitFormDuration from '../MissionCreateRecruitFormDuration/MissionCreateRecruitFormDuration'
 import MissionCreateRecruitFormLanguage from '../MissionCreateRecruitFormLanguage/MissionCreateRecruitFormLanguage'
-import ButtonText from '../../_shared/ButtonText/ButtonText'
 import MissionCreateRecruitFormLocation from '../MissionCreateRecruitFormLocation/MissionCreateRecruitFormLocation'
-import { determineFixedOrAbsolute } from '../../../utils/scrollUtils'
+import MissionCreateSideBox from '../MissionCreateSideBox/MissionCreateSideBox'
 export default {
   name: 'MissionCreateRecruitForm',
-  components: { MissionCreateRecruitFormLocation, ButtonText, MissionCreateRecruitFormLanguage, MissionCreateRecruitFormDuration, MissionCreateRecruitFormPersonaSelect, Input, MissionCreateRecruitFormHeadline, MissionCreateBox },
+  components: { MissionCreateSideBox, MissionCreateRecruitFormLocation, MissionCreateRecruitFormLanguage, MissionCreateRecruitFormDuration, MissionCreateRecruitFormPersonaSelect, Input, MissionCreateRecruitFormHeadline, MissionCreateBox },
   props: {
     showErrors: {
       type: Boolean,
@@ -92,7 +73,7 @@ export default {
   },
   data() {
     const { IN_HOUSE, REMOTE, USABILITY_LAB, SURVEY } = MISSIONS
-    return { IN_HOUSE, REMOTE, USABILITY_LAB, SURVEY, MISSION_LABELS, submitBoxPositioning: null }
+    return { IN_HOUSE, REMOTE, USABILITY_LAB, SURVEY, MISSION_LABELS }
   },
   computed: {
     s() {
@@ -132,25 +113,10 @@ export default {
   },
   mounted() {
     this.commitValidity()
-    this.onScroll()
-    window.addEventListener('scroll', this.onScroll)
-  },
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.onScroll)
   },
   methods: {
     commitValidity() {
       this.$store.commit('missionFormRecruit/setFormValid', this.valid)
-    },
-    onScroll() {
-      const positioning = determineFixedOrAbsolute(
-        document.getElementsByClassName('mission-create-recruit-form-submit-ref')[0],
-        document.getElementsByClassName('mission-create-recruit-form-submit-inner')[0],
-        document.getElementsByClassName('mission-create-recruit-form')[0]
-      )
-      if (positioning !== this.submitBoxPositioning) {
-        this.submitBoxPositioning = positioning
-      }
     }
   }
 }
