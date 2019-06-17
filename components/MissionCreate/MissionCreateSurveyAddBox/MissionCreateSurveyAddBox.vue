@@ -1,6 +1,10 @@
 <template>
   <div class="mission-create-survey-add-box">
-    <MissionCreateBox headline="Add a question">
+    <MissionCreateBox
+      headline="Add a question"
+      :closable="closable"
+      @close="$store.commit('missionFormSurvey/setItemAddIndex', -1)"
+    >
       <div class="mission-create-survey-add-box-line">
         <MissionCreateSurveyAddBoxItem :type="SHORT_TEXT" />
         <MissionCreateSurveyAddBoxItem :type="LONG_TEXT" />
@@ -27,6 +31,11 @@ export default {
   data() {
     const { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LIKERT, LINEAR_SCALE } = MISSION_SURVEY_ITEMS
     return { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LIKERT, LINEAR_SCALE }
+  },
+  computed: {
+    closable() {
+      return !!this.$store.state.missionFormSurvey.items.length
+    }
   }
 }
 </script>

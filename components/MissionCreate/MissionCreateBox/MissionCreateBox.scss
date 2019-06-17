@@ -1,4 +1,5 @@
 .mission-create-box {
+  position: relative;
   background-color: #fff;
   padding: 30px;
   border-radius: 5px;
@@ -13,5 +14,21 @@
     margin: 0 0 30px;
     font-size: 130%;
     font-weight: 700;
+  }
+
+  .mission-create-box-close {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    width: 14px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    svg {
+      width: 100%;
+      fill: $grey-mid-dark;
+    }
   }
 }

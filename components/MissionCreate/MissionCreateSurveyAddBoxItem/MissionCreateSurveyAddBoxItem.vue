@@ -44,6 +44,7 @@ export default {
   methods: {
     addItem() {
       this.$store.commit('missionFormSurvey/addItem', this.type)
+      this.$store.commit('missionFormSurvey/setItemAddIndex', -1)
     }
   }
 }

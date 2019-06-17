@@ -73,7 +73,7 @@ export default {
   methods: {
     deleteItem() {
       this.$store.commit('missionFormSurvey/deleteItem', this.index)
-      this.$store.commit('missionFormSurvey/setItemAddIndex', this.items.length)
+      this.$store.commit('missionFormSurvey/setItemAddIndex', -1)
     }
   }
 }
