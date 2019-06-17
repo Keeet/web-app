@@ -60,13 +60,20 @@ export default {
     return { MISSION_SURVEY_ITEM_LABELS }
   },
   computed: {
+    s() {
+      return this.$store.state.missionFormSurvey
+    },
+    items() {
+      return this.s.items
+    },
     item() {
-      return this.$store.state.missionFormSurvey.items[this.index]
+      return this.items[this.index]
     }
   },
   methods: {
     deleteItem() {
       this.$store.commit('missionFormSurvey/deleteItem', this.index)
+      this.$store.commit('missionFormSurvey/setItemAddIndex', this.items.length)
     }
   }
 }

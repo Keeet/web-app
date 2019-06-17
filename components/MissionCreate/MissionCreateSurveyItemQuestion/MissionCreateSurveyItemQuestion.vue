@@ -1,34 +1,36 @@
 <template>
   <div class="mission-create-survey-item-question">
-    <p class="mission-create-survey-item-question-title">
-      {{ title || 'Question' }}
-    </p>
-    <div class="mission-create-survey-item-question-input">
-      <div class="mission-create-survey-item-question-input-area">
-        <input
-          v-model="question"
-          type="text"
-          placeholder="Type question here"
-        >
-      </div>
-      <div class="mission-create-survey-item-question-input-switch">
-        <SwitchButton
-          label="Required"
-          :on="required"
-          :bg-color-class="type"
-          small
-          @switch="switchRequired"
-        />
-      </div>
-    </div>
+    <!-- eslint-disable -->
+    <Input
+      :title="title || 'Question'"
+      placeholder="Type question here"
+      :value="value"
+      :error="error"
+      :disable-error="!showError"
+      @change="setQuestion"
+      @focusout="showError = true"
+    >
+      <template slot="additional">
+        <div class="mission-create-survey-item-question-switch">
+          <SwitchButton
+            label="Required"
+            :on="required"
+            :bg-color-class="type"
+            small
+            @switch="switchRequired"
+          />
+        </div>
+      </template>
+    </Input>
   </div>
 </template>
 
 <script>
 import SwitchButton from '../../_shared/SwitchButton/SwitchButton'
+import Input from '../../_shared/Input/Input'
 export default {
   name: 'MissionCreateSurveyItemQuestion',
-  components: { SwitchButton },
+  components: { Input, SwitchButton },
   props: {
     index: {
       type: Number,
@@ -51,17 +53,12 @@ export default {
       default: null
     }
   },
+  data() {
+    return { showError: false }
+  },
   computed: {
-    question: {
-      get() {
-        return this.value
-      },
-      set(question) {
-        this.$store.commit('missionFormSurvey/setItemQuestion', {
-          index: this.index,
-          question
-        })
-      }
+    error() {
+      return this.value !== '' ? null : 'required'
     }
   },
   methods: {
@@ -69,6 +66,12 @@ export default {
       this.$store.commit('missionFormSurvey/setItemQuestionRequired', {
         index: this.index,
         required: !this.required
+      })
+    },
+    setQuestion(question) {
+      this.$store.commit('missionFormSurvey/setItemQuestion', {
+        index: this.index,
+        question
       })
     }
   }

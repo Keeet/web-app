@@ -16,22 +16,29 @@
       font-size: 90%;
     }
 
-    .input-field {
-      padding: 14px 16px;
-      box-sizing: border-box;
+    .input-wrapper {
+      display: flex;
+      align-items: center;
       border: 1px solid $grey;
       border-radius: 3px;
-      width: 100%;
+      overflow: hidden;
       transition: border 0.4s;
-
-      &.textarea {
-        resize: vertical;
-        line-height: 140%;
-        min-height: 150px;
-      }
 
       &.error {
         border: 1px solid $red-error;
+      }
+
+      .input-field {
+        flex-grow: 1;
+        padding: 14px 16px;
+        border: none;
+        background-color: transparent;
+
+        &.textarea {
+          resize: vertical;
+          line-height: 140%;
+          min-height: 150px;
+        }
       }
     }
   }
@@ -42,22 +49,26 @@
       display: none;
     }
 
-    .input-field {
-      padding: 10px 0;
-      background-color: transparent;
-      border: none;
-      box-shadow: none;
+    .input-wrapper {
       border-bottom: 2px solid $grey-dark;
-      font-size: 150%;
-      width: 100%;
-
-      &::placeholder {
-        color: $grey;
-        font-weight: 500;
-      }
+      transition: border 0.4s;
 
       &.error {
         border-bottom: 2px solid $red-error;
+      }
+
+      .input-field {
+        padding: 10px 0;
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        font-size: 150%;
+        width: 100%;
+
+        &::placeholder {
+          color: $grey;
+          font-weight: 500;
+        }
       }
     }
 

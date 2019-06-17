@@ -3,26 +3,29 @@
     <p v-if="title" class="input-title">
       {{ title }}
     </p>
-    <input
-      v-if="!textarea"
-      v-model="message"
-      class="input-field"
-      :class="{error: showError}"
-      :placeholder="placeholder"
-      :readonly="readonly"
-      :maxlength="maxCharacters || 524288"
-      @keyup.enter="$emit('enter')"
-      @focusout="$emit('focusout')"
-    >
-    <textarea
-      v-else
-      v-model="message"
-      class="input-field textarea"
-      :class="{error: showError}"
-      :placeholder="placeholder"
-      :readonly="readonly"
-      :maxlength="maxCharacters || 524288"
-    />
+    <div class="input-wrapper" :class="{error: showError}">
+      <input
+        v-if="!textarea"
+        v-model="message"
+        class="input-field"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :maxlength="maxCharacters || 524288"
+        @keyup.enter="$emit('enter')"
+        @focusout="$emit('focusout')"
+      >
+      <textarea
+        v-else
+        v-model="message"
+        class="input-field textarea"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :maxlength="maxCharacters || 524288"
+      />
+      <div v-if="$slots.additional" class="input-additional">
+        <slot name="additional" />
+      </div>
+    </div>
     <p class="input-error" :class="{active: showError, noTitle: !title}">
       {{ error }}
     </p>
