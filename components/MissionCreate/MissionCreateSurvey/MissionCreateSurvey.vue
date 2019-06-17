@@ -15,11 +15,15 @@
         subtitle="The last thing your audience will see. Thank your participants for their effort and time."
       />
     </div>
-    <MissionCreateSurveySummary :invalid-items="invalidIndexedItems" />
+    <MissionCreateSurveySummary
+      :is-valid="isValid"
+      @submitDisabledClick="submitDisabledClick"
+    />
   </div>
 </template>
 
 <script>
+import { scrollIntoView } from '../../../utils/scrollUtils'
 import { MISSION_SURVEY_ITEMS } from '../../constants'
 import MissionCreateSurveyDetails from '../MissionCreateSurveyDetails/MissionCreateSurveyDetails'
 import MissionCreateSurveyCustomScreen from '../MissionCreateSurveyCustomScreen/MissionCreateSurveyCustomScreen'
@@ -40,6 +44,16 @@ export default {
     items() {
       return this.s.survey.items
     },
+    isValid() {
+      return !this.invalidTitle &&
+        !!this.items.length &&
+        !this.invalidIndexedItems.length &&
+        !this.invalidCustomWelcomeScreen &&
+        !this.invalidCustomClosingScreen
+    },
+    invalidTitle() {
+      return this.s.title === ''
+    },
     invalidIndexedItems() {
       const { SINGLE_SELECT, MULTI_SELECT } = MISSION_SURVEY_ITEMS
       return this.items
@@ -52,6 +66,31 @@ export default {
           }
           return !validText
         })
+    },
+    invalidCustomWelcomeScreen() {
+      return this.s.survey.welcomeTitle === '' || this.s.survey.welcomeDescription === ''
+    },
+    invalidCustomClosingScreen() {
+      return this.s.survey.closingTitle === '' || this.s.survey.closingDescription === ''
+    }
+  },
+  methods: {
+    submitDisabledClick() {
+      if (!this.s.survey.showErrors) {
+        this.$store.commit('missionFormSurvey/showErrors')
+      }
+      if (this.invalidTitle) {
+        scrollIntoView(document.getElementsByClassName('mission-create-survey-details')[0])
+      } else if (this.invalidCustomWelcomeScreen) {
+        scrollIntoView(document.getElementsByClassName('mission-create-survey-custom-screen')[0])
+      } else if (!this.items.length) {
+        scrollIntoView(document.getElementsByClassName('mission-create-survey-add-box')[0])
+      } else if (this.invalidIndexedItems.length) {
+        const firstInvalidElem = document.getElementsByClassName(`mission-create-survey-item-${this.invalidIndexedItems[0].index}`)[0]
+        scrollIntoView(firstInvalidElem)
+      } else if (this.invalidCustomClosingScreen) {
+        scrollIntoView(document.getElementsByClassName('mission-create-survey-custom-screen')[1])
+      }
     }
   }
 }

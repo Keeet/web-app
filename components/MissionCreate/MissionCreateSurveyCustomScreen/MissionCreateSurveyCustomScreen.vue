@@ -16,8 +16,8 @@
         </div>
         <SwitchButton
           :on="sValues.opened"
-          :mutation="mutations.switchCustomize"
           label="Customize"
+          @switch="switchCustomize"
         />
       </div>
       <div v-show="sValues.opened" class="mission-create-survey-custom-screen-body">
@@ -76,6 +76,7 @@ const TYPES = {
 
 const MUTATIONS = {
   WELCOME: {
+    reset: 'missionFormSurvey/resetWelcomeScreen',
     switchCustomize: 'missionFormSurvey/switchCustomizeWelcome',
     setTitle: 'missionFormSurvey/setWelcomeTitle',
     setDescription: 'missionFormSurvey/setWelcomeDescription',
@@ -84,6 +85,7 @@ const MUTATIONS = {
     closeColorPicker: 'missionFormSurvey/closeWelcomeColorPicker'
   },
   CLOSING: {
+    reset: 'missionFormSurvey/resetClosingScreen',
     switchCustomize: 'missionFormSurvey/switchCustomizeClosing',
     setTitle: 'missionFormSurvey/setClosingTitle',
     setDescription: 'missionFormSurvey/setClosingDescription',
@@ -147,6 +149,14 @@ export default {
     redirectLinkError() {
       const link = this.s.redirectLink
       return !link || isHttpsLink(link) ? null : 'invalid link (must start with https://)'
+    }
+  },
+  methods: {
+    switchCustomize() {
+      this.$store.commit(this.mutations.switchCustomize)
+      if (!this.sValues.opened) {
+        this.$store.commit(this.mutations.reset)
+      }
     }
   }
 }

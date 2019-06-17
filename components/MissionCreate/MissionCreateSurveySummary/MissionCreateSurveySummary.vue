@@ -47,8 +47,9 @@
         <ButtonText
           text="Save and Continue"
           no-margin
-          :disabled="isValid"
-          @disabledClick="submitDisabledClick"
+          :disabled="!isValid"
+          @disabledClick="$emit('submitDisabledClick')"
+          @click="$emit('submitClick')"
         />
       </template>
     </MissionCreateSideBox>
@@ -56,7 +57,6 @@
 </template>
 
 <script>
-import { scrollIntoView } from '../../../utils/scrollUtils'
 import { MISSIONS } from '../../constants'
 import MissionCreateSurveySummaryItem from '../MissionCreateSurveySummaryItem/MissionCreateSurveySummaryItem'
 import MissionCreateSideBox from '../MissionCreateSideBox/MissionCreateSideBox'
@@ -65,8 +65,8 @@ export default {
   name: 'MissionCreateSurveySummary',
   components: { ButtonText, MissionCreateSideBox, MissionCreateSurveySummaryItem },
   props: {
-    invalidItems: {
-      type: Array,
+    isValid: {
+      type: Boolean,
       required: true
     }
   },
@@ -81,18 +81,6 @@ export default {
       },
       set(value) {
         this.$store.commit('missionFormSurvey/setItems', value)
-      }
-    },
-    isValid() {
-      return this.invalidItems.length || !this.items.length
-    }
-  },
-  methods: {
-    submitDisabledClick() {
-      if (this.invalidItems.length) {
-        this.$store.commit('missionFormSurvey/showErrors')
-        const firstInvalidElem = document.getElementsByClassName(`mission-create-survey-item-${this.invalidItems[0].index}`)[0]
-        scrollIntoView(firstInvalidElem)
       }
     }
   }

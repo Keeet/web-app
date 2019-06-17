@@ -1,14 +1,21 @@
 import { MISSION_SURVEY_ITEMS } from '../components/constants'
 
+const defaultWelcomeScreen = {
+  welcomeTitle: 'Hey there!',
+  welcomeDescription: 'You have been invited to participate in a short test. Ready?',
+  welcomeLogoId: null
+}
+const defaultClosingScreen = {
+  closingTitle: 'Cheers!',
+  closingDescription: 'Thank you for taking the time. We really appreciate you commitment. We hope to see you again soon. Have a good one!',
+  closingLogoId: null
+}
+
 const defaultState = {
   customizeWelcome: false,
   customizeClosing: false,
-  welcomeTitle: 'Hey there!',
-  welcomeDescription: 'You have been invited to participate in a short test. Ready?',
-  welcomeLogoId: null,
-  closingTitle: 'Cheers!',
-  closingDescription: 'Thank you for taking the time. We really appreciate you commitment. We hope to see you again soon. Have a good one!',
-  closingLogoId: null,
+  ...defaultWelcomeScreen,
+  ...defaultClosingScreen,
   welcomeColorPickerOpened: false,
   closingColorPickerOpened: false,
   color: { hex: '#0FBCF9' },
@@ -92,6 +99,12 @@ export const mutations = {
   closeWelcomeColorPicker(state) {
     state.welcomeColorPickerOpened = false
   },
+  resetWelcomeScreen(state) {
+    const { welcomeTitle, welcomeDescription, welcomeLogoId } = defaultWelcomeScreen
+    state.welcomeTitle = welcomeTitle
+    state.welcomeDescription = welcomeDescription
+    state.welcomeLogoId = welcomeLogoId
+  },
   setClosingTitle(state, title) {
     state.closingTitle = title
   },
@@ -106,6 +119,12 @@ export const mutations = {
   },
   closeClosingColorPicker(state) {
     state.closingColorPickerOpened = false
+  },
+  resetClosingScreen(state) {
+    const { closingTitle, closingDescription, closingLogoId } = defaultClosingScreen
+    state.closingTitle = closingTitle
+    state.closingDescription = closingDescription
+    state.closingLogoId = closingLogoId
   },
   setRedirectLink(state, redirectLink) {
     if (redirectLink === '') {

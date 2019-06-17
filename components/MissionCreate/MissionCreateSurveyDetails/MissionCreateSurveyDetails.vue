@@ -5,7 +5,10 @@
         title="Internal mission name"
         placeholder="Test campaign"
         :value="s.title"
+        :error="titleError"
+        :disable-error="!showError && !s.survey.showErrors"
         mutation="missionForm/setTitle"
+        @focusout="showError = true"
       />
       <div class="mission-create-survey-details-language">
         <Select
@@ -27,9 +30,18 @@ import Select from '../../_shared/Select/Select'
 export default {
   name: 'MissionCreateSurveyDetails',
   components: { Select, Input, MissionCreateBox },
+  data() {
+    return { showError: false }
+  },
   computed: {
     s() {
-      return this.$store.state.missionForm
+      return {
+        survey: this.$store.state.missionFormSurvey,
+        ...this.$store.state.missionForm
+      }
+    },
+    titleError() {
+      return this.s.title !== '' ? null : 'required'
     }
   },
   methods: {
