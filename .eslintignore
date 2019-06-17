@@ -1,0 +1,9 @@
+static/js/auth0-global.js
+static/js/jquery-3.2.1.min.js
+static/js/crisp.js
+
+.nuxt
+.idea
+.git
+
+node_modules
