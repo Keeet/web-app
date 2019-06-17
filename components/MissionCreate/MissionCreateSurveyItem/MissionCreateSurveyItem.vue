@@ -2,7 +2,7 @@
   <div>
     <MissionCreateSurveyItemAdd :index="index" />
     <MissionCreateBox>
-      <div class="mission-create-survey-item">
+      <div class="mission-create-survey-item" :class="`mission-create-survey-item-${index}`">
         <div class="mission-create-survey-item-head">
           <div class="mission-create-survey-item-head-drag">
             <IconDragDrop />

@@ -6,7 +6,7 @@
       placeholder="Type question here"
       :value="value"
       :error="error"
-      :disable-error="!showError"
+      :disable-error="!showError && !s.showErrors"
       @change="setQuestion"
       @focusout="showError = true"
     >
@@ -57,6 +57,9 @@ export default {
     return { showError: false }
   },
   computed: {
+    s() {
+      return this.$store.state.missionFormSurvey
+    },
     error() {
       return this.value !== '' ? null : 'required'
     }

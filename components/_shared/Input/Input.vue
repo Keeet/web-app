@@ -26,7 +26,7 @@
         <slot name="additional" />
       </div>
     </div>
-    <p class="input-error" :class="{active: showError, noTitle: !title}">
+    <p class="input-error" :class="{active: showError, noTitle: !title, noMargin}">
       {{ error }}
     </p>
   </div>

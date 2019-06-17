@@ -80,7 +80,6 @@
   .input-error {
     position: absolute;
     z-index: 0;
-    top: 12px;
     right: 3px;
     color: $red-error;
     font-size: 75%;
@@ -90,7 +89,19 @@
     transform: scale(0.8);
 
     &.noTitle {
-      top: -13px;
+      top: -11px;
+
+      &.noMargin {
+        top: -17px;
+      }
+    }
+
+    &:not(.noTitle) {
+      top: 12px;
+
+      &.noMargin {
+        top: 4px;
+      }
     }
 
     &.active {

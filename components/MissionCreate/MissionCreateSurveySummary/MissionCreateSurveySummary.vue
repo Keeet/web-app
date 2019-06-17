@@ -33,19 +33,30 @@
       <template slot="buttons">
         <div class="mission-create-survey-summary-buttons-flex">
           <div class="mission-create-survey-summary-buttons-flex-item">
-            <ButtonText text="Cancel" type="GREY" no-margin />
+            <ButtonText
+              text="Cancel"
+              type="GREY"
+              no-margin
+              @click="$store.commit('missionForm/previousStep')"
+            />
           </div>
           <div class="mission-create-survey-summary-buttons-flex-item">
             <ButtonText text="Preview" type="GREY" icon="LINK_EXTERNAL" no-margin />
           </div>
         </div>
-        <ButtonText text="Save and Continue" no-margin />
+        <ButtonText
+          text="Save and Continue"
+          no-margin
+          :disabled="isValid"
+          @disabledClick="submitDisabledClick"
+        />
       </template>
     </MissionCreateSideBox>
   </div>
 </template>
 
 <script>
+import { scrollIntoView } from '../../../utils/scrollUtils'
 import { MISSIONS } from '../../constants'
 import MissionCreateSurveySummaryItem from '../MissionCreateSurveySummaryItem/MissionCreateSurveySummaryItem'
 import MissionCreateSideBox from '../MissionCreateSideBox/MissionCreateSideBox'
@@ -53,6 +64,12 @@ import ButtonText from '../../_shared/ButtonText/ButtonText'
 export default {
   name: 'MissionCreateSurveySummary',
   components: { ButtonText, MissionCreateSideBox, MissionCreateSurveySummaryItem },
+  props: {
+    invalidItems: {
+      type: Array,
+      required: true
+    }
+  },
   data() {
     const { SURVEY } = MISSIONS
     return { SURVEY }
@@ -64,6 +81,18 @@ export default {
       },
       set(value) {
         this.$store.commit('missionFormSurvey/setItems', value)
+      }
+    },
+    isValid() {
+      return this.invalidItems.length || !this.items.length
+    }
+  },
+  methods: {
+    submitDisabledClick() {
+      if (this.invalidItems.length) {
+        this.$store.commit('missionFormSurvey/showErrors')
+        const firstInvalidElem = document.getElementsByClassName(`mission-create-survey-item-${this.invalidItems[0].index}`)[0]
+        scrollIntoView(firstInvalidElem)
       }
     }
   }

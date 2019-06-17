@@ -14,7 +14,8 @@ const defaultState = {
   color: { hex: '#0FBCF9' },
   redirectLink: null,
   itemAddIndex: 0,
-  items: []
+  items: [],
+  showErrors: false
 }
 
 const defaultStateItem = {
@@ -191,5 +192,8 @@ export const mutations = {
     const items = state.items.slice()
     items[itemIndex].answerType = answerType
     state.items = items
+  },
+  showErrors(state) {
+    state.showErrors = true
   }
 }

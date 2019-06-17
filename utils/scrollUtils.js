@@ -13,3 +13,12 @@ export function determineFixedOrAbsolute(fixedRefElem, movingElem, wrapperElem, 
     return RESULT.FIXED
   }
 }
+
+export function scrollIntoView(elem) {
+  Element.prototype.documentOffsetTop = function () {
+    return this.offsetTop + (this.offsetParent ? this.offsetParent.documentOffsetTop() : 0)
+  }
+
+  const scrollOffset = elem.documentOffsetTop() - (window.innerHeight / 2) + (elem.offsetHeight / 2)
+  window.scrollTo({ top: scrollOffset, left: 0, behavior: 'smooth' })
+}

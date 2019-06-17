@@ -7,6 +7,8 @@
       <Input
         placeholder="Choice"
         :value="value"
+        :error="error"
+        :disable-error="!showError && !s.showErrors"
         no-margin
         @change="setChoice"
         @focusout="focusOut"
@@ -37,9 +39,18 @@ export default {
       required: true
     }
   },
+  data() {
+    return { showError: false }
+  },
   computed: {
+    s() {
+      return this.$store.state.missionFormSurvey
+    },
     choices() {
-      return this.$store.state.missionFormSurvey.items[this.questionIndex].choices
+      return this.s.items[this.questionIndex].choices
+    },
+    error() {
+      return this.value !== '' ? null : 'required'
     }
   },
   methods: {
@@ -53,7 +64,9 @@ export default {
     focusOut() {
       if (this.value === '' && this.choices.length > 2) {
         this.deleteChoice()
+        return
       }
+      this.showError = true
     },
     deleteChoice() {
       this.$store.commit('missionFormSurvey/deleteItemSelectChoice', {
