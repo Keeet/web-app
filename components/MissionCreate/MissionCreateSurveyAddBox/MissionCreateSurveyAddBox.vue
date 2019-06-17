@@ -1,6 +1,6 @@
 <template>
-  <MissionCreateBox headline="Add a question">
-    <div class="mission-create-survey-add-box">
+  <div class="mission-create-survey-add-box">
+    <MissionCreateBox headline="Add a question">
       <div class="mission-create-survey-add-box-line">
         <MissionCreateSurveyAddBoxItem :type="SHORT_TEXT" />
         <MissionCreateSurveyAddBoxItem :type="LONG_TEXT" />
@@ -13,8 +13,8 @@
         <MissionCreateSurveyAddBoxItem :type="LIKERT" />
         <MissionCreateSurveyAddBoxItem :type="LINEAR_SCALE" />
       </div>
-    </div>
-  </MissionCreateBox>
+    </MissionCreateBox>
+  </div>
 </template>
 
 <script>
