@@ -3,16 +3,11 @@
     <NuxtDropzone
       :id="id"
       :ref="id"
-      :options="{
-        url: '#',
-        thumbnailMethod: 'contain',
-        acceptedFiles: 'image/*',
-        thumbnailWidth: 400,
-        maxFilesize: 2,
-        dictDefaultMessage: '',
-        dictResponseError: 'Request failed with status code {{statusCode}}'
-      }"
+      :options="options"
       :destroy-dropzone="true"
+      @vdropzone-file-added="addedFile"
+      @vdropzone-sending="sending"
+      @vdropzone-success="success"
     />
     <span v-if="dz && dz.files.length" class="dropzone-delete" @click="clearItems">
       delete
@@ -46,23 +41,49 @@ export default {
       dz: null
     }
   },
+  computed: {
+    options() {
+      return {
+        url: `${process.env.baseUrl}/mediaFiles/input`,
+        thumbnailMethod: 'contain',
+        acceptedFiles: 'image/*',
+        thumbnailWidth: 400,
+        maxFilesize: 5,
+        dictDefaultMessage: '',
+        dictResponseError: 'Request failed with status code {{statusCode}}',
+        autoQueue: false
+      }
+    }
+  },
   mounted() {
     this.dz = this.$refs[this.id].dropzone
-    this.dz.on('addedfile', this.addedfile)
-    this.dz.on('success', this.success)
   },
   methods: {
-    addedfile(newFile) {
+    addedFile(newFile) {
       if (this.dz.files.length > 1) {
         const oldFiles = this.dz.files.filter(file => file.dataURL !== newFile.dataURL)
         oldFiles.forEach((oldFile) => {
           this.dz.removeFile(oldFile)
         })
       }
+      // do not ask why
+      newFile.accepted = true
+
+      if (this.$auth.isAuthenticated()) {
+        this.dz.enqueueFile(newFile)
+      } else {
+        const redirectUrl = window.location.pathname + window.location.search
+        this.$auth.renewTokensOrRedirectToLogin(redirectUrl, { router: this.$router }).then(() => {
+          this.dz.enqueueFile(newFile)
+          // eslint-disable-next-line no-console
+        }).catch(console.error)
+      }
+    },
+    sending(file, xhr) {
+      xhr.setRequestHeader('Authorization', `Bearer ${this.$store.state.accessToken}`)
     },
     success(file, res) {
-      const fileId = 'id_from_res'
-      this.$store.commit(this.mutation, fileId)
+      this.$store.commit(this.mutation, res.id)
     },
     clearItems() {
       this.dz.removeAllFiles(true)

@@ -3,6 +3,10 @@ const pkg = require('./package')
 module.exports = {
   mode: 'universal',
 
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://api.keeet.io'
+  },
+
   server: {
     port: 3000,
     host: '0.0.0.0'
@@ -64,10 +68,6 @@ module.exports = {
     '@nuxtjs/style-resources',
     ['@netsells/nuxt-hotjar', { id: '1375940', sv: '6' }]
   ],
-
-  axios: {
-    baseURL: 'https://api.keeet.io'
-  },
 
   build: {
     /*
