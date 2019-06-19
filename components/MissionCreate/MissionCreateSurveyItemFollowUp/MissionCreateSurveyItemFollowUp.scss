@@ -1,0 +1,46 @@
+.mission-create-survey-item-follow-up {
+
+  .mission-create-survey-item-follow-up-headline {
+    font-weight: 500;
+    padding: 10px 30px;
+    margin: 20px -30px 0 -30px;
+    border-bottom: 1px solid rgba($grey, 0.7);
+  }
+
+  .mission-create-survey-item-follow-up-questions {
+    margin-top: 15px;
+  }
+
+  .mission-create-survey-item-follow-up-add-question {
+    margin: 30px -30px -30px -30px;
+    padding: 20px 30px;
+    background-color: #fff;
+    box-shadow: 0 -3px 8px 0 rgba(0, 0, 0, 0.07);
+    font-weight: 500;
+    transition: all .4s;
+
+    &.FIRST_CLICK {
+      color: $mission-survey-first-click;
+    }
+    &.FIVE_SECOND_TEST {
+      color: $mission-survey-five-second-test;
+    }
+    &.QUESTION_LIST {
+      color: $mission-survey-question-list;
+    }
+    &.DESIGN_QUESTION {
+      color: $mission-survey-design-question;
+    }
+    &.PREFERENCE_TEST {
+      color: $mission-survey-preference-test;
+    }
+    &.INSTRUCTION {
+      color: $mission-survey-instruction;
+    }
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 -3px 8px 0 rgba(0, 0, 0, 0.10);
+    }
+  }
+}

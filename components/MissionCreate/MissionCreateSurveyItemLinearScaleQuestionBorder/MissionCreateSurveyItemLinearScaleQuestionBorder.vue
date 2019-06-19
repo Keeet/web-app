@@ -42,6 +42,10 @@ export default {
     index: {
       type: Number,
       required: true
+    },
+    followUpIndex: {
+      type: Number,
+      default: null
     }
   },
   computed: {
@@ -72,14 +76,22 @@ export default {
         ? 'missionFormSurvey/setItemLinearScaleStartValue'
         : 'missionFormSurvey/setItemLinearScaleEndValue'
 
-      this.$store.commit(mutation, { itemIndex: this.index, value })
+      this.$store.commit(mutation, {
+        itemIndex: this.index,
+        followUpIndex: this.followUpIndex,
+        value
+      })
     },
     setLabel(label) {
       const mutation = this.isStart
         ? 'missionFormSurvey/setItemLinearScaleStartLabel'
         : 'missionFormSurvey/setItemLinearScaleEndLabel'
 
-      this.$store.commit(mutation, { itemIndex: this.index, label })
+      this.$store.commit(mutation, {
+        itemIndex: this.index,
+        followUpIndex: this.followUpIndex,
+        label
+      })
     }
   }
 }

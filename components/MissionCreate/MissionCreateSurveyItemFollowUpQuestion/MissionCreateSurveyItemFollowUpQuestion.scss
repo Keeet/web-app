@@ -1,0 +1,109 @@
+.mission-create-survey-item-follow-up-question {
+
+  .mission-create-survey-item-follow-up-question-head {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 20px;
+
+    &.noDelete {
+      padding-right: 12px;
+    }
+
+    .mission-create-survey-item-follow-up-question-drag {
+      margin: 0 20px 13px 0;
+
+      svg {
+        width: 9px;
+        fill: $grey-mid-dark;
+      }
+
+      &:hover {
+        cursor: move;
+      }
+    }
+
+    .mission-create-survey-item-follow-up-question-text {
+      flex-grow: 1;
+    }
+
+    .mission-create-survey-item-follow-up-question-type {
+      width: 210px;
+      margin-left: 20px;
+
+      .mission-create-survey-item-follow-up-question-type-item {
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+
+        .mission-create-survey-item-follow-up-question-type-item-icon {
+          position: relative;
+          background-color: $grey;
+          width: 25px;
+          height: 25px;
+          border-radius: 100%;
+
+          &.SHORT_TEXT {
+            background-color: $mission-survey-short-text;
+          }
+          &.LONG_TEXT {
+            background-color: $mission-survey-long-text;
+          }
+          &.SINGLE_SELECT {
+            background-color: $mission-survey-single-select;
+          }
+          &.MULTI_SELECT {
+            background-color: $mission-survey-multi-select;
+          }
+          &.LIKERT {
+            background-color: $mission-survey-likert;
+          }
+          &.LINEAR_SCALE {
+            background-color: $mission-survey-linear-scale;
+          }
+
+          svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 60%;
+            max-height: 70%;
+          }
+        }
+
+        .mission-create-survey-item-follow-up-question-type-item-label {
+          padding: 14px 0 14px 14px;
+        }
+      }
+    }
+
+    .mission-create-survey-item-follow-up-question-delete {
+      width: 12px;
+      margin: 0 0 13px 20px;
+
+      svg {
+        width: 100%;
+        fill: $grey-mid-dark;
+        transition: fill .4s;
+      }
+
+      &:hover {
+        cursor: pointer;
+
+        svg {
+          width: 100%;
+          fill: $grey-dark;
+        }
+      }
+    }
+  }
+
+  .mission-create-survey-item-follow-up-question-body {
+    margin: 0 32px 0 9px;
+
+    &.noDelete {
+      margin-right: 0;
+    }
+  }
+}
+

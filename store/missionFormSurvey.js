@@ -1,4 +1,22 @@
-import { MISSION_SURVEY_ITEMS } from '../components/constants'
+import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS, MISSION_SURVEY_USABILITY_LAB_FOLLOW_UP_REQUIRED } from '../components/constants'
+
+const {
+  SHORT_TEXT,
+  LONG_TEXT,
+  SINGLE_SELECT,
+  MULTI_SELECT,
+  LINEAR_SCALE,
+  LIKERT
+} = MISSION_SURVEY_ITEMS
+
+const {
+  FIRST_CLICK
+  // FIVE_SECOND_TEST,
+  // DESIGN_QUESTION,
+  // QUESTION_LIST,
+  // PREFERENCE_TEST,
+  // INSTRUCTION
+} = MISSION_SURVEY_USABILITY_LAB_ITEMS
 
 const defaultWelcomeScreen = {
   welcomeTitle: 'Hey there!',
@@ -27,31 +45,31 @@ const defaultState = {
 
 const defaultStateItem = {
   SHORT_TEXT: {
-    type: MISSION_SURVEY_ITEMS.SHORT_TEXT,
+    type: SHORT_TEXT,
     required: true,
     text: ''
   },
   LONG_TEXT: {
-    type: MISSION_SURVEY_ITEMS.LONG_TEXT,
+    type: LONG_TEXT,
     required: true,
     text: ''
   },
   SINGLE_SELECT: {
-    type: MISSION_SURVEY_ITEMS.SINGLE_SELECT,
+    type: SINGLE_SELECT,
     required: true,
     text: '',
     choices: ['', ''],
     otherAvailable: false
   },
   MULTI_SELECT: {
-    type: MISSION_SURVEY_ITEMS.MULTI_SELECT,
+    type: MULTI_SELECT,
     required: true,
     text: '',
     choices: ['', ''],
     otherAvailable: false
   },
   LINEAR_SCALE: {
-    type: MISSION_SURVEY_ITEMS.LINEAR_SCALE,
+    type: LINEAR_SCALE,
     required: true,
     text: '',
     startValue: 0,
@@ -60,10 +78,17 @@ const defaultStateItem = {
     endLabel: ''
   },
   LIKERT: {
-    type: MISSION_SURVEY_ITEMS.LIKERT,
+    type: LIKERT,
     required: true,
     text: '',
     answerType: 'AGREEMENT'
+  },
+  FIRST_CLICK: {
+    type: FIRST_CLICK,
+    required: true,
+    instruction: '',
+    imageMediaId: null,
+    followUps: []
   }
 }
 
@@ -139,7 +164,7 @@ export const mutations = {
   },
   addItem(state, type) {
     const items = state.items.slice()
-    items.splice(state.itemAddIndex, 0, { ...defaultStateItem[type] })
+    items.splice(state.itemAddIndex, 0, getDefaultItem(type))
     state.items = items
     state.itemAddIndex = state.items.length
   },
@@ -151,68 +176,145 @@ export const mutations = {
     items.splice(index, 1)
     state.items = items
   },
-  setItemQuestion(state, { index, question }) {
+  addItemFollowUp(state, { type, itemIndex }) {
     const items = state.items.slice()
-    items[index].text = question
+    items[itemIndex].followUps.push(getDefaultItem(type || SHORT_TEXT))
     state.items = items
   },
-  setItemQuestionRequired(state, { index, required }) {
+  setItemFollowUps(state, { itemIndex, followUps }) {
     const items = state.items.slice()
-    items[index].required = required
+    items[itemIndex].followUps = followUps
     state.items = items
   },
-  setItemSelectChoices(state, { itemIndex, choices }) {
+  changeItemFollowUp(state, { type, itemIndex, followUpIndex }) {
     const items = state.items.slice()
-    items[itemIndex].choices = choices
+    items[itemIndex].followUps[followUpIndex] = getDefaultItem(type)
     state.items = items
   },
-  setItemSelectChoice(state, { itemIndex, choiceIndex, choice }) {
+  deleteItemFollowUp(state, { itemIndex, followUpIndex }) {
     const items = state.items.slice()
-    items[itemIndex].choices[choiceIndex] = choice
+    items[itemIndex].followUps.splice(followUpIndex, 1)
     state.items = items
   },
-  addEmptyItemSelectChoice(state, itemIndex) {
-    const items = state.items.slice()
-    const choices = items[itemIndex].choices
-    choices.push('')
-    state.items = items
+  setItemQuestion(state, { itemIndex, followUpIndex, question }) {
+    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+      return {
+        ...item,
+        text: question
+      }
+    })
   },
-  deleteItemSelectChoice(state, { itemIndex, choiceIndex }) {
-    const items = state.items.slice()
-    items[itemIndex].choices.splice(choiceIndex, 1)
-    state.items = items
+  setItemQuestionRequired(state, { itemIndex, followUpIndex, required }) {
+    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+      return {
+        ...item,
+        required
+      }
+    })
   },
-  switchItemSelectOtherAvailable(state, itemIndex) {
-    const items = state.items.slice()
-    items[itemIndex].otherAvailable = !items[itemIndex].otherAvailable
-    state.items = items
+  setItemSelectChoices(state, { itemIndex, followUpIndex, choices }) {
+    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+      return {
+        ...item,
+        choices
+      }
+    })
   },
-  setItemLinearScaleStartValue(state, { value, itemIndex }) {
-    const items = state.items.slice()
-    items[itemIndex].startValue = value
-    state.items = items
+  setItemSelectChoice(state, { itemIndex, followUpIndex, choiceIndex, choice }) {
+    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+      item.choices[choiceIndex] = choice
+      return item
+    })
   },
-  setItemLinearScaleStartLabel(state, { label, itemIndex }) {
-    const items = state.items.slice()
-    items[itemIndex].startLabel = label
-    state.items = items
+  addEmptyItemSelectChoice(state, { itemIndex, followUpIndex }) {
+    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+      item.choices.push('')
+      return item
+    })
   },
-  setItemLinearScaleEndValue(state, { value, itemIndex }) {
-    const items = state.items.slice()
-    items[itemIndex].endValue = value
-    state.items = items
+  deleteItemSelectChoice(state, { itemIndex, followUpIndex, choiceIndex }) {
+    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+      item.choices.splice(choiceIndex, 1)
+      return item
+    })
   },
-  setItemLinearScaleEndLabel(state, { label, itemIndex }) {
-    const items = state.items.slice()
-    items[itemIndex].endLabel = label
-    state.items = items
+  switchItemSelectOtherAvailable(state, { itemIndex, followUpIndex }) {
+    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+      item.otherAvailable = !item.otherAvailable
+      return item
+    })
   },
-  setItemLikertAnswerType(state, { answerType, itemIndex }) {
-    const items = state.items.slice()
-    items[itemIndex].answerType = answerType
-    state.items = items
+  setItemLinearScaleStartValue(state, { value, itemIndex, followUpIndex }) {
+    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+      return {
+        ...item,
+        startValue: value
+      }
+    })
   },
+  setItemLinearScaleStartLabel(state, { label, itemIndex, followUpIndex }) {
+    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+      return {
+        ...item,
+        startLabel: label
+      }
+    })
+  },
+  setItemLinearScaleEndValue(state, { value, itemIndex, followUpIndex }) {
+    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+      return {
+        ...item,
+        endValue: value
+      }
+    })
+  },
+  setItemLinearScaleEndLabel(state, { label, itemIndex, followUpIndex }) {
+    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+      return {
+        ...item,
+        endLabel: label
+      }
+    })
+  },
+  setItemLikertAnswerType(state, { answerType, itemIndex, followUpIndex }) {
+    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+      return {
+        ...item,
+        answerType
+      }
+    })
+  },
+
   showErrors(state) {
     state.showErrors = true
   }
+}
+
+function modifyQuestionItem(state, itemIndex, followUpIndex, modifyFunction) {
+  const items = state.items.slice()
+  const item = followUpIndex !== null
+    ? items[itemIndex].followUps[followUpIndex]
+    : items[itemIndex]
+
+  const modifiedItem = modifyFunction(item)
+  if (followUpIndex !== null) {
+    items[itemIndex].followUps[followUpIndex] = modifiedItem
+  } else {
+    items[itemIndex] = modifiedItem
+  }
+  return items
+}
+
+function getDefaultItem(type) {
+  const newItem = { ...defaultStateItem[type] }
+  if (newItem.followUps) {
+    newItem.followUps = getDefaultFollowUp(type)
+  }
+  return newItem
+}
+
+function getDefaultFollowUp(type) {
+  return MISSION_SURVEY_USABILITY_LAB_FOLLOW_UP_REQUIRED.includes(type)
+    ? [{ ...defaultStateItem.SHORT_TEXT }]
+    : []
 }

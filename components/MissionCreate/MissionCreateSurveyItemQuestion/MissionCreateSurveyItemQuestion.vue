@@ -7,6 +7,7 @@
       :value="value"
       :error="error"
       :disable-error="!showError && !s.showErrors"
+      :no-margin="noMargin"
       @change="setQuestion"
       @focusout="showError = true"
     >
@@ -36,6 +37,10 @@ export default {
       type: Number,
       required: true
     },
+    followUpIndex: {
+      type: Number,
+      default: null
+    },
     type: {
       type: String,
       required: true
@@ -51,6 +56,10 @@ export default {
     title: {
       type: String,
       default: null
+    },
+    noMargin: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -67,13 +76,15 @@ export default {
   methods: {
     switchRequired() {
       this.$store.commit('missionFormSurvey/setItemQuestionRequired', {
-        index: this.index,
+        itemIndex: this.index,
+        followUpIndex: this.followUpIndex,
         required: !this.required
       })
     },
     setQuestion(question) {
       this.$store.commit('missionFormSurvey/setItemQuestion', {
-        index: this.index,
+        itemIndex: this.index,
+        followUpIndex: this.followUpIndex,
         question
       })
     }

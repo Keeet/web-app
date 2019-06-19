@@ -94,7 +94,7 @@ export const MISSION_SURVEY_ITEM_LIKERT_OPTIONS = {
   COMPREHENSION: ['Did not understand', 'Understood a little', 'Understood most of it', 'Understood very well'],
   IMPRESSION: ['Very dissatisfied', 'Somewhat dissatisfied', 'Neutral', 'Somewhat satisfied', 'Very satisfied']
 }
-export const MISSION_SURVEY_USABILITY_HUB_ITEMS = {
+export const MISSION_SURVEY_USABILITY_LAB_ITEMS = {
   FIRST_CLICK: 'FIRST_CLICK',
   FIVE_SECOND_TEST: 'FIVE_SECOND_TEST',
   QUESTION_LIST: 'QUESTION_LIST',
@@ -102,6 +102,18 @@ export const MISSION_SURVEY_USABILITY_HUB_ITEMS = {
   PREFERENCE_TEST: 'PREFERENCE_TEST',
   INSTRUCTION: 'INSTRUCTION'
 }
+export const MISSION_SURVEY_USABILITY_LAB_ITEM_LABELS = {
+  FIRST_CLICK: 'First Click',
+  FIVE_SECOND_TEST: 'Five Second Test',
+  QUESTION_LIST: 'Questions',
+  DESIGN_QUESTION: 'Design Question',
+  PREFERENCE_TEST: 'Preference Test',
+  INSTRUCTION: 'Instruction'
+}
+export const MISSION_SURVEY_USABILITY_LAB_FOLLOW_UP_REQUIRED = [
+  MISSION_SURVEY_USABILITY_LAB_ITEMS.FIVE_SECOND_TEST,
+  MISSION_SURVEY_USABILITY_LAB_ITEMS.DESIGN_QUESTION
+]
 export const MISSION_PAGES = {
   OVERVIEW: 'OVERVIEW',
   INSIGHTS: 'INSIGHTS'

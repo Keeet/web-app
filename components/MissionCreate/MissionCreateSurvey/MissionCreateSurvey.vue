@@ -8,7 +8,7 @@
         subtitle="The first thing your audience will see - a great opportunity to engage right away."
       />
       <MissionCreateSurveyItems />
-      <MissionCreateSurveyItemAdd :index="items.length" />
+      <MissionCreateSurveyAdd :index="items.length" />
       <MissionCreateSurveyCustomScreen
         type="CLOSING"
         title="Default Thank You Screen"
@@ -28,12 +28,12 @@ import { MISSION_SURVEY_ITEMS } from '../../constants'
 import MissionCreateSurveyDetails from '../MissionCreateSurveyDetails/MissionCreateSurveyDetails'
 import MissionCreateSurveyCustomScreen from '../MissionCreateSurveyCustomScreen/MissionCreateSurveyCustomScreen'
 import MissionCreateSurveyItems from '../MissionCreateSurveyItems/MissionCreateSurveyItems'
-import MissionCreateSurveyItemAdd from '../MissionCreateSurveyItemAdd/MissionCreateSurveyItemAdd'
+import MissionCreateSurveyAdd from '../MissionCreateSurveyAdd/MissionCreateSurveyAdd'
 import MissionCreateSurveySummary from '../MissionCreateSurveySummary/MissionCreateSurveySummary'
 
 export default {
   name: 'MissionCreateSurvey',
-  components: { MissionCreateSurveySummary, MissionCreateSurveyItemAdd, MissionCreateSurveyItems, MissionCreateSurveyCustomScreen, MissionCreateSurveyDetails },
+  components: { MissionCreateSurveySummary, MissionCreateSurveyAdd, MissionCreateSurveyItems, MissionCreateSurveyCustomScreen, MissionCreateSurveyDetails },
   computed: {
     s() {
       return {

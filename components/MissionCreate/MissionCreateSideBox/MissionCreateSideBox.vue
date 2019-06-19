@@ -60,7 +60,7 @@ export default {
       if ([MISSIONS.IN_HOUSE, MISSIONS.REMOTE].includes(this.type)) {
         wrapperClass = 'mission-create-recruit-form'
       }
-      if (this.type === MISSIONS.SURVEY) {
+      if ([MISSIONS.SURVEY, MISSIONS.USABILITY_LAB].includes(this.type)) {
         wrapperClass = 'mission-create-survey'
       }
 

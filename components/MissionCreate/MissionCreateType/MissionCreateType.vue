@@ -11,7 +11,7 @@
       <MissionCreateTypeItem :type="IN_HOUSE" @click.native="select(IN_HOUSE)" />
       <MissionCreateTypeItem :type="REMOTE" @click.native="select(REMOTE)" />
       <MissionCreateTypeItem :type="SURVEY" @click.native="select(SURVEY)" />
-      <MissionCreateTypeItem :type="USABILITY_LAB" coming-soon />
+      <MissionCreateTypeItem :type="USABILITY_LAB" @click.native="select(USABILITY_LAB)" />
     </div>
   </div>
 </template>
@@ -27,8 +27,20 @@ export default {
     const { IN_HOUSE, REMOTE, SURVEY, USABILITY_LAB } = MISSIONS
     return { IN_HOUSE, REMOTE, SURVEY, USABILITY_LAB }
   },
+  computed: {
+    s() {
+      return this.$store.state.missionForm
+    }
+  },
   methods: {
     select(type) {
+      // switch mission type OR select mission type for the first time
+      if (this.s.type !== type) {
+        this.$store.commit('missionFormRecruit/init', {
+          company: this.$store.state.company
+        })
+        this.$store.commit('missionFormSurvey/init')
+      }
       this.$store.commit('missionForm/setType', type)
       this.$store.commit('missionForm/nextStep')
     }

@@ -18,12 +18,15 @@
           :index="x"
         />
         <MissionCreateSurveyItemLinearScaleQuestion
-          v-else-if="[LINEAR_SCALE].includes(item.type)"
+          v-else-if="item.type === LINEAR_SCALE"
           :index="x"
         />
         <MissionCreateSurveyItemLikertQuestion
-          v-else-if="[LIKERT].includes(item.type)"
+          v-else-if="item.type === LIKERT"
           :index="x"
+        />
+        <MissionCreateSurveyItemFirstClick
+          v-else-if="item.type === FIRST_CLICK"
         />
       </MissionCreateSurveyItem>
     </draggable>
@@ -31,7 +34,7 @@
 </template>
 
 <script>
-import { MISSION_SURVEY_ITEMS } from '../../constants'
+import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS } from '../../constants'
 import MissionCreateSurveyItemSelectQuestion
   from '../MissionCreateSurveyItemSelectQuestion/MissionCreateSurveyItemSelectQuestion'
 import MissionCreateSurveyItemLinearScaleQuestion
@@ -39,13 +42,15 @@ import MissionCreateSurveyItemLinearScaleQuestion
 import MissionCreateSurveyItem from '../MissionCreateSurveyItem/MissionCreateSurveyItem'
 import MissionCreateSurveyItemLikertQuestion
   from '../MissionCreateSurveyItemLikertQuestion/MissionCreateSurveyItemLikertQuestion'
+import MissionCreateSurveyItemFirstClick from '../MissionCreateSurveyItemFirstClick/MissionCreateSurveyItemFirstClick'
 
 export default {
   name: 'MissionCreateSurveyItems',
-  components: { MissionCreateSurveyItemLikertQuestion, MissionCreateSurveyItem, MissionCreateSurveyItemLinearScaleQuestion, MissionCreateSurveyItemSelectQuestion },
+  components: { MissionCreateSurveyItemFirstClick, MissionCreateSurveyItemLikertQuestion, MissionCreateSurveyItem, MissionCreateSurveyItemLinearScaleQuestion, MissionCreateSurveyItemSelectQuestion },
   data() {
     const { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LINEAR_SCALE, LIKERT } = MISSION_SURVEY_ITEMS
-    return { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LINEAR_SCALE, LIKERT }
+    const { FIRST_CLICK } = MISSION_SURVEY_USABILITY_LAB_ITEMS
+    return { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LINEAR_SCALE, LIKERT, FIRST_CLICK }
   },
   computed: {
     items: {

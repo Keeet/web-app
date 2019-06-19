@@ -13,7 +13,8 @@
           v-for="(choice, x) in item.choices"
           :key="x"
           :value="choice"
-          :question-index="index"
+          :item-index="index"
+          :follow-up-index="followUpIndex"
           :choice-index="x"
         />
       </draggable>
@@ -49,11 +50,19 @@ export default {
     index: {
       type: Number,
       required: true
+    },
+    followUpIndex: {
+      type: Number,
+      default: null
     }
   },
   computed: {
     item() {
-      return this.$store.state.missionFormSurvey.items[this.index]
+      const item = this.$store.state.missionFormSurvey.items[this.index]
+      if (this.followUpIndex !== null) {
+        return item.followUps[this.followUpIndex]
+      }
+      return item
     },
     addActive() {
       return this.item.choices.slice(-1)[0] !== ''
@@ -65,7 +74,8 @@ export default {
       set(choices) {
         this.$store.commit('missionFormSurvey/setItemSelectChoices', {
           choices,
-          itemIndex: this.index
+          itemIndex: this.index,
+          followUpIndex: this.followUpIndex
         })
       }
     }
@@ -75,10 +85,16 @@ export default {
       if (!this.addActive) {
         return
       }
-      this.$store.commit('missionFormSurvey/addEmptyItemSelectChoice', this.index)
+      this.$store.commit('missionFormSurvey/addEmptyItemSelectChoice', {
+        itemIndex: this.index,
+        followUpIndex: this.followUpIndex
+      })
     },
     switchOtherAvailable() {
-      this.$store.commit('missionFormSurvey/switchItemSelectOtherAvailable', this.index)
+      this.$store.commit('missionFormSurvey/switchItemSelectOtherAvailable', {
+        itemIndex: this.index,
+        followUpIndex: this.followUpIndex
+      })
     }
   }
 }

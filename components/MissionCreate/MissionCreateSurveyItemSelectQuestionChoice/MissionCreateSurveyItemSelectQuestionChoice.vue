@@ -30,9 +30,13 @@ export default {
       type: String,
       required: true
     },
-    questionIndex: {
+    itemIndex: {
       type: Number,
       required: true
+    },
+    followUpIndex: {
+      type: Number,
+      default: null
     },
     choiceIndex: {
       type: Number,
@@ -47,7 +51,11 @@ export default {
       return this.$store.state.missionFormSurvey
     },
     choices() {
-      return this.s.items[this.questionIndex].choices
+      const item = this.s.items[this.itemIndex]
+      if (this.followUpIndex !== null) {
+        return item.followUps[this.followUpIndex].choices
+      }
+      return item.choices
     },
     error() {
       return this.value !== '' ? null : 'required'
@@ -56,7 +64,8 @@ export default {
   methods: {
     setChoice(newValue) {
       this.$store.commit('missionFormSurvey/setItemSelectChoice', {
-        itemIndex: this.questionIndex,
+        itemIndex: this.itemIndex,
+        followUpIndex: this.followUpIndex,
         choiceIndex: this.choiceIndex,
         choice: newValue
       })
@@ -70,7 +79,8 @@ export default {
     },
     deleteChoice() {
       this.$store.commit('missionFormSurvey/deleteItemSelectChoice', {
-        itemIndex: this.questionIndex,
+        itemIndex: this.itemIndex,
+        followUpIndex: this.followUpIndex,
         choiceIndex: this.choiceIndex
       })
     }

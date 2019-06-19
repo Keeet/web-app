@@ -4,7 +4,7 @@
       <ButtonCircle class="mission-create-cancel" type="ARROW_LEFT" @click="cancel" />
       <MissionCreateType v-if="s.activeStep === 0" />
       <MissionCreateRecruit v-else-if="[MISSIONS.IN_HOUSE, MISSIONS.REMOTE].includes(s.type)" />
-      <MissionCreateSurvey v-else-if="s.type === MISSIONS.SURVEY" />
+      <MissionCreateSurvey v-else-if="[MISSIONS.SURVEY, MISSIONS.USABILITY_LAB].includes(s.type)" />
     </div>
     <Loading v-if="s.pending" fixed-center />
     <MissionCreateRecruitSubmittedPopup v-if="s.recruit.submittedPopup" />

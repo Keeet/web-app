@@ -20,7 +20,7 @@
 <script>
 import MissionCreateSurveyAddBox from '../MissionCreateSurveyAddBox/MissionCreateSurveyAddBox'
 export default {
-  name: 'MissionCreateSurveyItemAdd',
+  name: 'MissionCreateSurveyAdd',
   components: { MissionCreateSurveyAddBox },
   props: {
     index: {
@@ -37,5 +37,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "MissionCreateSurveyItemAdd";
+  @import "MissionCreateSurveyAdd";
 </style>

@@ -16,13 +16,20 @@
 </template>
 
 <script>
-import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_ITEM_LABELS } from '../../constants'
+import {
+  MISSIONS,
+  MISSION_SURVEY_ITEMS,
+  MISSION_SURVEY_USABILITY_LAB_ITEMS,
+  MISSION_SURVEY_ITEM_LABELS,
+  MISSION_SURVEY_USABILITY_LAB_ITEM_LABELS
+} from '../../constants'
 import MissionCreateSurveyIcon from '../MissionCreateSurveyIcon/MissionCreateSurveyIcon'
 
 const TYPES = {
   WELCOME: 'WELCOME',
   CLOSING: 'CLOSING',
-  ...MISSION_SURVEY_ITEMS
+  ...MISSION_SURVEY_ITEMS,
+  ...MISSION_SURVEY_USABILITY_LAB_ITEMS
 }
 
 export default {
@@ -47,6 +54,9 @@ export default {
     return { TYPES, MISSION_SURVEY_ITEM_LABELS }
   },
   computed: {
+    s() {
+      return this.$store.state.missionForm
+    },
     label() {
       if (this.type === TYPES.WELCOME) {
         return 'Welcome Screen'
@@ -54,7 +64,13 @@ export default {
       if (this.type === TYPES.CLOSING) {
         return 'Thank-you Screen'
       }
-      return MISSION_SURVEY_ITEM_LABELS[this.type]
+      if (this.s.type === MISSIONS.SURVEY) {
+        return MISSION_SURVEY_ITEM_LABELS[this.type]
+      }
+      if (this.s.type === MISSIONS.USABILITY_LAB) {
+        return MISSION_SURVEY_USABILITY_LAB_ITEM_LABELS[this.type]
+      }
+      return null
     }
   }
 }

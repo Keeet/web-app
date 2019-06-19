@@ -15,11 +15,13 @@ export const state = () => (defaultState)
 
 export const mutations = {
   init(state, { project }) {
-    for (const key in defaultState) {
-      state[key] = defaultState[key]
+    if (!state.init || !state.inProgress || project.id !== state.projectId) {
+      for (const key in defaultState) {
+        state[key] = defaultState[key]
+      }
+      state.projectId = project.id
+      state.init = true
     }
-    state.projectId = project.id
-    state.init = true
   },
   setType(state, type) {
     state.type = type
@@ -46,15 +48,5 @@ export const mutations = {
   submitted(state) {
     state.pending = false
     state.inProgress = false
-  }
-}
-
-export const actions = {
-  init({ commit, state }, { project }) {
-    if (!state.init || !state.inProgress || project.id !== state.projectId) {
-      commit('init', { project })
-      return true
-    }
-    return false
   }
 }

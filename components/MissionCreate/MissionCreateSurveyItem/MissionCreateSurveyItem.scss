@@ -62,6 +62,24 @@
       &.LINEAR_SCALE {
         background-color: $mission-survey-linear-scale;
       }
+      &.FIRST_CLICK {
+        background-color: $mission-survey-first-click;
+      }
+      &.FIVE_SECOND_TEST {
+        background-color: $mission-survey-five-second-test;
+      }
+      &.QUESTION_LIST {
+        background-color: $mission-survey-question-list;
+      }
+      &.DESIGN_QUESTION {
+        background-color: $mission-survey-design-question;
+      }
+      &.PREFERENCE_TEST {
+        background-color: $mission-survey-preference-test;
+      }
+      &.INSTRUCTION {
+        background-color: $mission-survey-instruction;
+      }
     }
 
     .mission-create-survey-item-head-title {
@@ -88,15 +106,15 @@
     }
   }
 
-  .mission-create-survey-item-body {
-    overflow-x: auto;
-  }
-
   .mission-create-survey-item-separator {
     border: none;
     background-color: $grey;
     height: 1px;
     margin-left: -30px;
     margin-right: -30px;
+  }
+
+  .mission-create-survey-item-body {
+    padding-top: 20px;
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="mission-create-survey-summary">
-    <MissionCreateSideBox :type="SURVEY">
+    <MissionCreateSideBox :type="s.type">
       <template slot="body">
         <MissionCreateSurveySummaryItem type="WELCOME" title="Welcome Screen" no-drag />
         <div class="mission-create-survey-summary-sortable">
@@ -82,6 +82,9 @@ export default {
       set(value) {
         this.$store.commit('missionFormSurvey/setItems', value)
       }
+    },
+    s() {
+      return this.$store.state.missionForm
     }
   }
 }

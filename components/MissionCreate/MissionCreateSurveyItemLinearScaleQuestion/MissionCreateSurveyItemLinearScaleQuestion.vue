@@ -17,11 +17,19 @@ export default {
     index: {
       type: Number,
       required: true
+    },
+    followUpIndex: {
+      type: Number,
+      default: null
     }
   },
   computed: {
     item() {
-      return this.$store.state.missionFormSurvey.items[this.index]
+      const item = this.$store.state.missionFormSurvey.items[this.index]
+      if (this.followUpIndex !== null) {
+        return item.followUps[this.followUpIndex]
+      }
+      return item
     }
   }
 }
