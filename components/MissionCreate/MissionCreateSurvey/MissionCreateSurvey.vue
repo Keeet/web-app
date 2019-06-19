@@ -30,6 +30,7 @@ import MissionCreateSurveyCustomScreen from '../MissionCreateSurveyCustomScreen/
 import MissionCreateSurveyItems from '../MissionCreateSurveyItems/MissionCreateSurveyItems'
 import MissionCreateSurveyAdd from '../MissionCreateSurveyAdd/MissionCreateSurveyAdd'
 import MissionCreateSurveySummary from '../MissionCreateSurveySummary/MissionCreateSurveySummary'
+import { isHttpsLink } from '../../../utils/stringUtils'
 
 export default {
   name: 'MissionCreateSurvey',
@@ -71,7 +72,9 @@ export default {
       return this.s.survey.welcomeTitle === '' || this.s.survey.welcomeDescription === ''
     },
     invalidCustomClosingScreen() {
-      return this.s.survey.closingTitle === '' || this.s.survey.closingDescription === ''
+      return this.s.survey.closingTitle === '' ||
+        this.s.survey.closingDescription === '' ||
+        (this.s.survey.redirectLink && !isHttpsLink(this.s.survey.redirectLink))
     }
   },
   methods: {
