@@ -27,6 +27,7 @@
         />
         <MissionCreateSurveyItemFirstClick
           v-else-if="item.type === FIRST_CLICK"
+          :index="x"
         />
       </MissionCreateSurveyItem>
     </draggable>

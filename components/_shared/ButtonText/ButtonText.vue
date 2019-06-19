@@ -1,5 +1,5 @@
 <template>
-  <div class="button-text" :class="[type, { noMargin }]" @click="onClick">
+  <div class="button-text" :class="[type, { noMargin }, bgColorClass]" @click="onClick">
     <div v-show="disabled" class="button-text-disabled" />
     <button
       class="button-text-item"
@@ -19,7 +19,8 @@
 const TYPES = {
   BLUE: 'BLUE',
   BLUE_BORDER: 'BLUE_BORDER',
-  GREY: 'GREY'
+  GREY: 'GREY',
+  CUSTOM: 'CUSTOM'
 }
 
 const ARROWS = {
@@ -60,6 +61,10 @@ export default {
     noMargin: {
       type: Boolean,
       default: false
+    },
+    bgColorClass: {
+      type: String,
+      default: ''
     }
   },
   data() {

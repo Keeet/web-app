@@ -1,12 +1,21 @@
 <template>
   <div class="mission-create-survey-item-first-click">
-    FIRST CLICK BODY
+    <MissionCreateSurveyUsabilityLabUpload :index="index" />
   </div>
 </template>
 
 <script>
+import MissionCreateSurveyUsabilityLabUpload
+  from '../MissionCreateSurveyUsabilityLabUpload/MissionCreateSurveyUsabilityLabUpload'
 export default {
-  name: 'MissionCreateSurveyItemFirstClick'
+  name: 'MissionCreateSurveyItemFirstClick',
+  components: { MissionCreateSurveyUsabilityLabUpload },
+  props: {
+    index: {
+      type: Number,
+      required: true
+    }
+  }
 }
 </script>
 

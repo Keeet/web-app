@@ -3,7 +3,18 @@
     <p class="mission-create-survey-custom-screen-branding-title">
       Branding
     </p>
-    <Dropzone :mutation="logoIdMutation" />
+    <div class="mission-create-survey-custom-screen-branding-dropzone">
+      <Dropzone :mutation="logoIdMutation" :thumbnail-width="400">
+        <template slot="empty">
+          <div class="mission-create-survey-custom-screen-branding-dropzone-empty">
+            <IconFileImage />
+            <p class="mission-create-survey-custom-screen-branding-dropzone-empty-text">
+              Upload a photo / logo
+            </p>
+          </div>
+        </template>
+      </Dropzone>
+    </div>
   </div>
 </template>
 
@@ -26,6 +37,6 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   @import "MissionCreateSurveyCustomScreenBranding";
 </style>

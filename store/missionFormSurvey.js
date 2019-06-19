@@ -284,6 +284,14 @@ export const mutations = {
       }
     })
   },
+  setItemImageMediaId(state, { imageMediaId, itemIndex }) {
+    state.items = modifyQuestionItem(state, itemIndex, null, (item) => {
+      return {
+        ...item,
+        imageMediaId
+      }
+    })
+  },
 
   showErrors(state) {
     state.showErrors = true
