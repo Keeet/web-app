@@ -12,6 +12,7 @@
           :type="followUp.type"
           :required="followUp.required"
           :value="followUp.text"
+          :bg-color-class="item.type"
           no-margin
         />
       </div>
@@ -28,7 +29,7 @@
         >
           <template slot="selected">
             <div class="mission-create-survey-item-follow-up-question-type-item selected">
-              <div class="mission-create-survey-item-follow-up-question-type-item-icon" :class="followUp.type">
+              <div class="mission-create-survey-item-follow-up-question-type-item-icon">
                 <MissionCreateSurveyIcon :type="followUp.type" />
               </div>
               <p class="mission-create-survey-item-follow-up-question-type-item-label">

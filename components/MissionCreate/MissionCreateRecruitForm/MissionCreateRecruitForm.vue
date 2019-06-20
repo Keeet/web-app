@@ -25,7 +25,6 @@
               mutation="missionFormRecruit/setNbParticipants"
               :value="s.recruit.nbParticipants.toString()"
               :error="nbParticipantsError"
-              numbers-only
             />
           </div>
         </div>

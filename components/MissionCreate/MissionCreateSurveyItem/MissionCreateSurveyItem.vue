@@ -31,7 +31,7 @@
           />
           <slot />
           <MissionCreateSurveyItemFollowUp
-            v-if="s.type === MISSIONS.USABILITY_LAB"
+            v-if="s.type === MISSIONS.USABILITY_LAB && item.followUps"
             :index="index"
           />
         </div>

@@ -55,6 +55,24 @@
       &.LINEAR_SCALE {
         background-color: $mission-survey-linear-scale;
       }
+      &.FIRST_CLICK {
+        background-color: $mission-survey-first-click;
+      }
+      &.FIVE_SECOND_TEST {
+        background-color: $mission-survey-five-second-test;
+      }
+      &.QUESTION_LIST {
+        background-color: $mission-survey-question-list;
+      }
+      &.DESIGN_QUESTION {
+        background-color: $mission-survey-design-question;
+      }
+      &.PREFERENCE_TEST {
+        background-color: $mission-survey-preference-test;
+      }
+      &.INSTRUCTION {
+        background-color: $mission-survey-instruction;
+      }
 
       .switch-button-icon-circle {
         left: 27px;

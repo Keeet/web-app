@@ -21,6 +21,7 @@
         :placeholder="placeholder"
         :readonly="readonly"
         :maxlength="maxCharacters || 524288"
+        @focusout="$emit('focusout')"
       />
       <div v-if="$slots.additional" class="input-additional">
         <slot name="additional" />
@@ -77,10 +78,6 @@ export default {
     maxCharacters: {
       type: Number,
       default: null
-    },
-    numbersOnly: {
-      type: Boolean,
-      default: false
     },
     textarea: {
       type: Boolean,

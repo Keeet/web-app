@@ -1,14 +1,14 @@
 <template>
-  <div class="mission-create-survey-item-first-click">
-    <div class="mission-create-survey-item-first-click-instruction">
+  <div class="mission-create-survey-item-preference-test">
+    <div class="mission-create-survey-item-preference-test-instruction">
       <Input
         title="Instruction"
-        placeholder="Where would you click to..."
+        placeholder="Which design do you prefer?"
         :value="item.instruction"
         @change="setInstruction"
       />
     </div>
-    <MissionCreateSurveyUsabilityLabUpload :index="index" />
+    <MissionCreateSurveyUsabilityLabUpload :index="index" multi-upload />
   </div>
 </template>
 
@@ -17,7 +17,7 @@ import MissionCreateSurveyUsabilityLabUpload
   from '../MissionCreateSurveyUsabilityLabUpload/MissionCreateSurveyUsabilityLabUpload'
 import Input from '../../_shared/Input/Input'
 export default {
-  name: 'MissionCreateSurveyItemFirstClick',
+  name: 'MissionCreateSurveyItemPreferenceTest',
   components: { Input, MissionCreateSurveyUsabilityLabUpload },
   props: {
     index: {
@@ -42,5 +42,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "MissionCreateSurveyItemFirstClick";
+  @import "MissionCreateSurveyItemPreferenceTest";
 </style>

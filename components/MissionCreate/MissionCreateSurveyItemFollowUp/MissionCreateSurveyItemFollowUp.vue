@@ -1,7 +1,7 @@
 <template>
   <div class="mission-create-survey-item-follow-up">
     <div v-if="item.followUps.length">
-      <p class="mission-create-survey-item-follow-up-headline">
+      <p v-if="item.type !== QUESTION_LIST" class="mission-create-survey-item-follow-up-headline">
         Follow-up questions
       </p>
       <div class="mission-create-survey-item-follow-up-questions">
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { MISSION_SURVEY_USABILITY_LAB_ITEMS } from '../../constants'
 import MissionCreateSurveyItemFollowUpQuestion
   from '../MissionCreateSurveyItemFollowUpQuestion/MissionCreateSurveyItemFollowUpQuestion'
 export default {
@@ -42,6 +43,10 @@ export default {
       type: Number,
       required: true
     }
+  },
+  data() {
+    const { QUESTION_LIST } = MISSION_SURVEY_USABILITY_LAB_ITEMS
+    return { QUESTION_LIST }
   },
   computed: {
     item() {

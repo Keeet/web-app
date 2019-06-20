@@ -10,12 +10,12 @@ const {
 } = MISSION_SURVEY_ITEMS
 
 const {
-  FIRST_CLICK
-  // FIVE_SECOND_TEST,
-  // DESIGN_QUESTION,
-  // QUESTION_LIST,
-  // PREFERENCE_TEST,
-  // INSTRUCTION
+  FIRST_CLICK,
+  FIVE_SECOND_TEST,
+  DESIGN_QUESTION,
+  QUESTION_LIST,
+  PREFERENCE_TEST,
+  INSTRUCTION
 } = MISSION_SURVEY_USABILITY_LAB_ITEMS
 
 const defaultWelcomeScreen = {
@@ -85,10 +85,33 @@ const defaultStateItem = {
   },
   FIRST_CLICK: {
     type: FIRST_CLICK,
-    required: true,
     instruction: '',
     imageMediaId: null,
     followUps: []
+  },
+  FIVE_SECOND_TEST: {
+    type: FIVE_SECOND_TEST,
+    duration: 10,
+    imageMediaId: null,
+    followUps: []
+  },
+  QUESTION_LIST: {
+    type: QUESTION_LIST,
+    followUps: []
+  },
+  DESIGN_QUESTION: {
+    type: DESIGN_QUESTION,
+    imageMediaId: null,
+    followUps: []
+  },
+  PREFERENCE_TEST: {
+    type: PREFERENCE_TEST,
+    imageMediaIds: [],
+    followUps: []
+  },
+  INSTRUCTION: {
+    type: INSTRUCTION,
+    text: ''
   }
 }
 
@@ -197,7 +220,7 @@ export const mutations = {
     state.items = items
   },
   setItemQuestion(state, { itemIndex, followUpIndex, question }) {
-    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+    state.items = modifyItem(state, itemIndex, followUpIndex, (item) => {
       return {
         ...item,
         text: question
@@ -205,7 +228,7 @@ export const mutations = {
     })
   },
   setItemQuestionRequired(state, { itemIndex, followUpIndex, required }) {
-    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+    state.items = modifyItem(state, itemIndex, followUpIndex, (item) => {
       return {
         ...item,
         required
@@ -213,7 +236,7 @@ export const mutations = {
     })
   },
   setItemSelectChoices(state, { itemIndex, followUpIndex, choices }) {
-    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+    state.items = modifyItem(state, itemIndex, followUpIndex, (item) => {
       return {
         ...item,
         choices
@@ -221,31 +244,31 @@ export const mutations = {
     })
   },
   setItemSelectChoice(state, { itemIndex, followUpIndex, choiceIndex, choice }) {
-    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+    state.items = modifyItem(state, itemIndex, followUpIndex, (item) => {
       item.choices[choiceIndex] = choice
       return item
     })
   },
   addEmptyItemSelectChoice(state, { itemIndex, followUpIndex }) {
-    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+    state.items = modifyItem(state, itemIndex, followUpIndex, (item) => {
       item.choices.push('')
       return item
     })
   },
   deleteItemSelectChoice(state, { itemIndex, followUpIndex, choiceIndex }) {
-    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+    state.items = modifyItem(state, itemIndex, followUpIndex, (item) => {
       item.choices.splice(choiceIndex, 1)
       return item
     })
   },
   switchItemSelectOtherAvailable(state, { itemIndex, followUpIndex }) {
-    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+    state.items = modifyItem(state, itemIndex, followUpIndex, (item) => {
       item.otherAvailable = !item.otherAvailable
       return item
     })
   },
   setItemLinearScaleStartValue(state, { value, itemIndex, followUpIndex }) {
-    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+    state.items = modifyItem(state, itemIndex, followUpIndex, (item) => {
       return {
         ...item,
         startValue: value
@@ -253,7 +276,7 @@ export const mutations = {
     })
   },
   setItemLinearScaleStartLabel(state, { label, itemIndex, followUpIndex }) {
-    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+    state.items = modifyItem(state, itemIndex, followUpIndex, (item) => {
       return {
         ...item,
         startLabel: label
@@ -261,7 +284,7 @@ export const mutations = {
     })
   },
   setItemLinearScaleEndValue(state, { value, itemIndex, followUpIndex }) {
-    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+    state.items = modifyItem(state, itemIndex, followUpIndex, (item) => {
       return {
         ...item,
         endValue: value
@@ -269,7 +292,7 @@ export const mutations = {
     })
   },
   setItemLinearScaleEndLabel(state, { label, itemIndex, followUpIndex }) {
-    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+    state.items = modifyItem(state, itemIndex, followUpIndex, (item) => {
       return {
         ...item,
         endLabel: label
@@ -277,7 +300,7 @@ export const mutations = {
     })
   },
   setItemLikertAnswerType(state, { answerType, itemIndex, followUpIndex }) {
-    state.items = modifyQuestionItem(state, itemIndex, followUpIndex, (item) => {
+    state.items = modifyItem(state, itemIndex, followUpIndex, (item) => {
       return {
         ...item,
         answerType
@@ -285,10 +308,42 @@ export const mutations = {
     })
   },
   setItemImageMediaId(state, { imageMediaId, itemIndex }) {
-    state.items = modifyQuestionItem(state, itemIndex, null, (item) => {
+    state.items = modifyItem(state, itemIndex, null, (item) => {
       return {
         ...item,
         imageMediaId
+      }
+    })
+  },
+  setItemImageMediaIds(state, { imageMediaIds, itemIndex }) {
+    state.items = modifyItem(state, itemIndex, null, (item) => {
+      return {
+        ...item,
+        imageMediaIds
+      }
+    })
+  },
+  setItemInstruction(state, { instruction, itemIndex }) {
+    state.items = modifyItem(state, itemIndex, null, (item) => {
+      return {
+        ...item,
+        instruction
+      }
+    })
+  },
+  setItemFiveSecondTestDuration(state, { duration, itemIndex }) {
+    state.items = modifyItem(state, itemIndex, null, (item) => {
+      return {
+        ...item,
+        duration
+      }
+    })
+  },
+  setItemInstructionText(state, { text, itemIndex }) {
+    state.items = modifyItem(state, itemIndex, null, (item) => {
+      return {
+        ...item,
+        text
       }
     })
   },
@@ -298,7 +353,7 @@ export const mutations = {
   }
 }
 
-function modifyQuestionItem(state, itemIndex, followUpIndex, modifyFunction) {
+function modifyItem(state, itemIndex, followUpIndex, modifyFunction) {
   const items = state.items.slice()
   const item = followUpIndex !== null
     ? items[itemIndex].followUps[followUpIndex]

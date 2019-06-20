@@ -4,7 +4,7 @@
       Design
     </p>
     <div class="mission-create-survey-usability-lab-upload-dropzone">
-      <Dropzone :thumbnail-height="160" @change="dzChange">
+      <Dropzone :thumbnail-height="160" :multi-upload="multiUpload" @change="dzChange">
         <template slot="empty">
           <div class="mission-create-survey-usability-lab-upload-dropzone-empty">
             <div class="mission-create-survey-usability-lab-upload-dropzone-empty-icon">
@@ -12,10 +12,10 @@
             </div>
             <div class="mission-create-survey-usability-lab-upload-dropzone-empty-text">
               <p class="mission-create-survey-usability-lab-upload-dropzone-empty-text-title">
-                Upload an image
+                {{ multiUpload ? 'Upload images' : 'Upload an image' }}
               </p>
               <p class="mission-create-survey-usability-lab-upload-dropzone-empty-text-subtitle">
-                Click here or drag and drop an image
+                {{ multiUpload ? 'Click here or drag and drop images' : 'Click here or drag and drop an image' }}
               </p>
             </div>
           </div>
@@ -40,6 +40,10 @@ export default {
     index: {
       type: Number,
       required: true
+    },
+    multiUpload: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -48,11 +52,18 @@ export default {
     }
   },
   methods: {
-    dzChange(imageMediaId) {
-      this.$store.commit('missionFormSurvey/setItemImageMediaId', {
-        imageMediaId,
-        itemIndex: this.index
-      })
+    dzChange(value) {
+      if (this.multiUpload) {
+        this.$store.commit('missionFormSurvey/setItemImageMediaIds', {
+          imageMediaIds: value,
+          itemIndex: this.index
+        })
+      } else {
+        this.$store.commit('missionFormSurvey/setItemImageMediaId', {
+          imageMediaId: value,
+          itemIndex: this.index
+        })
+      }
     }
   }
 }

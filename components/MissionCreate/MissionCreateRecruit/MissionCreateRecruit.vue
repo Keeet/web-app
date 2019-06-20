@@ -73,7 +73,7 @@ export default {
       return this.s.activeStep
     },
     calendarValid() {
-      return this.s.recruit.sessions.length >= this.s.recruit.nbParticipants
+      return this.s.recruit.sessions.length >= parseInt(this.s.recruit.nbParticipants)
     }
   },
   methods: {
@@ -84,7 +84,7 @@ export default {
         projectId,
         type,
         title,
-        duration,
+        duration: parseInt(duration),
         language,
         persona,
         sessions: sessions.map(session => session.start.toISOString())

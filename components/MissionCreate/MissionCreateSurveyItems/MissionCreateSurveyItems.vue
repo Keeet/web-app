@@ -29,6 +29,22 @@
           v-else-if="item.type === FIRST_CLICK"
           :index="x"
         />
+        <MissionCreateSurveyItemFiveSecondTest
+          v-else-if="item.type === FIVE_SECOND_TEST"
+          :index="x"
+        />
+        <MissionCreateSurveyItemDesignQuestion
+          v-else-if="item.type === DESIGN_QUESTION"
+          :index="x"
+        />
+        <MissionCreateSurveyItemPreferenceTest
+          v-else-if="item.type === PREFERENCE_TEST"
+          :index="x"
+        />
+        <MissionCreateSurveyItemInstruction
+          v-else-if="item.type === INSTRUCTION"
+          :index="x"
+        />
       </MissionCreateSurveyItem>
     </draggable>
   </div>
@@ -44,14 +60,22 @@ import MissionCreateSurveyItem from '../MissionCreateSurveyItem/MissionCreateSur
 import MissionCreateSurveyItemLikertQuestion
   from '../MissionCreateSurveyItemLikertQuestion/MissionCreateSurveyItemLikertQuestion'
 import MissionCreateSurveyItemFirstClick from '../MissionCreateSurveyItemFirstClick/MissionCreateSurveyItemFirstClick'
+import MissionCreateSurveyItemFiveSecondTest
+  from '../MissionCreateSurveyItemFiveSecondTest/MissionCreateSurveyItemFiveSecondTest'
+import MissionCreateSurveyItemDesignQuestion
+  from '../MissionCreateSurveyItemDesignQuestion/MissionCreateSurveyItemDesignQuestion'
+import MissionCreateSurveyItemPreferenceTest
+  from '../MissionCreateSurveyItemPreferenceTest/MissionCreateSurveyItemPreferenceTest'
+import MissionCreateSurveyItemInstruction
+  from '../MissionCreateSurveyItemInstruction/MissionCreateSurveyItemInstruction'
 
 export default {
   name: 'MissionCreateSurveyItems',
-  components: { MissionCreateSurveyItemFirstClick, MissionCreateSurveyItemLikertQuestion, MissionCreateSurveyItem, MissionCreateSurveyItemLinearScaleQuestion, MissionCreateSurveyItemSelectQuestion },
+  components: { MissionCreateSurveyItemInstruction, MissionCreateSurveyItemPreferenceTest, MissionCreateSurveyItemDesignQuestion, MissionCreateSurveyItemFiveSecondTest, MissionCreateSurveyItemFirstClick, MissionCreateSurveyItemLikertQuestion, MissionCreateSurveyItem, MissionCreateSurveyItemLinearScaleQuestion, MissionCreateSurveyItemSelectQuestion },
   data() {
     const { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LINEAR_SCALE, LIKERT } = MISSION_SURVEY_ITEMS
-    const { FIRST_CLICK } = MISSION_SURVEY_USABILITY_LAB_ITEMS
-    return { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LINEAR_SCALE, LIKERT, FIRST_CLICK }
+    const { FIRST_CLICK, FIVE_SECOND_TEST, DESIGN_QUESTION, PREFERENCE_TEST, INSTRUCTION } = MISSION_SURVEY_USABILITY_LAB_ITEMS
+    return { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LINEAR_SCALE, LIKERT, FIRST_CLICK, FIVE_SECOND_TEST, DESIGN_QUESTION, PREFERENCE_TEST, INSTRUCTION }
   },
   computed: {
     items: {

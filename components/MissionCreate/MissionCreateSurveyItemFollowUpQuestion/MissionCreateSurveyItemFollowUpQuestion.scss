@@ -37,29 +37,10 @@
 
         .mission-create-survey-item-follow-up-question-type-item-icon {
           position: relative;
-          background-color: $grey;
+          background-color: $grey-mid-dark;
           width: 25px;
           height: 25px;
           border-radius: 100%;
-
-          &.SHORT_TEXT {
-            background-color: $mission-survey-short-text;
-          }
-          &.LONG_TEXT {
-            background-color: $mission-survey-long-text;
-          }
-          &.SINGLE_SELECT {
-            background-color: $mission-survey-single-select;
-          }
-          &.MULTI_SELECT {
-            background-color: $mission-survey-multi-select;
-          }
-          &.LIKERT {
-            background-color: $mission-survey-likert;
-          }
-          &.LINEAR_SCALE {
-            background-color: $mission-survey-linear-scale;
-          }
 
           svg {
             position: absolute;

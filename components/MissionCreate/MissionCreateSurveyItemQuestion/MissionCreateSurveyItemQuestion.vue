@@ -16,7 +16,7 @@
           <SwitchButton
             label="Required"
             :on="required"
-            :bg-color-class="type"
+            :bg-color-class="bgColorClass || type"
             small
             @switch="switchRequired"
           />
@@ -60,6 +60,10 @@ export default {
     noMargin: {
       type: Boolean,
       default: false
+    },
+    bgColorClass: {
+      type: String,
+      default: null
     }
   },
   data() {

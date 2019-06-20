@@ -27,7 +27,7 @@ export default {
       }
     },
     valid() {
-      return this.s.recruit.sessions.length >= this.s.recruit.nbParticipants
+      return this.s.recruit.sessions.length >= parseInt(this.s.recruit.nbParticipants)
     }
   }
 }
