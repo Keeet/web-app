@@ -11,7 +11,7 @@
     />
     <span class="dropzone-nav">
       <span v-if="!isEmpty" class="dropzone-nav-delete" @click="clearItems">
-        delete
+        {{ multiUpload ? 'delete all' : 'delete' }}
       </span>
       <span v-if="error && !disableError" class="dropzone-nav-error">
         {{ error }}

@@ -1,5 +1,5 @@
 <template>
-  <div class="mission-create-survey-item-follow-up-question">
+  <div class="mission-create-survey-item-follow-up-question" :class="{ first: followUpIndex === 0 }">
     <div class="mission-create-survey-item-follow-up-question-head">
       <div class="mission-create-survey-item-follow-up-question-drag">
         <IconDragDrop />
@@ -29,7 +29,7 @@
         >
           <template slot="selected">
             <div class="mission-create-survey-item-follow-up-question-type-item selected">
-              <div class="mission-create-survey-item-follow-up-question-type-item-icon">
+              <div class="mission-create-survey-item-follow-up-question-type-item-icon" :class="item.type">
                 <MissionCreateSurveyIcon :type="followUp.type" />
               </div>
               <p class="mission-create-survey-item-follow-up-question-type-item-label">
@@ -39,7 +39,7 @@
           </template>
           <template v-for="(type, x) in questionTypes" :slot="type">
             <div :key="x" class="mission-create-survey-item-follow-up-question-type-item">
-              <div class="mission-create-survey-item-follow-up-question-type-item-icon" :class="type">
+              <div class="mission-create-survey-item-follow-up-question-type-item-icon" :class="item.type">
                 <MissionCreateSurveyIcon :type="type" />
               </div>
               <p class="mission-create-survey-item-follow-up-question-type-item-label">
@@ -62,6 +62,7 @@
         v-if="[SINGLE_SELECT, MULTI_SELECT].includes(followUp.type)"
         :index="itemIndex"
         :follow-up-index="followUpIndex"
+        :bg-color-class="item.type"
       />
       <MissionCreateSurveyItemLinearScaleQuestion
         v-else-if="followUp.type === LINEAR_SCALE"

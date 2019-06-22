@@ -42,7 +42,8 @@ export default {
       return this.s.items[this.index]
     },
     durationError() {
-      return isNum(this.item.duration) ? null : 'numbers only'
+      const duration = this.item.duration
+      return isNum(duration) && duration >= 5 && duration <= 60 ? null : 'between 5-60'
     }
   },
   methods: {

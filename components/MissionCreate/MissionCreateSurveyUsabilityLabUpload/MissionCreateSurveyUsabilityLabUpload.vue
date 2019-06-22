@@ -51,6 +51,10 @@ export default {
     multiUpload: {
       type: Boolean,
       default: false
+    },
+    minUploads: {
+      type: Number,
+      default: 1
     }
   },
   data() {
@@ -68,7 +72,7 @@ export default {
     },
     error() {
       if (this.multiUpload) {
-        return this.item.imageMediaIds.length > 0 ? null : 'required'
+        return this.item.imageMediaIds.length >= this.minUploads ? null : `min ${this.minUploads} required`
       } else {
         return this.item.imageMediaId ? null : 'required'
       }

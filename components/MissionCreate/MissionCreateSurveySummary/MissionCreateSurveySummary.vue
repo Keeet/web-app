@@ -2,25 +2,27 @@
   <div class="mission-create-survey-summary">
     <MissionCreateSideBox :type="s.type">
       <template slot="body">
-        <MissionCreateSurveySummaryItem type="WELCOME" title="Welcome Screen" no-drag />
-        <div class="mission-create-survey-summary-sortable">
-          <draggable
-            v-model="items"
-            handle=".mission-create-survey-summary-item-drag"
-            ghost-class="ghost"
-            drag-class="drag"
-            chosen-class="chosen"
-            :animation="150"
-          >
-            <MissionCreateSurveySummaryItem
-              v-for="(item, x) in items"
-              :key="x"
-              :index="x"
-              :type="item.type"
-            />
-          </draggable>
+        <div class="mission-create-survey-summary-scrollable">
+          <MissionCreateSurveySummaryItem type="WELCOME" title="Welcome Screen" no-drag />
+          <div class="mission-create-survey-summary-sortable">
+            <draggable
+              v-model="items"
+              handle=".mission-create-survey-summary-item-drag"
+              ghost-class="ghost"
+              drag-class="drag"
+              chosen-class="chosen"
+              :animation="150"
+            >
+              <MissionCreateSurveySummaryItem
+                v-for="(item, x) in items"
+                :key="x"
+                :index="x"
+                :type="item.type"
+              />
+            </draggable>
+          </div>
+          <MissionCreateSurveySummaryItem type="CLOSING" title="Thank-you Screen" no-drag />
         </div>
-        <MissionCreateSurveySummaryItem type="CLOSING" title="Thank-you Screen" no-drag />
         <div class="mission-create-survey-summary-duration">
           <div class="mission-create-survey-summary-duration-icon">
             <IconClock />

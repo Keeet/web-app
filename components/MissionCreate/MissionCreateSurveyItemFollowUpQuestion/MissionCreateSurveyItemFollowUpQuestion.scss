@@ -1,9 +1,14 @@
 .mission-create-survey-item-follow-up-question {
+  margin: 30px 0;
+
+  &:not(.first) {
+    padding-top: 30px;
+    border-top: 1px solid $grey;
+  }
 
   .mission-create-survey-item-follow-up-question-head {
     display: flex;
     align-items: flex-end;
-    margin-top: 20px;
 
     &.noDelete {
       padding-right: 12px;
@@ -37,10 +42,28 @@
 
         .mission-create-survey-item-follow-up-question-type-item-icon {
           position: relative;
-          background-color: $grey-mid-dark;
           width: 25px;
           height: 25px;
           border-radius: 100%;
+
+          &.FIRST_CLICK {
+            background-color: $mission-survey-first-click;
+          }
+          &.FIVE_SECOND_TEST {
+            background-color: $mission-survey-five-second-test;
+          }
+          &.QUESTION_LIST {
+            background-color: $mission-survey-question-list;
+          }
+          &.DESIGN_QUESTION {
+            background-color: $mission-survey-design-question;
+          }
+          &.PREFERENCE_TEST {
+            background-color: $mission-survey-preference-test;
+          }
+          &.INSTRUCTION {
+            background-color: $mission-survey-instruction;
+          }
 
           svg {
             position: absolute;

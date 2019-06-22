@@ -21,7 +21,7 @@
     </div>
     <div class="mission-create-survey-item-select-question-footer">
       <div
-        :class="[{ active: addActive }, item.type]"
+        :class="[{ active: addActive }, bgColorClass || item.type]"
         class="mission-create-survey-item-select-question-choices-add"
         @click="addChoice"
       >
@@ -32,7 +32,7 @@
         :on="item.otherAvailable"
         label="Show &quot;Other&quot; Option"
         small
-        :bg-color-class="item.type"
+        :bg-color-class="bgColorClass || item.type"
         @switch="switchOtherAvailable"
       />
     </div>
@@ -53,6 +53,10 @@ export default {
     },
     followUpIndex: {
       type: Number,
+      default: null
+    },
+    bgColorClass: {
+      type: String,
       default: null
     }
   },

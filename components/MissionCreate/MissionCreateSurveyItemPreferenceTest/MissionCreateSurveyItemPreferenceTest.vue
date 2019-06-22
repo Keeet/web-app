@@ -12,7 +12,7 @@
         @focusout="showError = true"
       />
     </div>
-    <MissionCreateSurveyUsabilityLabUpload :index="index" multi-upload />
+    <MissionCreateSurveyUsabilityLabUpload :index="index" :min-uploads="2" multi-upload />
   </div>
 </template>
 
