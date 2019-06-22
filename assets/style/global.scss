@@ -128,3 +128,7 @@ textarea {
 .drag {
   opacity: 1;
 }
+
+*[data-aos="fade-in"] {
+  transform: none !important;
+}

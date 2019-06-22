@@ -1,24 +1,30 @@
 <template>
-  <div class="mission-create-survey">
-    <div class="mission-create-survey-content">
-      <MissionCreateSurveyDetails />
-      <MissionCreateSurveyCustomScreen
-        type="WELCOME"
-        title="Default Welcome Screen"
-        subtitle="The first thing your audience will see - a great opportunity to engage right away."
-      />
-      <MissionCreateSurveyItems />
-      <MissionCreateSurveyAdd :index="items.length" />
-      <MissionCreateSurveyCustomScreen
-        type="CLOSING"
-        title="Default Thank You Screen"
-        subtitle="The last thing your audience will see. Thank your participants for their effort and time."
+  <div
+    data-aos="fade-in"
+    data-aos-duration="700"
+    data-aos-once="true"
+  >
+    <div class="mission-create-survey">
+      <div class="mission-create-survey-content">
+        <MissionCreateSurveyDetails />
+        <MissionCreateSurveyCustomScreen
+          type="WELCOME"
+          title="Default Welcome Screen"
+          subtitle="The first thing your audience will see - a great opportunity to engage right away."
+        />
+        <MissionCreateSurveyItems />
+        <MissionCreateSurveyAdd :index="items.length" />
+        <MissionCreateSurveyCustomScreen
+          type="CLOSING"
+          title="Default Thank You Screen"
+          subtitle="The last thing your audience will see. Thank your participants for their effort and time."
+        />
+      </div>
+      <MissionCreateSurveySummary
+        :is-valid="isValid"
+        @submitDisabledClick="submitDisabledClick"
       />
     </div>
-    <MissionCreateSurveySummary
-      :is-valid="isValid"
-      @submitDisabledClick="submitDisabledClick"
-    />
   </div>
 </template>
 
