@@ -42,6 +42,7 @@ export default {
         this.$store.commit('missionFormSurvey/init')
       }
       this.$store.commit('missionForm/setType', type)
+      this.$store.commit('missionForm/hideErrors')
       this.$store.commit('missionForm/nextStep')
     }
   }

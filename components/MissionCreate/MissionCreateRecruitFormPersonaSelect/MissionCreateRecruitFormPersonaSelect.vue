@@ -4,7 +4,9 @@
       :opened="s.recruit.personaDropdownOpened"
       :value="s.recruit.persona ? s.recruit.persona.id : null"
       :options="selectPersonaOptions"
-      :error="error"
+      :error="personaError"
+      dispatch-error="missionForm/handleValidationError"
+      :disable-error="!s.showErrors"
       placeholder="Choose persona"
       @select="select"
       @clickHead="$store.commit('missionFormRecruit/switchPersonaDropdown')"
@@ -50,12 +52,6 @@ import ButtonCircle from '../../_shared/ButtonCircle/ButtonCircle'
 export default {
   name: 'MissionCreateRecruitFormPersonaSelect',
   components: { ButtonCircle, PersonaIcon, SelectCustom },
-  props: {
-    error: {
-      type: String,
-      default: null
-    }
-  },
   computed: {
     s() {
       const { missionForm, missionFormRecruit } = this.$store.state
@@ -76,7 +72,8 @@ export default {
       const ids = this.allPersonas.map(persona => persona.id).slice()
       ids.push('new')
       return ids
-    }
+    },
+    personaError() { return this.s.recruit.persona ? null : 'required' }
   },
   methods: {
     select(personaId) {

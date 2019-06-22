@@ -12,7 +12,8 @@
         :value="customDuration"
         mutation="missionFormRecruit/setDuration"
         placeholder="e.g. 120"
-        :error="error"
+        :error="durationError"
+        dispatch-error="missionForm/handleValidationError"
       />
     </div>
   </div>
@@ -21,18 +22,13 @@
 <script>
 import MissionCreateRecruitFormDurationItem from '../MissionCreateRecruitFormDurationItem/MissionCreateRecruitFormDurationItem'
 import Input from '../../_shared/Input/Input'
+import { isNum } from '../../../utils/stringUtils'
 
 const PRESETS = [30, 45, 60, 90]
 
 export default {
   name: 'MissionCreateRecruitFormDuration',
   components: { Input, MissionCreateRecruitFormDurationItem },
-  props: {
-    error: {
-      type: String,
-      default: null
-    }
-  },
   data() {
     return { PRESETS }
   },
@@ -50,6 +46,15 @@ export default {
       } else {
         return this.s.recruit.duration
       }
+    },
+    durationError() {
+      if (!isNum(this.s.recruit.duration)) {
+        return 'must be a number'
+      }
+      if (parseInt(this.s.recruit.duration) < 30) {
+        return 'must be bigger than 30'
+      }
+      return null
     }
   }
 }

@@ -7,7 +7,6 @@ const defaultState = {
   location: null,
   locationId: null,
   locationFormOpened: false,
-  formValid: false,
   sessions: [],
   activeCalendarDay: null,
   sessionErrorPopup: false,
@@ -56,9 +55,6 @@ export const mutations = {
   },
   closeLocationForm(state) {
     state.locationFormOpened = false
-  },
-  setFormValid(state, valid) {
-    state.formValid = valid
   },
   addSession(state, session) {
     const sessions = state.sessions.slice()

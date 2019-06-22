@@ -8,15 +8,16 @@
             placeholder="Test campaign"
             :value="s.title"
             mutation="missionForm/setTitle"
-            :disable-error="!showErrors"
             :error="titleError"
+            dispatch-error="missionForm/handleValidationError"
+            :disable-error="!s.showErrors"
           />
         </div>
       </MissionCreateBox>
       <MissionCreateBox>
         <div class="mission-create-recruit-form-section">
           <MissionCreateRecruitFormHeadline text="Target group" />
-          <MissionCreateRecruitFormPersonaSelect :error="showErrors && personaError ? personaError : null" />
+          <MissionCreateRecruitFormPersonaSelect />
         </div>
         <div class="mission-create-recruit-form-section">
           <MissionCreateRecruitFormHeadline text="Number of participants" />
@@ -25,12 +26,13 @@
               mutation="missionFormRecruit/setNbParticipants"
               :value="s.recruit.nbParticipants.toString()"
               :error="nbParticipantsError"
+              dispatch-error="missionForm/handleValidationError"
             />
           </div>
         </div>
         <div class="mission-create-recruit-form-section">
           <MissionCreateRecruitFormHeadline text="How long does the interview / test last?" underlined />
-          <MissionCreateRecruitFormDuration :error="durationError" />
+          <MissionCreateRecruitFormDuration />
         </div>
         <div class="mission-create-recruit-form-section">
           <MissionCreateRecruitFormHeadline text="In what language do you want to interview?" underlined />
@@ -64,12 +66,6 @@ import MissionCreateSideBox from '../MissionCreateSideBox/MissionCreateSideBox'
 export default {
   name: 'MissionCreateRecruitForm',
   components: { MissionCreateSideBox, MissionCreateRecruitFormLocation, MissionCreateRecruitFormLanguage, MissionCreateRecruitFormDuration, MissionCreateRecruitFormPersonaSelect, Input, MissionCreateRecruitFormHeadline, MissionCreateBox },
-  props: {
-    showErrors: {
-      type: Boolean,
-      required: true
-    }
-  },
   data() {
     const { IN_HOUSE, REMOTE, USABILITY_LAB, SURVEY } = MISSIONS
     return { IN_HOUSE, REMOTE, USABILITY_LAB, SURVEY, MISSION_LABELS }
@@ -83,40 +79,7 @@ export default {
       }
     },
     titleError() { return this.s.title !== '' ? null : 'required' },
-    personaError() { return this.s.recruit.persona ? null : 'required' },
-    nbParticipantsError() { return isNum(this.s.recruit.nbParticipants) ? null : 'must be a number' },
-    durationError() {
-      if (!isNum(this.s.recruit.duration)) {
-        return 'must be a number'
-      }
-      if (parseInt(this.s.recruit.duration) < 30) {
-        return 'must be bigger than 30'
-      }
-      return null
-    },
-    valid() {
-      return (
-        !this.titleError &&
-        !this.personaError &&
-        !this.nbParticipantsError &&
-        !this.durationError
-      )
-    }
-  },
-  watch: {
-    valid(newValue, oldValue) {
-      if (newValue !== oldValue) {
-        this.commitValidity()
-      }
-    }
-  },
-  mounted() {
-    this.commitValidity()
-  },
-  methods: {
-    commitValidity() {
-      this.$store.commit('missionFormRecruit/setFormValid', this.valid)
-    }
+    nbParticipantsError() { return isNum(this.s.recruit.nbParticipants) ? null : 'must be a number' }
   }
 }
 </script>

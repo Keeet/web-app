@@ -4,17 +4,18 @@
       :next-step-mutation="nextMut"
       :prev-step-mutation="prevMut"
       :active="s.activeStep === 1"
-      :valid="s.recruit.formValid"
-      @invalidNext="showFormErrors = true"
+      :valid="s.invalidFields.length === 0"
+      @invalidNext="invalidNextClick"
     >
       <MissionCreateHeadline :text="`1 / 3 ${MISSION_LABELS[s.type]} Mission`" />
-      <MissionCreateRecruitForm :show-errors="showFormErrors" />
+      <MissionCreateRecruitForm :show-errors="s.showErrors" />
     </FormStep>
     <FormStep
       :next-step-mutation="nextMut"
       :prev-step-mutation="prevMut"
       :active="s.activeStep === 2"
-      :valid="calendarValid"
+      :valid="s.invalidFields.length === 0"
+      @invalidNext="invalidNextClick"
     >
       <div class="mission-create-recruit-calendar-headline">
         <MissionCreateHeadline :text="`2 / 3 ${MISSION_LABELS[s.type]} Mission`" />
@@ -41,6 +42,7 @@ import MissionCreateSubHeadline from '../MissionCreateSubHeadline/MissionCreateS
 import MissionCreateRecruitCalendar from '../MissionCreateRecruitCalendar/MissionCreateRecruitCalendar'
 import MissionCreateRecruitSummary from '../MissionCreateRecruitSummary/MissionCreateRecruitSummary'
 import { MISSIONS, MISSION_LABELS } from '../../constants'
+import { scrollToTopId } from '../../../utils/scrollUtils'
 
 export default {
   name: 'MissionCreateRecruit',
@@ -57,8 +59,7 @@ export default {
       nextMut: 'missionForm/nextStep',
       prevMut: 'missionForm/previousStep',
       MISSIONS,
-      MISSION_LABELS,
-      showFormErrors: false
+      MISSION_LABELS
     }
   },
   computed: {
@@ -71,9 +72,6 @@ export default {
     },
     activeStep() {
       return this.s.activeStep
-    },
-    calendarValid() {
-      return this.s.recruit.sessions.length >= parseInt(this.s.recruit.nbParticipants)
     }
   },
   methods: {
@@ -102,6 +100,12 @@ export default {
         }
       }
       return mission
+    },
+    invalidNextClick() {
+      if (!this.s.showErrors) {
+        this.$store.commit('missionForm/showErrors')
+      }
+      scrollToTopId(this.s.invalidFields.map(field => field.id))
     },
     submit() {
       this.$store.commit('missionForm/pending')

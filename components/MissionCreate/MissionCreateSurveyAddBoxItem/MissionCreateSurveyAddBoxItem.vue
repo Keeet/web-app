@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     addItem() {
-      if (this.s.survey.items.length === 0 && this.s.showErrors) {
+      if (this.s.showErrors) {
         this.$store.commit('missionForm/hideErrors')
       }
       this.$store.commit('missionFormSurvey/addItem', this.type)

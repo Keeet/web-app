@@ -2,9 +2,9 @@
   <div class="mission-create-recruit-calendar">
     <MissionCreateRecruitCalendarPlugin />
     <div class="mission-create-recruit-calendar-menu">
-      <div class="mission-create-recruit-calendar-menu-count" :class="{ valid }">
+      <div :id="validationId" class="mission-create-recruit-calendar-menu-count" :class="{ valid: !validationError }">
         <p>{{ s.recruit.sessions.length }} of {{ s.recruit.nbParticipants }} time slots selected</p>
-        <IconCheck v-if="valid" />
+        <IconCheck v-if="!validationError" />
       </div>
       <span
         class="mission-create-recruit-calendar-menu-reset"
@@ -16,8 +16,12 @@
 </template>
 
 <script>
+import uuidv4 from 'uuid/v4'
 export default {
   name: 'MissionCreateRecruitCalendar',
+  data() {
+    return { validationId: uuidv4() }
+  },
   computed: {
     s() {
       const { missionForm, missionFormRecruit } = this.$store.state
@@ -26,9 +30,20 @@ export default {
         recruit: missionFormRecruit
       }
     },
-    valid() {
-      return this.s.recruit.sessions.length >= parseInt(this.s.recruit.nbParticipants)
+    validationError() {
+      return this.s.recruit.sessions.length >= parseInt(this.s.recruit.nbParticipants) ? null : 'validation error'
     }
+  },
+  watch: {
+    validationError: {
+      immediate: true,
+      handler(error) {
+        this.$store.dispatch('missionForm/handleValidationError', { id: this.validationId, error })
+      }
+    }
+  },
+  beforeDestroy() {
+    this.$store.dispatch('missionForm/handleValidationError', { id: this.validationId, error: null })
   }
 }
 </script>

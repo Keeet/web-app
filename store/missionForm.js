@@ -83,9 +83,6 @@ export const actions = {
       })
     } else if (error === null && invalidField) {
       context.commit('removeInvalidField', id)
-      if (context.state.invalidFields.length === 0) {
-        context.commit('hideErrors')
-      }
     }
   }
 }
