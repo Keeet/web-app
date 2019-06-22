@@ -6,6 +6,7 @@
       placeholder="Type question here"
       :value="value"
       :error="error"
+      dispatch-error="missionForm/handleValidationError"
       :disable-error="!showError && !s.showErrors"
       :no-margin="noMargin"
       @change="setQuestion"
@@ -71,7 +72,7 @@ export default {
   },
   computed: {
     s() {
-      return this.$store.state.missionFormSurvey
+      return this.$store.state.missionForm
     },
     error() {
       return this.value !== '' ? null : 'required'

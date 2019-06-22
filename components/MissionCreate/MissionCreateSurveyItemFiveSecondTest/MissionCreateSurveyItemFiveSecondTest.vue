@@ -9,6 +9,7 @@
         <Input
           :value="item.duration.toString()"
           :error="durationError"
+          dispatch-error="missionForm/handleValidationError"
           no-margin
           @change="setDuration"
         />

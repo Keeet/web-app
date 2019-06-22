@@ -4,7 +4,14 @@
       Design
     </p>
     <div class="mission-create-survey-usability-lab-upload-dropzone">
-      <Dropzone :thumbnail-height="160" :multi-upload="multiUpload" @change="dzChange">
+      <Dropzone
+        :thumbnail-height="160"
+        :multi-upload="multiUpload"
+        :error="error"
+        dispatch-error="missionForm/handleValidationError"
+        :disable-error="!showError && !s.showErrors"
+        @change="dzChange"
+      >
         <template slot="empty">
           <div class="mission-create-survey-usability-lab-upload-dropzone-empty">
             <div class="mission-create-survey-usability-lab-upload-dropzone-empty-icon">
@@ -46,9 +53,25 @@ export default {
       default: false
     }
   },
+  data() {
+    return { showError: false }
+  },
   computed: {
+    s() {
+      return {
+        ...this.$store.state.missionForm,
+        survey: this.$store.state.missionFormSurvey
+      }
+    },
     item() {
-      return this.$store.state.missionFormSurvey.items[this.index]
+      return this.s.survey.items[this.index]
+    },
+    error() {
+      if (this.multiUpload) {
+        return this.item.imageMediaIds.length > 0 ? null : 'required'
+      } else {
+        return this.item.imageMediaId ? null : 'required'
+      }
     }
   },
   methods: {
@@ -63,6 +86,9 @@ export default {
           imageMediaId: value,
           itemIndex: this.index
         })
+      }
+      if (this.error && !this.showError) {
+        this.showError = true
       }
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="dropzone">
+  <div :id="errorId" class="dropzone" :class="{ error: error && !disableError }">
     <NuxtDropzone
       :id="id"
       :ref="id"
@@ -9,10 +9,15 @@
       @vdropzone-sending="sending"
       @vdropzone-success="success"
     />
-    <span v-if="dz && dz.files.length" class="dropzone-delete" @click="clearItems">
-      delete
+    <span class="dropzone-nav">
+      <span v-if="!isEmpty" class="dropzone-nav-delete" @click="clearItems">
+        delete
+      </span>
+      <span v-if="error && !disableError" class="dropzone-nav-error">
+        {{ error }}
+      </span>
     </span>
-    <div v-else-if="$slots.empty" class="dropzone-empty">
+    <div v-if="isEmpty && $slots.empty" class="dropzone-empty">
       <slot name="empty" />
     </div>
     <slot name="custom-bg" />
@@ -46,11 +51,24 @@ export default {
     multiUpload: {
       type: Boolean,
       default: false
+    },
+    error: {
+      type: String,
+      default: null
+    },
+    dispatchError: {
+      type: String,
+      default: undefined
+    },
+    disableError: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
       id: uuid.v4(),
+      errorId: uuid.v4(),
       dz: null,
       selected: []
     }
@@ -74,6 +92,9 @@ export default {
         options.thumbnailHeight = thumbnailHeight
       }
       return options
+    },
+    isEmpty() {
+      return !this.dz || !this.dz.files.length
     }
   },
   watch: {
@@ -89,24 +110,36 @@ export default {
       if (this.mutation) {
         this.$store.commit(this.mutation, result)
       }
+    },
+    error: {
+      immediate: true,
+      handler(error) {
+        if (this.dispatchError) {
+          this.$store.dispatch(this.dispatchError, { id: this.errorId, error })
+        }
+      }
     }
   },
   mounted() {
     this.dz = this.$refs[this.id].dropzone
+  },
+  beforeDestroy() {
+    if (this.dispatchError) {
+      this.$store.dispatch(this.dispatchError, { id: this.errorId, error: null })
+    }
   },
   methods: {
     addedFile(newFile) {
       if (!this.multiUpload && this.dz.files.length > 1) {
         const oldFiles = this.dz.files.filter(file => file.upload.uuid !== newFile.upload.uuid)
         oldFiles.forEach((oldFile) => {
-          this.dz.removeFile(oldFile)
+          this.removeFile(oldFile)
         })
       }
       const deleteTemplate = document.querySelector('.dropzone-item-delete.template').cloneNode(true)
       deleteTemplate.classList.remove('template')
       deleteTemplate.addEventListener('click', () => {
-        this.dz.removeFile(newFile)
-        this.selected = this.selected.filter(item => item.dzId !== newFile.upload.uuid)
+        this.removeFile(newFile)
       })
       newFile.previewElement.appendChild(deleteTemplate)
       // do not ask why
@@ -130,6 +163,10 @@ export default {
         dzId: file.upload.uuid,
         id: res.id
       })
+    },
+    removeFile(file) {
+      this.dz.removeFile(file)
+      this.selected = this.selected.filter(item => item.dzId !== file.upload.uuid)
     },
     clearItems() {
       this.dz.removeAllFiles(true)

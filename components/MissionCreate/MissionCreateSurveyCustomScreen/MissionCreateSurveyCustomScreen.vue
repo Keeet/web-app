@@ -27,12 +27,14 @@
             :mutation="mutations.setTitle"
             title="Title"
             :error="titleError"
+            dispatch-error="missionForm/handleValidationError"
           />
           <Input
             :value="sValues.description"
             :mutation="mutations.setDescription"
             title="Message"
             :error="descriptionError"
+            dispatch-error="missionForm/handleValidationError"
             textarea
           />
           <Input
@@ -42,6 +44,7 @@
             title="Redirect Link"
             placeholder="https://"
             :error="redirectLinkError"
+            dispatch-error="missionForm/handleValidationError"
           />
         </div>
         <div class="mission-create-survey-custom-screen-body-right">

@@ -39,8 +39,7 @@ const defaultState = {
   color: { hex: '#0FBCF9' },
   redirectLink: null,
   itemAddIndex: 0,
-  items: [],
-  showErrors: false
+  items: []
 }
 
 const defaultStateItem = {
@@ -106,6 +105,7 @@ const defaultStateItem = {
   },
   PREFERENCE_TEST: {
     type: PREFERENCE_TEST,
+    instruction: '',
     imageMediaIds: [],
     followUps: []
   },
@@ -346,10 +346,6 @@ export const mutations = {
         text
       }
     })
-  },
-
-  showErrors(state) {
-    state.showErrors = true
   }
 }
 

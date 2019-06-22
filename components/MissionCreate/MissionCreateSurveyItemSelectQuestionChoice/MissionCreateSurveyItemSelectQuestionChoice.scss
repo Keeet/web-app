@@ -9,7 +9,6 @@
     fill: $grey-mid-dark;
 
     &:hover {
-      cursor: move;
       fill: $grey-dark;
     }
   }
@@ -17,6 +16,13 @@
   .mission-create-survey-item-select-question-choice-icon {
     width: 10px;
     margin-right: 20px;
+
+    svg {
+
+      &:hover {
+        cursor: move;
+      }
+    }
   }
 
   .mission-create-survey-item-select-question-choice-input {
@@ -28,7 +34,10 @@
     margin-left: 20px;
 
     svg {
-      width: 100%;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

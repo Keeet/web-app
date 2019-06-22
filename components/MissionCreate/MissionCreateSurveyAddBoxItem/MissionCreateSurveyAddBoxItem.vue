@@ -48,8 +48,14 @@ export default {
     return { MISSION_SURVEY_ITEM_LABELS, DESCRIPTIONS, SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LIKERT, LINEAR_SCALE }
   },
   computed: {
+    s() {
+      return {
+        ...this.$store.state.missionForm,
+        survey: this.$store.state.missionFormSurvey
+      }
+    },
     missionType() {
-      return this.$store.state.missionForm.type
+      return this.s.type
     },
     label() {
       if (this.missionType === MISSIONS.SURVEY) {
@@ -62,6 +68,9 @@ export default {
   },
   methods: {
     addItem() {
+      if (this.s.survey.items.length === 0 && this.s.showErrors) {
+        this.$store.commit('missionForm/hideErrors')
+      }
       this.$store.commit('missionFormSurvey/addItem', this.type)
       this.$store.commit('missionFormSurvey/setItemAddIndex', -1)
     }

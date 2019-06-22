@@ -15,10 +15,20 @@ export function determineFixedOrAbsolute(fixedRefElem, movingElem, wrapperElem, 
 }
 
 export function scrollIntoView(elem) {
+  const scrollOffset = offsetTop(elem) - (window.innerHeight / 2) + (elem.offsetHeight / 2)
+  window.scrollTo({ top: scrollOffset, left: 0, behavior: 'smooth' })
+}
+
+export function scrollToTopId(ids) {
+  const sorted = ids
+    .map(id => ({ id, offset: offsetTop(document.getElementById(id)) }))
+    .sort((a, b) => a.offset > b.offset ? 1 : -1)
+  scrollIntoView(document.getElementById(sorted[0].id))
+}
+
+function offsetTop(elem) {
   Element.prototype.documentOffsetTop = function () {
     return this.offsetTop + (this.offsetParent ? this.offsetParent.documentOffsetTop() : 0)
   }
-
-  const scrollOffset = elem.documentOffsetTop() - (window.innerHeight / 2) + (elem.offsetHeight / 2)
-  window.scrollTo({ top: scrollOffset, left: 0, behavior: 'smooth' })
+  return elem.documentOffsetTop()
 }

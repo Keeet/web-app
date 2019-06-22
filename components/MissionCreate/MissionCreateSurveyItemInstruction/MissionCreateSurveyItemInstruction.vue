@@ -4,9 +4,10 @@
       title="Instruction"
       :value="item.text"
       :error="instructionError"
-      :disable-error="!showErrors"
+      dispatch-error="missionForm/handleValidationError"
+      :disable-error="!showError && !s.showErrors"
       textarea
-      @focusout="showErrors = true"
+      @focusout="showError = true"
       @change="setText"
     />
   </div>
@@ -24,11 +25,17 @@ export default {
     }
   },
   data() {
-    return { showErrors: false }
+    return { showError: false }
   },
   computed: {
+    s() {
+      return {
+        ...this.$store.state.missionForm,
+        survey: this.$store.state.missionFormSurvey
+      }
+    },
     item() {
-      return this.$store.state.missionFormSurvey.items[this.index]
+      return this.s.survey.items[this.index]
     },
     instructionError() {
       return this.item.text !== '' ? null : 'required'

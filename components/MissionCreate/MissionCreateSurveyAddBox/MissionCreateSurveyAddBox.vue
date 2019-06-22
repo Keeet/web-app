@@ -1,5 +1,5 @@
 <template>
-  <div class="mission-create-survey-add-box">
+  <div :id="id" class="mission-create-survey-add-box">
     <MissionCreateBox
       headline="Add a question"
       :closable="closable"
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import uuidv4 from 'uuid/v4'
 import { MISSIONS, MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS } from '../../constants'
 import MissionCreateBox from '../MissionCreateBox/MissionCreateBox'
 import MissionCreateSurveyAddBoxItem from '../MissionCreateSurveyAddBoxItem/MissionCreateSurveyAddBoxItem'
@@ -45,6 +46,7 @@ export default {
     const { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LIKERT, LINEAR_SCALE } = MISSION_SURVEY_ITEMS
     const { FIRST_CLICK, FIVE_SECOND_TEST, QUESTION_LIST, DESIGN_QUESTION, PREFERENCE_TEST, INSTRUCTION } = MISSION_SURVEY_USABILITY_LAB_ITEMS
     return {
+      id: uuidv4(),
       SURVEY,
       USABILITY_LAB,
       SHORT_TEXT,
@@ -67,7 +69,21 @@ export default {
     },
     missionType() {
       return this.$store.state.missionForm.type
+    },
+    noItemsError() {
+      return this.$store.state.missionFormSurvey.items.length ? null : 'no items created'
     }
+  },
+  watch: {
+    noItemsError: {
+      immediate: true,
+      handler(error) {
+        this.$store.dispatch('missionForm/handleValidationError', { id: this.id, error })
+      }
+    }
+  },
+  beforeDestroy() {
+    this.$store.dispatch('missionForm/handleValidationError', { id: this.id, error: null })
   }
 }
 </script>

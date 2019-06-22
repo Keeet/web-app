@@ -5,7 +5,11 @@
         title="Instruction"
         placeholder="Which design do you prefer?"
         :value="item.instruction"
+        :error="error"
+        dispatch-error="missionForm/handleValidationError"
+        :disable-error="!showError && !s.showErrors"
         @change="setInstruction"
+        @focusout="showError = true"
       />
     </div>
     <MissionCreateSurveyUsabilityLabUpload :index="index" multi-upload />
@@ -25,9 +29,21 @@ export default {
       required: true
     }
   },
+  data() {
+    return { showError: false }
+  },
   computed: {
+    s() {
+      return {
+        ...this.$store.state.missionForm,
+        survey: this.$store.state.missionFormSurvey
+      }
+    },
     item() {
-      return this.$store.state.missionFormSurvey.items[this.index]
+      return this.s.survey.items[this.index]
+    },
+    error() {
+      return this.item.instruction !== '' ? null : 'required'
     }
   },
   methods: {

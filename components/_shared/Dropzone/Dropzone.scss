@@ -5,8 +5,20 @@
   padding: 0;
   background-color: transparent !important;
   font-family: 'Roboto', sans-serif, Arial;
-  overflow: hidden;
   z-index: 1;
+
+  .vue-dropzone {
+    transition: border .4s;
+    border: 1px solid $grey;
+    border-radius: 5px;
+  }
+
+  &.error {
+
+    .vue-dropzone {
+      border: 1px solid $red-error;
+    }
+  }
 
   .dz-preview {
     transition: box-shadow .4s;
@@ -60,19 +72,28 @@
     bottom: 0;
   }
 
-  .dropzone-delete {
+  .dropzone-nav {
     position: absolute;
     right: 0;
-    bottom: 100%;
-    font-size: 90%;
+    bottom: calc(100% + 5px);
     font-weight: 500;
-    color: $grey-mid-dark;
-    transition: color .4s;
-    padding-bottom: 5px;
 
-    &:hover {
-      cursor: pointer;
-      color: $grey-dark;
+    .dropzone-nav-delete {
+      color: $grey-mid-dark;
+      transition: color .4s;
+      padding-bottom: 5px;
+      font-size: 90%;
+
+      &:hover {
+        cursor: pointer;
+        color: $grey-dark;
+      }
+    }
+
+    .dropzone-nav-error {
+      color: $red-error;
+      margin: 0 3px 0 20px;
+      font-size: 75%;
     }
   }
 

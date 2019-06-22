@@ -4,6 +4,8 @@ const defaultState = {
   title: '',
   language: 'DE',
   submittedMissionId: null,
+  invalidFields: [],
+  showErrors: false,
 
   init: false,
   activeStep: 0,
@@ -35,6 +37,25 @@ export const mutations = {
   setSubmittedMissionId(state, missionId) {
     state.submittedMissionId = missionId
   },
+  addInvalidField(state, invalidField) {
+    const invalidFields = state.invalidFields.slice()
+    invalidFields.push(invalidField)
+    state.invalidFields = invalidFields
+  },
+  removeInvalidField(state, id) {
+    const invalidFields = state.invalidFields.slice()
+    const index = invalidFields.findIndex(field => field.id === id)
+    if (index !== undefined) {
+      invalidFields.splice(index, 1)
+      state.invalidFields = invalidFields
+    }
+  },
+  showErrors(state) {
+    state.showErrors = true
+  },
+  hideErrors(state) {
+    state.showErrors = false
+  },
 
   nextStep(state) {
     state.activeStep++
@@ -48,5 +69,23 @@ export const mutations = {
   submitted(state) {
     state.pending = false
     state.inProgress = false
+  }
+}
+
+export const actions = {
+  handleValidationError(context, { id, error }) {
+    const invalidField = context.state.invalidFields.find(field => field.id === id)
+
+    if (error !== null && !invalidField) {
+      context.commit('addInvalidField', {
+        id,
+        error
+      })
+    } else if (error === null && invalidField) {
+      context.commit('removeInvalidField', id)
+      if (context.state.invalidFields.length === 0) {
+        context.commit('hideErrors')
+      }
+    }
   }
 }

@@ -6,6 +6,7 @@
     <div class="input-wrapper" :class="{error: showError}">
       <input
         v-if="!textarea"
+        :id="id"
         v-model="message"
         class="input-field"
         :placeholder="placeholder"
@@ -16,6 +17,7 @@
       >
       <textarea
         v-else
+        :id="id"
         v-model="message"
         class="input-field textarea"
         :placeholder="placeholder"
@@ -34,6 +36,8 @@
 </template>
 
 <script>
+import uuidv4 from 'uuid/v4'
+
 const TYPES = {
   DEFAULT: 'DEFAULT',
   UNDERLINED_LARGE: 'UNDERLINED_LARGE'
@@ -58,6 +62,10 @@ export default {
     error: {
       type: String,
       default: null
+    },
+    dispatchError: {
+      type: String,
+      default: undefined
     },
     disableError: {
       type: Boolean,
@@ -88,6 +96,9 @@ export default {
       default: false
     }
   },
+  data() {
+    return { id: uuidv4() }
+  },
   computed: {
     message: {
       get() {
@@ -103,6 +114,21 @@ export default {
     },
     showError() {
       return this.error && !this.disableError
+    }
+  },
+  watch: {
+    error: {
+      immediate: true,
+      handler(error) {
+        if (this.dispatchError) {
+          this.$store.dispatch(this.dispatchError, { id: this.id, error })
+        }
+      }
+    }
+  },
+  beforeDestroy() {
+    if (this.dispatchError) {
+      this.$store.dispatch(this.dispatchError, { id: this.id, error: null })
     }
   }
 }

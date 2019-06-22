@@ -6,7 +6,8 @@
         placeholder="Test campaign"
         :value="s.title"
         :error="titleError"
-        :disable-error="!showError && !s.survey.showErrors"
+        dispatch-error="missionForm/handleValidationError"
+        :disable-error="!showError && !s.showErrors"
         mutation="missionForm/setTitle"
         @focusout="showError = true"
       />
@@ -35,10 +36,7 @@ export default {
   },
   computed: {
     s() {
-      return {
-        survey: this.$store.state.missionFormSurvey,
-        ...this.$store.state.missionForm
-      }
+      return this.$store.state.missionForm
     },
     titleError() {
       return this.s.title !== '' ? null : 'required'
