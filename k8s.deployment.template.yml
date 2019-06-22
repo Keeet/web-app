@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: web-app-${DRONE_BRANCH}
 spec:
+  replicas: 2
   template:
     metadata:
       labels:
