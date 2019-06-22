@@ -7,9 +7,9 @@
       <Headline text="Give your project a name!" center />
       <div
         data-aos="fade-in"
-        data-aos-duration="1000"
+        data-aos-duration="700"
         data-aos-once="true"
-        :data-aos-delay="600"
+        :data-aos-delay="500"
       >
         <div class="project-create-form-input">
           <Input

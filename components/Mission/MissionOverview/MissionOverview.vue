@@ -7,8 +7,8 @@
     >
       <div
         data-aos="fade-up"
-        data-aos-duration="800"
-        :data-aos-delay="x * 400"
+        data-aos-duration="700"
+        :data-aos-delay="x * 200"
         data-aos-once="true"
         data-aos-anchor=".mission-overview"
       >

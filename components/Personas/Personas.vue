@@ -12,7 +12,7 @@
     <div class="personas-icons">
       <div
         data-aos="zoom-in-up"
-        data-aos-duration="1000"
+        data-aos-duration="500"
         data-aos-once="true"
       >
         <div
@@ -30,9 +30,9 @@
         v-for="(persona, x) in personas"
         :key="x"
         data-aos="zoom-in-up"
-        data-aos-duration="1000"
+        data-aos-duration="700"
         data-aos-once="true"
-        :data-aos-delay="300 * x"
+        :data-aos-delay="50 * x"
       >
         <div class="personas-icons-item">
           <PersonaIcon

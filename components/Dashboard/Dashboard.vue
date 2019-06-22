@@ -24,20 +24,20 @@
         :created-at="$store.state.user.createdAt"
         :owner="sampleProject.owner"
         data-aos="fade-up"
-        data-aos-duration="1000"
+        data-aos-duration="500"
         data-aos-once="true"
         @click.native="$router.push('/projects/sample')"
       />
       <DashboardProjectEmpty
         data-aos="fade-up"
-        data-aos-duration="1000"
-        data-aos-delay="300"
+        data-aos-duration="500"
+        data-aos-delay="50"
         data-aos-once="true"
       />
       <DashboardProjectEmpty
         data-aos="fade-up"
-        data-aos-duration="1000"
-        data-aos-delay="600"
+        data-aos-duration="500"
+        data-aos-delay="100"
         data-aos-once="true"
       />
     </div>
@@ -50,9 +50,9 @@
         :created-at="project.createdAt"
         :owner="project.owner"
         data-aos="fade-up"
-        data-aos-duration="1000"
+        data-aos-duration="700"
         data-aos-once="true"
-        :data-aos-delay="300 * index"
+        :data-aos-delay="50 * index"
         data-aos-anchor=".dashboard-projects"
         @click.native="$router.push(`/projects/${project.id}`)"
       />

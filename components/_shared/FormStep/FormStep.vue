@@ -6,7 +6,7 @@
   >
     <div
       data-aos="fade-in"
-      data-aos-duration="1500"
+      data-aos-duration="700"
       data-aos-once="true"
     >
       <slot />

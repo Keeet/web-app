@@ -2,9 +2,9 @@
   <div class="sidebar-left">
     <div
       :data-aos="!disableAnimation ? 'fade-right' : null"
-      data-aos-duration="1000"
+      data-aos-duration="800"
       data-aos-once="true"
-      data-aos-delay="500"
+      data-aos-delay="400"
     >
       <div class="sidebar-left-cancel">
         <nuxt-link :to="cancelPath">

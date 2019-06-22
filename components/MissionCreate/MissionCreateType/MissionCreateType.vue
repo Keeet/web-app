@@ -4,9 +4,9 @@
     <div
       class="mission-create-type-items"
       data-aos="fade-up"
-      data-aos-duration="1000"
+      data-aos-duration="700"
       data-aos-once="true"
-      data-aos-delay="500"
+      data-aos-delay="300"
     >
       <MissionCreateTypeItem :type="IN_HOUSE" @click.native="select(IN_HOUSE)" />
       <MissionCreateTypeItem :type="REMOTE" @click.native="select(REMOTE)" />

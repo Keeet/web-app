@@ -24,8 +24,8 @@
           <div
             class="project-missions-timeline-month-label"
             data-aos="fade-up"
-            data-aos-duration="800"
-            :data-aos-delay="(missionGroup.missions[0].index + x) * 200"
+            data-aos-duration="700"
+            :data-aos-delay="(missionGroup.missions[0].index + x) * 100"
             data-aos-once="true"
             data-aos-anchor=".project-missions-timeline"
           >
@@ -36,8 +36,8 @@
             :key="y"
             :mission="mission"
             data-aos="fade-up"
-            data-aos-duration="800"
-            :data-aos-delay="(mission.index + x + 1) * 200"
+            data-aos-duration="700"
+            :data-aos-delay="(mission.index + x + 1) * 100"
             data-aos-once="true"
             data-aos-anchor=".project-missions-timeline"
           />

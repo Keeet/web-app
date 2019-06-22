@@ -6,7 +6,7 @@
           <img :src="user.profileImage">
         </div>
       </template>
-      <template slot="text">
+      <template slot="text">w
         <p class="account-profile-text-headline">
           {{ user.firstName }} {{ user.lastName }}
         </p>
@@ -15,7 +15,7 @@
         <p>{{ formattedRole }}</p>
       </template>
     </AccountProfileItem>
-    <AccountProfileItem :button-text="$hasRole('ADMIN') ? 'Edit Company' : null" :aos-delay="400" @clickButton="editCompany">
+    <AccountProfileItem :button-text="$hasRole('ADMIN') ? 'Edit Company' : null" :aos-delay="300" @clickButton="editCompany">
       <template slot="icon">
         <IconLocation />
       </template>
