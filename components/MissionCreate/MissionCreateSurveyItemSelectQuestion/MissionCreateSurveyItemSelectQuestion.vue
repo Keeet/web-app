@@ -69,7 +69,7 @@ export default {
       return item
     },
     addActive() {
-      return this.item.choices.slice(-1)[0] !== ''
+      return this.item.choices.find(choice => choice === '') === undefined
     },
     choices: {
       get() {
