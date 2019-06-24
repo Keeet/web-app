@@ -1,0 +1,225 @@
+import { copy } from '../utils/objectUtils'
+import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS } from '../components/constants'
+
+const {
+  SHORT_TEXT,
+  LONG_TEXT,
+  SINGLE_SELECT,
+  MULTI_SELECT,
+  LINEAR_SCALE,
+  LIKERT
+} = MISSION_SURVEY_ITEMS
+
+const {
+  FIRST_CLICK,
+  FIVE_SECOND_TEST,
+  DESIGN_QUESTION,
+  QUESTION_LIST,
+  PREFERENCE_TEST
+} = MISSION_SURVEY_USABILITY_LAB_ITEMS
+
+const defaultResponse = {
+  SHORT_TEXT: {
+    type: SHORT_TEXT,
+    answerText: ''
+  },
+  LONG_TEXT: {
+    type: LONG_TEXT,
+    answerText: ''
+  },
+  SINGLE_SELECT: {
+    type: SINGLE_SELECT,
+    selected: null
+  },
+  MULTI_SELECT: {
+    type: MULTI_SELECT,
+    selected: []
+  },
+  LIKERT: {
+    type: LIKERT,
+    value: null
+  },
+  LINEAR_SCALE: {
+    type: LINEAR_SCALE,
+    value: null
+  },
+  FIRST_CLICK: {
+    type: FIRST_CLICK,
+    x: null,
+    y: null,
+    followUps: []
+  },
+  FIVE_SECOND_TEST: {
+    type: FIVE_SECOND_TEST,
+    followUps: []
+  },
+  DESIGN_QUESTION: {
+    type: DESIGN_QUESTION,
+    followUps: []
+  },
+  QUESTION_LIST: {
+    type: QUESTION_LIST,
+    followUps: []
+  },
+  PREFERENCE_TEST: {
+    type: PREFERENCE_TEST,
+    followUps: []
+  }
+}
+
+const defaultState = {
+  items: null,
+  activeWelcome: true,
+  activeClosing: false,
+  activeItemIndex: null,
+  activeFollowUpIndex: null,
+  progress: 0,
+  duration: null,
+  responses: []
+}
+
+export const state = () => (defaultState)
+
+export const mutations = {
+  init(state, items) {
+    for (const key in defaultState) {
+      state[key] = defaultState[key]
+    }
+    state.items = items
+  },
+  hideWelcome(state) {
+    state.activeWelcome = false
+  },
+  nextItem(state) {
+    if (state.activeItemIndex === null) {
+      state.activeItemIndex = 0
+    } else {
+      state.activeItemIndex++
+    }
+    state.activeFollowUpIndex = null
+    setResponse(state, res => res)
+  },
+  nextFollowUp(state) {
+    if (state.activeFollowUpIndex === null) {
+      state.activeFollowUpIndex = 0
+    } else {
+      state.activeFollowUpIndex++
+    }
+    setResponse(state, res => res)
+  },
+  showClosing(state) {
+    state.activeClosing = true
+  },
+  setProgress(state, progress) {
+    state.progress = progress
+  },
+  setAnswerText(state, answerText) {
+    setResponse(state, (response) => {
+      return {
+        ...response,
+        answerText
+      }
+    })
+  }
+}
+
+export const actions = {
+  nextStep({ state, commit }) {
+    const itemIndex = state.activeItemIndex
+    const followUpIndex = state.activeFollowUpIndex
+
+    if (state.activeWelcome) {
+      commit('hideWelcome')
+      commit('nextItem')
+      return
+    }
+
+    const activeItem = state.items[itemIndex]
+    const nextItem = state.items[itemIndex + 1]
+    const nextFollowUp = activeItem.followUps !== null
+      ? followUpIndex !== null ? activeItem.followUps[followUpIndex + 1] : activeItem.followUps[0]
+      : undefined
+
+    if (nextFollowUp) {
+      commit('nextFollowUp')
+    } else if (nextItem) {
+      commit('nextItem')
+    } else {
+      commit('showClosing')
+    }
+
+    commit('setProgress', calculateProgress(state))
+  }
+}
+
+function setResponse(state, modifyFunction) {
+  const activeItem = state.items[state.activeItemIndex]
+  const activeFollowUp = state.activeFollowUpIndex !== null ? activeItem.followUps[state.activeFollowUpIndex] : null
+
+  const responses = copy(state.responses)
+  const responseItemIndex = responses.findIndex(r => r.inputId === activeItem.inputId)
+  const responseFollowUpIndex = responseItemIndex !== -1 && activeFollowUp
+    ? responses[responseItemIndex].followUps.findIndex(r => r.inputId === activeFollowUp.inputId)
+    : -1
+
+  if (responseItemIndex !== -1 && responseFollowUpIndex !== -1) {
+    // modify existing follow up response
+    responses[responseItemIndex].followUps[responseFollowUpIndex] =
+      modifyFunction(responses[responseItemIndex].followUps[responseFollowUpIndex])
+  } else if (responseItemIndex !== -1 && activeFollowUp) {
+    // add new follow up response
+    const newResponse = modifyFunction(getDefaultResponse(activeFollowUp || activeItem))
+    responses[responseItemIndex].followUps.push(newResponse)
+  } else if (responseItemIndex !== -1) {
+    // modify existing response
+    responses[responseItemIndex] = modifyFunction(responses[responseItemIndex])
+  } else {
+    // add new response
+    const newResponse = modifyFunction(getDefaultResponse(activeFollowUp || activeItem))
+    responses.push(modifyFunction(newResponse))
+  }
+
+  state.responses = responses
+}
+
+function getDefaultResponse({ type, inputId }) {
+  return {
+    ...copy(defaultResponse[type]),
+    inputId
+  }
+}
+
+function calculateProgress({ items, activeItemIndex, activeFollowUpIndex, activeWelcome, activeClosing }) {
+  if (activeWelcome) {
+    return 0
+  }
+  if (activeClosing) {
+    return 1
+  }
+  /*
+  * labeledItems is an array containing Booleans that label answered items and followUps
+  * example:
+  *   params: items = [{ ...i0 }, { ...i1, followUps: [{ ...fu0, ...fu1 }]}, { ...i2 }]
+  *           activeItemIndex = 2
+  *           activeFollowUpIndex = null
+  *   result: [true, true, true, true, false]
+  * */
+  const labeledItems = items
+    .map((item, x) => {
+      const itemFollowUps = item.followUps || []
+      const isItemFollowUpActive = x === activeItemIndex && activeFollowUpIndex !== null
+      const isItemAnswered = x < activeItemIndex || isItemFollowUpActive
+
+      return [
+        isItemAnswered,
+        ...(itemFollowUps.map(
+          (followUp, y) => {
+            return x < activeItemIndex || (isItemFollowUpActive && y < activeFollowUpIndex)
+          }
+        ))
+      ]
+    })
+    .flatMap(isAnswered => isAnswered)
+
+  return labeledItems.filter(isAnswered => isAnswered).length / labeledItems.length
+}

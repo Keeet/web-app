@@ -40,6 +40,7 @@ import uuidv4 from 'uuid/v4'
 
 const TYPES = {
   DEFAULT: 'DEFAULT',
+  UNDERLINED: 'UNDERLINED',
   UNDERLINED_LARGE: 'UNDERLINED_LARGE'
 }
 

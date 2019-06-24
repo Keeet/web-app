@@ -15,7 +15,7 @@
           :text="buttonText"
           :bg-color="s.color"
           no-margin
-          @click="$store.dispatch('surveyPage/nextStep')"
+          @click="$store.dispatch('surveyForm/nextStep')"
         />
       </div>
     </div>
@@ -37,7 +37,7 @@ export default {
     s() {
       return {
         ...this.$store.state.survey,
-        page: this.$store.state.surveyPage
+        page: this.$store.state.surveyForm
       }
     }
   }

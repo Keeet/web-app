@@ -21,6 +21,9 @@
   .survey-step-body {
     flex-grow: 1;
     padding: 20px 2.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .survey-step-button {

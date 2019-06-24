@@ -3,7 +3,7 @@
     <SurveyCustomScreen v-if="s.activeWelcome" type="WELCOME" />
     <SurveyCustomScreen v-else-if="s.activeClosing" type="CLOSING" />
     <SurveyStep v-else-if="activeItem">
-      {{ JSON.stringify(activeItem) }}
+      <SurveyItem :item="activeItem" />
     </SurveyStep>
   </div>
 </template>
@@ -11,12 +11,13 @@
 <script>
 import SurveyCustomScreen from './SurveyCustomScreen/SurveyCustomScreen'
 import SurveyStep from './SurveyStep/SurveyStep'
+import SurveyItem from './SurveyItem/SurveyItem'
 export default {
   name: 'Survey',
-  components: { SurveyStep, SurveyCustomScreen },
+  components: { SurveyItem, SurveyStep, SurveyCustomScreen },
   computed: {
     s() {
-      return this.$store.state.surveyPage
+      return this.$store.state.surveyForm
     },
     activeItem() {
       const { activeItemIndex, activeFollowUpIndex, items } = this.s
@@ -31,7 +32,7 @@ export default {
     }
   },
   beforeCreate() {
-    this.$store.commit('surveyPage/init', this.$store.state.survey.inputs)
+    this.$store.commit('surveyForm/init', this.$store.state.survey.inputs)
   }
 }
 </script>
