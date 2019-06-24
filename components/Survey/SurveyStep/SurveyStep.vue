@@ -9,7 +9,7 @@
     <div class="survey-step-body">
       <slot />
     </div>
-    <div class="survey-step-button">
+    <div class="survey-step-button" :class="{ buttonDisabled }">
       <div class="survey-step-button-inner">
         <ButtonText
           :text="buttonText"
@@ -31,6 +31,10 @@ export default {
     buttonText: {
       type: String,
       default: 'Next'
+    },
+    buttonDisabled: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {

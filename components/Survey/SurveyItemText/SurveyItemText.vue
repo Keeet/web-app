@@ -1,15 +1,21 @@
 <template>
   <div class="survey-item-text">
     <Input
-      type="UNDERLINED"
+      :type="item.type === SHORT_TEXT ? 'UNDERLINED' : 'DEFAULT'"
       placeholder="Type your answer here..."
       :value="response.answerText"
       mutation="surveyForm/setAnswerText"
+      :textarea="item.type === LONG_TEXT"
+      :error="answerTextError"
+      dispatch-error="surveyForm/handleValidationError"
+      :disable-error="!showError"
+      @focusout="showError = true"
     />
   </div>
 </template>
 
 <script>
+import { MISSION_SURVEY_ITEMS } from '../../constants'
 import Input from '../../_shared/Input/Input'
 export default {
   name: 'SurveyItemText',
@@ -20,12 +26,18 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      showError: false,
+      ...MISSION_SURVEY_ITEMS
+    }
+  },
   computed: {
-    s() {
-      return this.$store.state.surveyForm
-    },
     response() {
-      return this.s.responses.find(r => r.inputId === this.item.inputId)
+      return this.$store.getters['surveyForm/activeResponse']
+    },
+    answerTextError() {
+      return !this.item.required || this.response.answerText !== '' ? null : 'required'
     }
   }
 }

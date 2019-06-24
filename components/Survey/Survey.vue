@@ -2,8 +2,8 @@
   <div class="survey">
     <SurveyCustomScreen v-if="s.activeWelcome" type="WELCOME" />
     <SurveyCustomScreen v-else-if="s.activeClosing" type="CLOSING" />
-    <SurveyStep v-else-if="activeItem">
-      <SurveyItem :item="activeItem" />
+    <SurveyStep v-else-if="$store.getters['surveyForm/activeItem']" :button-disabled="!s.activeItemValid">
+      <SurveyItem />
     </SurveyStep>
   </div>
 </template>
@@ -18,17 +18,6 @@ export default {
   computed: {
     s() {
       return this.$store.state.surveyForm
-    },
-    activeItem() {
-      const { activeItemIndex, activeFollowUpIndex, items } = this.s
-      if (activeItemIndex === null) {
-        return null
-      }
-      const item = items[activeItemIndex]
-      if (activeFollowUpIndex !== null) {
-        return item.followUps[activeFollowUpIndex]
-      }
-      return item
     }
   },
   beforeCreate() {

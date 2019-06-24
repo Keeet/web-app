@@ -73,12 +73,33 @@ const defaultState = {
   activeClosing: false,
   activeItemIndex: null,
   activeFollowUpIndex: null,
+  activeItemValid: true, // TODO: set to false later
   progress: 0,
   duration: null,
   responses: []
 }
 
 export const state = () => (defaultState)
+
+export const getters = {
+  activeItem({ activeItemIndex, activeFollowUpIndex, items }) {
+    if (activeItemIndex === null) {
+      return null
+    }
+    const item = items[activeItemIndex]
+    if (activeFollowUpIndex !== null) {
+      return item.followUps[activeFollowUpIndex]
+    }
+    return item
+  },
+  activeResponse({ responses }, getters) {
+    const item = getters.activeItem
+    return responses
+      .map(r => [r, ...(r.followUps ? r.followUps : [])])
+      .flatMap(r => r)
+      .find(r => r.id === item.id)
+  }
+}
 
 export const mutations = {
   init(state, items) {
@@ -109,6 +130,9 @@ export const mutations = {
   },
   showClosing(state) {
     state.activeClosing = true
+  },
+  setActiveItemValid(state, valid) {
+    state.activeItemValid = valid
   },
   setProgress(state, progress) {
     state.progress = progress
@@ -149,6 +173,11 @@ export const actions = {
     }
 
     commit('setProgress', calculateProgress(state))
+  },
+  handleValidationError({ commit }, { error }) {
+    // eslint-disable-next-line no-console
+    console.log(error)
+    commit('setActiveItemValid', !error)
   }
 }
 
@@ -157,9 +186,9 @@ function setResponse(state, modifyFunction) {
   const activeFollowUp = state.activeFollowUpIndex !== null ? activeItem.followUps[state.activeFollowUpIndex] : null
 
   const responses = copy(state.responses)
-  const responseItemIndex = responses.findIndex(r => r.inputId === activeItem.inputId)
+  const responseItemIndex = responses.findIndex(r => r.id === activeItem.id)
   const responseFollowUpIndex = responseItemIndex !== -1 && activeFollowUp
-    ? responses[responseItemIndex].followUps.findIndex(r => r.inputId === activeFollowUp.inputId)
+    ? responses[responseItemIndex].followUps.findIndex(r => r.id === activeFollowUp.id)
     : -1
 
   if (responseItemIndex !== -1 && responseFollowUpIndex !== -1) {
@@ -182,10 +211,10 @@ function setResponse(state, modifyFunction) {
   state.responses = responses
 }
 
-function getDefaultResponse({ type, inputId }) {
+function getDefaultResponse({ type, id }) {
   return {
     ...copy(defaultResponse[type]),
-    inputId
+    id
   }
 }
 
