@@ -141,7 +141,27 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
       })
     },
 
-    createMission({ projectId, type, title, description, duration, language, sessions, country, city, zipCode, street, houseNumber, addressDescription, persona: { name, icon, demographicDataReq: { minAge, maxAge, occupations, genders }, screenerQuestions } }) {
+    createMissionRecruit({
+      projectId,
+      type,
+      title,
+      description,
+      duration,
+      language,
+      sessions,
+      country,
+      city,
+      zipCode,
+      street,
+      houseNumber,
+      addressDescription,
+      persona: {
+        name,
+        icon,
+        demographicDataReq: { minAge, maxAge, occupations, genders },
+        screenerQuestions
+      }
+    }) {
       return new Promise((resolve, reject) => {
         const handleRes = handleResponse.bind(this, OPERATIONS.CREATE_MISSION, null, resolve, reject)
         $axios({
@@ -167,6 +187,48 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
               demographicDataReq: { minAge, maxAge, occupations, genders },
               screenerQuestions
             }
+          }
+        }).then(handleRes).catch(handleError)
+      })
+    },
+    createMissionSurvey({
+      projectId,
+      type,
+      title,
+      description,
+      language,
+      welcomeTitle,
+      welcomeDescription,
+      welcomeLogoId,
+      closingTitle,
+      closingDescription,
+      closingLogoId,
+      redirectLink,
+      color,
+      items,
+      requiredCount
+    }) {
+      return new Promise((resolve, reject) => {
+        const handleRes = handleResponse.bind(this, OPERATIONS.CREATE_MISSION, null, resolve, reject)
+        $axios({
+          method: 'post',
+          url: '/missions',
+          data: {
+            projectId,
+            type,
+            title,
+            description,
+            language,
+            welcomeTitle,
+            welcomeDescription,
+            welcomeLogoId,
+            closingTitle,
+            closingDescription,
+            closingLogoId,
+            redirectLink,
+            color,
+            items,
+            requiredCount
           }
         }).then(handleRes).catch(handleError)
       })

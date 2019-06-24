@@ -39,7 +39,8 @@ const defaultState = {
   color: { hex: '#0FBCF9' },
   redirectLink: null,
   itemAddIndex: 0,
-  items: []
+  items: [],
+  requiredCount: 0
 }
 
 const defaultStateItem = {
