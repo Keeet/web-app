@@ -95,6 +95,10 @@ export default {
     noMargin: {
       type: Boolean,
       default: false
+    },
+    noValidateBeforeDestroy: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -128,7 +132,7 @@ export default {
     }
   },
   beforeDestroy() {
-    if (this.dispatchError) {
+    if (this.dispatchError && !this.noValidateBeforeDestroy) {
       this.$store.dispatch(this.dispatchError, { id: this.id, error: null })
     }
   }

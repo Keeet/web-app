@@ -8,6 +8,7 @@
       :textarea="item.type === LONG_TEXT"
       :error="answerTextError"
       dispatch-error="surveyForm/handleValidationError"
+      no-validate-before-destroy
       :disable-error="!showError"
       @focusout="showError = true"
     />
@@ -20,12 +21,6 @@ import Input from '../../_shared/Input/Input'
 export default {
   name: 'SurveyItemText',
   components: { Input },
-  props: {
-    item: {
-      type: Object,
-      required: true
-    }
-  },
   data() {
     return {
       showError: false,
@@ -33,6 +28,9 @@ export default {
     }
   },
   computed: {
+    item() {
+      return this.$store.getters['surveyForm/activeItem']
+    },
     response() {
       return this.$store.getters['surveyForm/activeResponse']
     },

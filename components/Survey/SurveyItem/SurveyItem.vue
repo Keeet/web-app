@@ -3,16 +3,18 @@
     <h2 class="survey-item-headline">
       {{ headline }}
     </h2>
-    <SurveyItemText v-if="[SHORT_TEXT, LONG_TEXT].includes(item.type)" :item="item" />
+    <SurveyItemText v-if="[SHORT_TEXT, LONG_TEXT].includes(item.type)" />
+    <SurveyItemSelect v-else-if="[SINGLE_SELECT, MULTI_SELECT].includes(item.type)" />
   </div>
 </template>
 
 <script>
 import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS } from '../../constants'
 import SurveyItemText from '../SurveyItemText/SurveyItemText'
+import SurveyItemSelect from '../SurveyItemSelect/SurveyItemSelect'
 export default {
   name: 'SurveyItem',
-  components: { SurveyItemText },
+  components: { SurveyItemSelect, SurveyItemText },
   data() {
     return { ...MISSION_SURVEY_ITEMS, ...MISSION_SURVEY_USABILITY_LAB_ITEMS }
   },
@@ -21,12 +23,11 @@ export default {
       return this.$store.getters['surveyForm/activeItem']
     },
     headline() {
-      switch (this.item.type) {
-        case this.SHORT_TEXT || this.LONG_TEXT:
-          return this.item.text
-        default:
-          return null
+      const { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT } = this
+      if ([SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT].includes(this.item.type)) {
+        return this.item.text
       }
+      return null
     }
   }
 }

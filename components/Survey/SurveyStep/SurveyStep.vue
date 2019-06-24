@@ -3,7 +3,7 @@
     <div class="survey-step-progress">
       <div
         class="survey-step-progress-bar"
-        :style="{ width: `${s.page.progress * 100}%`, backgroundColor: s.color }"
+        :style="{ width: `${s.form.progress * 100}%`, backgroundColor: s.color }"
       />
     </div>
     <div class="survey-step-body">
@@ -41,7 +41,7 @@ export default {
     s() {
       return {
         ...this.$store.state.survey,
-        page: this.$store.state.surveyForm
+        form: this.$store.state.surveyForm
       }
     }
   }

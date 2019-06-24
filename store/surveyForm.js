@@ -144,6 +144,25 @@ export const mutations = {
         answerText
       }
     })
+  },
+  singleSelect(state, choice) {
+    setResponse(state, (response) => {
+      return {
+        ...response,
+        selected: choice
+      }
+    })
+  },
+  multiSelect(state, choice) {
+    setResponse(state, (response) => {
+      const selectedIndex = response.selected.indexOf(choice)
+      if (selectedIndex !== -1) {
+        response.selected.splice(selectedIndex, 1)
+      } else {
+        response.selected.push(choice)
+      }
+      return response
+    })
   }
 }
 
@@ -175,8 +194,6 @@ export const actions = {
     commit('setProgress', calculateProgress(state))
   },
   handleValidationError({ commit }, { error }) {
-    // eslint-disable-next-line no-console
-    console.log(error)
     commit('setActiveItemValid', !error)
   }
 }
