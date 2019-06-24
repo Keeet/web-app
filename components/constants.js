@@ -54,6 +54,7 @@ export const MISSION_LABELS = {
   USABILITY_LAB: 'Usability Lab',
   SURVEY: 'Survey'
 }
+export const MISSION_CREATE_RECRUIT_MIN_ORDER_DURATION_DAYS = 2
 export const MISSION_SURVEY_ITEMS = {
   SHORT_TEXT: 'SHORT_TEXT',
   LONG_TEXT: 'LONG_TEXT',
@@ -171,4 +172,7 @@ export const ROLE_LABELS = {
   VIEWER: 'Viewer'
 }
 
-export const MISSION_CREATE_RECRUIT_MIN_ORDER_DURATION_DAYS = 2
+export const MEDIA_UPLOAD_PATH = {
+  DEFAULT: '/mediaFiles/input',
+  MISSION: '/mediaFiles/mission'
+}

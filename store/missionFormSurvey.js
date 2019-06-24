@@ -1,4 +1,5 @@
 import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS, MISSION_SURVEY_USABILITY_LAB_FOLLOW_UP_REQUIRED } from '../components/constants'
+import { copy } from '../utils/objectUtils'
 
 const {
   SHORT_TEXT,
@@ -366,7 +367,7 @@ function modifyItem(state, itemIndex, followUpIndex, modifyFunction) {
 }
 
 function getDefaultItem(type) {
-  const newItem = { ...defaultStateItem[type] }
+  const newItem = copyDefaultItem(type)
   if (newItem.followUps) {
     newItem.followUps = getDefaultFollowUp(type)
   }
@@ -375,6 +376,11 @@ function getDefaultItem(type) {
 
 function getDefaultFollowUp(type) {
   return MISSION_SURVEY_USABILITY_LAB_FOLLOW_UP_REQUIRED.includes(type)
-    ? [{ ...defaultStateItem.SHORT_TEXT }]
+    ? [copyDefaultItem(SHORT_TEXT)]
     : []
+}
+
+function copyDefaultItem(type) {
+  const defaultItem = defaultStateItem[type]
+  return copy(defaultItem)
 }

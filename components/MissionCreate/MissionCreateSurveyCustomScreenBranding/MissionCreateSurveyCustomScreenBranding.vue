@@ -4,7 +4,7 @@
       Branding
     </p>
     <div class="mission-create-survey-custom-screen-branding-dropzone">
-      <Dropzone :mutation="logoIdMutation" :thumbnail-width="400">
+      <Dropzone :path="MEDIA_UPLOAD_PATH.MISSION" :mutation="logoIdMutation" :thumbnail-width="400">
         <template slot="empty">
           <div class="mission-create-survey-custom-screen-branding-dropzone-empty">
             <IconFileImage />
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { MEDIA_UPLOAD_PATH } from '../../constants'
 import Dropzone from '../../_shared/Dropzone/Dropzone'
 export default {
   name: 'MissionCreateSurveyCustomScreenBranding',
@@ -28,6 +29,9 @@ export default {
       type: String,
       required: true
     }
+  },
+  data() {
+    return { MEDIA_UPLOAD_PATH }
   },
   computed: {
     s() {

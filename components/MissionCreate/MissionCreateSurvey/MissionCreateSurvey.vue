@@ -63,23 +63,9 @@ export default {
       scrollToTopId(this.s.invalidFields.map(field => field.id))
     },
     buildMission() {
-      const { projectId, type, title, language } = this.s
-      const { welcomeTitle, welcomeDescription, welcomeLogoId, closingTitle, closingDescription, closingLogoId, redirectLink, color, items, requiredCount } = this.s.survey
       const mission = {
-        projectId,
-        type,
-        title,
-        language,
-        welcomeTitle,
-        welcomeDescription,
-        welcomeLogoId,
-        closingTitle,
-        closingDescription,
-        closingLogoId,
-        redirectLink,
-        color,
-        items,
-        requiredCount
+        ...this.s,
+        ...this.s.survey
       }
       function formatItems(items) {
         const { SINGLE_SELECT, MULTI_SELECT } = MISSION_SURVEY_ITEMS
@@ -102,7 +88,7 @@ export default {
     submit() {
       this.$store.commit('missionForm/pending')
       this.$push.createMissionSurvey(this.buildMission()).then(({ id }) => {
-        this.$store.commit('missionForm/setSubmittedMissionId', id)
+        this.$store.commit('missionForm/submitted')
         this.$router.push(`/missions/${id}`)
       })
     }

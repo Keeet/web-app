@@ -31,11 +31,16 @@
 import uuid from 'uuid'
 import NuxtDropzone from 'nuxt-dropzone'
 import 'nuxt-dropzone/dropzone.css'
+import { MEDIA_UPLOAD_PATH } from '../../constants'
 
 export default {
   name: 'Dropzone',
   components: { NuxtDropzone },
   props: {
+    path: {
+      type: String,
+      default: MEDIA_UPLOAD_PATH.DEFAULT
+    },
     mutation: {
       type: String,
       default: null
@@ -76,7 +81,7 @@ export default {
   computed: {
     options() {
       const options = {
-        url: `${process.env.baseUrl}/mediaFiles/input`,
+        url: `${process.env.baseUrl}${this.path}`,
         thumbnailMethod: 'contain',
         acceptedFiles: 'image/*',
         maxFilesize: 5,
