@@ -1,0 +1,55 @@
+.survey-item-likert {
+  position: relative;
+  max-width: 600px;
+  margin: 30px auto 0;
+
+  .survey-item-likert-options {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+
+    .survey-item-likert-option {
+
+      .survey-item-likert-option-text {
+        width: 90%;
+        margin: 0 auto 15px;
+        text-align: center;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .survey-item-likert-option-dot {
+        margin: 0 auto;
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        background-color: $grey-mid-dark;
+        transition: transform .5s;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      &.selected {
+
+        .survey-item-likert-option-dot {
+          transform: scale(1.4);
+        }
+      }
+    }
+  }
+
+  .survey-item-likert-bar {
+    position: absolute;
+    height: 20px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 10px;
+    background-color: rgba($grey, 0.3);
+  }
+}

@@ -176,6 +176,14 @@ export const mutations = {
         value
       }
     })
+  },
+  setLikertValue(state, value) {
+    setResponse(state, (response) => {
+      return {
+        ...response,
+        value
+      }
+    })
   }
 }
 
