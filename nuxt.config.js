@@ -27,7 +27,7 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
-      { src: '/js/crisp.js' }
+      { hid: 'crisp', src: '/js/crisp.js' }
     ]
   },
 

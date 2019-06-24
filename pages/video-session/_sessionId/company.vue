@@ -6,6 +6,11 @@
 import Twilio from '../../../components/Twilio/Twilio'
 export default {
   name: 'VideoSession',
+  head: {
+    script: [
+      { hid: 'crisp', innerHTML: '' }
+    ]
+  },
   components: { Twilio },
   layout: 'blank',
   validate({ params: { sessionId } }) {
