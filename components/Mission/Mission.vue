@@ -1,5 +1,6 @@
 <template>
-  <div class="mission">
+  <!-- TODO: handle different types of missions -->
+  <div v-if="['IN_HOUSE', 'REMOTE'].includes(mission.type)" class="mission">
     <MissionSidebar />
     <OverlayModal
       v-if="missionMetadataForm.overlayOpened"
@@ -30,19 +31,25 @@
       <MissionInsights v-if="missionPage.activePage === MISSION_PAGES.INSIGHTS" />
     </div>
   </div>
+  <div v-else :style="{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }">
+    <nuxt-link :to="`/survey/${mission.id}`">
+      <ButtonText text="GO TO SURVEY" />
+    </nuxt-link>
+  </div>
 </template>
 
 <script>
 import { MISSION_PAGES } from '../constants'
 import OverlayModal from '../_shared/OverlayModal/OverlayModal'
 import NavUnderlined from '../_shared/NavUnderlined/NavUnderlined'
+import ButtonText from '../_shared/ButtonText/ButtonText'
 import MissionMetadataForm from './MissionMetadataForm/MissionMetadataForm'
 import MissionSidebar from './MissionSidebar/MissionSidebar'
 import MissionOverview from './MissionOverview/MissionOverview'
 import MissionInsights from './MissionInsights/MissionInsights'
 export default {
   name: 'Mission',
-  components: { NavUnderlined, MissionInsights, MissionOverview, MissionSidebar, OverlayModal, MissionMetadataForm },
+  components: { ButtonText, NavUnderlined, MissionInsights, MissionOverview, MissionSidebar, OverlayModal, MissionMetadataForm },
   data() {
     return {
       MISSION_PAGES
