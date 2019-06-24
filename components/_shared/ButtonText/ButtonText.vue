@@ -4,6 +4,7 @@
     <button
       class="button-text-item"
       :class="{disabled, leftArrowActive, rightArrowActive, iconActive: !!icon}"
+      :style="{ backgroundColor: bgColor }"
     >
       <span v-if="!!icon">
         <IconLinkExternal v-if="icon === ICONS.LINK_EXTERNAL" class="button-text-item-icon" />
@@ -65,6 +66,10 @@ export default {
     bgColorClass: {
       type: String,
       default: ''
+    },
+    bgColor: {
+      type: String,
+      default: null
     }
   },
   data() {

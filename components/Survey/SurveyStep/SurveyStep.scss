@@ -1,4 +1,7 @@
 .survey-step {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 
   .survey-step-progress {
     position: fixed;
@@ -12,6 +15,26 @@
       transition: width .5s;
       height: 100%;
       background-color: $blue-primary;
+    }
+  }
+
+  .survey-step-body {
+    flex-grow: 1;
+    padding: 20px 2.5%;
+  }
+
+  .survey-step-button {
+    padding: 7.5px 0;
+    box-shadow: 0 -1px 5px 0 rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+
+    .survey-step-button-inner {
+      margin: 0 auto;
+      width: 95%;
+
+      @media #{$sm} {
+        max-width: 200px;
+      }
     }
   }
 }

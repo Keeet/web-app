@@ -3,14 +3,21 @@
     <div class="survey-step-progress">
       <div
         class="survey-step-progress-bar"
-        :style="{ width: `${s.progress * 100}%`, backgroundColor: s.color }"
+        :style="{ width: `${s.page.progress * 100}%`, backgroundColor: s.color }"
       />
     </div>
     <div class="survey-step-body">
       <slot />
     </div>
     <div class="survey-step-button">
-      <ButtonText :text="buttonText" @click="$store.dispatch('surveyPage/nextStep')" />
+      <div class="survey-step-button-inner">
+        <ButtonText
+          :text="buttonText"
+          :bg-color="s.color"
+          no-margin
+          @click="$store.dispatch('surveyPage/nextStep')"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -28,7 +35,10 @@ export default {
   },
   computed: {
     s() {
-      return this.$store.state.surveyPage
+      return {
+        ...this.$store.state.survey,
+        page: this.$store.state.surveyPage
+      }
     }
   }
 }
