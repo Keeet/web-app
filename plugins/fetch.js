@@ -32,6 +32,12 @@ const config = {
     mutation: 'setMissionInsights',
     key: 'missionInsights'
   },
+  SURVEY: {
+    path: '/public/missions/{id}',
+    mutation: 'setSurvey',
+    key: 'survey',
+    noAuth: true
+  },
   PERSONAS: {
     path: '/personas',
     mutation: 'setPersonas',

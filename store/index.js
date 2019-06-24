@@ -13,6 +13,7 @@ export const state = () => ({
   project: null,
   mission: null,
   missionInsights: null,
+  survey: null,
   personas: null
 })
 
@@ -53,6 +54,9 @@ export const mutations = {
   },
   setMissionInsights(state, missionInsights) {
     state.missionInsights = missionInsights
+  },
+  setSurvey(state, survey) {
+    state.survey = survey
   },
   setPersonas(state, personas) {
     state.personas = personas.map((persona) => {

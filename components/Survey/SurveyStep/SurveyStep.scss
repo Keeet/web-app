@@ -1,0 +1,17 @@
+.survey-step {
+
+  .survey-step-progress {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 5px;
+
+    .survey-step-progress-bar {
+      transition: width .5s;
+      height: 100%;
+      background-color: $blue-primary;
+    }
+  }
+}
