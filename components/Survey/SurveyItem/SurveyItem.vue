@@ -5,6 +5,7 @@
     </h2>
     <SurveyItemText v-if="[SHORT_TEXT, LONG_TEXT].includes(item.type)" />
     <SurveyItemSelect v-else-if="[SINGLE_SELECT, MULTI_SELECT].includes(item.type)" />
+    <SurveyItemLinearScale v-else-if="item.type === LINEAR_SCALE" />
   </div>
 </template>
 
@@ -12,9 +13,10 @@
 import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS } from '../../constants'
 import SurveyItemText from '../SurveyItemText/SurveyItemText'
 import SurveyItemSelect from '../SurveyItemSelect/SurveyItemSelect'
+import SurveyItemLinearScale from '../SurveyItemLinearScale/SurveyItemLinearScale'
 export default {
   name: 'SurveyItem',
-  components: { SurveyItemSelect, SurveyItemText },
+  components: { SurveyItemLinearScale, SurveyItemSelect, SurveyItemText },
   data() {
     return { ...MISSION_SURVEY_ITEMS, ...MISSION_SURVEY_USABILITY_LAB_ITEMS }
   },
@@ -23,8 +25,8 @@ export default {
       return this.$store.getters['surveyForm/activeItem']
     },
     headline() {
-      const { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT } = this
-      if ([SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT].includes(this.item.type)) {
+      const { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LINEAR_SCALE } = this
+      if ([SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LINEAR_SCALE].includes(this.item.type)) {
         return this.item.text
       }
       return null

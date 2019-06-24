@@ -1,0 +1,42 @@
+.survey-item-linear-scale {
+  max-width: 700px;
+  margin: 30px auto 0;
+
+  .survey-item-linear-scale-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .survey-item-linear-scale-options {
+    display: flex;
+
+    .survey-item-linear-scale-options-item {
+      flex-grow: 1;
+      text-align: center;
+      padding: 20px 0;
+      border: 1px solid $grey;
+      border-left: none;
+      font-weight: 500;
+
+      &:first-child {
+        border-radius: 5px 0 0 5px;
+        border-left: 1px solid $grey;
+      }
+
+      &:last-child {
+        border-radius: 0 5px 5px 0;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &.selected {
+        background-color: $blue-primary;
+        color: #fff;
+      }
+    }
+  }
+}

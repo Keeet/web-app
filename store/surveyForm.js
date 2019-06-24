@@ -168,6 +168,14 @@ export const mutations = {
       }
       return response
     })
+  },
+  setLinearScaleValue(state, value) {
+    setResponse(state, (response) => {
+      return {
+        ...response,
+        value
+      }
+    })
   }
 }
 
