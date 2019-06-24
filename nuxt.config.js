@@ -60,7 +60,8 @@ module.exports = {
     '@nuxtjs/axios',
     ['nuxt-rfg-icon', { staticPath: '/_favicons/', masterPicture: 'static/favicon.png' }],
     '@nuxtjs/manifest',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    ['@netsells/nuxt-hotjar', { id: '1375940', sv: '6' }]
   ],
 
   axios: {
