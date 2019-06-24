@@ -64,6 +64,9 @@ export default {
     },
     error() {
       const filledChoices = this.choices.filter(choice => choice !== '')
+      if (this.value !== '' && filledChoices.filter(choice => choice === this.value).length > 1) {
+        return 'choices must be unique'
+      }
       return this.value !== '' || filledChoices.length >= MISSION_SURVEY_SELECT_MIN_ITEMS ? null : 'required'
     }
   },
