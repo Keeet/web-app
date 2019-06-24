@@ -1,8 +1,8 @@
 <template>
   <div class="mission-create-survey-item-linear-scale-question">
     <div class="mission-create-survey-item-linear-scale-question-form">
-      <MissionCreateSurveyItemLinearScaleQuestionBorder :item="item" :index="index" :is-start="true" />
-      <MissionCreateSurveyItemLinearScaleQuestionBorder :item="item" :index="index" :is-start="false" />
+      <MissionCreateSurveyItemLinearScaleQuestionBorder :item="item" :index="index" :is-start="true" :follow-up-index="followUpIndex" />
+      <MissionCreateSurveyItemLinearScaleQuestionBorder :item="item" :index="index" :is-start="false" :follow-up-index="followUpIndex" />
     </div>
   </div>
 </template>

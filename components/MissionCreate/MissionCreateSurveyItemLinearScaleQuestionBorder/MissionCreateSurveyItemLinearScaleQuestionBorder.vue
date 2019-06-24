@@ -17,6 +17,8 @@
       <Input
         :value="labelValue"
         :placeholder="labelPlaceholder"
+        :error="labelError"
+        dispatch-error="missionForm/handleValidationError"
         no-margin
         @change="setLabel"
       />
@@ -68,6 +70,25 @@ export default {
       return this.isStart
         ? 'Start label (left) - optional'
         : 'End label (right) - optional'
+    },
+    labelError() {
+      const fillBothError = 'fill this or keep both empty'
+      const uniqueError = 'labels must be unique'
+
+      const { startLabel, endLabel } = this.item
+      const bothNotEmpty = startLabel !== '' && endLabel !== ''
+      const bothEmpty = startLabel === '' && endLabel === ''
+      const matching = startLabel === endLabel
+      const currentEmpty = (startLabel === '' && this.isStart) || (endLabel === '' && !this.isStart)
+
+      if (bothEmpty || (bothNotEmpty && !matching)) {
+        return null
+      } else if (bothNotEmpty && matching) {
+        return uniqueError
+      } else if (currentEmpty) {
+        return fillBothError
+      }
+      return null
     }
   },
   methods: {
