@@ -119,6 +119,11 @@ export const mutations = {
     }
     state.activeFollowUpIndex = null
     setResponse(state, res => res)
+    // skip QUESTION_LIST
+    if (state.items[state.activeItemIndex].type === QUESTION_LIST) {
+      state.activeFollowUpIndex = 0
+      setResponse(state, res => res)
+    }
   },
   nextFollowUp(state) {
     if (state.activeFollowUpIndex === null) {
@@ -257,7 +262,7 @@ function calculateProgress({ items, activeItemIndex, activeFollowUpIndex, active
       const isItemAnswered = x < activeItemIndex || isItemFollowUpActive
 
       return [
-        isItemAnswered,
+        item.type === QUESTION_LIST ? [] : isItemAnswered,
         ...(itemFollowUps.map(
           (followUp, y) => {
             return x < activeItemIndex || (isItemFollowUpActive && y < activeFollowUpIndex)

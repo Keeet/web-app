@@ -2,7 +2,7 @@
   <SurveyStep :button-text="buttonText">
     <div class="survey-custom-screen">
       <div class="survey-custom-screen-logo">
-        <img v-if="!sValues.logo" :src="sValues.logo">
+        <img v-if="sValues.logo" :src="sValues.logo">
         <img v-else-if="type === TYPES.WELCOME" src="../../../assets/img/welcomeEmoji.png" class="default">
         <img v-else-if="type === TYPES.CLOSING" src="../../../assets/img/thankYouEmoji.png" class="default">
       </div>

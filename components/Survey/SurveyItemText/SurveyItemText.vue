@@ -37,6 +37,11 @@ export default {
     answerTextError() {
       return !this.item.required || this.response.answerText !== '' ? null : 'required'
     }
+  },
+  watch: {
+    item() {
+      this.showError = false
+    }
   }
 }
 </script>
