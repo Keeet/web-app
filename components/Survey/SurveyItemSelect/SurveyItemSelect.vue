@@ -7,15 +7,24 @@
       :selected="isSelected(choice)"
       @click="select(choice)"
     />
+    <SurveyItemSelectChoice
+      v-if="item.otherAvailable && !hasOtherAlready"
+      :choice="MISSION_SURVEY_SELECT_OTHER_LABEL"
+      :selected="isSelected(MISSION_SURVEY_SELECT_OTHER_LABEL)"
+      @click="select(MISSION_SURVEY_SELECT_OTHER_LABEL)"
+    />
   </div>
 </template>
 
 <script>
-import { MISSION_SURVEY_ITEMS } from '../../constants'
+import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_SELECT_OTHER_LABEL } from '../../constants'
 import SurveyItemSelectChoice from '../SurveyItemSelectChoice/SurveyItemSelectChoice'
 export default {
   name: 'SurveyItemSelect',
   components: { SurveyItemSelectChoice },
+  data() {
+    return { MISSION_SURVEY_SELECT_OTHER_LABEL }
+  },
   computed: {
     item() {
       return this.$store.getters['surveyForm/activeItem']
@@ -35,6 +44,11 @@ export default {
       } else {
         return this.response.selected !== null ? null : 'required'
       }
+    },
+    hasOtherAlready() {
+      return this.item.choices
+        .map(choice => choice.toLowerCase())
+        .includes(MISSION_SURVEY_SELECT_OTHER_LABEL.toLowerCase())
     }
   },
   watch: {

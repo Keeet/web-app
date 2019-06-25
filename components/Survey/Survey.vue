@@ -2,7 +2,10 @@
   <div class="survey">
     <SurveyCustomScreen v-if="s.activeWelcome" type="WELCOME" />
     <SurveyCustomScreen v-else-if="s.activeClosing" type="CLOSING" />
-    <SurveyStep v-else-if="$store.getters['surveyForm/activeItem']" :button-disabled="!s.activeItemValid">
+    <SurveyStep
+      v-else-if="$store.getters['surveyForm/activeItem']"
+      :button-disabled="!s.activeItemValid"
+    >
       <SurveyItem />
     </SurveyStep>
   </div>
