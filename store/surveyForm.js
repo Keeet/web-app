@@ -200,7 +200,7 @@ export const actions = {
 
     const activeItem = state.items[itemIndex]
     const nextItem = state.items[itemIndex + 1]
-    const nextFollowUp = activeItem.followUps !== null
+    const nextFollowUp = activeItem.followUps && activeItem.followUps.length
       ? followUpIndex !== null ? activeItem.followUps[followUpIndex + 1] : activeItem.followUps[0]
       : undefined
 
