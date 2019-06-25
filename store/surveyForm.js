@@ -113,7 +113,7 @@ export const mutations = {
   },
   nextItem(state) {
     if (state.activeItemIndex === null) {
-      state.activeItemIndex = 0
+      state.activeItemIndex = 1 // TODO: reset to 0
     } else {
       state.activeItemIndex++
     }

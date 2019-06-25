@@ -1,8 +1,24 @@
 <template>
   <div class="mission-create-survey-usability-lab-upload">
-    <p class="mission-create-survey-usability-lab-upload-headline">
-      Design
-    </p>
+    <div class="mission-create-survey-usability-lab-upload-head">
+      <p class="mission-create-survey-usability-lab-upload-headline">
+        Design
+      </p>
+      <div class="mission-create-survey-usability-lab-upload-select">
+        <p class="mission-create-survey-usability-lab-upload-select-label">
+          Device frame
+        </p>
+        <div class="mission-create-survey-usability-lab-upload-select-input">
+          <Select
+            v-if="item.deviceFrame"
+            title=""
+            :options="deviceFrameOptions"
+            :value="item.deviceFrame"
+            @change="setDeviceFrame"
+          />
+        </div>
+      </div>
+    </div>
     <div class="mission-create-survey-usability-lab-upload-dropzone">
       <Dropzone
         :thumbnail-height="160"
@@ -10,6 +26,7 @@
         :error="error"
         dispatch-error="missionForm/handleValidationError"
         :disable-error="!showError && !s.showErrors"
+        :nav-align-left="!!item.deviceFrame"
         @change="dzChange"
       >
         <template slot="empty">
@@ -38,11 +55,16 @@
 </template>
 
 <script>
+import {
+  MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES,
+  MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAME_LABELS
+} from '../../constants'
 import Dropzone from '../../_shared/Dropzone/Dropzone'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
+import Select from '../../_shared/Select/Select'
 export default {
   name: 'MissionCreateSurveyUsabilityLabUpload',
-  components: { ButtonText, Dropzone },
+  components: { Select, ButtonText, Dropzone },
   props: {
     index: {
       type: Number,
@@ -76,6 +98,13 @@ export default {
       } else {
         return this.item.imageMediaId ? null : 'required'
       }
+    },
+    deviceFrameOptions() {
+      return Object.values(MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES)
+        .map(deviceFrame => ({
+          value: deviceFrame,
+          label: MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAME_LABELS[deviceFrame]
+        }))
     }
   },
   methods: {
@@ -94,6 +123,12 @@ export default {
       if (this.error && !this.showError) {
         this.showError = true
       }
+    },
+    setDeviceFrame(deviceFrame) {
+      this.$store.commit('missionFormSurvey/setItemDeviceFrame', {
+        itemIndex: this.index,
+        deviceFrame
+      })
     }
   }
 }

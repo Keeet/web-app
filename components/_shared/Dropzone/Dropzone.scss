@@ -82,7 +82,7 @@
       color: $grey-mid-dark;
       transition: color .4s;
       padding-bottom: 5px;
-      font-size: 90%;
+      font-size: 75%;
 
       &:hover {
         cursor: pointer;
@@ -94,6 +94,19 @@
       color: $red-error;
       margin: 0 3px 0 20px;
       font-size: 75%;
+    }
+
+    &.navAlignLeft {
+      right: auto;
+      left: 0;
+
+      .dropzone-nav-delete {
+        margin-right: 20px;
+      }
+
+      .dropzone-nav-error {
+        margin: 0;
+      }
     }
   }
 

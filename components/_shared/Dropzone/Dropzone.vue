@@ -9,7 +9,7 @@
       @vdropzone-sending="sending"
       @vdropzone-success="success"
     />
-    <span class="dropzone-nav">
+    <span class="dropzone-nav" :class="{ navAlignLeft }">
       <span v-if="!isEmpty" class="dropzone-nav-delete" @click="clearItems">
         {{ multiUpload ? 'delete all' : 'delete' }}
       </span>
@@ -66,6 +66,10 @@ export default {
       default: undefined
     },
     disableError: {
+      type: Boolean,
+      default: false
+    },
+    navAlignLeft: {
       type: Boolean,
       default: false
     }

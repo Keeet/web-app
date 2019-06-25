@@ -1,9 +1,29 @@
 .mission-create-survey-usability-lab-upload {
 
-  .mission-create-survey-usability-lab-upload-headline {
-    font-weight: 500;
-    margin-bottom: 5px;
-    font-size: 90%;
+  .mission-create-survey-usability-lab-upload-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .mission-create-survey-usability-lab-upload-headline {
+      font-weight: 500;
+      margin-bottom: 5px;
+      font-size: 90%;
+    }
+
+    .mission-create-survey-usability-lab-upload-select {
+      display: flex;
+      align-items: center;
+
+      .mission-create-survey-usability-lab-upload-select-label {
+        margin-right: 10px;
+        font-size: 90%;
+      }
+
+      .mission-create-survey-usability-lab-upload-select-input {
+        width: 200px;
+      }
+    }
   }
 
   .mission-create-survey-usability-lab-upload-dropzone {

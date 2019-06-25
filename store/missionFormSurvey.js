@@ -1,4 +1,9 @@
-import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS, MISSION_SURVEY_USABILITY_LAB_FOLLOW_UP_REQUIRED } from '../components/constants'
+import {
+  MISSION_SURVEY_ITEMS,
+  MISSION_SURVEY_USABILITY_LAB_ITEMS,
+  MISSION_SURVEY_USABILITY_LAB_FOLLOW_UP_REQUIRED,
+  MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES
+} from '../components/constants'
 import { copy } from '../utils/objectUtils'
 
 const {
@@ -18,6 +23,8 @@ const {
   PREFERENCE_TEST,
   INSTRUCTION
 } = MISSION_SURVEY_USABILITY_LAB_ITEMS
+
+const { NO_FRAME } = MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES
 
 const defaultWelcomeScreen = {
   welcomeTitle: 'Hey there!',
@@ -88,12 +95,14 @@ const defaultStateItem = {
     type: FIRST_CLICK,
     instruction: '',
     imageMediaId: null,
+    deviceFrame: NO_FRAME,
     followUps: []
   },
   FIVE_SECOND_TEST: {
     type: FIVE_SECOND_TEST,
     duration: 10,
     imageMediaId: null,
+    deviceFrame: NO_FRAME,
     followUps: []
   },
   QUESTION_LIST: {
@@ -103,6 +112,7 @@ const defaultStateItem = {
   DESIGN_QUESTION: {
     type: DESIGN_QUESTION,
     imageMediaId: null,
+    deviceFrame: NO_FRAME,
     followUps: []
   },
   PREFERENCE_TEST: {
@@ -322,6 +332,14 @@ export const mutations = {
       return {
         ...item,
         imageMediaIds
+      }
+    })
+  },
+  setItemDeviceFrame(state, { deviceFrame, itemIndex }) {
+    state.items = modifyItem(state, itemIndex, null, (item) => {
+      return {
+        ...item,
+        deviceFrame
       }
     })
   },
