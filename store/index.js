@@ -56,6 +56,14 @@ export const mutations = {
     state.missionInsights = missionInsights
   },
   setSurvey(state, survey) {
+    survey.inputs = survey.inputs
+      .map((input) => {
+        if (input.followUps) {
+          input.followUps = input.followUps.sort((a, b) => a.index > b.index ? 1 : -1)
+        }
+        return input
+      })
+      .sort((a, b) => a.index > b.index ? 1 : -1)
     state.survey = survey
   },
   setPersonas(state, personas) {

@@ -7,14 +7,14 @@
         class="survey-item-likert-option"
         :class="{ selected: isSelected(x) }"
         :style="{ width: `${100/options.length}%` }"
+        @click="selectValue(x)"
       >
-        <p class="survey-item-likert-option-text" @click="selectValue(x)">
+        <p class="survey-item-likert-option-text">
           {{ option }}
         </p>
         <div
           class="survey-item-likert-option-dot"
           :style="{ backgroundColor: isSelected(x) ? s.color : null }"
-          @click="selectValue(x)"
         />
       </div>
     </div>

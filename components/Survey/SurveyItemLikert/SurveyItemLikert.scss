@@ -11,13 +11,18 @@
 
     .survey-item-likert-option {
 
+      &:hover {
+        cursor: pointer;
+      }
+
       .survey-item-likert-option-text {
         width: 90%;
         margin: 0 auto 15px;
         text-align: center;
+        font-size: 85%;
 
-        &:hover {
-          cursor: pointer;
+        @media #{$sm} {
+          font-size: 90%;
         }
       }
 
@@ -28,10 +33,6 @@
         border-radius: 100%;
         background-color: $grey-mid-dark;
         transition: transform .5s;
-
-        &:hover {
-          cursor: pointer;
-        }
       }
 
       &.selected {
