@@ -105,3 +105,5 @@ export const ROLE_LABELS = {
   USER: 'User',
   VIEWER: 'Viewer'
 }
+
+export const MISSION_CREATE_RECRUIT_MIN_ORDER_DURATION_DAYS = 2

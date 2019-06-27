@@ -29,7 +29,7 @@
     <Confirm
       v-if="s.sessionErrorPopup"
       title="Timeslot not available"
-      text="We need at least 5 workdays to recruit your test users."
+      :text="`We need at least ${MISSION_CREATE_RECRUIT_MIN_ORDER_DURATION_DAYS} workdays to recruit your test users.`"
       label-confirm="Earliest available timeslots"
       label-confirm-arrow="RIGHT"
       :label-cancel="null"
@@ -55,6 +55,7 @@ import {
   getAmPmHours
 } from '../../../utils/dateUtils'
 import Confirm from '../../_shared/Confirm/Confirm'
+import { MISSION_CREATE_RECRUIT_MIN_ORDER_DURATION_DAYS } from '../../constants'
 
 export default {
   name: 'MissionCreateRecruitCalendarPlugin',
@@ -64,7 +65,8 @@ export default {
   },
   data() {
     return {
-      calendarPlugins: [ timeGridPlugin, interactionPlugin ]
+      calendarPlugins: [ timeGridPlugin, interactionPlugin ],
+      MISSION_CREATE_RECRUIT_MIN_ORDER_DURATION_DAYS
     }
   },
   computed: {
@@ -163,7 +165,7 @@ export default {
     },
     getFirstValidDate() {
       const d = new Date()
-      addDays(d, 7)
+      addDays(d, MISSION_CREATE_RECRUIT_MIN_ORDER_DURATION_DAYS)
       switch (d.getDay()) {
         case 6: addDays(d, 2); break
         case 0: addDays(d, 1); break
@@ -182,7 +184,7 @@ export default {
       return `
         <div class="fc-widget-header-days-custom${today}">
           <p class="fc-widget-header-days-custom-day">${getWeekDayName(date)}</p>
-          <p class="fc-widget-header-days-custom-month">${getMonthName(date).substr(0, 3)} ${date.getUTCDate() + 1}</p>
+          <p class="fc-widget-header-days-custom-month">${getMonthName(date).substr(0, 3)} ${date.getDate()}</p>
         </div>
       `
     },
