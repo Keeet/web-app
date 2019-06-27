@@ -7,8 +7,8 @@
       {{ formattedTime }}
     </p>
     <div class="mission-overview-session-contact border-left">
-      <MissionOverviewSessionIcon type="PHONE" :href="`tel:${session.phone}`" :disabled="!recruited || isSample" />
-      <MissionOverviewSessionIcon type="EMAIL" :href="`mailto:${session.email}`" :disabled="!recruited || isSample" />
+      <MissionOverviewSessionIcon type="PHONE" :href="phoneLink" :disabled="!recruited || isSample" />
+      <MissionOverviewSessionIcon type="EMAIL" :href="emailLink" :disabled="!recruited || isSample" />
     </div>
     <div v-if="mission.type === MISSIONS.REMOTE" class="mission-overview-session-remote-call border-left">
       <p
@@ -47,14 +47,17 @@ export default {
     isSample() {
       return this.$store.state.mission.id.startsWith('sample')
     },
-    recruited() {
+    testUser() {
       return this.session.testUser
+    },
+    recruited() {
+      return !!this.testUser
     },
     formattedName() {
       if (!this.recruited) {
         return '-'
       }
-      const { firstName, lastName } = this.session.testUser
+      const { firstName, lastName } = this.testUser
       return `${firstName} ${lastName}`
     },
     formattedTime() {
@@ -63,6 +66,18 @@ export default {
       addMinutes(end, this.mission.duration)
 
       return `${getAmPmTime(start)} - ${getAmPmTime(end)}`
+    },
+    phoneLink() {
+      if (!this.recruited) {
+        return '#'
+      }
+      return `tel:${this.testUser.phone}`
+    },
+    emailLink() {
+      if (!this.recruited) {
+        return '#'
+      }
+      return `mailto:${this.testUser.email}`
     }
   },
   methods: {
