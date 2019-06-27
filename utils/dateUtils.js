@@ -12,8 +12,8 @@ export function getWeekDayName(date) {
   return names[date.getDay()]
 }
 
-export function getAmPmHours(date) {
-  return `${getAmPmHoursValue(date)} ${getAmPm(date)}`
+export function getAmPmHours(date, utc = false) {
+  return `${getAmPmHoursValue(date, utc)} ${getAmPm(date, utc)}`
 }
 
 export function getAmPmTime(date) {
@@ -51,13 +51,13 @@ export function stripISOTime(date) {
   return `${date.getFullYear()}-${month}-${day}`
 }
 
-function getAmPm(date) {
-  const hours = date.getUTCHours()
+function getAmPm(date, utc = false) {
+  const hours = utc ? date.getUTCHours() : date.getHours()
   return hours >= 12 ? 'PM' : 'AM'
 }
 
-function getAmPmHoursValue(date) {
-  let hours = date.getUTCHours()
+function getAmPmHoursValue(date, utc = false) {
+  let hours = utc ? date.getUTCHours() : date.getHours()
   hours = hours % 12
   hours = hours === 0 ? 12 : hours
   return hours

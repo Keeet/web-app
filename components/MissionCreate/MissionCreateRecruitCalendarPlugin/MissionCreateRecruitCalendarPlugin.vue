@@ -190,7 +190,7 @@ export default {
     },
     getSlotLabel(e) {
       const date = e.date.marker
-      return getAmPmHours(date)
+      return getAmPmHours(date, true)
     },
     showSessionErrorPopup() {
       this.$store.commit('missionForm/showSessionErrorPopup')
