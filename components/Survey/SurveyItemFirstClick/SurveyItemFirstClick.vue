@@ -1,8 +1,12 @@
 <template>
   <div class="survey-item-first-click">
+    <div v-if="!response.started" class="survey-item-first-click-button">
+      <ButtonText text="Click to view image" @click="$store.commit('surveyForm/startUsabilityTest')" />
+    </div>
     <SurveyItemMedia
       :image="item.image"
       :overlay-coordinates="overlayCoordinates"
+      :blur="!response.started"
       @click="selectCoordinates"
     >
       <template slot="overlay">

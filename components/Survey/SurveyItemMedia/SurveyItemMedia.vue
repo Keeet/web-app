@@ -1,5 +1,5 @@
 <template>
-  <div :id="id" class="survey-item-media" :class="frame || ''">
+  <div :id="id" class="survey-item-media" :class="[frame || '', { blur }]">
     <img
       v-if="[PHONE_PORTRAIT, PHONE_LANDSCAPE].includes(frame)"
       class="survey-item-media-frame"
@@ -64,11 +64,16 @@ export default {
     overlayCoordinates: {
       type: Object,
       default: null
+    },
+    blur: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
       id: uuidv4(),
+      root: null,
       scrollable: false,
       scrollPosition: 0,
       calculatedOverlayCoordinates: null,
@@ -83,6 +88,7 @@ export default {
     }
   },
   mounted() {
+    this.root = document.getElementById(this.id)
     window.addEventListener('resize', this.onResize)
     window.addEventListener('scroll', this.calculateOverlayCoordinates)
     this.getScrollableFrame().addEventListener('scroll', this.onFrameScroll)
@@ -99,8 +105,7 @@ export default {
       this.calculateOverlayCoordinates()
     },
     onResize() {
-      const root = document.getElementById(this.id)
-      const frameWrapper = root.querySelector('.survey-item-media-img-wrapper')
+      const frameWrapper = this.root.querySelector('.survey-item-media-img-wrapper')
       const image = frameWrapper.querySelector('.survey-item-media-img')
       const isScrollable = frameWrapper.offsetHeight < image.offsetHeight && frameWrapper.offsetHeight
 
@@ -112,9 +117,7 @@ export default {
       this.calculateOverlayCoordinates()
     },
     getScrollableFrame() {
-      return document
-        .getElementById(this.id)
-        .querySelector('.survey-item-media-img-wrapper')
+      return this.root.querySelector('.survey-item-media-img-wrapper')
     },
     onFrameScroll() {
       this.scrollPosition = this.getScrollableFrame().scrollTop

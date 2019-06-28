@@ -4,6 +4,12 @@
   max-width: 900px;
   margin: 0 auto;
   text-align: center;
+  transition: all .5s;
+
+  &.blur {
+    filter: blur(50px);
+    opacity: 0.5;
+  }
 
   .survey-item-media-frame {
     width: 100%;

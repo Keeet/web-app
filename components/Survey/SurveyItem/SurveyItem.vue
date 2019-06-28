@@ -11,6 +11,7 @@
     <SurveyItemLinearScale v-else-if="item.type === LINEAR_SCALE" />
     <SurveyItemLikert v-else-if="item.type === LIKERT" />
     <SurveyItemFirstClick v-else-if="item.type === FIRST_CLICK" />
+    <SurveyItemFiveSecondTest v-else-if="item.type === FIVE_SECOND_TEST" />
   </div>
 </template>
 
@@ -26,17 +27,21 @@ import SurveyItemSelect from '../SurveyItemSelect/SurveyItemSelect'
 import SurveyItemLinearScale from '../SurveyItemLinearScale/SurveyItemLinearScale'
 import SurveyItemLikert from '../SurveyItemLikert/SurveyItemLikert'
 import SurveyItemFirstClick from '../SurveyItemFirstClick/SurveyItemFirstClick'
+import SurveyItemFiveSecondTest from '../SurveyItemFiveSecondTest/SurveyItemFiveSecondTest'
 const { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LINEAR_SCALE, LIKERT } = MISSION_SURVEY_ITEMS
 const { FIRST_CLICK, FIVE_SECOND_TEST, PREFERENCE_TEST } = MISSION_SURVEY_USABILITY_LAB_ITEMS
 export default {
   name: 'SurveyItem',
-  components: { SurveyItemFirstClick, SurveyItemLikert, SurveyItemLinearScale, SurveyItemSelect, SurveyItemText },
+  components: { SurveyItemFiveSecondTest, SurveyItemFirstClick, SurveyItemLikert, SurveyItemLinearScale, SurveyItemSelect, SurveyItemText },
   data() {
     return { ...MISSION_SURVEY_ITEMS, ...MISSION_SURVEY_USABILITY_LAB_ITEMS }
   },
   computed: {
     item() {
       return this.$store.getters['surveyForm/activeItem']
+    },
+    response() {
+      return this.$store.getters['surveyForm/activeResponse']
     },
     headline() {
       if ([SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LINEAR_SCALE, LIKERT].includes(this.item.type)) {
@@ -48,8 +53,12 @@ export default {
       return null
     },
     subtitle() {
-      if ([FIRST_CLICK, FIVE_SECOND_TEST, PREFERENCE_TEST].includes(this.item.type)) {
+      if ([FIRST_CLICK, PREFERENCE_TEST].includes(this.item.type)) {
         return MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION[this.item.type]
+      }
+      if (this.item.type === FIVE_SECOND_TEST) {
+        return MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION[this.item.type]
+          .replace('{{duration}}', this.response.timeout || this.item.duration)
       }
       return null
     }

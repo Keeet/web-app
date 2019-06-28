@@ -45,6 +45,7 @@ const defaultResponse = {
   },
   FIRST_CLICK: {
     type: FIRST_CLICK,
+    started: false,
     x: null,
     y: null,
     confirmed: false,
@@ -52,6 +53,7 @@ const defaultResponse = {
   },
   FIVE_SECOND_TEST: {
     type: FIVE_SECOND_TEST,
+    started: false,
     followUps: []
   },
   DESIGN_QUESTION: {
@@ -114,7 +116,7 @@ export const mutations = {
   },
   nextItem(state) {
     if (state.activeItemIndex === null) {
-      state.activeItemIndex = 1 // TODO: reset to 0
+      state.activeItemIndex = 0 // TODO: reset to 0
     } else {
       state.activeItemIndex++
     }
@@ -202,6 +204,22 @@ export const mutations = {
       return {
         ...response,
         confirmed: true
+      }
+    })
+  },
+  startUsabilityTest(state) {
+    setResponse(state, (response) => {
+      return {
+        ...response,
+        started: true
+      }
+    })
+  },
+  setFirstClickTimeout(state, timeout) {
+    setResponse(state, (response) => {
+      return {
+        ...response,
+        timeout
       }
     })
   }
