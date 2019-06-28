@@ -47,6 +47,7 @@ const defaultResponse = {
     type: FIRST_CLICK,
     x: null,
     y: null,
+    confirmed: false,
     followUps: []
   },
   FIVE_SECOND_TEST: {
@@ -182,6 +183,25 @@ export const mutations = {
       return {
         ...response,
         value
+      }
+    })
+  },
+  setFirstClickCoordinates(state, { x, y }) {
+    x = x ? Math.round(x * 100000) / 100000 : x
+    y = y ? Math.round(y * 100000) / 100000 : y
+    setResponse(state, (response) => {
+      return {
+        ...response,
+        x,
+        y
+      }
+    })
+  },
+  confirmFirstClickCoordinates(state) {
+    setResponse(state, (response) => {
+      return {
+        ...response,
+        confirmed: true
       }
     })
   }

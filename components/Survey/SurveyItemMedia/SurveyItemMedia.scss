@@ -1,0 +1,130 @@
+.survey-item-media {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+
+  .survey-item-media-frame {
+    width: 100%;
+    display: none;
+  }
+
+  .survey-item-media-img-wrapper {
+    overflow: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+
+    &.scrollable:hover {
+      cursor: pointer;
+    }
+
+    .survey-item-media-img-inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100%;
+
+      .survey-item-media-img {
+        width: 100%;
+      }
+    }
+
+    .survey-item-media-img-scrolling {
+      position: absolute;
+      width: 130px;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+
+      img {
+        width: 100%;
+        background-color: rgba(0,0,0,0.1)
+      }
+    }
+  }
+
+  &.PHONE_PORTRAIT {
+    max-width: 350px;
+
+    @media #{$sm} {
+      max-width: 300px;
+
+      .survey-item-media-frame {
+        display: inline;
+      }
+
+      .survey-item-media-img-wrapper {
+        position: absolute;
+        top: 1.37%;
+        left: 3.96%;
+        width: 92.082%;
+        height: 96.7%;
+        border-radius: 10%/calc(10%*0.482672551);
+      }
+    }
+  }
+
+  &.PHONE_LANDSCAPE {
+    max-width: 700px;
+
+    @media #{$md} {
+
+      .survey-item-media-frame {
+        display: inline;
+      }
+
+      .survey-item-media-img-wrapper {
+        position: absolute;
+        top: 3.4%;
+        left: 1.37%;
+        width: 97%;
+        height: 91.3%;
+        border-radius: calc(10%*0.482672551)/10%;
+      }
+    }
+  }
+
+  &.TABLET_PORTRAIT {
+    max-width: 500px;
+
+    @media #{$sm} {
+
+      .survey-item-media-frame {
+        display: inline;
+      }
+
+      .survey-item-media-img-wrapper {
+        position: absolute;
+        top: 7.45%;
+        left: 3.71%;
+        width: 92.3%;
+        height: 83.5%;
+      }
+    }
+  }
+
+  &.TABLET_LANDSCAPE {
+    max-width: 700px;
+
+    @media #{$md} {
+
+      .survey-item-media-frame {
+        display: inline;
+      }
+
+      .survey-item-media-img-wrapper {
+        position: absolute;
+        top: 3.71%;
+        left: 7.45%;
+        width: 83.5%;
+        height: 92.3%;
+      }
+    }
+  }
+
+  .survey-item-media-overlay {
+    position: fixed;
+    transform: translateX(-50%);
+  }
+}

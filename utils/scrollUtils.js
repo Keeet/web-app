@@ -26,9 +26,16 @@ export function scrollToTopId(ids) {
   scrollIntoView(document.getElementById(sorted[0].id))
 }
 
-function offsetTop(elem) {
+export function offsetTop(elem) {
   Element.prototype.documentOffsetTop = function () {
     return this.offsetTop + (this.offsetParent ? this.offsetParent.documentOffsetTop() : 0)
   }
   return elem.documentOffsetTop()
+}
+
+export function offsetLeft(elem) {
+  Element.prototype.documentOffsetLeft = function () {
+    return this.offsetLeft + (this.offsetParent ? this.offsetParent.documentOffsetLeft() : 0)
+  }
+  return elem.documentOffsetLeft()
 }

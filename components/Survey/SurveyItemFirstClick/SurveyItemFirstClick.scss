@@ -1,0 +1,36 @@
+.survey-item-first-click {
+  margin: 60px 0;
+
+  .survey-item-first-click-selected {
+    width: 200px;
+
+    .survey-item-first-click-selected-dot {
+      width: 17px;
+      height: 17px;
+      border-radius: 100%;
+      background-color: $blue-primary;
+      border: 3px solid #fff;
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+      margin: 0 auto;
+      transform: translateY(-50%);
+    }
+
+    .survey-item-first-click-selected-box {
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+      text-align: center;
+      padding: 10px;
+
+
+      .survey-item-first-click-selected-box-cancel {
+        color: $blue-primary;
+        margin-top: 10px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
