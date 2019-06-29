@@ -78,7 +78,7 @@ const defaultState = {
   activeClosing: false,
   activeItemIndex: null,
   activeFollowUpIndex: null,
-  activeItemValid: true, // TODO: set to false later
+  activeItemValid: false, // TODO: set to false later
   progress: 0,
   duration: null,
   responses: []

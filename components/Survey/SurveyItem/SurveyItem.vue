@@ -37,6 +37,7 @@
       <SurveyItemLikert v-else-if="item.type === LIKERT" />
       <SurveyItemFirstClick v-else-if="item.type === FIRST_CLICK" />
       <SurveyItemFiveSecondTest v-else-if="item.type === FIVE_SECOND_TEST" />
+      <SurveyItemInstruction v-else-if="item.type === INSTRUCTION" />
     </div>
   </div>
 </template>
@@ -55,11 +56,12 @@ import SurveyItemLikert from '../SurveyItemLikert/SurveyItemLikert'
 import SurveyItemFirstClick from '../SurveyItemFirstClick/SurveyItemFirstClick'
 import SurveyItemFiveSecondTest from '../SurveyItemFiveSecondTest/SurveyItemFiveSecondTest'
 import SurveyItemDesignQuestion from '../SurveyItemDesignQuestion/SurveyItemDesignQuestion'
+import SurveyItemInstruction from '../SurveyItemInstruction/SurveyItemInstruction'
 const { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LINEAR_SCALE, LIKERT } = MISSION_SURVEY_ITEMS
 const { FIRST_CLICK, FIVE_SECOND_TEST, PREFERENCE_TEST, DESIGN_QUESTION } = MISSION_SURVEY_USABILITY_LAB_ITEMS
 export default {
   name: 'SurveyItem',
-  components: { SurveyItemDesignQuestion, SurveyItemFiveSecondTest, SurveyItemFirstClick, SurveyItemLikert, SurveyItemLinearScale, SurveyItemSelect, SurveyItemText },
+  components: { SurveyItemInstruction, SurveyItemDesignQuestion, SurveyItemFiveSecondTest, SurveyItemFirstClick, SurveyItemLikert, SurveyItemLinearScale, SurveyItemSelect, SurveyItemText },
   data() {
     return {
       ...MISSION_SURVEY_ITEMS,
