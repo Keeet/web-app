@@ -5,6 +5,7 @@
     </div>
     <SurveyItemMedia
       :image="item.image"
+      :frame="item.deviceFrame"
       :blur="!response.started"
     />
   </div>

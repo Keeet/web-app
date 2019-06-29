@@ -58,7 +58,7 @@ export default {
     },
     frame: {
       type: String,
-      default: MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES.PHONE_PORTRAIT,
+      default: null,
       validator: value => Object.values(MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES).includes(value)
     },
     overlayCoordinates: {

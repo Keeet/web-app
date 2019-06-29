@@ -86,9 +86,8 @@ export default {
     options() {
       const options = {
         url: `${process.env.baseUrl}${this.path}`,
-        thumbnailMethod: 'contain',
         acceptedFiles: 'image/*',
-        maxFilesize: 5,
+        maxFilesize: 10,
         dictDefaultMessage: '',
         dictResponseError: 'Request failed with status code {{statusCode}}',
         autoQueue: false

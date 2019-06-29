@@ -18,6 +18,8 @@ const {
   PREFERENCE_TEST
 } = MISSION_SURVEY_USABILITY_LAB_ITEMS
 
+const SKIP_ITEMS = [QUESTION_LIST, DESIGN_QUESTION]
+
 const defaultResponse = {
   SHORT_TEXT: {
     type: SHORT_TEXT,
@@ -95,6 +97,12 @@ export const getters = {
     }
     return item
   },
+  activeRootItem({ activeItemIndex, items }) {
+    if (activeItemIndex === null) {
+      return null
+    }
+    return items[activeItemIndex]
+  },
   activeResponse({ responses }, getters) {
     const item = getters.activeItem
     return responses
@@ -122,8 +130,7 @@ export const mutations = {
     }
     state.activeFollowUpIndex = null
     setResponse(state, res => res)
-    // skip QUESTION_LIST
-    if (state.items[state.activeItemIndex].type === QUESTION_LIST) {
+    if (SKIP_ITEMS.includes(state.items[state.activeItemIndex].type)) {
       state.activeFollowUpIndex = 0
       setResponse(state, res => res)
     }
@@ -316,7 +323,7 @@ function calculateProgress({ items, activeItemIndex, activeFollowUpIndex, active
       const isItemAnswered = x < activeItemIndex || isItemFollowUpActive
 
       return [
-        item.type === QUESTION_LIST ? [] : isItemAnswered,
+        SKIP_ITEMS.includes(item.type) ? [] : isItemAnswered,
         ...(itemFollowUps.map(
           (followUp, y) => {
             return x < activeItemIndex || (isItemFollowUpActive && y < activeFollowUpIndex)
