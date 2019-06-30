@@ -68,6 +68,7 @@ const defaultResponse = {
   },
   PREFERENCE_TEST: {
     type: PREFERENCE_TEST,
+    sliderActive: false,
     followUps: []
   }
 }
@@ -124,7 +125,7 @@ export const mutations = {
   },
   nextItem(state) {
     if (state.activeItemIndex === null) {
-      state.activeItemIndex = 0 // TODO: reset to 0
+      state.activeItemIndex = 0
     } else {
       state.activeItemIndex++
     }
@@ -227,6 +228,22 @@ export const mutations = {
       return {
         ...response,
         timeout
+      }
+    })
+  },
+  setPreferenceTestSliderActive(state, sliderActive) {
+    setResponse(state, (response) => {
+      return {
+        ...response,
+        sliderActive
+      }
+    })
+  },
+  setPreferenceTestSelectedImageId(state, selectedImageId) {
+    setResponse(state, (response) => {
+      return {
+        ...response,
+        selectedImageId
       }
     })
   }

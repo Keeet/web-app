@@ -22,7 +22,7 @@
   .survey-step-body {
     position: relative;
     flex-grow: 1;
-    padding: 50px 2.5% 20px;
+    padding: $survey-step-body-padding-top $survey-step-body-padding-left-right $survey-step-body-padding-bottom;
     display: flex;
     flex-direction: column;
     justify-content: center;

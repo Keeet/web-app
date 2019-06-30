@@ -55,6 +55,7 @@ module.exports = {
     '~/plugins/dragScroll',
     { src: '~/plugins/timeago', ssr: false },
     { src: '~/plugins/vueDraggable', ssr: false },
+    { src: '~/plugins/vueCarousel', ssr: false },
     { src: '~/plugins/aos.js', ssr: false },
     { src: '~/plugins/ellipsis.js', ssr: false },
     { src: '~/plugins/missionCreateRecruitCalendar.js', ssr: false },

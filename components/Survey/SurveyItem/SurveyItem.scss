@@ -97,19 +97,23 @@
       }
     }
 
-    .survey-item-headline {
-      font-weight: 500;
-      font-size: 140%;
-      text-align: center;
-      margin: 0 auto 20px;
-      max-width: 500px;
-    }
+    .survey-item-body-title {
+      min-height: $survey-item-body-title-min-height;
 
-    .survey-item-subtitle {
-      max-width: 500px;
-      text-align: center;
-      margin: -10px auto 20px;
-      color: $grey-mid-dark;
+      .survey-item-body-title-headline {
+        font-weight: 500;
+        font-size: 140%;
+        text-align: center;
+        margin: 0 auto 20px;
+        max-width: 500px;
+      }
+
+      .survey-item-body-title-subtitle {
+        max-width: 500px;
+        text-align: center;
+        margin: -10px auto 0;
+        color: $grey-mid-dark;
+      }
     }
   }
 }

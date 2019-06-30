@@ -140,7 +140,7 @@ export const MISSION_SURVEY_USABILITY_LAB_ITEM_HEADLINE = {
 export const MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION = {
   FIRST_CLICK: 'Click on the image to carry out the instructions or complete the set task.',
   FIVE_SECOND_TEST: 'You will see the image for {{duration}} seconds',
-  PREFERENCE_TEST: 'Click an image to zoom in'
+  PREFERENCE_TEST: ['Click an image to zoom in', 'Click again to zoom out']
 }
 export const MISSION_PAGES = {
   OVERVIEW: 'OVERVIEW',

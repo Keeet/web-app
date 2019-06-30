@@ -4,13 +4,12 @@
       <p class="mission-create-survey-usability-lab-upload-headline">
         Design
       </p>
-      <div class="mission-create-survey-usability-lab-upload-select">
+      <div v-if="item.deviceFrame" class="mission-create-survey-usability-lab-upload-select">
         <p class="mission-create-survey-usability-lab-upload-select-label">
           Device frame
         </p>
         <div class="mission-create-survey-usability-lab-upload-select-input">
           <Select
-            v-if="item.deviceFrame"
             title=""
             :options="deviceFrameOptions"
             :value="item.deviceFrame"

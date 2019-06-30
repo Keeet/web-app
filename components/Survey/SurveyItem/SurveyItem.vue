@@ -25,18 +25,21 @@
       class="survey-item-body"
       :class="{ twoColumnLayout, twoColumnLayoutFullScreen }"
     >
-      <h2 class="survey-item-headline">
-        {{ headline }}
-      </h2>
-      <p v-if="subtitle" class="survey-item-subtitle">
-        {{ subtitle }}
-      </p>
+      <div class="survey-item-body-title">
+        <h2 class="survey-item-body-title-headline">
+          {{ headline }}
+        </h2>
+        <p v-if="subtitle" class="survey-item-body-title-subtitle">
+          {{ subtitle }}
+        </p>
+      </div>
       <SurveyItemText v-if="[SHORT_TEXT, LONG_TEXT].includes(item.type)" />
       <SurveyItemSelect v-else-if="[SINGLE_SELECT, MULTI_SELECT].includes(item.type)" />
       <SurveyItemLinearScale v-else-if="item.type === LINEAR_SCALE" />
       <SurveyItemLikert v-else-if="item.type === LIKERT" />
       <SurveyItemFirstClick v-else-if="item.type === FIRST_CLICK" />
       <SurveyItemFiveSecondTest v-else-if="item.type === FIVE_SECOND_TEST" />
+      <SurveyItemPreferenceTest v-else-if="item.type === PREFERENCE_TEST" />
       <SurveyItemInstruction v-else-if="item.type === INSTRUCTION" />
     </div>
   </div>
@@ -57,11 +60,12 @@ import SurveyItemFirstClick from '../SurveyItemFirstClick/SurveyItemFirstClick'
 import SurveyItemFiveSecondTest from '../SurveyItemFiveSecondTest/SurveyItemFiveSecondTest'
 import SurveyItemDesignQuestion from '../SurveyItemDesignQuestion/SurveyItemDesignQuestion'
 import SurveyItemInstruction from '../SurveyItemInstruction/SurveyItemInstruction'
+import SurveyItemPreferenceTest from '../SurveyItemPreferenceTest/SurveyItemPreferenceTest'
 const { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LINEAR_SCALE, LIKERT } = MISSION_SURVEY_ITEMS
 const { FIRST_CLICK, FIVE_SECOND_TEST, PREFERENCE_TEST, DESIGN_QUESTION } = MISSION_SURVEY_USABILITY_LAB_ITEMS
 export default {
   name: 'SurveyItem',
-  components: { SurveyItemInstruction, SurveyItemDesignQuestion, SurveyItemFiveSecondTest, SurveyItemFirstClick, SurveyItemLikert, SurveyItemLinearScale, SurveyItemSelect, SurveyItemText },
+  components: { SurveyItemPreferenceTest, SurveyItemInstruction, SurveyItemDesignQuestion, SurveyItemFiveSecondTest, SurveyItemFirstClick, SurveyItemLikert, SurveyItemLinearScale, SurveyItemSelect, SurveyItemText },
   data() {
     return {
       ...MISSION_SURVEY_ITEMS,
@@ -89,12 +93,17 @@ export default {
       return null
     },
     subtitle() {
-      if ([FIRST_CLICK, PREFERENCE_TEST].includes(this.item.type)) {
+      if (this.item.type === FIRST_CLICK) {
         return MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION[this.item.type]
       }
       if (this.item.type === FIVE_SECOND_TEST) {
         return MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION[this.item.type]
           .replace('{{duration}}', this.response.timeout || this.item.duration)
+      }
+      if (this.item.type === PREFERENCE_TEST) {
+        return this.response.sliderActive
+          ? MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION[this.item.type][1]
+          : MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION[this.item.type][0]
       }
       return null
     },
