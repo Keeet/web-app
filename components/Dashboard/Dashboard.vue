@@ -49,11 +49,7 @@
         :description="project.description"
         :created-at="project.createdAt"
         :owner="project.owner"
-        data-aos="fade-up"
-        data-aos-duration="700"
-        data-aos-once="true"
-        :data-aos-delay="50 * index"
-        data-aos-anchor=".dashboard-projects"
+        :aos-delay="50 * index"
         @click.native="$router.push(`/projects/${project.id}`)"
       />
     </div>

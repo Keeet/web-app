@@ -1,30 +1,42 @@
 <template>
   <div class="dashboard-project">
-    <div class="dashboard-project-inner">
-      <div class="dashboard-project-rows">
-        <div class="dashboard-project-text">
-          <p class="dashboard-project-text-title">
-            {{ title }}
-          </p>
-          <p class="dashboard-project-text-description">
-            <ellipsis
-              :text="descriptionFormatted"
-              :line-num="3"
-              font-size="16px"
-              font-family="Roboto"
-              left="..."
-              tag-name="span"
-            />
-          </p>
+    <div
+      data-aos="fade-up"
+      data-aos-duration="700"
+      data-aos-once="true"
+      :data-aos-delay="aosDelay"
+      data-aos-anchor="body"
+    >
+      <div class="dashboard-project-inner">
+        <div class="dashboard-project-rows">
+          <div class="dashboard-project-text">
+            <p class="dashboard-project-text-title">
+              {{ title }}
+            </p>
+            <p class="dashboard-project-text-description">
+              <no-ssr>
+                <ellipsis
+                  :text="descriptionFormatted"
+                  :line-num="3"
+                  font-size="16px"
+                  font-family="Roboto"
+                  left="..."
+                  tag-name="span"
+                />
+              </no-ssr>
+            </p>
+          </div>
+          <div class="dashboard-project-owner">
+            <img :src="owner.profileImage" :title="`${owner.firstName} ${owner.lastName}`">
+          </div>
         </div>
-        <div class="dashboard-project-owner">
-          <img :src="owner.profileImage" :title="`${owner.firstName} ${owner.lastName}`">
-        </div>
-      </div>
-      <div class="dashboard-project-footer">
-        <div class="dashboard-project-footer-created">
-          <IconCalendarOutline />
-          <timeago v-if="createdAt" :datetime="createdAt" :auto-update="1" />
+        <div class="dashboard-project-footer">
+          <div class="dashboard-project-footer-created">
+            <IconCalendarOutline />
+            <no-ssr>
+              <timeago v-if="createdAt" :datetime="createdAt" :auto-update="1" />
+            </no-ssr>
+          </div>
         </div>
       </div>
     </div>
@@ -50,6 +62,10 @@ export default {
     owner: {
       type: Object,
       required: true
+    },
+    aosDelay: {
+      type: Number,
+      default: null
     }
   },
   computed: {
