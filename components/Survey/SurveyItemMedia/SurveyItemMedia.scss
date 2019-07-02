@@ -5,6 +5,7 @@
   margin: 0 auto;
   text-align: center;
   transition: all .5s;
+  user-select: none;
 
   &.blur {
     filter: blur(50px);

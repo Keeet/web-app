@@ -127,7 +127,7 @@ export default {
       const image = this.getScrollableFrame().querySelector('.survey-item-media-img')
       const x = (event.pageX - offsetLeft(image)) / image.offsetWidth
       const y = (event.pageY - offsetTop(image) + this.scrollPosition) / image.offsetHeight
-      if (!this.onDrag) {
+      if (!this.onDrag && !this.blur) {
         this.$emit('click', { x, y })
       }
     },

@@ -44,21 +44,6 @@ export default {
         return null
       }
       return { x, y }
-    },
-    error() {
-      if (!this.item.required) {
-        return null
-      }
-      const { x, y } = this.response
-      return x !== null && y !== null && this.response.confirmed ? null : 'required'
-    }
-  },
-  watch: {
-    error: {
-      immediate: true,
-      handler(error) {
-        this.$store.dispatch('surveyForm/handleValidationError', { error })
-      }
     }
   },
   methods: {
@@ -72,6 +57,7 @@ export default {
     },
     confirmCoordinates() {
       this.$store.commit('surveyForm/confirmFirstClickCoordinates')
+      this.$store.dispatch('surveyForm/nextStep')
     }
   }
 }
