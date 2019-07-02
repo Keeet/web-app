@@ -9,9 +9,17 @@
     <div class="survey-step-body">
       <slot />
     </div>
-    <div class="survey-step-button" :class="{ buttonDisabled }">
+    <div v-if="buttonText" class="survey-step-button" :class="{ buttonDisabled }">
       <div class="survey-step-button-inner">
+        <a v-if="buttonLink" :href="buttonLink">
+          <ButtonText
+            :text="buttonText"
+            :bg-color="s.color"
+            no-margin
+          />
+        </a>
         <ButtonText
+          v-else
           :text="buttonText"
           :bg-color="s.color"
           no-margin
@@ -31,6 +39,10 @@ export default {
     buttonText: {
       type: String,
       default: 'Next'
+    },
+    buttonLink: {
+      type: String,
+      default: null
     },
     buttonDisabled: {
       type: Boolean,

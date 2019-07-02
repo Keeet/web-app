@@ -1,5 +1,5 @@
 <template>
-  <SurveyStep :button-text="buttonText">
+  <SurveyStep :button-text="buttonText" :button-link="buttonLink">
     <div class="survey-custom-screen">
       <div class="survey-custom-screen-logo">
         <img v-if="sValues.logo" :src="sValues.logo">
@@ -74,7 +74,15 @@ export default {
         case TYPES.WELCOME:
           return 'Start'
         case TYPES.CLOSING:
-          return 'Finish'
+          if (this.s.redirectLink) {
+            return 'Finish'
+          }
+      }
+      return null
+    },
+    buttonLink() {
+      if (this.type === TYPES.CLOSING && this.s.redirectLink) {
+        return this.s.redirectLink
       }
       return null
     }
