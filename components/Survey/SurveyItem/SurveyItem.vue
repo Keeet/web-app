@@ -101,6 +101,9 @@ export default {
           .replace('{{duration}}', this.response.timeout || this.item.duration)
       }
       if (this.item.type === PREFERENCE_TEST) {
+        if (!this.response.started) {
+          return null
+        }
         return this.response.sliderActive
           ? MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION[this.item.type][1]
           : MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION[this.item.type][0]

@@ -2,117 +2,140 @@ $survey-item-preference-test-slider-footer-height: 85px;
 
 .survey-item-preference-test {
 
-  .survey-item-preference-test-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 95%;
-    max-width: 1000px;
+  .survey-item-preference-test-button {
+    position: relative;
+    z-index: 1;
+    width: 200px;
     margin: 0 auto;
-
-    .survey-item-preference-test-gallery-item {
-      margin: 20px 0;
-      width: 24%;
-      max-height: 50vh;
-      overflow-y: auto;
-      text-align: center;
-      min-width: 130px;
-
-      &.count2 {
-        width: 48%;
-        max-height: 90vh;
-      }
-
-      &.count3 {
-        width: 31%;
-        max-height: 70vh;
-      }
-
-      &:hover {
-        cursor: pointer;
-      }
-
-      img {
-        max-width: 100%;
-      }
-    }
   }
 
-  .survey-item-preference-test-slider {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-left: -$survey-step-body-padding-left-right;
-    margin-right: -$survey-step-body-padding-left-right;
-    margin-bottom: -$survey-step-body-padding-bottom;
+  .survey-item-preference-test-content {
+    user-select: none;
+    transition: all .5s;
 
-    .survey-item-preference-test-slider-body {
-      overflow: hidden;
-      width: 100%;
+    &.blur {
+      filter: blur(50px);
+      opacity: 0.5;
+    }
 
-      .survey-item-preference-test-slider-item {
-        width: 100%;
-        height: calc(100vh - #{$survey-step-body-padding-top} - #{$survey-item-body-title-min-height} - #{$survey-item-preference-test-slider-footer-height});
+    .survey-item-preference-test-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 95%;
+      max-width: 1000px;
+      margin: 0 auto;
+
+      .survey-item-preference-test-gallery-item {
+        margin: 20px 0;
+        width: 24%;
+        max-height: 50vh;
         overflow-y: auto;
+        text-align: center;
+        min-width: 130px;
+        background-color: #fff;
+        padding: 20px;
+        box-sizing: border-box;
+
+        &.count2 {
+          width: 48%;
+          max-height: 90vh;
+        }
+
+        &.count3 {
+          width: 31%;
+          max-height: 70vh;
+        }
 
         &:hover {
           cursor: pointer;
         }
 
-        .survey-item-preference-test-slider-item-inner {
-          margin: 0 auto;
-          width: 90%;
-          max-width: 900px;
-          text-align: center;
-
-          img {
-            max-width: 100%;
-          }
+        img {
+          max-width: 100%;
         }
       }
     }
 
-    .survey-item-preference-test-slider-footer {
-      position: relative;
-      height: $survey-item-preference-test-slider-footer-height;
-      background-color: #fff;
-      box-shadow: 0 -1px 8px 0 rgba(0, 0, 0, 0.2);
+    .survey-item-preference-test-slider {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-left: -$survey-step-body-padding-left-right;
+      margin-right: -$survey-step-body-padding-left-right;
+      margin-bottom: -$survey-step-body-padding-bottom;
 
-      .survey-item-preference-test-slider-footer-buttons {
-        display: flex;
-        align-items: center;
-        margin: 30px auto 0;
-        max-width: 400px;
-        width: 95%;
+      .survey-item-preference-test-slider-body {
+        overflow: hidden;
+        width: 100%;
 
-        .survey-item-preference-test-slider-footer-buttons-select {
-          flex-grow: 1;
-        }
+        .survey-item-preference-test-slider-item {
+          width: 100%;
+          height: calc(100vh - #{$survey-step-body-padding-top} - #{$survey-item-body-title-min-height} - #{$survey-item-preference-test-slider-footer-height});
+          overflow-y: auto;
 
-        .survey-item-preference-test-slider-footer-buttons-nav {
-          position: relative;
-          background-color: $grey-mid-light;
-          border-radius: 5px;
-          width: 45px;
-          height: 45px;
-          margin: 0 15px;
-          opacity: 0.3;
-
-          &.active {
-            opacity: 1;
-
-            &:hover {
-              cursor: pointer;
-            }
+          &:hover {
+            cursor: pointer;
           }
 
-          svg {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 10px;
-            fill: $grey-dark;
+          .survey-item-preference-test-slider-item-inner {
+            margin: 0 auto;
+            width: 90%;
+            max-width: 900px;
+            text-align: center;
+
+            img {
+              max-width: 100%;
+              background-color: #fff;
+              padding: 20px;
+              box-sizing: border-box;
+            }
+          }
+        }
+      }
+
+      .survey-item-preference-test-slider-footer {
+        position: relative;
+        height: $survey-item-preference-test-slider-footer-height;
+        background-color: #fff;
+        box-shadow: 0 -1px 8px 0 rgba(0, 0, 0, 0.2);
+
+        .survey-item-preference-test-slider-footer-buttons {
+          display: flex;
+          align-items: center;
+          margin: 30px auto 0;
+          max-width: 400px;
+          width: 95%;
+
+          .survey-item-preference-test-slider-footer-buttons-select {
+            flex-grow: 1;
+          }
+
+          .survey-item-preference-test-slider-footer-buttons-nav {
+            position: relative;
+            background-color: $grey-mid-light;
+            border-radius: 5px;
+            width: 45px;
+            height: 45px;
+            margin: 0 15px;
+            opacity: 0.3;
+
+            &.active {
+              opacity: 1;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+
+            svg {
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%, -50%);
+              width: 10px;
+              fill: $grey-dark;
+            }
           }
         }
       }

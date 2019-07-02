@@ -69,6 +69,7 @@ const defaultResponse = {
   PREFERENCE_TEST: {
     type: PREFERENCE_TEST,
     sliderActive: false,
+    started: false,
     followUps: []
   }
 }
@@ -274,6 +275,7 @@ export const actions = {
       commit('showClosing')
     }
 
+    commit('setActiveItemValid', false)
     commit('setProgress', calculateProgress(state))
   },
   handleValidationError({ commit }, { error }) {
