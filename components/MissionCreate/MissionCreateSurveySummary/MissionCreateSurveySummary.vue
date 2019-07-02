@@ -28,7 +28,7 @@
             <IconClock />
           </div>
           <div class="mission-create-survey-summary-duration-text">
-            1 to 2 minutes
+            {{ durationText }}
           </div>
         </div>
       </template>
@@ -63,6 +63,8 @@ import { MISSIONS } from '../../constants'
 import MissionCreateSurveySummaryItem from '../MissionCreateSurveySummaryItem/MissionCreateSurveySummaryItem'
 import MissionCreateSideBox from '../MissionCreateSideBox/MissionCreateSideBox'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
+import { groupBy } from '../../../utils/objectUtils'
+
 export default {
   name: 'MissionCreateSurveySummary',
   components: { ButtonText, MissionCreateSideBox, MissionCreateSurveySummaryItem },
@@ -74,7 +76,10 @@ export default {
   },
   data() {
     const { SURVEY } = MISSIONS
-    return { SURVEY }
+    return {
+      pricing: null,
+      SURVEY
+    }
   },
   computed: {
     items: {
@@ -87,6 +92,56 @@ export default {
     },
     s() {
       return this.$store.state.missionForm
+    },
+    flatMappedItems() {
+      return this.items
+        .map(i => [i, ...(i.followUps ? i.followUps : [])])
+        .flatMap(i => i)
+    },
+    flatMappedItemsPricingData() {
+      return JSON.stringify({
+        length: this.flatMappedItems.length,
+        types: this.flatMappedItems.map(i => i.type).sort()
+      })
+    },
+    durationText() {
+      const d = this.pricing ? this.pricing.duration : 0
+      if (d <= 60) {
+        return 'about 1 min'
+      }
+      const min = parseInt(d / 60)
+      return `${min} - ${min + 1} min`
+    }
+  },
+  watch: {
+    flatMappedItemsPricingData() {
+      this.fetchPricing().then((pricing) => {
+        this.pricing = pricing
+      })
+    }
+  },
+  methods: {
+    fetchPricing() {
+      const groupedByType = groupBy(this.flatMappedItems, 'type')
+      const countByType = {}
+      Object.keys(groupedByType).forEach((type) => {
+        countByType[type] = groupedByType[type].length
+      })
+      return new Promise((resolve) => {
+        this.$axios({
+          method: 'post',
+          url: '/pricing/quantitative',
+          data: {
+            items: {
+              ...countByType
+            },
+            expectedResponses: 1
+          }
+        })
+          .then(res => resolve(res.data))
+          // eslint-disable-next-line no-console
+          .catch(console.error)
+      })
     }
   }
 }

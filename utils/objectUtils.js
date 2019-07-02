@@ -16,3 +16,10 @@ export function copy(object) {
 export function range(start, end) {
   return Array(end - start + 1).fill().map((_, idx) => start + idx)
 }
+
+export function groupBy(xs, key) {
+  return xs.reduce(function (rv, x) {
+    (rv[x[key]] = rv[x[key]] || []).push(x)
+    return rv
+  }, {})
+}
