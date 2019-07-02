@@ -7,6 +7,7 @@
       :image="item.image"
       :overlay-coordinates="overlayCoordinates"
       :blur="!response.started"
+      :frame="item.deviceFrame"
       @click="selectCoordinates"
     >
       <template slot="overlay">
