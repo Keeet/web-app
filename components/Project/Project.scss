@@ -27,12 +27,17 @@
 
       .project-missions-timeline-line {
         position: absolute;
-        z-index: 0;
+        z-index: -1;
         left: 65px;
         top: 0;
         bottom: 0;
-        background-color: $grey-mid-dark;
         width: 1px;
+
+        .project-missions-timeline-line-content {
+          background-color: $grey-mid-dark;
+          width: 100%;
+          height: 100%;
+        }
       }
 
       .project-missions-timeline-month {

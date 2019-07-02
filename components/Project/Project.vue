@@ -22,34 +22,33 @@
           class="project-missions-timeline-month"
         >
           <div
-            class="project-missions-timeline-month-label"
             data-aos="fade-up"
             data-aos-duration="700"
             :data-aos-delay="(missionGroup.missions[0].index + x) * 100"
             data-aos-once="true"
-            data-aos-anchor=".project-missions-timeline"
+            data-aos-anchor="body"
           >
-            {{ missionGroup.month }}
+            <div class="project-missions-timeline-month-label">
+              {{ missionGroup.month }}
+            </div>
           </div>
           <ProjectMission
             v-for="(mission, y) in missionGroup.missions"
             :key="y"
             :mission="mission"
-            data-aos="fade-up"
-            data-aos-duration="700"
-            :data-aos-delay="(mission.index + x + 1) * 100"
-            data-aos-once="true"
-            data-aos-anchor=".project-missions-timeline"
+            :aos-delay="(mission.index + x + 1) * 100"
           />
         </div>
-        <div
-          class="project-missions-timeline-line"
-          data-aos="fade-in"
-          data-aos-duration="800"
-          :data-aos-delay="1000"
-          data-aos-once="true"
-          data-aos-anchor=".project-missions-timeline"
-        />
+        <div class="project-missions-timeline-line">
+          <div
+            class="project-missions-timeline-line-content"
+            data-aos="fade-in"
+            data-aos-duration="800"
+            :data-aos-delay="1000"
+            data-aos-once="true"
+            data-aos-anchor="body"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -118,8 +117,8 @@ export default {
       const currentYear = now.getFullYear()
 
       return (year === currentYear)
-        ? getMonthName(now)
-        : `${getMonthName(now)} ${year}`
+        ? getMonthName(date)
+        : `${getMonthName(date)} ${year}`
     },
     createMission() {
       this.$store.commit('missionForm/init', {

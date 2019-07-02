@@ -6,7 +6,7 @@
           <img :src="user.profileImage">
         </div>
       </template>
-      <template slot="text">w
+      <template slot="text">
         <p class="account-profile-text-headline">
           {{ user.firstName }} {{ user.lastName }}
         </p>
