@@ -17,7 +17,10 @@ export default {
     return !!id
   },
   fetch({ app: { $fetch }, params: { id } }) {
-    return $fetch([{ name: 'SURVEY', id }])
+    if (id !== 'preview') {
+      return $fetch([{ name: 'SURVEY', id }])
+    }
+    return true
   }
 }
 </script>

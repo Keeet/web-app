@@ -14,7 +14,8 @@ export const state = () => ({
   mission: null,
   missionInsights: null,
   survey: null,
-  personas: null
+  personas: null,
+  dropzoneUploads: {}
 })
 
 export const mutations = {
@@ -56,12 +57,12 @@ export const mutations = {
     state.missionInsights = missionInsights
   },
   setSurvey(state, survey) {
-    survey.inputs = survey.inputs
-      .map((input) => {
-        if (input.followUps) {
-          input.followUps = input.followUps.sort((a, b) => a.index > b.index ? 1 : -1)
+    survey.items = survey.items
+      .map((item) => {
+        if (item.followUps) {
+          item.followUps = item.followUps.sort((a, b) => a.index > b.index ? 1 : -1)
         }
-        return input
+        return item
       })
       .sort((a, b) => a.index > b.index ? 1 : -1)
     state.survey = survey
@@ -78,6 +79,11 @@ export const mutations = {
           }
       }
     })
+  },
+  addDropzoneUpload(state, { id, url }) {
+    const dropzoneUploads = { ...state.dropzoneUploads }
+    dropzoneUploads[id] = url
+    state.dropzoneUploads = dropzoneUploads
   }
 }
 

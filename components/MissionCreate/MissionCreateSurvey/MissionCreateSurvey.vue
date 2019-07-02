@@ -37,6 +37,7 @@ import MissionCreateSurveyCustomScreen from '../MissionCreateSurveyCustomScreen/
 import MissionCreateSurveyItems from '../MissionCreateSurveyItems/MissionCreateSurveyItems'
 import MissionCreateSurveyAdd from '../MissionCreateSurveyAdd/MissionCreateSurveyAdd'
 import MissionCreateSurveySummary from '../MissionCreateSurveySummary/MissionCreateSurveySummary'
+import { copy } from '../../../utils/objectUtils'
 
 export default {
   name: 'MissionCreateSurvey',
@@ -48,14 +49,40 @@ export default {
         survey: this.$store.state.missionFormSurvey
       }
     },
+    survey() {
+      return this.s.survey
+    },
     items() {
-      return this.s.survey.items
+      return this.survey.items
     },
     isValid() {
       return this.s.invalidFields.length === 0
     }
   },
+  watch: {
+    survey() {
+      this.setPreview()
+    },
+    items() {
+      this.setPreview()
+    }
+  },
   methods: {
+    setPreview() {
+      const survey = this.buildMission()
+      const urls = this.$store.state.dropzoneUploads
+      survey.welcomeLogoId = survey.welcomeLogoId ? urls[survey.welcomeLogoId] : null
+      survey.closingLogoId = survey.closingLogoId ? urls[survey.closingLogoId] : null
+      survey.items.forEach((item) => {
+        item.image = item.imageMediaId ? urls[item.imageMediaId] : null
+        item.images = item.imageMediaIds ? item.imageMediaIds.map(id => ({ url: urls[id] })) : null
+      })
+      window.localStorage.setItem('surveyPreview', JSON.stringify({
+        ...survey,
+        previewValid: this.isValid,
+        lastUpdatedAt: new Date().toISOString()
+      }))
+    },
     submitDisabledClick() {
       if (!this.s.showErrors) {
         this.$store.commit('missionForm/showErrors')
@@ -64,9 +91,10 @@ export default {
     },
     buildMission() {
       const mission = {
-        ...this.s,
-        ...this.s.survey
+        ...copy(this.s),
+        ...copy(this.s.survey)
       }
+      delete mission.survey
       function formatItems(items) {
         const { SINGLE_SELECT, MULTI_SELECT } = MISSION_SURVEY_ITEMS
         return items.map((item) => {

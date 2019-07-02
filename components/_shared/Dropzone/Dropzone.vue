@@ -167,6 +167,7 @@ export default {
       xhr.setRequestHeader('Authorization', `Bearer ${this.$store.state.accessToken}`)
     },
     success(file, res) {
+      this.$store.commit('addDropzoneUpload', { id: res.id, url: res.spacesUrl })
       this.selected.push({
         dzId: file.upload.uuid,
         id: res.id

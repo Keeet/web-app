@@ -43,7 +43,15 @@
             />
           </div>
           <div class="mission-create-survey-summary-buttons-flex-item">
-            <ButtonText text="Preview" type="GREY" icon="LINK_EXTERNAL" no-margin />
+            <ButtonText
+              text="Preview"
+              type="GREY"
+              icon="LINK_EXTERNAL"
+              no-margin
+              :disabled="!isValid"
+              @disabledClick="$emit('submitDisabledClick')"
+              @click="openPreview"
+            />
           </div>
         </div>
         <ButtonText
@@ -142,6 +150,9 @@ export default {
           // eslint-disable-next-line no-console
           .catch(console.error)
       })
+    },
+    openPreview() {
+      window.open('/survey/preview', '_blank')
     }
   }
 }
