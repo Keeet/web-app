@@ -2,14 +2,14 @@ import Video from 'twilio-video'
 
 export default function ({ store }, inject) {
   inject('twilioHelper', {
-    joinRoom(sessionId, token, cb = {
+    joinRoom(roomName, token, cb = {
       joined: () => {},
       participantConnected: () => {},
       participantDisconnected: () => {},
       error: () => {}
     }) {
       Video.connect(token, {
-        name: sessionId,
+        name: roomName,
         audio: true,
         video: { width: 640 }
       }).then((room) => {

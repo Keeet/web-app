@@ -1,7 +1,7 @@
 const defaultState = {
   id: null,
   isCompany: false,
-  sessionId: null,
+  roomName: null,
   token: null,
   room: null,
 
@@ -13,17 +13,17 @@ const defaultState = {
 export const state = () => (defaultState)
 
 export const mutations = {
-  initCompany(state, { sessionId, token }) {
+  initCompany(state, { roomName, token }) {
     for (const key in defaultState) {
       state[key] = defaultState[key]
     }
     state.isCompany = true
-    state.sessionId = sessionId
+    state.roomName = roomName
     state.token = token
   },
-  initUser(state, { sessionId, token }) {
+  initUser(state, { roomName, token }) {
     state.isCompany = false
-    state.sessionId = sessionId
+    state.roomName = roomName
     state.token = token
   },
   setRoom(state, room) {
