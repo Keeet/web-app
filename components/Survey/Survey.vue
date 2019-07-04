@@ -4,8 +4,8 @@
     <SurveyCustomScreen v-else-if="s.activeClosing" type="CLOSING" />
     <SurveyStep
       v-else-if="$store.getters['surveyForm/activeItem']"
-      :button-text="(!s.activeItemValid && !activeItem.required) ? 'Skip' : 'Next'"
-      :button-disabled="(!s.activeItemValid && activeItem.required) || automaticNext"
+      :button-text="buttonNextText"
+      :button-disabled="hideNext"
     >
       <SurveyItem />
     </SurveyStep>
@@ -47,11 +47,23 @@ export default {
     },
     submit() {
       return this.s.submit
+    },
+    itemHasRequired() {
+      return this.activeItem.required !== undefined
+    },
+    itemIsRequired() {
+      return this.activeItem.required
+    },
+    buttonNextText() {
+      return (!this.s.activeItemValid && (this.itemHasRequired && !this.itemIsRequired)) ? 'Skip' : 'Next'
+    },
+    hideNext() {
+      return (!this.s.activeItemValid && (this.itemIsRequired || !this.itemHasRequired)) || this.automaticNext
     }
   },
   watch: {
     submit(submit) {
-      if (!submit) {
+      if (!submit && !this.isPreview()) {
         return
       }
       const duration = Math.round((new Date().getTime() - this.s.initDate.getTime()) / 1000)

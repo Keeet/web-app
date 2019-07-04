@@ -1,7 +1,11 @@
 <template>
   <div class="survey-item-preference-test">
     <div v-if="!response.started" class="survey-item-preference-test-button">
-      <ButtonText text="Click to view images" @click="$store.commit('surveyForm/startUsabilityTest')" />
+      <ButtonText
+        text="Click to view images"
+        :bg-color="s.color"
+        @click="$store.commit('surveyForm/startUsabilityTest')"
+      />
     </div>
     <div class="survey-item-preference-test-content" :class="{ blur: !response.started }">
       <div v-show="!response.sliderActive" class="survey-item-preference-test-gallery">
@@ -21,6 +25,7 @@
             :per-page="1"
             :min-swipe-distance="50"
             :navigate-to="activeSliderItem"
+            :pagination-active-color="s.color"
             @page-change="carouselChange"
           >
             <slide
@@ -49,6 +54,7 @@
               <ButtonText
                 text="Choose this one"
                 no-margin
+                :bg-color="s.color"
                 @click="selectImage"
               />
             </div>
@@ -77,6 +83,9 @@ export default {
     }
   },
   computed: {
+    s() {
+      return this.$store.state.survey
+    },
     item() {
       return this.$store.getters['surveyForm/activeItem']
     },

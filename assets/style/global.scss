@@ -4,8 +4,12 @@ body {
   margin: 0;
   background-color: $grey-light;
   font-family: 'Roboto', sans-serif, Arial;
-  font-size: 15px;
+  font-size: 14px;
   color: $grey-dark;
+
+  @media #{$sm} {
+    font-size: 15px;
+  }
 }
 
 a {

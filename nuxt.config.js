@@ -52,7 +52,6 @@ module.exports = {
     '~/plugins/icons',
     '~/plugins/directives',
     '~/plugins/helpers',
-    '~/plugins/dragScroll',
     { src: '~/plugins/timeago', ssr: false },
     { src: '~/plugins/vueDraggable', ssr: false },
     { src: '~/plugins/vueCarousel', ssr: false },

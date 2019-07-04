@@ -9,7 +9,11 @@
     <div class="survey-step-body">
       <slot />
     </div>
-    <div v-if="buttonText" class="survey-step-button" :class="{ buttonDisabled }">
+    <div
+      v-if="buttonText"
+      class="survey-step-button"
+      :class="[{ buttonDisabled }, activeRootItem ? activeRootItem.type : '']"
+    >
       <div class="survey-step-button-inner">
         <a v-if="buttonLink" :href="buttonLink">
           <ButtonText
@@ -55,6 +59,9 @@ export default {
         ...this.$store.state.survey,
         form: this.$store.state.surveyForm
       }
+    },
+    activeRootItem() {
+      return this.$store.getters['surveyForm/activeRootItem']
     }
   }
 }

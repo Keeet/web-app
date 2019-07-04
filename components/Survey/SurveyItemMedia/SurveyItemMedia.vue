@@ -15,11 +15,8 @@
       @load="imagesLoaded"
     >
     <div
-      v-dragscroll
       class="survey-item-media-img-wrapper"
       :class="{ scrollable }"
-      @dragscrollstart="dragScrollStart"
-      @dragscrollend="dragScrollEnd"
     >
       <div class="survey-item-media-img-inner">
         <img
@@ -78,7 +75,6 @@ export default {
       scrollPosition: 0,
       calculatedOverlayCoordinates: null,
       overlayOverflow: false,
-      onDrag: false,
       ...MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES
     }
   },
@@ -127,17 +123,9 @@ export default {
       const image = this.getScrollableFrame().querySelector('.survey-item-media-img')
       const x = (event.pageX - offsetLeft(image)) / image.offsetWidth
       const y = (event.pageY - offsetTop(image) + this.scrollPosition) / image.offsetHeight
-      if (!this.onDrag && !this.blur) {
+      if (!this.blur) {
         this.$emit('click', { x, y })
       }
-    },
-    dragScrollStart() {
-      this.onDrag = true
-    },
-    dragScrollEnd() {
-      window.setTimeout(() => {
-        this.onDrag = false
-      }, 100)
     },
     calculateOverlayCoordinates() {
       if (!this.overlayCoordinates) {

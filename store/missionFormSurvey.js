@@ -100,7 +100,7 @@ const defaultStateItem = {
   },
   FIVE_SECOND_TEST: {
     type: FIVE_SECOND_TEST,
-    duration: 10,
+    duration: 5,
     imageMediaId: null,
     deviceFrame: NO_FRAME,
     followUps: []
@@ -143,6 +143,9 @@ export const mutations = {
   },
   setColor(state, color) {
     state.color = color
+  },
+  resetColor(state) {
+    state.color = defaultState.color
   },
   setWelcomeTitle(state, title) {
     state.welcomeTitle = title
@@ -223,7 +226,11 @@ export const mutations = {
   },
   changeItemFollowUp(state, { type, itemIndex, followUpIndex }) {
     const items = state.items.slice()
-    items[itemIndex].followUps[followUpIndex] = getDefaultItem(type)
+    const followUps = items[itemIndex].followUps
+    followUps[followUpIndex] = {
+      ...getDefaultItem(type),
+      text: followUps[followUpIndex].text
+    }
     state.items = items
   },
   deleteItemFollowUp(state, { itemIndex, followUpIndex }) {

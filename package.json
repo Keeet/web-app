@@ -36,7 +36,6 @@
     "uuid": "latest",
     "vue-carousel": "0.18.0",
     "vue-color": "2.7.0",
-    "vue-dragscroll": "^1.10.0",
     "vue-slider-component": "^3.0.31",
     "vue-timeago": "5.1.2",
     "vuedraggable": "^2.21.0"

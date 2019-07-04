@@ -1,7 +1,11 @@
 <template>
   <div class="survey-item-five-second-test">
     <div v-if="!response.started" class="survey-item-five-second-test-button">
-      <ButtonText text="Click to view image" @click="startTest" />
+      <ButtonText
+        text="Click to view image"
+        :bg-color="s.color"
+        @click="startTest"
+      />
     </div>
     <SurveyItemMedia
       :image="item.image"
@@ -18,6 +22,9 @@ export default {
   name: 'SurveyItemFiveSecondTest',
   components: { SurveyItemMedia, ButtonText },
   computed: {
+    s() {
+      return this.$store.state.survey
+    },
     item() {
       return this.$store.getters['surveyForm/activeItem']
     },

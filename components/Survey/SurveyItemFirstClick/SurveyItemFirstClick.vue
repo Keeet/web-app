@@ -1,7 +1,11 @@
 <template>
   <div class="survey-item-first-click">
     <div v-if="!response.started" class="survey-item-first-click-button">
-      <ButtonText text="Click to view image" @click="$store.commit('surveyForm/startUsabilityTest')" />
+      <ButtonText
+        text="Click to view image"
+        :bg-color="s.color"
+        @click="$store.commit('surveyForm/startUsabilityTest')"
+      />
     </div>
     <SurveyItemMedia
       :image="item.image"
@@ -12,10 +16,22 @@
     >
       <template slot="overlay">
         <div class="survey-item-first-click-selected">
-          <div class="survey-item-first-click-selected-dot" />
+          <div
+            class="survey-item-first-click-selected-dot"
+            :style="{ backgroundColor: s.color }"
+          />
           <div v-if="!response.confirmed" class="survey-item-first-click-selected-box">
-            <ButtonText text="Confirm click" no-margin @click="confirmCoordinates" />
-            <p class="survey-item-first-click-selected-box-cancel" @click="unselectCoordinates">
+            <ButtonText
+              text="Confirm click"
+              no-margin
+              :bg-color="s.color"
+              @click="confirmCoordinates"
+            />
+            <p
+              class="survey-item-first-click-selected-box-cancel"
+              :style="{ color: s.color }"
+              @click="unselectCoordinates"
+            >
               Cancel
             </p>
           </div>
@@ -32,6 +48,9 @@ export default {
   name: 'SurveyItemFirstClick',
   components: { ButtonText, SurveyItemMedia },
   computed: {
+    s() {
+      return this.$store.state.survey
+    },
     item() {
       return this.$store.getters['surveyForm/activeItem']
     },

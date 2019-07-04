@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import uuidv4 from 'uuid'
 import { MISSION_SURVEY_ITEMS } from '../../constants'
 import { scrollToTopId } from '../../../utils/scrollUtils'
 import MissionCreateSurveyDetails from '../MissionCreateSurveyDetails/MissionCreateSurveyDetails'
@@ -52,6 +53,11 @@ export default {
     survey() {
       return this.s.survey
     },
+    surveyJSON() {
+      // eslint-disable-next-line no-console
+      console.log('test')
+      return JSON.stringify(this.survey)
+    },
     items() {
       return this.survey.items
     },
@@ -60,10 +66,7 @@ export default {
     }
   },
   watch: {
-    survey() {
-      this.setPreview()
-    },
-    items() {
+    surveyJSON() {
       this.setPreview()
     }
   },
@@ -73,7 +76,15 @@ export default {
       const urls = this.$store.state.dropzoneUploads
       survey.welcomeLogoId = survey.welcomeLogoId ? urls[survey.welcomeLogoId] : null
       survey.closingLogoId = survey.closingLogoId ? urls[survey.closingLogoId] : null
-      survey.items.forEach((item) => {
+      survey.items.forEach((item, x) => {
+        item.id = uuidv4()
+        item.index = x
+        if (item.followUps) {
+          item.followUps.forEach((followUp, y) => {
+            followUp.id = uuidv4()
+            followUp.index = y
+          })
+        }
         item.image = item.imageMediaId ? urls[item.imageMediaId] : null
         item.images = item.imageMediaIds ? item.imageMediaIds.map(id => ({ url: urls[id] })) : null
       })

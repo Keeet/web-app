@@ -159,6 +159,9 @@ export default {
       this.$store.commit(this.mutations.switchCustomize)
       if (!this.sValues.opened) {
         this.$store.commit(this.mutations.reset)
+        if (!this.s.customizeWelcome && !this.s.customizeClosing) {
+          this.$store.commit('missionFormSurvey/resetColor')
+        }
       }
     }
   }

@@ -17,7 +17,7 @@
       <div class="survey-item-left-inner">
         <SurveyItemDesignQuestion
           v-if="rootItem.type === DESIGN_QUESTION"
-          @click="twoColumnLayoutFullScreen = true"
+          @click="twoColumnLayoutFullScreen = !twoColumnLayoutFullScreen"
         />
       </div>
     </div>
@@ -25,22 +25,24 @@
       class="survey-item-body"
       :class="{ twoColumnLayout, twoColumnLayoutFullScreen }"
     >
-      <div class="survey-item-body-title">
-        <h2 class="survey-item-body-title-headline">
-          {{ headline }}
-        </h2>
-        <p v-if="subtitle" class="survey-item-body-title-subtitle">
-          {{ subtitle }}
-        </p>
+      <div class="survey-item-body-inner">
+        <div class="survey-item-body-title">
+          <h2 class="survey-item-body-title-headline">
+            {{ headline }}
+          </h2>
+          <p v-if="subtitle" class="survey-item-body-title-subtitle">
+            {{ subtitle }}
+          </p>
+        </div>
+        <SurveyItemText v-if="[SHORT_TEXT, LONG_TEXT].includes(item.type)" />
+        <SurveyItemSelect v-else-if="[SINGLE_SELECT, MULTI_SELECT].includes(item.type)" />
+        <SurveyItemLinearScale v-else-if="item.type === LINEAR_SCALE" />
+        <SurveyItemLikert v-else-if="item.type === LIKERT" />
+        <SurveyItemFirstClick v-else-if="item.type === FIRST_CLICK" />
+        <SurveyItemFiveSecondTest v-else-if="item.type === FIVE_SECOND_TEST" />
+        <SurveyItemPreferenceTest v-else-if="item.type === PREFERENCE_TEST" />
+        <SurveyItemInstruction v-else-if="item.type === INSTRUCTION" />
       </div>
-      <SurveyItemText v-if="[SHORT_TEXT, LONG_TEXT].includes(item.type)" />
-      <SurveyItemSelect v-else-if="[SINGLE_SELECT, MULTI_SELECT].includes(item.type)" />
-      <SurveyItemLinearScale v-else-if="item.type === LINEAR_SCALE" />
-      <SurveyItemLikert v-else-if="item.type === LIKERT" />
-      <SurveyItemFirstClick v-else-if="item.type === FIRST_CLICK" />
-      <SurveyItemFiveSecondTest v-else-if="item.type === FIVE_SECOND_TEST" />
-      <SurveyItemPreferenceTest v-else-if="item.type === PREFERENCE_TEST" />
-      <SurveyItemInstruction v-else-if="item.type === INSTRUCTION" />
     </div>
   </div>
 </template>
@@ -107,6 +109,9 @@ export default {
         return this.response.sliderActive
           ? MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION[this.item.type][1]
           : MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION[this.item.type][0]
+      }
+      if (this.item.type === MULTI_SELECT) {
+        return 'You can choose one or more'
       }
       return null
     },

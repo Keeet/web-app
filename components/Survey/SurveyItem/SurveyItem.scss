@@ -42,10 +42,14 @@
       left: 0;
       top: 0;
       z-index: 2;
-      display: flex;
       align-items: center;
       padding: 10px;
       background-color: $grey-mid-light;
+      display: none;
+
+      @media #{$sm} {
+        display: flex;
+      }
 
       &:hover {
         cursor: pointer;
@@ -63,9 +67,6 @@
   }
 
   .survey-item-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 
     &.twoColumnLayout {
       position: absolute;
@@ -76,7 +77,9 @@
       overflow-y: auto;
       background-color: #fff;
       box-shadow: 0 -1px 8px 0 rgba(0, 0, 0, 0.2);
+      border-radius: 5px 5px 0 0;
       transition: all .5s;
+      padding: 20px 0;
 
       &.twoColumnLayoutFullScreen {
         bottom: -50%;
@@ -114,6 +117,13 @@
         margin: -10px auto 0;
         color: $grey-mid-dark;
       }
+    }
+
+    .survey-item-body-inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100%;
     }
   }
 }

@@ -2,9 +2,18 @@ import { isAuthUrl, isExternalUrl } from '../utils/urlUtils'
 
 export default (context) => {
   fetchUserIfLoggedIn(context)
+  // TODO: enable again
   // window.setInterval(() => {
   //   fetchUserIfLoggedIn(context)
   // }, 10000)
+
+  setCssVh()
+  window.addEventListener('resize', setCssVh)
+}
+
+function setCssVh() {
+  const vh = window.innerHeight * 0.01
+  document.documentElement.style.setProperty('--vh', `${vh}px`)
 }
 
 const SESSION_USER_ROLE = 'SESSION_USER_ROLE'
