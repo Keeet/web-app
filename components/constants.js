@@ -201,3 +201,27 @@ export const MEDIA_UPLOAD_PATH = {
   DEFAULT: '/mediaFiles/input',
   MISSION: '/mediaFiles/mission'
 }
+
+export const BROWSER = {
+  SAFARI: 'SAFARI',
+  CHROME: 'CHROME',
+  EDGE: 'EDGE',
+  IE: 'IE',
+  FIREFOX: 'FIREFOX',
+  OTHER: 'OTHER'
+}
+
+export const OS = {
+  MAC: 'MAC',
+  WINDOWS: 'WINDOWS',
+  LINUX: 'LINUX',
+  ANDROID: 'ANDROID',
+  IOS: 'IOS',
+  OTHER: 'OTHER'
+}
+
+export const DEVICE_TYPE = {
+  SMARTPHONE: 'SMARTPHONE',
+  TABLET: 'TABLET',
+  DESKTOP: 'DESKTOP'
+}

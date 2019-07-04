@@ -9,7 +9,8 @@ const OPERATIONS = {
   UPSERT_PROJECT: 'UPSERT_PROJECT',
   CREATE_MISSION: 'CREATE_MISSION',
   UPDATE_MISSION: 'UPDATE_MISSION',
-  CREATE_MISSION_INSIGHT_LINK: 'CREATE_MISSION_INSIGHT_LINK'
+  CREATE_MISSION_INSIGHT_LINK: 'CREATE_MISSION_INSIGHT_LINK',
+  SUBMIT_SURVEY: 'SUBMIT_SURVEY'
 }
 
 export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
@@ -259,6 +260,22 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
             url
           }
         }).then(handleRes).catch(handleError)
+      })
+    },
+    submitSurvey({ missionId, responses, duration, browser, deviceType, os }) {
+      return new Promise((resolve) => {
+        $axios({
+          method: 'post',
+          url: `/public/missions/${missionId}`,
+          data: {
+            missionId,
+            responses,
+            duration,
+            browser,
+            deviceType,
+            os
+          }
+        }).then(resolve)
       })
     }
   })

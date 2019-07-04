@@ -4,7 +4,8 @@
     <SurveyCustomScreen v-else-if="s.activeClosing" type="CLOSING" />
     <SurveyStep
       v-else-if="$store.getters['surveyForm/activeItem']"
-      :button-disabled="!s.activeItemValid || automaticNext"
+      :button-text="(!s.activeItemValid && !activeItem.required) ? 'Skip' : 'Next'"
+      :button-disabled="(!s.activeItemValid && activeItem.required) || automaticNext"
     >
       <SurveyItem />
     </SurveyStep>
@@ -20,7 +21,7 @@
 </template>
 
 <script>
-import { MISSION_SURVEY_USABILITY_LAB_ITEMS } from '../constants'
+import { MISSION_SURVEY_USABILITY_LAB_ITEMS, BROWSER, OS, DEVICE_TYPE } from '../constants'
 import OverlayModal from '../_shared/OverlayModal/OverlayModal'
 import SurveyCustomScreen from './SurveyCustomScreen/SurveyCustomScreen'
 import SurveyStep from './SurveyStep/SurveyStep'
@@ -43,6 +44,30 @@ export default {
     },
     automaticNext() {
       return this.activeItem.type === MISSION_SURVEY_USABILITY_LAB_ITEMS.FIVE_SECOND_TEST
+    },
+    submit() {
+      return this.s.submit
+    }
+  },
+  watch: {
+    submit(submit) {
+      if (!submit) {
+        return
+      }
+      const duration = Math.round((new Date().getTime() - this.s.initDate.getTime()) / 1000)
+      const { browser, device, os } = new this.$uaParser().getResult()
+      const uaConstants = this.$uaParserConstants
+      const ua = {
+        browser: uaConstants.BROWSER[browser.name] || BROWSER.OTHER,
+        deviceType: uaConstants.DEVICE_TYPE[device.type] || DEVICE_TYPE.DESKTOP,
+        os: uaConstants.OS[os.name] || OS.OTHER
+      }
+      this.$push.submitSurvey({
+        missionId: this.$store.state.survey.id,
+        ...this.s,
+        ...ua,
+        duration
+      })
     }
   },
   created() {

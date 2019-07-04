@@ -36,9 +36,6 @@ export default {
       return this.$store.getters['surveyForm/activeResponse']
     },
     error() {
-      if (!this.item.required) {
-        return null
-      }
       if (this.multiSelect) {
         return this.response.selected.length > 0 ? null : 'required'
       } else {

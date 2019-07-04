@@ -6,9 +6,7 @@
       :value="response.answerText"
       mutation="surveyForm/setAnswerText"
       :textarea="item.type === LONG_TEXT"
-      :error="answerTextError"
-      dispatch-error="surveyForm/handleValidationError"
-      no-validate-before-destroy
+      :error="item.required ? answerTextError : null"
       :disable-error="!showError"
       @focusout="showError = true"
     />
@@ -35,12 +33,18 @@ export default {
       return this.$store.getters['surveyForm/activeResponse']
     },
     answerTextError() {
-      return !this.item.required || this.response.answerText !== '' ? null : 'required'
+      return this.response.answerText !== '' ? null : 'required'
     }
   },
   watch: {
     item() {
       this.showError = false
+    },
+    answerTextError: {
+      immediate: true,
+      handler(error) {
+        this.$store.dispatch('surveyForm/handleValidationError', { error })
+      }
     }
   }
 }

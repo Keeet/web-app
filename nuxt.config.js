@@ -60,7 +60,8 @@ module.exports = {
     { src: '~/plugins/ellipsis.js', ssr: false },
     { src: '~/plugins/missionCreateRecruitCalendar.js', ssr: false },
     { src: '~/plugins/twilioHelper.js', ssr: false },
-    { src: '~/plugins/nuxtClientInit.js', ssr: false }
+    { src: '~/plugins/nuxtClientInit.js', ssr: false },
+    { src: '~/plugins/uaParser.js', ssr: false }
   ],
 
   modules: [

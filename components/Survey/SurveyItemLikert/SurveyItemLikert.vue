@@ -41,7 +41,7 @@ export default {
       return MISSION_SURVEY_ITEM_LIKERT_OPTIONS[this.item.answerType]
     },
     error() {
-      return !this.item.required || this.response.value !== null ? null : 'required'
+      return this.response.value !== null ? null : 'required'
     }
   },
   watch: {

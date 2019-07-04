@@ -32,6 +32,7 @@
     "nuxt-dropzone": "^1.0.2",
     "nuxt-rfg-icon": "0.5.0",
     "twilio-video": "^2.0.0-beta9",
+    "ua-parser-js": "^0.7.20",
     "uuid": "latest",
     "vue-carousel": "0.18.0",
     "vue-color": "2.7.0",

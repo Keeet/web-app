@@ -42,7 +42,7 @@ export default {
       return range(this.item.startValue, this.item.endValue)
     },
     error() {
-      return !this.item.required || this.response.value !== null ? null : 'required'
+      return this.response.value !== null ? null : 'required'
     }
   },
   watch: {

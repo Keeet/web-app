@@ -15,7 +15,8 @@ const {
   FIVE_SECOND_TEST,
   DESIGN_QUESTION,
   QUESTION_LIST,
-  PREFERENCE_TEST
+  PREFERENCE_TEST,
+  INSTRUCTION
 } = MISSION_SURVEY_USABILITY_LAB_ITEMS
 
 const SKIP_ITEMS = [QUESTION_LIST, DESIGN_QUESTION]
@@ -83,7 +84,9 @@ const defaultState = {
   activeItemValid: false,
   progress: 0,
   duration: null,
-  responses: []
+  responses: [],
+  initDate: null,
+  submit: false
 }
 
 export const state = () => (defaultState)
@@ -120,6 +123,7 @@ export const mutations = {
       state[key] = defaultState[key]
     }
     state.items = items
+    state.initDate = new Date()
   },
   hideWelcome(state) {
     state.activeWelcome = false
@@ -130,9 +134,13 @@ export const mutations = {
     } else {
       state.activeItemIndex++
     }
+    const item = state.items[state.activeItemIndex]
+    if (item.type === INSTRUCTION) {
+      return
+    }
     state.activeFollowUpIndex = null
     setResponse(state, res => res)
-    if (SKIP_ITEMS.includes(state.items[state.activeItemIndex].type)) {
+    if (SKIP_ITEMS.includes(item.type)) {
       state.activeFollowUpIndex = 0
       setResponse(state, res => res)
     }
@@ -144,6 +152,16 @@ export const mutations = {
       state.activeFollowUpIndex++
     }
     setResponse(state, res => res)
+  },
+  removeResponse(state, id) {
+    const responses = state.responses.slice()
+    responses.filter((r) => {
+      if (r.followUps) {
+        r.followUps = r.followUps.filter(followUp => followUp.id !== id)
+      }
+      return r.id !== id
+    })
+    state.responses = responses
   },
   showClosing(state) {
     state.activeClosing = true
@@ -247,11 +265,14 @@ export const mutations = {
         selectedImageId
       }
     })
+  },
+  submit(state) {
+    state.submit = true
   }
 }
 
 export const actions = {
-  nextStep({ state, commit }) {
+  nextStep({ getters, state, commit }) {
     const itemIndex = state.activeItemIndex
     const followUpIndex = state.activeFollowUpIndex
 
@@ -267,12 +288,18 @@ export const actions = {
       ? followUpIndex !== null ? activeItem.followUps[followUpIndex + 1] : activeItem.followUps[0]
       : undefined
 
+    // remove skipped (invalid) responses
+    if (!state.activeItemValid) {
+      commit('removeResponse', getters.activeItem.id)
+    }
+
     if (nextFollowUp) {
       commit('nextFollowUp')
     } else if (nextItem) {
       commit('nextItem')
     } else {
       commit('showClosing')
+      commit('submit')
     }
 
     commit('setActiveItemValid', false)
