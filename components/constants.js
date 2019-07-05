@@ -72,6 +72,8 @@ export const MISSION_SURVEY_ITEM_LABELS = {
   LIKERT: 'Likert'
 }
 export const MISSION_SURVEY_SELECT_MIN_ITEMS = 2
+// to change the "other-label" it is required to update all existing
+// "other-responses" in the database accordingly (label must always match db-value)
 export const MISSION_SURVEY_SELECT_OTHER_LABEL = 'Other'
 export const MISSION_SURVEY_ITEM_LIKERT = {
   AGREEMENT: 'AGREEMENT',

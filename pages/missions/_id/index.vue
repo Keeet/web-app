@@ -48,21 +48,26 @@ export default {
       if (IS_RECRUIT_INSIGHT) {
         fetchCfg.push({ name: 'MISSION_INSIGHTS', id })
       }
-      if (IS_SURVEY_RESULTS || IS_SURVEY_SHARE) {
-        fetchCfg.push({ name: 'SURVEY', id })
-      }
     }
-    return $fetch(fetchCfg).then(() => {
-      const missionType = store.state.mission.type
-      if (IS_RECRUIT_OVERVIEW || (IS_INDEX && [IN_HOUSE, REMOTE].includes(missionType))) {
-        store.commit('missionPage/showRecruitOverview')
-      } else if (IS_RECRUIT_INSIGHT) {
-        store.commit('missionPage/showRecruitInsights')
-      } else if (IS_SURVEY_RESULTS || (IS_INDEX && [SURVEY, USABILITY_LAB].includes(missionType))) {
-        store.commit('missionPage/showSurveyResults')
-      } else if (IS_SURVEY_SHARE) {
-        store.commit('missionPage/showSurveyShare')
-      }
+    return new Promise((resolve) => {
+      $fetch(fetchCfg).then(() => {
+        const missionType = store.state.mission.type
+        const IS_SURVEY = [SURVEY, USABILITY_LAB].includes(missionType)
+        if (IS_RECRUIT_OVERVIEW || (IS_INDEX && [IN_HOUSE, REMOTE].includes(missionType))) {
+          store.commit('missionPage/showRecruitOverview')
+        } else if (IS_RECRUIT_INSIGHT) {
+          store.commit('missionPage/showRecruitInsights')
+        } else if (IS_SURVEY_RESULTS || (IS_INDEX && IS_SURVEY)) {
+          store.commit('missionPage/showSurveyResults')
+        } else if (IS_SURVEY_SHARE) {
+          store.commit('missionPage/showSurveyShare')
+        }
+        if (IS_SURVEY) {
+          $fetch([{ name: 'SURVEY', id }]).then(resolve)
+          return
+        }
+        resolve()
+      })
     })
   }
 }

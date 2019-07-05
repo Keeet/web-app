@@ -18,6 +18,7 @@
           :result="result"
         >
           <MissionSurveyResultsItemText v-if="[SHORT_TEXT, LONG_TEXT].includes(result.type)" :result="result" />
+          <MissionSurveyResultsItemBarsHorizontal v-else-if="[SINGLE_SELECT, MULTI_SELECT, LIKERT].includes(result.type)" :result="result" />
         </MissionSurveyResultsBox>
       </div>
     </div>
@@ -28,10 +29,12 @@
 import MissionSurveyResultsBox from '../MissionSurveyResultsBox/MissionSurveyResultsBox'
 import MissionSurveyResultsItemText from '../MissionSurveyResultsItemText/MissionSurveyResultsItemText'
 import { MISSION_SURVEY_ITEMS } from '../../constants'
+import MissionSurveyResultsItemBarsHorizontal
+  from '../MissionSurveyResultsItemBarsHorizontal/MissionSurveyResultsItemBarsHorizontal'
 
 export default {
   name: 'MissionSurveyResults',
-  components: { MissionSurveyResultsItemText, MissionSurveyResultsBox },
+  components: { MissionSurveyResultsItemBarsHorizontal, MissionSurveyResultsItemText, MissionSurveyResultsBox },
   data() {
     return { ...MISSION_SURVEY_ITEMS }
   },
