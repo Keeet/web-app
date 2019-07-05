@@ -19,6 +19,7 @@
         >
           <MissionSurveyResultsItemText v-if="[SHORT_TEXT, LONG_TEXT].includes(result.type)" :result="result" />
           <MissionSurveyResultsItemBarsHorizontal v-else-if="[SINGLE_SELECT, MULTI_SELECT, LIKERT].includes(result.type)" :result="result" />
+          <MissionSurveyResultsItemBarsVertical v-else-if="result.type === LINEAR_SCALE" :result="result" />
         </MissionSurveyResultsBox>
       </div>
     </div>
@@ -31,10 +32,12 @@ import MissionSurveyResultsItemText from '../MissionSurveyResultsItemText/Missio
 import { MISSION_SURVEY_ITEMS } from '../../constants'
 import MissionSurveyResultsItemBarsHorizontal
   from '../MissionSurveyResultsItemBarsHorizontal/MissionSurveyResultsItemBarsHorizontal'
+import MissionSurveyResultsItemBarsVertical
+  from '../MissionSurveyResultsItemBarsVertical/MissionSurveyResultsItemBarsVertical'
 
 export default {
   name: 'MissionSurveyResults',
-  components: { MissionSurveyResultsItemBarsHorizontal, MissionSurveyResultsItemText, MissionSurveyResultsBox },
+  components: { MissionSurveyResultsItemBarsVertical, MissionSurveyResultsItemBarsHorizontal, MissionSurveyResultsItemText, MissionSurveyResultsBox },
   data() {
     return { ...MISSION_SURVEY_ITEMS }
   },
