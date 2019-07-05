@@ -4,12 +4,11 @@ export default function ({ store, redirect, route: { path }, query: { invitation
       return redirect('/personas')
     }
   }
-  // TODO: uncomment
-  // if (path === '/missions/create') {
-  //   if (!store.state.missionForm.init) {
-  //     return redirect('/')
-  //   }
-  // }
+  if (path === '/missions/create') {
+    if (!store.state.missionForm.init) {
+      return redirect('/')
+    }
+  }
 
   // invitationId is passed to login screen using the redirect url -> _invitationId.vue
   // this rule removes the query-param again after successful login
