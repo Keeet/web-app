@@ -30,7 +30,7 @@
           <template slot="selected">
             <div class="mission-create-survey-item-follow-up-question-type-item selected">
               <div class="mission-create-survey-item-follow-up-question-type-item-icon" :class="item.type">
-                <MissionCreateSurveyIcon :type="followUp.type" />
+                <MissionSurveyIcon :type="followUp.type" />
               </div>
               <p class="mission-create-survey-item-follow-up-question-type-item-label">
                 {{ MISSION_SURVEY_ITEM_LABELS[followUp.type] }}
@@ -40,7 +40,7 @@
           <template v-for="(type, x) in questionTypes" :slot="type">
             <div :key="x" class="mission-create-survey-item-follow-up-question-type-item">
               <div class="mission-create-survey-item-follow-up-question-type-item-icon" :class="item.type">
-                <MissionCreateSurveyIcon :type="type" />
+                <MissionSurveyIcon :type="type" />
               </div>
               <p class="mission-create-survey-item-follow-up-question-type-item-label">
                 {{ MISSION_SURVEY_ITEM_LABELS[type] }}
@@ -82,20 +82,20 @@
 import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_ITEM_LABELS, MISSION_SURVEY_USABILITY_LAB_FOLLOW_UP_REQUIRED } from '../../constants'
 import MissionCreateSurveyItemQuestion from '../MissionCreateSurveyItemQuestion/MissionCreateSurveyItemQuestion'
 import SelectCustom from '../../_shared/SelectCustom/SelectCustom'
-import MissionCreateSurveyIcon from '../MissionCreateSurveyIcon/MissionCreateSurveyIcon'
 import MissionCreateSurveyItemLinearScaleQuestion
   from '../MissionCreateSurveyItemLinearScaleQuestion/MissionCreateSurveyItemLinearScaleQuestion'
 import MissionCreateSurveyItemSelectQuestion
   from '../MissionCreateSurveyItemSelectQuestion/MissionCreateSurveyItemSelectQuestion'
 import MissionCreateSurveyItemLikertQuestion
   from '../MissionCreateSurveyItemLikertQuestion/MissionCreateSurveyItemLikertQuestion'
+import MissionSurveyIcon from '../../_shared/MissionSurveyIcon/MissionSurveyIcon'
 export default {
   name: 'MissionCreateSurveyItemFollowUpQuestion',
   components: {
+    MissionSurveyIcon,
     MissionCreateSurveyItemLikertQuestion,
     MissionCreateSurveyItemSelectQuestion,
     MissionCreateSurveyItemLinearScaleQuestion,
-    MissionCreateSurveyIcon,
     SelectCustom,
     MissionCreateSurveyItemQuestion },
   props: {

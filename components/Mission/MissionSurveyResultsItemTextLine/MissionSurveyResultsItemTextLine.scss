@@ -1,0 +1,29 @@
+.mission-survey-results-item-text-line {
+  position: relative;
+  padding: 15px 0;
+  border-bottom: 1px solid $grey-mid-light;
+  max-height: 90px;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  &.cut:not(.maximized):hover {
+    cursor: pointer;
+  }
+
+  &.maximized {
+    max-height: none;
+  }
+
+  &.last {
+    border-bottom: none;
+  }
+
+  .mission-survey-results-item-text-line-text-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-image: linear-gradient(to top, #fff 20%, transparent 100%)
+  }
+}

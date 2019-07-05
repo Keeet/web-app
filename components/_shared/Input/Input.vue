@@ -98,7 +98,7 @@ export default {
     }
   },
   data() {
-    return { id: uuidv4() }
+    return { id: null }
   },
   computed: {
     message: {
@@ -126,6 +126,9 @@ export default {
         }
       }
     }
+  },
+  mounted() {
+    this.id = uuidv4()
   },
   beforeDestroy() {
     if (this.dispatchError) {

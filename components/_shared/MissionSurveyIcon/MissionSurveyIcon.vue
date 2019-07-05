@@ -17,7 +17,7 @@
 import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS } from '../../constants'
 
 export default {
-  name: 'MissionCreateSurveyIcon',
+  name: 'MissionSurveyIcon',
   props: {
     type: {
       type: String,

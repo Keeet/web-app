@@ -20,7 +20,7 @@ import uuidv4 from 'uuid/v4'
 export default {
   name: 'MissionCreateRecruitCalendar',
   data() {
-    return { validationId: uuidv4() }
+    return { validationId: null }
   },
   computed: {
     s() {
@@ -41,6 +41,9 @@ export default {
         this.$store.dispatch('missionForm/handleValidationError', { id: this.validationId, error })
       }
     }
+  },
+  mounted() {
+    this.id = uuidv4()
   },
   beforeDestroy() {
     this.$store.dispatch('missionForm/handleValidationError', { id: this.validationId, error: null })

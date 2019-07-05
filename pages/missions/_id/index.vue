@@ -48,6 +48,9 @@ export default {
       if (IS_RECRUIT_INSIGHT) {
         fetchCfg.push({ name: 'MISSION_INSIGHTS', id })
       }
+      if (IS_SURVEY_RESULTS || IS_SURVEY_SHARE) {
+        fetchCfg.push({ name: 'SURVEY', id })
+      }
     }
     return $fetch(fetchCfg).then(() => {
       const missionType = store.state.mission.type

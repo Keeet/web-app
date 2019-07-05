@@ -3,7 +3,7 @@
     <div class="mission-create-survey-summary-item-icon" :class="type">
       <img v-if="type === TYPES.WELCOME" src="../../../assets/img/welcomeEmoji.png">
       <img v-else-if="type === TYPES.CLOSING" src="../../../assets/img/thankYouEmoji.png">
-      <MissionCreateSurveyIcon v-else :type="type" />
+      <MissionSurveyIcon v-else :type="type" />
     </div>
     <p class="mission-create-survey-summary-item-text">
       <span v-if="index !== null">{{ index + 1 }}</span>
@@ -23,7 +23,7 @@ import {
   MISSION_SURVEY_ITEM_LABELS,
   MISSION_SURVEY_USABILITY_LAB_ITEM_LABELS
 } from '../../constants'
-import MissionCreateSurveyIcon from '../MissionCreateSurveyIcon/MissionCreateSurveyIcon'
+import MissionSurveyIcon from '../../_shared/MissionSurveyIcon/MissionSurveyIcon'
 
 const TYPES = {
   WELCOME: 'WELCOME',
@@ -34,7 +34,7 @@ const TYPES = {
 
 export default {
   name: 'MissionCreateSurveySummaryItem',
-  components: { MissionCreateSurveyIcon },
+  components: { MissionSurveyIcon },
   props: {
     type: {
       type: String,

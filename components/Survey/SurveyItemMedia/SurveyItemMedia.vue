@@ -69,7 +69,7 @@ export default {
   },
   data() {
     return {
-      id: uuidv4(),
+      id: null,
       root: null,
       scrollable: false,
       scrollPosition: 0,
@@ -84,10 +84,13 @@ export default {
     }
   },
   mounted() {
-    this.root = document.getElementById(this.id)
-    window.addEventListener('resize', this.onResize)
-    window.addEventListener('scroll', this.calculateOverlayCoordinates)
-    this.getScrollableFrame().addEventListener('scroll', this.onFrameScroll)
+    this.id = uuidv4()
+    this.$nextTick(function () {
+      this.root = document.getElementById(this.id)
+      window.addEventListener('resize', this.onResize)
+      window.addEventListener('scroll', this.calculateOverlayCoordinates)
+      this.getScrollableFrame().addEventListener('scroll', this.onFrameScroll)
+    })
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.onResize)

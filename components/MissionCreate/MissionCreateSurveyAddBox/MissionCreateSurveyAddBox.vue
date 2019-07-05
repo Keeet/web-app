@@ -46,7 +46,7 @@ export default {
     const { SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LIKERT, LINEAR_SCALE } = MISSION_SURVEY_ITEMS
     const { FIRST_CLICK, FIVE_SECOND_TEST, QUESTION_LIST, DESIGN_QUESTION, PREFERENCE_TEST, INSTRUCTION } = MISSION_SURVEY_USABILITY_LAB_ITEMS
     return {
-      id: uuidv4(),
+      id: null,
       SURVEY,
       USABILITY_LAB,
       SHORT_TEXT,
@@ -81,6 +81,9 @@ export default {
         this.$store.dispatch('missionForm/handleValidationError', { id: this.id, error })
       }
     }
+  },
+  mounted() {
+    this.id = uuidv4()
   },
   beforeDestroy() {
     this.$store.dispatch('missionForm/handleValidationError', { id: this.id, error: null })

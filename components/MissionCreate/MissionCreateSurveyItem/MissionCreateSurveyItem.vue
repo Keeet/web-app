@@ -7,12 +7,10 @@
           <div class="mission-create-survey-item-head-drag">
             <IconDragDrop />
           </div>
-          <div class="mission-create-survey-item-head-icon" :class="type">
-            <div class="mission-create-survey-item-head-icon-inner">
-              <MissionCreateSurveyIcon :type="type" />
-            </div>
-            <span>{{ index + 1 }}</span>
-          </div>
+          <MissionSurveyIconIndexed
+            :type="type"
+            :index="index + 1"
+          />
           <p class="mission-create-survey-item-head-title">
             {{ label }}
           </p>
@@ -42,15 +40,15 @@
 
 <script>
 import MissionCreateBox from '../MissionCreateBox/MissionCreateBox'
-import MissionCreateSurveyIcon from '../MissionCreateSurveyIcon/MissionCreateSurveyIcon'
 import { MISSIONS, MISSION_SURVEY_ITEM_LABELS, MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEM_LABELS } from '../../constants'
 import MissionCreateSurveyItemQuestion from '../MissionCreateSurveyItemQuestion/MissionCreateSurveyItemQuestion'
 import MissionCreateSurveyAdd from '../MissionCreateSurveyAdd/MissionCreateSurveyAdd'
 import MissionCreateSurveyItemFollowUp from '../MissionCreateSurveyItemFollowUp/MissionCreateSurveyItemFollowUp'
+import MissionSurveyIconIndexed from '../../_shared/MissionSurveyIconIndexed/MissionSurveyIconIndexed'
 
 export default {
   name: 'MissionCreateSurveyItem',
-  components: { MissionCreateSurveyItemFollowUp, MissionCreateSurveyAdd, MissionCreateSurveyItemQuestion, MissionCreateSurveyIcon, MissionCreateBox },
+  components: { MissionSurveyIconIndexed, MissionCreateSurveyItemFollowUp, MissionCreateSurveyAdd, MissionCreateSurveyItemQuestion, MissionCreateBox },
   props: {
     type: {
       type: String,

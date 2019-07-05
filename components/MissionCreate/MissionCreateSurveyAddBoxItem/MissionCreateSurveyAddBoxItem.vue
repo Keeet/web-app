@@ -1,7 +1,7 @@
 <template>
   <div class="mission-create-survey-add-box-item" @click="addItem">
     <div class="mission-create-survey-add-box-item-icon" :class="type">
-      <MissionCreateSurveyIcon :type="type" />
+      <MissionSurveyIcon :type="type" />
     </div>
     <div class="mission-create-survey-add-box-item-text">
       <p class="mission-create-survey-add-box-item-text-title">
@@ -16,7 +16,7 @@
 
 <script>
 import { MISSIONS, MISSION_SURVEY_ITEM_LABELS, MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEM_LABELS } from '../../constants'
-import MissionCreateSurveyIcon from '../MissionCreateSurveyIcon/MissionCreateSurveyIcon'
+import MissionSurveyIcon from '../../_shared/MissionSurveyIcon/MissionSurveyIcon'
 
 const DESCRIPTIONS = {
   SHORT_TEXT: 'Good for short answers, like names and what you had for lunch.',
@@ -35,7 +35,7 @@ const DESCRIPTIONS = {
 
 export default {
   name: 'MissionCreateSurveyAddBoxItem',
-  components: { MissionCreateSurveyIcon },
+  components: { MissionSurveyIcon },
   props: {
     type: {
       type: String,
