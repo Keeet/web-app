@@ -3,13 +3,15 @@
     <MissionRecruitSidebar v-if="isRecruit" />
     <MissionSurveySidebar v-if="isSurvey" />
     <div class="mission-body">
-      <NavUnderlined
-        :items="navItems"
-        :active-page="missionPage.activePage"
-        :disable-animation="missionPage.disableAnimation"
-      />
-      <MissionRecruit v-if="isRecruit" />
-      <MissionSurvey v-else-if="isSurvey" />
+      <div class="mission-body-inner">
+        <NavUnderlined
+          :items="navItems"
+          :active-page="missionPage.activePage"
+          :disable-animation="missionPage.disableAnimation"
+        />
+        <MissionRecruit v-if="isRecruit" />
+        <MissionSurvey v-else-if="isSurvey" />
+      </div>
     </div>
   </div>
 </template>
