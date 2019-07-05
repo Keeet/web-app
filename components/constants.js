@@ -142,27 +142,30 @@ export const MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION = {
   FIVE_SECOND_TEST: 'You will see the image for {{duration}} seconds',
   PREFERENCE_TEST: ['Click an image to zoom in', 'Click again to zoom out']
 }
-export const MISSION_PAGES = {
+export const MISSION_RECRUIT_PAGES = {
   OVERVIEW: 'OVERVIEW',
   INSIGHTS: 'INSIGHTS'
 }
-
-export const MISSION_INSIGHTS = {
+export const MISSION_RECRUIT_INSIGHTS = {
   RECORDING: 'RECORDING',
   LINK: 'LINK'
 }
-export const MISSION_INSIGHT_LABELS = {
+export const MISSION_RECRUIT_INSIGHT_LABELS = {
   RECORDING: 'Record'
 }
-export const MISSION_INSIGHT_LINKS = {
+export const MISSION_RECRUIT_INSIGHT_LINKS = {
   GENERIC: 'GENERIC',
   GOOGLE_DOCS: 'GOOGLE_DOCS',
   AIR_TABLE: 'AIR_TABLE'
 }
-export const MISSION_INSIGHT_LINK_LABELS = {
+export const MISSION_RECRUIT_INSIGHT_LINK_LABELS = {
   GENERIC: 'Link',
   GOOGLE_DOCS: 'Google Docs',
   AIR_TABLE: 'Airtable'
+}
+export const MISSION_SURVEY_PAGES = {
+  RESULTS: 'RESULTS',
+  SHARE: 'SHARE'
 }
 
 export const ACCOUNT_PAGES = {

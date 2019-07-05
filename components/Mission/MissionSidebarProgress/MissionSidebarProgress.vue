@@ -8,20 +8,22 @@
         {{ countCurrent }}
       </span>
       <span class="mission-sidebar-progress-count-total">
-        out of {{ countTotal }}
+        out of {{ countTotalFormatted }}
       </span>
     </p>
     <div class="mission-sidebar-progress-progress">
       <div
         class="mission-sidebar-progress-progress-done"
         :class="{ showProgress, noAnimation: missionPage.disableAnimation }"
-        :style="{ width: (countCurrent / countTotal * 100) + '%' }"
+        :style="{ width }"
       />
     </div>
   </div>
 </template>
 
 <script>
+import { decodeHTML } from '../../../utils/htmlUtils'
+
 export default {
   name: 'MissionSidebarProgress',
   props: {
@@ -35,7 +37,7 @@ export default {
     },
     countTotal: {
       type: Number,
-      required: true
+      default: null
     }
   },
   data() {
@@ -46,6 +48,18 @@ export default {
   computed: {
     missionPage() {
       return this.$store.state.missionPage
+    },
+    countTotalFormatted() {
+      if (this.countTotal === null && process.client) {
+        return decodeHTML('&infin;')
+      }
+      return this.countTotal
+    },
+    width() {
+      if (this.countTotal === null) {
+        return null
+      }
+      return (this.countCurrent / this.countTotal * 100) + '%'
     }
   },
   mounted() {

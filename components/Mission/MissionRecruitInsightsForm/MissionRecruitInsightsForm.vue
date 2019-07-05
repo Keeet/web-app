@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { MISSION_INSIGHT_LINKS } from '../../constants'
+import { MISSION_RECRUIT_INSIGHT_LINKS } from '../../constants'
 import OverlayModal from '../../_shared/OverlayModal/OverlayModal'
 import Input from '../../_shared/Input/Input'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
@@ -90,12 +90,12 @@ export default {
     },
     getLinkType(url) {
       if (url.includes('airtable.com')) {
-        return MISSION_INSIGHT_LINKS.AIR_TABLE
+        return MISSION_RECRUIT_INSIGHT_LINKS.AIR_TABLE
       }
       if (url.includes('google.com')) {
-        return MISSION_INSIGHT_LINKS.GOOGLE_DOCS
+        return MISSION_RECRUIT_INSIGHT_LINKS.GOOGLE_DOCS
       }
-      return MISSION_INSIGHT_LINKS.GENERIC
+      return MISSION_RECRUIT_INSIGHT_LINKS.GENERIC
     }
   }
 }

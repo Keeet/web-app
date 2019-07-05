@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { MISSION_INSIGHTS, MISSION_INSIGHT_LABELS, MISSION_INSIGHT_LINKS, MISSION_INSIGHT_LINK_LABELS } from '../../constants'
+import { MISSION_RECRUIT_INSIGHTS, MISSION_RECRUIT_INSIGHT_LABELS, MISSION_RECRUIT_INSIGHT_LINKS, MISSION_RECRUIT_INSIGHT_LINK_LABELS } from '../../constants'
 import { getDurationWithUnits } from '../../../utils/dateUtils'
 
 export default {
@@ -42,7 +42,7 @@ export default {
     type: {
       type: String,
       default: null,
-      validator: value => Object.values(MISSION_INSIGHTS).includes(value)
+      validator: value => Object.values(MISSION_RECRUIT_INSIGHTS).includes(value)
     },
     insight: {
       type: Object,
@@ -54,22 +54,22 @@ export default {
     }
   },
   data() {
-    const { LINK, RECORDING } = MISSION_INSIGHTS
-    const { GENERIC, GOOGLE_DOCS, AIR_TABLE } = MISSION_INSIGHT_LINKS
+    const { LINK, RECORDING } = MISSION_RECRUIT_INSIGHTS
+    const { GENERIC, GOOGLE_DOCS, AIR_TABLE } = MISSION_RECRUIT_INSIGHT_LINKS
     return { LINK, RECORDING, GENERIC, GOOGLE_DOCS, AIR_TABLE }
   },
   computed: {
     headTitle() {
-      if (this.type === MISSION_INSIGHTS.LINK) {
-        return MISSION_INSIGHT_LINK_LABELS[this.insight.linkType]
+      if (this.type === MISSION_RECRUIT_INSIGHTS.LINK) {
+        return MISSION_RECRUIT_INSIGHT_LINK_LABELS[this.insight.linkType]
       }
-      return MISSION_INSIGHT_LABELS[this.type]
+      return MISSION_RECRUIT_INSIGHT_LABELS[this.type]
     },
     description() {
       switch (this.type) {
-        case MISSION_INSIGHTS.LINK:
+        case MISSION_RECRUIT_INSIGHTS.LINK:
           return this.insight.description
-        case MISSION_INSIGHTS.RECORDING:
+        case MISSION_RECRUIT_INSIGHTS.RECORDING:
           return getDurationWithUnits(this.insight.duration)
       }
       return null

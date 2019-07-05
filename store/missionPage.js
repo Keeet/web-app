@@ -1,4 +1,7 @@
-import { MISSION_PAGES } from '../components/constants'
+import { MISSION_RECRUIT_PAGES, MISSION_SURVEY_PAGES } from '../components/constants'
+
+const { OVERVIEW, INSIGHTS } = MISSION_RECRUIT_PAGES
+const { RESULTS, SHARE } = MISSION_SURVEY_PAGES
 
 export const state = () => ({
   activePage: null,
@@ -7,11 +10,17 @@ export const state = () => ({
 })
 
 export const mutations = {
-  showOverview(state) {
-    state.activePage = MISSION_PAGES.OVERVIEW
+  showRecruitOverview(state) {
+    state.activePage = OVERVIEW
   },
-  showInsights(state) {
-    state.activePage = MISSION_PAGES.INSIGHTS
+  showRecruitInsights(state) {
+    state.activePage = INSIGHTS
+  },
+  showSurveyResults(state) {
+    state.activePage = RESULTS
+  },
+  showSurveyShare(state) {
+    state.activePage = SHARE
   },
   disableAnimation(state, value) {
     state.disableAnimation = value

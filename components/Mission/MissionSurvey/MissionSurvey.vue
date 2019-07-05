@@ -1,17 +1,23 @@
 <template>
-  <div class="mission-survey">
-    <MissionSurveySidebar />
-  </div>
+  <MissionSurveyResults v-if="missionPage.activePage === MISSION_SURVEY_PAGES.RESULTS" />
 </template>
 
 <script>
-import MissionSurveySidebar from '../MissionSurveySidebar/MissionSurveySidebar'
+import MissionSurveyResults from '../MissionSurveyResults/MissionSurveyResults'
+import { MISSION_SURVEY_PAGES } from '../../constants'
+
 export default {
   name: 'MissionSurvey',
-  components: { MissionSurveySidebar }
+  components: { MissionSurveyResults },
+  data() {
+    return {
+      MISSION_SURVEY_PAGES
+    }
+  },
+  computed: {
+    missionPage() {
+      return this.$store.state.missionPage
+    }
+  }
 }
 </script>
-
-<style scoped lang="scss">
-  @import "MissionSurvey";
-</style>
