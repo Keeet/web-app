@@ -1,32 +1,10 @@
 <template>
-  <SidebarLeft
-    :cancel-path="`/projects/${mission.projectId}`"
-    :title="mission.title"
-    :description="description"
-    :disable-edit-head="isSample || !$hasAnyRole(['ADMIN', 'USER'])"
-    :disable-animation="missionPage.disableAnimation"
-    @editHead="editMissionMetadata"
-  >
-    <div class="mission-recruit-sidebar-recruited">
-      <p class="mission-recruit-sidebar-recruited-title">
-        RECRUITED
-      </p>
-      <p class="mission-recruit-sidebar-recruited-count">
-        <span class="mission-recruit-sidebar-recruited-count-current">
-          {{ recruitedCount }}
-        </span>
-        <span class="mission-recruit-sidebar-recruited-count-total">
-          out of {{ mission.sessions.length }}
-        </span>
-      </p>
-      <div class="mission-recruit-sidebar-recruited-progress">
-        <div
-          class="mission-recruit-sidebar-recruited-progress-done"
-          :class="{ showProgress, noAnimation: missionPage.disableAnimation }"
-          :style="{ width: (recruitedCount / mission.sessions.length * 100) + '%' }"
-        />
-      </div>
-    </div>
+  <MissionSidebar>
+    <MissionSidebarProgress
+      title="RECRUITED"
+      :count-current="recruitedCount"
+      :count-total="mission.sessions.length"
+    />
     <SidebarLeftHeadline text="Persona" />
     <MissionRecruitSidebarLine type="PERSONA" :value="mission.persona.icon" grey-bg>
       {{ mission.persona.name }}
@@ -45,19 +23,19 @@
     <MissionRecruitSidebarLine type="NB_PARTICIPANTS" :grey-bg="!isInHouse">
       {{ mission.sessions.length }} test users
     </MissionRecruitSidebarLine>
-  </SidebarLeft>
+  </MissionSidebar>
 </template>
 
 <script>
-import SidebarLeft from '../../_shared/SidebarLeft/SidebarLeft'
 import SidebarLeftHeadline from '../../_shared/SidebarLeftHeadline/SidebarLeftHeadline'
-
 import { LANGUAGE_LABELS, MISSIONS } from '../../constants'
 import MissionRecruitSidebarLine from '../MissionRecruitSidebarLine/MissionRecruitSidebarLine'
+import MissionSidebarProgress from '../MissionSidebarProgress/MissionSidebarProgress'
+import MissionSidebar from '../MissionSidebar/MissionSidebar'
 
 export default {
   name: 'MissionRecruitSidebar',
-  components: { MissionRecruitSidebarLine, SidebarLeftHeadline, SidebarLeft },
+  components: { MissionSidebar, MissionSidebarProgress, MissionRecruitSidebarLine, SidebarLeftHeadline },
   data() {
     return { showProgress: false, LANGUAGE_LABELS }
   },
@@ -65,35 +43,11 @@ export default {
     mission() {
       return this.$store.state.mission
     },
-    missionPage() {
-      return this.$store.state.missionPage
-    },
     recruitedCount() {
       return this.mission.sessions.filter(session => !!session.testUser).length
     },
     isInHouse() {
       return this.mission.type === MISSIONS.IN_HOUSE
-    },
-    isSample() {
-      return this.$store.state.mission.id.startsWith('sample')
-    },
-    description() {
-      return this.mission.description || 'Enter you mission description here to explain what you want to achieve with this research session...'
-    }
-  },
-  mounted() {
-    if (this.missionPage.disableAnimation) {
-      this.showProgress = true
-      return
-    }
-    window.setTimeout(() => {
-      this.showProgress = true
-    }, 2000)
-  },
-  methods: {
-    editMissionMetadata() {
-      this.$store.commit('missionMetadataForm/init', this.mission)
-      this.$store.commit('missionMetadataForm/setOverlayOpened', true)
     }
   }
 }

@@ -1,31 +1,30 @@
 <template>
-  <MissionRecruit v-if="[IN_HOUSE, REMOTE].includes(mission.type)" />
-  <div v-else :style="{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }">
-    <nuxt-link :to="`/survey/${mission.id}`">
-      <ButtonText text="GO TO SURVEY" />
-    </nuxt-link>
-  </div>
+  <MissionRecruit v-if="isRecruit" />
+  <MissionSurvey v-else-if="isSurvey" />
 </template>
 
 <script>
 import { MISSIONS } from '../constants'
-import ButtonText from '../_shared/ButtonText/ButtonText'
 import MissionRecruit from './MissionRecruit/MissionRecruit'
+import MissionSurvey from './MissionSurvey/MissionSurvey'
+
+const { IN_HOUSE, REMOTE, SURVEY, USABILITY_LAB } = MISSIONS
 
 export default {
   name: 'Mission',
   components: {
-    MissionRecruit,
-    ButtonText
-  },
-  data() {
-    return {
-      ...MISSIONS
-    }
+    MissionSurvey,
+    MissionRecruit
   },
   computed: {
     mission() {
       return this.$store.state.mission
+    },
+    isRecruit() {
+      return [IN_HOUSE, REMOTE].includes(this.mission.type)
+    },
+    isSurvey() {
+      return [SURVEY, USABILITY_LAB].includes(this.mission.type)
     }
   }
 }

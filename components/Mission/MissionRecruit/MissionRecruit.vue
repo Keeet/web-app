@@ -1,14 +1,6 @@
 <template>
   <div class="mission-recruit">
     <MissionRecruitSidebar />
-    <OverlayModal
-      v-if="missionMetadataForm.overlayOpened"
-      title="Edit Mission"
-      :loading="missionMetadataForm.pending"
-      @close="$store.commit('missionMetadataForm/setOverlayOpened', false)"
-    >
-      <MissionRecruitMetadataForm />
-    </OverlayModal>
     <div class="mission-recruit-body">
       <NavUnderlined
         :items="[
@@ -35,8 +27,6 @@
 <script>
 import { MISSION_PAGES } from '../../constants'
 import MissionRecruitSidebar from '../MissionRecruitSidebar/MissionRecruitSidebar'
-import OverlayModal from '../../_shared/OverlayModal/OverlayModal'
-import MissionRecruitMetadataForm from '../MissionRecruitMetadataForm/MissionRecruitMetadataForm'
 import NavUnderlined from '../../_shared/NavUnderlined/NavUnderlined'
 import MissionRecruitOverview from '../MissionRecruitOverview/MissionRecruitOverview'
 import MissionRecruitInsights from '../MissionRecruitInsights/MissionRecruitInsights'
@@ -46,8 +36,6 @@ export default {
     MissionRecruitInsights,
     MissionRecruitOverview,
     NavUnderlined,
-    MissionRecruitMetadataForm,
-    OverlayModal,
     MissionRecruitSidebar
   },
   data() {
@@ -61,9 +49,6 @@ export default {
     },
     missionPage() {
       return this.$store.state.missionPage
-    },
-    missionMetadataForm() {
-      return this.$store.state.missionMetadataForm
     }
   }
 }
