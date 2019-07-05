@@ -1,5 +1,5 @@
 <template>
-  <div class="mission-metadata-form">
+  <div class="mission-recruit-metadata-form">
     <Input
       title="Name"
       :value="s.title"
@@ -22,8 +22,9 @@
 <script>
 import Input from '../../_shared/Input/Input'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
+
 export default {
-  name: 'MissionMetadataForm',
+  name: 'MissionRecruitMetadataForm',
   components: { ButtonText, Input },
   data() {
     return { showErrors: false }

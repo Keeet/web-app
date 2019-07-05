@@ -43,7 +43,7 @@ import ButtonText from '../../_shared/ButtonText/ButtonText'
 import { isLink } from '../../../utils/stringUtils'
 
 export default {
-  name: 'MissionInsightsForm',
+  name: 'MissionRecruitInsightsForm',
   components: { ButtonText, Input, OverlayModal },
   data() {
     return { showErrors: false }

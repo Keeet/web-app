@@ -7,57 +7,57 @@
     :disable-animation="missionPage.disableAnimation"
     @editHead="editMissionMetadata"
   >
-    <div class="mission-sidebar-recruited">
-      <p class="mission-sidebar-recruited-title">
+    <div class="mission-recruit-sidebar-recruited">
+      <p class="mission-recruit-sidebar-recruited-title">
         RECRUITED
       </p>
-      <p class="mission-sidebar-recruited-count">
-        <span class="mission-sidebar-recruited-count-current">
+      <p class="mission-recruit-sidebar-recruited-count">
+        <span class="mission-recruit-sidebar-recruited-count-current">
           {{ recruitedCount }}
         </span>
-        <span class="mission-sidebar-recruited-count-total">
+        <span class="mission-recruit-sidebar-recruited-count-total">
           out of {{ mission.sessions.length }}
         </span>
       </p>
-      <div class="mission-sidebar-recruited-progress">
+      <div class="mission-recruit-sidebar-recruited-progress">
         <div
-          class="mission-sidebar-recruited-progress-done"
+          class="mission-recruit-sidebar-recruited-progress-done"
           :class="{ showProgress, noAnimation: missionPage.disableAnimation }"
           :style="{ width: (recruitedCount / mission.sessions.length * 100) + '%' }"
         />
       </div>
     </div>
     <SidebarLeftHeadline text="Persona" />
-    <MissionSidebarLine type="PERSONA" :value="mission.persona.icon" grey-bg>
+    <MissionRecruitSidebarLine type="PERSONA" :value="mission.persona.icon" grey-bg>
       {{ mission.persona.name }}
-    </MissionSidebarLine>
+    </MissionRecruitSidebarLine>
     <SidebarLeftHeadline text="General Information" />
-    <MissionSidebarLine v-if="isInHouse" type="LOCATION" :grey-bg="isInHouse">
+    <MissionRecruitSidebarLine v-if="isInHouse" type="LOCATION" :grey-bg="isInHouse">
       <p>{{ mission.street }}, {{ mission.houseNumber }}</p>
       <p>{{ mission.zipCode }} {{ mission.city }}</p>
-    </MissionSidebarLine>
-    <MissionSidebarLine type="LANGUAGE" :value="mission.language" :grey-bg="!isInHouse">
+    </MissionRecruitSidebarLine>
+    <MissionRecruitSidebarLine type="LANGUAGE" :value="mission.language" :grey-bg="!isInHouse">
       {{ LANGUAGE_LABELS[mission.language] }}
-    </MissionSidebarLine>
-    <MissionSidebarLine type="DURATION" :grey-bg="isInHouse">
+    </MissionRecruitSidebarLine>
+    <MissionRecruitSidebarLine type="DURATION" :grey-bg="isInHouse">
       {{ mission.duration }} min
-    </MissionSidebarLine>
-    <MissionSidebarLine type="NB_PARTICIPANTS" :grey-bg="!isInHouse">
+    </MissionRecruitSidebarLine>
+    <MissionRecruitSidebarLine type="NB_PARTICIPANTS" :grey-bg="!isInHouse">
       {{ mission.sessions.length }} test users
-    </MissionSidebarLine>
+    </MissionRecruitSidebarLine>
   </SidebarLeft>
 </template>
 
 <script>
 import SidebarLeft from '../../_shared/SidebarLeft/SidebarLeft'
 import SidebarLeftHeadline from '../../_shared/SidebarLeftHeadline/SidebarLeftHeadline'
-import MissionSidebarLine from '../MissionSidebarLine/MissionSidebarLine'
 
 import { LANGUAGE_LABELS, MISSIONS } from '../../constants'
+import MissionRecruitSidebarLine from '../MissionRecruitSidebarLine/MissionRecruitSidebarLine'
 
 export default {
-  name: 'MissionSidebar',
-  components: { MissionSidebarLine, SidebarLeftHeadline, SidebarLeft },
+  name: 'MissionRecruitSidebar',
+  components: { MissionRecruitSidebarLine, SidebarLeftHeadline, SidebarLeft },
   data() {
     return { showProgress: false, LANGUAGE_LABELS }
   },
@@ -100,5 +100,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "MissionSidebar";
+  @import "MissionRecruitSidebar";
 </style>

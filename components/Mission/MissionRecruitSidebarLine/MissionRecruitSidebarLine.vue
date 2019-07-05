@@ -1,13 +1,13 @@
 <template>
-  <div class="mission-sidebar-line" :class="{ greyBg }">
-    <div class="mission-sidebar-line-icon" :class="type">
+  <div class="mission-recruit-sidebar-line" :class="{ greyBg }">
+    <div class="mission-recruit-sidebar-line-icon" :class="type">
       <PersonaIcon v-if="type === TYPES.PERSONA" :icon="value" adjust-size />
       <IconLocation v-if="type === TYPES.LOCATION" />
       <LanguageIcon v-if="type === TYPES.LANGUAGE" :language="value" />
       <IconStopWatch v-if="type === TYPES.DURATION" />
       <IconProfile v-if="type === TYPES.NB_PARTICIPANTS" />
     </div>
-    <div class="mission-sidebar-line-text">
+    <div class="mission-recruit-sidebar-line-text">
       <slot />
     </div>
   </div>
@@ -26,7 +26,7 @@ const TYPES = {
 }
 
 export default {
-  name: 'MissionSidebarLine',
+  name: 'MissionRecruitSidebarLine',
   components: { LanguageIcon, PersonaIcon },
   props: {
     type: {
@@ -50,5 +50,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "MissionSidebarLine";
+  @import "MissionRecruitSidebarLine";
 </style>

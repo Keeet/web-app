@@ -1,18 +1,18 @@
 <template>
-  <div class="mission-overview-session">
-    <p class="mission-overview-session-name">
+  <div class="mission-recruit-overview-session">
+    <p class="mission-recruit-overview-session-name">
       {{ formattedName }}
     </p>
-    <p class="mission-overview-session-time border-left">
+    <p class="mission-recruit-overview-session-time border-left">
       {{ formattedTime }}
     </p>
-    <div class="mission-overview-session-contact border-left">
-      <MissionOverviewSessionIcon type="PHONE" :href="phoneLink" :disabled="!recruited || isSample" />
-      <MissionOverviewSessionIcon type="EMAIL" :href="emailLink" :disabled="!recruited || isSample" />
+    <div class="mission-recruit-overview-session-contact border-left">
+      <MissionRecruitOverviewSessionIcon type="PHONE" :href="phoneLink" :disabled="!recruited || isSample" />
+      <MissionRecruitOverviewSessionIcon type="EMAIL" :href="emailLink" :disabled="!recruited || isSample" />
     </div>
-    <div v-if="mission.type === MISSIONS.REMOTE" class="mission-overview-session-remote-call border-left">
+    <div v-if="mission.type === MISSIONS.REMOTE" class="mission-recruit-overview-session-remote-call border-left">
       <p
-        class="mission-overview-session-remote-call-button"
+        class="mission-recruit-overview-session-remote-call-button"
         :class="{ disabled: !recruited }"
         @click="startCall"
       >
@@ -24,11 +24,12 @@
 
 <script>
 import { MISSIONS } from '../../constants'
-import MissionOverviewSessionIcon from '../MissionOverviewSessionIcon/MissionOverviewSessionIcon'
 import { addMinutes, getAmPmTime } from '../../../utils/dateUtils'
+import MissionRecruitOverviewSessionIcon from '../MissionRecruitOverviewSessionIcon/MissionRecruitOverviewSessionIcon'
+
 export default {
-  name: 'MissionOverviewSession',
-  components: { MissionOverviewSessionIcon },
+  name: 'MissionRecruitOverviewSession',
+  components: { MissionRecruitOverviewSessionIcon },
   props: {
     session: {
       type: Object,
@@ -92,5 +93,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "MissionOverviewSession";
+  @import "MissionRecruitOverviewSession";
 </style>

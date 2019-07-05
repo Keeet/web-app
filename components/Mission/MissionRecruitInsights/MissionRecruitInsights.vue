@@ -1,19 +1,19 @@
 <template>
-  <div class="mission-insights">
+  <div class="mission-recruit-insights">
     <div
       data-aos="fade-up"
       data-aos-duration="800"
       data-aos-once="true"
-      data-aos-anchor=".mission-insights"
+      data-aos-anchor=".mission-recruit-insights"
     >
-      <div class="mission-insights-links">
-        <MissionInsightsItem
+      <div class="mission-recruit-insights-links">
+        <MissionRecruitInsightsItem
           v-for="(insight, x) in linkInsights"
           :key="x"
           :insight="insight"
           type="LINK"
         />
-        <MissionInsightsItem
+        <MissionRecruitInsightsItem
           v-if="!isSample && $hasAnyRole(['ADMIN', 'USER'])"
           create
           @click.native="createMissionInsightLink"
@@ -26,13 +26,13 @@
       data-aos-duration="700"
       :data-aos-delay="200"
       data-aos-once="true"
-      data-aos-anchor=".mission-insights"
+      data-aos-anchor=".mission-recruit-insights"
     >
-      <p class="mission-insights-section-headline">
+      <p class="mission-recruit-insights-section-headline">
         Recordings
       </p>
-      <div class="mission-insights-recordings">
-        <MissionInsightsItem
+      <div class="mission-recruit-insights-recordings">
+        <MissionRecruitInsightsItem
           v-for="(insight, x) in recordingInsights"
           :key="x"
           :insight="insight"
@@ -40,16 +40,17 @@
         />
       </div>
     </div>
-    <MissionInsightsForm v-if="missionPage.insightFormOpened" />
+    <MissionRecruitInsightsForm v-if="missionPage.insightFormOpened" />
   </div>
 </template>
 
 <script>
-import MissionInsightsItem from '../MissionInsightsItem/MissionInsightsItem'
-import MissionInsightsForm from '../MissionInsightsForm/MissionInsightsForm'
+
+import MissionRecruitInsightsForm from '../MissionRecruitInsightsForm/MissionRecruitInsightsForm'
+import MissionRecruitInsightsItem from '../MissionRecruitInsightsItem/MissionRecruitInsightsItem'
 export default {
-  name: 'MissionInsights',
-  components: { MissionInsightsForm, MissionInsightsItem },
+  name: 'MissionRecruitInsights',
+  components: { MissionRecruitInsightsItem, MissionRecruitInsightsForm },
   computed: {
     mission() {
       return this.$store.state.mission
@@ -80,5 +81,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "MissionInsights";
+  @import "MissionRecruitInsights";
 </style>

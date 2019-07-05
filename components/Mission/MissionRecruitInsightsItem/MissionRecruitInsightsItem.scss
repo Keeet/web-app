@@ -1,4 +1,4 @@
-.mission-insights-item {
+.mission-recruit-insights-item {
   width: 150px;
   padding: 15px;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.07);
@@ -22,7 +22,7 @@
       padding-bottom: 100%;
     }
 
-    .mission-insights-item-new {
+    .mission-recruit-insights-item-new {
       position: absolute;
       left: 50%;
       top: 50%;
@@ -35,12 +35,12 @@
     }
   }
 
-  .mission-insights-item-head {
+  .mission-recruit-insights-item-head {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
 
-    .mission-insights-item-head-icon {
+    .mission-recruit-insights-item-head-icon {
       width: 30px;
 
       svg {
@@ -48,19 +48,19 @@
       }
     }
 
-    .mission-insights-item-head-title {
+    .mission-recruit-insights-item-head-title {
       padding: 10px 0 10px 10px;
       font-weight: 500;
     }
   }
 
-  .mission-insights-item-body {
+  .mission-recruit-insights-item-body {
 
-    .mission-insights-item-body-title {
+    .mission-recruit-insights-item-body-title {
       margin-bottom: 5px;
     }
 
-    .mission-insights-item-body-description {
+    .mission-recruit-insights-item-body-description {
       font-size: 90%;
       color: $grey-mid-dark;
     }

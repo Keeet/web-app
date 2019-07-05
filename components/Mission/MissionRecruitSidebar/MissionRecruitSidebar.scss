@@ -1,34 +1,34 @@
-.mission-sidebar-recruited {
+.mission-recruit-sidebar-recruited {
   margin-bottom: 40px;
 
-  .mission-sidebar-recruited-title {
+  .mission-recruit-sidebar-recruited-title {
     font-size: 70%;
     font-weight: 700;
   }
 
-  .mission-sidebar-recruited-count {
+  .mission-recruit-sidebar-recruited-count {
     margin: 10px 0;
 
-    .mission-sidebar-recruited-count-current {
+    .mission-recruit-sidebar-recruited-count-current {
       font-size: 120%;
       font-weight: 500;
     }
 
-    .mission-sidebar-recruited-count-total {
+    .mission-recruit-sidebar-recruited-count-total {
       color: $grey-mid-dark;
       font-size: 80%;
       font-weight: 700;
     }
   }
 
-  .mission-sidebar-recruited-progress {
+  .mission-recruit-sidebar-recruited-progress {
     position: relative;
     height: 4px;
     background-color: $grey;
     border-radius: 2px;
     overflow: hidden;
 
-    .mission-sidebar-recruited-progress-done {
+    .mission-recruit-sidebar-recruited-progress-done {
       position: absolute;
       left: 0;
       top: 0;

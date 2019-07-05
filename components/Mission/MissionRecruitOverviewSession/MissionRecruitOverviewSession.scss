@@ -1,4 +1,4 @@
-.mission-overview-session {
+.mission-recruit-overview-session {
   display: flex;
   background-color: #fff;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.07);
@@ -9,14 +9,14 @@
     border-left: 1px solid $grey;
   }
 
-  .mission-overview-session-name {
+  .mission-recruit-overview-session-name {
     padding: 20px;
     line-height: 20px;
     width: 230px;
     flex-grow: 1;
   }
 
-  .mission-overview-session-time {
+  .mission-recruit-overview-session-time {
     flex-shrink: 0;
     text-align: center;
     width: 150px;
@@ -24,17 +24,17 @@
     line-height: 20px;
   }
 
-  .mission-overview-session-contact {
+  .mission-recruit-overview-session-contact {
     flex-shrink: 0;
     display: flex;
     padding: 15px;
   }
 
-  .mission-overview-session-remote-call {
+  .mission-recruit-overview-session-remote-call {
     padding: 10px 20px;
     flex-shrink: 0;
 
-    .mission-overview-session-remote-call-button {
+    .mission-recruit-overview-session-remote-call-button {
       padding: 10px 15px;
       line-height: 20px;
       color: $green;

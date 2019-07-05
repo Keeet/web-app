@@ -1,30 +1,30 @@
 <template>
   <div
-    class="mission-insights-item"
+    class="mission-recruit-insights-item"
     :class="{ create }"
     :title="insight ? insight.url : ''"
     @click="openUrl"
   >
-    <div v-if="create" class="mission-insights-item-new">
+    <div v-if="create" class="mission-recruit-insights-item-new">
       <IconPlusSlim />
     </div>
     <div v-else>
-      <div class="mission-insights-item-head">
-        <div class="mission-insights-item-head-icon">
+      <div class="mission-recruit-insights-item-head">
+        <div class="mission-recruit-insights-item-head-icon">
           <IconInsightVideo v-if="type === RECORDING" />
           <IconInsightGeneric v-else-if="insight.linkType === GENERIC" />
           <IconInsightGoogleDocs v-else-if="insight.linkType === GOOGLE_DOCS" />
           <IconInsightAirtable v-else-if="insight.linkType === AIR_TABLE" />
         </div>
-        <p class="mission-insights-item-head-title">
+        <p class="mission-recruit-insights-item-head-title">
           {{ headTitle }}
         </p>
       </div>
-      <div class="mission-insights-item-body">
-        <p class="mission-insights-item-body-title">
+      <div class="mission-recruit-insights-item-body">
+        <p class="mission-recruit-insights-item-body-title">
           {{ insight.title }}
         </p>
-        <p class="mission-insights-item-body-description">
+        <p class="mission-recruit-insights-item-body-description">
           {{ description }}
         </p>
       </div>
@@ -37,7 +37,7 @@ import { MISSION_INSIGHTS, MISSION_INSIGHT_LABELS, MISSION_INSIGHT_LINKS, MISSIO
 import { getDurationWithUnits } from '../../../utils/dateUtils'
 
 export default {
-  name: 'MissionInsightsItem',
+  name: 'MissionRecruitInsightsItem',
   props: {
     type: {
       type: String,
@@ -86,5 +86,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "MissionInsightsItem";
+  @import "MissionRecruitInsightsItem";
 </style>

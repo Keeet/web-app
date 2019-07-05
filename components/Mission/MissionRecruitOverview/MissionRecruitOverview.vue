@@ -1,21 +1,21 @@
 <template>
-  <div class="mission-overview">
+  <div class="mission-recruit-overview">
     <div
       v-for="(sessionGroup, x) in sessionsByDay"
       :key="x"
-      class="mission-overview-day"
+      class="mission-recruit-overview-day"
     >
       <div
         data-aos="fade-up"
         data-aos-duration="700"
         :data-aos-delay="x * 200"
         data-aos-once="true"
-        data-aos-anchor=".mission-overview"
+        data-aos-anchor=".mission-recruit-overview"
       >
-        <p class="mission-overview-headline">
+        <p class="mission-recruit-overview-headline">
           {{ getHeadlineDate(sessionGroup.sessions[0].startsAt) }}
         </p>
-        <MissionOverviewSession
+        <MissionRecruitOverviewSession
           v-for="(session, y) in sessionGroup.sessions"
           :key="y"
           :session="session"
@@ -27,11 +27,11 @@
 
 <script>
 import { getMonthName, groupByDay } from '../../../utils/dateUtils'
-import MissionOverviewSession from '../MissionOverviewSession/MissionOverviewSession'
+import MissionRecruitOverviewSession from '../MissionRecruitOverviewSession/MissionRecruitOverviewSession'
 
 export default {
-  name: 'MissionOverview',
-  components: { MissionOverviewSession },
+  name: 'MissionRecruitOverview',
+  components: { MissionRecruitOverviewSession },
   computed: {
     mission() {
       return this.$store.state.mission
@@ -55,5 +55,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "MissionOverview";
+  @import "MissionRecruitOverview";
 </style>

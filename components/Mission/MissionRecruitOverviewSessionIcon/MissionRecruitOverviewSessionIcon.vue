@@ -1,7 +1,7 @@
 <template>
   <a
     v-if="!disabled && href"
-    class="mission-overview-session-icon"
+    class="mission-recruit-overview-session-icon"
     :class="[type, { disabled }]"
     :href="href"
   >
@@ -10,7 +10,7 @@
   </a>
   <div
     v-else
-    class="mission-overview-session-icon"
+    class="mission-recruit-overview-session-icon"
     :class="[type, { disabled }]"
   >
     <IconPhone v-if="type === TYPES.PHONE" />
@@ -24,7 +24,7 @@ const TYPES = {
   EMAIL: 'EMAIL'
 }
 export default {
-  name: 'MissionOverviewSessionIcon',
+  name: 'MissionRecruitOverviewSessionIcon',
   props: {
     type: {
       type: String,
@@ -48,5 +48,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "MissionOverviewSessionIcon";
+  @import "MissionRecruitOverviewSessionIcon";
 </style>
