@@ -12,11 +12,12 @@
 </template>
 
 <script>
-import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_ITEM_LIKERT_OPTIONS, MISSION_SURVEY_SELECT_OTHER_LABEL } from '../../constants'
+import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS, MISSION_SURVEY_ITEM_LIKERT_OPTIONS, MISSION_SURVEY_SELECT_OTHER_LABEL } from '../../constants'
 import MissionSurveyResultsItemBarsHorizontalItem
   from '../MissionSurveyResultsItemBarsHorizontalItem/MissionSurveyResultsItemBarsHorizontalItem'
 
 const { SINGLE_SELECT, MULTI_SELECT, LIKERT } = MISSION_SURVEY_ITEMS
+const { PREFERENCE_TEST } = MISSION_SURVEY_USABILITY_LAB_ITEMS
 
 export default {
   name: 'MissionSurveyResultsItemBarsHorizontal',
@@ -46,13 +47,6 @@ export default {
       return this.$store.state.survey.items.find(i => i.id === this.result.id)
     },
     emptyOptions() {
-      if (this.surveyItem.type === LIKERT) {
-        return MISSION_SURVEY_ITEM_LIKERT_OPTIONS[this.surveyItem.answerType]
-          .map((_, index) => ({ index }))
-          .filter((option) => {
-            return !this.results.map(r => r.index).includes(option.index)
-          })
-      }
       if ([SINGLE_SELECT, MULTI_SELECT].includes(this.surveyItem.type)) {
         const hasOther = this.surveyItem.otherAvailable
         const choicesWithOther = [
@@ -64,6 +58,18 @@ export default {
           .filter(choice => !this.results.map(r => r.text).includes(choice))
           .map(choice => ({ text: choice }))
       }
+      if (this.surveyItem.type === LIKERT) {
+        return MISSION_SURVEY_ITEM_LIKERT_OPTIONS[this.surveyItem.answerType]
+          .map((_, index) => ({ index }))
+          .filter((option) => {
+            return !this.results.map(r => r.index).includes(option.index)
+          })
+      }
+      if (this.surveyItem.type === PREFERENCE_TEST) {
+        return this.surveyItem.images
+          .filter(item => !this.results.map(r => r.image).includes(item.url))
+          .map(item => ({ image: item.url }))
+      }
       return null
     }
   },
@@ -72,8 +78,11 @@ export default {
       if (item.text) {
         return item.text
       }
-      if (this.result.type === LIKERT) {
-        return MISSION_SURVEY_ITEM_LIKERT_OPTIONS[this.surveyItem.answerType][item.index]
+      switch (this.result.type) {
+        case LIKERT:
+          return MISSION_SURVEY_ITEM_LIKERT_OPTIONS[this.surveyItem.answerType][item.index]
+        case PREFERENCE_TEST:
+          return item.image
       }
     }
   }

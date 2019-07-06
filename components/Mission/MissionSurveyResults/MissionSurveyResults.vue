@@ -18,7 +18,7 @@
           :result="result"
         >
           <MissionSurveyResultsItemText v-if="[SHORT_TEXT, LONG_TEXT].includes(result.type)" :result="result" />
-          <MissionSurveyResultsItemBarsHorizontal v-else-if="[SINGLE_SELECT, MULTI_SELECT, LIKERT].includes(result.type)" :result="result" />
+          <MissionSurveyResultsItemBarsHorizontal v-else-if="[SINGLE_SELECT, MULTI_SELECT, LIKERT, PREFERENCE_TEST].includes(result.type)" :result="result" />
           <MissionSurveyResultsItemBarsVertical v-else-if="result.type === LINEAR_SCALE" :result="result" />
         </MissionSurveyResultsBox>
       </div>
@@ -29,7 +29,7 @@
 <script>
 import MissionSurveyResultsBox from '../MissionSurveyResultsBox/MissionSurveyResultsBox'
 import MissionSurveyResultsItemText from '../MissionSurveyResultsItemText/MissionSurveyResultsItemText'
-import { MISSION_SURVEY_ITEMS } from '../../constants'
+import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS } from '../../constants'
 import MissionSurveyResultsItemBarsHorizontal
   from '../MissionSurveyResultsItemBarsHorizontal/MissionSurveyResultsItemBarsHorizontal'
 import MissionSurveyResultsItemBarsVertical
@@ -39,7 +39,7 @@ export default {
   name: 'MissionSurveyResults',
   components: { MissionSurveyResultsItemBarsVertical, MissionSurveyResultsItemBarsHorizontal, MissionSurveyResultsItemText, MissionSurveyResultsBox },
   data() {
-    return { ...MISSION_SURVEY_ITEMS }
+    return { ...MISSION_SURVEY_ITEMS, ...MISSION_SURVEY_USABILITY_LAB_ITEMS }
   },
   computed: {
     mission() {

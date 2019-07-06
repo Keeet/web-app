@@ -8,6 +8,21 @@
     text-align: right;
     font-size: 80%;
     margin-right: 15px;
+
+    img {
+      background-color: #fff;
+      max-width: 100%;
+      max-height: 40px;
+      transition: all .4s;
+
+      &:hover {
+        position: relative;
+        z-index: 4;
+        cursor: pointer;
+        transform: scale(10);
+        box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
+      }
+    }
   }
 
   .mission-survey-results-item-bars-horizontal-item-bar {

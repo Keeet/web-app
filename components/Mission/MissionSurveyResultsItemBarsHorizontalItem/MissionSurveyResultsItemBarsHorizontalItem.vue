@@ -1,7 +1,8 @@
 <template>
   <div class="mission-survey-results-item-bars-horizontal-item">
     <div class="mission-survey-results-item-bars-horizontal-item-subject">
-      {{ subject }}
+      <img v-if="surveyType === PREFERENCE_TEST" :src="subject" />
+      <span v-else>{{ subject }}</span>
     </div>
     <div class="mission-survey-results-item-bars-horizontal-item-bar">
       <div class="mission-survey-results-item-bars-horizontal-item-bar-bg" :class="surveyType" />
@@ -49,7 +50,8 @@ export default {
   },
   data() {
     return {
-      showFill: false
+      showFill: false,
+      ...MISSION_SURVEY_USABILITY_LAB_ITEMS
     }
   },
   computed: {
