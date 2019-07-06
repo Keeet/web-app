@@ -288,7 +288,7 @@ export const actions = {
       : undefined
 
     // remove skipped (invalid) responses
-    if (!state.activeItemValid) {
+    if (getters.activeItem.required === false && !state.activeItemValid) {
       commit('removeResponse', getters.activeItem.id)
     }
 
