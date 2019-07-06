@@ -155,13 +155,12 @@ export const mutations = {
   },
   removeResponse(state, id) {
     const responses = state.responses.slice()
-    responses.filter((r) => {
+    state.responses = responses.filter((r) => {
       if (r.followUps) {
         r.followUps = r.followUps.filter(followUp => followUp.id !== id)
       }
       return r.id !== id
     })
-    state.responses = responses
   },
   showClosing(state) {
     state.activeClosing = true
