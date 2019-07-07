@@ -26,7 +26,7 @@
             @load="imagesLoaded"
             @click="clickImage"
           >
-          <div class="survey-item-media-heatmap-wrapper" :class="{ active: heatmapEnabled }">
+          <div class="survey-item-media-heatmap-wrapper" :class="{ active: !!heatmapPoints && heatmapEnabled }">
             <div class="survey-item-media-heatmap" />
           </div>
         </div>
