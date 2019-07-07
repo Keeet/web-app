@@ -134,11 +134,6 @@ export const MISSION_SURVEY_USABILITY_LAB_FOLLOW_UP_REQUIRED = [
   MISSION_SURVEY_USABILITY_LAB_ITEMS.DESIGN_QUESTION,
   MISSION_SURVEY_USABILITY_LAB_ITEMS.QUESTION_LIST
 ]
-export const MISSION_SURVEY_USABILITY_LAB_ITEM_HEADLINE = {
-  FIRST_CLICK: 'Where would you click?',
-  FIVE_SECOND_TEST: 'Try to remember everything what you see.',
-  PREFERENCE_TEST: 'What’s your favorite design?'
-}
 export const MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION = {
   FIRST_CLICK: 'Click on the image to carry out the instructions or complete the set task.',
   FIVE_SECOND_TEST: 'You will see the image for {{duration}} seconds',

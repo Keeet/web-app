@@ -7,6 +7,7 @@
           :frame="result.deviceFrame"
           :heatmap-points="heatmapPoints"
           :heatmap-enabled="heatmapEnabled"
+          @imageLoad="onResize"
         />
       </div>
     </div>

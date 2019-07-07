@@ -26,7 +26,11 @@
             @load="imagesLoaded"
             @click="clickImage"
           >
-          <div class="survey-item-media-heatmap-wrapper" :class="{ active: !!heatmapPoints && heatmapEnabled }">
+          <div
+            v-if="heatmapPoints"
+            class="survey-item-media-heatmap-wrapper"
+            :class="{ active: heatmapEnabled }"
+          >
             <div class="survey-item-media-heatmap" />
           </div>
         </div>
@@ -123,6 +127,7 @@ export default {
       this.onResize()
       this.onFrameScroll(true)
       this.calculateOverlayCoordinates()
+      this.$emit('imageLoad')
     },
     onResize() {
       const frameWrapper = this.root.querySelector('.survey-item-media-img-scroll')

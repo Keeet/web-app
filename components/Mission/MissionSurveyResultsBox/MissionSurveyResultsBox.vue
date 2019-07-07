@@ -8,18 +8,22 @@
         <p class="mission-survey-results-box-head-text-title">
           {{ title }}
         </p>
-        <p class="mission-survey-results-box-head-text-subtitle">
+        <p
+          v-if="result.type !== INSTRUCTION"
+          class="mission-survey-results-box-head-text-subtitle"
+        >
           {{ result.actualCount }} out of {{ mission.actualCount }} response
         </p>
       </div>
     </div>
-    <div class="mission-survey-results-box-body">
+    <div v-if="$slots.default" class="mission-survey-results-box-body">
       <slot />
     </div>
   </div>
 </template>
 
 <script>
+import { MISSION_SURVEY_USABILITY_LAB_ITEMS } from '../../constants'
 import MissionSurveyIconIndexed from '../../_shared/MissionSurveyIconIndexed/MissionSurveyIconIndexed'
 export default {
   name: 'MissionSurveyResultsBox',
@@ -34,6 +38,9 @@ export default {
       required: true
     }
   },
+  data() {
+    return { ...MISSION_SURVEY_USABILITY_LAB_ITEMS }
+  },
   computed: {
     mission() {
       return this.$store.state.mission
@@ -45,7 +52,7 @@ export default {
       return this.survey.items.find(item => item.id === this.result.id)
     },
     title() {
-      return this.surveyItem.text
+      return this.surveyItem.text || this.surveyItem.instruction
     }
   }
 }

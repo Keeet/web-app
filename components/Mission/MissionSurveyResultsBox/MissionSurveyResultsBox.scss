@@ -9,6 +9,7 @@
     display: flex;
 
     .mission-survey-results-box-head-icon {
+      flex-shrink: 0;
       width: $mission-survey-results-box-head-icon-width;
       overflow: hidden;
     }

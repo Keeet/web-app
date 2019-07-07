@@ -11,7 +11,7 @@
     </div>
     <MissionSurveyResultsItemMedia
       :result="result"
-      :heatmap-points="heatmapEnabled ? result.clickPoints : null"
+      :heatmap-points="result.clickPoints"
       :heatmap-enabled="heatmapEnabled"
     />
   </div>

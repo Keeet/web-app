@@ -18,7 +18,7 @@
         <SurveyItemDesignQuestion
           v-if="rootItem.type === DESIGN_QUESTION"
           @click="twoColumnLayoutFullScreen = !twoColumnLayoutFullScreen"
-        />
+        />w
       </div>
     </div>
     <div
@@ -51,7 +51,6 @@
 import {
   MISSION_SURVEY_ITEMS,
   MISSION_SURVEY_USABILITY_LAB_ITEMS,
-  MISSION_SURVEY_USABILITY_LAB_ITEM_HEADLINE,
   MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION
 } from '../../constants'
 import SurveyItemText from '../SurveyItemText/SurveyItemText'
@@ -90,7 +89,7 @@ export default {
         return this.item.text
       }
       if ([FIRST_CLICK, FIVE_SECOND_TEST, PREFERENCE_TEST].includes(this.item.type)) {
-        return MISSION_SURVEY_USABILITY_LAB_ITEM_HEADLINE[this.item.type]
+        return this.item.instruction
       }
       return null
     },
