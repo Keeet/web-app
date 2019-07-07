@@ -26,7 +26,7 @@
             @load="imagesLoaded"
             @click="clickImage"
           >
-          <div class="survey-item-media-heatmap-wrapper">
+          <div v-if="heatmapPoints" class="survey-item-media-heatmap-wrapper">
             <div class="survey-item-media-heatmap" />
           </div>
         </div>
