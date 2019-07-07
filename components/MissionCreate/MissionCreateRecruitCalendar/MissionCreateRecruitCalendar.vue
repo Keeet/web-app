@@ -35,18 +35,19 @@ export default {
     }
   },
   watch: {
-    validationError: {
-      immediate: true,
-      handler(error) {
-        this.$store.dispatch('missionForm/handleValidationError', { id: this.validationId, error })
-      }
-    }
+    validationError(e) { this.errorHandler(e) }
   },
   mounted() {
     this.id = uuidv4()
+    this.errorHandler()
   },
   beforeDestroy() {
     this.$store.dispatch('missionForm/handleValidationError', { id: this.validationId, error: null })
+  },
+  methods: {
+    errorHandler(error = this.validationError) {
+      this.$store.dispatch('missionForm/handleValidationError', { id: this.validationId, error })
+    }
   }
 }
 </script>

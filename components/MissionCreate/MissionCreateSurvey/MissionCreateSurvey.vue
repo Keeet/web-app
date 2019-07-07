@@ -54,8 +54,6 @@ export default {
       return this.s.survey
     },
     surveyJSON() {
-      // eslint-disable-next-line no-console
-      console.log('test')
       return JSON.stringify(this.survey)
     },
     items() {

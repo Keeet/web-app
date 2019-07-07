@@ -118,21 +118,22 @@ export default {
     }
   },
   watch: {
-    error: {
-      immediate: true,
-      handler(error) {
-        if (this.dispatchError) {
-          this.$store.dispatch(this.dispatchError, { id: this.id, error })
-        }
-      }
-    }
+    error(e) { this.errorHandler(e) }
   },
   mounted() {
     this.id = uuidv4()
+    this.errorHandler()
   },
   beforeDestroy() {
     if (this.dispatchError) {
       this.$store.dispatch(this.dispatchError, { id: this.id, error: null })
+    }
+  },
+  methods: {
+    errorHandler(error = this.error) {
+      if (this.dispatchError) {
+        this.$store.dispatch(this.dispatchError, { id: this.id, error })
+      }
     }
   }
 }
