@@ -26,7 +26,7 @@
             @load="imagesLoaded"
             @click="clickImage"
           >
-          <div v-if="heatmapPoints" class="survey-item-media-heatmap-wrapper">
+          <div class="survey-item-media-heatmap-wrapper" :class="{ active: heatmapEnabled }">
             <div class="survey-item-media-heatmap" />
           </div>
         </div>
@@ -74,6 +74,10 @@ export default {
     heatmapPoints: {
       type: Array,
       default: null
+    },
+    heatmapEnabled: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -162,7 +166,7 @@ export default {
       this.overlayOverflow = (y < offsetTop(image) - window.scrollY) || (y > offsetTop(image) + imageWrapper.offsetHeight - window.scrollY)
     },
     renderHeatmap() {
-      this.$loadScript('/js/heatmap.js')
+      this.$loadHeatmap
         .then(() => {
           // eslint-disable-next-line no-undef
           this.heatmap = h337.create({
