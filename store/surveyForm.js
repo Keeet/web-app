@@ -135,10 +135,10 @@ export const mutations = {
       state.activeItemIndex++
     }
     const item = state.items[state.activeItemIndex]
+    state.activeFollowUpIndex = null
     if (item.type === INSTRUCTION) {
       return
     }
-    state.activeFollowUpIndex = null
     setResponse(state, res => res)
     if (SKIP_ITEMS.includes(item.type)) {
       state.activeFollowUpIndex = 0
