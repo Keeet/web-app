@@ -12,6 +12,7 @@ import IconAngleLeft from '../assets/icons/angle-left.svg'
 import IconAngleDown from '../assets/icons/angle-down.svg'
 import IconArrowRight from '../assets/icons/arrow-right.svg'
 import IconArrowLeft from '../assets/icons/arrow-left.svg'
+import IconArrowDown from '../assets/icons/arrow-down.svg'
 import IconDelete from '../assets/icons/delete.svg'
 import IconPencil from '../assets/icons/pencil.svg'
 import IconError404 from '../assets/icons/error-404.svg'
@@ -76,6 +77,7 @@ Vue.component('IconAngleLeft', IconAngleLeft)
 Vue.component('IconAngleDown', IconAngleDown)
 Vue.component('IconArrowRight', IconArrowRight)
 Vue.component('IconArrowLeft', IconArrowLeft)
+Vue.component('IconArrowDown', IconArrowDown)
 Vue.component('IconDelete', IconDelete)
 Vue.component('IconPencil', IconPencil)
 Vue.component('IconError404', IconError404)

@@ -1,3 +1,5 @@
+@keyframes jump { 0% { bottom: 10px; } 50% { bottom: 35px; } 100% { bottom: 10px; } }
+
 .survey-item-media {
   position: relative;
   width: 90%;
@@ -70,10 +72,19 @@
       left: 50%;
       bottom: 20px;
       transform: translateX(-50%);
+      animation: jump 2s infinite;
+      width: 50px;
+      height: 50px;
+      background-color: rgba(#000, .2);
+      border-radius: 100%;
 
-      img {
-        width: 100%;
-        background-color: rgba(0,0,0,0.1)
+      svg {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        fill: #fff;
+        width: 20px;
       }
     }
   }

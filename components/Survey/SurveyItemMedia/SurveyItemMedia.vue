@@ -31,8 +31,8 @@
           </div>
         </div>
       </div>
-      <div v-show="scrollable && scrollPosition === 0" class="survey-item-media-img-scrolling">
-        <img src="../../../assets/img/scrollIconAnimation.gif">
+      <div v-show="scrollable && scrollPosition === 0 && !scrolledAlready" class="survey-item-media-img-scrolling">
+        <IconArrowDown />
       </div>
     </div>
     <div
@@ -86,6 +86,7 @@ export default {
       root: null,
       scrollable: false,
       scrollPosition: 0,
+      scrolledAlready: false,
       calculatedOverlayCoordinates: null,
       overlayOverflow: false,
       heatmap: null,
@@ -120,7 +121,7 @@ export default {
   methods: {
     imagesLoaded() {
       this.onResize()
-      this.onFrameScroll()
+      this.onFrameScroll(true)
       this.calculateOverlayCoordinates()
     },
     onResize() {
@@ -141,7 +142,10 @@ export default {
     getScrollableFrame() {
       return this.root.querySelector('.survey-item-media-img-scroll')
     },
-    onFrameScroll() {
+    onFrameScroll(init = false) {
+      if (init !== true && !this.scrolledAlready) {
+        this.scrolledAlready = true
+      }
       this.scrollPosition = this.getScrollableFrame().scrollTop
       this.calculateOverlayCoordinates()
     },
