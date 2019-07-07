@@ -20,6 +20,7 @@
           <MissionSurveyResultsItemText v-if="[SHORT_TEXT, LONG_TEXT].includes(result.type)" :result="result" />
           <MissionSurveyResultsItemBarsHorizontal v-else-if="[SINGLE_SELECT, MULTI_SELECT, LIKERT, PREFERENCE_TEST].includes(result.type)" :result="result" />
           <MissionSurveyResultsItemBarsVertical v-else-if="result.type === LINEAR_SCALE" :result="result" />
+          <MissionSurveyResultsItemFirstClick v-else-if="result.type === FIRST_CLICK" :result="result" />
         </MissionSurveyResultsBox>
       </div>
     </div>
@@ -34,10 +35,12 @@ import MissionSurveyResultsItemBarsHorizontal
   from '../MissionSurveyResultsItemBarsHorizontal/MissionSurveyResultsItemBarsHorizontal'
 import MissionSurveyResultsItemBarsVertical
   from '../MissionSurveyResultsItemBarsVertical/MissionSurveyResultsItemBarsVertical'
+import MissionSurveyResultsItemFirstClick
+  from '../MissionSurveyResultsItemFirstClick/MissionSurveyResultsItemFirstClick'
 
 export default {
   name: 'MissionSurveyResults',
-  components: { MissionSurveyResultsItemBarsVertical, MissionSurveyResultsItemBarsHorizontal, MissionSurveyResultsItemText, MissionSurveyResultsBox },
+  components: { MissionSurveyResultsItemFirstClick, MissionSurveyResultsItemBarsVertical, MissionSurveyResultsItemBarsHorizontal, MissionSurveyResultsItemText, MissionSurveyResultsBox },
   data() {
     return { ...MISSION_SURVEY_ITEMS, ...MISSION_SURVEY_USABILITY_LAB_ITEMS }
   },

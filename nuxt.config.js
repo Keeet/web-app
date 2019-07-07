@@ -60,7 +60,8 @@ module.exports = {
     { src: '~/plugins/missionCreateRecruitCalendar.js', ssr: false },
     { src: '~/plugins/twilioHelper.js', ssr: false },
     { src: '~/plugins/nuxtClientInit.js', ssr: false },
-    { src: '~/plugins/uaParser.js', ssr: false }
+    { src: '~/plugins/uaParser.js', ssr: false },
+    { src: '~/plugins/pluginLoadScript.js', ssr: false }
   ],
 
   modules: [

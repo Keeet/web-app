@@ -17,7 +17,7 @@
     display: none;
   }
 
-  .survey-item-media-img-wrapper {
+  .survey-item-media-img-scroll {
     overflow: hidden;
     overflow-y: auto;
     scrollbar-width: none;
@@ -26,14 +26,35 @@
       cursor: pointer;
     }
 
-    .survey-item-media-img-inner {
+    .survey-item-media-img-scroll-content {
       display: flex;
       flex-direction: column;
       justify-content: center;
       min-height: 100%;
 
-      .survey-item-media-img {
-        width: 100%;
+      .survey-item-media-img-scroll-content-inner {
+        position: relative;
+
+        .survey-item-media-img {
+          width: 100%;
+          vertical-align: top;
+        }
+
+        .survey-item-media-heatmap-wrapper {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(#000, .4);
+
+          .survey-item-media-heatmap {
+            width: 100%;
+            height: 100%;
+          }
+        }
       }
     }
 
@@ -61,7 +82,7 @@
         display: inline;
       }
 
-      .survey-item-media-img-wrapper {
+      .survey-item-media-img-scroll {
         position: absolute;
         top: 1.37%;
         left: 3.96%;
@@ -81,7 +102,7 @@
         display: inline;
       }
 
-      .survey-item-media-img-wrapper {
+      .survey-item-media-img-scroll {
         position: absolute;
         top: 3.4%;
         left: 1.37%;
@@ -101,7 +122,7 @@
         display: inline;
       }
 
-      .survey-item-media-img-wrapper {
+      .survey-item-media-img-scroll {
         position: absolute;
         top: 7.45%;
         left: 3.71%;
@@ -120,7 +141,7 @@
         display: inline;
       }
 
-      .survey-item-media-img-wrapper {
+      .survey-item-media-img-scroll {
         position: absolute;
         top: 3.71%;
         left: 7.45%;

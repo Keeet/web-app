@@ -15,16 +15,21 @@
       @load="imagesLoaded"
     >
     <div
-      class="survey-item-media-img-wrapper"
+      class="survey-item-media-img-scroll"
       :class="{ scrollable }"
     >
-      <div class="survey-item-media-img-inner">
-        <img
-          class="survey-item-media-img"
-          :src="image"
-          @load="imagesLoaded"
-          @click="clickImage"
-        >
+      <div class="survey-item-media-img-scroll-content">
+        <div class="survey-item-media-img-scroll-content-inner">
+          <img
+            class="survey-item-media-img"
+            :src="image"
+            @load="imagesLoaded"
+            @click="clickImage"
+          >
+          <div class="survey-item-media-heatmap-wrapper">
+            <div class="survey-item-media-heatmap" />
+          </div>
+        </div>
       </div>
       <div v-show="scrollable && scrollPosition === 0" class="survey-item-media-img-scrolling">
         <img src="../../../assets/img/scrollIconAnimation.gif">
@@ -65,6 +70,10 @@ export default {
     blur: {
       type: Boolean,
       default: false
+    },
+    heatmapPoints: {
+      type: Array,
+      default: null
     }
   },
   data() {
@@ -75,6 +84,8 @@ export default {
       scrollPosition: 0,
       calculatedOverlayCoordinates: null,
       overlayOverflow: false,
+      heatmap: null,
+      heatmapContainer: null,
       ...MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES
     }
   },
@@ -90,6 +101,11 @@ export default {
       window.addEventListener('resize', this.onResize)
       window.addEventListener('scroll', this.calculateOverlayCoordinates)
       this.getScrollableFrame().addEventListener('scroll', this.onFrameScroll)
+
+      if (this.heatmapPoints) {
+        this.heatmapContainer = this.root.querySelector('.survey-item-media-heatmap')
+        this.renderHeatmap()
+      }
     })
   },
   beforeDestroy() {
@@ -104,7 +120,7 @@ export default {
       this.calculateOverlayCoordinates()
     },
     onResize() {
-      const frameWrapper = this.root.querySelector('.survey-item-media-img-wrapper')
+      const frameWrapper = this.root.querySelector('.survey-item-media-img-scroll')
       const image = frameWrapper.querySelector('.survey-item-media-img')
       const isScrollable = frameWrapper.offsetHeight < image.offsetHeight && frameWrapper.offsetHeight
 
@@ -114,9 +130,12 @@ export default {
         this.scrollable = false
       }
       this.calculateOverlayCoordinates()
+      if (this.heatmap) {
+        this.resizeHeatmap()
+      }
     },
     getScrollableFrame() {
-      return this.root.querySelector('.survey-item-media-img-wrapper')
+      return this.root.querySelector('.survey-item-media-img-scroll')
     },
     onFrameScroll() {
       this.scrollPosition = this.getScrollableFrame().scrollTop
@@ -141,6 +160,30 @@ export default {
       const y = offsetTop(image) + (this.overlayCoordinates.y * image.offsetHeight) - imageWrapper.scrollTop - window.scrollY
       this.calculatedOverlayCoordinates = { x, y }
       this.overlayOverflow = (y < offsetTop(image) - window.scrollY) || (y > offsetTop(image) + imageWrapper.offsetHeight - window.scrollY)
+    },
+    renderHeatmap() {
+      this.$loadScript('/js/heatmap.js')
+        .then(() => {
+          // eslint-disable-next-line no-undef
+          this.heatmap = h337.create({
+            container: this.heatmapContainer,
+            radius: 20
+          })
+          this.resizeHeatmap()
+        })
+        // eslint-disable-next-line no-console
+        .catch(console.error)
+    },
+    resizeHeatmap() {
+      this.heatmap.setData({
+        max: 2,
+        min: 0,
+        data: this.heatmapPoints.map(({ x, y }) => ({
+          x: Math.round(this.heatmapContainer.offsetWidth * x),
+          y: Math.round(this.heatmapContainer.offsetHeight * y),
+          value: 1
+        }))
+      })
     }
   }
 }
