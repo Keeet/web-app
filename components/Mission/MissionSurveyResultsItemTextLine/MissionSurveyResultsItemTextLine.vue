@@ -1,14 +1,19 @@
 <template>
   <div
-    :id="id"
-    class="mission-survey-results-item-text-line"
-    :class="{ maximized, cut, last }"
-    @click="maximize"
+    class="mission-survey-results-item-text-line-wrapper"
+    :class="{ last, cut }"
   >
-    <p class="mission-survey-results-item-text-line-text">
-      {{ text }}
-    </p>
-    <div v-show="cut && !maximized" class="mission-survey-results-item-text-line-text-overlay" />
+    <div
+      :id="id"
+      class="mission-survey-results-item-text-line"
+      :class="{ maximized, cut }"
+      @click="maximize"
+    >
+      <p class="mission-survey-results-item-text-line-text">
+        {{ text }}
+      </p>
+      <div v-show="cut && !maximized" class="mission-survey-results-item-text-line-text-overlay" />
+    </div>
   </div>
 </template>
 
