@@ -53,8 +53,8 @@ export default {
     survey() {
       return this.s.survey
     },
-    surveyJSON() {
-      return JSON.stringify(this.survey)
+    missionFormJSON() {
+      return JSON.stringify(this.s)
     },
     items() {
       return this.survey.items
@@ -64,7 +64,7 @@ export default {
     }
   },
   watch: {
-    surveyJSON() {
+    missionFormJSON() {
       this.setPreview()
     }
   },

@@ -5,14 +5,14 @@
       class="survey-item-media-frame"
       :class="{ landscape: frame === PHONE_LANDSCAPE }"
       :src="`/img/${frame === PHONE_PORTRAIT ? 'frame-phone-portrait.png' : 'frame-phone-landscape.png'}`"
-      @load="imagesLoaded"
+      @load="frameLoaded = true"
     >
     <img
       v-else-if="[TABLET_PORTRAIT, TABLET_LANDSCAPE].includes(frame)"
       class="survey-item-media-frame"
       :class="{ landscape: frame === TABLET_LANDSCAPE }"
       :src="`/img/${frame === TABLET_PORTRAIT ? 'frame-tablet-portrait.png' : 'frame-tablet-landscape.png'}`"
-      @load="imagesLoaded"
+      @load="frameLoaded = true"
     >
     <div
       class="survey-item-media-img-scroll"
@@ -23,7 +23,7 @@
           <img
             class="survey-item-media-img"
             :src="image"
-            @load="imagesLoaded"
+            @load="imageLoaded = true"
             @click="clickImage"
           >
           <div
@@ -87,6 +87,8 @@ export default {
   data() {
     return {
       id: null,
+      frameLoaded: false,
+      imageLoaded: false,
       root: null,
       scrollable: false,
       scrollPosition: 0,
@@ -98,9 +100,25 @@ export default {
       ...MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES
     }
   },
+  computed: {
+    imagesLoaded() {
+      return (this.frameLoaded || !this.frame) && this.imageLoaded
+    }
+  },
   watch: {
     overlayCoordinates() {
       this.calculateOverlayCoordinates()
+    },
+    imagesLoaded() {
+      this.onResize()
+      this.onFrameScroll(true)
+      this.calculateOverlayCoordinates()
+      this.$emit('imageLoad')
+
+      if (this.heatmapPoints) {
+        this.heatmapContainer = this.root.querySelector('.survey-item-media-heatmap')
+        this.renderHeatmap()
+      }
     }
   },
   mounted() {
@@ -110,11 +128,6 @@ export default {
       window.addEventListener('resize', this.onResize)
       window.addEventListener('scroll', this.calculateOverlayCoordinates)
       this.getScrollableFrame().addEventListener('scroll', this.onFrameScroll)
-
-      if (this.heatmapPoints) {
-        this.heatmapContainer = this.root.querySelector('.survey-item-media-heatmap')
-        this.renderHeatmap()
-      }
     })
   },
   beforeDestroy() {
@@ -123,12 +136,6 @@ export default {
     this.getScrollableFrame().removeEventListener('scroll', this.onFrameScroll)
   },
   methods: {
-    imagesLoaded() {
-      this.onResize()
-      this.onFrameScroll(true)
-      this.calculateOverlayCoordinates()
-      this.$emit('imageLoad')
-    },
     onResize() {
       const frameWrapper = this.root.querySelector('.survey-item-media-img-scroll')
       const image = frameWrapper.querySelector('.survey-item-media-img')
