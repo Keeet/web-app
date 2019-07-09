@@ -1,5 +1,27 @@
+.mission-survey-results-item-empty {
+  width: 200px;
+  border: 1px solid $grey-mid-light;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+
+  svg {
+    width: 200px;
+  }
+
+  .mission-survey-results-item-empty-text {
+    margin-top: 10px;
+    text-align: center;
+  }
+}
+
 .mission-survey-results-item-text {
   margin-left: $mission-survey-results-box-head-icon-width;
   max-height: 400px;
   overflow-y: auto;
+
+  &.isFollowUp {
+    margin-left: 0;
+  }
 }

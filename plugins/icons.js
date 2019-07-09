@@ -39,6 +39,7 @@ import IconFileImage from '../assets/icons/file-image.svg'
 import IconDragDrop from '../assets/icons/drag-drop.svg'
 import IconLinkExternal from '../assets/icons/link-external.svg'
 import IconFullScreen from '../assets/icons/full-screen.svg'
+import IconInboxEmpty from '../assets/icons/inbox-empty.svg'
 
 import IconPersonaChantal from '../assets/icons/persona-chantal.svg'
 import IconPersonaDustin from '../assets/icons/persona-dustin.svg'
@@ -104,6 +105,7 @@ Vue.component('IconFileImage', IconFileImage)
 Vue.component('IconDragDrop', IconDragDrop)
 Vue.component('IconLinkExternal', IconLinkExternal)
 Vue.component('IconFullScreen', IconFullScreen)
+Vue.component('IconInboxEmpty', IconInboxEmpty)
 
 Vue.component('IconPersonaChantal', IconPersonaChantal)
 Vue.component('IconPersonaDustin', IconPersonaDustin)

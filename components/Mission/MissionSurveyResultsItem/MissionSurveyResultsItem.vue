@@ -1,5 +1,5 @@
 <template>
-  <MissionSurveyResultsItemText v-if="[SHORT_TEXT, LONG_TEXT].includes(result.type)" :result="result" />
+  <MissionSurveyResultsItemText v-if="[SHORT_TEXT, LONG_TEXT].includes(result.type)" :result="result" :parent-result="parentResult" />
   <MissionSurveyResultsItemBarsHorizontal v-else-if="[SINGLE_SELECT, MULTI_SELECT, LIKERT, PREFERENCE_TEST].includes(result.type)" :result="result" :parent-result="parentResult" />
   <MissionSurveyResultsItemBarsVertical v-else-if="result.type === LINEAR_SCALE" :result="result" :parent-result="parentResult" />
   <MissionSurveyResultsItemFirstClick v-else-if="result.type === FIRST_CLICK" :result="result" />

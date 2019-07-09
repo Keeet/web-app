@@ -1,5 +1,11 @@
 <template>
-  <div class="mission-survey-results-item-text">
+  <div v-if="!result.results.length" class="mission-survey-results-item-empty">
+    <IconInboxEmpty />
+    <p class="mission-survey-results-item-empty-text">
+      No answers yet
+    </p>
+  </div>
+  <div v-else class="mission-survey-results-item-text" :class="{ isFollowUp: !!parentResult }">
     <MissionSurveyResultsItemTextLine
       v-for="(text, x) in result.results"
       :key="x"
@@ -18,6 +24,10 @@ export default {
     result: {
       type: Object,
       required: true
+    },
+    parentResult: {
+      type: Object,
+      default: null
     }
   }
 }
