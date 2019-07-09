@@ -102,7 +102,8 @@ export default {
   },
   computed: {
     imagesLoaded() {
-      return (this.frameLoaded || !this.frame) && this.imageLoaded
+      const noFrame = this.frame === MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES.NO_FRAME
+      return (this.frameLoaded || noFrame) && this.imageLoaded
     }
   },
   watch: {
