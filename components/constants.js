@@ -134,10 +134,18 @@ export const MISSION_SURVEY_USABILITY_LAB_FOLLOW_UP_REQUIRED = [
   MISSION_SURVEY_USABILITY_LAB_ITEMS.DESIGN_QUESTION,
   MISSION_SURVEY_USABILITY_LAB_ITEMS.QUESTION_LIST
 ]
-export const MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION = {
+export const MISSION_SURVEY_USABILITY_LAB_ITEM_TITLE = {
+  FIVE_SECOND_TEST: 'You will see the image for {{duration}} seconds'
+}
+export const MISSION_SURVEY_USABILITY_LAB_ITEM_SUBTITLE = {
+  PREFERENCE_TEST: ['Click an image to zoom in', 'Click again to zoom out'],
   FIRST_CLICK: 'Click on the image to carry out the instructions or complete the set task.',
-  FIVE_SECOND_TEST: 'You will see the image for {{duration}} seconds',
-  PREFERENCE_TEST: ['Click an image to zoom in', 'Click again to zoom out']
+  MULTI_SELECT: 'You can choose one or more',
+  FIVE_SECOND_TEST: 'Try to remember as much as you can.'
+}
+export const MISSION_SURVEY_USABILITY_LAB_ITEM_INSIGHTS = {
+  FIVE_SECOND_TEST: 'Design shown for {duration}s',
+  DESIGN_QUESTION: 'Design Question'
 }
 export const MISSION_RECRUIT_PAGES = {
   OVERVIEW: 'OVERVIEW',

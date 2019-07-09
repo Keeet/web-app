@@ -20,7 +20,10 @@
 
 <script>
 import { isNum } from '../../../utils/stringUtils'
-import { MISSION_SURVEY_USABILITY_LAB_ITEMS } from '../../constants'
+import {
+  MISSION_SURVEY_USABILITY_LAB_ITEMS,
+  MISSION_SURVEY_USABILITY_LAB_ITEM_INSIGHTS
+} from '../../constants'
 import MissionSurveyIconIndexed from '../../_shared/MissionSurveyIconIndexed/MissionSurveyIconIndexed'
 
 const {
@@ -56,7 +59,11 @@ export default {
     },
     title() {
       if (this.result.type === FIVE_SECOND_TEST) {
-        return `Design shown for ${this.result.duration}s`
+        return MISSION_SURVEY_USABILITY_LAB_ITEM_INSIGHTS[FIVE_SECOND_TEST]
+          .replace('{duration}', this.result.duration)
+      }
+      if (MISSION_SURVEY_USABILITY_LAB_ITEM_INSIGHTS[this.result.type]) {
+        return MISSION_SURVEY_USABILITY_LAB_ITEM_INSIGHTS[this.result.type]
       }
       return this.surveyItem.text || this.surveyItem.instruction
     }

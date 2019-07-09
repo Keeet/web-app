@@ -51,7 +51,8 @@
 import {
   MISSION_SURVEY_ITEMS,
   MISSION_SURVEY_USABILITY_LAB_ITEMS,
-  MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION
+  MISSION_SURVEY_USABILITY_LAB_ITEM_TITLE,
+  MISSION_SURVEY_USABILITY_LAB_ITEM_SUBTITLE
 } from '../../constants'
 import SurveyItemText from '../SurveyItemText/SurveyItemText'
 import SurveyItemSelect from '../SurveyItemSelect/SurveyItemSelect'
@@ -92,25 +93,22 @@ export default {
         return this.item.instruction
       }
       if (this.item.type === FIVE_SECOND_TEST) {
-        return MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION[this.item.type]
+        return MISSION_SURVEY_USABILITY_LAB_ITEM_TITLE[this.item.type]
           .replace('{{duration}}', this.response.timeout || this.item.duration)
       }
       return null
     },
     subtitle() {
-      if (this.item.type === FIRST_CLICK) {
-        return MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION[this.item.type]
-      }
       if (this.item.type === PREFERENCE_TEST) {
         if (!this.response.started) {
           return null
         }
         return this.response.sliderActive
-          ? MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION[this.item.type][1]
-          : MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION[this.item.type][0]
+          ? MISSION_SURVEY_USABILITY_LAB_ITEM_SUBTITLE[this.item.type][1]
+          : MISSION_SURVEY_USABILITY_LAB_ITEM_SUBTITLE[this.item.type][0]
       }
-      if (this.item.type === MULTI_SELECT) {
-        return 'You can choose one or more'
+      if (MISSION_SURVEY_USABILITY_LAB_ITEM_SUBTITLE[this.item.type]) {
+        return MISSION_SURVEY_USABILITY_LAB_ITEM_SUBTITLE[this.item.type]
       }
       return null
     },
