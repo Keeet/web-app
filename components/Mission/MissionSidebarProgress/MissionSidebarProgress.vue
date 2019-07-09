@@ -1,16 +1,10 @@
 <template>
   <div class="mission-sidebar-progress">
-    <p class="mission-sidebar-progress-title">
-      {{ title }}
-    </p>
-    <p class="mission-sidebar-progress-count">
-      <span class="mission-sidebar-progress-count-current">
-        {{ countCurrent }}
-      </span>
-      <span class="mission-sidebar-progress-count-total">
-        out of {{ countTotalFormatted }}
-      </span>
-    </p>
+    <MissionSurveySidebarCount
+      :title="title"
+      :text-large="countCurrent"
+      :text-small="`out of ${countTotalFormatted}`"
+    />
     <div class="mission-sidebar-progress-progress">
       <div
         class="mission-sidebar-progress-progress-done"
@@ -23,9 +17,11 @@
 
 <script>
 import { decodeHTML } from '../../../utils/htmlUtils'
+import MissionSurveySidebarCount from '../MissionSurveySidebarCount/MissionSurveySidebarCount'
 
 export default {
   name: 'MissionSidebarProgress',
+  components: { MissionSurveySidebarCount },
   props: {
     title: {
       type: String,

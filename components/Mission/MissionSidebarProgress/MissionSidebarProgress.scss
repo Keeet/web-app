@@ -1,26 +1,6 @@
 .mission-sidebar-progress {
   margin-bottom: 40px;
 
-  .mission-sidebar-progress-title {
-    font-size: 70%;
-    font-weight: 700;
-  }
-
-  .mission-sidebar-progress-count {
-    margin: 10px 0;
-
-    .mission-sidebar-progress-count-current {
-      font-size: 120%;
-      font-weight: 500;
-    }
-
-    .mission-sidebar-progress-count-total {
-      color: $grey-mid-dark;
-      font-size: 80%;
-      font-weight: 700;
-    }
-  }
-
   .mission-sidebar-progress-progress {
     position: relative;
     height: 4px;
