@@ -17,7 +17,7 @@
         :index="bar.index"
         :absolute="bar.absolute"
         :relative="bar.relative"
-        :survey-type="surveyItem.type"
+        :bg-color-class="parentResult ? parentResult.type : result.type"
       />
     </div>
   </div>
@@ -35,6 +35,10 @@ export default {
     result: {
       type: Object,
       required: true
+    },
+    parentResult: {
+      type: Object,
+      default: null
     }
   },
   computed: {

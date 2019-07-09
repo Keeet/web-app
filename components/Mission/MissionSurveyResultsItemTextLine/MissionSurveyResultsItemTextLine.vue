@@ -1,7 +1,7 @@
 <template>
   <div
     class="mission-survey-results-item-text-line-wrapper"
-    :class="{ last, cut }"
+    :class="{ last, cut, maximized }"
   >
     <div
       :id="id"

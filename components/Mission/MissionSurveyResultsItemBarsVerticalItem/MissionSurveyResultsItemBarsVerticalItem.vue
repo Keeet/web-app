@@ -1,9 +1,9 @@
 <template>
   <div class="mission-survey-results-item-bars-vertical-item">
-    <div class="mission-survey-results-item-bars-vertical-item-bg" :class="surveyType" />
+    <div class="mission-survey-results-item-bars-vertical-item-bg" :class="bgColorClass" />
     <div
       class="mission-survey-results-item-bars-vertical-item-fill"
-      :class="surveyType"
+      :class="bgColorClass"
       :style="{ height: fillHeight }"
     />
     <div class="mission-survey-results-item-bars-vertical-item-head">
@@ -38,7 +38,7 @@ export default {
       type: Number,
       required: true
     },
-    surveyType: {
+    bgColorClass: {
       type: String,
       required: true,
       validator: value => Object.values({

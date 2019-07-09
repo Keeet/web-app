@@ -1,9 +1,13 @@
 .mission-survey-results-item-follow-up {
-  margin: 0 -$mission-survey-results-box-padding;
+  margin: 0 -#{$mission-survey-results-box-padding};
   border-top: 1px solid $grey;
-  padding: 20px;
+  padding: $mission-survey-results-box-padding;
+
+  &.last {
+    padding-bottom: 0;
+  }
 
   .mission-survey-results-item-follow-up-body {
-    margin-top: 20px;
+    margin-top: 30px;
   }
 }

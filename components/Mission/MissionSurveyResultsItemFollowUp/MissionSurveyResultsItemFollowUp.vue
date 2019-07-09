@@ -1,8 +1,8 @@
 <template>
-  <div class="mission-survey-results-item-follow-up">
+  <div class="mission-survey-results-item-follow-up" :class="{ last }">
     <MissionSurveyResultsItemHead :result="result" :index="index" hide-icon />
     <div class="mission-survey-results-item-follow-up-body">
-      <MissionSurveyResultsItem :result="result" />
+      <MissionSurveyResultsItem :result="result" :parent-result="parentResult" />
     </div>
   </div>
 </template>
@@ -18,9 +18,17 @@ export default {
       type: Object,
       required: true
     },
+    parentResult: {
+      type: Object,
+      default: null
+    },
     index: {
       type: Number,
       required: true
+    },
+    last: {
+      type: Boolean,
+      default: false
     }
   }
 }

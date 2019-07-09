@@ -1,14 +1,14 @@
 <template>
-  <div class="mission-survey-results-item-bars-horizontal-item">
+  <div class="mission-survey-results-item-bars-horizontal-item" :class="{ first, last }">
     <div class="mission-survey-results-item-bars-horizontal-item-subject">
       <img v-if="surveyType === PREFERENCE_TEST" :src="subject">
       <span v-else>{{ subject }}</span>
     </div>
     <div class="mission-survey-results-item-bars-horizontal-item-bar">
-      <div class="mission-survey-results-item-bars-horizontal-item-bar-bg" :class="surveyType" />
+      <div class="mission-survey-results-item-bars-horizontal-item-bar-bg" :class="bgColorClass" />
       <div
         class="mission-survey-results-item-bars-horizontal-item-bar-fill"
-        :class="surveyType"
+        :class="bgColorClass"
         :style="{ width: fillWidth }"
       />
       <p class="mission-survey-results-item-bars-horizontal-item-bar-percent">
@@ -46,6 +46,18 @@ export default {
         ...MISSION_SURVEY_ITEMS,
         ...MISSION_SURVEY_USABILITY_LAB_ITEMS
       }).includes(value)
+    },
+    bgColorClass: {
+      type: String,
+      required: true
+    },
+    first: {
+      type: Boolean,
+      default: false
+    },
+    last: {
+      type: Boolean,
+      default: false
     }
   },
   data() {

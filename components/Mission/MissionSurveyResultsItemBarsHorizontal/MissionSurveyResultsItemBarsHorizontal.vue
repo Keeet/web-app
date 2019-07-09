@@ -7,6 +7,9 @@
       :absolute="item.absolute"
       :relative="item.relative"
       :survey-type="result.type"
+      :bg-color-class="parentResult ? parentResult.type : result.type"
+      :first="x === 0"
+      :last="x === sortedResults.length - 1"
     />
   </div>
 </template>
@@ -27,6 +30,10 @@ export default {
     result: {
       type: Object,
       required: true
+    },
+    parentResult: {
+      type: Object,
+      default: null
     }
   },
   computed: {

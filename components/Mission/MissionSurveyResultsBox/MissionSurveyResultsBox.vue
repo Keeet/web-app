@@ -5,7 +5,7 @@
       <div v-if="$slots.main" class="mission-survey-results-box-body-main">
         <slot name="main" />
       </div>
-      <div v-if="$slots.followUp" class="mission-survey-results-box-body-follow-up">
+      <div v-if="$slots['follow-up']" class="mission-survey-results-box-body-follow-up">
         <slot name="follow-up" />
       </div>
     </div>

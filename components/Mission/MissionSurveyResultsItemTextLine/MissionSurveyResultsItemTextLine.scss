@@ -6,7 +6,7 @@
     border-bottom: none;
   }
 
-  &.cut {
+  &.cut:not(.maximized) {
     padding-bottom: 5px;
   }
 

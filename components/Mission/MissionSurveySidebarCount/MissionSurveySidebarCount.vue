@@ -23,7 +23,7 @@ export default {
       required: true
     },
     textLarge: {
-      type: String,
+      type: [String, Number],
       required: true
     },
     textSmall: {

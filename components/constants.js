@@ -145,7 +145,8 @@ export const MISSION_SURVEY_USABILITY_LAB_ITEM_SUBTITLE = {
 }
 export const MISSION_SURVEY_USABILITY_LAB_ITEM_INSIGHTS = {
   FIVE_SECOND_TEST: 'Design shown for {duration}s',
-  DESIGN_QUESTION: 'Design Question'
+  DESIGN_QUESTION: 'Design Question',
+  QUESTION_LIST: 'Questions'
 }
 export const MISSION_RECRUIT_PAGES = {
   OVERVIEW: 'OVERVIEW',

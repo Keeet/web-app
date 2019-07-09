@@ -26,6 +26,8 @@
               :key="y"
               :index="y + 1"
               :result="followUpResult"
+              :parent-result="result"
+              :last="y === result.followUpResults.length - 1"
             />
           </template>
         </MissionSurveyResultsBox>

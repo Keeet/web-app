@@ -1,7 +1,15 @@
 .mission-survey-results-item-bars-horizontal-item {
   display: flex;
   align-items: center;
-  margin: 15px 0;
+  margin: 12px 0;
+
+  &.first {
+    margin-top: 0;
+  }
+
+  &.last {
+    margin-bottom: 0;
+  }
 
   .mission-survey-results-item-bars-horizontal-item-subject {
     width: 100px;
@@ -54,6 +62,18 @@
       &.PREFERENCE_TEST {
         background-color: $mission-survey-preference-test;
       }
+      &.FIRST_CLICK {
+        background-color: $mission-survey-first-click;
+      }
+      &.FIVE_SECOND_TEST {
+        background-color: $mission-survey-five-second-test;
+      }
+      &.QUESTION_LIST {
+        background-color: $mission-survey-question-list;
+      }
+      &.DESIGN_QUESTION {
+        background-color: $mission-survey-design-question;
+      }
     }
 
     .mission-survey-results-item-bars-horizontal-item-bar-bg {
@@ -79,7 +99,6 @@
       position: relative;
       z-index: 3;
       font-size: 80%;
-      font-weight: 500;
     }
   }
 }
