@@ -42,7 +42,7 @@ export default {
       return this.result.results
     },
     surveyItem() {
-      return this.$store.state.survey.items.find(i => i.id === this.result.id)
+      return this.$store.getters.getSurveyItemById(this.result.id)
     },
     average() {
       return Math.round(this.result.average * 10) / 10

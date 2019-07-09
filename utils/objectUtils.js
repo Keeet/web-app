@@ -23,3 +23,9 @@ export function groupBy(xs, key) {
     return rv
   }, {})
 }
+
+export function flatMap(value, mapperFunction = i => i) {
+  return Array.isArray(value)
+    ? [].concat(...value.map(x => flatMap(x, mapperFunction)))
+    : mapperFunction(value)
+}

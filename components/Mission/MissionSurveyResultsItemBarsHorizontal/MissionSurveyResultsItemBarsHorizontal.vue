@@ -15,6 +15,7 @@
 import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS, MISSION_SURVEY_ITEM_LIKERT_OPTIONS, MISSION_SURVEY_SELECT_OTHER_LABEL } from '../../constants'
 import MissionSurveyResultsItemBarsHorizontalItem
   from '../MissionSurveyResultsItemBarsHorizontalItem/MissionSurveyResultsItemBarsHorizontalItem'
+import { flatMap } from '../../../utils/objectUtils'
 
 const { SINGLE_SELECT, MULTI_SELECT, LIKERT } = MISSION_SURVEY_ITEMS
 const { PREFERENCE_TEST } = MISSION_SURVEY_USABILITY_LAB_ITEMS
@@ -44,15 +45,16 @@ export default {
       return results.sort((a, b) => a.absolute > b.absolute ? -1 : 1)
     },
     surveyItem() {
-      return this.$store.state.survey.items.find(i => i.id === this.result.id)
+      return this.$store.getters.getSurveyItemById(this.result.id)
     },
     emptyOptions() {
       if ([SINGLE_SELECT, MULTI_SELECT].includes(this.surveyItem.type)) {
         const hasOther = this.surveyItem.otherAvailable
-        const choicesWithOther = [
+        const choicesWithOtherDeepArray = [
           ...this.surveyItem.choices,
           hasOther ? MISSION_SURVEY_SELECT_OTHER_LABEL : []
-        ].flatMap(c => c)
+        ]
+        const choicesWithOther = flatMap(choicesWithOtherDeepArray)
 
         return choicesWithOther
           .filter(choice => !this.results.map(r => r.text).includes(choice))

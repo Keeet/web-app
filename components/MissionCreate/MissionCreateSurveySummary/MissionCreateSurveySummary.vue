@@ -71,7 +71,7 @@ import { MISSIONS } from '../../constants'
 import MissionCreateSurveySummaryItem from '../MissionCreateSurveySummaryItem/MissionCreateSurveySummaryItem'
 import MissionCreateSideBox from '../MissionCreateSideBox/MissionCreateSideBox'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
-import { groupBy } from '../../../utils/objectUtils'
+import { flatMap, groupBy } from '../../../utils/objectUtils'
 
 export default {
   name: 'MissionCreateSurveySummary',
@@ -102,9 +102,9 @@ export default {
       return this.$store.state.missionForm
     },
     flatMappedItems() {
-      return this.items
+      const itemsDeepArray = this.items
         .map(i => [i, ...(i.followUps ? i.followUps : [])])
-        .flatMap(i => i)
+      return flatMap(itemsDeepArray)
     },
     flatMappedItemsPricingData() {
       return JSON.stringify({

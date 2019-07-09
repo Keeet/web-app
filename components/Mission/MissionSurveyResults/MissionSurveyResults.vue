@@ -17,11 +17,17 @@
           :index="x + 1"
           :result="result"
         >
-          <MissionSurveyResultsItemText v-if="[SHORT_TEXT, LONG_TEXT].includes(result.type)" :result="result" />
-          <MissionSurveyResultsItemBarsHorizontal v-else-if="[SINGLE_SELECT, MULTI_SELECT, LIKERT, PREFERENCE_TEST].includes(result.type)" :result="result" />
-          <MissionSurveyResultsItemBarsVertical v-else-if="result.type === LINEAR_SCALE" :result="result" />
-          <MissionSurveyResultsItemFirstClick v-else-if="result.type === FIRST_CLICK" :result="result" />
-          <MissionSurveyResultsItemMedia v-else-if="[DESIGN_QUESTION, FIVE_SECOND_TEST].includes(result.type)" :result="result" />
+          <template slot="main">
+            <MissionSurveyResultsItem v-if="result.type !== INSTRUCTION" :result="result" />
+          </template>
+          <template v-if="result.followUpResults && result.followUpResults.length" slot="follow-up">
+            <MissionSurveyResultsItemFollowUp
+              v-for="(followUpResult, y) in result.followUpResults"
+              :key="y"
+              :index="y + 1"
+              :result="followUpResult"
+            />
+          </template>
         </MissionSurveyResultsBox>
       </div>
     </div>
@@ -29,22 +35,16 @@
 </template>
 
 <script>
+import { MISSION_SURVEY_USABILITY_LAB_ITEMS } from '../../constants'
 import MissionSurveyResultsBox from '../MissionSurveyResultsBox/MissionSurveyResultsBox'
-import MissionSurveyResultsItemText from '../MissionSurveyResultsItemText/MissionSurveyResultsItemText'
-import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS } from '../../constants'
-import MissionSurveyResultsItemBarsHorizontal
-  from '../MissionSurveyResultsItemBarsHorizontal/MissionSurveyResultsItemBarsHorizontal'
-import MissionSurveyResultsItemBarsVertical
-  from '../MissionSurveyResultsItemBarsVertical/MissionSurveyResultsItemBarsVertical'
-import MissionSurveyResultsItemFirstClick
-  from '../MissionSurveyResultsItemFirstClick/MissionSurveyResultsItemFirstClick'
-import MissionSurveyResultsItemMedia from '../MissionSurveyResultsItemMedia/MissionSurveyResultsItemMedia'
+import MissionSurveyResultsItem from '../MissionSurveyResultsItem/MissionSurveyResultsItem'
+import MissionSurveyResultsItemFollowUp from '../MissionSurveyResultsItemFollowUp/MissionSurveyResultsItemFollowUp'
 
 export default {
   name: 'MissionSurveyResults',
-  components: { MissionSurveyResultsItemMedia, MissionSurveyResultsItemFirstClick, MissionSurveyResultsItemBarsVertical, MissionSurveyResultsItemBarsHorizontal, MissionSurveyResultsItemText, MissionSurveyResultsBox },
+  components: { MissionSurveyResultsItemFollowUp, MissionSurveyResultsItem, MissionSurveyResultsBox },
   data() {
-    return { ...MISSION_SURVEY_ITEMS, ...MISSION_SURVEY_USABILITY_LAB_ITEMS }
+    return { ...MISSION_SURVEY_USABILITY_LAB_ITEMS }
   },
   computed: {
     mission() {

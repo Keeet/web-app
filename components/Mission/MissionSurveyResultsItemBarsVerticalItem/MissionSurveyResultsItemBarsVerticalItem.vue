@@ -27,7 +27,7 @@ export default {
   name: 'MissionSurveyResultsItemBarsVerticalItem',
   props: {
     index: {
-      type: String,
+      type: Number,
       required: true
     },
     absolute: {

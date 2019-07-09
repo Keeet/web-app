@@ -88,18 +88,18 @@ export default {
       if ([SHORT_TEXT, LONG_TEXT, SINGLE_SELECT, MULTI_SELECT, LINEAR_SCALE, LIKERT].includes(this.item.type)) {
         return this.item.text
       }
-      if ([FIRST_CLICK, FIVE_SECOND_TEST, PREFERENCE_TEST].includes(this.item.type)) {
+      if ([FIRST_CLICK, PREFERENCE_TEST].includes(this.item.type)) {
         return this.item.instruction
+      }
+      if (this.item.type === FIVE_SECOND_TEST) {
+        return MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION[this.item.type]
+          .replace('{{duration}}', this.response.timeout || this.item.duration)
       }
       return null
     },
     subtitle() {
       if (this.item.type === FIRST_CLICK) {
         return MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION[this.item.type]
-      }
-      if (this.item.type === FIVE_SECOND_TEST) {
-        return MISSION_SURVEY_USABILITY_LAB_ITEM_INSTRUCTION[this.item.type]
-          .replace('{{duration}}', this.response.timeout || this.item.duration)
       }
       if (this.item.type === PREFERENCE_TEST) {
         if (!this.response.started) {

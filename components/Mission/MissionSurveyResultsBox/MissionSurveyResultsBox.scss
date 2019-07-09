@@ -1,35 +1,18 @@
 .mission-survey-results-box {
-  padding: 20px;
+  padding: $mission-survey-results-box-padding;
   margin: 20px 0;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.07);
 
-  .mission-survey-results-box-head {
-    display: flex;
-
-    .mission-survey-results-box-head-icon {
-      flex-shrink: 0;
-      width: $mission-survey-results-box-head-icon-width;
-      overflow: hidden;
-    }
-
-    .mission-survey-results-box-head-text {
-      margin-top: 4px;
-
-      .mission-survey-results-box-head-text-title {
-        font-weight: 500;
-        font-size: 110%;
-      }
-
-      .mission-survey-results-box-head-text-subtitle {
-        color: $grey-mid-dark;
-        font-size: 80%;
-      }
-    }
-  }
-
   .mission-survey-results-box-body {
-    margin-top: 20px;
+
+    .mission-survey-results-box-body-main {
+      margin-top: 20px;
+    }
+
+    .mission-survey-results-box-body-follow-up {
+      margin-top: $mission-survey-results-box-padding;
+    }
   }
 }

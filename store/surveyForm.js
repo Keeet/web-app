@@ -1,4 +1,4 @@
-import { copy } from '../utils/objectUtils'
+import { copy, flatMap } from '../utils/objectUtils'
 import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS } from '../components/constants'
 
 const {
@@ -110,9 +110,9 @@ export const getters = {
   },
   activeResponse({ responses }, getters) {
     const item = getters.activeItem
-    return responses
+    const deepArray = responses
       .map(r => [r, ...(r.followUps ? r.followUps : [])])
-      .flatMap(r => r)
+    return flatMap(deepArray)
       .find(r => r.id === item.id)
   }
 }
@@ -361,7 +361,7 @@ function calculateProgress({ items, activeItemIndex, activeFollowUpIndex, active
   *           activeFollowUpIndex = null
   *   result: [true, true, true, true, false]
   * */
-  const labeledItems = items
+  const labeledItemsDeepArray = items
     .map((item, x) => {
       const itemFollowUps = item.followUps || []
       const isItemFollowUpActive = x === activeItemIndex && activeFollowUpIndex !== null
@@ -376,7 +376,7 @@ function calculateProgress({ items, activeItemIndex, activeFollowUpIndex, active
         ))
       ]
     })
-    .flatMap(isAnswered => isAnswered)
+  const labeledItems = flatMap(labeledItemsDeepArray)
 
   return labeledItems.filter(isAnswered => isAnswered).length / labeledItems.length
 }

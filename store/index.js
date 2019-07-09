@@ -1,3 +1,5 @@
+import { flatMap } from '../utils/objectUtils'
+
 const cookieParser = process.server ? require('cookieparser') : undefined
 const jwtDecode = require('jwt-decode')
 
@@ -17,6 +19,20 @@ export const state = () => ({
   personas: null,
   dropzoneUploads: {}
 })
+
+export const getters = {
+  getSurveyItemById(state) {
+    return (id) => {
+      const deepArray = state.survey.items.slice()
+        .map(i => [
+          i,
+          ...(i.followUps ? i.followUps : [])
+        ])
+      return flatMap(deepArray)
+        .find(i => i.id === id)
+    }
+  }
+}
 
 export const mutations = {
   setTokens(state, tokens) {

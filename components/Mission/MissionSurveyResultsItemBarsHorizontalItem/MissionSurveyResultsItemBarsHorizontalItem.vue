@@ -1,7 +1,7 @@
 <template>
   <div class="mission-survey-results-item-bars-horizontal-item">
     <div class="mission-survey-results-item-bars-horizontal-item-subject">
-      <img v-if="surveyType === PREFERENCE_TEST" :src="subject" />
+      <img v-if="surveyType === PREFERENCE_TEST" :src="subject">
       <span v-else>{{ subject }}</span>
     </div>
     <div class="mission-survey-results-item-bars-horizontal-item-bar">
