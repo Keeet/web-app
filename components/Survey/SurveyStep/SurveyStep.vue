@@ -6,6 +6,9 @@
         :style="{ width: `${s.form.progress * 100}%`, backgroundColor: s.color }"
       />
     </div>
+    <p v-if="isPreview()" class="survey-step-preview" :style="{ backgroundColor: s.color }">
+      PREVIEW ONLY
+    </p>
     <div class="survey-step-body">
       <slot />
     </div>
@@ -62,6 +65,11 @@ export default {
     },
     activeRootItem() {
       return this.$store.getters['surveyForm/activeRootItem']
+    }
+  },
+  methods: {
+    isPreview() {
+      return this.$route.params.id === 'preview'
     }
   }
 }
