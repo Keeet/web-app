@@ -1,5 +1,5 @@
 <template>
-  <div v-if="s.items" class="survey">
+  <div v-if="$store.state.survey && s.items" class="survey">
     <SurveyCustomScreen v-if="s.activeWelcome" type="WELCOME" />
     <SurveyCustomScreen v-else-if="s.activeClosing" type="CLOSING" />
     <SurveyStep
