@@ -1,0 +1,32 @@
+.mission-survey-share {
+
+  .mission-survey-share-link {
+    display: flex;
+    align-items: center;
+
+    .mission-survey-share-link-input {
+      margin-right: 10px;
+    }
+
+    .mission-survey-share-link-copy {
+      position: relative;
+
+      .mission-survey-share-link-copy-confirmation {
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        right: 0;
+        top: 100%;
+        padding-top: 5px;
+        opacity: 0;
+        transition: opacity .5s;
+        font-size: 90%;
+
+        &.active {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

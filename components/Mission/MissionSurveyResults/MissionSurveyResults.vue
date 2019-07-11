@@ -7,9 +7,7 @@
     data-aos-anchor="body"
   >
     <div class="mission-survey-results">
-      <h2 class="mission-survey-results-headline">
-        Response Summary
-      </h2>
+      <MissionSurveyHeadline text="Response Summary" />
       <div class="mission-survey-results-items">
         <MissionSurveyResultsBox
           v-for="(result, x) in mission.results"
@@ -41,10 +39,11 @@ import { MISSION_SURVEY_USABILITY_LAB_ITEMS } from '../../constants'
 import MissionSurveyResultsBox from '../MissionSurveyResultsBox/MissionSurveyResultsBox'
 import MissionSurveyResultsItem from '../MissionSurveyResultsItem/MissionSurveyResultsItem'
 import MissionSurveyResultsItemFollowUp from '../MissionSurveyResultsItemFollowUp/MissionSurveyResultsItemFollowUp'
+import MissionSurveyHeadline from '../MissionSurveyHeadline/MissionSurveyHeadline'
 
 export default {
   name: 'MissionSurveyResults',
-  components: { MissionSurveyResultsItemFollowUp, MissionSurveyResultsItem, MissionSurveyResultsBox },
+  components: { MissionSurveyHeadline, MissionSurveyResultsItemFollowUp, MissionSurveyResultsItem, MissionSurveyResultsBox },
   data() {
     return { ...MISSION_SURVEY_USABILITY_LAB_ITEMS }
   },
