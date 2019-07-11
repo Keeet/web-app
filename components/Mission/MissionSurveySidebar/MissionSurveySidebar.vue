@@ -7,7 +7,7 @@
     <MissionSurveySidebarCount
       title="AVERAGE DURATION"
       :text-large="avgDuration"
-      text-small="/ response"
+      text-small="/ participant"
     />
     <!-- TODO: go to preview -->
     <div class="mission-survey-sidebar-preview-button">
