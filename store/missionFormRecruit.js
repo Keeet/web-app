@@ -1,7 +1,10 @@
+import { MISSION_RECRUIT_STUDY_TYPES } from '../components/constants'
+
 const defaultState = {
   persona: null,
   personaDropdownOpened: false,
   tempPersonas: [],
+  studyType: MISSION_RECRUIT_STUDY_TYPES.USER_INTERVIEW,
   nbParticipants: 5,
   duration: 60,
   location: null,
@@ -39,6 +42,9 @@ export const mutations = {
     const personas = state.tempPersonas.slice()
     personas.push(persona)
     state.tempPersonas = personas
+  },
+  setStudyType(state, studyType) {
+    state.studyType = studyType
   },
   setNbParticipants(state, nbParticipants) {
     state.nbParticipants = nbParticipants

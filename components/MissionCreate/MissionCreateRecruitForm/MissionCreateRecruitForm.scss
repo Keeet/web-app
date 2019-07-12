@@ -1,25 +1,22 @@
 .mission-create-recruit-form {
-  position: relative;
   margin-top: 40px;
 
-  .mission-create-recruit-form-body {
-    width: calc(100% - 330px);
+  .mission-create-recruit-form-section {
+    margin-bottom: 30px;
 
-    .mission-create-recruit-form-section {
-      margin-bottom: 30px;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
+    &:last-child {
+      margin-bottom: 0;
     }
+  }
 
-    .mission-create-recruit-form-name {
-      width: 100%;
-      max-width: 500px;
-    }
+  .mission-create-recruit-form-name {
+    width: 100%;
+    max-width: 500px;
+  }
 
-    .mission-create-recruit-form-participants {
-      width: 300px;
-    }
+  .mission-create-recruit-form-participants,
+  .mission-create-recruit-form-study-type {
+    width: 300px;
+    margin-bottom: 20px;
   }
 }
