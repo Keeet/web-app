@@ -17,11 +17,13 @@ export const state = () => (defaultState)
 
 export const mutations = {
   init(state, { project }) {
-    if (!state.init || !state.inProgress || project.id !== state.projectId) {
+    if (!state.init || !state.inProgress || !project || project.id !== state.projectId) {
       for (const key in defaultState) {
         state[key] = defaultState[key]
       }
-      state.projectId = project.id
+      if (project) {
+        state.projectId = project.id
+      }
       state.init = true
     }
   },

@@ -48,7 +48,7 @@ const defaultState = {
   redirectLink: null,
   itemAddIndex: 0,
   items: [],
-  requiredCount: 0
+  requiredCount: 50
 }
 
 const defaultStateItem = {
@@ -373,6 +373,9 @@ export const mutations = {
         text
       }
     })
+  },
+  setRequiredCount(state, requiredCount) {
+    state.requiredCount = requiredCount
   }
 }
 
