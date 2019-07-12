@@ -64,12 +64,6 @@ export default {
         survey: missionFormSurvey
       }
     }
-  },
-  mounted() {
-    this.$store.commit('missionForm/init', { project: null })
-    this.$store.commit('missionFormSurvey/init')
-    this.$store.commit('missionFormPersona/init')
-    this.$store.commit('missionFormSurvey/setItems', this.$store.state.survey.items)
   }
 }
 </script>

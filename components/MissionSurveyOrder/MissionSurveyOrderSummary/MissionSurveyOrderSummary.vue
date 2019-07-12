@@ -32,6 +32,7 @@
       <ButtonText
         text="Order"
         :disabled="!isValid"
+        @click="submit"
         @disabledClick="scrollToErrors"
       />
     </template>
@@ -47,10 +48,11 @@ export default {
   components: { ButtonText, MissionSideBox },
   computed: {
     s() {
-      const { missionForm, missionFormSurvey } = this.$store.state
+      const { missionForm, missionFormSurvey, missionFormPersona } = this.$store.state
       return {
         ...missionForm,
-        survey: missionFormSurvey
+        survey: missionFormSurvey,
+        persona: missionFormPersona
       }
     },
     mission() {
@@ -76,6 +78,21 @@ export default {
   methods: {
     scrollToErrors() {
       scrollToTopId(this.s.invalidFields.map(field => field.id))
+    },
+    buildOrderRequest() {
+      const { requiredCount } = this.s.survey
+      return {
+        requiredCount,
+        demographicData: this.s.persona
+      }
+    },
+    submit() {
+      this.$push.submitMissionOrder({
+        ...this.buildOrderRequest(),
+        missionId: this.mission.id
+      }).then(() => {
+        this.$router.push(`/mission/${this.mission.id}`)
+      })
     }
   }
 }

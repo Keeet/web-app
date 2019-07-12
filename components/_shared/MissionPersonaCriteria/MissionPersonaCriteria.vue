@@ -1,7 +1,7 @@
 <template>
   <div class="mission-persona-criteria" :class="{opened}">
     <div class="mission-persona-criteria-head">
-      <p class="mission-persona-criteria-head-text">
+      <p class="mission-persona-criteria-head-text" @click="!opened ? commitSwitch() : () => {}">
         {{ headline }}
       </p>
       <SwitchButton :on="opened" @switch="commitSwitch" />

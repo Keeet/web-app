@@ -391,23 +391,21 @@ export const actions = {
       Object.keys(groupedByType).forEach((type) => {
         countByType[type] = groupedByType[type].length
       })
-      return new Promise((resolve) => {
-        this.$axios({
-          method: 'post',
-          url: '/pricing/quantitative',
-          data: {
-            items: {
-              ...countByType
-            },
-            expectedResponses: parseInt(state.requiredCount)
-          }
-        })
-          .then(({ data }) => {
-            commit('setPricing', data)
-            resolve()
-          })
-          .catch(reject)
+      this.$axios({
+        method: 'post',
+        url: '/pricing/quantitative',
+        data: {
+          items: {
+            ...countByType
+          },
+          expectedResponses: parseInt(state.requiredCount)
+        }
       })
+        .then(({ data }) => {
+          commit('setPricing', data)
+          resolve()
+        })
+        .catch(reject)
     })
   }
 }

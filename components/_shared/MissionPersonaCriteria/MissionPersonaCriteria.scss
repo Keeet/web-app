@@ -3,21 +3,27 @@
   border-radius: 5px;
   border-bottom: 1px solid $grey;
 
-  &:not(.opened) {
+  &.opened {
 
-    .mission-persona-criteria-head {
-      cursor: pointer;
+    .mission-persona-criteria-head-text {
+      cursor: default !important;
     }
   }
 
   .mission-persona-criteria-head {
-    padding: 30px;
+    padding: 0 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     .mission-persona-criteria-head-text {
+      flex-grow: 1;
       font-weight: 500;
+      padding: 30px 0;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 

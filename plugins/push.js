@@ -9,6 +9,7 @@ const OPERATIONS = {
   UPSERT_PROJECT: 'UPSERT_PROJECT',
   CREATE_MISSION: 'CREATE_MISSION',
   UPDATE_MISSION: 'UPDATE_MISSION',
+  SUBMIT_MISSION_ORDER: 'SUBMIT_MISSION_ORDER',
   CREATE_MISSION_INSIGHT_LINK: 'CREATE_MISSION_INSIGHT_LINK',
   SUBMIT_SURVEY: 'SUBMIT_SURVEY'
 }
@@ -247,6 +248,33 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
         }).then(handleRes).catch(handleError)
       })
     },
+    submitMissionOrder({
+      requiredCount,
+      demographicData: {
+        minAge,
+        maxAge,
+        genders,
+        countries
+      },
+      missionId
+    }) {
+      return new Promise((resolve, reject) => {
+        const handleRes = handleResponse.bind(this, OPERATIONS.SUBMIT_MISSION_ORDER, { missionId }, resolve, reject)
+        $axios({
+          method: 'post',
+          url: `/missions/${missionId}/orders`,
+          data: {
+            requiredCount,
+            demographicData: {
+              minAge,
+              maxAge,
+              genders,
+              countries
+            }
+          }
+        }).then(handleRes).catch(handleError)
+      })
+    },
     createMissionInsightLink({ missionId, url, title, description, linkType }) {
       return new Promise((resolve, reject) => {
         const handleRes = handleResponse.bind(this, OPERATIONS.CREATE_MISSION_INSIGHT_LINK, { missionId }, resolve, reject)
@@ -281,44 +309,37 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
   })
 
   function handleResponse(operation, params, resolve, reject, { data }) {
-    let fetchCfg
+    $fetch(getFetchConfig(operation, data, params))
+      .then(() => resolve(data)).catch(handleError)
+  }
+
+  function getFetchConfig(operation, data, params) {
     switch (operation) {
       case OPERATIONS.CREATE_COMPANY:
-        fetchCfg = [{ name: 'COMPANY', forced: true }, { name: 'USER', forced: true }]
-        break
+        return [{ name: 'COMPANY', forced: true }, { name: 'USER', forced: true }]
       case OPERATIONS.UPDATE_COMPANY:
-        fetchCfg = [{ name: 'COMPANY', forced: true }]
-        break
+        return [{ name: 'COMPANY', forced: true }]
       case OPERATIONS.CREATE_COMPANY_ADDRESS:
-        fetchCfg = [{ name: 'COMPANY', forced: true }]
-        break
+        return [{ name: 'COMPANY', forced: true }]
       case OPERATIONS.UPDATE_COMPANY_USER_ROLE:
-        fetchCfg = [{ name: 'COMPANY_USERS', forced: true }]
-        break
+        return [{ name: 'COMPANY_USERS', forced: true }]
       case OPERATIONS.UPSERT_PERSONA:
-        fetchCfg = [{ name: 'PERSONAS', forced: true }]
-        break
+        return [{ name: 'PERSONAS', forced: true }]
       case OPERATIONS.DELETE_PERSONA:
-        fetchCfg = [{ name: 'PERSONAS', forced: true }]
-        break
+        return [{ name: 'PERSONAS', forced: true }]
       case OPERATIONS.UPSERT_PROJECT:
-        fetchCfg = [{ name: 'PROJECT', id: data.id, forced: true }, { name: 'PROJECTS', forced: true }]
-        break
+        return [{ name: 'PROJECT', id: data.id, forced: true }, { name: 'PROJECTS', forced: true }]
       case OPERATIONS.CREATE_MISSION:
-        fetchCfg = [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: data.projectId, forced: true }]
-        break
+        return [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: data.projectId, forced: true }]
       case OPERATIONS.UPDATE_MISSION:
-        fetchCfg = [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: data.projectId, forced: true }]
-        break
+        return [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: data.projectId, forced: true }]
+      case OPERATIONS.SUBMIT_MISSION_ORDER:
+        return [{ name: 'MISSION', id: params.missionId, forced: true }]
       case OPERATIONS.CREATE_MISSION_INSIGHT_LINK:
-        fetchCfg = [{ name: 'MISSION_INSIGHTS', id: params.missionId, forced: true }]
-        break
+        return [{ name: 'MISSION_INSIGHTS', id: params.missionId, forced: true }]
       default:
-        fetchCfg = []
+        return []
     }
-
-    $fetch(fetchCfg)
-      .then(() => resolve(data)).catch(handleError)
   }
 
   function handleError(e) {

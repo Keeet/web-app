@@ -11,8 +11,16 @@ export default {
   validate({ params: { id } }) {
     return !!id
   },
-  fetch({ app: { $fetch }, params: { id } }) {
-    return $fetch([{ name: 'USER' }, { name: 'MISSION', id }, { name: 'SURVEY', id }])
+  fetch({ app: { $fetch }, store, params: { id } }) {
+    return new Promise((resolve) => {
+      $fetch([{ name: 'USER' }, { name: 'MISSION', id }, { name: 'SURVEY', id }]).then(() => {
+        store.commit('missionForm/init', { project: null })
+        store.commit('missionFormSurvey/init')
+        store.commit('missionFormPersona/init')
+        store.commit('missionFormSurvey/setItems', store.state.survey.items)
+        store.dispatch('missionFormSurvey/fetchPricing').then(resolve)
+      })
+    })
   }
 }
 </script>

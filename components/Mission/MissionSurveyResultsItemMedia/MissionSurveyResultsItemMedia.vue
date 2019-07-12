@@ -59,6 +59,9 @@ export default {
       this.onResize()
     })
   },
+  beforeDestroy() {
+    window.addEventListener('resize', this.onResize)
+  },
   methods: {
     onResize() {
       const root = document.getElementById(this.id)
