@@ -4,7 +4,7 @@ import {
   MISSION_SURVEY_USABILITY_LAB_FOLLOW_UP_REQUIRED,
   MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES
 } from '../components/constants'
-import { copy } from '../utils/objectUtils'
+import { copy, flatMap, groupBy } from '../utils/objectUtils'
 
 const {
   SHORT_TEXT,
@@ -48,7 +48,8 @@ const defaultState = {
   redirectLink: null,
   itemAddIndex: 0,
   items: [],
-  requiredCount: 50
+  requiredCount: 50,
+  pricing: null
 }
 
 const defaultStateItem = {
@@ -376,6 +377,38 @@ export const mutations = {
   },
   setRequiredCount(state, requiredCount) {
     state.requiredCount = requiredCount
+  },
+  setPricing(state, pricing) {
+    state.pricing = pricing
+  }
+}
+
+export const actions = {
+  fetchPricing({ state, commit }) {
+    return new Promise((resolve, reject) => {
+      const groupedByType = groupBy(getFlatMappedItems(state.items), 'type')
+      const countByType = {}
+      Object.keys(groupedByType).forEach((type) => {
+        countByType[type] = groupedByType[type].length
+      })
+      return new Promise((resolve) => {
+        this.$axios({
+          method: 'post',
+          url: '/pricing/quantitative',
+          data: {
+            items: {
+              ...countByType
+            },
+            expectedResponses: parseInt(state.requiredCount)
+          }
+        })
+          .then(({ data }) => {
+            commit('setPricing', data)
+            resolve()
+          })
+          .catch(reject)
+      })
+    })
   }
 }
 
@@ -411,4 +444,10 @@ function getDefaultFollowUp(type) {
 function copyDefaultItem(type) {
   const defaultItem = defaultStateItem[type]
   return copy(defaultItem)
+}
+
+function getFlatMappedItems(items) {
+  const itemsDeepArray = items
+    .map(i => [i, ...(i.followUps ? i.followUps : [])])
+  return flatMap(itemsDeepArray)
 }

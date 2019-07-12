@@ -12,7 +12,7 @@ export default {
     return !!id
   },
   fetch({ app: { $fetch }, params: { id } }) {
-    return $fetch([{ name: 'USER' }, { name: 'MISSION', id }])
+    return $fetch([{ name: 'USER' }, { name: 'MISSION', id }, { name: 'SURVEY', id }])
   }
 }
 </script>

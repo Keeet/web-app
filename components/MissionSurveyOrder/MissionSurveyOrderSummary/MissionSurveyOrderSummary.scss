@@ -1,0 +1,55 @@
+.mission-survey-order-summary {
+
+  .mission-survey-order-summary-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    tr {
+
+      td {
+        padding: 5px 0;
+
+        &:first-child {
+          text-align: left !important;
+        }
+
+        &:last-child {
+          text-align: right;
+        }
+      }
+
+      &:nth-last-child(2) {
+
+        td {
+          padding-bottom: 15px;
+        }
+      }
+    }
+
+    .mission-survey-order-summary-table-head {
+      font-weight: 700;
+
+      td {
+        padding-bottom: 8px;
+      }
+    }
+
+    tr:not(.mission-survey-order-summary-table-head):not(.mission-survey-order-summary-table-sum) {
+      font-size: 90%;
+    }
+
+    .mission-survey-order-summary-table-sum {
+      font-weight: 700;
+
+      td {
+        padding-top: 10px;
+        border-top: 1px solid $grey-mid-dark;
+      }
+    }
+  }
+
+  .mission-survey-order-summary-note {
+    font-size: 80%;
+    margin-top: 20px;
+  }
+}

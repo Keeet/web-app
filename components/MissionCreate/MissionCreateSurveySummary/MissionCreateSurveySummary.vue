@@ -70,7 +70,7 @@
 import { MISSIONS } from '../../constants'
 import MissionCreateSurveySummaryItem from '../MissionCreateSurveySummaryItem/MissionCreateSurveySummaryItem'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
-import { flatMap, groupBy } from '../../../utils/objectUtils'
+import { flatMap } from '../../../utils/objectUtils'
 import MissionSideBox from '../../_shared/MissionSideBox/MissionSideBox'
 
 export default {
@@ -85,7 +85,6 @@ export default {
   data() {
     const { SURVEY } = MISSIONS
     return {
-      pricing: null,
       SURVEY
     }
   },
@@ -99,7 +98,11 @@ export default {
       }
     },
     s() {
-      return this.$store.state.missionForm
+      const { missionForm, missionFormSurvey } = this.$store.state
+      return {
+        ...missionForm,
+        survey: missionFormSurvey
+      }
     },
     flatMappedItems() {
       const itemsDeepArray = this.items
@@ -113,7 +116,8 @@ export default {
       })
     },
     durationText() {
-      const d = this.pricing ? this.pricing.duration : 0
+      const { pricing } = this.s.survey
+      const d = pricing ? pricing.duration : 0
       if (d <= 60) {
         return 'about 1 min'
       }
@@ -123,34 +127,10 @@ export default {
   },
   watch: {
     flatMappedItemsPricingData() {
-      this.fetchPricing().then((pricing) => {
-        this.pricing = pricing
-      })
+      this.$store.dispatch('missionFormSurvey/fetchPricing')
     }
   },
   methods: {
-    fetchPricing() {
-      const groupedByType = groupBy(this.flatMappedItems, 'type')
-      const countByType = {}
-      Object.keys(groupedByType).forEach((type) => {
-        countByType[type] = groupedByType[type].length
-      })
-      return new Promise((resolve) => {
-        this.$axios({
-          method: 'post',
-          url: '/pricing/quantitative',
-          data: {
-            items: {
-              ...countByType
-            },
-            expectedResponses: 1
-          }
-        })
-          .then(res => resolve(res.data))
-          // eslint-disable-next-line no-console
-          .catch(console.error)
-      })
-    },
     openPreview() {
       window.open('/survey/preview', '_blank')
     }
