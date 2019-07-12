@@ -1,0 +1,58 @@
+.mission-persona-criteria-checklist {
+  margin: -10px auto;
+  width: 90%;
+
+  .mission-persona-criteria-checklist-item {
+    margin: 10px 0;
+
+    .mission-persona-criteria-checklist-input {
+      display: none;
+
+      & + .mission-persona-criteria-checklist-input-label {
+        display: flex;
+        align-items: center;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        .mission-persona-criteria-checklist-input-label-icon {
+          position: relative;
+          display: block;
+          width: 22px;
+          height: 22px;
+          border: 1px solid #0fbcf9;
+          border-radius: 5px;
+          box-sizing: border-box;
+          transition: background-color 0.3s;
+
+          svg {
+            position: absolute;
+            display: none;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            height: 16px;
+            fill: #fff;
+          }
+        }
+
+        .mission-persona-criteria-checklist-input-label-text {
+          margin-left: 20px;
+          font-size: 110%;
+        }
+      }
+
+      &:checked + .mission-persona-criteria-checklist-input-label {
+
+        .mission-persona-criteria-checklist-input-label-icon {
+          background-color: #0fbcf9;
+
+          svg {
+            display: inline;
+          }
+        }
+      }
+    }
+  }
+}

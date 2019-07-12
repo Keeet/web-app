@@ -1,6 +1,6 @@
 <template>
   <div class="mission-create-survey-summary">
-    <MissionCreateSideBox :type="s.type">
+    <MissionSideBox :type="s.type" wrapper-class="mission-create-survey">
       <template slot="body">
         <div class="mission-create-survey-summary-scrollable">
           <MissionCreateSurveySummaryItem type="WELCOME" title="Welcome Screen" no-drag />
@@ -62,20 +62,20 @@
           @click="$emit('submitClick')"
         />
       </template>
-    </MissionCreateSideBox>
+    </MissionSideBox>
   </div>
 </template>
 
 <script>
 import { MISSIONS } from '../../constants'
 import MissionCreateSurveySummaryItem from '../MissionCreateSurveySummaryItem/MissionCreateSurveySummaryItem'
-import MissionCreateSideBox from '../MissionCreateSideBox/MissionCreateSideBox'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
 import { flatMap, groupBy } from '../../../utils/objectUtils'
+import MissionSideBox from '../../_shared/MissionSideBox/MissionSideBox'
 
 export default {
   name: 'MissionCreateSurveySummary',
-  components: { ButtonText, MissionCreateSideBox, MissionCreateSurveySummaryItem },
+  components: { MissionSideBox, ButtonText, MissionCreateSurveySummaryItem },
   props: {
     isValid: {
       type: Boolean,

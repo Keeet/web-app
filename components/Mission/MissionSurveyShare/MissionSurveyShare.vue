@@ -5,7 +5,9 @@
       title="Keeet Panel"
       text="Test with our diverse panel of testers and gain insights in hours!"
     >
-      <ButtonText text="Place Order" no-margin />
+      <nuxt-link :to="`/missions/${mission.id}/order`">
+        <ButtonText text="Place Order" no-margin />
+      </nuxt-link>
     </MissionSurveyShareBox>
     <MissionSurveyShareBox
       title="Your audience"

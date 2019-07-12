@@ -1,0 +1,36 @@
+.mission-persona-criteria {
+  background-color: #fff;
+  border-radius: 5px;
+  border-bottom: 1px solid $grey;
+
+  &:not(.opened) {
+
+    .mission-persona-criteria-head {
+      cursor: pointer;
+    }
+  }
+
+  .mission-persona-criteria-head {
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .mission-persona-criteria-head-text {
+      font-size: 130%;
+    }
+  }
+
+  .mission-persona-criteria-body {
+    padding: 10px 40px 40px;
+
+    .mission-persona-criteria-slider {
+      width: 90%;
+      margin: 0 auto;
+      padding: 50px 40px 20px;
+      box-sizing: border-box;
+      border-radius: 5px;
+      border: solid 1px $grey;
+    }
+  }
+}

@@ -44,11 +44,11 @@
         </div>
       </MissionCreateBox>
     </div>
-    <MissionCreateSideBox :type="s.type">
+    <MissionSideBox :type="s.type" wrapper-class="mission-create-recruit-form">
       <template slot="body">
         You have in total 3 more testers free for this month.
       </template>
-    </MissionCreateSideBox>
+    </MissionSideBox>
   </div>
 </template>
 
@@ -62,10 +62,10 @@ import MissionCreateRecruitFormPersonaSelect from '../MissionCreateRecruitFormPe
 import MissionCreateRecruitFormDuration from '../MissionCreateRecruitFormDuration/MissionCreateRecruitFormDuration'
 import MissionCreateRecruitFormLanguage from '../MissionCreateRecruitFormLanguage/MissionCreateRecruitFormLanguage'
 import MissionCreateRecruitFormLocation from '../MissionCreateRecruitFormLocation/MissionCreateRecruitFormLocation'
-import MissionCreateSideBox from '../MissionCreateSideBox/MissionCreateSideBox'
+import MissionSideBox from '../../_shared/MissionSideBox/MissionSideBox'
 export default {
   name: 'MissionCreateRecruitForm',
-  components: { MissionCreateSideBox, MissionCreateRecruitFormLocation, MissionCreateRecruitFormLanguage, MissionCreateRecruitFormDuration, MissionCreateRecruitFormPersonaSelect, Input, MissionCreateRecruitFormHeadline, MissionCreateBox },
+  components: { MissionSideBox, MissionCreateRecruitFormLocation, MissionCreateRecruitFormLanguage, MissionCreateRecruitFormDuration, MissionCreateRecruitFormPersonaSelect, Input, MissionCreateRecruitFormHeadline, MissionCreateBox },
   data() {
     const { IN_HOUSE, REMOTE, USABILITY_LAB, SURVEY } = MISSIONS
     return { IN_HOUSE, REMOTE, USABILITY_LAB, SURVEY, MISSION_LABELS }

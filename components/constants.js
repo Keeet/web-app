@@ -1,3 +1,66 @@
+export const COUNTRY_NAMES = {
+  DE: 'Germany',
+  EN: 'United Kingdom',
+  FR: 'France',
+  ES: 'Spain',
+  IT: 'Italy'
+}
+
+export const LANGUAGES = {
+  DE: 'DE',
+  EN: 'EN',
+  FR: 'FR',
+  ES: 'ES',
+  IT: 'IT'
+}
+export const LANGUAGE_LABELS = {
+  DE: 'German',
+  EN: 'English',
+  FR: 'French',
+  ES: 'Spanish',
+  IT: 'Italian'
+}
+
+export const ROLES = {
+  VIEWER: 'VIEWER',
+  USER: 'USER',
+  ADMIN: 'ADMIN'
+}
+export const ROLE_LABELS = {
+  ADMIN: 'Admin',
+  USER: 'User',
+  VIEWER: 'Viewer'
+}
+
+export const MEDIA_UPLOAD_PATH = {
+  DEFAULT: '/mediaFiles/input',
+  MISSION: '/mediaFiles/mission'
+}
+
+export const BROWSER = {
+  SAFARI: 'SAFARI',
+  CHROME: 'CHROME',
+  EDGE: 'EDGE',
+  IE: 'IE',
+  FIREFOX: 'FIREFOX',
+  OTHER: 'OTHER'
+}
+
+export const OS = {
+  MAC: 'MAC',
+  WINDOWS: 'WINDOWS',
+  LINUX: 'LINUX',
+  ANDROID: 'ANDROID',
+  IOS: 'IOS',
+  OTHER: 'OTHER'
+}
+
+export const DEVICE_TYPE = {
+  SMARTPHONE: 'SMARTPHONE',
+  TABLET: 'TABLET',
+  DESKTOP: 'DESKTOP'
+}
+
 export const PERSONA_ICONS = {
   CHANTAL: 'CHANTAL',
   JACQUELINE: 'JACQUELINE',
@@ -9,7 +72,6 @@ export const PERSONA_ICONS = {
   JASON: 'JASON',
   MIKA: 'MIKA'
 }
-
 export const PERSONA_GENDERS = {
   MALE: 'MALE',
   FEMALE: 'FEMALE',
@@ -20,7 +82,13 @@ export const PERSONA_GENDER_LABELS = {
   FEMALE: 'Female',
   DIVERS: 'non binary'
 }
-
+export const PERSONA_COUNTRIES = [
+  LANGUAGES.DE,
+  LANGUAGES.EN,
+  LANGUAGES.FR,
+  LANGUAGES.ES,
+  LANGUAGES.IT
+]
 export const PERSONA_OCCUPATIONS = {
   STUDENT: 'STUDENT',
   PART_TIME_EMPLOYEE: 'PART_TIME_EMPLOYEE',
@@ -177,60 +245,4 @@ export const MISSION_SURVEY_PAGES = {
 export const ACCOUNT_PAGES = {
   PROFILE: 'PROFILE',
   TEAM: 'TEAM'
-}
-
-export const COUNTRY_NAMES = {
-  DE: 'Germany'
-}
-
-export const LANGUAGES = {
-  DE: 'DE',
-  EN: 'EN'
-}
-export const LANGUAGE_LABELS = {
-  DE: 'German',
-  EN: 'English',
-  FR: 'French',
-  ES: 'Spanish',
-  IT: 'Italian'
-}
-
-export const ROLES = {
-  VIEWER: 'VIEWER',
-  USER: 'USER',
-  ADMIN: 'ADMIN'
-}
-export const ROLE_LABELS = {
-  ADMIN: 'Admin',
-  USER: 'User',
-  VIEWER: 'Viewer'
-}
-
-export const MEDIA_UPLOAD_PATH = {
-  DEFAULT: '/mediaFiles/input',
-  MISSION: '/mediaFiles/mission'
-}
-
-export const BROWSER = {
-  SAFARI: 'SAFARI',
-  CHROME: 'CHROME',
-  EDGE: 'EDGE',
-  IE: 'IE',
-  FIREFOX: 'FIREFOX',
-  OTHER: 'OTHER'
-}
-
-export const OS = {
-  MAC: 'MAC',
-  WINDOWS: 'WINDOWS',
-  LINUX: 'LINUX',
-  ANDROID: 'ANDROID',
-  IOS: 'IOS',
-  OTHER: 'OTHER'
-}
-
-export const DEVICE_TYPE = {
-  SMARTPHONE: 'SMARTPHONE',
-  TABLET: 'TABLET',
-  DESKTOP: 'DESKTOP'
 }
