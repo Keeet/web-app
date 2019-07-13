@@ -7,6 +7,7 @@
       v-model="message"
       class="select-field"
       :disabled="readonly"
+      :class="{ nullValue: value === null }"
     >
       <option
         v-for="(option, index) in options"
@@ -41,7 +42,7 @@ export default {
     },
     value: {
       type: [String, Number],
-      required: true
+      default: null
     },
     mutation: {
       type: String,

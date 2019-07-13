@@ -34,7 +34,7 @@
     appearance: none;
     transition: border 0.5s;
 
-    &:disabled {
+    &:disabled, &.nullValue {
       color: $grey-mid-dark;
     }
 

@@ -1,6 +1,6 @@
 const defaultState = {
   projectId: null,
-  type: null,
+  type: 'IN_HOUSE', // TODO
   title: '',
   language: 'DE',
   submittedMissionId: null,
@@ -8,7 +8,7 @@ const defaultState = {
   showErrors: false,
 
   init: false,
-  activeStep: 0,
+  activeStep: 2, // TODO
   inProgress: true,
   pending: false
 }

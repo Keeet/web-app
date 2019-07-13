@@ -7,7 +7,9 @@
     </MissionCreateRecruitStep>
     <MissionCreateRecruitStep
       :index="2"
-    />
+    >
+      <MissionCreateRecruitPersona />
+    </MissionCreateRecruitStep>
     <MissionCreateRecruitStep
       :index="3"
       subheadline="When are you able to conduct the interview / test?"
@@ -29,10 +31,12 @@ import MissionCreateRecruitForm from '../MissionCreateRecruitForm/MissionCreateR
 import MissionCreateRecruitCalendar from '../MissionCreateRecruitCalendar/MissionCreateRecruitCalendar'
 import MissionCreateRecruitSummary from '../MissionCreateRecruitSummary/MissionCreateRecruitSummary'
 import MissionCreateRecruitStep from '../MissionCreateRecruitStep/MissionCreateRecruitStep'
+import MissionCreateRecruitPersona from '../MissionCreateRecruitPersona/MissionCreateRecruitPersona'
 
 export default {
   name: 'MissionCreateRecruit',
   components: {
+    MissionCreateRecruitPersona,
     MissionCreateRecruitStep,
     MissionCreateRecruitSummary,
     MissionCreateRecruitCalendar,

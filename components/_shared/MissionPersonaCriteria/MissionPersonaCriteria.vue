@@ -1,113 +1,67 @@
 <template>
-  <div class="mission-persona-criteria" :class="{opened}">
-    <div class="mission-persona-criteria-head">
-      <p class="mission-persona-criteria-head-text" @click="!opened ? commitSwitch() : () => {}">
-        {{ headline }}
-      </p>
-      <SwitchButton :on="opened" @switch="commitSwitch" />
-    </div>
-    <div v-show="opened" class="mission-persona-criteria-body">
-      <div v-if="type === SLIDER" class="mission-persona-criteria-slider">
-        <vue-slider
-          v-model="sliderVModel"
-          :min="sliderRange[0]"
-          :max="sliderRange[1]"
-          :enable-cross="false"
-          :min-range="sliderMinRange"
-          :dot-size="20"
-          tooltip="always"
-          :lazy="true"
-          :contained="true"
-        />
-      </div>
-      <MissionPersonaCriteriaChecklist
-        v-else-if="type === CHECKLIST"
-        :values="checklistValues"
-        :labels="checklistLabels"
-        :value="value"
-        :mutation="mutation"
-      />
-    </div>
+  <div class="mission-persona-criteria">
+    <MissionPersonaCriteriaItem
+      headline="Age"
+      type="SLIDER"
+      :opened="s.persona.ageOpened"
+      :value="[s.persona.minAge, s.persona.maxAge]"
+      :slider-range="[18, 85]"
+      :slider-min-range="10"
+      mutation="missionFormPersona/setAgeRange"
+      switch-mutation="missionFormPersona/switchAgeOpened"
+    />
+    <MissionPersonaCriteriaItem
+      headline="Gender"
+      type="CHECKLIST"
+      :opened="s.persona.gendersOpened"
+      :value="s.persona.genders"
+      mutation="missionFormPersona/setGenders"
+      switch-mutation="missionFormPersona/switchGendersOpened"
+      :checklist-values="Object.values(PERSONA_GENDERS)"
+      :checklist-labels="PERSONA_GENDER_LABELS"
+    />
+    <MissionPersonaCriteriaItem
+      headline="Language"
+      type="LANGUAGE"
+      :opened="s.persona.languagesOpened"
+      switch-mutation="missionFormPersona/switchLanguagesOpened"
+    />
+    <MissionPersonaCriteriaItem
+      headline="Country"
+      type="CHECKLIST"
+      :opened="s.persona.countriesOpened"
+      :value="s.persona.countries"
+      mutation="missionFormPersona/setCountries"
+      switch-mutation="missionFormPersona/switchCountriesOpened"
+      :checklist-values="PERSONA_COUNTRIES"
+      :checklist-labels="COUNTRY_NAMES"
+      last
+    />
   </div>
 </template>
 
 <script>
-import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'
+import { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_NAMES } from '../../constants'
 import 'vue-slider-component/dist-css/vue-slider-component.css'
-import SwitchButton from '../../_shared/SwitchButton/SwitchButton'
-import MissionPersonaCriteriaChecklist from '../MissionPersonaCriteriaChecklist/MissionPersonaCriteriaChecklist'
-
-const TYPES = {
-  SLIDER: 'SLIDER',
-  CHECKLIST: 'CHECKLIST'
-}
+import MissionPersonaCriteriaItem from '../MissionPersonaCriteriaItem/MissionPersonaCriteriaItem'
 
 export default {
   name: 'MissionPersonaCriteria',
-  components: { MissionPersonaCriteriaChecklist, SwitchButton, VueSlider },
-  props: {
-    headline: {
-      type: String,
-      required: true
-    },
-    type: {
-      type: String,
-      validator: value => Object.values(TYPES).includes(value),
-      required: true
-    },
-    value: {
-      type: [Array, String],
-      required: true
-    },
-    mutation: {
-      type: String,
-      required: true
-    },
-    opened: {
-      type: Boolean,
-      required: true
-    },
-    switchMutation: {
-      type: String,
-      required: true
-    },
-    sliderRange: {
-      type: Array,
-      default: () => [0, 10]
-    },
-    sliderMinRange: {
-      type: Number,
-      default: 3
-    },
-    checklistValues: {
-      type: Array,
-      default: null
-    },
-    checklistLabels: {
-      type: Object,
-      default: null
-    }
-  },
+  components: { MissionPersonaCriteriaItem },
   data() {
-    return { ...TYPES }
+    return { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_NAMES }
   },
   computed: {
-    sliderVModel: {
-      get() {
-        if (this.value[0] && this.value[1]) {
-          return this.value
-        } else {
-          return this.sliderRange
-        }
-      },
-      set(value) {
-        this.$store.commit(this.mutation, value)
+    mission() {
+      return this.$store.state.mission
+    },
+    s() {
+      const { missionForm, missionFormPersona, missionFormSurvey } = this.$store.state
+      return {
+        ...missionForm,
+        persona: missionFormPersona,
+        survey: missionFormSurvey
       }
-    }
-  },
-  methods: {
-    commitSwitch() {
-      this.$store.commit(this.switchMutation)
     }
   }
 }
