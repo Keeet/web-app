@@ -30,6 +30,9 @@
       <MissionPersonaCriteriaItemLanguage
         v-else-if="type === LANGUAGE"
       />
+      <MissionPersonaCriteriaItemSpecialCriteria
+        v-else-if="type === SPECIAL_CRITERIA"
+      />
     </div>
   </div>
 </template>
@@ -42,16 +45,19 @@ import MissionPersonaCriteriaItemLanguage
   from '../MissionPersonaCriteriaItemLanguage/MissionPersonaCriteriaItemLanguage'
 import MissionPersonaCriteriaItemChecklist
   from '../MissionPersonaCriteriaItemChecklist/MissionPersonaCriteriaItemChecklist'
+import MissionPersonaCriteriaItemSpecialCriteria
+  from '../MissionPersonaCriteriaItemSpecialCriteria/MissionPersonaCriteriaItemSpecialCriteria'
 
 const TYPES = {
   SLIDER: 'SLIDER',
   CHECKLIST: 'CHECKLIST',
-  LANGUAGE: 'LANGUAGE'
+  LANGUAGE: 'LANGUAGE',
+  SPECIAL_CRITERIA: 'SPECIAL_CRITERIA'
 }
 
 export default {
   name: 'MissionPersonaCriteriaItem',
-  components: { MissionPersonaCriteriaItemChecklist, MissionPersonaCriteriaItemLanguage, SwitchButton, VueSlider },
+  components: { MissionPersonaCriteriaItemSpecialCriteria, MissionPersonaCriteriaItemChecklist, MissionPersonaCriteriaItemLanguage, SwitchButton, VueSlider },
   props: {
     headline: {
       type: String,

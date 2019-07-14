@@ -109,6 +109,18 @@ export const PERSONA_OCCUPATION_LABELS = {
   PUPIL: 'Pupil',
   APPRENTICE: 'Apprentice'
 }
+export const PERSONA_DEVICE_SKILLS = {
+  DESKTOP: 'DESKTOP',
+  SMART_PHONE: 'SMART_PHONE',
+  TABLET: 'TABLET',
+  SMART_WATCH: 'SMART_WATCH'
+}
+export const PERSONA_DEVICE_SKILL_LABELS = {
+  DESKTOP: 'Desktop',
+  SMART_PHONE: 'Smartphone',
+  TABLET: 'Tablet',
+  SMART_WATCH: 'Smart Watch'
+}
 
 export const MISSIONS = {
   IN_HOUSE: 'IN_HOUSE',

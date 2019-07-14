@@ -6,11 +6,16 @@ const defaultState = {
   genders: [],
   countries: [],
   languages: [LANGUAGES.EN],
+  deviceSkills: [],
+  specialCriteria: [],
+  newSpecialCriteria: '',
 
   ageOpened: false,
   gendersOpened: false,
   countriesOpened: false,
   languagesOpened: false,
+  deviceSkillsOpened: false,
+  specialCriteriaOpened: false,
   pending: false
 }
 
@@ -62,6 +67,31 @@ export const mutations = {
     }
     state.languages = languages
   },
+  setDeviceSkills(state, deviceSkills) {
+    state.deviceSkills = deviceSkills
+  },
+  addSpecialCriteria(state, value) {
+    const sc = state.specialCriteria.slice()
+    sc.push({ value })
+    state.specialCriteria = sc
+  },
+  setSpecialCriteria(state, { value, index }) {
+    const sc = state.specialCriteria.slice()
+    sc[index].value = value
+    state.specialCriteria = sc
+  },
+  deleteSpecialCriteria(state, index) {
+    const sc = state.specialCriteria.slice()
+    sc.splice(index, 1)
+    state.specialCriteria = sc
+  },
+  setNewSpecialCriteria(state, value) {
+    if (!value) {
+      state.newSpecialCriteria = defaultState.newSpecialCriteria
+      return
+    }
+    state.newSpecialCriteria = value
+  },
 
   switchAgeOpened(state) {
     if (state.ageOpened) {
@@ -81,6 +111,12 @@ export const mutations = {
   },
   switchLanguagesOpened(state) {
     state.languagesOpened = !state.languagesOpened
+  },
+  switchDeviceSkillsOpened(state) {
+    state.deviceSkillsOpened = !state.deviceSkillsOpened
+  },
+  switchSpecialCriteriaOpened(state) {
+    state.specialCriteriaOpened = !state.specialCriteriaOpened
   },
   pending(state) {
     state.pending = true
