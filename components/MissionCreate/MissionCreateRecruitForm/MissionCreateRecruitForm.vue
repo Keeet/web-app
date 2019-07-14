@@ -32,9 +32,9 @@
         <MissionCreateRecruitFormHeadline text="Number of participants" />
         <div class="mission-create-recruit-form-participants">
           <Input
-            mutation="missionFormRecruit/setNbParticipants"
-            :value="s.recruit.nbParticipants.toString()"
-            :error="nbParticipantsError"
+            mutation="missionForm/setParticipants"
+            :value="s.participants.toString()"
+            :error="participantsError"
             dispatch-error="missionForm/handleValidationError"
             no-margin
           />
@@ -43,10 +43,6 @@
       <div class="mission-create-recruit-form-section">
         <MissionCreateRecruitFormHeadline text="How long does the interview / test last?" underlined />
         <MissionCreateRecruitFormDuration />
-      </div>
-      <div class="mission-create-recruit-form-section">
-        <MissionCreateRecruitFormHeadline text="In what language do you want to interview?" underlined />
-        <MissionCreateRecruitFormLanguage />
       </div>
       <div v-if="s.type === IN_HOUSE" class="mission-create-recruit-form-section">
         <MissionCreateRecruitFormHeadline text="Where does the interview / test takes place?" underlined />
@@ -63,13 +59,12 @@ import MissionCreateBox from '../MissionCreateBox/MissionCreateBox'
 import MissionCreateRecruitFormHeadline from '../MissionCreateRecruitFormHeadline/MissionCreateRecruitFormHeadline'
 import Input from '../../_shared/Input/Input'
 import MissionCreateRecruitFormDuration from '../MissionCreateRecruitFormDuration/MissionCreateRecruitFormDuration'
-import MissionCreateRecruitFormLanguage from '../MissionCreateRecruitFormLanguage/MissionCreateRecruitFormLanguage'
 import MissionCreateRecruitFormLocation from '../MissionCreateRecruitFormLocation/MissionCreateRecruitFormLocation'
 import Select from '../../_shared/Select/Select'
 
 export default {
   name: 'MissionCreateRecruitForm',
-  components: { Select, MissionCreateRecruitFormLocation, MissionCreateRecruitFormLanguage, MissionCreateRecruitFormDuration, Input, MissionCreateRecruitFormHeadline, MissionCreateBox },
+  components: { Select, MissionCreateRecruitFormLocation, MissionCreateRecruitFormDuration, Input, MissionCreateRecruitFormHeadline, MissionCreateBox },
   data() {
     const { IN_HOUSE, REMOTE, USABILITY_LAB, SURVEY } = MISSIONS
     return {
@@ -91,7 +86,15 @@ export default {
       }
     },
     titleError() { return this.s.title !== '' ? null : 'required' },
-    nbParticipantsError() { return isNum(this.s.recruit.nbParticipants) ? null : 'must be a number' },
+    participantsError() {
+      if (isNum(this.s.participants)) {
+        if (this.s.participants === 0) {
+          return 'cannot be null'
+        }
+        return null
+      }
+      return 'must be a number'
+    },
     studyTypes() {
       return Object.keys(MISSION_RECRUIT_STUDY_TYPES)
         .map(value => ({ value, label: MISSION_RECRUIT_STUDY_TYPE_LABELS[value] }))

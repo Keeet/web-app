@@ -3,20 +3,19 @@
     <p class="mission-create-recruit-persona-headline">
       What is your desired target group?
     </p>
-    <MissionPersonaCriteria />
+    <MissionPersonaCriteria
+      :criteria="criteria"
+    />
   </div>
 </template>
 
 <script>
-import { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_NAMES } from '../../constants'
+import { MISSIONS, PERSONA_CRITERIA } from '../../constants'
 import MissionPersonaCriteria from '../../_shared/MissionPersonaCriteria/MissionPersonaCriteria'
 
 export default {
   name: 'MissionCreateRecruitPersona',
   components: { MissionPersonaCriteria },
-  data() {
-    return { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_NAMES }
-  },
   computed: {
     s() {
       const { missionForm, missionFormPersona } = this.$store.state
@@ -24,6 +23,15 @@ export default {
         ...missionForm,
         persona: missionFormPersona
       }
+    },
+    criteria() {
+      const { AGE, GENDER, LANGUAGE, COUNTRY, DEVICE_SKILL, SPECIAL_CRITERIA } = PERSONA_CRITERIA
+      if (this.s.type === MISSIONS.IN_HOUSE) {
+        return [AGE, GENDER, LANGUAGE, DEVICE_SKILL, SPECIAL_CRITERIA]
+      } else if (this.s.type === MISSIONS.REMOTE) {
+        return [AGE, GENDER, LANGUAGE, COUNTRY, DEVICE_SKILL, SPECIAL_CRITERIA]
+      }
+      return null
     }
   }
 }

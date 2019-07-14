@@ -3,7 +3,7 @@
     <MissionCreateRecruitCalendarPlugin />
     <div class="mission-create-recruit-calendar-menu">
       <div :id="validationId" class="mission-create-recruit-calendar-menu-count" :class="{ valid: !validationError }">
-        <p>{{ s.recruit.sessions.length }} of {{ s.recruit.nbParticipants }} time slots selected</p>
+        <p>{{ s.recruit.sessions.length }} of {{ s.participants }} time slots selected</p>
         <IconCheck v-if="!validationError" />
       </div>
       <span
@@ -31,14 +31,14 @@ export default {
       }
     },
     validationError() {
-      return this.s.recruit.sessions.length >= parseInt(this.s.recruit.nbParticipants) ? null : 'validation error'
+      return this.s.recruit.sessions.length >= parseInt(this.s.participants) ? null : 'validation error'
     }
   },
   watch: {
     validationError(e) { this.errorHandler(e) }
   },
   mounted() {
-    this.id = uuidv4()
+    this.validationId = uuidv4()
     this.errorHandler()
   },
   beforeDestroy() {

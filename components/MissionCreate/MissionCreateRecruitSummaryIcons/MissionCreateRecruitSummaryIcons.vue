@@ -10,8 +10,8 @@
       :text="`${s.recruit.duration} min`"
     />
     <MissionCreateRecruitSummaryIconsItem
-      type="NB_PARTICIPANTS"
-      :text="`${s.recruit.nbParticipants} test users`"
+      type="PARTICIPANTS"
+      :text="`${s.participants} test users`"
     />
   </div>
 </template>

@@ -1,6 +1,13 @@
 import { LANGUAGES } from '../components/constants'
 
 const defaultState = {
+  /**
+   * REMINDER:
+   * If you want to add/modify/delete any criteria, remember to
+   * adjust the pricingChecksum (getter in missionFormRecruit
+   * and missionFormSurvey). Otherwise the pricing table inside
+   * MissionOrderSummary won't refresh correctly!
+    */
   minAge: null,
   maxAge: null,
   genders: [],
@@ -15,8 +22,7 @@ const defaultState = {
   countriesOpened: false,
   languagesOpened: false,
   deviceSkillsOpened: false,
-  specialCriteriaOpened: false,
-  pending: false
+  specialCriteriaOpened: false
 }
 
 export const state = () => (defaultState)
@@ -41,6 +47,13 @@ export const mutations = {
   setAgeRange(state, ageRange) {
     state.minAge = ageRange[0]
     state.maxAge = ageRange[1]
+  },
+  setGender(state, gender) {
+    if (gender === null) {
+      state.genders = defaultState.genders
+      return
+    }
+    state.genders = [gender]
   },
   setGenders(state, genders) {
     state.genders = genders
@@ -107,21 +120,27 @@ export const mutations = {
     state.gendersOpened = !state.gendersOpened
   },
   switchCountriesOpened(state) {
+    if (state.countriesOpened) {
+      state.countries = defaultState.countries
+    }
     state.countriesOpened = !state.countriesOpened
   },
   switchLanguagesOpened(state) {
+    if (state.languagesOpened) {
+      state.languages = defaultState.languages
+    }
     state.languagesOpened = !state.languagesOpened
   },
   switchDeviceSkillsOpened(state) {
+    if (state.deviceSkillsOpened) {
+      state.deviceSkills = defaultState.deviceSkills
+    }
     state.deviceSkillsOpened = !state.deviceSkillsOpened
   },
   switchSpecialCriteriaOpened(state) {
+    if (state.specialCriteriaOpened) {
+      state.specialCriteria = defaultState.specialCriteria
+    }
     state.specialCriteriaOpened = !state.specialCriteriaOpened
-  },
-  pending(state) {
-    state.pending = true
-  },
-  submitted(state) {
-    state.pending = false
   }
 }

@@ -1,6 +1,13 @@
-export const COUNTRY_NAMES = {
+export const COUNTRIES = {
+  DE: 'DE',
+  GB: 'GB',
+  FR: 'FR',
+  ES: 'ES',
+  IT: 'IT'
+}
+export const COUNTRY_LABELS = {
   DE: 'Germany',
-  EN: 'United Kingdom',
+  GB: 'United Kingdom',
   FR: 'France',
   ES: 'Spain',
   IT: 'Italy'
@@ -72,22 +79,40 @@ export const PERSONA_ICONS = {
   JASON: 'JASON',
   MIKA: 'MIKA'
 }
+export const PERSONA_CRITERIA = {
+  AGE: 'AGE',
+  GENDER: 'GENDER',
+  LANGUAGE: 'LANGUAGE',
+  COUNTRY: 'COUNTRY',
+  DEVICE_SKILL: 'DEVICE_SKILL',
+  SPECIAL_CRITERIA: 'SPECIAL_CRITERIA',
+  DURATION: 'DURATION'
+}
+export const PERSONA_CRITERIA_LABELS = {
+  AGE: 'Age',
+  GENDER: 'Gender',
+  LANGUAGE: 'Language',
+  COUNTRY: 'Country',
+  DEVICE_SKILL: 'Device Skill',
+  SPECIAL_CRITERIA: 'Special Criteria',
+  DURATION: 'Duration'
+}
 export const PERSONA_GENDERS = {
   MALE: 'MALE',
   FEMALE: 'FEMALE',
-  DIVERS: 'DIVERS'
+  MIXED: 'MIXED'
 }
 export const PERSONA_GENDER_LABELS = {
   MALE: 'Male',
   FEMALE: 'Female',
-  DIVERS: 'non binary'
+  MIXED: 'Mixed'
 }
 export const PERSONA_COUNTRIES = [
-  LANGUAGES.DE,
-  LANGUAGES.EN,
-  LANGUAGES.FR,
-  LANGUAGES.ES,
-  LANGUAGES.IT
+  COUNTRIES.DE,
+  COUNTRIES.GB,
+  COUNTRIES.FR,
+  COUNTRIES.ES,
+  COUNTRIES.IT
 ]
 export const PERSONA_OCCUPATIONS = {
   STUDENT: 'STUDENT',

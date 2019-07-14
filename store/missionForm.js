@@ -1,14 +1,14 @@
 const defaultState = {
   projectId: null,
-  type: 'IN_HOUSE', // TODO
+  type: null,
   title: '',
-  language: 'DE',
+  participants: 0,
   submittedMissionId: null,
   invalidFields: [],
   showErrors: false,
 
   init: false,
-  activeStep: 2, // TODO
+  activeStep: 0,
   inProgress: true,
   pending: false
 }
@@ -16,7 +16,7 @@ const defaultState = {
 export const state = () => (defaultState)
 
 export const mutations = {
-  init(state, { project }) {
+  init(state, { project, participants = null }) {
     if (!state.init || !state.inProgress || !project || project.id !== state.projectId) {
       for (const key in defaultState) {
         state[key] = defaultState[key]
@@ -24,6 +24,7 @@ export const mutations = {
       if (project) {
         state.projectId = project.id
       }
+      state.participants = participants
       state.init = true
     }
   },
@@ -33,8 +34,8 @@ export const mutations = {
   setTitle(state, title) {
     state.title = title
   },
-  setLanguage(state, language) {
-    state.language = language
+  setParticipants(state, participants) {
+    state.participants = participants
   },
   setSubmittedMissionId(state, missionId) {
     state.submittedMissionId = missionId

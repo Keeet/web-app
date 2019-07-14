@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { COUNTRY_NAMES } from '../../constants'
+import { COUNTRY_LABELS } from '../../constants'
 
 export default {
   name: 'MissionCreateRecruitFormLocationItem',
@@ -47,7 +47,7 @@ export default {
     }
   },
   data() {
-    return { COUNTRY_NAMES }
+    return { COUNTRY_NAMES: COUNTRY_LABELS }
   }
 }
 </script>

@@ -122,7 +122,8 @@ export default {
     },
     createMission() {
       this.$store.commit('missionForm/init', {
-        project: this.project
+        project: this.project,
+        participants: 5
       })
       this.$router.push('/missions/create')
     }

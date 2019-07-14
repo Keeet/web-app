@@ -48,7 +48,6 @@ const defaultState = {
   redirectLink: null,
   itemAddIndex: 0,
   items: [],
-  requiredCount: 50,
   pricing: null
 }
 
@@ -129,6 +128,24 @@ const defaultStateItem = {
 }
 
 export const state = () => defaultState
+
+export const getters = {
+  itemsCountByType(state) {
+    const groupedByType = groupBy(getFlatMappedItems(state.items), 'type')
+    const countByType = {}
+    Object.keys(groupedByType).forEach((type) => {
+      countByType[type] = groupedByType[type].length
+    })
+    return countByType
+  },
+  pricingChecksum: (state, getters) => ({ missionForm }) => {
+    const { participants } = missionForm
+    return JSON.stringify({
+      participants,
+      items: getters.itemsCountByType
+    })
+  }
+}
 
 export const mutations = {
   init(state) {
@@ -375,30 +392,22 @@ export const mutations = {
       }
     })
   },
-  setRequiredCount(state, requiredCount) {
-    state.requiredCount = requiredCount
-  },
   setPricing(state, pricing) {
     state.pricing = pricing
   }
 }
 
 export const actions = {
-  fetchPricing({ state, commit }) {
+  fetchPricing({ state, commit, getters }, { missionForm }) {
     return new Promise((resolve, reject) => {
-      const groupedByType = groupBy(getFlatMappedItems(state.items), 'type')
-      const countByType = {}
-      Object.keys(groupedByType).forEach((type) => {
-        countByType[type] = groupedByType[type].length
-      })
       this.$axios({
         method: 'post',
         url: '/pricing/quantitative',
         data: {
           items: {
-            ...countByType
+            ...getters.itemsCountByType
           },
-          expectedResponses: parseInt(state.requiredCount)
+          participants: parseInt(missionForm.participants)
         }
       })
         .then(({ data }) => {

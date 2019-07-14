@@ -1,6 +1,7 @@
 <template>
   <div class="mission-persona-criteria">
     <MissionPersonaCriteriaItem
+      v-if="shouldShow(PERSONA_CRITERIA.AGE)"
       headline="Age (optional)"
       type="SLIDER"
       :opened="s.persona.ageOpened"
@@ -11,22 +12,24 @@
       switch-mutation="missionFormPersona/switchAgeOpened"
     />
     <MissionPersonaCriteriaItem
+      v-if="shouldShow(PERSONA_CRITERIA.GENDER)"
       headline="Gender (optional)"
-      type="CHECKLIST"
+      type="SELECT"
       :opened="s.persona.gendersOpened"
-      :value="s.persona.genders"
-      mutation="missionFormPersona/setGenders"
+      :value="gender"
+      mutation="missionFormPersona/setGender"
       switch-mutation="missionFormPersona/switchGendersOpened"
-      :checklist-values="Object.keys(PERSONA_GENDERS)"
-      :checklist-labels="PERSONA_GENDER_LABELS"
+      :select-options="genderOptions"
     />
     <MissionPersonaCriteriaItem
+      v-if="shouldShow(PERSONA_CRITERIA.LANGUAGE)"
       headline="Language (optional)"
       type="LANGUAGE"
       :opened="s.persona.languagesOpened"
       switch-mutation="missionFormPersona/switchLanguagesOpened"
     />
     <MissionPersonaCriteriaItem
+      v-if="shouldShow(PERSONA_CRITERIA.COUNTRY)"
       headline="Country (optional)"
       type="CHECKLIST"
       :opened="s.persona.countriesOpened"
@@ -34,9 +37,10 @@
       mutation="missionFormPersona/setCountries"
       switch-mutation="missionFormPersona/switchCountriesOpened"
       :checklist-values="PERSONA_COUNTRIES"
-      :checklist-labels="COUNTRY_NAMES"
+      :checklist-labels="COUNTRY_LABELS"
     />
     <MissionPersonaCriteriaItem
+      v-if="shouldShow(PERSONA_CRITERIA.DEVICE_SKILL)"
       headline="Device skills (optional)"
       type="CHECKLIST"
       :opened="s.persona.deviceSkillsOpened"
@@ -47,6 +51,7 @@
       :checklist-labels="PERSONA_DEVICE_SKILL_LABELS"
     />
     <MissionPersonaCriteriaItem
+      v-if="shouldShow(PERSONA_CRITERIA.SPECIAL_CRITERIA)"
       headline="Special criteria (optional)"
       type="SPECIAL_CRITERIA"
       :opened="s.persona.specialCriteriaOpened"
@@ -61,9 +66,10 @@ import {
   PERSONA_GENDERS,
   PERSONA_GENDER_LABELS,
   PERSONA_COUNTRIES,
-  COUNTRY_NAMES,
+  COUNTRY_LABELS,
   PERSONA_DEVICE_SKILLS,
-  PERSONA_DEVICE_SKILL_LABELS
+  PERSONA_DEVICE_SKILL_LABELS,
+  PERSONA_CRITERIA
 } from '../../constants'
 import 'vue-slider-component/dist-css/vue-slider-component.css'
 import MissionPersonaCriteriaItem from '../MissionPersonaCriteriaItem/MissionPersonaCriteriaItem'
@@ -71,14 +77,21 @@ import MissionPersonaCriteriaItem from '../MissionPersonaCriteriaItem/MissionPer
 export default {
   name: 'MissionPersonaCriteria',
   components: { MissionPersonaCriteriaItem },
+  props: {
+    criteria: {
+      type: Array,
+      default: () => []
+    }
+  },
   data() {
     return {
       PERSONA_GENDERS,
       PERSONA_GENDER_LABELS,
       PERSONA_COUNTRIES,
-      COUNTRY_NAMES,
+      COUNTRY_LABELS,
       PERSONA_DEVICE_SKILLS,
-      PERSONA_DEVICE_SKILL_LABELS
+      PERSONA_DEVICE_SKILL_LABELS,
+      PERSONA_CRITERIA
     }
   },
   computed: {
@@ -92,6 +105,28 @@ export default {
         persona: missionFormPersona,
         survey: missionFormSurvey
       }
+    },
+    gender() {
+      const { genders } = this.s.persona
+      return genders.length ? genders[0] : null
+    },
+    genderOptions() {
+      const options = Object.keys(PERSONA_GENDERS).map(gender => ({
+        value: gender,
+        label: PERSONA_GENDER_LABELS[gender]
+      }))
+      return [
+        {
+          value: null,
+          label: 'not specified'
+        },
+        ...options
+      ]
+    }
+  },
+  methods: {
+    shouldShow(criteria) {
+      return this.criteria.includes(criteria)
     }
   }
 }

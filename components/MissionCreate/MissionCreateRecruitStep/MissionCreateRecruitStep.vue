@@ -1,6 +1,8 @@
 <template>
   <div class="mission-create-recruit-step">
     <FormStep
+      :show-next="isCalendar"
+      :show-prev="isCalendar"
       next-step-mutation="missionForm/nextStep"
       prev-step-mutation="missionForm/previousStep"
       :active="s.activeStep === index"
@@ -12,30 +14,34 @@
         <MissionCreateSubHeadline v-if="subheadline" :text="subheadline" />
       </div>
       <div class="mission-create-recruit-step-body">
-        <div class="mission-create-recruit-step-body-content">
+        <div class="mission-create-recruit-step-body-content" :class="{ sideboxActive: !isCalendar }">
           <slot />
         </div>
-        <MissionSideBox :type="s.type" wrapper-class="mission-create-recruit-step-body">
-          <template slot="body">
-            You have in total 3 more testers free for this month.
-          </template>
-        </MissionSideBox>
+        <MissionOrderSummary
+          v-show="!isCalendar"
+          :mission-type="s.type"
+          :price-checksum="priceChecksum"
+          wrapper-class="mission-create-recruit-step-body"
+          @cancel="$store.commit('missionForm/previousStep')"
+          @invalidSubmit="invalidNextClick"
+          @submit="$store.commit('missionForm/nextStep')"
+        />
       </div>
     </FormStep>
   </div>
 </template>
 
 <script>
-import MissionSideBox from '../../_shared/MissionSideBox/MissionSideBox'
 import FormStep from '../../_shared/FormStep/FormStep'
 import { scrollToTopId } from '../../../utils/scrollUtils'
 import MissionCreateHeadline from '../MissionCreateHeadline/MissionCreateHeadline'
 import { MISSION_LABELS } from '../../constants'
 import MissionCreateSubHeadline from '../MissionCreateSubHeadline/MissionCreateSubHeadline'
+import MissionOrderSummary from '../../_shared/MissionOrderSummary/MissionOrderSummary'
 
 export default {
   name: 'MissionCreateRecruitStep',
-  components: { MissionCreateSubHeadline, MissionCreateHeadline, FormStep, MissionSideBox },
+  components: { MissionOrderSummary, MissionCreateSubHeadline, MissionCreateHeadline, FormStep },
   props: {
     index: {
       type: Number,
@@ -55,11 +61,21 @@ export default {
   },
   computed: {
     s() {
-      const { missionForm, missionFormRecruit } = this.$store.state
+      const { missionForm, missionFormPersona, missionFormRecruit } = this.$store.state
       return {
         ...missionForm,
+        persona: missionFormPersona,
         recruit: missionFormRecruit
       }
+    },
+    isCalendar() {
+      return this.index === 3
+    },
+    priceChecksum() {
+      return this.$store.getters['missionFormRecruit/pricingChecksum']({
+        missionForm: this.s,
+        missionFormPersona: this.s.persona
+      })
     }
   },
   methods: {

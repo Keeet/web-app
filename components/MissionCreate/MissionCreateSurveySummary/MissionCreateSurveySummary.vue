@@ -127,7 +127,9 @@ export default {
   },
   watch: {
     flatMappedItemsPricingData() {
-      this.$store.dispatch('missionFormSurvey/fetchPricing')
+      this.$store.dispatch('missionFormSurvey/fetchPricing', {
+        missionForm: this.s
+      })
     }
   },
   methods: {

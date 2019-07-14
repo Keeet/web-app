@@ -6,7 +6,7 @@
     <div class="mission-survey-order-participants-input">
       <Input
         :value="value.toString()"
-        mutation="missionFormSurvey/setRequiredCount"
+        mutation="missionForm/setParticipants"
         :error="error"
         dispatch-error="missionForm/handleValidationError"
         no-margin
@@ -23,10 +23,10 @@ export default {
   components: { Input },
   computed: {
     s() {
-      return this.$store.state.missionFormSurvey
+      return this.$store.state.missionForm
     },
     value() {
-      return this.s.requiredCount
+      return this.s.participants
     },
     error() {
       if (!isNum(this.value)) {

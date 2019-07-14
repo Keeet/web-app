@@ -27,6 +27,16 @@
         :value="value"
         :mutation="mutation"
       />
+      <div
+        v-else-if="type === SELECT"
+        class="mission-persona-criteria-item-select"
+      >
+        <Select
+          :options="selectOptions"
+          :value="value"
+          :mutation="mutation"
+        />
+      </div>
       <MissionPersonaCriteriaItemLanguage
         v-else-if="type === LANGUAGE"
       />
@@ -47,17 +57,19 @@ import MissionPersonaCriteriaItemChecklist
   from '../MissionPersonaCriteriaItemChecklist/MissionPersonaCriteriaItemChecklist'
 import MissionPersonaCriteriaItemSpecialCriteria
   from '../MissionPersonaCriteriaItemSpecialCriteria/MissionPersonaCriteriaItemSpecialCriteria'
+import Select from '../Select/Select'
 
 const TYPES = {
   SLIDER: 'SLIDER',
   CHECKLIST: 'CHECKLIST',
+  SELECT: 'SELECT',
   LANGUAGE: 'LANGUAGE',
   SPECIAL_CRITERIA: 'SPECIAL_CRITERIA'
 }
 
 export default {
   name: 'MissionPersonaCriteriaItem',
-  components: { MissionPersonaCriteriaItemSpecialCriteria, MissionPersonaCriteriaItemChecklist, MissionPersonaCriteriaItemLanguage, SwitchButton, VueSlider },
+  components: { Select, MissionPersonaCriteriaItemSpecialCriteria, MissionPersonaCriteriaItemChecklist, MissionPersonaCriteriaItemLanguage, SwitchButton, VueSlider },
   props: {
     headline: {
       type: String,
@@ -103,6 +115,10 @@ export default {
     last: {
       type: Boolean,
       default: false
+    },
+    selectOptions: {
+      type: Array,
+      default: null
     }
   },
   data() {
