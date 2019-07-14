@@ -14,7 +14,7 @@ export default {
     language: {
       type: String,
       required: true,
-      validator: value => Object.values(LANGUAGES).includes(value)
+      validator: value => Object.keys(LANGUAGES).includes(value)
     }
   },
   data() {

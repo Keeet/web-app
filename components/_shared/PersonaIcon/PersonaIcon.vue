@@ -26,7 +26,7 @@ export default {
     icon: {
       type: String,
       required: true,
-      validator: value => Object.values(ICONS).includes(value)
+      validator: value => Object.keys(ICONS).includes(value)
     },
     name: {
       type: String,

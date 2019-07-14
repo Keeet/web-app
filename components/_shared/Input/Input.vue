@@ -50,7 +50,7 @@ export default {
     type: {
       type: String,
       default: TYPES.DEFAULT,
-      validator: value => Object.values(TYPES).includes(value)
+      validator: value => Object.keys(TYPES).includes(value)
     },
     title: {
       type: String,

@@ -42,7 +42,7 @@ export default {
     type: {
       type: String,
       default: null,
-      validator: value => Object.values(MISSION_RECRUIT_INSIGHTS).includes(value)
+      validator: value => Object.keys(MISSION_RECRUIT_INSIGHTS).includes(value)
     },
     insight: {
       type: Object,

@@ -65,7 +65,7 @@ export default {
     frame: {
       type: String,
       default: null,
-      validator: value => Object.values(MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES).includes(value)
+      validator: value => Object.keys(MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES).includes(value)
     },
     overlayCoordinates: {
       type: Object,

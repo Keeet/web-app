@@ -47,17 +47,17 @@ export default {
     type: {
       type: String,
       default: TYPES.BLUE,
-      validator: value => Object.values(TYPES).includes(value)
+      validator: value => Object.keys(TYPES).includes(value)
     },
     arrow: {
       type: String,
       default: null,
-      validator: value => Object.values(ARROWS).includes(value)
+      validator: value => Object.keys(ARROWS).includes(value)
     },
     icon: {
       type: String,
       default: null,
-      validator: value => Object.values(ICONS).includes(value)
+      validator: value => Object.keys(ICONS).includes(value)
     },
     noMargin: {
       type: Boolean,

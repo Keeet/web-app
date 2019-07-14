@@ -26,7 +26,7 @@ export default {
     type: {
       type: String,
       required: true,
-      validator: value => Object.values(TYPES).includes(value)
+      validator: value => Object.keys(TYPES).includes(value)
     },
     value: {
       type: String,

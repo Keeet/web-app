@@ -17,7 +17,7 @@
       :value="s.persona.genders"
       mutation="missionFormPersona/setGenders"
       switch-mutation="missionFormPersona/switchGendersOpened"
-      :checklist-values="Object.values(PERSONA_GENDERS)"
+      :checklist-values="Object.keys(PERSONA_GENDERS)"
       :checklist-labels="PERSONA_GENDER_LABELS"
     />
     <MissionPersonaCriteriaItem

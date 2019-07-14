@@ -135,7 +135,7 @@ export default {
       return this.followUps[this.followUpIndex]
     },
     questionTypes() {
-      return Object.values(MISSION_SURVEY_ITEMS)
+      return Object.keys(MISSION_SURVEY_ITEMS)
     },
     atLeastOneRequired() {
       return MISSION_SURVEY_USABILITY_LAB_FOLLOW_UP_REQUIRED.includes(this.item.type)

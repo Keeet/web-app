@@ -59,7 +59,7 @@ export default {
     },
     type: {
       type: String,
-      validator: value => Object.values(TYPES).includes(value),
+      validator: value => Object.keys(TYPES).includes(value),
       required: true
     },
     value: {
