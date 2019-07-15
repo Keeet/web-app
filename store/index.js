@@ -1,3 +1,5 @@
+import { flatMap } from '../utils/objectUtils'
+
 const cookieParser = process.server ? require('cookieparser') : undefined
 const jwtDecode = require('jwt-decode')
 
@@ -13,8 +15,24 @@ export const state = () => ({
   project: null,
   mission: null,
   missionInsights: null,
-  personas: null
+  survey: null,
+  personas: null,
+  dropzoneUploads: {}
 })
+
+export const getters = {
+  getSurveyItemById(state) {
+    return (id) => {
+      const deepArray = state.survey.items.slice()
+        .map(i => [
+          i,
+          ...(i.followUps ? i.followUps : [])
+        ])
+      return flatMap(deepArray)
+        .find(i => i.id === id)
+    }
+  }
+}
 
 export const mutations = {
   setTokens(state, tokens) {
@@ -54,6 +72,17 @@ export const mutations = {
   setMissionInsights(state, missionInsights) {
     state.missionInsights = missionInsights
   },
+  setSurvey(state, survey) {
+    survey.items = survey.items
+      .map((item) => {
+        if (item.followUps) {
+          item.followUps = item.followUps.sort((a, b) => a.index > b.index ? 1 : -1)
+        }
+        return item
+      })
+      .sort((a, b) => a.index > b.index ? 1 : -1)
+    state.survey = survey
+  },
   setPersonas(state, personas) {
     state.personas = personas.map((persona) => {
       return {
@@ -66,6 +95,11 @@ export const mutations = {
           }
       }
     })
+  },
+  addDropzoneUpload(state, { id, url }) {
+    const dropzoneUploads = { ...state.dropzoneUploads }
+    dropzoneUploads[id] = url
+    state.dropzoneUploads = dropzoneUploads
   }
 }
 

@@ -1,4 +1,5 @@
 $grey-light: #f6f9fa;
+$grey-mid-light: #e6eaeb;
 $grey: #d2dae2;
 $grey-mid-dark: #9ea6ad;
 $grey-dark: #485460;
@@ -11,21 +12,37 @@ $yellow: #ffa801;
 
 $red-error: #f53b57;
 
-$persona-chantal: #0be881;
-$persona-dustin: #d2dae2;
-$persona-jacqueline: #575fcf;
-$persona-jason: #ef5777;
-$persona-justin: #ff5e57;
-$persona-kevin: #ffdd59;
-$persona-mandy: #4bcffa;
-$persona-marvin: #34e7e4;
-$persona-mika: #ffc048;
-
 $mission-in-house: #f53b57;
 $mission-remote: #575fcf;
 $mission-usability-lab: #ffa801;
 $mission-survey: #0fbcf9;
 
-$persona-sidebar-width: 500px;
+$mission-survey-short-text: #ef5777;
+$mission-survey-long-text: #575fcf;
+$mission-survey-single-select: #34e7e4;
+$mission-survey-multi-select: #0be881;
+$mission-survey-likert: #4bcffa;
+$mission-survey-linear-scale: #ffc048;
+
+$mission-survey-first-click: #ef5777;
+$mission-survey-five-second-test: #ffc048;
+$mission-survey-question-list: #575fcf;
+$mission-survey-design-question: #ff5e57;
+$mission-survey-preference-test: #34e7e4;
+$mission-survey-instruction: #0be881;
+
 $sidebar-left-width: 400px;
 $footer-min-height: 60px;
+
+$survey-item-body-title-min-height: 80px;
+$survey-step-body-padding-top: 50px;
+$survey-step-body-padding-left-right: 2.5%;
+$survey-step-body-padding-bottom: 20px;
+
+$mission-survey-results-box-padding: 40px;
+$mission-survey-results-box-head-icon-width: 67px;
+
+$sm: "screen and (min-width : 600px)";
+$md: "screen and (min-width : 900px)";
+$lg: "screen and (min-width : 1280px)";
+$xl: "screen and (min-width : 1500px)";

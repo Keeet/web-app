@@ -1,0 +1,21 @@
+.mission-survey-order {
+
+  .mission-survey-order-cancel {
+    position: absolute;
+    top: 120px;
+    left: 5%;
+  }
+
+  .mission-survey-order-body {
+    margin: 100px 0 30px;
+    position: relative;
+
+    .mission-survey-order-body-content {
+      width: calc(100% - 330px);
+      background-color: #fff;
+      box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.07);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+  }
+}

@@ -1,4 +1,6 @@
-export default function ({ $axios, app: { $auth }, redirect, store, route }) {
+export default function ({ $axios, app: { $auth }, redirect, store, route, env: { baseUrl } }) {
+  $axios.defaults.baseURL = baseUrl
+
   $axios.interceptors.request.use(function (config) {
     if (config.noAuth) {
       return config
@@ -9,7 +11,7 @@ export default function ({ $axios, app: { $auth }, redirect, store, route }) {
       } else {
         // use window location on client-side in case the path changed since plugin initialization
         const redirectUrl = (process.server) ? route.path : window.location.pathname + window.location.search
-        $auth.renewTokensOrRedirectToLogin(redirect, redirectUrl).then(() => {
+        $auth.renewTokensOrRedirectToLogin(redirectUrl, { redirect }).then(() => {
           resolve(setAccessToken(config, store.state.accessToken))
         }).catch(() => {})
       }

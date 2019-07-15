@@ -1,0 +1,35 @@
+.mission-survey-results-item-text-line-wrapper {
+  padding: 15px 0;
+  border-bottom: 1px solid $grey-mid-light;
+
+  &.last {
+    border-bottom: none;
+  }
+
+  &.cut:not(.maximized) {
+    padding-bottom: 5px;
+  }
+
+  .mission-survey-results-item-text-line {
+    position: relative;
+    max-height: 60px;
+    overflow: hidden;
+
+    &.cut:not(.maximized):hover {
+      cursor: pointer;
+    }
+
+    &.maximized {
+      max-height: none;
+    }
+
+    .mission-survey-results-item-text-line-text-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background-image: linear-gradient(to top, #fff 15%, transparent 100%)
+    }
+  }
+}

@@ -1,0 +1,85 @@
+.mission-create-survey-item-select-question-choices {
+  margin-top: 30px;
+}
+
+.mission-create-survey-item-select-question-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 5px;
+
+  .mission-create-survey-item-select-question-choices-add {
+    color: $grey;
+    margin-left: 20px;
+    font-weight: bold;
+
+    svg {
+      width: 12px;
+      fill: $grey;
+      margin-right: 18px;
+    }
+
+    &.active {
+
+      &.FIRST_CLICK {
+        $color: $mission-survey-first-click;
+        color: $color;
+        svg {
+          fill: $color;
+        }
+      }
+      &.FIVE_SECOND_TEST {
+        $color: $mission-survey-five-second-test;
+        color: $color;
+        svg {
+          fill: $color;
+        }
+      }
+      &.QUESTION_LIST {
+        $color: $mission-survey-question-list;
+        color: $color;
+        svg {
+          fill: $color;
+        }
+      }
+      &.DESIGN_QUESTION {
+        $color: $mission-survey-design-question;
+        color: $color;
+        svg {
+          fill: $color;
+        }
+      }
+      &.PREFERENCE_TEST {
+        $color: $mission-survey-preference-test;
+        color: $color;
+        svg {
+          fill: $color;
+        }
+      }
+      &.INSTRUCTION {
+        $color: $mission-survey-instruction;
+        color: $color;
+        svg {
+          fill: $color;
+        }
+      }
+      &.SINGLE_SELECT {
+        $color: $mission-survey-single-select;
+        color: $color;
+        svg {
+          fill: $color;
+        }
+      }
+      &.MULTI_SELECT {
+        $color: $mission-survey-multi-select;
+        color: $color;
+        svg {
+          fill: $color;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

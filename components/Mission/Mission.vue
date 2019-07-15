@@ -1,52 +1,41 @@
 <template>
   <div class="mission">
-    <MissionSidebar />
-    <OverlayModal
-      v-if="missionMetadataForm.overlayOpened"
-      title="Edit Mission"
-      :loading="missionMetadataForm.pending"
-      @close="$store.commit('missionMetadataForm/setOverlayOpened', false)"
-    >
-      <MissionMetadataForm />
-    </OverlayModal>
+    <MissionRecruitSidebar v-if="isRecruit" />
+    <MissionSurveySidebar v-if="isSurvey" />
     <div class="mission-body">
-      <NavUnderlined
-        :items="[
-          {
-            page: MISSION_PAGES.OVERVIEW,
-            label: 'Overview',
-            link: `/missions/${mission.id}/overview`
-          },
-          {
-            page: MISSION_PAGES.INSIGHTS,
-            label: 'Insights',
-            link: `/missions/${mission.id}/insights`
-          }
-        ]"
-        :active-page="missionPage.activePage"
-        :disable-animation="missionPage.disableAnimation"
-      />
-      <MissionOverview v-if="missionPage.activePage === MISSION_PAGES.OVERVIEW" />
-      <MissionInsights v-if="missionPage.activePage === MISSION_PAGES.INSIGHTS" />
+      <div class="mission-body-inner">
+        <NavUnderlined
+          :items="navItems"
+          :active-page="missionPage.activePage"
+          :disable-animation="missionPage.disableAnimation"
+        />
+        <MissionRecruit v-if="isRecruit" />
+        <MissionSurvey v-else-if="isSurvey" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { MISSION_PAGES } from '../constants'
-import OverlayModal from '../_shared/OverlayModal/OverlayModal'
+import { MISSIONS, MISSION_RECRUIT_PAGES, MISSION_SURVEY_PAGES } from '../constants'
 import NavUnderlined from '../_shared/NavUnderlined/NavUnderlined'
-import MissionMetadataForm from './MissionMetadataForm/MissionMetadataForm'
-import MissionSidebar from './MissionSidebar/MissionSidebar'
-import MissionOverview from './MissionOverview/MissionOverview'
-import MissionInsights from './MissionInsights/MissionInsights'
+import MissionRecruit from './MissionRecruit/MissionRecruit'
+import MissionSurvey from './MissionSurvey/MissionSurvey'
+import MissionRecruitSidebar from './MissionRecruitSidebar/MissionRecruitSidebar'
+import MissionSurveySidebar from './MissionSurveySidebar/MissionSurveySidebar'
+
+const { IN_HOUSE, REMOTE, SURVEY, USABILITY_LAB } = MISSIONS
+const { OVERVIEW, INSIGHTS } = MISSION_RECRUIT_PAGES
+const { RESULTS, SHARE } = MISSION_SURVEY_PAGES
+
 export default {
   name: 'Mission',
-  components: { NavUnderlined, MissionInsights, MissionOverview, MissionSidebar, OverlayModal, MissionMetadataForm },
-  data() {
-    return {
-      MISSION_PAGES
-    }
+  components: {
+    NavUnderlined,
+    MissionSurveySidebar,
+    MissionRecruitSidebar,
+    MissionSurvey,
+    MissionRecruit
   },
   computed: {
     mission() {
@@ -55,13 +44,46 @@ export default {
     missionPage() {
       return this.$store.state.missionPage
     },
-    missionMetadataForm() {
-      return this.$store.state.missionMetadataForm
+    isRecruit() {
+      return [IN_HOUSE, REMOTE].includes(this.mission.type)
+    },
+    isSurvey() {
+      return [SURVEY, USABILITY_LAB].includes(this.mission.type)
+    },
+    navItems() {
+      if (this.isRecruit) {
+        return [
+          {
+            page: OVERVIEW,
+            label: 'Overview',
+            link: `/missions/${this.mission.id}/overview`
+          },
+          {
+            page: INSIGHTS,
+            label: 'Insights',
+            link: `/missions/${this.mission.id}/insights`
+          }
+        ]
+      } else if (this.isSurvey) {
+        return [
+          {
+            page: RESULTS,
+            label: 'Results',
+            link: `/missions/${this.mission.id}/results`
+          },
+          {
+            page: SHARE,
+            label: 'Share',
+            link: `/missions/${this.mission.id}/share`
+          }
+        ]
+      }
+      return null
     }
   }
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
   @import "Mission";
 </style>

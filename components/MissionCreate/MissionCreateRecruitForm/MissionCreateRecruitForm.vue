@@ -1,152 +1,96 @@
 <template>
   <div class="mission-create-recruit-form">
-    <div class="mission-create-recruit-form-body">
-      <MissionCreateBox>
-        <MissionCreateRecruitFormHeadline text="Internal mission name" />
-        <div class="mission-create-recruit-form-name">
-          <Input
-            placeholder="Test campaign"
-            :value="s.title"
-            mutation="missionForm/setTitle"
-            :disable-error="!showErrors"
-            :error="titleError"
-          />
-        </div>
-      </MissionCreateBox>
-      <MissionCreateBox>
-        <div class="mission-create-recruit-form-section">
-          <MissionCreateRecruitFormHeadline text="Target group" />
-          <MissionCreateRecruitFormPersonaSelect :error="showErrors && personaError ? personaError : null" />
-        </div>
-        <div class="mission-create-recruit-form-section">
-          <MissionCreateRecruitFormHeadline text="Number of participants" />
-          <div class="mission-create-recruit-form-participants">
-            <Input
-              mutation="missionForm/setNbParticipants"
-              :value="s.nbParticipants.toString()"
-              :error="nbParticipantsError"
-              numbers-only
+    <MissionCreateBox>
+      <MissionCreateRecruitFormHeadline text="Internal mission name" />
+      <div class="mission-create-recruit-form-name">
+        <Input
+          placeholder="Test campaign"
+          :value="s.title"
+          mutation="missionForm/setTitle"
+          :error="titleError"
+          dispatch-error="missionForm/handleValidationError"
+          :disable-error="!s.showErrors"
+        />
+      </div>
+    </MissionCreateBox>
+    <MissionCreateBox>
+      <div class="mission-create-recruit-form-section">
+        <MissionCreateRecruitFormHeadline text="Target group" />
+      </div>
+      <div class="mission-create-recruit-form-section">
+        <div v-if="s.type === IN_HOUSE">
+          <MissionCreateRecruitFormHeadline text="Study type" />
+          <div class="mission-create-recruit-form-study-type">
+            <Select
+              :value="s.recruit.studyType"
+              :options="studyTypes"
+              mutation="missionFormRecruit/setStudyType"
+              no-margin
             />
           </div>
         </div>
-        <div class="mission-create-recruit-form-section">
-          <MissionCreateRecruitFormHeadline text="How long does the interview / test last?" underlined />
-          <MissionCreateRecruitFormDuration :error="durationError" />
-        </div>
-        <div class="mission-create-recruit-form-section">
-          <MissionCreateRecruitFormHeadline text="In what language do you want to interview?" underlined />
-          <MissionCreateRecruitFormLanguage />
-        </div>
-        <div v-if="s.type === IN_HOUSE" class="mission-create-recruit-form-section">
-          <MissionCreateRecruitFormHeadline text="Where does the interview / test takes place?" underlined />
-          <MissionCreateRecruitFormLocation />
-        </div>
-      </MissionCreateBox>
-    </div>
-    <div class="mission-create-recruit-form-submit" :class="submitBoxPositioning">
-      <div class="mission-create-recruit-form-submit-ref" />
-      <div class="mission-create-recruit-form-submit-inner">
-        <div class="mission-create-recruit-form-submit-box">
-          <div class="mission-create-recruit-form-submit-head">
-            <div class="mission-create-recruit-form-submit-head-icon" :class="s.type">
-              <IconMissionInHouse v-if="s.type === IN_HOUSE" />
-              <IconMissionRemote v-if="s.type === REMOTE" />
-            </div>
-            <div class="mission-create-recruit-form-submit-head-text">
-              {{ MISSION_LABELS[s.type] }} Mission
-            </div>
-          </div>
-          <div class="mission-create-recruit-form-submit-body">
-            You have in total 3 more testers free for this month.
-          </div>
-        </div>
-        <div v-if="[USABILITY_LAB, SURVEY].includes(s.type)" class="mission-create-recruit-form-submit-buttons">
-          <ButtonText type="GREY" text="Cancel" />
-          <ButtonText text="Save and Continue" />
+        <MissionCreateRecruitFormHeadline text="Number of participants" />
+        <div class="mission-create-recruit-form-participants">
+          <Input
+            mutation="missionForm/setParticipants"
+            :value="s.participants.toString()"
+            :error="participantsError"
+            dispatch-error="missionForm/handleValidationError"
+            no-margin
+          />
         </div>
       </div>
-    </div>
+      <div class="mission-create-recruit-form-section">
+        <MissionCreateRecruitFormHeadline text="How long does the interview / test last?" underlined />
+        <MissionCreateRecruitFormDuration />
+      </div>
+      <div v-if="s.type === IN_HOUSE" class="mission-create-recruit-form-section">
+        <MissionCreateRecruitFormHeadline text="Where does the interview / test takes place?" underlined />
+        <MissionCreateRecruitFormLocation />
+      </div>
+    </MissionCreateBox>
   </div>
 </template>
 
 <script>
-import { isNum } from '../../../utils/stringUtils'
-import { MISSIONS, MISSION_LABELS } from '../../constants'
+import { MISSIONS, MISSION_LABELS, MISSION_RECRUIT_STUDY_TYPES, MISSION_RECRUIT_STUDY_TYPE_LABELS } from '../../constants'
 import MissionCreateBox from '../MissionCreateBox/MissionCreateBox'
 import MissionCreateRecruitFormHeadline from '../MissionCreateRecruitFormHeadline/MissionCreateRecruitFormHeadline'
 import Input from '../../_shared/Input/Input'
-import MissionCreateRecruitFormPersonaSelect from '../MissionCreateRecruitFormPersonaSelect/MissionCreateRecruitFormPersonaSelect'
 import MissionCreateRecruitFormDuration from '../MissionCreateRecruitFormDuration/MissionCreateRecruitFormDuration'
-import MissionCreateRecruitFormLanguage from '../MissionCreateRecruitFormLanguage/MissionCreateRecruitFormLanguage'
-import ButtonText from '../../_shared/ButtonText/ButtonText'
 import MissionCreateRecruitFormLocation from '../MissionCreateRecruitFormLocation/MissionCreateRecruitFormLocation'
-import { determineFixedOrAbsolute } from '../../../utils/scrollUtils'
+import Select from '../../_shared/Select/Select'
+
 export default {
   name: 'MissionCreateRecruitForm',
-  components: { MissionCreateRecruitFormLocation, ButtonText, MissionCreateRecruitFormLanguage, MissionCreateRecruitFormDuration, MissionCreateRecruitFormPersonaSelect, Input, MissionCreateRecruitFormHeadline, MissionCreateBox },
-  props: {
-    showErrors: {
-      type: Boolean,
-      required: true
-    }
-  },
+  components: { Select, MissionCreateRecruitFormLocation, MissionCreateRecruitFormDuration, Input, MissionCreateRecruitFormHeadline, MissionCreateBox },
   data() {
     const { IN_HOUSE, REMOTE, USABILITY_LAB, SURVEY } = MISSIONS
-    return { IN_HOUSE, REMOTE, USABILITY_LAB, SURVEY, MISSION_LABELS, submitBoxPositioning: null }
+    return {
+      IN_HOUSE,
+      REMOTE,
+      USABILITY_LAB,
+      SURVEY,
+      MISSION_LABELS,
+      MISSION_RECRUIT_STUDY_TYPES,
+      MISSION_RECRUIT_STUDY_TYPE_LABELS
+    }
   },
   computed: {
     s() {
-      return this.$store.state.missionForm
+      const { missionForm, missionFormRecruit } = this.$store.state
+      return {
+        ...missionForm,
+        recruit: missionFormRecruit
+      }
     },
     titleError() { return this.s.title !== '' ? null : 'required' },
-    personaError() { return this.s.persona ? null : 'required' },
-    nbParticipantsError() { return isNum(this.s.nbParticipants) ? null : 'must be a number' },
-    durationError() {
-      if (!isNum(this.s.duration)) {
-        return 'must be a number'
-      }
-      if (parseInt(this.s.duration) < 30) {
-        return 'must be bigger than 30'
-      }
-      return null
+    participantsError() {
+      return this.$store.getters['missionForm/participantsError']
     },
-    valid() {
-      return (
-        !this.titleError &&
-        !this.personaError &&
-        !this.nbParticipantsError &&
-        !this.durationError
-      )
-    }
-  },
-  watch: {
-    valid(newValue, oldValue) {
-      if (newValue !== oldValue) {
-        this.commitValidity()
-      }
-    }
-  },
-  mounted() {
-    this.commitValidity()
-    this.onScroll()
-    window.addEventListener('scroll', this.onScroll)
-  },
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.onScroll)
-  },
-  methods: {
-    commitValidity() {
-      this.$store.commit('missionForm/setFormValid', this.valid)
-    },
-    onScroll() {
-      const positioning = determineFixedOrAbsolute(
-        document.getElementsByClassName('mission-create-recruit-form-submit-ref')[0],
-        document.getElementsByClassName('mission-create-recruit-form-submit-inner')[0],
-        document.getElementsByClassName('mission-create-recruit-form')[0]
-      )
-      if (positioning !== this.submitBoxPositioning) {
-        this.submitBoxPositioning = positioning
-      }
+    studyTypes() {
+      return Object.keys(MISSION_RECRUIT_STUDY_TYPES)
+        .map(value => ({ value, label: MISSION_RECRUIT_STUDY_TYPE_LABELS[value] }))
     }
   }
 }

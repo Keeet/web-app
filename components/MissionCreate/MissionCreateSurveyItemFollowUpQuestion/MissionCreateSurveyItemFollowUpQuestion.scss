@@ -1,0 +1,113 @@
+.mission-create-survey-item-follow-up-question {
+  margin: 30px 0;
+
+  &:not(.first) {
+    padding-top: 30px;
+    border-top: 1px solid $grey;
+  }
+
+  .mission-create-survey-item-follow-up-question-head {
+    display: flex;
+    align-items: flex-end;
+
+    &.noDelete {
+      padding-right: 12px;
+    }
+
+    .mission-create-survey-item-follow-up-question-drag {
+      margin: 0 20px 13px 0;
+
+      svg {
+        width: 9px;
+        fill: $grey-mid-dark;
+      }
+
+      &:hover {
+        cursor: move;
+      }
+    }
+
+    .mission-create-survey-item-follow-up-question-text {
+      flex-grow: 1;
+    }
+
+    .mission-create-survey-item-follow-up-question-type {
+      width: 210px;
+      margin-left: 20px;
+
+      .mission-create-survey-item-follow-up-question-type-item {
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+
+        .mission-create-survey-item-follow-up-question-type-item-icon {
+          position: relative;
+          width: 25px;
+          height: 25px;
+          border-radius: 100%;
+
+          &.FIRST_CLICK {
+            background-color: $mission-survey-first-click;
+          }
+          &.FIVE_SECOND_TEST {
+            background-color: $mission-survey-five-second-test;
+          }
+          &.QUESTION_LIST {
+            background-color: $mission-survey-question-list;
+          }
+          &.DESIGN_QUESTION {
+            background-color: $mission-survey-design-question;
+          }
+          &.PREFERENCE_TEST {
+            background-color: $mission-survey-preference-test;
+          }
+          &.INSTRUCTION {
+            background-color: $mission-survey-instruction;
+          }
+
+          svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 60%;
+            max-height: 70%;
+          }
+        }
+
+        .mission-create-survey-item-follow-up-question-type-item-label {
+          padding: 14px 0 14px 14px;
+        }
+      }
+    }
+
+    .mission-create-survey-item-follow-up-question-delete {
+      width: 12px;
+      margin: 0 0 13px 20px;
+
+      svg {
+        width: 100%;
+        fill: $grey-mid-dark;
+        transition: fill .4s;
+      }
+
+      &:hover {
+        cursor: pointer;
+
+        svg {
+          width: 100%;
+          fill: $grey-dark;
+        }
+      }
+    }
+  }
+
+  .mission-create-survey-item-follow-up-question-body {
+    margin: 0 32px 0 9px;
+
+    &.noDelete {
+      margin-right: 0;
+    }
+  }
+}
+

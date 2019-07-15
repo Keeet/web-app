@@ -1,0 +1,27 @@
+.mission-sidebar-progress {
+  margin-bottom: 40px;
+
+  .mission-sidebar-progress-progress {
+    position: relative;
+    height: 4px;
+    background-color: $grey;
+    border-radius: 2px;
+    overflow: hidden;
+
+    .mission-sidebar-progress-progress-done {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      background-color: $green;
+
+      &:not(.noAnimation) {
+        transition: width 1s;
+      }
+
+      &:not(.showProgress) {
+        width: 0 !important;
+      }
+    }
+  }
+}

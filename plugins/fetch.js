@@ -32,6 +32,12 @@ const config = {
     mutation: 'setMissionInsights',
     key: 'missionInsights'
   },
+  SURVEY: {
+    path: '/public/missions/{id}',
+    mutation: 'setSurvey',
+    key: 'survey',
+    noAuth: true
+  },
   PERSONAS: {
     path: '/personas',
     mutation: 'setPersonas',
@@ -43,12 +49,12 @@ const config = {
     key: 'companyUsers'
   },
   VIDEO_SESSION_COMPANY: {
-    path: '/sessions/{id}/company',
+    path: '/rooms/token/moderated/company/{id}',
     mutation: 'twilio/initCompany',
     baseUrl: 'https://streaming.keeet.io'
   },
   VIDEO_SESSION_USER: {
-    path: '/sessions/{id}/user',
+    path: '/rooms/token/moderated/user/{id}',
     mutation: 'twilio/initUser',
     baseUrl: 'https://streaming.keeet.io',
     noAuth: true

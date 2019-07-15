@@ -86,7 +86,7 @@ export default {
     joinCall() {
       this.$store.commit('twilio/hideJoinButton')
       this.$store.commit('twilio/showLoading', 'Connecting to video stream...')
-      this.$twilioHelper.joinRoom(this.twilio.sessionId, this.twilio.token, {
+      this.$twilioHelper.joinRoom(this.twilio.roomName, this.twilio.token, {
         joined: (room) => {
           this.$store.commit('twilio/setRoom', room)
           this.$store.commit('twilio/showCall')

@@ -1,5 +1,5 @@
 <template>
-  <div class="select" :class="{ error }">
+  <div class="select" :class="{ error, noMargin }">
     <p v-if="title" class="select-title">
       {{ title }}
     </p>
@@ -7,6 +7,7 @@
       v-model="message"
       class="select-field"
       :disabled="readonly"
+      :class="{ nullValue: value === null }"
     >
       <option
         v-for="(option, index) in options"
@@ -40,16 +41,20 @@ export default {
       default: false
     },
     value: {
-      type: String,
-      required: true
+      type: [String, Number],
+      default: null
     },
     mutation: {
       type: String,
-      required: true
+      default: null
     },
     error: {
       type: String,
       default: null
+    },
+    noMargin: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -58,7 +63,11 @@ export default {
         return this.value
       },
       set(value) {
-        this.$store.commit(this.mutation, value)
+        if (this.mutation) {
+          this.$store.commit(this.mutation, value)
+        } else {
+          this.$emit('change', value)
+        }
       }
     }
   }

@@ -1,0 +1,51 @@
+.mission-persona-criteria-item {
+  background-color: #fff;
+
+  &:not(.last) {
+    border-bottom: 1px solid $grey;
+  }
+
+  &.opened {
+
+    .mission-persona-criteria-item-head-text {
+      cursor: default !important;
+    }
+  }
+
+  .mission-persona-criteria-item-head {
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .mission-persona-criteria-item-head-text {
+      flex-grow: 1;
+      font-weight: 500;
+      padding: 30px 0;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .mission-persona-criteria-item-body {
+    padding: 0 30px 40px;
+
+    .mission-persona-criteria-item-slider {
+      position: relative;
+      z-index: 1;
+      width: 90%;
+      margin: 0 auto;
+      padding: 50px 40px 20px;
+      box-sizing: border-box;
+      border-radius: 5px;
+      border: solid 1px $grey;
+    }
+
+    .mission-persona-criteria-item-select {
+      width: 100%;
+      max-width: 200px;
+    }
+  }
+}

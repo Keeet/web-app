@@ -1,0 +1,10 @@
+.mission-create-survey {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+
+  .mission-create-survey-content {
+    margin: -30px 0;
+    width: calc(100% - 330px);
+  }
+}

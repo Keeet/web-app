@@ -1,0 +1,74 @@
+.mission-survey-results-item-bars-vertical-item {
+  position: relative;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 5px;
+  flex-grow: 1;
+  border-radius: 3px;
+  overflow: hidden;
+
+  .mission-survey-results-item-bars-vertical-item-bg,
+  .mission-survey-results-item-bars-vertical-item-fill {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    &.LINEAR_SCALE {
+      background-color: $mission-survey-linear-scale;
+    }
+    &.FIRST_CLICK {
+      background-color: $mission-survey-first-click;
+    }
+    &.FIVE_SECOND_TEST {
+      background-color: $mission-survey-five-second-test;
+    }
+    &.QUESTION_LIST {
+      background-color: $mission-survey-question-list;
+    }
+    &.DESIGN_QUESTION {
+      background-color: $mission-survey-design-question;
+    }
+  }
+
+  .mission-survey-results-item-bars-vertical-item-bg {
+    z-index: 1;
+    opacity: 0.2;
+    height: 100%;
+  }
+
+  .mission-survey-results-item-bars-vertical-item-fill {
+    height: 0;
+    z-index: 2;
+    transition: height .7s;
+  }
+
+  .mission-survey-results-item-bars-vertical-item-head {
+    margin-top: 10px;
+    text-align: center;
+
+    .mission-survey-results-item-bars-vertical-item-percent {
+      position: relative;
+      z-index: 3;
+      font-size: 90%;
+      font-weight: 500;
+    }
+
+    .mission-survey-results-item-bars-vertical-item-responses {
+      position: relative;
+      z-index: 3;
+      font-size: 70%;
+      margin-top: 5px;
+    }
+  }
+
+  .mission-survey-results-item-bars-vertical-item-index {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+}

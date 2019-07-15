@@ -1,0 +1,23 @@
+.mission-survey-results-item-head {
+  display: flex;
+
+  .mission-survey-results-item-head-icon {
+    flex-shrink: 0;
+    width: $mission-survey-results-box-head-icon-width;
+    overflow: hidden;
+  }
+
+  .mission-survey-results-item-head-text {
+    margin-top: 4px;
+
+    .mission-survey-results-item-head-text-title {
+      font-weight: 500;
+      font-size: 110%;
+    }
+
+    .mission-survey-results-item-head-text-subtitle {
+      color: $grey-mid-dark;
+      font-size: 80%;
+    }
+  }
+}

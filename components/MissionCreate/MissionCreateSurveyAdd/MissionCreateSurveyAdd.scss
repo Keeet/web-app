@@ -1,0 +1,37 @@
+.mission-create-survey-item-add {
+  display: flex;
+  align-items: center;
+
+  .mission-create-survey-item-add-line {
+    flex-grow: 1;
+    border: 1px dotted $grey;
+  }
+
+  .mission-create-survey-item-add-body {
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .mission-create-survey-item-add-body-icon {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      background-color: $grey-dark;
+      border-radius: 100%;
+      margin-right: 10px;
+
+      svg {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 50%;
+        fill: $grey-light;
+      }
+    }
+  }
+}

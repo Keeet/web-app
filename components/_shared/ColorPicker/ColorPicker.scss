@@ -1,0 +1,31 @@
+.color-picker {
+
+  * {
+    font-family: 'Roboto', sans-serif, Arial;
+  }
+
+  &.noTransparency {
+
+    .vc-chrome-sliders {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .vc-chrome-hue-wrap {
+        width: 100%;
+        margin: 0;
+      }
+
+      .vc-chrome-alpha-wrap {
+        display: none;
+      }
+    }
+
+    .vc-chrome-fields {
+
+      .vc-chrome-field:nth-child(4) {
+        display: none;
+      }
+    }
+  }
+}

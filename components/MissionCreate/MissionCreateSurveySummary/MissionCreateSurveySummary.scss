@@ -1,0 +1,33 @@
+.mission-create-survey-summary {
+
+  .mission-create-survey-summary-scrollable {
+    // top - head - duration - footer - bottom
+    max-height: calc(100vh - 100px - 50px - 50px - 130px - 30px);
+    margin: -15px -15px 0 -15px;
+    padding: 10px 15px 0 15px;
+    overflow-y: auto;
+  }
+
+  .mission-create-survey-summary-duration {
+    display: flex;
+    align-items: center;
+    margin: 10px -15px -15px -15px;
+    padding: 10px 25px;
+    background-color: $grey-light;
+
+    .mission-create-survey-summary-duration-icon {
+      width: 20px;
+      margin-right: 10px;
+    }
+  }
+
+  .mission-create-survey-summary-buttons-flex {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    .mission-create-survey-summary-buttons-flex-item {
+      width: 48%;
+    }
+  }
+}

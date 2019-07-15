@@ -1,0 +1,18 @@
+.mission-create-recruit-timeslots {
+
+  .mission-create-recruit-timeslots-item {
+    display: flex;
+
+    .mission-create-recruit-timeslots-item-date {
+      width: 40%;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .mission-create-recruit-timeslots-item-sessions {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -10px 0;
+    }
+  }
+}

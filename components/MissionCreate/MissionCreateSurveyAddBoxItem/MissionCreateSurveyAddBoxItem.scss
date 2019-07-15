@@ -1,0 +1,79 @@
+.mission-create-survey-add-box-item {
+  width: 47%;
+  box-sizing: border-box;
+  margin: 10px 0;
+  padding: 20px;
+  background-color: #fff;
+  display: flex;
+  transition: all 0.4s;
+  border-radius: 5px;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .mission-create-survey-add-box-item-icon {
+    flex-shrink: 0;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    margin-right: 20px;
+
+    &.SHORT_TEXT {
+      background-color: $mission-survey-short-text;
+    }
+    &.LONG_TEXT {
+      background-color: $mission-survey-long-text;
+    }
+    &.SINGLE_SELECT {
+      background-color: $mission-survey-single-select;
+    }
+    &.MULTI_SELECT {
+      background-color: $mission-survey-multi-select;
+    }
+    &.LIKERT {
+      background-color: $mission-survey-likert;
+    }
+    &.LINEAR_SCALE {
+      background-color: $mission-survey-linear-scale;
+    }
+    &.FIRST_CLICK {
+      background-color: $mission-survey-first-click;
+    }
+    &.FIVE_SECOND_TEST {
+      background-color: $mission-survey-five-second-test;
+    }
+    &.QUESTION_LIST {
+      background-color: $mission-survey-question-list;
+    }
+    &.DESIGN_QUESTION {
+      background-color: $mission-survey-design-question;
+    }
+    &.PREFERENCE_TEST {
+      background-color: $mission-survey-preference-test;
+    }
+    &.INSTRUCTION {
+      background-color: $mission-survey-instruction;
+    }
+
+    svg {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 70%;
+      max-height: 50%;
+    }
+  }
+
+  .mission-create-survey-add-box-item-text {
+
+    .mission-create-survey-add-box-item-text-title {
+      font-weight: 700;
+      font-size: 110%;
+      margin-bottom: 5px;
+    }
+  }
+}

@@ -11,11 +11,6 @@
           Dashboard
         </p>
       </nuxt-link>
-      <nuxt-link to="/personas">
-        <p class="nav-item" :class="{active: path === '/personas'}">
-          Personas
-        </p>
-      </nuxt-link>
       <Staging />
     </div>
     <nuxt-link to="/account">

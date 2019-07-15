@@ -1,0 +1,22 @@
+.mission-survey-sidebar-count {
+
+  .mission-survey-sidebar-count-title {
+    font-size: 70%;
+    font-weight: 700;
+  }
+
+  .mission-survey-sidebar-count-text {
+    margin: 10px 0;
+
+    .mission-survey-sidebar-text-large {
+      font-size: 120%;
+      font-weight: 500;
+    }
+
+    .mission-survey-sidebar-text-small {
+      color: $grey-mid-dark;
+      font-size: 80%;
+      font-weight: 700;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.survey-item-select-choice {
+  padding: 20px 10px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 20px 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.selected {
+    background-color: $blue-primary;
+    color: #fff;
+  }
+}

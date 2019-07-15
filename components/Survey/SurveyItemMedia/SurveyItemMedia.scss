@@ -1,0 +1,175 @@
+@keyframes jump { 0% { bottom: 10px; } 50% { bottom: 35px; } 100% { bottom: 10px; } }
+
+.survey-item-media {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  margin: 20px auto 0;
+  text-align: center;
+  transition: all .5s;
+  user-select: none;
+
+  &.blur {
+    filter: blur(50px);
+    opacity: 0.5;
+  }
+
+  .survey-item-media-frame {
+    width: 100%;
+    display: none;
+  }
+
+  .survey-item-media-img-scroll {
+    overflow: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+
+    &.scrollable:hover {
+      cursor: pointer;
+    }
+
+    .survey-item-media-img-scroll-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100%;
+
+      .survey-item-media-img-scroll-content-inner {
+        position: relative;
+
+        .survey-item-media-img {
+          width: 100%;
+          vertical-align: top;
+        }
+
+        .survey-item-media-heatmap-wrapper {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(#000, .6);
+          opacity: 0;
+          transition: opacity .3s;
+
+          &.active {
+            opacity: 1;
+          }
+
+          .survey-item-media-heatmap {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+
+    .survey-item-media-img-scrolling {
+      position: absolute;
+      width: 130px;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      animation: jump 2s infinite;
+      width: 50px;
+      height: 50px;
+      background-color: rgba(#000, .2);
+      border-radius: 100%;
+
+      svg {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        fill: #fff;
+        width: 20px;
+      }
+    }
+  }
+
+  &.PHONE_PORTRAIT {
+    max-width: 350px;
+
+    @media #{$sm} {
+      max-width: 300px;
+
+      .survey-item-media-frame {
+        display: inline;
+      }
+
+      .survey-item-media-img-scroll {
+        position: absolute;
+        top: 1.37%;
+        left: 3.96%;
+        width: 92.082%;
+        height: 96.7%;
+        border-radius: 10%/calc(10%*0.482672551);
+      }
+    }
+  }
+
+  &.PHONE_LANDSCAPE {
+    max-width: 700px;
+
+    @media #{$md} {
+
+      .survey-item-media-frame {
+        display: inline;
+      }
+
+      .survey-item-media-img-scroll {
+        position: absolute;
+        top: 3.4%;
+        left: 1.37%;
+        width: 97%;
+        height: 91.3%;
+        border-radius: calc(10%*0.482672551)/10%;
+      }
+    }
+  }
+
+  &.TABLET_PORTRAIT {
+    max-width: 500px;
+
+    @media #{$sm} {
+
+      .survey-item-media-frame {
+        display: inline;
+      }
+
+      .survey-item-media-img-scroll {
+        position: absolute;
+        top: 7.45%;
+        left: 3.71%;
+        width: 92.3%;
+        height: 83.5%;
+      }
+    }
+  }
+
+  &.TABLET_LANDSCAPE {
+    max-width: 700px;
+
+    @media #{$md} {
+
+      .survey-item-media-frame {
+        display: inline;
+      }
+
+      .survey-item-media-img-scroll {
+        position: absolute;
+        top: 3.71%;
+        left: 7.45%;
+        width: 83.5%;
+        height: 92.3%;
+      }
+    }
+  }
+
+  .survey-item-media-overlay {
+    position: fixed;
+    transform: translateX(-50%);
+  }
+}

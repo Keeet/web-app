@@ -3,7 +3,7 @@
     <OverlayModal
       title="Add new location"
       :loading="s.pending"
-      @close="$store.commit('missionForm/closeLocationForm')"
+      @close="$store.commit('missionFormRecruit/closeLocationForm')"
     >
       <Input
         title="Name*"
@@ -67,7 +67,7 @@
       <Select
         title="Country*"
         :options="[{
-          label: COUNTRY_NAMES['DE'],
+          label: COUNTRY_LABELS['DE'],
           value: 'DE'
         }]"
         :value="s.country"
@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import { COUNTRY_NAMES } from '../../constants'
+import { COUNTRY_LABELS } from '../../constants'
 import OverlayModal from '../../_shared/OverlayModal/OverlayModal'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
 import Select from '../../_shared/Select/Select'
@@ -91,7 +91,7 @@ export default {
   data() {
     return {
       showErrors: false,
-      COUNTRY_NAMES
+      COUNTRY_LABELS
     }
   },
   computed: {
@@ -121,9 +121,9 @@ export default {
       this.$push.createCompanyAddress(this.s).then((res) => {
         const { id } = res
         const newLocation = this.$store.state.company.locations.filter(l => l.id === id)[0]
-        this.$store.commit('missionForm/setLocation', newLocation)
+        this.$store.commit('missionFormRecruit/setLocation', newLocation)
         this.$store.commit('locationForm/submitted')
-        this.$store.commit('missionForm/closeLocationForm')
+        this.$store.commit('missionFormRecruit/closeLocationForm')
       })
     }
   }

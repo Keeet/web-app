@@ -1,0 +1,104 @@
+.mission-survey-results-item-bars-horizontal-item {
+  display: flex;
+  align-items: center;
+  margin: 12px 0;
+
+  &.first {
+    margin-top: 0;
+  }
+
+  &.last {
+    margin-bottom: 0;
+  }
+
+  .mission-survey-results-item-bars-horizontal-item-subject {
+    width: 100px;
+    text-align: right;
+    font-size: 80%;
+    margin-right: 15px;
+
+    img {
+      background-color: #fff;
+      max-width: 100%;
+      max-height: 40px;
+      transition: all .4s;
+
+      &:hover {
+        position: relative;
+        z-index: 4;
+        cursor: pointer;
+        transform: scale(10);
+        box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+
+  .mission-survey-results-item-bars-horizontal-item-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 3px;
+    overflow: hidden;
+    flex-grow: 1;
+    justify-content: space-between;
+
+    .mission-survey-results-item-bars-horizontal-item-bar-bg,
+    .mission-survey-results-item-bars-horizontal-item-bar-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+
+      &.SINGLE_SELECT {
+        background-color: $mission-survey-single-select;
+      }
+      &.MULTI_SELECT {
+        background-color: $mission-survey-multi-select;
+      }
+      &.LIKERT {
+        background-color: $mission-survey-likert;
+      }
+      &.PREFERENCE_TEST {
+        background-color: $mission-survey-preference-test;
+      }
+      &.FIRST_CLICK {
+        background-color: $mission-survey-first-click;
+      }
+      &.FIVE_SECOND_TEST {
+        background-color: $mission-survey-five-second-test;
+      }
+      &.QUESTION_LIST {
+        background-color: $mission-survey-question-list;
+      }
+      &.DESIGN_QUESTION {
+        background-color: $mission-survey-design-question;
+      }
+    }
+
+    .mission-survey-results-item-bars-horizontal-item-bar-bg {
+      z-index: 1;
+      opacity: 0.2;
+      width: 100%;
+    }
+
+    .mission-survey-results-item-bars-horizontal-item-bar-fill {
+      width: 0;
+      z-index: 2;
+      transition: width .7s;
+    }
+
+    .mission-survey-results-item-bars-horizontal-item-bar-percent {
+      position: relative;
+      z-index: 3;
+      font-size: 90%;
+      font-weight: 500;
+    }
+
+    .mission-survey-results-item-bars-horizontal-item-bar-responses {
+      position: relative;
+      z-index: 3;
+      font-size: 80%;
+    }
+  }
+}

@@ -1,0 +1,58 @@
+.mission-create-survey-custom-screen-branding {
+  margin: 8px 0;
+
+  .mission-create-survey-custom-screen-branding-title {
+    font-size: 90%;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  .mission-create-survey-custom-screen-branding-dropzone {
+    position: relative;
+    min-height: 250px;
+
+    &:after {
+      content: "";
+      display: block;
+      padding-bottom: 70%;
+    }
+
+    .mission-create-survey-custom-screen-branding-dropzone-empty {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      text-align: center;
+
+      svg {
+        width: 40px;
+        fill: $grey;
+        margin-bottom: 10px;
+      }
+
+      .mission-create-survey-custom-screen-branding-dropzone-empty-text {
+        font-weight: 500;
+        color: $grey;
+      }
+    }
+
+    .dropzone:not(.vue-dropzone) {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+
+      .dz-preview {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        margin: 0;
+        max-height: 90%;
+        max-width: 90%;
+      }
+    }
+  }
+}

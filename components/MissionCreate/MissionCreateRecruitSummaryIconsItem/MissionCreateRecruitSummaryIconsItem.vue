@@ -1,32 +1,33 @@
 <template>
   <div class="mission-create-recruit-summary-icons-item">
     <div class="mission-create-recruit-summary-icons-item-icon">
-      <LanguageIcon v-if="type === TYPES.LANGUAGE" :language="value" />
+      <IconLocation v-if="type === TYPES.LOCATION" />
       <IconStopWatch v-if="type === TYPES.DURATION" />
-      <IconProfile v-if="type === TYPES.NB_PARTICIPANTS" />
+      <IconProfile v-if="type === TYPES.PARTICIPANTS" />
     </div>
-    <p class="mission-create-recruit-summary-icons-item-text">
-      {{ text }}
-    </p>
+    <div class="mission-create-recruit-summary-icons-item-body">
+      <p v-if="text">
+        {{ text }}
+      </p>
+      <slot v-if="$slots.default" />
+    </div>
   </div>
 </template>
 
 <script>
-import LanguageIcon from '../../_shared/LanguageIcon/LanguageIcon'
 const TYPES = {
-  LANGUAGE: 'LANGUAGE',
+  LOCATION: 'LOCATION',
   DURATION: 'DURATION',
-  NB_PARTICIPANTS: 'NB_PARTICIPANTS'
+  PARTICIPANTS: 'PARTICIPANTS'
 }
 
 export default {
   name: 'MissionCreateRecruitSummaryIconsItem',
-  components: { LanguageIcon },
   props: {
     type: {
       type: String,
       required: true,
-      validator: value => Object.values(TYPES).includes(value)
+      validator: value => Object.keys(TYPES).includes(value)
     },
     value: {
       type: String,
@@ -34,7 +35,7 @@ export default {
     },
     text: {
       type: String,
-      required: true
+      default: null
     }
   },
   data() {

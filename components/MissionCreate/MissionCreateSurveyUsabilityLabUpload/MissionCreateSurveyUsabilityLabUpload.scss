@@ -1,0 +1,87 @@
+.mission-create-survey-usability-lab-upload {
+
+  .mission-create-survey-usability-lab-upload-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .mission-create-survey-usability-lab-upload-headline {
+      font-weight: 500;
+      margin-bottom: 5px;
+      font-size: 90%;
+    }
+
+    .mission-create-survey-usability-lab-upload-select {
+      display: flex;
+      align-items: center;
+
+      .mission-create-survey-usability-lab-upload-select-label {
+        margin-right: 10px;
+        font-size: 90%;
+      }
+
+      .mission-create-survey-usability-lab-upload-select-input {
+        width: 200px;
+      }
+    }
+  }
+
+  .mission-create-survey-usability-lab-upload-dropzone {
+
+    .mission-create-survey-usability-lab-upload-dropzone-empty {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      padding: 30px;
+
+      .mission-create-survey-usability-lab-upload-dropzone-empty-icon {
+        width: 60px;
+        margin-right: 20px;
+
+        svg {
+          width: 100%;
+          fill: $grey;
+        }
+      }
+
+      .mission-create-survey-usability-lab-upload-dropzone-empty-text {
+
+        .mission-create-survey-usability-lab-upload-dropzone-empty-text-title {
+          font-weight: 500;
+          margin-bottom: 3px;
+        }
+
+        .mission-create-survey-usability-lab-upload-dropzone-empty-text-subtitle {
+          color: $grey-mid-dark;
+          font-size: 90%;
+        }
+      }
+    }
+
+    .mission-create-survey-usability-lab-upload-dropzone-button {
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 130px;
+    }
+
+    .dropzone {
+      min-height: 202px;
+
+      .vue-dropzone {
+        padding: 0 180px 0 0;
+      }
+
+      .dz-preview {
+        height: 160px;
+        overflow: hidden;
+        margin: 20px;
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.mission-survey-results-item-bars-vertical {
+
+  .mission-survey-results-item-bars-vertical-average {
+    text-align: right;
+  }
+
+  .mission-survey-results-item-bars-vertical-labels {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0 0;
+  }
+
+  .mission-survey-results-item-bars-vertical-bars {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px -5px 0;
+  }
+}

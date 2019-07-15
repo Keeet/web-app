@@ -1,5 +1,5 @@
 <template>
-  <div class="select-custom" :class="{ opened, error }">
+  <div :id="id" class="select-custom" :class="{ opened, error: showError }">
     <div class="select-custom-head" :class="{ noHeadBorder, smallAngle }" @click="$emit('clickHead')">
       <div v-if="!value && placeholder" class="select-custom-head-empty">
         <p class="select-custom-head-placeholder">
@@ -22,13 +22,15 @@
         <slot :name="option" />
       </div>
     </div>
-    <p class="select-custom-error" :class="{active: error}">
+    <p class="select-custom-error" :class="{active: showError}">
       {{ error }}
     </p>
   </div>
 </template>
 
 <script>
+import uuidv4 from 'uuid/v4'
+
 export default {
   name: 'SelectCustom',
   props: {
@@ -52,6 +54,14 @@ export default {
       type: String,
       default: null
     },
+    dispatchError: {
+      type: String,
+      default: undefined
+    },
+    disableError: {
+      type: Boolean,
+      default: false
+    },
     noHeadBorder: {
       type: Boolean,
       default: false
@@ -59,6 +69,29 @@ export default {
     smallAngle: {
       type: Boolean,
       default: false
+    }
+  },
+  data() {
+    return { id: uuidv4() }
+  },
+  computed: {
+    showError() {
+      return this.error && !this.disableError
+    }
+  },
+  watch: {
+    error: {
+      immediate: true,
+      handler(error) {
+        if (this.dispatchError) {
+          this.$store.dispatch(this.dispatchError, { id: this.id, error })
+        }
+      }
+    }
+  },
+  beforeDestroy() {
+    if (this.dispatchError) {
+      this.$store.dispatch(this.dispatchError, { id: this.id, error: null })
     }
   }
 }

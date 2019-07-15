@@ -1,36 +1,46 @@
 <template>
-  <div class="input" :class="type">
+  <div class="input" :class="[type, { noMargin }]">
     <p v-if="title" class="input-title">
       {{ title }}
     </p>
-    <input
-      v-if="!textarea"
-      v-model="message"
-      class="input-field"
-      :class="{error: showError}"
-      :placeholder="placeholder"
-      :readonly="readonly"
-      :maxlength="maxCharacters || 524288"
-      @keyup.enter="$emit('enter')"
-    >
-    <textarea
-      v-else
-      v-model="message"
-      class="input-field textarea"
-      :class="{error: showError}"
-      :placeholder="placeholder"
-      :readonly="readonly"
-      :maxlength="maxCharacters || 524288"
-    />
-    <p class="input-error" :class="{active: showError, noTitle: !title}">
+    <div class="input-wrapper" :class="{error: showError}">
+      <input
+        v-if="!textarea"
+        :id="id"
+        v-model="message"
+        class="input-field"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :maxlength="maxCharacters || 524288"
+        @keyup.enter="$emit('enter')"
+        @focusout="$emit('focusout')"
+      >
+      <textarea
+        v-else
+        :id="id"
+        v-model="message"
+        class="input-field textarea"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :maxlength="maxCharacters || 524288"
+        @focusout="$emit('focusout')"
+      />
+      <div v-if="$slots.additional" class="input-additional">
+        <slot name="additional" />
+      </div>
+    </div>
+    <p class="input-error" :class="{active: showError, noTitle: !title, noMargin}">
       {{ error }}
     </p>
   </div>
 </template>
 
 <script>
+import uuidv4 from 'uuid/v4'
+
 const TYPES = {
   DEFAULT: 'DEFAULT',
+  UNDERLINED: 'UNDERLINED',
   UNDERLINED_LARGE: 'UNDERLINED_LARGE'
 }
 
@@ -40,7 +50,7 @@ export default {
     type: {
       type: String,
       default: TYPES.DEFAULT,
-      validator: value => Object.values(TYPES).includes(value)
+      validator: value => Object.keys(TYPES).includes(value)
     },
     title: {
       type: String,
@@ -54,13 +64,17 @@ export default {
       type: String,
       default: null
     },
+    dispatchError: {
+      type: String,
+      default: undefined
+    },
     disableError: {
       type: Boolean,
       default: false
     },
     mutation: {
       type: String,
-      required: true
+      default: null
     },
     value: {
       type: String,
@@ -74,14 +88,17 @@ export default {
       type: Number,
       default: null
     },
-    numbersOnly: {
-      type: Boolean,
-      default: false
-    },
     textarea: {
       type: Boolean,
       default: false
+    },
+    noMargin: {
+      type: Boolean,
+      default: false
     }
+  },
+  data() {
+    return { id: null }
   },
   computed: {
     message: {
@@ -89,11 +106,34 @@ export default {
         return this.value
       },
       set(value) {
-        this.$store.commit(this.mutation, value)
+        if (this.mutation) {
+          this.$store.commit(this.mutation, value)
+        } else {
+          this.$emit('change', value)
+        }
       }
     },
     showError() {
       return this.error && !this.disableError
+    }
+  },
+  watch: {
+    error(e) { this.errorHandler(e) }
+  },
+  mounted() {
+    this.id = uuidv4()
+    this.errorHandler()
+  },
+  beforeDestroy() {
+    if (this.dispatchError) {
+      this.$store.dispatch(this.dispatchError, { id: this.id, error: null })
+    }
+  },
+  methods: {
+    errorHandler(error = this.error) {
+      if (this.dispatchError) {
+        this.$store.dispatch(this.dispatchError, { id: this.id, error })
+      }
     }
   }
 }

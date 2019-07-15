@@ -27,7 +27,7 @@
       @dayRender="dayRender"
     />
     <Confirm
-      v-if="s.sessionErrorPopup"
+      v-if="s.recruit.sessionErrorPopup"
       title="Timeslot not available"
       :text="`We need at least ${MISSION_CREATE_RECRUIT_MIN_ORDER_DURATION_DAYS} workdays to recruit your test users.`"
       label-confirm="Earliest available timeslots"
@@ -63,6 +63,12 @@ export default {
     Confirm,
     FullCalendar
   },
+  props: {
+    singleSelect: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       calendarPlugins: [ timeGridPlugin, interactionPlugin ],
@@ -81,9 +87,9 @@ export default {
         end: this.getFirstValidDateString(),
         overlap: false,
         rendering: 'background',
-        color: '#d2dae2'
+        color: '#9fa7af'
       })
-      this.s.sessions.forEach((session) => {
+      this.s.recruit.sessions.forEach((session) => {
         if (markedDays.filter(marked => isSameDay(marked, session.start)).length === 0) {
           const end = new Date(session.start.getTime())
           addDays(end, 1)
@@ -96,32 +102,40 @@ export default {
           markedDays.push(session.start)
         }
       })
-      this.s.sessions.forEach((session) => {
+      this.s.recruit.sessions.forEach((session) => {
         events.push(session)
       })
       return events
     },
     s() {
-      return this.$store.state.missionForm
+      const { missionForm, missionFormRecruit } = this.$store.state
+      return {
+        ...missionForm,
+        recruit: missionFormRecruit
+      }
     },
     duration() {
-      return parseInt(this.s.duration)
+      return parseInt(this.s.recruit.duration)
     }
   },
   created() {
-    this.s.sessions.forEach((session) => {
+    this.s.recruit.sessions.forEach((session, x) => {
+      if (this.singleSelect && x > 0) {
+        this.$store.commit('missionFormRecruit/removeSession', session.id)
+        return
+      }
       const newSession = { ...session }
       const end = new Date(newSession.start.getTime())
       addMinutes(end, this.duration)
       newSession.end = end
-      this.$store.commit('missionForm/changeSession', newSession)
+      this.$store.commit('missionFormRecruit/changeSession', newSession)
     })
   },
   methods: {
     dayRender(e) {
       const { date } = e
-      if (date.getDay() === 1 && (!this.s.activeCalendarDay || !isSameDay(this.s.activeCalendarDay, date))) {
-        this.$store.commit('missionForm/setActiveCalendarDay', date)
+      if (date.getDay() === 1 && (!this.s.recruit.activeCalendarDay || !isSameDay(this.s.recruit.activeCalendarDay, date))) {
+        this.$store.commit('missionFormRecruit/setActiveCalendarDay', date)
       }
     },
     dateClick(e) {
@@ -143,10 +157,15 @@ export default {
     addNewEvent(start) {
       const end = new Date(start.getTime())
       addMinutes(end, this.duration)
-      this.$store.commit('missionForm/addSession', { id: uuidv4(), start, end })
+      if (this.singleSelect && this.s.recruit.sessions.length > 0) {
+        const existingSession = this.s.recruit.sessions[0]
+        this.eventChange({ event: { id: existingSession.id, start, end } })
+        return
+      }
+      this.$store.commit('missionFormRecruit/addSession', { id: uuidv4(), start, end })
     },
     eventChange(e) {
-      this.$store.commit('missionForm/changeSession', e.event)
+      this.$store.commit('missionFormRecruit/changeSession', e.event)
     },
     eventRender({ el, event }) {
       if (el.classList.contains('fc-time-grid-event')) {
@@ -155,20 +174,24 @@ export default {
       }
     },
     removeEvent(event) {
-      this.$store.commit('missionForm/removeSession', event.id)
+      this.$store.commit('missionFormRecruit/removeSession', event.id)
     },
     getDefaultDate() {
-      if (!this.s.activeCalendarDay) {
+      if (!this.s.recruit.activeCalendarDay) {
         return this.getFirstValidDateString()
       }
-      return stripISOTime(this.s.activeCalendarDay)
+      return stripISOTime(this.s.recruit.activeCalendarDay)
     },
     getFirstValidDate() {
       const d = new Date()
       addDays(d, MISSION_CREATE_RECRUIT_MIN_ORDER_DURATION_DAYS)
       switch (d.getDay()) {
-        case 6: addDays(d, 2); break
-        case 0: addDays(d, 1); break
+        case 6:
+          addDays(d, 2)
+          break
+        case 0:
+          addDays(d, 1)
+          break
       }
       d.setHours(0)
       d.setMinutes(0)
@@ -193,10 +216,10 @@ export default {
       return getAmPmHours(date, true)
     },
     showSessionErrorPopup() {
-      this.$store.commit('missionForm/showSessionErrorPopup')
+      this.$store.commit('missionFormRecruit/showSessionErrorPopup')
     },
     hideSessionErrorPopup() {
-      this.$store.commit('missionForm/hideSessionErrorPopup')
+      this.$store.commit('missionFormRecruit/hideSessionErrorPopup')
     },
     jumpToAvailableDate() {
       this.api.gotoDate(this.getFirstValidDate())

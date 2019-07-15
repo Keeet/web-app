@@ -9,7 +9,9 @@ const OPERATIONS = {
   UPSERT_PROJECT: 'UPSERT_PROJECT',
   CREATE_MISSION: 'CREATE_MISSION',
   UPDATE_MISSION: 'UPDATE_MISSION',
-  CREATE_MISSION_INSIGHT_LINK: 'CREATE_MISSION_INSIGHT_LINK'
+  SUBMIT_MISSION_ORDER: 'SUBMIT_MISSION_ORDER',
+  CREATE_MISSION_INSIGHT_LINK: 'CREATE_MISSION_INSIGHT_LINK',
+  SUBMIT_SURVEY: 'SUBMIT_SURVEY'
 }
 
 export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
@@ -141,7 +143,24 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
       })
     },
 
-    createMission({ projectId, type, title, description, duration, language, sessions, country, city, zipCode, street, houseNumber, addressDescription, persona: { name, icon, demographicDataReq: { minAge, maxAge, occupations, genders }, screenerQuestions } }) {
+    createMissionRecruit({
+      projectId,
+      type,
+      title,
+      description,
+      studyType,
+      duration,
+      participants,
+      sessions,
+      country,
+      city,
+      zipCode,
+      street,
+      houseNumber,
+      addressDescription,
+      demographicData: { minAge, maxAge, genders, languages, countries, deviceSkills },
+      specialCriteria
+    }) {
       return new Promise((resolve, reject) => {
         const handleRes = handleResponse.bind(this, OPERATIONS.CREATE_MISSION, null, resolve, reject)
         $axios({
@@ -152,8 +171,9 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
             type,
             title,
             description,
+            studyType,
             duration,
-            language,
+            participants,
             sessions,
             country,
             city,
@@ -161,12 +181,48 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
             street,
             houseNumber,
             addressDescription,
-            persona: {
-              name,
-              icon,
-              demographicDataReq: { minAge, maxAge, occupations, genders },
-              screenerQuestions
-            }
+            demographicData: { minAge, maxAge, genders, languages, countries, deviceSkills },
+            specialCriteria
+          }
+        }).then(handleRes).catch(handleError)
+      })
+    },
+    createMissionSurvey({
+      projectId,
+      type,
+      title,
+      description,
+      language,
+      welcomeTitle,
+      welcomeDescription,
+      welcomeLogoId,
+      closingTitle,
+      closingDescription,
+      closingLogoId,
+      redirectLink,
+      color,
+      items
+    }) {
+      return new Promise((resolve, reject) => {
+        const handleRes = handleResponse.bind(this, OPERATIONS.CREATE_MISSION, null, resolve, reject)
+        $axios({
+          method: 'post',
+          url: '/missions',
+          data: {
+            projectId,
+            type,
+            title,
+            description,
+            language,
+            welcomeTitle,
+            welcomeDescription,
+            welcomeLogoId,
+            closingTitle,
+            closingDescription,
+            closingLogoId,
+            redirectLink,
+            color,
+            items
           }
         }).then(handleRes).catch(handleError)
       })
@@ -180,6 +236,33 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
           data: {
             title,
             description
+          }
+        }).then(handleRes).catch(handleError)
+      })
+    },
+    submitMissionOrder({
+      participants,
+      demographicData: {
+        minAge,
+        maxAge,
+        genders,
+        countries
+      },
+      missionId
+    }) {
+      return new Promise((resolve, reject) => {
+        const handleRes = handleResponse.bind(this, OPERATIONS.SUBMIT_MISSION_ORDER, { missionId }, resolve, reject)
+        $axios({
+          method: 'post',
+          url: `/missions/${missionId}/orders`,
+          data: {
+            participants,
+            demographicData: {
+              minAge,
+              maxAge,
+              genders,
+              countries
+            }
           }
         }).then(handleRes).catch(handleError)
       })
@@ -198,48 +281,57 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
           }
         }).then(handleRes).catch(handleError)
       })
+    },
+    submitSurvey({ missionId, responses, duration, browser, deviceType, os }) {
+      return new Promise((resolve) => {
+        $axios({
+          method: 'post',
+          url: `/public/missions/${missionId}`,
+          data: {
+            missionId,
+            responses,
+            duration,
+            browser,
+            deviceType,
+            os
+          }
+        }).then(resolve)
+      })
     }
   })
 
   function handleResponse(operation, params, resolve, reject, { data }) {
-    let fetchCfg
+    $fetch(getFetchConfig(operation, data, params))
+      .then(() => resolve(data)).catch(handleError)
+  }
+
+  function getFetchConfig(operation, data, params) {
     switch (operation) {
       case OPERATIONS.CREATE_COMPANY:
-        fetchCfg = [{ name: 'COMPANY', forced: true }, { name: 'USER', forced: true }]
-        break
+        return [{ name: 'COMPANY', forced: true }, { name: 'USER', forced: true }]
       case OPERATIONS.UPDATE_COMPANY:
-        fetchCfg = [{ name: 'COMPANY', forced: true }]
-        break
+        return [{ name: 'COMPANY', forced: true }]
       case OPERATIONS.CREATE_COMPANY_ADDRESS:
-        fetchCfg = [{ name: 'COMPANY', forced: true }]
-        break
+        return [{ name: 'COMPANY', forced: true }]
       case OPERATIONS.UPDATE_COMPANY_USER_ROLE:
-        fetchCfg = [{ name: 'COMPANY_USERS', forced: true }]
-        break
+        return [{ name: 'COMPANY_USERS', forced: true }]
       case OPERATIONS.UPSERT_PERSONA:
-        fetchCfg = [{ name: 'PERSONAS', forced: true }]
-        break
+        return [{ name: 'PERSONAS', forced: true }]
       case OPERATIONS.DELETE_PERSONA:
-        fetchCfg = [{ name: 'PERSONAS', forced: true }]
-        break
+        return [{ name: 'PERSONAS', forced: true }]
       case OPERATIONS.UPSERT_PROJECT:
-        fetchCfg = [{ name: 'PROJECT', id: data.id, forced: true }, { name: 'PROJECTS', forced: true }]
-        break
+        return [{ name: 'PROJECT', id: data.id, forced: true }, { name: 'PROJECTS', forced: true }]
       case OPERATIONS.CREATE_MISSION:
-        fetchCfg = [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: data.projectId, forced: true }]
-        break
+        return [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: data.projectId, forced: true }]
       case OPERATIONS.UPDATE_MISSION:
-        fetchCfg = [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: data.projectId, forced: true }]
-        break
+        return [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: data.projectId, forced: true }]
+      case OPERATIONS.SUBMIT_MISSION_ORDER:
+        return [{ name: 'MISSION', id: params.missionId, forced: true }]
       case OPERATIONS.CREATE_MISSION_INSIGHT_LINK:
-        fetchCfg = [{ name: 'MISSION_INSIGHTS', id: params.missionId, forced: true }]
-        break
+        return [{ name: 'MISSION_INSIGHTS', id: params.missionId, forced: true }]
       default:
-        fetchCfg = []
+        return []
     }
-
-    $fetch(fetchCfg)
-      .then(() => resolve(data)).catch(handleError)
   }
 
   function handleError(e) {

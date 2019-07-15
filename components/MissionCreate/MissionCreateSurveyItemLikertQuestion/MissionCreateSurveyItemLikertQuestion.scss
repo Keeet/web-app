@@ -1,0 +1,53 @@
+.mission-create-survey-item-likert-question {
+
+  .mission-create-survey-item-likert-question-form {
+    display: flex;
+    align-items: flex-start;
+    margin: 30px 0 0 20px;
+
+    .mission-create-survey-item-likert-question-form-select {
+      margin-top: 10px;
+      min-width: 170px;
+    }
+
+    .mission-create-survey-item-likert-question-form-scala {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      flex-grow: 1;
+      margin-left: 30px;
+
+      .mission-create-survey-item-likert-question-form-scala-option {
+        position: relative;
+        z-index: 1;
+        padding: 0 10px;
+        box-sizing: border-box;
+
+        .mission-create-survey-item-likert-question-form-scala-option-text {
+          max-width: 80px;
+          text-align: center;
+          margin: 0 auto 15px;
+          font-size: 90%;
+        }
+
+        .mission-create-survey-item-likert-question-form-scala-option-dot {
+          width: 20px;
+          height: 20px;
+          border-radius: 100%;
+          background-color: $grey;
+          margin: 0 auto;
+        }
+      }
+
+      .mission-create-survey-item-likert-question-form-scala-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba($grey, 0.3);
+        height: 20px;
+        border-radius: 10px;
+      }
+    }
+  }
+}

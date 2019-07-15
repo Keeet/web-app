@@ -2,18 +2,18 @@
   <div class="mission-create-recruit-form-location">
     <MissionCreateRecruitFormLocationItem
       :location="companyLocation"
-      :active="s.locationId === 'COMPANY'"
+      :active="s.recruit.locationId === 'COMPANY'"
       @click.native="setCompanyLocation"
     />
     <MissionCreateRecruitFormLocationItem
       v-for="(location, x) in company.locations"
       :key="x"
       :location="location"
-      :active="location.id === s.locationId"
+      :active="location.id === s.recruit.locationId"
       @click.native="setLocation(location)"
     />
     <MissionCreateRecruitFormLocationItem create @click.native="openLocationForm" />
-    <MissionCreateRecruitFormLocationForm v-if="s.locationFormOpened" />
+    <MissionCreateRecruitFormLocationForm v-if="s.recruit.locationFormOpened" />
   </div>
 </template>
 
@@ -25,7 +25,11 @@ export default {
   components: { MissionCreateRecruitFormLocationForm, MissionCreateRecruitFormLocationItem },
   computed: {
     s() {
-      return this.$store.state.missionForm
+      const { missionForm, missionFormRecruit } = this.$store.state
+      return {
+        ...missionForm,
+        recruit: missionFormRecruit
+      }
     },
     company() {
       return this.$store.state.company
@@ -37,14 +41,14 @@ export default {
   },
   methods: {
     setCompanyLocation() {
-      this.$store.commit('missionForm/setLocation', this.companyLocation)
+      this.$store.commit('missionFormRecruit/setLocation', this.companyLocation)
     },
     setLocation(location) {
-      this.$store.commit('missionForm/setLocation', location)
+      this.$store.commit('missionFormRecruit/setLocation', location)
     },
     openLocationForm() {
       this.$store.commit('locationForm/init')
-      this.$store.commit('missionForm/openLocationForm')
+      this.$store.commit('missionFormRecruit/openLocationForm')
     }
   }
 }

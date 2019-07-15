@@ -72,10 +72,15 @@ class AuthService {
     })
   }
 
-  renewTokensOrRedirectToLogin(redirect, redirectUrl) {
+  renewTokensOrRedirectToLogin(redirectUrl, { redirect, router }) {
     return new Promise((resolve, reject) => {
       this.renewTokens().then(resolve).catch(() => {
-        redirect(`/auth/login?redirectUrl=${encodeURI(redirectUrl)}`)
+        const authRedirect = `/auth/login?redirectUrl=${encodeURI(redirectUrl)}`
+        if (redirect) {
+          redirect(authRedirect)
+        } else if (router) {
+          router.push(authRedirect)
+        }
         reject(Error('server side request (no checkSession usable) OR third party cookies disabled (no silent login) OR Google Login'))
       })
     })

@@ -1,0 +1,98 @@
+.mission-side-box {
+
+  &.FIXED, .mission-side-box-ref {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    height: 0;
+  }
+
+  &.ABSOLUTE_TOP, &.ABSOLUTE_BOTTOM {
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    .mission-side-box-inner {
+      position: absolute;
+      right: 0;
+    }
+
+    &.ABSOLUTE_TOP {
+      top: 0;
+    }
+
+    &.ABSOLUTE_BOTTOM {
+      bottom: 0;
+
+      .mission-side-box-inner {
+        bottom: 0;
+      }
+    }
+  }
+
+  .mission-side-box-inner {
+    float: right;
+    width: 300px;
+
+    .mission-side-box-box {
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.07);
+      overflow: hidden;
+
+      .mission-side-box-head {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        background-color: $grey-light;
+
+        .mission-side-box-head-icon {
+          position: relative;
+          width: 30px;
+          height: 30px;
+          border-radius: 5px;
+
+          &.IN_HOUSE {
+            background-color: $mission-in-house;
+          }
+
+          &.REMOTE {
+            background-color: $mission-remote;
+          }
+
+          &.SURVEY {
+            background-color: $mission-survey;
+          }
+
+          &.USABILITY_LAB {
+            background-color: $mission-usability-lab;
+          }
+
+          svg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            fill: #fff;
+          }
+        }
+
+        .mission-side-box-head-text {
+          margin-left: 15px;
+        }
+      }
+
+      .mission-side-box-body {
+        padding: 15px;
+      }
+    }
+
+    .mission-side-box-buttons {
+      margin-top: 30px;
+    }
+  }
+}

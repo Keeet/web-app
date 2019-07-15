@@ -1,0 +1,33 @@
+.mission-recruit-sidebar-line {
+  display: flex;
+  align-items: center;
+  padding: 5px 50px;
+  margin: 0 -50px;
+
+  &.greyBg {
+    background-color: $grey-light;
+  }
+
+  .mission-recruit-sidebar-line-icon {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+
+    &.LOCATION, &.PARTICIPANTS {
+      height: 50px;
+    }
+
+    svg {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      height: 70%;
+    }
+  }
+
+  .mission-recruit-sidebar-line-text {
+    margin-right: 15px;
+  }
+}

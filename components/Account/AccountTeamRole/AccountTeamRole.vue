@@ -30,7 +30,7 @@ export default {
     role: {
       type: String,
       required: true,
-      validator: value => Object.values(ROLES).includes(value)
+      validator: value => Object.keys(ROLES).includes(value)
     },
     active: {
       type: Boolean,

@@ -1,0 +1,134 @@
+.dropzone {
+  position: relative;
+  border: none;
+  height: 100%;
+  padding: 0;
+  background-color: transparent !important;
+  font-family: 'Roboto', sans-serif, Arial;
+  z-index: 1;
+
+  .vue-dropzone {
+    transition: border .4s;
+    border: 1px solid $grey;
+    border-radius: 5px;
+  }
+
+  &.error {
+
+    .vue-dropzone {
+      border: 1px solid $red-error;
+    }
+  }
+
+  .dz-preview {
+    transition: box-shadow .4s;
+
+    &:hover {
+      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .dz-size, .dz-filename {
+      margin-bottom: 0 !important;
+      color: $grey-mid-dark;
+      max-width: calc(100% - 25px);
+
+      span {
+        padding: 0 !important;
+      }
+    }
+
+    .dz-details {
+      padding: 5px !important;
+      background-color: rgba(#fff, 0.8);
+      transition: opacity .4s !important;
+    }
+
+    .dz-image {
+
+      img {
+
+        &, &:hover {
+          -webkit-filter: blur(0) !important;
+          filter: blur(0) !important;
+          transform: none !important;
+        }
+      }
+    }
+
+    .dz-error-message {
+      top: auto;
+      bottom: 0;
+      border-radius: 0;
+      background-color: $red-error;
+      background-image: none;
+    }
+  }
+
+  .dropzone-empty {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  .dropzone-nav {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 5px);
+    font-weight: 500;
+
+    .dropzone-nav-delete {
+      color: $grey-mid-dark;
+      transition: color .4s;
+      padding-bottom: 5px;
+      font-size: 75%;
+
+      &:hover {
+        cursor: pointer;
+        color: $grey-dark;
+      }
+    }
+
+    .dropzone-nav-error {
+      color: $red-error;
+      margin: 0 3px 0 20px;
+      font-size: 75%;
+    }
+
+    &.navAlignLeft {
+      right: auto;
+      left: 0;
+
+      .dropzone-nav-delete {
+        margin-right: 20px;
+      }
+
+      .dropzone-nav-error {
+        margin: 0;
+      }
+    }
+  }
+
+  .template {
+    display: none;
+  }
+
+  .dropzone-item-delete {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 100;
+    width: 35px;
+    padding: 10px;
+
+    &, *:hover {
+      cursor: pointer;
+    }
+
+    svg {
+      width: 100%;
+      fill: $grey-mid-dark;
+    }
+  }
+}

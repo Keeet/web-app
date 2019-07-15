@@ -1,5 +1,6 @@
 const EXTERNAL_PATTERN = [
-  '/video-session/:sessionId?/user'
+  '/video-session/:sessionId?/user',
+  '/survey/:id?'
 ]
 
 export function isAuthUrl(route) {

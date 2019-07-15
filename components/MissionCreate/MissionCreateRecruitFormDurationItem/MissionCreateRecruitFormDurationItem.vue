@@ -2,7 +2,7 @@
   <div
     class="mission-create-recruit-form-duration-item"
     :class="{ active }"
-    @click="$store.commit('missionForm/setDuration', duration)"
+    @click="$store.commit('missionFormRecruit/setDuration', duration)"
   >
     {{ duration }}
   </div>

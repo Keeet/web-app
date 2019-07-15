@@ -1,0 +1,68 @@
+.mission-recruit-insights-item {
+  width: 150px;
+  padding: 15px;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.07);
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 20px;
+  transition: box-shadow 0.5s;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  &.create {
+    position: relative;
+    height: auto;
+
+    &:after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+
+    .mission-recruit-insights-item-new {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+
+      svg {
+        width: 30px;
+        fill: $blue-primary;
+      }
+    }
+  }
+
+  .mission-recruit-insights-item-head {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+
+    .mission-recruit-insights-item-head-icon {
+      width: 30px;
+
+      svg {
+        width: 100%;
+      }
+    }
+
+    .mission-recruit-insights-item-head-title {
+      padding: 10px 0 10px 10px;
+      font-weight: 500;
+    }
+  }
+
+  .mission-recruit-insights-item-body {
+
+    .mission-recruit-insights-item-body-title {
+      margin-bottom: 5px;
+    }
+
+    .mission-recruit-insights-item-body-description {
+      font-size: 90%;
+      color: $grey-mid-dark;
+    }
+  }
+}

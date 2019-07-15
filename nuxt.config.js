@@ -3,6 +3,10 @@ const pkg = require('./package')
 module.exports = {
   mode: 'universal',
 
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://api.keeet.io'
+  },
+
   server: {
     port: 3000,
     host: '0.0.0.0'
@@ -23,7 +27,7 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
-      { src: '/js/crisp.js' }
+      { hid: 'crisp', src: '/js/crisp.js' }
     ]
   },
 
@@ -49,11 +53,15 @@ module.exports = {
     '~/plugins/directives',
     '~/plugins/helpers',
     { src: '~/plugins/timeago', ssr: false },
+    { src: '~/plugins/vueDraggable', ssr: false },
+    { src: '~/plugins/vueCarousel', ssr: false },
     { src: '~/plugins/aos.js', ssr: false },
     { src: '~/plugins/ellipsis.js', ssr: false },
     { src: '~/plugins/missionCreateRecruitCalendar.js', ssr: false },
     { src: '~/plugins/twilioHelper.js', ssr: false },
-    { src: '~/plugins/nuxtClientInit.js', ssr: false }
+    { src: '~/plugins/nuxtClientInit.js', ssr: false },
+    { src: '~/plugins/uaParser.js', ssr: false },
+    { src: '~/plugins/loadScripts.js', ssr: false }
   ],
 
   modules: [
@@ -63,10 +71,6 @@ module.exports = {
     '@nuxtjs/style-resources',
     ['@netsells/nuxt-hotjar', { id: '1375940', sv: '6' }]
   ],
-
-  axios: {
-    baseURL: 'https://api.keeet.io'
-  },
 
   build: {
     /*

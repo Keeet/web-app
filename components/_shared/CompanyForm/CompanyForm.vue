@@ -62,7 +62,7 @@
     <Select
       title="Country*"
       :options="[{
-        label: COUNTRY_NAMES['DE'],
+        label: COUNTRY_LABELS['DE'],
         value: 'DE'
       }]"
       :value="s.country"
@@ -79,7 +79,7 @@
 </template>
 
 <script>
-import { COUNTRY_NAMES } from '../../constants'
+import { COUNTRY_LABELS } from '../../constants'
 import Input from '../Input/Input'
 import ButtonText from '../ButtonText/ButtonText'
 import Select from '../Select/Select'
@@ -99,7 +99,7 @@ export default {
   data() {
     return {
       showErrors: false,
-      COUNTRY_NAMES
+      COUNTRY_LABELS
     }
   },
   computed: {

@@ -1,0 +1,129 @@
+.survey-item {
+
+  &.twoColumnLayout {
+    height: 100%;
+  }
+
+  .survey-item-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    overflow-y: auto;
+    box-sizing: border-box;
+    transition: all .5s;
+
+    &.twoColumnLayoutFullScreen {
+      height: 100%;
+    }
+
+    @media #{$md} {
+      bottom: 0;
+      left: 0;
+      right: auto;
+      height: 100%;
+      width: 50%;
+
+      &.twoColumnLayoutFullScreen {
+        width: 100%;
+      }
+
+      .survey-item-left-inner {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+
+    .survey-item-left-full-screen {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 2;
+      align-items: center;
+      padding: 10px;
+      background-color: $grey-mid-light;
+      display: none;
+
+      @media #{$sm} {
+        display: flex;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .survey-item-left-full-screen-text {
+        margin-right: 10px;
+      }
+
+      svg {
+        width: 15px;
+        fill: $grey-dark;
+      }
+    }
+  }
+
+  .survey-item-body {
+
+    &.twoColumnLayout {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      overflow-y: auto;
+      background-color: #fff;
+      box-shadow: 0 -1px 8px 0 rgba(0, 0, 0, 0.2);
+      border-radius: 5px 5px 0 0;
+      transition: all .5s;
+      padding: 20px 0;
+
+      &.twoColumnLayoutFullScreen {
+        bottom: -50%;
+      }
+
+      @media #{$md} {
+        width: 50%;
+        height: auto;
+        right: 0;
+        left: auto;
+        top: 0;
+        box-shadow: none;
+
+        &.twoColumnLayoutFullScreen {
+          right: -50%;
+          bottom: 0;
+        }
+      }
+    }
+
+    .survey-item-body-title {
+      min-height: $survey-item-body-title-min-height;
+
+      .survey-item-body-title-headline {
+        font-weight: 500;
+        font-size: 140%;
+        text-align: center;
+        margin: 0 auto 20px;
+        max-width: 500px;
+      }
+
+      .survey-item-body-title-subtitle {
+        max-width: 500px;
+        text-align: center;
+        margin: -10px auto 0;
+        color: $grey-mid-dark;
+      }
+    }
+
+    .survey-item-body-inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100%;
+    }
+  }
+}

@@ -2,6 +2,10 @@
   position: relative;
   padding: 8px 0;
 
+  &.noMargin {
+    padding: 0;
+  }
+
   &.DEFAULT {
 
     .input-title {
@@ -12,48 +16,67 @@
       font-size: 90%;
     }
 
-    .input-field {
-      padding: 14px 16px;
-      box-sizing: border-box;
+    .input-wrapper {
+      display: flex;
+      align-items: center;
       border: 1px solid $grey;
       border-radius: 3px;
-      width: 100%;
+      overflow: hidden;
       transition: border 0.4s;
-
-      &.textarea {
-        resize: vertical;
-        line-height: 140%;
-        min-height: 150px;
-      }
 
       &.error {
         border: 1px solid $red-error;
       }
+
+      .input-field {
+        flex-grow: 1;
+        padding: 14px 16px;
+        border: none;
+        background-color: transparent;
+
+        &.textarea {
+          resize: vertical;
+          line-height: 140%;
+          min-height: 150px;
+        }
+      }
     }
   }
 
-  &.UNDERLINED_LARGE {
+  &.UNDERLINED, &.UNDERLINED_LARGE {
 
     .input-title {
       display: none;
     }
 
-    .input-field {
-      padding: 10px 0;
-      background-color: transparent;
-      border: none;
-      box-shadow: none;
-      border-bottom: 2px solid $grey-dark;
-      font-size: 150%;
-      width: 100%;
+    .input-wrapper {
+      border-bottom: 1px solid $grey-mid-dark;
+      transition: border 0.4s;
 
-      &::placeholder {
-        color: $grey;
-        font-weight: 500;
+      &.UNDERLINED_LARGE {
+        border-bottom: 2px solid $grey-dark;
       }
 
       &.error {
         border-bottom: 2px solid $red-error;
+      }
+
+      .input-field {
+        padding: 10px 0;
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        width: 100%;
+        font-size: 120%;
+
+        &.UNDERLINED_LARGE {
+          font-size: 150%;
+        }
+
+        &::placeholder {
+          color: $grey-mid-dark;
+          font-weight: 500;
+        }
       }
     }
 
@@ -65,7 +88,6 @@
   .input-error {
     position: absolute;
     z-index: 0;
-    top: 12px;
     right: 3px;
     color: $red-error;
     font-size: 75%;
@@ -75,7 +97,19 @@
     transform: scale(0.8);
 
     &.noTitle {
-      top: -13px;
+      top: -11px;
+
+      &.noMargin {
+        top: -17px;
+      }
+    }
+
+    &:not(.noTitle) {
+      top: 12px;
+
+      &.noMargin {
+        top: 4px;
+      }
     }
 
     &.active {
