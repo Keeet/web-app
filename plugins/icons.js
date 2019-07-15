@@ -41,16 +41,6 @@ import IconLinkExternal from '../assets/icons/link-external.svg'
 import IconFullScreen from '../assets/icons/full-screen.svg'
 import IconInboxEmpty from '../assets/icons/inbox-empty.svg'
 
-import IconPersonaChantal from '../assets/icons/persona-chantal.svg'
-import IconPersonaDustin from '../assets/icons/persona-dustin.svg'
-import IconPersonaJacqueline from '../assets/icons/persona-jacqueline.svg'
-import IconPersonaJason from '../assets/icons/persona-jason.svg'
-import IconPersonaJustin from '../assets/icons/persona-justin.svg'
-import IconPersonaKevin from '../assets/icons/persona-kevin.svg'
-import IconPersonaMandy from '../assets/icons/persona-mandy.svg'
-import IconPersonaMarvin from '../assets/icons/persona-marvin.svg'
-import IconPersonaMika from '../assets/icons/persona-mika.svg'
-
 import IconMissionSurveyShortText from '../assets/icons/mission-survey-short-text.svg'
 import IconMissionSurveyLongText from '../assets/icons/mission-survey-long-text.svg'
 import IconMissionSurveySingleSelect from '../assets/icons/mission-survey-single-select.svg'
@@ -106,16 +96,6 @@ Vue.component('IconDragDrop', IconDragDrop)
 Vue.component('IconLinkExternal', IconLinkExternal)
 Vue.component('IconFullScreen', IconFullScreen)
 Vue.component('IconInboxEmpty', IconInboxEmpty)
-
-Vue.component('IconPersonaChantal', IconPersonaChantal)
-Vue.component('IconPersonaDustin', IconPersonaDustin)
-Vue.component('IconPersonaJacqueline', IconPersonaJacqueline)
-Vue.component('IconPersonaJason', IconPersonaJason)
-Vue.component('IconPersonaJustin', IconPersonaJustin)
-Vue.component('IconPersonaKevin', IconPersonaKevin)
-Vue.component('IconPersonaMandy', IconPersonaMandy)
-Vue.component('IconPersonaMarvin', IconPersonaMarvin)
-Vue.component('IconPersonaMika', IconPersonaMika)
 
 Vue.component('IconMissionSurveyShortText', IconMissionSurveyShortText)
 Vue.component('IconMissionSurveyLongText', IconMissionSurveyLongText)
