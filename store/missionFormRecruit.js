@@ -4,7 +4,7 @@ const COMPANY_LOCATION_ID = 'COMPANY'
 
 const defaultState = {
   studyType: MISSION_RECRUIT_STUDY_TYPES.USER_INTERVIEW,
-  duration: 60,
+  duration: null,
   location: null,
   locationId: null,
   locationFormOpened: false,
@@ -37,9 +37,14 @@ export const getters = {
 }
 
 export const mutations = {
-  init(state, { company }) {
+  init(state, { company, missionType }) {
     for (const key in defaultState) {
       state[key] = defaultState[key]
+    }
+    if (missionType === MISSIONS.IN_HOUSE) {
+      state.duration = 45
+    } else if (missionType === MISSIONS.REMOTE) {
+      state.duration = 30
     }
     const { name, street, houseNumber, addressDescription, zipCode, city, country } = company
     state.location = { name, street, houseNumber, addressDescription, zipCode, city, country }
@@ -101,7 +106,10 @@ export const mutations = {
 }
 
 export const actions = {
-  fetchPricing({ state, commit }, { missionForm, missionFormPersona }) {
+  fetchPricing({ state, commit }, { globalGetters, missionForm, missionFormPersona }) {
+    if (globalGetters['missionForm/participantsError']) {
+      return
+    }
     return new Promise((resolve, reject) => {
       const url = missionForm.type === MISSIONS.IN_HOUSE
         ? '/pricing/inhouse'

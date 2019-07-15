@@ -129,6 +129,7 @@ export default {
   methods: {
     fetchPricing() {
       this.$store.dispatch(this.getFetchMutation(), {
+        globalGetters: this.$store.getters,
         missionForm: this.s,
         missionFormPersona: this.s.persona
       })

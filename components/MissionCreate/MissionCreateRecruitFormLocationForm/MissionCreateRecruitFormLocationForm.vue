@@ -96,11 +96,7 @@ export default {
   },
   computed: {
     s() {
-      const { missionForm, missionFormRecruit } = this.$store.state
-      return {
-        ...missionForm,
-        recruit: missionFormRecruit
-      }
+      return this.$store.state.locationForm
     },
     nameError() { return this.s.name !== '' ? null : 'required' },
     streetError() { return this.s.street !== '' ? null : 'required' },

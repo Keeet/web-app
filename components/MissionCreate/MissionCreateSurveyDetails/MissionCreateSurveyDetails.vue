@@ -15,8 +15,8 @@
         <Select
           title="Language*"
           :options="getLanguageOptions(['DE', 'EN', 'FR', 'ES', 'IT'])"
-          :value="s.language"
-          mutation="missionForm/setLanguage"
+          :value="s.survey.language"
+          mutation="missionFormSurvey/setLanguage"
         />
       </div>
     </MissionCreateBox>
@@ -36,7 +36,11 @@ export default {
   },
   computed: {
     s() {
-      return this.$store.state.missionForm
+      const { missionForm, missionFormSurvey } = this.$store.state
+      return {
+        ...missionForm,
+        survey: missionFormSurvey
+      }
     },
     titleError() {
       return this.s.title !== '' ? null : 'required'

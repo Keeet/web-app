@@ -6,7 +6,7 @@ export default function ({ store, redirect, route: { path }, query: { invitation
   }
   if (path === '/missions/create') {
     if (!store.state.missionForm.init) {
-      // return redirect('/') TODO
+      return redirect('/')
     }
   }
 

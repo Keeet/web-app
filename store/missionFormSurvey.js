@@ -2,7 +2,8 @@ import {
   MISSION_SURVEY_ITEMS,
   MISSION_SURVEY_USABILITY_LAB_ITEMS,
   MISSION_SURVEY_USABILITY_LAB_FOLLOW_UP_REQUIRED,
-  MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES
+  MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES,
+  LANGUAGES
 } from '../components/constants'
 import { copy, flatMap, groupBy } from '../utils/objectUtils'
 
@@ -38,10 +39,11 @@ const defaultClosingScreen = {
 }
 
 const defaultState = {
+  language: LANGUAGES.EN,
   customizeWelcome: false,
-  customizeClosing: false,
   ...defaultWelcomeScreen,
   ...defaultClosingScreen,
+  customizeClosing: false,
   welcomeColorPickerOpened: false,
   closingColorPickerOpened: false,
   color: { hex: '#0FBCF9' },
@@ -152,6 +154,9 @@ export const mutations = {
     for (const key in defaultState) {
       state[key] = defaultState[key]
     }
+  },
+  setLanguage(state, language) {
+    state.language = language
   },
   switchCustomizeWelcome(state) {
     state.customizeWelcome = !state.customizeWelcome
@@ -398,7 +403,10 @@ export const mutations = {
 }
 
 export const actions = {
-  fetchPricing({ state, commit, getters }, { missionForm }) {
+  fetchPricing({ state, commit, getters }, { globalGetters, missionForm }) {
+    if (globalGetters['missionForm/participantsError']) {
+      return
+    }
     return new Promise((resolve, reject) => {
       this.$axios({
         method: 'post',

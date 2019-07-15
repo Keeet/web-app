@@ -37,7 +37,11 @@ export default {
       return [FOCUS_GROUP, WORKSHOP].includes(this.s.recruit.studyType)
     },
     validationError() {
-      return this.s.recruit.sessions.length >= parseInt(this.s.participants) ? null : 'validation error'
+      const sessions = this.s.recruit.sessions
+      if (this.singleTimeslot && sessions.length === 1) {
+        return null
+      }
+      return sessions.length >= parseInt(this.s.participants) ? null : 'validation error'
     }
   },
   watch: {

@@ -19,6 +19,7 @@ export default {
         store.commit('missionFormPersona/init')
         store.commit('missionFormSurvey/setItems', store.state.survey.items)
         store.dispatch('missionFormSurvey/fetchPricing', {
+          globalGetters: store.getters,
           missionForm: store.state.missionForm
         }).then(resolve)
       })

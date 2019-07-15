@@ -53,7 +53,6 @@
 </template>
 
 <script>
-import { isNum } from '../../../utils/stringUtils'
 import { MISSIONS, MISSION_LABELS, MISSION_RECRUIT_STUDY_TYPES, MISSION_RECRUIT_STUDY_TYPE_LABELS } from '../../constants'
 import MissionCreateBox from '../MissionCreateBox/MissionCreateBox'
 import MissionCreateRecruitFormHeadline from '../MissionCreateRecruitFormHeadline/MissionCreateRecruitFormHeadline'
@@ -87,13 +86,7 @@ export default {
     },
     titleError() { return this.s.title !== '' ? null : 'required' },
     participantsError() {
-      if (isNum(this.s.participants)) {
-        if (this.s.participants === 0) {
-          return 'cannot be null'
-        }
-        return null
-      }
-      return 'must be a number'
+      return this.$store.getters['missionForm/participantsError']
     },
     studyTypes() {
       return Object.keys(MISSION_RECRUIT_STUDY_TYPES)

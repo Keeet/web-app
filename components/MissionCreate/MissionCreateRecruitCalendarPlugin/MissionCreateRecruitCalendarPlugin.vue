@@ -87,7 +87,7 @@ export default {
         end: this.getFirstValidDateString(),
         overlap: false,
         rendering: 'background',
-        color: '#d2dae2'
+        color: '#9fa7af'
       })
       this.s.recruit.sessions.forEach((session) => {
         if (markedDays.filter(marked => isSameDay(marked, session.start)).length === 0) {

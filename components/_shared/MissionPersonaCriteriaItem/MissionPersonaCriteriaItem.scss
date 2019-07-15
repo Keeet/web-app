@@ -33,6 +33,8 @@
     padding: 0 30px 40px;
 
     .mission-persona-criteria-item-slider {
+      position: relative;
+      z-index: 1;
       width: 90%;
       margin: 0 auto;
       padding: 50px 40px 20px;

@@ -1,3 +1,7 @@
+import { isNum } from '../utils/stringUtils'
+
+const MAX_PARTICIPANTS = 250
+
 const defaultState = {
   projectId: null,
   type: null,
@@ -14,6 +18,22 @@ const defaultState = {
 }
 
 export const state = () => (defaultState)
+
+export const getters = {
+  // TODO: move all validation into getters
+  participantsError({ participants }) {
+    if (isNum(participants)) {
+      if (participants === 0) {
+        return 'cannot be null'
+      }
+      if (participants > MAX_PARTICIPANTS) {
+        return `max ${MAX_PARTICIPANTS}`
+      }
+      return null
+    }
+    return 'must be a number'
+  }
+}
 
 export const mutations = {
   init(state, { project, participants = null }) {
