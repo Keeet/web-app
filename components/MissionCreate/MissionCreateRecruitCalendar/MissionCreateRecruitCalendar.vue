@@ -1,7 +1,7 @@
 <template>
   <div class="mission-create-recruit-calendar">
-    <MissionCreateRecruitCalendarPlugin />
-    <div class="mission-create-recruit-calendar-menu">
+    <MissionCreateRecruitCalendarPlugin :single-select="singleTimeslot" />
+    <div v-if="!singleTimeslot" class="mission-create-recruit-calendar-menu">
       <div :id="validationId" class="mission-create-recruit-calendar-menu-count" :class="{ valid: !validationError }">
         <p>{{ s.recruit.sessions.length }} of {{ s.participants }} time slots selected</p>
         <IconCheck v-if="!validationError" />
@@ -17,6 +17,8 @@
 
 <script>
 import uuidv4 from 'uuid/v4'
+import { MISSION_RECRUIT_STUDY_TYPES } from '../../constants'
+
 export default {
   name: 'MissionCreateRecruitCalendar',
   data() {
@@ -29,6 +31,10 @@ export default {
         ...missionForm,
         recruit: missionFormRecruit
       }
+    },
+    singleTimeslot() {
+      const { FOCUS_GROUP, WORKSHOP } = MISSION_RECRUIT_STUDY_TYPES
+      return [FOCUS_GROUP, WORKSHOP].includes(this.s.recruit.studyType)
     },
     validationError() {
       return this.s.recruit.sessions.length >= parseInt(this.s.participants) ? null : 'validation error'

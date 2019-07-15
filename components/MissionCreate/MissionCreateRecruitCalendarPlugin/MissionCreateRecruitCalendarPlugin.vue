@@ -63,6 +63,12 @@ export default {
     Confirm,
     FullCalendar
   },
+  props: {
+    singleSelect: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       calendarPlugins: [ timeGridPlugin, interactionPlugin ],
@@ -113,7 +119,11 @@ export default {
     }
   },
   created() {
-    this.s.recruit.sessions.forEach((session) => {
+    this.s.recruit.sessions.forEach((session, x) => {
+      if (this.singleSelect && x > 0) {
+        this.$store.commit('missionFormRecruit/removeSession', session.id)
+        return
+      }
       const newSession = { ...session }
       const end = new Date(newSession.start.getTime())
       addMinutes(end, this.duration)
@@ -147,6 +157,11 @@ export default {
     addNewEvent(start) {
       const end = new Date(start.getTime())
       addMinutes(end, this.duration)
+      if (this.singleSelect && this.s.recruit.sessions.length > 0) {
+        const existingSession = this.s.recruit.sessions[0]
+        this.eventChange({ event: { id: existingSession.id, start, end } })
+        return
+      }
       this.$store.commit('missionFormRecruit/addSession', { id: uuidv4(), start, end })
     },
     eventChange(e) {
@@ -171,8 +186,12 @@ export default {
       const d = new Date()
       addDays(d, MISSION_CREATE_RECRUIT_MIN_ORDER_DURATION_DAYS)
       switch (d.getDay()) {
-        case 6: addDays(d, 2); break
-        case 0: addDays(d, 1); break
+        case 6:
+          addDays(d, 2)
+          break
+        case 0:
+          addDays(d, 1)
+          break
       }
       d.setHours(0)
       d.setMinutes(0)
