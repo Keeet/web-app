@@ -12,7 +12,7 @@
             {{ location.addressDescription }}
           </p>
           <p>{{ location.zipCode }} {{ location.city }}</p>
-          <p>{{ COUNTRY_NAMES[location.country] }}</p>
+          <p>{{ COUNTRY_LABELS[location.country] }}</p>
         </div>
       </div>
       <div v-if="create" class="mission-create-recruit-form-location-item-empty">
@@ -47,7 +47,7 @@ export default {
     }
   },
   data() {
-    return { COUNTRY_NAMES: COUNTRY_LABELS }
+    return { COUNTRY_LABELS }
   }
 }
 </script>

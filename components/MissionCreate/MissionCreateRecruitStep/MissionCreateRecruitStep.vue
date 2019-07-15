@@ -21,10 +21,11 @@
           v-show="!isCalendar"
           :mission-type="s.type"
           :price-checksum="priceChecksum"
+          :submit-label="last ? 'Order' : 'Continue'"
           wrapper-class="mission-create-recruit-step-body"
           @cancel="$store.commit('missionForm/previousStep')"
           @invalidSubmit="invalidNextClick"
-          @submit="$store.commit('missionForm/nextStep')"
+          @submit="last ? $emit('submit') : $store.commit('missionForm/nextStep')"
         />
       </div>
     </FormStep>

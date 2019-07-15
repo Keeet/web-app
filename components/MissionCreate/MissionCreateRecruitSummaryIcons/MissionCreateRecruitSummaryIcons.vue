@@ -1,30 +1,37 @@
 <template>
   <div class="mission-create-recruit-summary-icons">
     <MissionCreateRecruitSummaryIconsItem
-      type="LANGUAGE"
-      :value="s.language"
-      :text="LANGUAGE_LABELS[s.language]"
-    />
+      type="LOCATION"
+    >
+      <p>{{ location.name }}</p>
+      <p>{{ location.street }} {{ location.houseNumber }}</p>
+      <p v-if="location.addressDescription">
+        {{ location.addressDescription }}
+      </p>
+      <p>{{ location.zipCode }} {{ location.city }}</p>
+      <p>{{ COUNTRY_LABELS[location.country] }}</p>
+    </MissionCreateRecruitSummaryIconsItem>
     <MissionCreateRecruitSummaryIconsItem
       type="DURATION"
       :text="`${s.recruit.duration} min`"
     />
     <MissionCreateRecruitSummaryIconsItem
       type="PARTICIPANTS"
-      :text="`${s.participants} test users`"
+      :text="`${parseInt(s.participants)} test users`"
     />
   </div>
 </template>
 
 <script>
-import { LANGUAGE_LABELS } from '../../constants'
+import { COUNTRY_LABELS, LANGUAGE_LABELS } from '../../constants'
 import MissionCreateRecruitSummaryIconsItem from '../MissionCreateRecruitSummaryIconsItem/MissionCreateRecruitSummaryIconsItem'
 export default {
   name: 'MissionCreateRecruitSummaryIcons',
   components: { MissionCreateRecruitSummaryIconsItem },
   data() {
     return {
-      LANGUAGE_LABELS
+      LANGUAGE_LABELS,
+      COUNTRY_LABELS
     }
   },
   computed: {
@@ -34,6 +41,9 @@ export default {
         ...missionForm,
         recruit: missionFormRecruit
       }
+    },
+    location() {
+      return this.s.recruit.location
     }
   }
 }

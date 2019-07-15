@@ -1,0 +1,9 @@
+.text-box {
+  padding: 8px;
+  margin: 5px;
+  background-color: $grey-light;
+
+  &.noBg {
+    background-color: transparent;
+  }
+}

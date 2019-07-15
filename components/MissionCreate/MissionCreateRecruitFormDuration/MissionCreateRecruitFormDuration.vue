@@ -4,7 +4,7 @@
       v-for="(presetDuration, x) in presets"
       :key="x"
       :duration="presetDuration"
-      :active="presetDuration === duration"
+      :active="presetDuration === s.recruit.duration"
       @click="$store.commit('missionFormRecruit/setDuration', presetDuration)"
     />
   </div>
@@ -26,13 +26,14 @@ export default {
   },
   computed: {
     s() {
-      return this.$store.state.missionForm
+      const { missionForm, missionFormRecruit } = this.$store.state
+      return {
+        ...missionForm,
+        recruit: missionFormRecruit
+      }
     },
     presets() {
       return PRESETS[this.s.type]
-    },
-    duration() {
-      return this.$store.getters['missionFormRecruit/duration']
     }
   }
 }

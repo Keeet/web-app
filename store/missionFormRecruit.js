@@ -1,11 +1,10 @@
 import { MISSIONS, MISSION_RECRUIT_STUDY_TYPES } from '../components/constants'
 
 const COMPANY_LOCATION_ID = 'COMPANY'
-const DURATION_PREFIX = 'MIN_'
 
 const defaultState = {
   studyType: MISSION_RECRUIT_STUDY_TYPES.USER_INTERVIEW,
-  duration: `${DURATION_PREFIX}${60}`,
+  duration: 60,
   location: null,
   locationId: null,
   locationFormOpened: false,
@@ -19,9 +18,6 @@ const defaultState = {
 export const state = () => (defaultState)
 
 export const getters = {
-  duration({ duration }) {
-    return parseInt(duration.toString().replace(DURATION_PREFIX, ''))
-  },
   pricingChecksum: state => ({ missionForm, missionFormPersona }) => {
     const { duration } = state
     const { participants } = missionForm
@@ -53,7 +49,7 @@ export const mutations = {
     state.studyType = studyType
   },
   setDuration(state, duration) {
-    state.duration = `${DURATION_PREFIX}${duration}`
+    state.duration = duration
   },
   setLocation(state, location) {
     state.locationId = location.id ? location.id : COMPANY_LOCATION_ID

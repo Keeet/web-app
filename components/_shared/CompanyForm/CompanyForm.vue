@@ -62,7 +62,7 @@
     <Select
       title="Country*"
       :options="[{
-        label: COUNTRY_NAMES['DE'],
+        label: COUNTRY_LABELS['DE'],
         value: 'DE'
       }]"
       :value="s.country"
@@ -99,7 +99,7 @@ export default {
   data() {
     return {
       showErrors: false,
-      COUNTRY_NAMES: COUNTRY_LABELS
+      COUNTRY_LABELS
     }
   },
   computed: {

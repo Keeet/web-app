@@ -19,8 +19,9 @@
     <MissionCreateRecruitStep
       :index="4"
       last
+      @submit="submit"
     >
-      <MissionCreateRecruitSummary @submit="submit" />
+      <MissionCreateRecruitSummary />
     </MissionCreateRecruitStep>
   </div>
 </template>
@@ -44,36 +45,33 @@ export default {
   },
   computed: {
     s() {
-      const { missionForm, missionFormRecruit } = this.$store.state
+      const { missionForm, missionFormRecruit, missionFormPersona } = this.$store.state
       return {
         ...missionForm,
-        recruit: missionFormRecruit
+        recruit: missionFormRecruit,
+        persona: missionFormPersona
       }
     }
   },
   methods: {
     buildMission() {
-      const { projectId, type, title, language } = this.s
-      const { duration, persona, sessions, location } = this.s.recruit
+      const { projectId, type, title, language, participants } = this.s
+      const { duration, sessions, location } = this.s.recruit
       const mission = {
         projectId,
         type,
         title,
         duration: parseInt(duration),
         language,
-        persona,
-        sessions: sessions.map(session => session.start.toISOString())
+        participants,
+        sessions: sessions.map(session => session.start.toISOString()),
+        demographicData: this.s.persona,
+        specialCriteria: this.s.persona.specialCriteria.map(sc => sc.value)
       }
       if (type === MISSIONS.IN_HOUSE) {
-        const { country, city, zipCode, street, houseNumber, addressDescription } = location
         return {
           ...mission,
-          country,
-          city,
-          zipCode,
-          street,
-          houseNumber,
-          addressDescription
+          ...location
         }
       }
       return mission

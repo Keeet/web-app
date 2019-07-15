@@ -4,7 +4,7 @@
     <div class="mission-survey-order-body">
       <div class="mission-survey-order-body-content">
         <MissionSurveyOrderParticipants />
-        <MissionPersonaCriteria />
+        <MissionPersonaCriteria :criteria="[PERSONA_CRITERIA.AGE, PERSONA_CRITERIA.GENDER, PERSONA_CRITERIA.COUNTRY]" />
       </div>
       <MissionOrderSummary
         v-if="s.survey.items.length"
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_LABELS } from '../constants'
+import { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_LABELS, PERSONA_CRITERIA } from '../constants'
 import MissionPersonaCriteria from '../_shared/MissionPersonaCriteria/MissionPersonaCriteria'
 import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
 import MissionOrderSummary from '../_shared/MissionOrderSummary/MissionOrderSummary'
@@ -29,7 +29,7 @@ export default {
   name: 'MissionSurveyOrder',
   components: { MissionOrderSummary, ButtonCircle, MissionSurveyOrderParticipants, MissionPersonaCriteria },
   data() {
-    return { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_NAMES: COUNTRY_LABELS }
+    return { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_LABELS, PERSONA_CRITERIA }
   },
   computed: {
     mission() {
@@ -51,9 +51,9 @@ export default {
   },
   methods: {
     buildOrderRequest() {
-      const { requiredCount } = this.s.survey
+      const { participants } = this.s.survey
       return {
-        requiredCount,
+        participants,
         demographicData: this.s.persona
       }
     },
