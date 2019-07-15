@@ -56,11 +56,12 @@ export default {
   methods: {
     buildMission() {
       const { projectId, type, title, language, participants } = this.s
-      const { duration, sessions, location } = this.s.recruit
+      const { studyType, duration, sessions, location } = this.s.recruit
       const mission = {
         projectId,
         type,
         title,
+        studyType,
         duration: parseInt(duration),
         language,
         participants,
