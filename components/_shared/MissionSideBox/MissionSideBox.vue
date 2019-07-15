@@ -35,7 +35,7 @@ export default {
     type: {
       type: String,
       required: true,
-      validator: value => Object.values(MISSIONS).includes(value)
+      validator: value => Object.keys(MISSIONS).includes(value)
     },
     wrapperClass: {
       type: String,

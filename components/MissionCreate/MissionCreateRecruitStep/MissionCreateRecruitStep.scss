@@ -1,0 +1,13 @@
+.mission-create-recruit-step {
+
+  .mission-create-recruit-step-body {
+    position: relative;
+
+    .mission-create-recruit-step-body-content {
+
+      &.sideboxActive {
+        width: calc(100% - 330px);
+      }
+    }
+  }
+}

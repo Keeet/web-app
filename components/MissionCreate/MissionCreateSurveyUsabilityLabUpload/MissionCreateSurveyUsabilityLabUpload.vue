@@ -99,7 +99,7 @@ export default {
       }
     },
     deviceFrameOptions() {
-      return Object.values(MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES)
+      return Object.keys(MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES)
         .map(deviceFrame => ({
           value: deviceFrame,
           label: MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAME_LABELS[deviceFrame]

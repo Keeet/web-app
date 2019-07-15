@@ -1,22 +1,22 @@
 <template>
-  <div class="mission-persona-criteria-checklist">
+  <div class="mission-persona-criteria-item-checklist">
     <div
       v-for="(key, x) in values"
       :key="x"
-      class="mission-persona-criteria-checklist-item"
+      class="mission-persona-criteria-item-checklist-item"
     >
       <input
         :id="getUniqueId(x)"
         v-model="selected"
         :value="key"
         type="checkbox"
-        class="mission-persona-criteria-checklist-input"
+        class="mission-persona-criteria-item-checklist-input"
       >
-      <label class="mission-persona-criteria-checklist-input-label" :for="getUniqueId(x)">
-        <span class="mission-persona-criteria-checklist-input-label-icon">
+      <label class="mission-persona-criteria-item-checklist-input-label" :for="getUniqueId(x)">
+        <span class="mission-persona-criteria-item-checklist-input-label-icon">
           <IconCheck />
         </span>
-        <span class="mission-persona-criteria-checklist-input-label-text">
+        <span class="mission-persona-criteria-item-checklist-input-label-text">
           {{ labels[key] }}
         </span>
       </label>
@@ -28,7 +28,7 @@
 import { specialCharsToDashes } from '../../../utils/stringUtils'
 
 export default {
-  name: 'MissionPersonaCriteriaChecklist',
+  name: 'MissionPersonaCriteriaItemChecklist',
   props: {
     values: {
       type: Array,
@@ -66,5 +66,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "MissionPersonaCriteriaChecklist";
+  @import "MissionPersonaCriteriaItemChecklist";
 </style>

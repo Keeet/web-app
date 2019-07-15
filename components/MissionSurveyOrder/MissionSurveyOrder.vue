@@ -4,53 +4,32 @@
     <div class="mission-survey-order-body">
       <div class="mission-survey-order-body-content">
         <MissionSurveyOrderParticipants />
-        <MissionPersonaCriteria
-          headline="Age"
-          type="SLIDER"
-          :opened="s.persona.ageOpened"
-          :value="[s.persona.minAge, s.persona.maxAge]"
-          :slider-range="[18, 85]"
-          :slider-min-range="10"
-          mutation="missionFormPersona/setAgeRange"
-          switch-mutation="missionFormPersona/switchAgeOpened"
-        />
-        <MissionPersonaCriteria
-          headline="Gender"
-          type="CHECKLIST"
-          :opened="s.persona.gendersOpened"
-          :value="s.persona.genders"
-          mutation="missionFormPersona/setGenders"
-          switch-mutation="missionFormPersona/switchGendersOpened"
-          :checklist-values="Object.values(PERSONA_GENDERS)"
-          :checklist-labels="PERSONA_GENDER_LABELS"
-        />
-        <MissionPersonaCriteria
-          headline="Country"
-          type="CHECKLIST"
-          :opened="s.persona.countriesOpened"
-          :value="s.persona.countries"
-          mutation="missionFormPersona/setCountries"
-          switch-mutation="missionFormPersona/switchCountriesOpened"
-          :checklist-values="PERSONA_COUNTRIES"
-          :checklist-labels="COUNTRY_NAMES"
-        />
+        <MissionPersonaCriteria :criteria="[PERSONA_CRITERIA.AGE, PERSONA_CRITERIA.GENDER, PERSONA_CRITERIA.COUNTRY]" />
       </div>
-      <MissionSurveyOrderSummary v-if="s.survey.items.length" />
+      <MissionOrderSummary
+        v-if="s.survey.items.length"
+        :mission-type="mission.type"
+        :price-checksum="priceChecksum"
+        wrapper-class="mission-survey-order-body"
+        @cancel="$router.push(`/missions/${mission.id}/share`)"
+        @submit="submit"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_NAMES } from '../constants'
+import { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_LABELS, PERSONA_CRITERIA } from '../constants'
 import MissionPersonaCriteria from '../_shared/MissionPersonaCriteria/MissionPersonaCriteria'
 import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
+import MissionOrderSummary from '../_shared/MissionOrderSummary/MissionOrderSummary'
 import MissionSurveyOrderParticipants from './MissionSurveyOrderParticipants/MissionSurveyOrderParticipants'
-import MissionSurveyOrderSummary from './MissionSurveyOrderSummary/MissionSurveyOrderSummary'
+
 export default {
   name: 'MissionSurveyOrder',
-  components: { MissionSurveyOrderSummary, ButtonCircle, MissionSurveyOrderParticipants, MissionPersonaCriteria },
+  components: { MissionOrderSummary, ButtonCircle, MissionSurveyOrderParticipants, MissionPersonaCriteria },
   data() {
-    return { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_NAMES }
+    return { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_LABELS, PERSONA_CRITERIA }
   },
   computed: {
     mission() {
@@ -63,6 +42,28 @@ export default {
         persona: missionFormPersona,
         survey: missionFormSurvey
       }
+    },
+    priceChecksum() {
+      return this.$store.getters['missionFormSurvey/pricingChecksum']({
+        missionForm: this.s
+      })
+    }
+  },
+  methods: {
+    buildOrderRequest() {
+      const { participants } = this.s.survey
+      return {
+        participants,
+        demographicData: this.s.persona
+      }
+    },
+    submit() {
+      this.$push.submitMissionOrder({
+        ...this.buildOrderRequest(),
+        missionId: this.mission.id
+      }).then(() => {
+        this.$router.push(`/mission/${this.mission.id}`)
+      })
     }
   }
 }

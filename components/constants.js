@@ -1,6 +1,13 @@
-export const COUNTRY_NAMES = {
+export const COUNTRIES = {
+  DE: 'DE',
+  GB: 'GB',
+  FR: 'FR',
+  ES: 'ES',
+  IT: 'IT'
+}
+export const COUNTRY_LABELS = {
   DE: 'Germany',
-  EN: 'United Kingdom',
+  GB: 'United Kingdom',
   FR: 'France',
   ES: 'Spain',
   IT: 'Italy'
@@ -72,22 +79,40 @@ export const PERSONA_ICONS = {
   JASON: 'JASON',
   MIKA: 'MIKA'
 }
+export const PERSONA_CRITERIA = {
+  AGE: 'AGE',
+  GENDER: 'GENDER',
+  LANGUAGE: 'LANGUAGE',
+  COUNTRY: 'COUNTRY',
+  DEVICE_SKILL: 'DEVICE_SKILL',
+  SPECIAL_CRITERIA: 'SPECIAL_CRITERIA',
+  DURATION: 'DURATION'
+}
+export const PERSONA_CRITERIA_LABELS = {
+  AGE: 'Age',
+  GENDER: 'Gender',
+  LANGUAGE: 'Language',
+  COUNTRY: 'Country',
+  DEVICE_SKILL: 'Device Skill',
+  SPECIAL_CRITERIA: 'Special Criteria',
+  DURATION: 'Duration'
+}
 export const PERSONA_GENDERS = {
   MALE: 'MALE',
   FEMALE: 'FEMALE',
-  DIVERS: 'DIVERS'
+  MIXED: 'MIXED'
 }
 export const PERSONA_GENDER_LABELS = {
   MALE: 'Male',
   FEMALE: 'Female',
-  DIVERS: 'non binary'
+  MIXED: 'Mixed'
 }
 export const PERSONA_COUNTRIES = [
-  LANGUAGES.DE,
-  LANGUAGES.EN,
-  LANGUAGES.FR,
-  LANGUAGES.ES,
-  LANGUAGES.IT
+  COUNTRIES.DE,
+  COUNTRIES.GB,
+  COUNTRIES.FR,
+  COUNTRIES.ES,
+  COUNTRIES.IT
 ]
 export const PERSONA_OCCUPATIONS = {
   STUDENT: 'STUDENT',
@@ -108,6 +133,18 @@ export const PERSONA_OCCUPATION_LABELS = {
   PENSIONER: 'Pensioner',
   PUPIL: 'Pupil',
   APPRENTICE: 'Apprentice'
+}
+export const PERSONA_DEVICE_SKILLS = {
+  DESKTOP: 'DESKTOP',
+  SMART_PHONE: 'SMART_PHONE',
+  TABLET: 'TABLET',
+  SMART_WATCH: 'SMART_WATCH'
+}
+export const PERSONA_DEVICE_SKILL_LABELS = {
+  DESKTOP: 'Desktop',
+  SMART_PHONE: 'Smartphone',
+  TABLET: 'Tablet',
+  SMART_WATCH: 'Smart Watch'
 }
 
 export const MISSIONS = {
@@ -215,6 +252,18 @@ export const MISSION_SURVEY_USABILITY_LAB_ITEM_INSIGHTS = {
   FIVE_SECOND_TEST: 'Design shown for {duration}s',
   DESIGN_QUESTION: 'Design Question',
   QUESTION_LIST: 'Questions'
+}
+export const MISSION_RECRUIT_STUDY_TYPES = {
+  USABILITY_TEST: 'USABILITY_TEST',
+  USER_INTERVIEW: 'USER_INTERVIEW',
+  FOCUS_GROUP: 'FOCUS_GROUP',
+  WORKSHOP: 'WORKSHOP'
+}
+export const MISSION_RECRUIT_STUDY_TYPE_LABELS = {
+  USABILITY_TEST: 'Usability Test',
+  USER_INTERVIEW: 'User Interview',
+  FOCUS_GROUP: 'Focus Group',
+  WORKSHOP: 'Workshop'
 }
 export const MISSION_RECRUIT_PAGES = {
   OVERVIEW: 'OVERVIEW',

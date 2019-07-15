@@ -2,7 +2,8 @@ import {
   MISSION_SURVEY_ITEMS,
   MISSION_SURVEY_USABILITY_LAB_ITEMS,
   MISSION_SURVEY_USABILITY_LAB_FOLLOW_UP_REQUIRED,
-  MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES
+  MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES,
+  LANGUAGES
 } from '../components/constants'
 import { copy, flatMap, groupBy } from '../utils/objectUtils'
 
@@ -38,17 +39,17 @@ const defaultClosingScreen = {
 }
 
 const defaultState = {
+  language: LANGUAGES.EN,
   customizeWelcome: false,
-  customizeClosing: false,
   ...defaultWelcomeScreen,
   ...defaultClosingScreen,
+  customizeClosing: false,
   welcomeColorPickerOpened: false,
   closingColorPickerOpened: false,
   color: { hex: '#0FBCF9' },
   redirectLink: null,
   itemAddIndex: 0,
   items: [],
-  requiredCount: 50,
   pricing: null
 }
 
@@ -130,11 +131,32 @@ const defaultStateItem = {
 
 export const state = () => defaultState
 
+export const getters = {
+  itemsCountByType(state) {
+    const groupedByType = groupBy(getFlatMappedItems(state.items), 'type')
+    const countByType = {}
+    Object.keys(groupedByType).forEach((type) => {
+      countByType[type] = groupedByType[type].length
+    })
+    return countByType
+  },
+  pricingChecksum: (state, getters) => ({ missionForm }) => {
+    const { participants } = missionForm
+    return JSON.stringify({
+      participants,
+      items: getters.itemsCountByType
+    })
+  }
+}
+
 export const mutations = {
   init(state) {
     for (const key in defaultState) {
       state[key] = defaultState[key]
     }
+  },
+  setLanguage(state, language) {
+    state.language = language
   },
   switchCustomizeWelcome(state) {
     state.customizeWelcome = !state.customizeWelcome
@@ -375,30 +397,25 @@ export const mutations = {
       }
     })
   },
-  setRequiredCount(state, requiredCount) {
-    state.requiredCount = requiredCount
-  },
   setPricing(state, pricing) {
     state.pricing = pricing
   }
 }
 
 export const actions = {
-  fetchPricing({ state, commit }) {
+  fetchPricing({ state, commit, getters }, { globalGetters, missionForm }) {
+    if (globalGetters['missionForm/participantsError']) {
+      return
+    }
     return new Promise((resolve, reject) => {
-      const groupedByType = groupBy(getFlatMappedItems(state.items), 'type')
-      const countByType = {}
-      Object.keys(groupedByType).forEach((type) => {
-        countByType[type] = groupedByType[type].length
-      })
       this.$axios({
         method: 'post',
         url: '/pricing/quantitative',
         data: {
           items: {
-            ...countByType
+            ...getters.itemsCountByType
           },
-          expectedResponses: parseInt(state.requiredCount)
+          participants: parseInt(missionForm.participants)
         }
       })
         .then(({ data }) => {

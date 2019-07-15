@@ -30,7 +30,7 @@
     >
       <PersonaCriteriaChecklist
         mutation="personaForm/setGenders"
-        :values="Object.values(PERSONA_GENDERS)"
+        :values="Object.keys(PERSONA_GENDERS)"
         :labels="PERSONA_GENDER_LABELS"
         :value="s.genders"
       />
@@ -43,7 +43,7 @@
     >
       <PersonaCriteriaChecklist
         mutation="personaForm/setOccupations"
-        :values="Object.values(PERSONA_OCCUPATIONS)"
+        :values="Object.keys(PERSONA_OCCUPATIONS)"
         :labels="PERSONA_OCCUPATION_LABELS"
         :value="s.occupations"
       />

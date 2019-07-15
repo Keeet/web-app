@@ -9,7 +9,7 @@ export default {
   layout: 'defaultNoFooter',
   components: { MissionCreate },
   fetch({ app: { $fetch } }) {
-    return $fetch([{ name: 'USER' }, { name: 'PERSONAS' }, { name: 'COMPANY' }])
+    return $fetch([{ name: 'USER' }, { name: 'COMPANY' }])
   }
 }
 </script>

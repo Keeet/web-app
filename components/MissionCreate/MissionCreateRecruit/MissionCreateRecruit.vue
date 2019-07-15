@@ -1,111 +1,81 @@
 <template>
-  <div class="mission-create-recruit">
-    <FormStep
-      :next-step-mutation="nextMut"
-      :prev-step-mutation="prevMut"
-      :active="s.activeStep === 1"
-      :valid="s.invalidFields.length === 0"
-      @invalidNext="invalidNextClick"
+  <div>
+    <MissionCreateRecruitStep
+      :index="1"
     >
-      <MissionCreateHeadline :text="`1 / 3 ${MISSION_LABELS[s.type]} Mission`" />
       <MissionCreateRecruitForm :show-errors="s.showErrors" />
-    </FormStep>
-    <FormStep
-      :next-step-mutation="nextMut"
-      :prev-step-mutation="prevMut"
-      :active="s.activeStep === 2"
-      :valid="s.invalidFields.length === 0"
-      @invalidNext="invalidNextClick"
+    </MissionCreateRecruitStep>
+    <MissionCreateRecruitStep
+      :index="2"
     >
-      <div class="mission-create-recruit-calendar-headline">
-        <MissionCreateHeadline :text="`2 / 3 ${MISSION_LABELS[s.type]} Mission`" />
-        <MissionCreateSubHeadline text="When are you able to conduct the interview / test?" />
-      </div>
+      <MissionCreateRecruitPersona />
+    </MissionCreateRecruitStep>
+    <MissionCreateRecruitStep
+      :index="3"
+      subheadline="When are you able to conduct the interview / test?"
+    >
       <MissionCreateRecruitCalendar />
-    </FormStep>
-    <FormStep
-      :show-next="false"
-      :prev-step-mutation="prevMut"
-      :active="s.activeStep === 3"
+    </MissionCreateRecruitStep>
+    <MissionCreateRecruitStep
+      :index="4"
+      last
+      @submit="submit"
     >
-      <MissionCreateHeadline :text="`3 / 3 ${MISSION_LABELS[s.type]} Mission`" />
-      <MissionCreateRecruitSummary @submit="submit" />
-    </FormStep>
+      <MissionCreateRecruitSummary />
+    </MissionCreateRecruitStep>
   </div>
 </template>
 
 <script>
-import FormStep from '../../_shared/FormStep/FormStep'
-import MissionCreateHeadline from '../MissionCreateHeadline/MissionCreateHeadline'
+import { MISSIONS } from '../../constants'
 import MissionCreateRecruitForm from '../MissionCreateRecruitForm/MissionCreateRecruitForm'
-import MissionCreateSubHeadline from '../MissionCreateSubHeadline/MissionCreateSubHeadline'
 import MissionCreateRecruitCalendar from '../MissionCreateRecruitCalendar/MissionCreateRecruitCalendar'
 import MissionCreateRecruitSummary from '../MissionCreateRecruitSummary/MissionCreateRecruitSummary'
-import { MISSIONS, MISSION_LABELS } from '../../constants'
-import { scrollToTopId } from '../../../utils/scrollUtils'
+import MissionCreateRecruitStep from '../MissionCreateRecruitStep/MissionCreateRecruitStep'
+import MissionCreateRecruitPersona from '../MissionCreateRecruitPersona/MissionCreateRecruitPersona'
 
 export default {
   name: 'MissionCreateRecruit',
   components: {
+    MissionCreateRecruitPersona,
+    MissionCreateRecruitStep,
     MissionCreateRecruitSummary,
     MissionCreateRecruitCalendar,
-    MissionCreateSubHeadline,
-    MissionCreateRecruitForm,
-    MissionCreateHeadline,
-    FormStep
-  },
-  data() {
-    return {
-      nextMut: 'missionForm/nextStep',
-      prevMut: 'missionForm/previousStep',
-      MISSIONS,
-      MISSION_LABELS
-    }
+    MissionCreateRecruitForm
   },
   computed: {
     s() {
-      const { missionForm, missionFormRecruit } = this.$store.state
+      const { missionForm, missionFormRecruit, missionFormPersona } = this.$store.state
       return {
         ...missionForm,
-        recruit: missionFormRecruit
+        recruit: missionFormRecruit,
+        persona: missionFormPersona
       }
-    },
-    activeStep() {
-      return this.s.activeStep
     }
   },
   methods: {
     buildMission() {
-      const { projectId, type, title, language } = this.s
-      const { duration, persona, sessions, location } = this.s.recruit
+      const { projectId, type, title, language, participants } = this.s
+      const { studyType, duration, sessions, location } = this.s.recruit
       const mission = {
         projectId,
         type,
         title,
+        studyType,
         duration: parseInt(duration),
         language,
-        persona,
-        sessions: sessions.map(session => session.start.toISOString())
+        participants,
+        sessions: sessions.map(session => session.start.toISOString()),
+        demographicData: this.s.persona,
+        specialCriteria: this.s.persona.specialCriteria.map(sc => sc.value)
       }
       if (type === MISSIONS.IN_HOUSE) {
-        const { country, city, zipCode, street, houseNumber, addressDescription } = location
         return {
           ...mission,
-          country,
-          city,
-          zipCode,
-          street,
-          houseNumber,
-          addressDescription
+          ...location
         }
       }
       return mission
-    },
-    invalidNextClick() {
-      if (!this.s.showErrors) {
-        this.$store.commit('missionForm/showErrors')
-      }
-      scrollToTopId(this.s.invalidFields.map(field => field.id))
     },
     submit() {
       this.$store.commit('missionForm/pending')
@@ -117,7 +87,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-  @import "MissionCreateRecruit";
-</style>

@@ -21,7 +21,7 @@
   }
 
   .select-field {
-    padding: 14px 16px;
+    padding: 14px;
     box-sizing: border-box;
     border: 1px solid $grey;
     border-radius: 3px;
@@ -34,7 +34,7 @@
     appearance: none;
     transition: border 0.5s;
 
-    &:disabled {
+    &:disabled, &.nullValue {
       color: $grey-mid-dark;
     }
 

@@ -1,47 +1,57 @@
+import { MISSIONS, MISSION_RECRUIT_STUDY_TYPES } from '../components/constants'
+
+const COMPANY_LOCATION_ID = 'COMPANY'
+
 const defaultState = {
-  persona: null,
-  personaDropdownOpened: false,
-  tempPersonas: [],
-  nbParticipants: 5,
-  duration: 60,
+  studyType: MISSION_RECRUIT_STUDY_TYPES.USER_INTERVIEW,
+  duration: null,
   location: null,
   locationId: null,
   locationFormOpened: false,
   sessions: [],
   activeCalendarDay: null,
   sessionErrorPopup: false,
-  submittedPopup: false
+  submittedPopup: false,
+  pricing: null
 }
 
 export const state = () => (defaultState)
 
-const COMPANY_LOCATION_ID = 'COMPANY'
+export const getters = {
+  pricingChecksum: state => ({ missionForm, missionFormPersona }) => {
+    const { duration } = state
+    const { participants } = missionForm
+    const { minAge, maxAge, genders, countries, languages, deviceSkills, specialCriteria } = missionFormPersona
+    return JSON.stringify({
+      participants,
+      duration,
+      minAge,
+      maxAge,
+      genders,
+      countries,
+      languages,
+      deviceSkills,
+      specialCriteria: specialCriteria.length
+    })
+  }
+}
 
 export const mutations = {
-  init(state, { company }) {
+  init(state, { company, missionType }) {
     for (const key in defaultState) {
       state[key] = defaultState[key]
+    }
+    if (missionType === MISSIONS.IN_HOUSE) {
+      state.duration = 45
+    } else if (missionType === MISSIONS.REMOTE) {
+      state.duration = 30
     }
     const { name, street, houseNumber, addressDescription, zipCode, city, country } = company
     state.location = { name, street, houseNumber, addressDescription, zipCode, city, country }
     state.locationId = COMPANY_LOCATION_ID
   },
-  setPersona(state, persona) {
-    state.persona = {
-      ...persona,
-      screenerQuestions: persona.screenerQuestions.map(sq => sq.value)
-    }
-  },
-  switchPersonaDropdown(state) {
-    state.personaDropdownOpened = !state.personaDropdownOpened
-  },
-  addTempPersona(state, persona) {
-    const personas = state.tempPersonas.slice()
-    personas.push(persona)
-    state.tempPersonas = personas
-  },
-  setNbParticipants(state, nbParticipants) {
-    state.nbParticipants = nbParticipants
+  setStudyType(state, studyType) {
+    state.studyType = studyType
   },
   setDuration(state, duration) {
     state.duration = duration
@@ -89,5 +99,47 @@ export const mutations = {
   },
   hideSubmittedPopup(state) {
     state.submittedPopup = false
+  },
+  setPricing(state, pricing) {
+    state.pricing = pricing
+  }
+}
+
+export const actions = {
+  fetchPricing({ state, commit }, { globalGetters, missionForm, missionFormPersona }) {
+    if (globalGetters['missionForm/participantsError']) {
+      return
+    }
+    return new Promise((resolve, reject) => {
+      const url = missionForm.type === MISSIONS.IN_HOUSE
+        ? '/pricing/inhouse'
+        : '/pricing/remote'
+      const { duration } = state
+      const { participants } = missionForm
+      const { minAge, maxAge, languages, genders, countries, deviceSkills, specialCriteria } = missionFormPersona
+
+      this.$axios({
+        method: 'post',
+        url,
+        data: {
+          demographicData: {
+            minAge,
+            maxAge,
+            languages,
+            genders,
+            countries,
+            deviceSkills
+          },
+          specialCriteria: specialCriteria.map(sc => sc.value),
+          duration,
+          participants: parseInt(participants)
+        }
+      })
+        .then(({ data }) => {
+          commit('setPricing', data)
+          resolve()
+        })
+        .catch(reject)
+    })
   }
 }

@@ -37,7 +37,8 @@ export default {
       // switch mission type OR select mission type for the first time
       if (this.s.type !== type) {
         this.$store.commit('missionFormRecruit/init', {
-          company: this.$store.state.company
+          company: this.$store.state.company,
+          missionType: type
         })
         this.$store.commit('missionFormSurvey/init')
       }

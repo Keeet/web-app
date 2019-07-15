@@ -59,7 +59,7 @@ export default {
     labelConfirmArrow: {
       type: String,
       default: null,
-      validator: value => Object.values(ARROWS).includes(value)
+      validator: value => Object.keys(ARROWS).includes(value)
     },
     labelCancel: {
       type: String,

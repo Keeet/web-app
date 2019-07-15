@@ -41,7 +41,7 @@ export default {
     bgColorClass: {
       type: String,
       required: true,
-      validator: value => Object.values({
+      validator: value => Object.keys({
         ...MISSION_SURVEY_ITEMS,
         ...MISSION_SURVEY_USABILITY_LAB_ITEMS
       }).includes(value)

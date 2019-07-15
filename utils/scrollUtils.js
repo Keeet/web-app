@@ -5,6 +5,10 @@ export function determineFixedOrAbsolute(fixedRefElem, movingElem, wrapperElem, 
     FIXED: 'FIXED'
   }
 
+  if (wrapperElem.offsetHeight < movingElem.offsetHeight) {
+    return RESULT.ABSOLUTE_TOP
+  }
+
   if (wrapperElem.offsetTop + wrapperElem.offsetHeight - window.scrollY < fixedRefElem.offsetTop + movingElem.offsetHeight + offsetBottom) {
     return RESULT.ABSOLUTE_BOTTOM
   } else if (wrapperElem.offsetTop - window.scrollY > fixedRefElem.offsetTop + offsetTop) {

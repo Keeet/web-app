@@ -1,8 +1,12 @@
+import { isNum } from '../utils/stringUtils'
+
+const MAX_PARTICIPANTS = 250
+
 const defaultState = {
   projectId: null,
   type: null,
   title: '',
-  language: 'DE',
+  participants: 0,
   submittedMissionId: null,
   invalidFields: [],
   showErrors: false,
@@ -15,8 +19,24 @@ const defaultState = {
 
 export const state = () => (defaultState)
 
+export const getters = {
+  // TODO: move all validation into getters
+  participantsError({ participants }) {
+    if (isNum(participants)) {
+      if (participants === 0) {
+        return 'cannot be null'
+      }
+      if (participants > MAX_PARTICIPANTS) {
+        return `max ${MAX_PARTICIPANTS}`
+      }
+      return null
+    }
+    return 'must be a number'
+  }
+}
+
 export const mutations = {
-  init(state, { project }) {
+  init(state, { project, participants = null }) {
     if (!state.init || !state.inProgress || !project || project.id !== state.projectId) {
       for (const key in defaultState) {
         state[key] = defaultState[key]
@@ -24,6 +44,7 @@ export const mutations = {
       if (project) {
         state.projectId = project.id
       }
+      state.participants = participants
       state.init = true
     }
   },
@@ -33,8 +54,8 @@ export const mutations = {
   setTitle(state, title) {
     state.title = title
   },
-  setLanguage(state, language) {
-    state.language = language
+  setParticipants(state, participants) {
+    state.participants = participants
   },
   setSubmittedMissionId(state, missionId) {
     state.submittedMissionId = missionId

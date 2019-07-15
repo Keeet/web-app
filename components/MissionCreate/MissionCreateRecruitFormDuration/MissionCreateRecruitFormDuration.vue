@@ -1,34 +1,26 @@
 <template>
   <div class="mission-create-recruit-form-duration">
     <MissionCreateRecruitFormDurationItem
-      v-for="(duration, x) in PRESETS"
+      v-for="(presetDuration, x) in presets"
       :key="x"
-      :duration="duration"
-      :active="duration === s.recruit.duration"
-      @click="$store.commit('missionFormRecruit/setDuration', duration)"
+      :duration="presetDuration"
+      :active="presetDuration === s.recruit.duration"
+      @click="$store.commit('missionFormRecruit/setDuration', presetDuration)"
     />
-    <div class="mission-create-recruit-form-duration-input">
-      <Input
-        :value="customDuration"
-        mutation="missionFormRecruit/setDuration"
-        placeholder="e.g. 120"
-        :error="durationError"
-        dispatch-error="missionForm/handleValidationError"
-      />
-    </div>
   </div>
 </template>
 
 <script>
 import MissionCreateRecruitFormDurationItem from '../MissionCreateRecruitFormDurationItem/MissionCreateRecruitFormDurationItem'
-import Input from '../../_shared/Input/Input'
-import { isNum } from '../../../utils/stringUtils'
 
-const PRESETS = [30, 45, 60, 90]
+const PRESETS = {
+  IN_HOUSE: [45, 60, 90],
+  REMOTE: [30, 45, 60, 90]
+}
 
 export default {
   name: 'MissionCreateRecruitFormDuration',
-  components: { Input, MissionCreateRecruitFormDurationItem },
+  components: { MissionCreateRecruitFormDurationItem },
   data() {
     return { PRESETS }
   },
@@ -40,21 +32,8 @@ export default {
         recruit: missionFormRecruit
       }
     },
-    customDuration() {
-      if (this.PRESETS.includes(this.s.recruit.duration)) {
-        return ''
-      } else {
-        return this.s.recruit.duration
-      }
-    },
-    durationError() {
-      if (!isNum(this.s.recruit.duration)) {
-        return 'must be a number'
-      }
-      if (parseInt(this.s.recruit.duration) < 30) {
-        return 'must be bigger than 30'
-      }
-      return null
+    presets() {
+      return PRESETS[this.s.type]
     }
   }
 }

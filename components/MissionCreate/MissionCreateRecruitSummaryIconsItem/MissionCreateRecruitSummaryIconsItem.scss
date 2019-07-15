@@ -2,12 +2,17 @@
   margin: 0 50px;
 
   .mission-create-recruit-summary-icons-item-icon {
-    margin: 0 auto;
-    width: 50px;
+    height: 50px;
+    text-align: center;
+
+    svg {
+      height: 100%;
+    }
   }
 
-  .mission-create-recruit-summary-icons-item-text {
+  .mission-create-recruit-summary-icons-item-body {
     font-weight: 500;
     margin-top: 20px;
+    text-align: center;
   }
 }

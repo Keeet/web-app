@@ -148,8 +148,9 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
       type,
       title,
       description,
+      studyType,
       duration,
-      language,
+      participants,
       sessions,
       country,
       city,
@@ -157,12 +158,8 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
       street,
       houseNumber,
       addressDescription,
-      persona: {
-        name,
-        icon,
-        demographicDataReq: { minAge, maxAge, occupations, genders },
-        screenerQuestions
-      }
+      demographicData: { minAge, maxAge, genders, languages, countries, deviceSkills },
+      specialCriteria
     }) {
       return new Promise((resolve, reject) => {
         const handleRes = handleResponse.bind(this, OPERATIONS.CREATE_MISSION, null, resolve, reject)
@@ -174,8 +171,9 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
             type,
             title,
             description,
+            studyType,
             duration,
-            language,
+            participants,
             sessions,
             country,
             city,
@@ -183,12 +181,8 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
             street,
             houseNumber,
             addressDescription,
-            persona: {
-              name,
-              icon,
-              demographicDataReq: { minAge, maxAge, occupations, genders },
-              screenerQuestions
-            }
+            demographicData: { minAge, maxAge, genders, languages, countries, deviceSkills },
+            specialCriteria
           }
         }).then(handleRes).catch(handleError)
       })
@@ -207,8 +201,7 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
       closingLogoId,
       redirectLink,
       color,
-      items,
-      requiredCount
+      items
     }) {
       return new Promise((resolve, reject) => {
         const handleRes = handleResponse.bind(this, OPERATIONS.CREATE_MISSION, null, resolve, reject)
@@ -229,8 +222,7 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
             closingLogoId,
             redirectLink,
             color,
-            items,
-            requiredCount
+            items
           }
         }).then(handleRes).catch(handleError)
       })
@@ -249,7 +241,7 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
       })
     },
     submitMissionOrder({
-      requiredCount,
+      participants,
       demographicData: {
         minAge,
         maxAge,
@@ -264,7 +256,7 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
           method: 'post',
           url: `/missions/${missionId}/orders`,
           data: {
-            requiredCount,
+            participants,
             demographicData: {
               minAge,
               maxAge,

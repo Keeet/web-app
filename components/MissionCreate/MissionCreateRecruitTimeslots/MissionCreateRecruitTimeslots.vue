@@ -9,13 +9,11 @@
           {{ getFormattedDate(sessionByDay.date) }}
         </div>
         <div class="mission-create-recruit-timeslots-item-sessions">
-          <div
+          <TextBox
             v-for="(session, y) in sessionByDay.sessions"
             :key="y"
-            class="mission-create-recruit-timeslots-item-sessions-item"
-          >
-            {{ getFormattedSessionDate(session.start, session.end) }}
-          </div>
+            :text="getFormattedSessionDate(session.start, session.end)"
+          />
         </div>
       </div>
     </MissionCreateBox>
@@ -25,9 +23,10 @@
 <script>
 import MissionCreateBox from '../MissionCreateBox/MissionCreateBox'
 import { getAmPmTime, getLocaleDateString, getWeekDayName, groupByDay } from '../../../utils/dateUtils'
+import TextBox from '../../_shared/TextBox/TextBox'
 export default {
   name: 'MissionCreateRecruitTimeslots',
-  components: { MissionCreateBox },
+  components: { TextBox, MissionCreateBox },
   computed: {
     s() {
       const { missionForm, missionFormRecruit } = this.$store.state
