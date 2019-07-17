@@ -18,19 +18,11 @@
       :class="[{ buttonDisabled }, activeRootItem ? activeRootItem.type : '']"
     >
       <div class="survey-step-button-inner">
-        <a v-if="buttonLink" :href="buttonLink">
-          <ButtonText
-            :text="buttonText"
-            :bg-color="s.color"
-            no-margin
-          />
-        </a>
         <ButtonText
-          v-else
           :text="buttonText"
           :bg-color="s.color"
           no-margin
-          @click="nextStep"
+          @click="buttonLink ? redirectToButtonLink() : nextStep()"
         />
       </div>
     </div>
@@ -106,6 +98,18 @@ export default {
         return 'enterClosing'
       } else {
         return 'enterInput'
+      }
+    },
+    redirectToButtonLink() {
+      const { id, type, form: { activeClosing } } = this.s
+      if (activeClosing) {
+        this.$mpSurvey.track('clickClosingRedirect', {
+          missionId: id,
+          missionType: type
+        })
+        window.setTimeout(() => {
+          window.location = this.buttonLink
+        }, 500)
       }
     }
   }
