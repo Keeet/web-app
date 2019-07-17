@@ -65,6 +65,7 @@ export default {
     }
   },
   mounted() {
+    this.$ga.page(this.$router)
     // eslint-disable-next-line no-console
     this.$twilioHelper.setupLocalPreview().then(this.setLocalVideoTrack).catch(console.error)
     this.$store.commit('twilio/showJoinButton')

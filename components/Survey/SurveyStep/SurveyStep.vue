@@ -18,19 +18,11 @@
       :class="[{ buttonDisabled }, activeRootItem ? activeRootItem.type : '']"
     >
       <div class="survey-step-button-inner">
-        <a v-if="buttonLink" :href="buttonLink">
-          <ButtonText
-            :text="buttonText"
-            :bg-color="s.color"
-            no-margin
-          />
-        </a>
         <ButtonText
-          v-else
           :text="buttonText"
           :bg-color="s.color"
           no-margin
-          @click="$store.dispatch('surveyForm/nextStep')"
+          @click="buttonLink ? redirectToButtonLink() : nextStep()"
         />
       </div>
     </div>
@@ -65,11 +57,60 @@ export default {
     },
     activeRootItem() {
       return this.$store.getters['surveyForm/activeRootItem']
+    },
+    activeItem() {
+      return this.$store.getters['surveyForm/activeItem']
+    }
+  },
+  watch: {
+    activeItem: {
+      immediate: true,
+      handler() {
+        if (process.client) {
+          this.track()
+        }
+      }
     }
   },
   methods: {
     isPreview() {
       return this.$route.params.id === 'preview'
+    },
+    nextStep() {
+      this.$store.dispatch('surveyForm/nextStep')
+    },
+    track() {
+      if (!this.isPreview()) {
+        const { id, type, form: { activeWelcome, activeClosing } } = this.s
+        const isInput = !activeWelcome && !activeClosing
+        this.$mpSurvey.track(this.getTrackingEvent(), {
+          missionId: id,
+          missionType: type,
+          inputId: isInput ? this.activeItem.id : undefined,
+          inputType: isInput ? this.activeItem.type : undefined
+        })
+      }
+    },
+    getTrackingEvent() {
+      if (this.s.form.activeWelcome) {
+        return 'enterWelcome'
+      } else if (this.s.form.activeClosing) {
+        return 'enterClosing'
+      } else {
+        return 'enterInput'
+      }
+    },
+    redirectToButtonLink() {
+      const { id, type, form: { activeClosing } } = this.s
+      if (activeClosing) {
+        this.$mpSurvey.track('clickClosingRedirect', {
+          missionId: id,
+          missionType: type
+        })
+        window.setTimeout(() => {
+          window.location = this.buttonLink
+        }, 500)
+      }
     }
   }
 }

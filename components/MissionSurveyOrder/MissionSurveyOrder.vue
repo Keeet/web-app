@@ -53,6 +53,9 @@ export default {
       })
     }
   },
+  mounted() {
+    this.$ga.page(this.$router)
+  },
   methods: {
     buildOrderRequest() {
       const { participants } = this.s.survey

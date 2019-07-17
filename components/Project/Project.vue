@@ -110,6 +110,9 @@ export default {
       return grouped
     }
   },
+  mounted() {
+    this.$ga.page(this.$router)
+  },
   methods: {
     getMonthLabel(date) {
       const now = new Date()

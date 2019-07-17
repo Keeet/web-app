@@ -42,6 +42,9 @@ export default {
     accountPage() {
       return this.$store.state.accountPage
     }
+  },
+  mounted() {
+    this.$ga.page(this.$router)
   }
 }
 </script>

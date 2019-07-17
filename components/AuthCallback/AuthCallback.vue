@@ -23,6 +23,7 @@ export default {
     }
   },
   mounted() {
+    this.$ga.page(this.$router)
     this.$auth.handleAuthentication().then(() => {
       const { redirectUrl } = this.$route.query
       if (redirectUrl) {

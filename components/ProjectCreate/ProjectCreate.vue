@@ -63,6 +63,9 @@ export default {
       return !this.titleError
     }
   },
+  mounted() {
+    this.$ga.page(this.$router)
+  },
   methods: {
     submit() {
       this.$store.commit('projectForm/pending')
