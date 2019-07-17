@@ -100,6 +100,7 @@ export default {
     }
   },
   mounted() {
+    this.$ga.page(this.$router)
     if (this.isPreview()) {
       this.refreshPreview()
       this.previewRefreshInterval = window.setInterval(() => {

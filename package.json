@@ -37,6 +37,7 @@
     "twilio-video": "^2.0.0-beta9",
     "ua-parser-js": "^0.7.20",
     "uuid": "latest",
+    "vue-analytics": "^5.17.0",
     "vue-carousel": "0.18.0",
     "vue-color": "2.7.0",
     "vue-slider-component": "^3.0.31",

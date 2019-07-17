@@ -53,6 +53,9 @@ export default {
       window.scrollTo(0, 0)
     }
   },
+  mounted() {
+    this.$ga.page(this.$router)
+  },
   methods: {
     cancel() {
       if (this.s.activeStep === 0) {

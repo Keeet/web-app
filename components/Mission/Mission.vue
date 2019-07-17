@@ -80,6 +80,9 @@ export default {
       }
       return null
     }
+  },
+  mounted() {
+    this.$ga.page(this.$router)
   }
 }
 </script>

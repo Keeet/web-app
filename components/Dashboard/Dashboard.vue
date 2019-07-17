@@ -81,6 +81,9 @@ export default {
       return this.$store.state.companyForm
     }
   },
+  mounted() {
+    this.$ga.page(this.$router)
+  },
   beforeMount() {
     this.$store.commit('companyForm/init')
   },
