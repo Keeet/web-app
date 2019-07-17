@@ -2,13 +2,16 @@ import { COUNTRIES } from '../components/constants'
 
 const defaultState = {
   id: null,
-  name: '',
+  type: 'BILL',
+  firstName: '',
+  lastName: '',
+  email: '',
   street: '',
   houseNumber: '',
-  addressDescription: '',
   zipCode: '',
   city: '',
   country: COUNTRIES.DE,
+  vatTaxId: '',
 
   pending: false
 }
@@ -16,17 +19,18 @@ const defaultState = {
 export const state = () => (defaultState)
 
 export const mutations = {
-  init(state, location) {
-    if (location) {
-      const { id, name, street, houseNumber, city, addressDescription, zipCode, country } = location
+  init(state, billing) {
+    if (billing) {
+      const { id, firstName, lastName, street, houseNumber, city, zipCode, country, vatTaxId } = billing
       state.id = id
-      state.name = name
+      state.firstName = firstName
+      state.lastName = lastName
       state.street = street
       state.houseNumber = houseNumber
-      state.addressDescription = addressDescription
       state.city = city
       state.zipCode = zipCode
       state.country = country
+      state.vatTaxId = vatTaxId
 
       state.pending = false
     } else {
@@ -34,9 +38,6 @@ export const mutations = {
         state[key] = defaultState[key]
       }
     }
-  },
-  setName(state, name) {
-    state.name = name
   },
   setStreet(state, street) {
     state.street = street
@@ -56,23 +57,14 @@ export const mutations = {
   setCountry(state, country) {
     state.country = country
   },
+  setVatTaxId(state, vatTaxId) {
+    state.vatTaxId = vatTaxId
+  },
 
   pending(state) {
     state.pending = true
   },
   submitted(state) {
     state.pending = false
-  }
-}
-
-export const actions = {
-  submitCompanyLocation({ commit, state }) {
-    commit('pending')
-    return new Promise((resolve) => {
-      this.$push.createCompanyLocation(state).then((newLocation) => {
-        commit('submitted')
-        resolve(newLocation)
-      })
-    })
   }
 }

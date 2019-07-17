@@ -294,5 +294,6 @@ export const MISSION_SURVEY_PAGES = {
 
 export const ACCOUNT_PAGES = {
   PROFILE: 'PROFILE',
-  TEAM: 'TEAM'
+  TEAM: 'TEAM',
+  BILLING: 'BILLING'
 }
