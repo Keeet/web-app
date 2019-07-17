@@ -85,6 +85,8 @@ const defaultState = {
   progress: 0,
   duration: null,
   responses: [],
+  orderId: null,
+  cintUserId: null,
   initDate: null,
   submit: false
 }
@@ -118,11 +120,13 @@ export const getters = {
 }
 
 export const mutations = {
-  init(state, items) {
+  init(state, { items, orderId, cintUserId }) {
     for (const key in defaultState) {
       state[key] = defaultState[key]
     }
     state.items = items
+    state.orderId = orderId
+    state.cintUserId = cintUserId
     state.initDate = new Date()
   },
   hideWelcome(state) {

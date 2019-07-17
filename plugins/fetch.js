@@ -65,7 +65,7 @@ export default function ({ $axios, store }, inject) {
   inject('fetch', (resources) => {
     const promises = resources.map((resource) => {
       return new Promise((resolve, reject) => {
-        const { name, forced, mockDataKey, id } = resource
+        const { name, forced, mockDataKey, id, queryParams } = resource
         if (!config[name]) {
           // eslint-disable-next-line no-console
           console.error(`resource ${name} is not configured`)
@@ -87,12 +87,13 @@ export default function ({ $axios, store }, inject) {
         if (baseUrl) {
           axiosCfg.baseURL = baseUrl
         }
+        if (queryParams) {
+          axiosCfg.params = queryParams
+        }
         $axios.get(pathWithParams, axiosCfg).then((res) => {
           store.commit(mutation, res.data)
           resolve()
         }).catch((err) => {
-          // eslint-disable-next-line no-console
-          console.error(err)
           reject(err)
         })
       })

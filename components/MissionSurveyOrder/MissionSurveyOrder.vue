@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     buildOrderRequest() {
-      const { participants } = this.s.survey
+      const { participants } = this.s
       return {
         participants,
         demographicData: this.s.persona
@@ -69,7 +69,7 @@ export default {
         ...this.buildOrderRequest(),
         missionId: this.mission.id
       }).then(() => {
-        this.$router.push(`/mission/${this.mission.id}`)
+        this.$router.push(`/missions/${this.mission.id}`)
       })
     }
   }
