@@ -61,7 +61,8 @@ module.exports = {
     { src: '~/plugins/twilioHelper.js', ssr: false },
     { src: '~/plugins/nuxtClientInit.js', ssr: false },
     { src: '~/plugins/uaParser.js', ssr: false },
-    { src: '~/plugins/loadScripts.js', ssr: false }
+    { src: '~/plugins/loadScripts.js', ssr: false },
+    { src: '~/plugins/mixpanel.js', ssr: false }
   ],
 
   modules: [

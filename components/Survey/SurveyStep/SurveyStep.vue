@@ -30,7 +30,7 @@
           :text="buttonText"
           :bg-color="s.color"
           no-margin
-          @click="$store.dispatch('surveyForm/nextStep')"
+          @click="nextStep"
         />
       </div>
     </div>
@@ -65,11 +65,48 @@ export default {
     },
     activeRootItem() {
       return this.$store.getters['surveyForm/activeRootItem']
+    },
+    activeItem() {
+      return this.$store.getters['surveyForm/activeItem']
+    }
+  },
+  watch: {
+    activeItem: {
+      immediate: true,
+      handler() {
+        if (process.client) {
+          this.track()
+        }
+      }
     }
   },
   methods: {
     isPreview() {
       return this.$route.params.id === 'preview'
+    },
+    nextStep() {
+      this.$store.dispatch('surveyForm/nextStep')
+    },
+    track() {
+      if (!this.isPreview()) {
+        const { id, type, form: { activeWelcome, activeClosing } } = this.s
+        const isInput = !activeWelcome && !activeClosing
+        this.$mpSurvey.track(this.getTrackingEvent(), {
+          missionId: id,
+          missionType: type,
+          inputId: isInput ? this.activeItem.id : undefined,
+          inputType: isInput ? this.activeItem.type : undefined
+        })
+      }
+    },
+    getTrackingEvent() {
+      if (this.s.form.activeWelcome) {
+        return 'enterWelcome'
+      } else if (this.s.form.activeClosing) {
+        return 'enterClosing'
+      } else {
+        return 'enterInput'
+      }
     }
   }
 }
