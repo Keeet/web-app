@@ -58,6 +58,9 @@ export const mutations = {
   setGenders(state, genders) {
     state.genders = genders
   },
+  setCountry(state, country) {
+    state.countries = [country]
+  },
   setCountries(state, countries) {
     state.countries = countries
   },
