@@ -296,7 +296,8 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
             os,
             orderId,
             cintUserId
-          }
+          },
+          noAuth: true
         }).then(resolve)
       })
     }
