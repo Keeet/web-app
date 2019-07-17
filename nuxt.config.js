@@ -34,8 +34,7 @@ module.exports = {
   loading: false,
 
   css: [
-    '~/assets/style/global.scss',
-    'aos/dist/aos.css'
+    '~/assets/style/global.scss'
   ],
 
   styleResources: {
@@ -55,7 +54,6 @@ module.exports = {
     { src: '~/plugins/timeago', ssr: false },
     { src: '~/plugins/vueDraggable', ssr: false },
     { src: '~/plugins/vueCarousel', ssr: false },
-    { src: '~/plugins/aos.js', ssr: false },
     { src: '~/plugins/ellipsis.js', ssr: false },
     { src: '~/plugins/missionCreateRecruitCalendar.js', ssr: false },
     { src: '~/plugins/twilioHelper.js', ssr: false },
