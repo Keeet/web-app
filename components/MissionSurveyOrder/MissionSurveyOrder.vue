@@ -3,8 +3,11 @@
     <ButtonCircle class="mission-survey-order-cancel" type="ARROW_LEFT" @click="$router.back()" />
     <div class="mission-survey-order-body">
       <div class="mission-survey-order-body-content">
-        <MissionSurveyOrderParticipants />
-        <MissionPersonaCriteria :criteria="[PERSONA_CRITERIA.AGE, PERSONA_CRITERIA.GENDER, PERSONA_CRITERIA.COUNTRY]" />
+        <div class="mission-survey-order-body-content-head">
+          <MissionSurveyOrderParticipants />
+          <MissionSurveyOrderCountry />
+        </div>
+        <MissionPersonaCriteria :criteria="[PERSONA_CRITERIA.AGE, PERSONA_CRITERIA.GENDER]" />
       </div>
       <MissionOrderSummary
         v-if="s.survey.items.length"
@@ -24,10 +27,11 @@ import MissionPersonaCriteria from '../_shared/MissionPersonaCriteria/MissionPer
 import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
 import MissionOrderSummary from '../_shared/MissionOrderSummary/MissionOrderSummary'
 import MissionSurveyOrderParticipants from './MissionSurveyOrderParticipants/MissionSurveyOrderParticipants'
+import MissionSurveyOrderCountry from './MissionSurveyOrderCountry/MissionSurveyOrderCountry'
 
 export default {
   name: 'MissionSurveyOrder',
-  components: { MissionOrderSummary, ButtonCircle, MissionSurveyOrderParticipants, MissionPersonaCriteria },
+  components: { MissionSurveyOrderCountry, MissionOrderSummary, ButtonCircle, MissionSurveyOrderParticipants, MissionPersonaCriteria },
   data() {
     return { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_LABELS, PERSONA_CRITERIA }
   },

@@ -98,10 +98,11 @@ export default {
       }
     },
     s() {
-      const { missionForm, missionFormSurvey } = this.$store.state
+      const { missionForm, missionFormSurvey, missionFormPersona } = this.$store.state
       return {
         ...missionForm,
-        survey: missionFormSurvey
+        survey: missionFormSurvey,
+        persona: missionFormPersona
       }
     },
     flatMappedItems() {
@@ -129,7 +130,8 @@ export default {
     flatMappedItemsPricingData() {
       this.$store.dispatch('missionFormSurvey/fetchPricing', {
         globalGetters: this.$store.getters,
-        missionForm: this.s
+        missionForm: this.s,
+        missionFormPersona: this.s.persona
       })
     }
   },

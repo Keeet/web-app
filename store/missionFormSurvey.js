@@ -403,7 +403,7 @@ export const mutations = {
 }
 
 export const actions = {
-  fetchPricing({ state, commit, getters }, { globalGetters, missionForm }) {
+  fetchPricing({ state, commit, getters }, { globalGetters, missionForm, missionFormPersona }) {
     if (globalGetters['missionForm/participantsError']) {
       return
     }
@@ -415,7 +415,8 @@ export const actions = {
           items: {
             ...getters.itemsCountByType
           },
-          participants: parseInt(missionForm.participants)
+          participants: parseInt(missionForm.participants),
+          country: missionFormPersona.countries[0]
         }
       })
         .then(({ data }) => {
