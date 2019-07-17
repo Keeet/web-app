@@ -94,11 +94,6 @@ export default {
       })
     }
   },
-  created() {
-    if (!this.isPreview()) {
-      this.$store.commit('surveyForm/init', this.$store.state.survey.items)
-    }
-  },
   mounted() {
     this.$ga.page(this.$router)
     if (this.isPreview()) {

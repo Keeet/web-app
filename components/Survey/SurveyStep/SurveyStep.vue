@@ -13,16 +13,16 @@
       <slot />
     </div>
     <div
-      v-if="buttonText"
+      v-if="isCint || buttonText"
       class="survey-step-button"
       :class="[{ buttonDisabled }, activeRootItem ? activeRootItem.type : '']"
     >
       <div class="survey-step-button-inner">
         <ButtonText
-          :text="buttonText"
+          :text="isCint ? 'Back to Cint' : buttonText"
           :bg-color="s.color"
           no-margin
-          @click="buttonLink ? redirectToButtonLink() : nextStep()"
+          @click="clickButton"
         />
       </div>
     </div>
@@ -60,6 +60,10 @@ export default {
     },
     activeItem() {
       return this.$store.getters['surveyForm/activeItem']
+    },
+    isCint() {
+      const { form: { activeClosing, orderId, cintUserId } } = this.s
+      return activeClosing && orderId && cintUserId
     }
   },
   watch: {
@@ -100,7 +104,19 @@ export default {
         return 'enterInput'
       }
     },
-    redirectToButtonLink() {
+    clickButton() {
+      const { cintProjectToken } = this.s
+      if (this.isCint) {
+        this.redirect(`https://s.cint.com/Survey/Complete?ProjectToken=${cintProjectToken}`)
+        return
+      }
+      if (this.buttonLink) {
+        this.redirect(this.buttonLink)
+        return
+      }
+      this.nextStep()
+    },
+    redirect(link) {
       const { id, type, form: { activeClosing } } = this.s
       if (activeClosing) {
         this.$mpSurvey.track('clickClosingRedirect', {
@@ -108,7 +124,7 @@ export default {
           missionType: type
         })
         window.setTimeout(() => {
-          window.location = this.buttonLink
+          window.location = link
         }, 500)
       }
     }

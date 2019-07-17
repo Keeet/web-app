@@ -1,9 +1,14 @@
+import { cleanDeep } from '../utils/objectUtils'
+
 export default function ({ $axios, app: { $auth }, redirect, store, route, env: { baseUrl } }) {
   $axios.defaults.baseURL = baseUrl
 
   $axios.interceptors.request.use(function (config) {
     if (config.noAuth) {
       return config
+    }
+    if (config.data) {
+      config.data = cleanDeep(config.data, null)
     }
     return new Promise((resolve) => {
       if ($auth.isAuthenticated()) {

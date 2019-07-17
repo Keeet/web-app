@@ -1,7 +1,6 @@
 <template>
   <div class="mission-survey-order-country">
     <Select
-      title="Country"
       :options="options"
       :value="s.countries[0]"
       mutation="missionFormPersona/setCountry"

@@ -282,7 +282,7 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
         }).then(handleRes).catch(handleError)
       })
     },
-    submitSurvey({ missionId, responses, duration, browser, deviceType, os }) {
+    submitSurvey({ missionId, responses, duration, browser, deviceType, os, orderId, cintUserId }) {
       return new Promise((resolve) => {
         $axios({
           method: 'post',
@@ -293,7 +293,9 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
             duration,
             browser,
             deviceType,
-            os
+            os,
+            orderId,
+            cintUserId
           }
         }).then(resolve)
       })

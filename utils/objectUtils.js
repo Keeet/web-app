@@ -29,3 +29,14 @@ export function flatMap(value, mapperFunction = i => i) {
     ? [].concat(...value.map(x => flatMap(x, mapperFunction)))
     : mapperFunction(value)
 }
+
+export function cleanDeep(object, value) {
+  for (const k in object) {
+    if (object[k] === value) {
+      delete object[k]
+    } else if (typeof object[k] === 'object') {
+      object[k] = cleanDeep(object[k])
+    }
+  }
+  return object
+}
