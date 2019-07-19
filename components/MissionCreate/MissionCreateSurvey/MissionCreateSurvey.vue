@@ -37,6 +37,7 @@ import MissionCreateSurveyCustomScreen from '../MissionCreateSurveyCustomScreen/
 import MissionCreateSurveyItems from '../MissionCreateSurveyItems/MissionCreateSurveyItems'
 import MissionCreateSurveyAdd from '../MissionCreateSurveyAdd/MissionCreateSurveyAdd'
 import MissionCreateSurveySummary from '../MissionCreateSurveySummary/MissionCreateSurveySummary'
+import { MISSION_SURVEY_PREVIEW_LOCAL_STORAGE_KEY } from '../../constants'
 
 export default {
   name: 'MissionCreateSurvey',
@@ -85,7 +86,7 @@ export default {
         item.image = item.imageMediaId ? urls[item.imageMediaId] : null
         item.images = item.imageMediaIds ? item.imageMediaIds.map(id => ({ url: urls[id] })) : null
       })
-      window.localStorage.setItem('surveyPreview', JSON.stringify({
+      window.localStorage.setItem(MISSION_SURVEY_PREVIEW_LOCAL_STORAGE_KEY, JSON.stringify({
         ...survey,
         previewValid: this.isValid,
         lastUpdatedAt: new Date().toISOString()

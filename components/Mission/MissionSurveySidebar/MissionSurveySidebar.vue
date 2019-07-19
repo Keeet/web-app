@@ -9,11 +9,8 @@
       :text-large="avgDuration"
       text-small="/ participant"
     />
-    <!-- TODO: go to preview -->
     <div class="mission-survey-sidebar-preview-button">
-      <nuxt-link :to="`/survey/${mission.id}`">
-        <ButtonText text="go to survey" />
-      </nuxt-link>
+      <ButtonText text="go to preview" @click="gotoPreview" />
     </div>
   </MissionSidebar>
 </template>
@@ -24,6 +21,7 @@ import MissionSidebarProgress from '../MissionSidebarProgress/MissionSidebarProg
 import ButtonText from '../../_shared/ButtonText/ButtonText'
 import MissionSurveySidebarCount from '../MissionSurveySidebarCount/MissionSurveySidebarCount'
 import { getDurationWithUnits } from '../../../utils/dateUtils'
+import { MISSION_SURVEY_PREVIEW_LOCAL_STORAGE_KEY } from '../../constants'
 export default {
   name: 'MissionSurveySidebar',
   components: { MissionSurveySidebarCount, ButtonText, MissionSidebarProgress, MissionSidebar },
@@ -31,8 +29,21 @@ export default {
     mission() {
       return this.$store.state.mission
     },
+    survey() {
+      return this.$store.state.survey
+    },
     avgDuration() {
       return getDurationWithUnits(this.mission.averageDuration)
+    }
+  },
+  methods: {
+    gotoPreview() {
+      window.localStorage.setItem(MISSION_SURVEY_PREVIEW_LOCAL_STORAGE_KEY, JSON.stringify({
+        ...this.survey,
+        previewValid: true,
+        lastUpdatedAt: new Date().toISOString()
+      }))
+      window.open('/survey/preview', '_blank')
     }
   }
 }

@@ -26,7 +26,13 @@
 </template>
 
 <script>
-import { MISSION_SURVEY_USABILITY_LAB_ITEMS, BROWSER, OS, DEVICE_TYPE } from '../constants'
+import {
+  MISSION_SURVEY_USABILITY_LAB_ITEMS,
+  BROWSER,
+  OS,
+  DEVICE_TYPE,
+  MISSION_SURVEY_PREVIEW_LOCAL_STORAGE_KEY
+} from '../constants'
 import OverlayModal from '../_shared/OverlayModal/OverlayModal'
 import SurveyCustomScreen from './SurveyCustomScreen/SurveyCustomScreen'
 import SurveyStep from './SurveyStep/SurveyStep'
@@ -107,7 +113,7 @@ export default {
       return this.$route.params.id === 'preview'
     },
     refreshPreview() {
-      const survey = JSON.parse(window.localStorage.getItem('surveyPreview'))
+      const survey = JSON.parse(window.localStorage.getItem(MISSION_SURVEY_PREVIEW_LOCAL_STORAGE_KEY))
       const surveyLastUpdatedAt = new Date(survey.lastUpdatedAt).getTime()
       if (
         !this.previewLastUpdatedAt ||
