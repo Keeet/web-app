@@ -4,8 +4,6 @@ const OPERATIONS = {
   CREATE_COMPANY_ADDRESS: 'CREATE_COMPANY_ADDRESS',
   UPDATE_COMPANY_USER_ROLE: 'UPDATE_COMPANY_USER_ROLE',
   INVITE_COMPANY_USER: 'INVITE_COMPANY_USER',
-  UPSERT_PERSONA: 'UPSERT_PERSONA',
-  DELETE_PERSONA: 'DELETE_PERSONA',
   UPSERT_PROJECT: 'UPSERT_PROJECT',
   CREATE_MISSION: 'CREATE_MISSION',
   UPDATE_MISSION: 'UPDATE_MISSION',
@@ -91,38 +89,6 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
             email,
             role
           }
-        }).then(handleRes).catch(handleError)
-      })
-    },
-
-    upsertPersona({ id, name, icon, demographicDataReq: { minAge, maxAge, occupations, genders }, screenerQuestions }) {
-      const method = !id ? 'post' : 'put'
-      const url = !id ? '/personas' : `/personas/${id}`
-      return new Promise((resolve, reject) => {
-        const handleRes = handleResponse.bind(this, OPERATIONS.UPSERT_PERSONA, null, resolve, reject)
-        $axios({
-          method,
-          url,
-          data: {
-            name,
-            icon,
-            demographicDataReq: {
-              minAge,
-              maxAge,
-              occupations,
-              genders
-            },
-            screenerQuestions
-          }
-        }).then(handleRes).catch(handleError)
-      })
-    },
-    deletePersona({ id }) {
-      return new Promise((resolve, reject) => {
-        const handleRes = handleResponse.bind(this, OPERATIONS.DELETE_PERSONA, null, resolve, reject)
-        $axios({
-          method: 'delete',
-          url: `/personas/${id}`
         }).then(handleRes).catch(handleError)
       })
     },
@@ -318,10 +284,6 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
         return [{ name: 'COMPANY', forced: true }]
       case OPERATIONS.UPDATE_COMPANY_USER_ROLE:
         return [{ name: 'COMPANY_USERS', forced: true }]
-      case OPERATIONS.UPSERT_PERSONA:
-        return [{ name: 'PERSONAS', forced: true }]
-      case OPERATIONS.DELETE_PERSONA:
-        return [{ name: 'PERSONAS', forced: true }]
       case OPERATIONS.UPSERT_PROJECT:
         return [{ name: 'PROJECT', id: data.id, forced: true }, { name: 'PROJECTS', forced: true }]
       case OPERATIONS.CREATE_MISSION:
