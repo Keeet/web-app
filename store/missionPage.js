@@ -6,7 +6,8 @@ const { RESULTS, SHARE } = MISSION_SURVEY_PAGES
 export const state = () => ({
   activePage: null,
   disableAnimation: false,
-  insightFormOpened: false
+  insightFormOpened: false,
+  deleteConfirmOpened: false
 })
 
 export const mutations = {
@@ -30,5 +31,11 @@ export const mutations = {
   },
   closeInsightForm(state) {
     state.insightFormOpened = false
+  },
+  openDeleteConfirm(state) {
+    state.deleteConfirmOpened = true
+  },
+  closeDeleteConfirm(state) {
+    state.deleteConfirmOpened = false
   }
 }

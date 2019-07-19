@@ -5,8 +5,10 @@ const OPERATIONS = {
   UPDATE_COMPANY_USER_ROLE: 'UPDATE_COMPANY_USER_ROLE',
   INVITE_COMPANY_USER: 'INVITE_COMPANY_USER',
   UPSERT_PROJECT: 'UPSERT_PROJECT',
+  DELETE_PROJECT: 'DELETE_PROJECT',
   CREATE_MISSION: 'CREATE_MISSION',
   UPDATE_MISSION: 'UPDATE_MISSION',
+  DELETE_MISSION: 'DELETE_MISSION',
   SUBMIT_MISSION_ORDER: 'SUBMIT_MISSION_ORDER',
   CREATE_MISSION_INSIGHT_LINK: 'CREATE_MISSION_INSIGHT_LINK',
   SUBMIT_SURVEY: 'SUBMIT_SURVEY'
@@ -108,6 +110,15 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
         }).then(handleRes).catch(handleError)
       })
     },
+    deleteProject(id) {
+      return new Promise((resolve, reject) => {
+        const handleRes = handleResponse.bind(this, OPERATIONS.DELETE_PROJECT, null, resolve, reject)
+        $axios({
+          method: 'delete',
+          url: `/projects/${id}`
+        }).then(handleRes).catch(handleError)
+      })
+    },
 
     createMissionRecruit({
       projectId,
@@ -206,6 +217,15 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
         }).then(handleRes).catch(handleError)
       })
     },
+    deleteMission({ id, projectId }) {
+      return new Promise((resolve, reject) => {
+        const handleRes = handleResponse.bind(this, OPERATIONS.DELETE_MISSION, { projectId }, resolve, reject)
+        $axios({
+          method: 'delete',
+          url: `/missions/${id}`
+        }).then(handleRes).catch(handleError)
+      })
+    },
     submitMissionOrder({
       participants,
       demographicData: {
@@ -286,10 +306,14 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
         return [{ name: 'COMPANY_USERS', forced: true }]
       case OPERATIONS.UPSERT_PROJECT:
         return [{ name: 'PROJECT', id: data.id, forced: true }, { name: 'PROJECTS', forced: true }]
+      case OPERATIONS.DELETE_PROJECT:
+        return [{ name: 'PROJECTS', forced: true }]
       case OPERATIONS.CREATE_MISSION:
         return [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: data.projectId, forced: true }]
       case OPERATIONS.UPDATE_MISSION:
         return [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: data.projectId, forced: true }]
+      case OPERATIONS.DELETE_MISSION:
+        return [{ name: 'PROJECT', id: params.projectId, forced: true }]
       case OPERATIONS.SUBMIT_MISSION_ORDER:
         return [{ name: 'MISSION', id: params.missionId, forced: true }]
       case OPERATIONS.CREATE_MISSION_INSIGHT_LINK:

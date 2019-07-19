@@ -3,7 +3,7 @@
     <div v-show="disabled" class="button-text-disabled" />
     <button
       class="button-text-item"
-      :class="{disabled, leftArrowActive, rightArrowActive, iconActive: !!icon}"
+      :class="[{disabled, leftArrowActive, rightArrowActive, iconActive: !!icon}, type]"
       :style="{ backgroundColor: bgColor }"
     >
       <span v-if="!!icon">
@@ -21,6 +21,7 @@ const TYPES = {
   BLUE: 'BLUE',
   BLUE_BORDER: 'BLUE_BORDER',
   GREY: 'GREY',
+  GREY_DELETE: 'GREY_DELETE',
   CUSTOM: 'CUSTOM'
 }
 

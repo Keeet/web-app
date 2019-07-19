@@ -70,12 +70,20 @@
     }
   }
 
-  &.GREY .button-text-item {
-    background-color: rgba($grey, 0.4);
-    color: $grey-dark;
+  &.GREY, &.GREY_DELETE {
 
-    .button-text-item-arrow {
-      fill: $grey-dark;
+    .button-text-item {
+      background-color: rgba($grey, 0.4);
+      color: $grey-dark;
+
+      .button-text-item-arrow {
+        fill: $grey-dark;
+      }
+
+      &.GREY_DELETE:hover {
+        background-color: $red-error;
+        color: #fff;
+      }
     }
   }
 
