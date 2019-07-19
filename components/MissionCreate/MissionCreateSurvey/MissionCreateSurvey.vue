@@ -31,14 +31,12 @@
 
 <script>
 import uuidv4 from 'uuid'
-import { MISSION_SURVEY_ITEMS } from '../../constants'
 import { scrollToTopId } from '../../../utils/scrollUtils'
 import MissionCreateSurveyDetails from '../MissionCreateSurveyDetails/MissionCreateSurveyDetails'
 import MissionCreateSurveyCustomScreen from '../MissionCreateSurveyCustomScreen/MissionCreateSurveyCustomScreen'
 import MissionCreateSurveyItems from '../MissionCreateSurveyItems/MissionCreateSurveyItems'
 import MissionCreateSurveyAdd from '../MissionCreateSurveyAdd/MissionCreateSurveyAdd'
 import MissionCreateSurveySummary from '../MissionCreateSurveySummary/MissionCreateSurveySummary'
-import { copy } from '../../../utils/objectUtils'
 
 export default {
   name: 'MissionCreateSurvey',
@@ -70,7 +68,8 @@ export default {
   },
   methods: {
     setPreview() {
-      const survey = this.buildMission()
+      const { missionForm } = this.$store.state
+      const survey = this.$store.getters['missionFormSurvey/buildMission']({ missionForm })
       const urls = this.$store.state.dropzoneUploads
       survey.welcomeLogoId = survey.welcomeLogoId ? urls[survey.welcomeLogoId] : null
       survey.closingLogoId = survey.closingLogoId ? urls[survey.closingLogoId] : null
@@ -98,33 +97,12 @@ export default {
       }
       scrollToTopId(this.s.invalidFields.map(field => field.id))
     },
-    buildMission() {
-      const mission = {
-        ...copy(this.s),
-        ...copy(this.s.survey)
-      }
-      delete mission.survey
-      function formatItems(items) {
-        const { SINGLE_SELECT, MULTI_SELECT } = MISSION_SURVEY_ITEMS
-        return items.map((item) => {
-          // clear empty choices
-          if ([SINGLE_SELECT, MULTI_SELECT].includes(item.type)) {
-            item.choices = item.choices.filter(choice => choice !== '')
-          }
-          if (item.followUps) {
-            item.followUps = formatItems(item.followUps)
-          }
-          return item
-        })
-      }
-      mission.items = formatItems(mission.items)
-      mission.color = mission.color.hex
-
-      return mission
-    },
     submit() {
+      const { missionForm } = this.$store.state
       this.$store.commit('missionForm/pending')
-      this.$push.createMissionSurvey(this.buildMission()).then(({ id }) => {
+      this.$store.dispatch('missionFormSurvey/submit', {
+        missionForm
+      }).then(({ id }) => {
         this.$store.commit('missionForm/submitted')
         this.$router.push(`/missions/${id}`)
       })

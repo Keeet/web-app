@@ -1,5 +1,8 @@
 import { copy, flatMap } from '../utils/objectUtils'
-import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS } from '../components/constants'
+import {
+  MISSION_SURVEY_ITEMS,
+  MISSION_SURVEY_USABILITY_LAB_ITEMS
+} from '../components/constants'
 
 const {
   SHORT_TEXT,
@@ -310,6 +313,16 @@ export const actions = {
   },
   handleValidationError({ commit }, { error }) {
     commit('setActiveItemValid', !error)
+  },
+  submit({ state }, { survey, userAgent }) {
+    const duration = Math.round((new Date().getTime() - state.initDate.getTime()) / 1000)
+    const missionId = survey.id
+    return this.$push.submitSurvey({
+      missionId,
+      ...state,
+      ...userAgent,
+      duration
+    })
   }
 }
 

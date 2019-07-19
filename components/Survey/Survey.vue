@@ -75,22 +75,19 @@ export default {
       if (!submit || this.isPreview()) {
         return
       }
-      const duration = Math.round((new Date().getTime() - this.s.initDate.getTime()) / 1000)
+      const { survey } = this.$store.state
       const { browser, device, os } = new this.$uaParser().getResult()
       const uaConstants = this.$uaParserConstants
-      const ua = {
+      const userAgent = {
         browser: uaConstants.BROWSER[browser.name] || BROWSER.OTHER,
         deviceType: uaConstants.DEVICE_TYPE[device.type] || DEVICE_TYPE.DESKTOP,
         os: uaConstants.OS[os.name] || OS.OTHER
       }
-      const missionId = this.$store.state.survey.id
-      this.$push.submitSurvey({
-        missionId,
-        ...this.s,
-        ...ua,
-        duration
+      this.$store.dispatch('surveyForm/submit', {
+        survey,
+        userAgent
       }).then(() => {
-        this.localStorageSetSubmitted(missionId)
+        this.localStorageSetSubmitted(survey.id)
       })
     }
   },

@@ -49,7 +49,7 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
       })
     },
 
-    createCompanyAddress({ name, street, houseNumber, addressDescription, zipCode, city, country }) {
+    createCompanyLocation({ name, street, houseNumber, addressDescription, zipCode, city, country }) {
       return new Promise((resolve, reject) => {
         const handleRes = handleResponse.bind(this, OPERATIONS.CREATE_COMPANY_ADDRESS, null, resolve, reject)
         $axios({

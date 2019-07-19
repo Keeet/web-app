@@ -146,6 +146,29 @@ export const getters = {
       participants,
       items: getters.itemsCountByType
     })
+  },
+  buildMission: state => ({ missionForm }) => {
+    const mission = {
+      ...copy(state),
+      ...copy(missionForm)
+    }
+    function formatItems(items) {
+      const { SINGLE_SELECT, MULTI_SELECT } = MISSION_SURVEY_ITEMS
+      return items.map((item) => {
+        // clear empty choices
+        if ([SINGLE_SELECT, MULTI_SELECT].includes(item.type)) {
+          item.choices = item.choices.filter(choice => choice !== '')
+        }
+        if (item.followUps) {
+          item.followUps = formatItems(item.followUps)
+        }
+        return item
+      })
+    }
+    mission.items = formatItems(mission.items)
+    mission.color = mission.color.hex
+
+    return mission
   }
 }
 
@@ -425,6 +448,10 @@ export const actions = {
         })
         .catch(reject)
     })
+  },
+  submit({ state, getters }, { missionForm }) {
+    const mission = getters.buildMission({ missionForm })
+    return this.$push.createMissionSurvey(mission)
   }
 }
 

@@ -33,6 +33,29 @@ export const getters = {
       deviceSkills,
       specialCriteria: specialCriteria.length
     })
+  },
+  buildMission: state => ({ missionForm, missionFormPersona }) => {
+    const { projectId, type, title, language, participants } = missionForm
+    const { studyType, duration, sessions, location } = state
+    const mission = {
+      projectId,
+      type,
+      title,
+      studyType,
+      duration: parseInt(duration),
+      language,
+      participants,
+      sessions: sessions.map(session => session.start.toISOString()),
+      demographicData: missionFormPersona,
+      specialCriteria: missionFormPersona.specialCriteria.map(sc => sc.value)
+    }
+    if (type === MISSIONS.IN_HOUSE) {
+      return {
+        ...mission,
+        ...location
+      }
+    }
+    return mission
   }
 }
 
@@ -140,6 +163,15 @@ export const actions = {
           resolve()
         })
         .catch(reject)
+    })
+  },
+  submit({ state, commit, getters }, { missionForm, missionFormPersona }) {
+    const mission = getters.buildMission({ missionForm, missionFormPersona })
+    return new Promise((resolve) => {
+      this.$push.createMissionRecruit(mission).then(({ id }) => {
+        commit('showSubmittedPopup')
+        resolve(id)
+      })
     })
   }
 }

@@ -31,6 +31,15 @@ export const getters = {
       return flatMap(deepArray)
         .find(i => i.id === id)
     }
+  },
+  getCompanyLocationById(state) {
+    return (id) => {
+      const { locations } = state.company
+      if (!locations || !locations.length) {
+        return
+      }
+      return locations.find(l => l.id === id)
+    }
   }
 }
 

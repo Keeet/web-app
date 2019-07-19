@@ -3,7 +3,9 @@
     <MissionCreateRecruitStep
       :index="1"
     >
-      <MissionCreateRecruitForm :show-errors="s.showErrors" />
+      <MissionCreateRecruitForm
+        :show-errors="$store.state.missionForm.showErrors"
+      />
     </MissionCreateRecruitStep>
     <MissionCreateRecruitStep
       :index="2"
@@ -27,7 +29,6 @@
 </template>
 
 <script>
-import { MISSIONS } from '../../constants'
 import MissionCreateRecruitForm from '../MissionCreateRecruitForm/MissionCreateRecruitForm'
 import MissionCreateRecruitCalendar from '../MissionCreateRecruitCalendar/MissionCreateRecruitCalendar'
 import MissionCreateRecruitSummary from '../MissionCreateRecruitSummary/MissionCreateRecruitSummary'
@@ -43,45 +44,15 @@ export default {
     MissionCreateRecruitCalendar,
     MissionCreateRecruitForm
   },
-  computed: {
-    s() {
-      const { missionForm, missionFormRecruit, missionFormPersona } = this.$store.state
-      return {
-        ...missionForm,
-        recruit: missionFormRecruit,
-        persona: missionFormPersona
-      }
-    }
-  },
   methods: {
-    buildMission() {
-      const { projectId, type, title, language, participants } = this.s
-      const { studyType, duration, sessions, location } = this.s.recruit
-      const mission = {
-        projectId,
-        type,
-        title,
-        studyType,
-        duration: parseInt(duration),
-        language,
-        participants,
-        sessions: sessions.map(session => session.start.toISOString()),
-        demographicData: this.s.persona,
-        specialCriteria: this.s.persona.specialCriteria.map(sc => sc.value)
-      }
-      if (type === MISSIONS.IN_HOUSE) {
-        return {
-          ...mission,
-          ...location
-        }
-      }
-      return mission
-    },
     submit() {
+      const { missionForm, missionFormPersona } = this.$store.state
       this.$store.commit('missionForm/pending')
-      this.$push.createMissionRecruit(this.buildMission()).then(({ id }) => {
+      this.$store.dispatch('missionFormRecruit/submit', {
+        missionForm,
+        missionFormPersona
+      }).then((id) => {
         this.$store.commit('missionForm/setSubmittedMissionId', id)
-        this.$store.commit('missionFormRecruit/showSubmittedPopup')
       })
     }
   }

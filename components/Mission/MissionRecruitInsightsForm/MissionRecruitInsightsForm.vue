@@ -23,6 +23,8 @@
     <Input
       title="Description"
       :value="s.description"
+      :error="descriptionError"
+      :disable-error="!showErrors"
       mutation="missionInsightsForm/setDescription"
       textarea
     />
@@ -36,7 +38,6 @@
 </template>
 
 <script>
-import { MISSION_RECRUIT_INSIGHT_LINKS } from '../../constants'
 import OverlayModal from '../../_shared/OverlayModal/OverlayModal'
 import Input from '../../_shared/Input/Input'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
@@ -68,34 +69,16 @@ export default {
       return null
     },
     titleError() { return this.s.title !== '' ? null : 'required' },
+    descriptionError() { return this.s.description !== '' ? null : 'required' },
     valid() {
-      return !this.urlError && !this.titleError
+      return !this.urlError && !this.titleError && !this.descriptionError
     }
   },
   methods: {
     submit() {
-      const missionId = this.mission.id
-      const { title, description, url } = this.s
-      this.$store.commit('missionInsightsForm/pending')
-      this.$push.createMissionInsightLink({
-        missionId,
-        title,
-        description,
-        url: url.startsWith('http://') || url.startsWith('https://') ? url : `https://${url}`,
-        linkType: this.getLinkType(url)
-      }).then(() => {
-        this.$store.commit('missionInsightsForm/submitted')
+      this.$store.dispatch('missionInsightsForm/submit').then(() => {
         this.$store.commit('missionPage/closeInsightForm')
       })
-    },
-    getLinkType(url) {
-      if (url.includes('airtable.com')) {
-        return MISSION_RECRUIT_INSIGHT_LINKS.AIR_TABLE
-      }
-      if (url.includes('google.com')) {
-        return MISSION_RECRUIT_INSIGHT_LINKS.GOOGLE_DOCS
-      }
-      return MISSION_RECRUIT_INSIGHT_LINKS.GENERIC
     }
   }
 }

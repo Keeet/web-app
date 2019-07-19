@@ -62,3 +62,15 @@ export const mutations = {
     state.pending = false
   }
 }
+
+export const actions = {
+  submitCompanyLocation({ commit, state }) {
+    commit('pending')
+    return new Promise((resolve) => {
+      this.$push.createCompanyLocation(state).then((newLocation) => {
+        commit('submitted')
+        resolve(newLocation)
+      })
+    })
+  }
+}

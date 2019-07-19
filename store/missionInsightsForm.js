@@ -1,3 +1,5 @@
+import { MISSION_RECRUIT_INSIGHT_LINKS } from '../components/constants'
+
 const defaultState = {
   missionId: null,
   url: '',
@@ -32,4 +34,31 @@ export const mutations = {
   submitted(state) {
     state.pending = false
   }
+}
+
+export const actions = {
+  submit({ state, commit }) {
+    return new Promise((resolve) => {
+      const { url } = state
+      commit('pending')
+      this.$push.createMissionInsightLink({
+        ...state,
+        url: url.startsWith('http://') || url.startsWith('https://') ? url : `https://${url}`,
+        linkType: getLinkType(url)
+      }).then(() => {
+        commit('submitted')
+        resolve()
+      })
+    })
+  }
+}
+
+function getLinkType(url) {
+  if (url.includes('airtable.com')) {
+    return MISSION_RECRUIT_INSIGHT_LINKS.AIR_TABLE
+  }
+  if (url.includes('google.com')) {
+    return MISSION_RECRUIT_INSIGHT_LINKS.GOOGLE_DOCS
+  }
+  return MISSION_RECRUIT_INSIGHT_LINKS.GENERIC
 }

@@ -117,12 +117,10 @@ export default {
   },
   methods: {
     submitForm() {
-      this.$store.commit('locationForm/pending')
-      this.$push.createCompanyAddress(this.s).then((res) => {
-        const { id } = res
-        const newLocation = this.$store.state.company.locations.filter(l => l.id === id)[0]
-        this.$store.commit('missionFormRecruit/setLocation', newLocation)
-        this.$store.commit('locationForm/submitted')
+      this.$store.dispatch('locationForm/submitCompanyLocation').then((newLocation) => {
+        const { id } = newLocation
+        const newCompanyLocation = this.$store.getters.getCompanyLocationById(id)
+        this.$store.commit('missionFormRecruit/setLocation', newCompanyLocation)
         this.$store.commit('missionFormRecruit/closeLocationForm')
       })
     }

@@ -106,9 +106,6 @@ export default {
     s() {
       return this.$store.state.companyForm
     },
-    onCreate() {
-      return !this.s.id
-    },
     nameError() { return this.s.name !== '' ? null : 'required' },
     streetError() { return this.s.street !== '' ? null : 'required' },
     houseNumberError() { return this.s.houseNumber !== '' ? null : 'required' },
@@ -128,9 +125,7 @@ export default {
   },
   methods: {
     submitForm() {
-      this.$store.commit('companyForm/pending')
-      this.$push.upsertCompany(this.s).then(() => {
-        this.$store.commit('companyForm/submitted')
+      this.$store.dispatch('companyForm/submit').then(() => {
         this.$emit('submit')
       })
     }

@@ -62,3 +62,15 @@ export const mutations = {
     state.pending = false
   }
 }
+
+export const actions = {
+  submit({ commit, state }) {
+    commit('pending')
+    return new Promise((resolve) => {
+      this.$push.upsertCompany(state).then(() => {
+        commit('submitted')
+        resolve()
+      })
+    })
+  }
+}
