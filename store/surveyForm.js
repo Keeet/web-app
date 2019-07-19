@@ -120,7 +120,7 @@ export const getters = {
 }
 
 export const mutations = {
-  init(state, { items, orderId, cintUserId }) {
+  init(state, { items, orderId = null, cintUserId = null }) {
     for (const key in defaultState) {
       state[key] = defaultState[key]
     }

@@ -118,7 +118,7 @@ export default {
       ) {
         this.previewLastUpdatedAt = surveyLastUpdatedAt
         this.$store.commit('setSurvey', survey)
-        this.$store.commit('surveyForm/init', survey.items)
+        this.$store.commit('surveyForm/init', { items: survey.items })
       }
     },
     localStorageCheckSubmitted() {

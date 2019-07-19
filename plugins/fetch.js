@@ -61,10 +61,10 @@ const config = {
   }
 }
 
-export default function ({ $axios, store }, inject) {
+export default function ({ $axios, store, error }, inject) {
   inject('fetch', (resources) => {
     const promises = resources.map((resource) => {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         const { name, forced, mockDataKey, id, queryParams } = resource
         if (!config[name]) {
           // eslint-disable-next-line no-console
@@ -92,9 +92,10 @@ export default function ({ $axios, store }, inject) {
         }
         $axios.get(pathWithParams, axiosCfg).then((res) => {
           store.commit(mutation, res.data)
-          resolve()
+          resolve(res)
         }).catch((err) => {
-          reject(err)
+          const { status, data } = err.response
+          resolve(error({ statusCode: status, message: data }))
         })
       })
     })
