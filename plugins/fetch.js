@@ -62,43 +62,78 @@ const config = {
 }
 
 export default function ({ $axios, store, error }, inject) {
-  inject('fetch', (resources) => {
+  inject('fetch', (resources, handleRes = res => res, handleErr = err => err) => {
     const promises = resources.map((resource) => {
-      return new Promise((resolve) => {
-        const { name, forced, mockDataKey, id, queryParams } = resource
-        if (!config[name]) {
-          // eslint-disable-next-line no-console
-          console.error(`resource ${name} is not configured`)
+      const { name, forced, mockDataKey, id, queryParams } = resource
+      const { path, mutation, key, mockData, baseUrl, noAuth } = config[name]
+
+      return new Promise((resolve, reject) => {
+        if (rejectIfInvalidResourceName({ reject, error }, name)) {
           return
         }
-        const { path, mutation, key, mockData, baseUrl, noAuth } = config[name]
-        const alreadyFetched = store.state[key] && (!id || id === store.state[key].id)
-        if (!forced && alreadyFetched) {
-          resolve('ALREADY_FETCHED')
+        if (resolveIfAlreadyFetchedAndNoForceUpdate({ resolve, store }, key, id, forced)) {
           return
         }
-        if (USE_MOCKS && (mockData || mockDataKey)) {
-          store.commit(mutation, mockDataKey ? config[name][mockDataKey] : mockData)
-          resolve()
+        if (USE_MOCKS && commitMockAndResolveIfExistingByOptionalKey({ resolve, store }, mutation, mockData, mockDataKey)) {
           return
         }
-        const pathWithParams = path.replace('{id}', id)
-        const axiosCfg = { noAuth }
-        if (baseUrl) {
-          axiosCfg.baseURL = baseUrl
-        }
-        if (queryParams) {
-          axiosCfg.params = queryParams
-        }
+
+        const pathWithParams = buildPathWithOptionalParams(path, id)
+        const axiosCfg = buildAxiosCfg(noAuth, baseUrl, queryParams)
+
         $axios.get(pathWithParams, axiosCfg).then((res) => {
           store.commit(mutation, res.data)
           resolve(res)
         }).catch((err) => {
           const { status, data } = err.response
-          resolve(error({ statusCode: status, message: data }))
+          reject(error({ statusCode: status, message: data }))
         })
       })
     })
-    return Promise.all(promises)
+    return new Promise((resolve) => {
+      Promise.all(promises).then((res) => {
+        resolve(handleRes(res))
+      }).catch((nuxtError) => {
+        resolve(handleErr(nuxtError))
+      })
+    })
   })
 };
+
+function rejectIfInvalidResourceName({ reject, error }, name) {
+  if (!config[name]) {
+    reject(error({ statusCode: 500, message: `resource ${name} is not configured` }))
+    return true
+  }
+}
+
+function resolveIfAlreadyFetchedAndNoForceUpdate({ resolve, store }, key, id, forced) {
+  const storeItem = store.state[key]
+  const alreadyFetched = storeItem && (!id || id === storeItem.id)
+  if (!forced && alreadyFetched) {
+    resolve('ALREADY_FETCHED')
+    return true
+  }
+}
+
+function commitMockAndResolveIfExistingByOptionalKey({ resolve, store }, mutation, mockData, mockDataKey) {
+  if (mockData || mockDataKey) {
+    store.commit(mutation, mockDataKey ? config[name][mockDataKey] : mockData)
+    resolve()
+    return true
+  }
+}
+
+function buildPathWithOptionalParams(pathTemplate, id) {
+  return pathTemplate.replace('{id}', id)
+}
+
+function buildAxiosCfg(noAuth, baseUrl, queryParams) {
+  const axiosCfg = { noAuth }
+  if (baseUrl) {
+    axiosCfg.baseURL = baseUrl
+  }
+  if (queryParams) {
+    axiosCfg.params = queryParams
+  }
+}

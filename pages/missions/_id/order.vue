@@ -12,20 +12,21 @@ export default {
     return !!id
   },
   fetch({ app: { $fetch }, store, params: { id } }) {
-    return new Promise((resolve) => {
-      $fetch([{ name: 'USER' }, { name: 'MISSION', id }, { name: 'SURVEY', id }, { name: 'COMPANY' }]).then(() => {
+    return $fetch(
+      [{ name: 'USER' }, { name: 'MISSION', id }, { name: 'SURVEY', id }, { name: 'COMPANY' }],
+      () => {
         store.commit('missionForm/init', { project: null, participants: 50 })
         store.commit('missionFormSurvey/init')
         store.commit('missionFormPersona/init')
         store.commit('missionFormPersona/setCountry', store.state.company.country)
         store.commit('missionFormSurvey/setItems', store.state.survey.items)
-        store.dispatch('missionFormSurvey/fetchPricing', {
+        return store.dispatch('missionFormSurvey/fetchPricing', {
           globalGetters: store.getters,
           missionForm: store.state.missionForm,
           missionFormPersona: store.state.missionFormPersona
-        }).then(resolve)
-      })
-    })
+        })
+      }
+    )
   }
 }
 </script>

@@ -5,8 +5,8 @@
 <script>
 import Survey from '../../components/Survey/Survey'
 
-function redirectIfSufficientCintResponses(res, redirect) {
-  const cintGone = res.find(item => item.statusCode === 410)
+function redirectIfSufficientCintResponses(err, redirect) {
+  const cintGone = err.statusCode === 410
   if (cintGone) {
     const { message: { cintProjectToken } } = cintGone
     redirect(`https://s.cint.com/Survey/QuotaFull?ProjectToken=${cintProjectToken}`)
@@ -30,24 +30,22 @@ export default {
     if (id === 'preview') {
       return true
     }
-    return new Promise((resolve) => {
-      $fetch([{
-        name: 'SURVEY',
-        id,
-        queryParams: orderId ? { orderId } : null,
-        forced: true
-      }])
-        .then((res) => {
-          if (cintUserId && redirectIfSufficientCintResponses(res, redirect)) {
-            return
-          }
-          store.commit('surveyForm/init', {
-            items: store.state.survey.items,
-            orderId: orderId || null,
-            cintUserId: cintUserId || null
-          })
-          resolve()
-        })
+    return $fetch([{
+      name: 'SURVEY',
+      id,
+      queryParams: orderId ? { orderId } : null,
+      forced: true
+    }], () => {
+      store.commit('surveyForm/init', {
+        items: store.state.survey.items,
+        orderId: orderId || null,
+        cintUserId: cintUserId || null
+      })
+    }, (err) => {
+      if (cintUserId && redirectIfSufficientCintResponses(err, redirect)) {
+        return
+      }
+      return err
     })
   }
 }
