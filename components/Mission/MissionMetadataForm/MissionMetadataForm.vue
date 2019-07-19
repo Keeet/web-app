@@ -15,7 +15,12 @@
       placeholder="Enter you mission description here to explain what you want to achieve with this research session..."
       textarea
     />
-    <ButtonText text="Update" :disabled="!formValid" @click="submit" @disabledClick="showErrors = true" />
+    <ButtonText
+      text="Update"
+      :disabled="!formValid"
+      @click="$store.dispatch('missionMetadataForm/submit')"
+      @disabledClick="showErrors = true"
+    />
   </div>
 </template>
 
@@ -36,15 +41,6 @@ export default {
     titleError() { return this.s.title !== '' ? null : 'required' },
     formValid() {
       return !this.titleError
-    }
-  },
-  methods: {
-    submit() {
-      this.$store.commit('missionMetadataForm/pending')
-      this.$push.updateMission(this.s).then(() => {
-        this.$store.commit('missionMetadataForm/submitted')
-        this.$store.commit('missionMetadataForm/setOverlayOpened', false)
-      })
     }
   }
 }

@@ -68,11 +68,7 @@ export default {
   },
   methods: {
     submit() {
-      this.$store.commit('projectForm/pending')
-      this.$push.upsertProject(this.s).then((data) => {
-        const { id } = data
-        this.$router.push(`/projects/${id}`, () => { this.$store.commit('projectForm/submitted') })
-      })
+      this.$store.dispatch('projectForm/submit', { redirectToProject: true })
     }
   }
 }

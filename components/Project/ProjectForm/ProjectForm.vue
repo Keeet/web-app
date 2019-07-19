@@ -15,7 +15,12 @@
       placeholder="Enter you project description here to explain what you want to achieve with this research session …"
       textarea
     />
-    <ButtonText text="Update" :disabled="!formValid" @click="submit" @disabledClick="showErrors = true" />
+    <ButtonText
+      text="Update"
+      :disabled="!formValid"
+      @click="$store.dispatch('projectForm/submit')"
+      @disabledClick="showErrors = true"
+    />
   </div>
 </template>
 
@@ -46,15 +51,6 @@ export default {
     },
     formValid() {
       return !this.titleError
-    }
-  },
-  methods: {
-    submit() {
-      this.$store.commit('projectForm/pending')
-      this.$push.upsertProject(this.s).then(() => {
-        this.$store.commit('projectForm/submitted')
-        this.$store.commit('projectForm/setOverlayOpened', false)
-      })
     }
   }
 }

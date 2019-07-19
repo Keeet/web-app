@@ -16,7 +16,7 @@ export const mutations = {
       const { id, title, description } = project
       state.id = id
       state.title = title
-      state.description = description
+      state.description = description || defaultState.description
 
       state.overlayOpened = defaultState.overlayOpened
       state.pending = defaultState.pending
@@ -43,5 +43,25 @@ export const mutations = {
   submitted(state) {
     state.pending = false
     state.inProgress = false
+  }
+}
+
+export const actions = {
+  submit({ state, commit }, { redirectToProject = false } = {}) {
+    commit('pending')
+    this.$push.upsertProject({
+      ...state,
+      description: state.description !== '' ? state.description : null
+    }).then((data) => {
+      if (redirectToProject) {
+        const { id } = data
+        this.$router.push(`/projects/${id}`, () => {
+          commit('submitted')
+        })
+        return
+      }
+      commit('setOverlayOpened', false)
+      commit('submitted')
+    })
   }
 }

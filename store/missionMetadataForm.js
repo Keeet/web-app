@@ -15,7 +15,7 @@ export const mutations = {
       const { id, title, description } = mission
       state.id = id
       state.title = title
-      state.description = description
+      state.description = description || defaultState.description
 
       state.overlayOpened = defaultState.overlayOpened
       state.pending = defaultState.pending
@@ -40,5 +40,18 @@ export const mutations = {
   },
   submitted(state) {
     state.pending = false
+  }
+}
+
+export const actions = {
+  submit({ state, commit }) {
+    commit('pending')
+    this.$push.updateMission({
+      ...state,
+      description: state.description !== '' ? state.description : null
+    }).then(() => {
+      commit('submitted')
+      commit('setOverlayOpened', false)
+    })
   }
 }
