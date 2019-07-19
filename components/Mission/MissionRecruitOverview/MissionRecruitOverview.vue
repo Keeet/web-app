@@ -43,7 +43,7 @@ export default {
           startsAt: new Date(session.startsAt)
         }
       })
-      return groupByDay(sessionsWithDeserializedDate, 'startsAt', 'sessions', true)
+      return groupByDay(sessionsWithDeserializedDate, 'startsAt', 'sessions')
     }
   },
   methods: {
