@@ -33,7 +33,7 @@
     </template>
     <template slot="buttons">
       <ButtonText
-        text="Cancel"
+        text="Back"
         type="GREY"
         @click="$emit('cancel')"
       />
