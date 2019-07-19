@@ -41,6 +41,7 @@ export default {
           missionType: type
         })
         this.$store.commit('missionFormSurvey/init')
+        this.$store.commit('missionFormPersona/init')
         this.$store.commit('missionFormPersona/setCountry', this.$store.state.company.country)
       }
       this.$store.commit('missionForm/setType', type)
