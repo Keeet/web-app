@@ -29,8 +29,10 @@
 </template>
 
 <script>
-import { MISSION_SURVEY_ITEM_LIKERT, MISSION_SURVEY_ITEM_LIKERT_LABELS, MISSION_SURVEY_ITEM_LIKERT_OPTIONS } from '../../constants'
+import { MISSION_SURVEY_ITEM_LIKERT, MISSION_SURVEY_ITEM_LIKERT_LABELS } from '../../constants'
 import Select from '../../_shared/Select/Select'
+import { getLikertOptionsByTypeAndLocale } from '../../../utils/intlUtils'
+
 export default {
   name: 'MissionCreateSurveyItemLikertQuestion',
   components: { Select },
@@ -59,7 +61,7 @@ export default {
       }))
     },
     scalaOptions() {
-      return MISSION_SURVEY_ITEM_LIKERT_OPTIONS[this.item.answerType]
+      return getLikertOptionsByTypeAndLocale.bind(this)(this.item.answerType, this.$store.state.missionFormSurvey.language)
     }
   },
   methods: {

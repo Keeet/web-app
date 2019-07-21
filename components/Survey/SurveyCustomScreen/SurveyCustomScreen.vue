@@ -72,10 +72,10 @@ export default {
     buttonText() {
       switch (this.type) {
         case TYPES.WELCOME:
-          return 'Start'
+          return this.$t('survey.welcomeButton', this.s.language)
         case TYPES.CLOSING:
           if (this.s.redirectLink) {
-            return 'Finish'
+            return this.$t('survey.closingButton', this.s.language)
           }
       }
       return null

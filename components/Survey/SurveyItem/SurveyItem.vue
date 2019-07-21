@@ -10,7 +10,7 @@
         @click="twoColumnLayoutFullScreen = !twoColumnLayoutFullScreen"
       >
         <p v-if="twoColumnLayoutFullScreen" class="survey-item-left-full-screen-text">
-          close fullscreen
+          {{ $t('survey.items.closeFullscreen', survey.language) }}
         </p>
         <IconFullScreen />
       </div>
@@ -50,9 +50,7 @@
 <script>
 import {
   MISSION_SURVEY_ITEMS,
-  MISSION_SURVEY_USABILITY_LAB_ITEMS,
-  MISSION_SURVEY_USABILITY_LAB_ITEM_TITLE,
-  MISSION_SURVEY_USABILITY_LAB_ITEM_SUBTITLE
+  MISSION_SURVEY_USABILITY_LAB_ITEMS
 } from '../../constants'
 import SurveyItemText from '../SurveyItemText/SurveyItemText'
 import SurveyItemSelect from '../SurveyItemSelect/SurveyItemSelect'
@@ -76,6 +74,9 @@ export default {
     }
   },
   computed: {
+    survey() {
+      return this.$store.state.survey
+    },
     item() {
       return this.$store.getters['surveyForm/activeItem']
     },
@@ -93,24 +94,30 @@ export default {
         return this.item.instruction
       }
       if (this.item.type === FIVE_SECOND_TEST) {
-        return MISSION_SURVEY_USABILITY_LAB_ITEM_TITLE[this.item.type]
-          .replace('{{duration}}', this.response.timeout || this.item.duration)
+        return this.$t('survey.items.fiveSecondTest.title', this.survey.language, {
+          duration: this.response.timeout || this.item.duration
+        })
       }
       return null
     },
     subtitle() {
-      if (this.item.type === PREFERENCE_TEST) {
-        if (!this.response.started) {
+      switch (this.item.type) {
+        case FIRST_CLICK:
+          return this.$t('survey.items.firstClick.subtitle', this.survey.language)
+        case FIVE_SECOND_TEST:
+          return this.$t('survey.items.fiveSecondTest.subtitle', this.survey.language)
+        case MULTI_SELECT:
+          return this.$t('survey.items.multiSelect.subtitle', this.survey.language)
+        case PREFERENCE_TEST:
+          if (!this.response.started) {
+            return null
+          }
+          return this.response.sliderActive
+            ? this.$t('survey.items.preferenceTest.subtitleCarousel', this.survey.language)
+            : this.$t('survey.items.preferenceTest.subtitle', this.survey.language)
+        default:
           return null
-        }
-        return this.response.sliderActive
-          ? MISSION_SURVEY_USABILITY_LAB_ITEM_SUBTITLE[this.item.type][1]
-          : MISSION_SURVEY_USABILITY_LAB_ITEM_SUBTITLE[this.item.type][0]
       }
-      if (MISSION_SURVEY_USABILITY_LAB_ITEM_SUBTITLE[this.item.type]) {
-        return MISSION_SURVEY_USABILITY_LAB_ITEM_SUBTITLE[this.item.type]
-      }
-      return null
     },
     twoColumnLayout() {
       return this.rootItem.type === DESIGN_QUESTION

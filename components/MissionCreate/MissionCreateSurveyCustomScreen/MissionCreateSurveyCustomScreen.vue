@@ -152,13 +152,57 @@ export default {
     redirectLinkError() {
       const link = this.s.redirectLink
       return !link || isHttpsLink(link) ? null : 'invalid link (must start with https://)'
+    },
+    language() {
+      return this.s.language
     }
   },
+  watch: {
+    language(newLanguage, oldLanguage) {
+      const currentLanguageValues = this.getDefaultTitleAndDescriptionByLanguage(oldLanguage)
+      const newLanguageValues = this.getDefaultTitleAndDescriptionByLanguage(newLanguage)
+
+      const titleIsStillDefault = currentLanguageValues.title === this.sValues.title
+      const descriptionIsStillDefault = currentLanguageValues.description === this.sValues.description
+      if (titleIsStillDefault) {
+        this.$store.commit(this.mutations.setTitle, newLanguageValues.title)
+      }
+      if (descriptionIsStillDefault) {
+        this.$store.commit(this.mutations.setDescription, newLanguageValues.description)
+      }
+    }
+  },
+  mounted() {
+    this.init()
+  },
   methods: {
+    init() {
+      this.$store.commit(
+        this.mutations.reset,
+        this.getDefaultTitleAndDescriptionByLanguage(this.language)
+      )
+    },
+    getDefaultTitleAndDescriptionByLanguage(language) {
+      let intlTitleKey, intlDescriptionKey
+      switch (this.type) {
+        case TYPES.WELCOME:
+          intlTitleKey = 'survey.welcomeTitle'
+          intlDescriptionKey = 'survey.welcomeDescription'
+          break
+        case TYPES.CLOSING:
+          intlTitleKey = 'survey.closingTitle'
+          intlDescriptionKey = 'survey.closingDescription'
+          break
+      }
+      return {
+        title: this.$t(intlTitleKey, language),
+        description: this.$t(intlDescriptionKey, language)
+      }
+    },
     switchCustomize() {
       this.$store.commit(this.mutations.switchCustomize)
       if (!this.sValues.opened) {
-        this.$store.commit(this.mutations.reset)
+        this.init()
         if (!this.s.customizeWelcome && !this.s.customizeClosing) {
           this.$store.commit('missionFormSurvey/resetColor')
         }

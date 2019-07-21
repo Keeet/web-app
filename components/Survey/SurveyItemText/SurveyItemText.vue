@@ -2,7 +2,7 @@
   <div class="survey-item-text">
     <Input
       :type="item.type === SHORT_TEXT ? 'UNDERLINED' : 'DEFAULT'"
-      placeholder="Type your answer here..."
+      :placeholder="$t('survey.items.textQuestion.placeholder', $store.state.survey.language)"
       :value="response.answerText"
       mutation="surveyForm/setAnswerText"
       :textarea="item.type === LONG_TEXT"
@@ -33,7 +33,9 @@ export default {
       return this.$store.getters['surveyForm/activeResponse']
     },
     answerTextError() {
-      return this.response.answerText !== '' ? null : 'required'
+      return this.response.answerText !== ''
+        ? null
+        : this.$t('survey.items.validation.required', this.$store.state.survey.language)
     }
   },
   watch: {

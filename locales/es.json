@@ -1,0 +1,94 @@
+{
+  "survey": {
+    "welcomeButton": "Comienzo",
+    "welcomeTitle": "¡Hola!",
+    "welcomeDescription": "Te han invitado a participar en un test breve. ¿Empezamos?",
+    "closingButton": "Terminar",
+    "closingTitle": "¡Gracias!",
+    "closingDescription": "Has cumplido con nuestra misión. Gracias por tomarte el tiempo y ayudarnos a mejorar nuestro producto. ¡Que tengas un buen día!",
+    "nextButton": "Siguiente",
+    "skipButton": "Omitir",
+    "backToCintButton": "Volver al Cint",
+    "alreadySubmitted": "You submitted the form already.",
+    "items": {
+      "validation": {
+        "required": "Necesario"
+      },
+      "closeFullscreen": "Cerrar pantalla completa",
+      "textQuestion": {
+        "placeholder": "Escribe tu respuesta aquí ..."
+      },
+      "selectQuestion": {
+        "other": "Otro"
+      },
+      "likert": {
+        "agreement": {
+          "stronglyDisagree": "Muy en desacuerdo",
+          "disagree": "En desacuerdo",
+          "neutral": "Neutral",
+          "agree": "De acuerdo",
+          "stronglyAgree": "Muy de acuerdo"
+        },
+        "occurrence": {
+          "veryRarely": "Con muy poca frecuencia",
+          "rarely": "Con poca frecuencia",
+          "occasionally": "En ocasiones",
+          "frequently": "Con frecuencia",
+          "veryFrequently": "Con mucha frecuencia"
+        },
+        "importance": {
+          "unimportant": "No es importante",
+          "offLittleImportance": "De poca importancia",
+          "moderatelyImportant": "De importancia moderada",
+          "important": "Importante",
+          "veryImportant": "Muy importante"
+        },
+        "quality": {
+          "extremelyPoor": "Extremadamente baja",
+          "belowAverage": "Por debajo de la media",
+          "average": "Media",
+          "aboveAverage": "Por encima de la media",
+          "excellent": "Excelente"
+        },
+        "comprehension": {
+          "didNotUnderstand": "No lo he entendido",
+          "understoodALittle": "Lo he entendido un poco",
+          "understoodMostOfIt": "He entendido la mayor parte",
+          "understoodVeryWell": " Lo he entendido muy bien"
+        },
+        "impression": {
+          "veryDissatisfied": "Muy insatisfecho",
+          "somewhatDissatisfied": "Un poco insatisfecho",
+          "neutral": "Neutral",
+          "somewhatSatisfied": "Algo satisfecho",
+          "verySatisfied": "Muy satisfecho"
+        }
+      },
+      "fiveSecondTest": {
+        "viewImageButton": "Pulsar para ver la imagen",
+        "title": "Vas a ver la imagen durante {duration} segundos.",
+        "subtitle": "Intenta recordar todo lo que ves."
+      },
+      "firstClick": {
+        "viewImageButton": "Pulsar para ver la imagen.",
+        "confirmClick": "Confirmar selección",
+        "cancelClick": "Cancelar",
+        "subtitle": "Pulsar en la imagen para realizar la tarea."
+      },
+      "multiSelect": {
+        "subtitle": "Puedes elegir una o más."
+      },
+      "preferenceTest": {
+        "viewImagesButton": "Pulsar para ver la imagen",
+        "subtitle": "Pulsa sobre una imagen para agrandarla",
+        "subtitleCarousel": "Pulsa otra vez para reducirla",
+        "chooseButton": "Selecciona esta"
+      }
+    },
+    "preview": {
+      "banner": "PREVIEW ONLY",
+      "invalidOverlayTitle": "Invalid survey form",
+      "invalidOverlayDescription": "Please check your survey form and fill all required fields"
+    }
+  }
+}

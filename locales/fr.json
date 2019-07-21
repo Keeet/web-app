@@ -1,0 +1,94 @@
+{
+  "survey": {
+    "welcomeButton": "Commencer",
+    "welcomeTitle": "Commencer",
+    "welcomeDescription": "Tu as été invité(e) à participer à un petit test. C’est parti?",
+    "closingButton": "Terminer",
+    "closingTitle": "Merci!",
+    "closingDescription": "Tu as rempli notre mission. Merci du temps que tu nous as consacré, cela nous aidera à concevoir un meilleur produit. A bientôt!",
+    "nextButton": "Suivant",
+    "skipButton": "Passer",
+    "backToCintButton": "Retour sur Cint",
+    "alreadySubmitted": "You submitted the form already.",
+    "items": {
+      "validation": {
+        "required": "Requis"
+      },
+      "closeFullscreen": "Fermer le mode plein écran",
+      "textQuestion": {
+        "placeholder": "Entre ta réponse ici ..."
+      },
+      "selectQuestion": {
+        "other": "Autre"
+      },
+      "likert": {
+        "agreement": {
+          "stronglyDisagree": "Fortement en désaccord",
+          "disagree": "En désaccord",
+          "neutral": "Neutre",
+          "agree": "D’accord",
+          "stronglyAgree": "Fortement d’accord"
+        },
+        "occurrence": {
+          "veryRarely": "Très rarement",
+          "rarely": "Rarement",
+          "occasionally": "Parfois",
+          "frequently": "Fréquemment",
+          "veryFrequently": "Très fréquemment"
+        },
+        "importance": {
+          "unimportant": "Pas important",
+          "offLittleImportance": "Très peu important",
+          "moderatelyImportant": "Assez important",
+          "important": "Important",
+          "veryImportant": "Très important"
+        },
+        "quality": {
+          "extremelyPoor": "Extrêmement faible",
+          "belowAverage": "En-dessous de la moyenne",
+          "average": "Dans la moyenne",
+          "aboveAverage": "Au-dessus de la moyenne",
+          "excellent": "Excellente"
+        },
+        "comprehension": {
+          "didNotUnderstand": "Je n’ai pas compris",
+          "understoodALittle": "J’ai un peu compris",
+          "understoodMostOfIt": "J’ai presque tout compris",
+          "understoodVeryWell": "J’ai très bien compris"
+        },
+        "impression": {
+          "veryDissatisfied": "Très mécontent(e)",
+          "somewhatDissatisfied": "Un peu mécontent(e)",
+          "neutral": "Neutre",
+          "somewhatSatisfied": "Un peu content(e)",
+          "verySatisfied": "Très content(e)"
+        }
+      },
+      "fiveSecondTest": {
+        "viewImageButton": "Clique pour voir l’image.",
+        "title": "Tu verras l’image pendant {duration} secondes.",
+        "subtitle": "Essaye de te rappeler de tout ce que tu vois."
+      },
+      "firstClick": {
+        "viewImageButton": "Clique pour voir l’image.",
+        "confirmClick": "Confirme le clic",
+        "cancelClick": "Annuler",
+        "subtitle": "Clique sur l’image pour terminer la tâche."
+      },
+      "multiSelect": {
+        "subtitle": "Tu peux choisir une ou plusieurs"
+      },
+      "preferenceTest": {
+        "viewImagesButton": "Clique pour voir l’image",
+        "subtitle": "Clique sur l’image pour zoomer",
+        "subtitleCarousel": "Clique de nouveau pour dézoomer",
+        "chooseButton": "Choisis celle-ci"
+      }
+    },
+    "preview": {
+      "banner": "PREVIEW ONLY",
+      "invalidOverlayTitle": "nvalid survey form",
+      "invalidOverlayDescription": "Please check your survey form and fill all required fields"
+    }
+  }
+}

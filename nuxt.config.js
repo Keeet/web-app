@@ -51,6 +51,7 @@ module.exports = {
     '~/plugins/icons',
     '~/plugins/directives',
     '~/plugins/helpers',
+    '~/plugins/i18n',
     { src: '~/plugins/timeago', ssr: false },
     { src: '~/plugins/vueDraggable', ssr: false },
     { src: '~/plugins/vueCarousel', ssr: false },

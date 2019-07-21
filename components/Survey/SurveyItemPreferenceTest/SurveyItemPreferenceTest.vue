@@ -2,7 +2,7 @@
   <div class="survey-item-preference-test">
     <div v-if="!response.started" class="survey-item-preference-test-button">
       <ButtonText
-        text="Click to view images"
+        :text="$t('survey.items.preferenceTest.viewImagesButton', s.language)"
         :bg-color="s.color"
         @click="$store.commit('surveyForm/startUsabilityTest')"
       />
@@ -52,7 +52,7 @@
             </div>
             <div class="survey-item-preference-test-slider-footer-buttons-select">
               <ButtonText
-                text="Choose this one"
+                :text="$t('survey.items.preferenceTest.chooseButton', s.language)"
                 no-margin
                 :bg-color="s.color"
                 @click="selectImage"

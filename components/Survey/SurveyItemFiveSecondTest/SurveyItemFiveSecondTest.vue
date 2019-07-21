@@ -2,7 +2,7 @@
   <div class="survey-item-five-second-test">
     <div v-if="!response.started" class="survey-item-five-second-test-button">
       <ButtonText
-        text="Click to view image"
+        :text="$t('survey.items.fiveSecondTest.viewImageButton', s.language)"
         :bg-color="s.color"
         @click="startTest"
       />

@@ -28,13 +28,13 @@ const {
 const { NO_FRAME } = MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES
 
 const defaultWelcomeScreen = {
-  welcomeTitle: 'Hey there!',
-  welcomeDescription: 'You have been invited to participate in a short test. Ready?',
+  welcomeTitle: '',
+  welcomeDescription: '',
   welcomeLogoId: null
 }
 const defaultClosingScreen = {
-  closingTitle: 'Cheers!',
-  closingDescription: 'Thank you for taking the time. We really appreciate you commitment. We hope to see you again soon. Have a good one!',
+  closingTitle: '',
+  closingDescription: '',
   closingLogoId: null
 }
 
@@ -208,11 +208,10 @@ export const mutations = {
   closeWelcomeColorPicker(state) {
     state.welcomeColorPickerOpened = false
   },
-  resetWelcomeScreen(state) {
-    const { welcomeTitle, welcomeDescription, welcomeLogoId } = defaultWelcomeScreen
-    state.welcomeTitle = welcomeTitle
-    state.welcomeDescription = welcomeDescription
-    state.welcomeLogoId = welcomeLogoId
+  resetWelcomeScreen(state, { title, description }) {
+    state.welcomeTitle = title
+    state.welcomeDescription = description
+    state.welcomeLogoId = defaultWelcomeScreen.welcomeLogoId
   },
   setClosingTitle(state, title) {
     state.closingTitle = title
@@ -229,11 +228,10 @@ export const mutations = {
   closeClosingColorPicker(state) {
     state.closingColorPickerOpened = false
   },
-  resetClosingScreen(state) {
-    const { closingTitle, closingDescription, closingLogoId } = defaultClosingScreen
-    state.closingTitle = closingTitle
-    state.closingDescription = closingDescription
-    state.closingLogoId = closingLogoId
+  resetClosingScreen(state, { title, description }) {
+    state.closingTitle = title
+    state.closingDescription = description
+    state.closingLogoId = defaultClosingScreen.closingLogoId
   },
   setRedirectLink(state, redirectLink) {
     if (redirectLink === '') {
