@@ -136,4 +136,5 @@ function buildAxiosCfg(noAuth, baseUrl, queryParams) {
   if (queryParams) {
     axiosCfg.params = queryParams
   }
+  return axiosCfg
 }
