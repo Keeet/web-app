@@ -1,6 +1,6 @@
 import { cleanDeep } from '../utils/objectUtils'
 
-export default function ({ $axios, app: { $auth }, redirect, store, route, env: { baseUrl } }) {
+export default function ({ $axios, app: { $auth }, redirect, store, route, env: { baseUrl }, error }) {
   $axios.defaults.baseURL = baseUrl
 
   $axios.interceptors.request.use(function (config) {
@@ -22,6 +22,11 @@ export default function ({ $axios, app: { $auth }, redirect, store, route, env: 
       }
     })
   })
+
+  $axios.handleErrorWithNuxt = (err) => {
+    const { status, data } = err.response
+    error({ statusCode: status, message: data.error })
+  }
 }
 
 function setAccessToken(config, accessToken) {

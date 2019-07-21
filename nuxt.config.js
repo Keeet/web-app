@@ -69,6 +69,7 @@ module.exports = {
     ['nuxt-rfg-icon', { staticPath: '/_favicons/', masterPicture: 'static/favicon.png' }],
     '@nuxtjs/manifest',
     '@nuxtjs/style-resources',
+    '@nuxtjs/sentry',
     ['@netsells/nuxt-hotjar', { id: '1375940', sv: '6' }]
   ],
 

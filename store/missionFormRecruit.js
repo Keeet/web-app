@@ -133,7 +133,7 @@ export const actions = {
     if (globalGetters['missionForm/participantsError']) {
       return
     }
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       const url = missionForm.type === MISSIONS.IN_HOUSE
         ? '/pricing/inhouse'
         : '/pricing/remote'
@@ -162,7 +162,7 @@ export const actions = {
           commit('setPricing', data)
           resolve()
         })
-        .catch(reject)
+        .catch(this.$axios.handleErrorWithNuxt)
     })
   },
   submit({ state, commit, getters }, { missionForm, missionFormPersona }) {

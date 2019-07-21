@@ -430,7 +430,7 @@ export const actions = {
     if (globalGetters['missionForm/participantsError']) {
       return
     }
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       this.$axios({
         method: 'post',
         url: '/pricing/quantitative',
@@ -446,7 +446,7 @@ export const actions = {
           commit('setPricing', data)
           resolve()
         })
-        .catch(reject)
+        .catch(this.$axios.handleErrorWithNuxt)
     })
   },
   submit({ state, getters }, { missionForm }) {
