@@ -1,4 +1,44 @@
 .account-billing {
+  position: relative;
   background-color: #fff;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.07);
+  padding: 30px 40px;
+  max-width: 400px;
+
+  .account-billing-form {
+
+    &.pending {
+      opacity: 0;
+      z-index: -1;
+    }
+
+    .account-billing-form-rows {
+      display: flex;
+      justify-content: space-between;
+
+      .account-billing-form-rows-item {
+        width: 48%;
+      }
+    }
+
+    .account-billing-submit {
+      margin-top: 20px;
+    }
+  }
+
+  .account-billing-pending {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+
+    .account-billing-pending-loading {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 70px;
+    }
+  }
 }

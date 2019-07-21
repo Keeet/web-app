@@ -32,6 +32,7 @@ export default {
         store.commit('accountPage/showTeam')
       } else if (IS_BILLING) {
         store.commit('accountPage/showBilling')
+        store.commit('accountBillingForm/init', store.state.company.billingConfig)
       } else if (IS_INDEX || IS_PROFILE) {
         store.commit('accountPage/showProfile')
       }

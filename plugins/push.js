@@ -2,6 +2,7 @@ const OPERATIONS = {
   CREATE_COMPANY: 'CREATE_COMPANY',
   UPDATE_COMPANY: 'UPDATE_COMPANY',
   CREATE_COMPANY_ADDRESS: 'CREATE_COMPANY_ADDRESS',
+  UPSERT_COMPANY_BILLING: 'UPSERT_COMPANY_BILLING',
   UPDATE_COMPANY_USER_ROLE: 'UPDATE_COMPANY_USER_ROLE',
   INVITE_COMPANY_USER: 'INVITE_COMPANY_USER',
   UPSERT_PROJECT: 'UPSERT_PROJECT',
@@ -60,6 +61,26 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, in
             street,
             houseNumber,
             addressDescription,
+            zipCode,
+            city,
+            country
+          }
+        }).then(handleRes).catch(handleError)
+      })
+    },
+
+    upsertCompanyBilling({ type, email, vatTaxId, street, houseNumber, zipCode, city, country }) {
+      return new Promise((resolve, reject) => {
+        const handleRes = handleResponse.bind(this, OPERATIONS.UPSERT_COMPANY_BILLING, null, resolve, reject)
+        $axios({
+          method: 'post',
+          url: '/companies/billing',
+          data: {
+            type,
+            email,
+            vatTaxId,
+            street,
+            houseNumber,
             zipCode,
             city,
             country
@@ -301,6 +322,8 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, in
       case OPERATIONS.UPDATE_COMPANY:
         return [{ name: 'COMPANY', forced: true }]
       case OPERATIONS.CREATE_COMPANY_ADDRESS:
+        return [{ name: 'COMPANY', forced: true }]
+      case OPERATIONS.UPSERT_COMPANY_BILLING:
         return [{ name: 'COMPANY', forced: true }]
       case OPERATIONS.UPDATE_COMPANY_USER_ROLE:
         return [{ name: 'COMPANY_USERS', forced: true }]
