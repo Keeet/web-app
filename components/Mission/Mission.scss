@@ -2,6 +2,7 @@
 
   .mission-body {
     position: relative;
+    z-index: 1;
     min-height: calc(100vh - #{$footer-min-height} - 170px);
     margin: 120px 50px 50px $sidebar-left-width + 50px;
     box-sizing: border-box;
