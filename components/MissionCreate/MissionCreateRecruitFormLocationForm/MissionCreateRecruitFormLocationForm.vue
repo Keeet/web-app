@@ -17,7 +17,7 @@
         <div class="mission-create-recruit-form-location-form-street-name">
           <Input
             title="Street*"
-            placeholder="Rosenthaler Strasse"
+            placeholder="Rosenthaler Str."
             :value="s.street"
             mutation="locationForm/setStreet"
             :error="streetError"

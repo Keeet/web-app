@@ -12,7 +12,7 @@
       <div class="company-form-street-name">
         <Input
           title="Street*"
-          placeholder="Rosenthaler Strasse"
+          placeholder="Rosenthaler Str."
           :value="s.street"
           mutation="companyForm/setStreet"
           :error="streetError"

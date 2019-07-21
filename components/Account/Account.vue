@@ -15,6 +15,11 @@
             page: ACCOUNT_PAGES.TEAM,
             label: 'Team',
             link: '/account/team'
+          },
+          {
+            page: ACCOUNT_PAGES.BILLING,
+            label: 'Billing',
+            link: '/account/billing'
           }
         ]"
         :active-page="accountPage.activePage"
@@ -23,6 +28,7 @@
     </div>
     <AccountProfile v-if="accountPage.activePage === ACCOUNT_PAGES.PROFILE" />
     <AccountTeam v-if="accountPage.activePage === ACCOUNT_PAGES.TEAM" />
+    <AccountBilling v-if="accountPage.activePage === ACCOUNT_PAGES.BILLING" />
   </div>
 </template>
 
@@ -32,9 +38,10 @@ import Headline from '../_shared/Headline/Headline'
 import NavUnderlined from '../_shared/NavUnderlined/NavUnderlined'
 import AccountProfile from './AccountProfile/AccountProfile'
 import AccountTeam from './AccountTeam/AccountTeam'
+import AccountBilling from './AccountBilling/AccountBilling'
 export default {
   name: 'Account',
-  components: { AccountTeam, AccountProfile, NavUnderlined, Headline },
+  components: { AccountBilling, AccountTeam, AccountProfile, NavUnderlined, Headline },
   data() {
     return { ACCOUNT_PAGES }
   },

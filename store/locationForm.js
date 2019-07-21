@@ -1,3 +1,5 @@
+import { COUNTRIES } from '../components/constants'
+
 const defaultState = {
   id: null,
   name: '',
@@ -6,7 +8,7 @@ const defaultState = {
   addressDescription: '',
   zipCode: '',
   city: '',
-  country: 'DE',
+  country: COUNTRIES.DE,
 
   pending: false
 }

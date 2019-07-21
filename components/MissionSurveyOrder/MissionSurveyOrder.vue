@@ -14,10 +14,21 @@
         :mission-type="mission.type"
         :price-checksum="priceChecksum"
         wrapper-class="mission-survey-order-body"
-        @cancel="$router.push(`/missions/${mission.id}/share`)"
+        @cancel="cancel"
         @submit="submit"
       />
     </div>
+    <Confirm
+      v-if="!$store.state.company.billingConfig"
+      title="Billing address missing"
+      text="You have to add a billing address before you can order testers."
+      label-confirm="Add billing address"
+      label-cancel="Cancel"
+      full-width
+      no-close
+      @confirm="$router.push('/account/billing')"
+      @cancel="cancel"
+    />
   </div>
 </template>
 
@@ -26,12 +37,13 @@ import { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_LABE
 import MissionPersonaCriteria from '../_shared/MissionPersonaCriteria/MissionPersonaCriteria'
 import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
 import MissionOrderSummary from '../_shared/MissionOrderSummary/MissionOrderSummary'
+import Confirm from '../_shared/Confirm/Confirm'
 import MissionSurveyOrderParticipants from './MissionSurveyOrderParticipants/MissionSurveyOrderParticipants'
 import MissionSurveyOrderCountry from './MissionSurveyOrderCountry/MissionSurveyOrderCountry'
 
 export default {
   name: 'MissionSurveyOrder',
-  components: { MissionSurveyOrderCountry, MissionOrderSummary, ButtonCircle, MissionSurveyOrderParticipants, MissionPersonaCriteria },
+  components: { Confirm, MissionSurveyOrderCountry, MissionOrderSummary, ButtonCircle, MissionSurveyOrderParticipants, MissionPersonaCriteria },
   data() {
     return { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_LABELS, PERSONA_CRITERIA }
   },
@@ -63,6 +75,9 @@ export default {
         participants,
         demographicData: this.s.persona
       }
+    },
+    cancel() {
+      this.$router.push(`/missions/${this.mission.id}/share`)
     },
     submit() {
       this.$push.submitMissionOrder({

@@ -14,6 +14,9 @@ export const mutations = {
   showTeam(state) {
     state.activePage = ACCOUNT_PAGES.TEAM
   },
+  showBilling(state) {
+    state.activePage = ACCOUNT_PAGES.BILLING
+  },
   disableAnimation(state, value = true) {
     state.disableAnimation = value
   },

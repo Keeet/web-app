@@ -25,6 +25,17 @@
     >
       <MissionCreateRecruitSummary />
     </MissionCreateRecruitStep>
+    <Confirm
+      v-if="!$store.state.company.billingConfig"
+      title="Billing address missing"
+      text="You have to add a billing address before you can create In-House and Remote missions."
+      label-confirm="Add billing address"
+      label-cancel="Cancel"
+      full-width
+      no-close
+      @confirm="$router.push('/account/billing')"
+      @cancel="$store.commit('missionForm/previousStep')"
+    />
   </div>
 </template>
 
@@ -34,10 +45,12 @@ import MissionCreateRecruitCalendar from '../MissionCreateRecruitCalendar/Missio
 import MissionCreateRecruitSummary from '../MissionCreateRecruitSummary/MissionCreateRecruitSummary'
 import MissionCreateRecruitStep from '../MissionCreateRecruitStep/MissionCreateRecruitStep'
 import MissionCreateRecruitPersona from '../MissionCreateRecruitPersona/MissionCreateRecruitPersona'
+import Confirm from '../../_shared/Confirm/Confirm'
 
 export default {
   name: 'MissionCreateRecruit',
   components: {
+    Confirm,
     MissionCreateRecruitPersona,
     MissionCreateRecruitStep,
     MissionCreateRecruitSummary,
