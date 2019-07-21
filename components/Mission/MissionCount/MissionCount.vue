@@ -1,13 +1,13 @@
 <template>
-  <div class="mission-survey-sidebar-count">
-    <p class="mission-survey-sidebar-count-title">
+  <div class="mission-count">
+    <p class="mission-count-title">
       {{ title }}
     </p>
-    <p class="mission-survey-sidebar-count-text">
-      <span class="mission-survey-sidebar-text-large">
+    <p class="mission-count-text">
+      <span class="mission-count-text-large">
         {{ textLarge }}
       </span>
-      <span class="mission-survey-sidebar-text-small">
+      <span class="mission-count-text-small">
         {{ textSmall }}
       </span>
     </p>
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'MissionSurveySidebarCount',
+  name: 'MissionCount',
   props: {
     title: {
       type: String,
@@ -35,5 +35,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "MissionSurveySidebarCount";
+  @import "MissionCount";
 </style>

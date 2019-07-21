@@ -1,5 +1,19 @@
 .mission-survey-share {
 
+  .mission-survey-share-order {
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid $grey;
+    border-radius: 5px;
+    margin: 20px 0;
+
+    .mission-survey-share-order-created {
+      float: right;
+      font-size: 70%;
+      font-weight: 700;
+    }
+  }
+
   .mission-survey-share-link {
     display: flex;
     align-items: center;

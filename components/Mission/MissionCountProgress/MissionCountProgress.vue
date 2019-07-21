@@ -1,13 +1,13 @@
 <template>
-  <div class="mission-sidebar-progress">
-    <MissionSurveySidebarCount
+  <div class="mission-count-progress">
+    <MissionCount
       :title="title"
       :text-large="countCurrent"
       :text-small="`out of ${countTotalFormatted}`"
     />
-    <div class="mission-sidebar-progress-progress">
+    <div class="mission-count-progress-bar">
       <div
-        class="mission-sidebar-progress-progress-done"
+        class="mission-count-progress-bar-done"
         :class="{ showProgress, noAnimation: missionPage.disableAnimation }"
         :style="{ width }"
       />
@@ -17,11 +17,11 @@
 
 <script>
 import { decodeHTML } from '../../../utils/htmlUtils'
-import MissionSurveySidebarCount from '../MissionSurveySidebarCount/MissionSurveySidebarCount'
+import MissionCount from '../MissionCount/MissionCount'
 
 export default {
-  name: 'MissionSidebarProgress',
-  components: { MissionSurveySidebarCount },
+  name: 'MissionCountProgress',
+  components: { MissionCount },
   props: {
     title: {
       type: String,
@@ -71,5 +71,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "MissionSidebarProgress";
+  @import "MissionCountProgress";
 </style>
