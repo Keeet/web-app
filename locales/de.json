@@ -1,94 +1,94 @@
 {
   "survey": {
-    "welcomeButton": "",
-    "welcomeTitle": "",
-    "welcomeDescription": "",
-    "closingButton": "",
-    "closingTitle": "",
-    "closingDescription": "",
-    "nextButton": "",
-    "skipButton": "",
-    "backToCintButton": "",
-    "alreadySubmitted": "",
+    "welcomeButton": "Los geht's",
+    "welcomeTitle": "Hallo!",
+    "welcomeDescription": "Du wurdest zu einem kurzen Test eingeladen. Sollen wir loslegen?",
+    "closingButton": "Fertig",
+    "closingTitle": "Vielen Dank!",
+    "closingDescription": "Du hast unsere Mission abgeschlossen. Danke für deine Hilfe. Du hast uns dabei geholfen ein besseres Produkt zu bauen. Bis dahin!",
+    "nextButton": "Weiter",
+    "skipButton": "Überspringen",
+    "backToCintButton": "Zurück zu Cint",
+    "alreadySubmitted": "Du hast bereits an dieser Umfrage teilgenommen.",
     "items": {
       "validation": {
-        "required": ""
+        "required": "Erforderlich"
       },
-      "closeFullscreen": "",
+      "closeFullscreen": "Vollbild schließen",
       "textQuestion": {
-        "placeholder": ""
+        "placeholder": "Gebe deine Antwort hier ein ..."
       },
       "selectQuestion": {
-        "other": ""
+        "other": "Sonstiges"
       },
       "likert": {
         "agreement": {
-          "stronglyDisagree": "",
-          "disagree": "",
-          "neutral": "",
-          "agree": "",
-          "stronglyAgree": ""
+          "stronglyDisagree": "Ich stimme nicht zu",
+          "disagree": "Ich stimme eher nicht zu",
+          "neutral": "Neutral",
+          "agree": "Ich stimme eher zu",
+          "stronglyAgree": "Ich stimme stark zu"
         },
         "occurrence": {
-          "veryRarely": "",
-          "rarely": "",
-          "occasionally": "",
-          "frequently": "",
-          "veryFrequently": ""
+          "veryRarely": "Sehr selten",
+          "rarely": "Selten",
+          "occasionally": "Gelegentlich",
+          "frequently": "Häufig",
+          "veryFrequently": "Regelmäßig"
         },
         "importance": {
-          "unimportant": "",
-          "offLittleImportance": "",
-          "moderatelyImportant": "",
-          "important": "",
-          "veryImportant": ""
+          "unimportant": "Unwichtig",
+          "offLittleImportance": "Eher unwichtig",
+          "moderatelyImportant": "Eher wichtig",
+          "important": "Wichtig",
+          "veryImportant": "Sehr wichtig"
         },
         "quality": {
-          "extremelyPoor": "",
-          "belowAverage": "",
-          "average": "",
-          "aboveAverage": "",
-          "excellent": ""
+          "extremelyPoor": "Sehr schlecht",
+          "belowAverage": "Schlecht",
+          "average": "Durchschnittlich",
+          "aboveAverage": "Gut",
+          "excellent": "Exzellent"
         },
         "comprehension": {
-          "didNotUnderstand": "",
-          "understoodALittle": "",
-          "understoodMostOfIt": "",
-          "understoodVeryWell": ""
+          "didNotUnderstand": "Nicht verstanden",
+          "understoodALittle": "Ein wenig verstanden",
+          "understoodMostOfIt": "Viel verstanden",
+          "understoodVeryWell": "Alles verstanden"
         },
         "impression": {
-          "veryDissatisfied": "",
-          "somewhatDissatisfied": "",
-          "neutral": "",
-          "somewhatSatisfied": "",
-          "verySatisfied": ""
+          "veryDissatisfied": "Sehr unzufrieden",
+          "somewhatDissatisfied": "Eher unzufrieden",
+          "neutral": "Neutral",
+          "somewhatSatisfied": "Eher zufrieden",
+          "verySatisfied": "Zufrieden"
         }
       },
       "fiveSecondTest": {
-        "viewImageButton": "",
-        "title": "",
-        "subtitle": ""
+        "viewImageButton": "Bild ansehen",
+        "title": "Du wirst das Bild für {duration} Sekunden zu sehen bekommen.",
+        "subtitle": "Versuche dir so viel wie möglich von dem Bild zu merken."
       },
       "firstClick": {
-        "viewImageButton": "",
-        "confirmClick": "",
-        "cancelClick": "",
-        "subtitle": ""
+        "viewImageButton": "Bild ansehen",
+        "confirmClick": "Klick bestätigen",
+        "cancelClick": "Abbrechen",
+        "subtitle": "Klicke auf das Bild um die genannte Aufgabe durchzuführen."
       },
       "multiSelect": {
-        "subtitle": ""
+        "subtitle": "Wähle eine oder mehrere Antworten aus."
       },
       "preferenceTest": {
-        "viewImagesButton": "",
-        "subtitle": "",
-        "subtitleCarousel": "",
-        "chooseButton": ""
+        "viewImagesButton": "Bilder ansehen",
+        "subtitle": "Klicke auf ein Bild, um es zu vergrößern.",
+        "subtitleCarousel": "Klicke auf das Bild, um wieder zur Übersicht zu gelangen.",
+        "chooseButton": "Auswählen"
       }
     },
     "preview": {
-      "banner": "",
-      "invalidOverlayTitle": "",
-      "invalidOverlayDescription": ""
+      "banner": "Vorschau",
+      "invalidOverlayTitle": "Ungültige Umfrage",
+      "invalidOverlayDescription": "Bitte kontrolliere, ob du du alle Felder ausgefüllt hast."
     }
   }
 }

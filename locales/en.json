@@ -2,24 +2,24 @@
   "survey": {
     "welcomeButton": "Start",
     "welcomeTitle": "Hey there!",
-    "welcomeDescription": "You have been invited to participate in a short test. Ready?",
+    "welcomeDescription": "You have been invited to participate in a short test. Should we get started?",
     "closingButton": "Finish",
-    "closingTitle": "Cheers!",
-    "closingDescription": "Thank you for taking the time. We really appreciate you commitment. We hope to see you again soon. Have a good one!",
+    "closingTitle": "Thank you!",
+    "closingDescription": "You completed our mission. Thank you for taking the time and helping us build a better product. Have a good one!",
     "nextButton": "Next",
     "skipButton": "Skip",
     "backToCintButton": "Back to Cint",
     "alreadySubmitted": "You submitted the form already.",
     "items": {
       "validation": {
-        "required": "required"
+        "required": "Required"
       },
-      "closeFullscreen": "close fullscreen",
+      "closeFullscreen": "Close fullscreen",
       "textQuestion": {
-        "placeholder": "Type your answer here..."
+        "placeholder": "Type your answer here ..."
       },
       "selectQuestion": {
-        "other": "other"
+        "other": "Other"
       },
       "likert": {
         "agreement": {
@@ -27,7 +27,7 @@
           "disagree": "Disagree",
           "neutral": "Neutral",
           "agree": "Agree",
-          "stronglyAgree": "Strongly Agree"
+          "stronglyAgree": "Strongly agree"
         },
         "occurrence": {
           "veryRarely": "Very rarely",
@@ -66,17 +66,17 @@
       },
       "fiveSecondTest": {
         "viewImageButton": "Click to view image",
-        "title": "You will see the image for {duration} seconds",
-        "subtitle": "Try to remember as much as you can."
+        "title": "You will see the image for {duration} seconds.",
+        "subtitle": "Try to remember everything that you see."
       },
       "firstClick": {
         "viewImageButton": "Click to view image",
         "confirmClick": "Confirm click",
         "cancelClick": "Cancel",
-        "subtitle": "Click on the image to carry out the instructions or complete the set task."
+        "subtitle": "Click on the image to complete the given task."
       },
       "multiSelect": {
-        "subtitle": "You can choose one or more"
+        "subtitle": "You can choose one or more."
       },
       "preferenceTest": {
         "viewImagesButton": "Click to view images",
