@@ -3,8 +3,7 @@
     <OverlayModal title="Next steps" @close="done">
       <IconClockBlue />
       <p class="mission-create-recruit-submitted-popup-text">
-        We have received your mission! It can take up to
-        72 hours until we found fitting test users for you.
+        We have received your mission! It can take up to 2 working days until we found eligible participants for you.
       </p>
       <IconProgress />
       <p class="mission-create-recruit-submitted-popup-text">

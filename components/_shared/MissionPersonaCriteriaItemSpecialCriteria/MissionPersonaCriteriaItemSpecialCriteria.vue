@@ -8,8 +8,7 @@
     />
     <MissionPersonaCriteriaItemSpecialCriteriaInput placeholder="e.g. Must own a car." @add="addSpecialCriteria" />
     <p class="mission-persona-criteria-item-special-criteria-note">
-      Please enter only one criterion per input field. Each criterion will be charged separately. To find eligible candidates, we will create
-      open screening questions based on your criteria.
+      Please only insert one special criteria per input. We will create screener questions to find eligible participants.
     </p>
   </div>
 </template>
