@@ -5,6 +5,7 @@
       :trigger-class="triggerClass"
       :loading="loading"
       reduced-margins
+      :no-close="noClose"
       @close="$emit('close')"
     >
       <p class="confirm-text">
@@ -64,6 +65,10 @@ export default {
     labelCancel: {
       type: String,
       default: 'No'
+    },
+    noClose: {
+      type: Boolean,
+      default: false
     },
     triggerClass: {
       type: String,

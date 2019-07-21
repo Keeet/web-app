@@ -113,9 +113,12 @@ export const actions = {
   },
   submit({ state, commit }) {
     commit('pending')
-    this.$push.upsertCompanyBilling(state)
-      .then(() => {
-        commit('submitted')
-      })
+    return new Promise((resolve) => {
+      this.$push.upsertCompanyBilling(state)
+        .then(() => {
+          commit('submitted')
+          resolve()
+        })
+    })
   }
 }

@@ -1,9 +1,12 @@
 <template>
   <div class="account-billing">
-    <div class="account-billing-form" :class="{ pending: s.pending }">
+    <div v-if="!$hasRole('ADMIN')" class="account-billing-no-admin">
+      Please contact the admin to edit the billing address.
+    </div>
+    <div v-else class="account-billing-form" :class="{ pending: s.pending }">
       <Input
         title="Company Name"
-        :value="$store.state.company.name"
+        :value="company.name"
         readonly
       />
       <Input
@@ -80,7 +83,7 @@
           :disabled="submitButtonDisabled"
           no-margin
           @disabledClick="disabledSubmit"
-          @click="$store.dispatch('accountBillingForm/submit')"
+          @click="submit"
         />
       </div>
     </div>
@@ -110,6 +113,9 @@ export default {
     s() {
       return this.$store.state.accountBillingForm
     },
+    company() {
+      return this.$store.state.company
+    },
     countryOptions() {
       return Object.keys(COUNTRIES).map(country => ({
         value: country,
@@ -132,6 +138,11 @@ export default {
         this.showErrors = true
         scrollToTopId(this.s.invalidFields.map(field => field.id))
       }
+    },
+    submit() {
+      this.$store.dispatch('accountBillingForm/submit').then(() => {
+        this.$store.commit('accountBillingForm/init', this.company.billingConfig)
+      })
     }
   }
 }

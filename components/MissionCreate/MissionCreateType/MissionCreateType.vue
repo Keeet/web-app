@@ -20,6 +20,7 @@
 import { MISSIONS } from '../../constants'
 import Headline from '../../_shared/Headline/Headline'
 import MissionCreateTypeItem from '../MissionCreateTypeItem/MissionCreateTypeItem'
+
 export default {
   name: 'MissionCreateType',
   components: { MissionCreateTypeItem, Headline },
