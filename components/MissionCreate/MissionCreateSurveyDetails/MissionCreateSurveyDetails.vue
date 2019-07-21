@@ -14,7 +14,7 @@
       <div class="mission-create-survey-details-language">
         <Select
           title="Language*"
-          :options="getLanguageOptions(['DE', 'EN', 'FR', 'ES', 'IT'])"
+          :options="languageOptions"
           :value="s.survey.language"
           mutation="missionFormSurvey/setLanguage"
         />
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { LANGUAGE_LABELS } from '../../constants'
+import { LANGUAGES, LANGUAGE_LABELS } from '../../constants'
 import MissionCreateBox from '../MissionCreateBox/MissionCreateBox'
 import Input from '../../_shared/Input/Input'
 import Select from '../../_shared/Select/Select'
@@ -42,18 +42,17 @@ export default {
         survey: missionFormSurvey
       }
     },
-    titleError() {
-      return this.s.title !== '' ? null : 'required'
-    }
-  },
-  methods: {
-    getLanguageOptions(languages) {
-      return languages.map((language) => {
+    languageOptions() {
+      const { DE, EN, FR, ES } = LANGUAGES
+      return [DE, EN, FR, ES].map((language) => {
         return {
           label: LANGUAGE_LABELS[language],
           value: language
         }
       })
+    },
+    titleError() {
+      return this.s.title !== '' ? null : 'required'
     }
   }
 }
