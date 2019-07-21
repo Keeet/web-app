@@ -6,7 +6,7 @@
       @close="$store.commit('missionFormRecruit/closeLocationForm')"
     >
       <Input
-        title="Name*"
+        title="Company name*"
         placeholder="Keeet"
         :value="s.name"
         mutation="locationForm/setName"

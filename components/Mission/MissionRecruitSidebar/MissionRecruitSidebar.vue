@@ -6,7 +6,7 @@
         :count-current="recruitedCount"
         :count-total="mission.sessions.length"
       />
-      <SidebarLeftHeadline text="Persona" />
+      <SidebarLeftHeadline text="Target audience" />
       <MissionRecruitSidebarLine type="PERSONA" grey-bg>
         <MissionPersonaCriteriaTextBoxes :persona="mission.recruitmentOrders[0].demographicData" />
       </MissionRecruitSidebarLine>

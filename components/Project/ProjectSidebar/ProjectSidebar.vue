@@ -55,7 +55,7 @@ export default {
       return !this.project.id
     },
     description() {
-      return this.project.description || 'Enter you project description here to explain what you want to achieve with this research session...'
+      return this.project.description || 'Enter your project description here. Explain what you want to test or what insights you want to collect.'
     }
   },
   methods: {

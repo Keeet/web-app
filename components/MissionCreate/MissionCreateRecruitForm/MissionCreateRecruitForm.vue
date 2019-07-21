@@ -42,7 +42,7 @@
         <MissionCreateRecruitFormDuration />
       </div>
       <div v-if="s.type === IN_HOUSE" class="mission-create-recruit-form-section">
-        <MissionCreateRecruitFormHeadline text="Where does the interview / test takes place?" underlined />
+        <MissionCreateRecruitFormHeadline text="Where does the interview / test take place?" underlined />
         <MissionCreateRecruitFormLocation />
       </div>
     </MissionCreateBox>

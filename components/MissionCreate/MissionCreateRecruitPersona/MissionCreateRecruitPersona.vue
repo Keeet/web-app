@@ -1,7 +1,7 @@
 <template>
   <div class="mission-create-recruit-persona">
     <p class="mission-create-recruit-persona-headline">
-      What is your desired target group?
+      Target your participants
     </p>
     <MissionPersonaCriteria
       :criteria="criteria"

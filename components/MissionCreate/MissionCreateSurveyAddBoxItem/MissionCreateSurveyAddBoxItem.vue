@@ -24,13 +24,13 @@ const DESCRIPTIONS = {
   SINGLE_SELECT: 'Give your participant options to choose from.',
   MULTI_SELECT: 'Give your participant options to choose from.',
   LINEAR_SCALE: 'Give your participant a numbered scale to choose from.',
-  LIKERT: 'Set a task for participants to carry out by clicking through a series of screens.',
-  FIRST_CLICK: 'Ask participants to carry out a task by clicking somewhere on the image.',
-  FIVE_SECOND_TEST: 'Participants are shown an image for a short time before answering questions to test their recall.',
-  QUESTION_LIST: 'Straight up questions asked one at a time.',
-  DESIGN_QUESTION: 'While viewing an image, participants are asked your questions one at a time.',
-  PREFERENCE_TEST: 'Instruct participants to choose between options.',
-  INSTRUCTION: 'Set the scene or provide special instructions for participants to read.'
+  LIKERT: 'Ask your participant to respond to a statement about a topic and measure their attitude.',
+  FIRST_CLICK: 'Show your participants an interface and examine what they click on first to complete the task.',
+  FIVE_SECOND_TEST: 'Show your participants a design for set number of seconds and ask questions to test their recall afterwards.',
+  QUESTION_LIST: 'Ask your participants a simple question to get even more insights.',
+  DESIGN_QUESTION: 'Show your participants a design and ask simultaneously questions about what they see.',
+  PREFERENCE_TEST: 'Ask your participants to choose between different options.',
+  INSTRUCTION: 'Guide your participants through the survey by giving more detailed instructions.'
 }
 
 export default {

@@ -19,9 +19,9 @@
 import { ROLES, ROLE_LABELS } from '../../constants'
 
 const ROLE_DESCRIPTIONS = {
-  VIEWER: 'Is only able to view projects and missions.',
-  USER: 'Can create projects and missions.',
-  ADMIN: 'Can add other admins, create projects and missions.'
+  VIEWER: 'Able to view projects and mission.',
+  USER: 'Able to create projects and missions.',
+  ADMIN: 'Able to invite members and create projects and mission.'
 }
 
 export default {
