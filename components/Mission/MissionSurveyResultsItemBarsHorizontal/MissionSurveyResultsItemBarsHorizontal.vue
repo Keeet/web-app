@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS, MISSION_SURVEY_ITEM_LIKERT, MISSION_SURVEY_SELECT_OTHER_LABEL } from '../../constants'
+import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS, MISSION_SURVEY_ITEM_LIKERT_OPTIONS_INTL_KEYS, MISSION_SURVEY_SELECT_OTHER_LABEL } from '../../constants'
 import MissionSurveyResultsItemBarsHorizontalItem
   from '../MissionSurveyResultsItemBarsHorizontalItem/MissionSurveyResultsItemBarsHorizontalItem'
 import { flatMap } from '../../../utils/objectUtils'
@@ -69,7 +69,7 @@ export default {
           .map(choice => ({ text: choice }))
       }
       if (this.surveyItem.type === LIKERT) {
-        return MISSION_SURVEY_ITEM_LIKERT[this.surveyItem.answerType]
+        return MISSION_SURVEY_ITEM_LIKERT_OPTIONS_INTL_KEYS[this.surveyItem.answerType]
           .map((_, index) => ({ index }))
           .filter((option) => {
             return !this.results.map(r => r.index).includes(option.index)

@@ -13,7 +13,6 @@
       <slot />
     </div>
     <div
-      v-if="isCint || buttonText"
       class="survey-step-button"
       :class="[{ buttonDisabled }, activeRootItem ? activeRootItem.type : '']"
     >
