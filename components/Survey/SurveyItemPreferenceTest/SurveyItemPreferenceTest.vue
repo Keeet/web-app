@@ -26,14 +26,14 @@
             :min-swipe-distance="50"
             :navigate-to="activeSliderItem"
             :pagination-active-color="s.color"
+            :mouse-drag="false"
             @page-change="carouselChange"
           >
             <slide
               v-for="(image, x) in item.images"
               :key="x"
-              @slide-click="setSliderActive(false)"
             >
-              <div class="survey-item-preference-test-slider-item">
+              <div class="survey-item-preference-test-slider-item" @click="setSliderActive(false)">
                 <div class="survey-item-preference-test-slider-item-inner">
                   <img :src="image.url">
                 </div>

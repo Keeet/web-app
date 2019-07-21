@@ -15,9 +15,6 @@
     </MissionCreateBox>
     <MissionCreateBox>
       <div class="mission-create-recruit-form-section">
-        <MissionCreateRecruitFormHeadline text="Target group" />
-      </div>
-      <div class="mission-create-recruit-form-section">
         <div v-if="s.type === IN_HOUSE">
           <MissionCreateRecruitFormHeadline text="Study type" />
           <div class="mission-create-recruit-form-study-type">

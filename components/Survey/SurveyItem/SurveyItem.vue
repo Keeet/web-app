@@ -18,7 +18,7 @@
         <SurveyItemDesignQuestion
           v-if="rootItem.type === DESIGN_QUESTION"
           @click="twoColumnLayoutFullScreen = !twoColumnLayoutFullScreen"
-        />w
+        />
       </div>
     </div>
     <div

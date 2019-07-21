@@ -73,8 +73,10 @@ $survey-item-preference-test-slider-footer-height: 85px;
         width: 100%;
 
         .survey-item-preference-test-slider-item {
+          $reservated-height: $survey-step-body-padding-top + $survey-item-body-title-min-height + $survey-item-preference-test-slider-footer-height;
           width: 100%;
-          height: calc(100vh - #{$survey-step-body-padding-top} - #{$survey-item-body-title-min-height} - #{$survey-item-preference-test-slider-footer-height});
+          height: calc(100vh - #{$reservated-height});
+          height: calc((var(--vh, 1vh) * 100) - #{$reservated-height});
           overflow-y: auto;
 
           &:hover {
