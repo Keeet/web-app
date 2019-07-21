@@ -13,12 +13,13 @@
       <slot />
     </div>
     <div
+      v-if="isCint || buttonText"
       class="survey-step-button"
       :class="[{ buttonDisabled }, activeRootItem ? activeRootItem.type : '']"
     >
       <div class="survey-step-button-inner">
         <ButtonText
-          :text="isCint ? $t('survey.backToCintButton', s.language) : buttonText || $t('survey.nextButton', s.language)"
+          :text="isCint ? $t('survey.backToCintButton', s.language) : buttonText"
           :bg-color="s.color"
           no-margin
           @click="clickButton"
@@ -36,7 +37,9 @@ export default {
   props: {
     buttonText: {
       type: String,
-      default: null
+      default: () => {
+        return this.$t('survey.nextButton', this.s.language)
+      }
     },
     buttonLink: {
       type: String,
