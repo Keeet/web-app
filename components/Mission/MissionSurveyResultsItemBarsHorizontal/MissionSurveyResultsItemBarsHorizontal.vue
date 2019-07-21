@@ -15,10 +15,11 @@
 </template>
 
 <script>
-import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS, MISSION_SURVEY_ITEM_LIKERT_OPTIONS, MISSION_SURVEY_SELECT_OTHER_LABEL } from '../../constants'
+import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS, MISSION_SURVEY_ITEM_LIKERT, MISSION_SURVEY_SELECT_OTHER_LABEL } from '../../constants'
 import MissionSurveyResultsItemBarsHorizontalItem
   from '../MissionSurveyResultsItemBarsHorizontalItem/MissionSurveyResultsItemBarsHorizontalItem'
 import { flatMap } from '../../../utils/objectUtils'
+import { getLikertOptionsByTypeAndLocale } from '../../../utils/intlUtils'
 
 const { SINGLE_SELECT, MULTI_SELECT, LIKERT } = MISSION_SURVEY_ITEMS
 const { PREFERENCE_TEST } = MISSION_SURVEY_USABILITY_LAB_ITEMS
@@ -68,7 +69,7 @@ export default {
           .map(choice => ({ text: choice }))
       }
       if (this.surveyItem.type === LIKERT) {
-        return MISSION_SURVEY_ITEM_LIKERT_OPTIONS[this.surveyItem.answerType]
+        return MISSION_SURVEY_ITEM_LIKERT[this.surveyItem.answerType]
           .map((_, index) => ({ index }))
           .filter((option) => {
             return !this.results.map(r => r.index).includes(option.index)
@@ -89,7 +90,7 @@ export default {
       }
       switch (this.result.type) {
         case LIKERT:
-          return MISSION_SURVEY_ITEM_LIKERT_OPTIONS[this.surveyItem.answerType][item.index]
+          return getLikertOptionsByTypeAndLocale.bind(this)(this.surveyItem.answerType, this.$store.state.mission.language)[item.index]
         case PREFERENCE_TEST:
           return item.image
       }

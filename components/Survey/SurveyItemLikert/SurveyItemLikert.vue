@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { MISSION_SURVEY_ITEM_LIKERT_OPTIONS } from '../../constants'
+import { getLikertOptionsByTypeAndLocale } from '../../../utils/intlUtils'
 
 export default {
   name: 'SurveyItemLikert',
@@ -38,7 +38,7 @@ export default {
       return this.$store.getters['surveyForm/activeResponse']
     },
     options() {
-      return MISSION_SURVEY_ITEM_LIKERT_OPTIONS[this.item.answerType]
+      return getLikertOptionsByTypeAndLocale.bind(this)(this.item.answerType, this.$store.state.survey.language)
     },
     error() {
       return this.response.value !== null ? null : 'required'

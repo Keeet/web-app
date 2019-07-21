@@ -1,0 +1,94 @@
+{
+  "survey": {
+    "welcomeButton": "",
+    "welcomeTitle": "",
+    "welcomeDescription": "",
+    "closingButton": "",
+    "closingTitle": "",
+    "closingDescription": "",
+    "nextButton": "",
+    "skipButton": "",
+    "backToCintButton": "",
+    "alreadySubmitted": "",
+    "items": {
+      "validation": {
+        "required": ""
+      },
+      "closeFullscreen": "",
+      "textQuestion": {
+        "placeholder": ""
+      },
+      "selectQuestion": {
+        "other": ""
+      },
+      "likert": {
+        "agreement": {
+          "stronglyDisagree": "",
+          "disagree": "",
+          "neutral": "",
+          "agree": "",
+          "stronglyAgree": ""
+        },
+        "occurrence": {
+          "veryRarely": "",
+          "rarely": "",
+          "occasionally": "",
+          "frequently": "",
+          "veryFrequently": ""
+        },
+        "importance": {
+          "unimportant": "",
+          "offLittleImportance": "",
+          "moderatelyImportant": "",
+          "important": "",
+          "veryImportant": ""
+        },
+        "quality": {
+          "extremelyPoor": "",
+          "belowAverage": "",
+          "average": "",
+          "aboveAverage": "",
+          "excellent": ""
+        },
+        "comprehension": {
+          "didNotUnderstand": "",
+          "understoodALittle": "",
+          "understoodMostOfIt": "",
+          "understoodVeryWell": ""
+        },
+        "impression": {
+          "veryDissatisfied": "",
+          "somewhatDissatisfied": "",
+          "neutral": "",
+          "somewhatSatisfied": "",
+          "verySatisfied": ""
+        }
+      },
+      "fiveSecondTest": {
+        "viewImageButton": "",
+        "title": "",
+        "subtitle": ""
+      },
+      "firstClick": {
+        "viewImageButton": "",
+        "confirmClick": "",
+        "cancelClick": "",
+        "subtitle": ""
+      },
+      "multiSelect": {
+        "subtitle": ""
+      },
+      "preferenceTest": {
+        "viewImagesButton": "",
+        "subtitle": "",
+        "subtitleCarousel": "",
+        "chooseButton": ""
+      }
+    },
+    "preview": {
+      "banner": "",
+      "invalidOverlayTitle": "",
+      "invalidOverlayDescription": ""
+    }
+  }
+}

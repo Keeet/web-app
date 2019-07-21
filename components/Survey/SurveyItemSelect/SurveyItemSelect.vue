@@ -9,7 +9,7 @@
     />
     <SurveyItemSelectChoice
       v-if="item.otherAvailable && !hasOtherAlready"
-      :choice="MISSION_SURVEY_SELECT_OTHER_LABEL"
+      :choice="$t('survey.items.selectQuestion.other', $store.state.survey.language)"
       :selected="isSelected(MISSION_SURVEY_SELECT_OTHER_LABEL)"
       @click="select(MISSION_SURVEY_SELECT_OTHER_LABEL)"
     />

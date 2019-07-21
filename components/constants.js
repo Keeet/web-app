@@ -2,30 +2,26 @@ export const COUNTRIES = {
   DE: 'DE',
   GB: 'GB',
   FR: 'FR',
-  ES: 'ES',
-  IT: 'IT'
+  ES: 'ES'
 }
 export const COUNTRY_LABELS = {
   DE: 'Germany',
   GB: 'United Kingdom',
   FR: 'France',
-  ES: 'Spain',
-  IT: 'Italy'
+  ES: 'Spain'
 }
 
 export const LANGUAGES = {
   DE: 'DE',
   EN: 'EN',
   FR: 'FR',
-  ES: 'ES',
-  IT: 'IT'
+  ES: 'ES'
 }
 export const LANGUAGE_LABELS = {
   DE: 'German',
   EN: 'English',
   FR: 'French',
-  ES: 'Spanish',
-  IT: 'Italian'
+  ES: 'Spanish'
 }
 
 export const ROLES = {
@@ -197,13 +193,21 @@ export const MISSION_SURVEY_ITEM_LIKERT_LABELS = {
   COMPREHENSION: 'Comprehension',
   IMPRESSION: 'Impression'
 }
-export const MISSION_SURVEY_ITEM_LIKERT_OPTIONS = {
-  AGREEMENT: ['Strongly disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'],
-  OCCURRENCE: ['Very rarely', 'Rarely', 'Occasionally', 'Frequently', 'Very frequently'],
-  IMPORTANCE: ['Unimportant', 'Off little importance', 'Moderately important', 'Important', 'Very important'],
-  QUALITY: ['Extremely poor', 'Below average', 'Average', 'Above average', 'Excellent'],
-  COMPREHENSION: ['Did not understand', 'Understood a little', 'Understood most of it', 'Understood very well'],
-  IMPRESSION: ['Very dissatisfied', 'Somewhat dissatisfied', 'Neutral', 'Somewhat satisfied', 'Very satisfied']
+export const MISSION_SURVEY_ITEM_LIKERT_INTL_KEYS = {
+  AGREEMENT: 'agreement',
+  OCCURRENCE: 'occurrence',
+  IMPORTANCE: 'importance',
+  QUALITY: 'quality',
+  COMPREHENSION: 'comprehension',
+  IMPRESSION: 'impression'
+}
+export const MISSION_SURVEY_ITEM_LIKERT_OPTIONS_INTL_KEYS = {
+  AGREEMENT: ['stronglyDisagree', 'disagree', 'neutral', 'agree', 'stronglyAgree'],
+  OCCURRENCE: ['veryRarely', 'rarely', 'occasionally', 'frequently', 'veryFrequently'],
+  IMPORTANCE: ['unimportant', 'offLittleImportance', 'moderatelyImportant', 'important', 'veryImportant'],
+  QUALITY: ['extremelyPoor', 'belowAverage', 'average', 'aboveAverage', 'excellent'],
+  COMPREHENSION: ['didNotUnderstand', 'understoodALittle', 'understoodMostOfIt', 'understoodVeryWell'],
+  IMPRESSION: ['veryDissatisfied', 'somewhatDissatisfied', 'neutral', 'somewhatSatisfied', 'verySatisfied']
 }
 export const MISSION_SURVEY_USABILITY_LAB_ITEMS = {
   FIRST_CLICK: 'FIRST_CLICK',
@@ -240,15 +244,6 @@ export const MISSION_SURVEY_USABILITY_LAB_FOLLOW_UP_REQUIRED = [
   MISSION_SURVEY_USABILITY_LAB_ITEMS.DESIGN_QUESTION,
   MISSION_SURVEY_USABILITY_LAB_ITEMS.QUESTION_LIST
 ]
-export const MISSION_SURVEY_USABILITY_LAB_ITEM_TITLE = {
-  FIVE_SECOND_TEST: 'You will see the image for {{duration}} seconds'
-}
-export const MISSION_SURVEY_USABILITY_LAB_ITEM_SUBTITLE = {
-  PREFERENCE_TEST: ['Click an image to zoom in', 'Click again to zoom out'],
-  FIRST_CLICK: 'Click on the image to carry out the instructions or complete the set task.',
-  MULTI_SELECT: 'You can choose one or more',
-  FIVE_SECOND_TEST: 'Try to remember as much as you can.'
-}
 export const MISSION_SURVEY_USABILITY_LAB_ITEM_INSIGHTS = {
   FIVE_SECOND_TEST: 'Design shown for {duration}s',
   DESIGN_QUESTION: 'Design Question',

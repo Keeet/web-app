@@ -1,4 +1,5 @@
 import { flatMap } from '../utils/objectUtils'
+import { LANGUAGES } from '../components/constants'
 
 const cookieParser = process.server ? require('cookieparser') : undefined
 const jwtDecode = require('jwt-decode')
@@ -8,6 +9,7 @@ export const state = () => ({
   idToken: null,
   auth0User: null,
   tokenCompanyId: null,
+  locale: LANGUAGES.EN,
   user: null,
   company: null,
   companyUsers: null,
@@ -50,6 +52,9 @@ export const mutations = {
     state.idToken = idToken
     state.auth0User = jwtDecode(idToken)
     state.tokenCompanyId = jwtDecode(accessToken)['https://keeet.io/companyId']
+  },
+  setLocale(state, locale) {
+    state.locale = locale
   },
   setUser(state, user) {
     state.user = user

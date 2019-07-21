@@ -7,7 +7,7 @@
       />
     </div>
     <p v-if="isPreview()" class="survey-step-preview" :style="{ backgroundColor: s.color }">
-      PREVIEW ONLY
+      {{ $t('survey.preview.banner', s.language) }}
     </p>
     <div class="survey-step-body">
       <slot />
@@ -19,7 +19,7 @@
     >
       <div class="survey-step-button-inner">
         <ButtonText
-          :text="isCint ? 'Back to Cint' : buttonText"
+          :text="isCint ? $t('survey.backToCintButton', s.language) : buttonText || $t('survey.nextButton', s.language)"
           :bg-color="s.color"
           no-margin
           @click="clickButton"
@@ -37,7 +37,7 @@ export default {
   props: {
     buttonText: {
       type: String,
-      default: 'Next'
+      default: null
     },
     buttonLink: {
       type: String,

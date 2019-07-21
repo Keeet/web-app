@@ -2,7 +2,7 @@
   <div class="survey-item-first-click">
     <div v-if="!response.started" class="survey-item-first-click-button">
       <ButtonText
-        text="Click to view image"
+        :text="$t('survey.items.firstClick.viewImageButton', s.language)"
         :bg-color="s.color"
         @click="$store.commit('surveyForm/startUsabilityTest')"
       />
@@ -22,7 +22,7 @@
           />
           <div v-if="!response.confirmed" class="survey-item-first-click-selected-box">
             <ButtonText
-              text="Confirm click"
+              :text="$t('survey.items.firstClick.confirmClick', s.language)"
               no-margin
               :bg-color="s.color"
               @click="confirmCoordinates"
@@ -32,7 +32,7 @@
               :style="{ color: s.color }"
               @click="unselectCoordinates"
             >
-              Cancel
+              {{ $t('survey.items.firstClick.cancelClick', s.language) }}
             </p>
           </div>
         </div>

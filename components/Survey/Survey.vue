@@ -12,14 +12,14 @@
     <OverlayModal
       v-if="isPreview()"
       v-show="!$store.state.survey.previewValid"
-      title="Invalid survey form"
+      :title="$t('survey.preview.invalidOverlayTitle', $store.state.survey.language)"
       no-close
     >
-      Please check your survey form and fill all required fields
+      {{ $t('survey.preview.invalidOverlayDescription', $store.state.survey.language) }}
     </OverlayModal>
     <OverlayModal
       v-else-if="wasSubmitted"
-      title="You submitted the form already."
+      :title="$t('survey.alreadySubmitted', $store.state.survey.language)"
       no-close
     />
   </div>
@@ -70,7 +70,9 @@ export default {
       return this.activeItem.required
     },
     buttonNextText() {
-      return (!this.s.activeItemValid && (this.itemHasRequired && !this.itemIsRequired)) ? 'Skip' : 'Next'
+      return (!this.s.activeItemValid && (this.itemHasRequired && !this.itemIsRequired))
+        ? this.$t('survey.skipButton', this.$store.state.survey.language)
+        : this.$t('survey.nextButton', this.$store.state.survey.language)
     },
     hideNext() {
       return (!this.s.activeItemValid && (this.itemIsRequired || !this.itemHasRequired)) || this.automaticNext
