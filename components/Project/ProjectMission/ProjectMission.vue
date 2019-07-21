@@ -24,31 +24,22 @@
             Info
           </p>
         </div>
+        <ProjectMissionSection :type="mission.type" grow>
+          <p class="text-overflow-ellipsis">
+            {{ mission.title }}
+          </p>
+        </ProjectMissionSection>
         <ProjectMissionSection headline="Date" :type="mission.type">
           <p class="project-mission-date">
             {{ date }}
           </p>
         </ProjectMissionSection>
-        <ProjectMissionSection headline="Owner" :type="mission.type" no-shrink>
+        <ProjectMissionSection headline="Owner" :type="mission.type" no-shrink no-border>
           <div class="project-mission-owner">
             <img class="project-mission-owner-img" :src="mission.owner.profileImage">
             <p class="project-mission-owner-name">
               {{ mission.owner.firstName }} {{ mission.owner.lastName }}
             </p>
-          </div>
-        </ProjectMissionSection>
-        <ProjectMissionSection headline="Description" :type="mission.type" is-description no-border>
-          <div class="project-mission-description">
-            <no-ssr>
-              <ellipsis
-                :text="descriptionFormatted"
-                :line-num="3"
-                font-size="18px"
-                font-family="Roboto"
-                left="..."
-                tag-name="span"
-              />
-            </no-ssr>
           </div>
         </ProjectMissionSection>
       </div>
@@ -85,15 +76,6 @@ export default {
     }
   },
   computed: {
-    description() {
-      return this.mission.description
-    },
-    descriptionFormatted() {
-      if (!this.description) {
-        return '-'
-      }
-      return this.description
-    },
     hasConductingDate() {
       return [this.IN_HOUSE, this.REMOTE].includes(this.mission.type)
     },

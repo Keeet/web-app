@@ -1,9 +1,9 @@
 <template>
-  <div class="project-mission-section" :class="{ noBorder, noShrink, isDescription }">
-    <p class="project-mission-section-headline" :class="type">
+  <div class="project-mission-section" :class="{ noBorder, noShrink, grow }">
+    <p v-if="headline" class="project-mission-section-headline" :class="type">
       {{ headline }}
     </p>
-    <div class="project-mission-section-content">
+    <div class="project-mission-section-content" :class="{ noHeadline: !headline }">
       <slot />
     </div>
   </div>
@@ -17,7 +17,7 @@ export default {
   props: {
     headline: {
       type: String,
-      required: true
+      default: null
     },
     type: {
       type: String,
@@ -28,11 +28,11 @@ export default {
       type: Boolean,
       default: false
     },
-    noShrink: {
+    grow: {
       type: Boolean,
       default: false
     },
-    isDescription: {
+    noShrink: {
       type: Boolean,
       default: false
     }
