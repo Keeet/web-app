@@ -14,7 +14,7 @@ const OPERATIONS = {
   SUBMIT_SURVEY: 'SUBMIT_SURVEY'
 }
 
-export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
+export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, inject) {
   inject('push', {
 
     upsertCompany({ id, name, country, city, zipCode, street, houseNumber, addressDescription }) {
@@ -324,7 +324,6 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect }, inject) {
   }
 
   function handleError(e) {
-    // eslint-disable-next-line no-console
-    console.error(e)
+    error({ statusCode: 500, message: e })
   }
 }

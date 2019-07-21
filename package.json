@@ -20,6 +20,7 @@
     "@fullcalendar/vue": "4.1.1",
     "@netsells/nuxt-hotjar": "0.1.2",
     "@nuxtjs/axios": "^5.4.1",
+    "@nuxtjs/sentry": "3.0.0",
     "aos": "2.3.4",
     "auth0-js": "^9.10.2",
     "consola": "latest",
