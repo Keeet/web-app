@@ -18,16 +18,10 @@
         @submit="submit"
       />
     </div>
-    <Confirm
-      v-if="!$store.state.company.billingConfig"
-      title="Billing address missing"
-      text="You have to add a billing address before you can order testers."
-      label-confirm="Add billing address"
-      label-cancel="Cancel"
-      full-width
-      no-close
-      @confirm="$router.push('/account/billing')"
-      @cancel="cancel"
+    <BillingMissing
+      v-if="$store.state.missionPage.surveyOrderBillingAddressOpened"
+      no-admin-text="Your admin has to add a billing address before you can order testers."
+      @hide="$store.commit('missionPage/hideSurveyOrderBillingAddress')"
     />
   </div>
 </template>
@@ -37,13 +31,13 @@ import { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_LABE
 import MissionPersonaCriteria from '../_shared/MissionPersonaCriteria/MissionPersonaCriteria'
 import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
 import MissionOrderSummary from '../_shared/MissionOrderSummary/MissionOrderSummary'
-import Confirm from '../_shared/Confirm/Confirm'
+import BillingMissing from '../_shared/BillingMissing/BillingMissing'
 import MissionSurveyOrderParticipants from './MissionSurveyOrderParticipants/MissionSurveyOrderParticipants'
 import MissionSurveyOrderCountry from './MissionSurveyOrderCountry/MissionSurveyOrderCountry'
 
 export default {
   name: 'MissionSurveyOrder',
-  components: { Confirm, MissionSurveyOrderCountry, MissionOrderSummary, ButtonCircle, MissionSurveyOrderParticipants, MissionPersonaCriteria },
+  components: { BillingMissing, MissionSurveyOrderCountry, MissionOrderSummary, ButtonCircle, MissionSurveyOrderParticipants, MissionPersonaCriteria },
   data() {
     return { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_LABELS, PERSONA_CRITERIA }
   },
@@ -80,6 +74,10 @@ export default {
       this.$router.push(`/missions/${this.mission.id}/share`)
     },
     submit() {
+      if (!this.$store.state.company.billingConfig) {
+        this.$store.commit('missionPage/showSurveyOrderBillingAddress')
+        return
+      }
       this.$push.submitMissionOrder({
         ...this.buildOrderRequest(),
         missionId: this.mission.id

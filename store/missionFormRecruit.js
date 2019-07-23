@@ -12,7 +12,8 @@ const defaultState = {
   activeCalendarDay: null,
   sessionErrorPopup: false,
   submittedPopup: false,
-  pricing: null
+  pricing: null,
+  billingModalOpened: false
 }
 
 export const state = () => (defaultState)
@@ -125,6 +126,12 @@ export const mutations = {
   },
   setPricing(state, pricing) {
     state.pricing = pricing
+  },
+  showBillingModal(state) {
+    state.billingModalOpened = true
+  },
+  hideBillingModal(state) {
+    state.billingModalOpened = false
   }
 }
 

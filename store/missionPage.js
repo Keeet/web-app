@@ -7,7 +7,8 @@ export const state = () => ({
   activePage: null,
   disableAnimation: false,
   insightFormOpened: false,
-  deleteConfirmOpened: false
+  deleteConfirmOpened: false,
+  surveyOrderBillingAddressOpened: false
 })
 
 export const mutations = {
@@ -37,5 +38,11 @@ export const mutations = {
   },
   closeDeleteConfirm(state) {
     state.deleteConfirmOpened = false
+  },
+  showSurveyOrderBillingAddress(state) {
+    state.surveyOrderBillingAddressOpened = true
+  },
+  hideSurveyOrderBillingAddress(state) {
+    state.surveyOrderBillingAddressOpened = false
   }
 }

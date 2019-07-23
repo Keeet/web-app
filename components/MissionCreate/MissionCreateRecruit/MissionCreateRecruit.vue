@@ -24,18 +24,12 @@
       @submit="submit"
     >
       <MissionCreateRecruitSummary />
+      <BillingMissing
+        v-if="$store.state.missionFormRecruit.billingModalOpened"
+        no-admin-text="Your admin has to add a billing address before you can create In-House and Remote missions."
+        @hide="$store.commit('missionFormRecruit/hideBillingModal')"
+      />
     </MissionCreateRecruitStep>
-    <Confirm
-      v-if="!$store.state.company.billingConfig"
-      title="Billing address missing"
-      text="You have to add a billing address before you can create In-House and Remote missions."
-      label-confirm="Add billing address"
-      label-cancel="Cancel"
-      full-width
-      no-close
-      @confirm="$router.push('/account/billing')"
-      @cancel="$store.commit('missionForm/previousStep')"
-    />
   </div>
 </template>
 
@@ -45,12 +39,12 @@ import MissionCreateRecruitCalendar from '../MissionCreateRecruitCalendar/Missio
 import MissionCreateRecruitSummary from '../MissionCreateRecruitSummary/MissionCreateRecruitSummary'
 import MissionCreateRecruitStep from '../MissionCreateRecruitStep/MissionCreateRecruitStep'
 import MissionCreateRecruitPersona from '../MissionCreateRecruitPersona/MissionCreateRecruitPersona'
-import Confirm from '../../_shared/Confirm/Confirm'
+import BillingMissing from '../../_shared/BillingMissing/BillingMissing'
 
 export default {
   name: 'MissionCreateRecruit',
   components: {
-    Confirm,
+    BillingMissing,
     MissionCreateRecruitPersona,
     MissionCreateRecruitStep,
     MissionCreateRecruitSummary,
@@ -59,7 +53,12 @@ export default {
   },
   methods: {
     submit() {
-      const { missionForm, missionFormPersona } = this.$store.state
+      const { missionForm, missionFormPersona, company: { billingConfig } } = this.$store.state
+      if (!billingConfig) {
+        this.$store.commit('missionFormRecruit/showBillingModal')
+        return
+      }
+
       this.$store.commit('missionForm/pending')
       this.$store.dispatch('missionFormRecruit/submit', {
         missionForm,
