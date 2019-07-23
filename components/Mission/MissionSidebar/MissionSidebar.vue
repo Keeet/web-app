@@ -56,7 +56,7 @@ export default {
       return this.$store.state.mission.id.startsWith('sample')
     },
     description() {
-      return this.mission.description || 'Enter your project description here. Share briefly why you are conducting this mission in order to keep everyone on the same page.'
+      return this.mission.description || 'Enter your mission description here. Share briefly why you are conducting this mission in order to keep everyone on the same page.'
     },
     missionMetadataForm() {
       return this.$store.state.missionMetadataForm
