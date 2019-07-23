@@ -22,49 +22,82 @@ export default {
   validate({ params: { id } }) {
     return !!id
   },
-  fetch({ app: { $fetch }, params, store, route }) {
-    const IS_RECRUIT_INSIGHT = route.path.endsWith('insights')
-    const IS_RECRUIT_OVERVIEW = route.path.endsWith('overview')
-    const IS_SURVEY_RESULTS = route.path.endsWith('results')
-    const IS_SURVEY_SHARE = route.path.endsWith('share')
-    const IS_INDEX = !IS_RECRUIT_INSIGHT && !IS_RECRUIT_OVERVIEW && !IS_SURVEY_RESULTS && !IS_SURVEY_SHARE
-
-    if (IS_RECRUIT_INSIGHT || IS_RECRUIT_OVERVIEW || IS_SURVEY_RESULTS || IS_SURVEY_SHARE) {
-      store.commit('missionPage/disableAnimation', true)
-    } else {
-      store.commit('missionPage/disableAnimation', false)
+  fetch({ app: { $fetch }, params: { id }, store, route }) {
+    const ACTIVE_PAGE = {
+      IS_RECRUIT_INSIGHT: route.path.endsWith('insights'),
+      IS_RECRUIT_OVERVIEW: route.path.endsWith('overview'),
+      IS_SURVEY_RESULTS: route.path.endsWith('results'),
+      IS_SURVEY_SHARE: route.path.endsWith('share')
     }
 
-    const { id } = params
-    const fetchCfg = [{ name: 'USER' }]
+    disableAnimationOnMissionSubPage(store, ACTIVE_PAGE)
 
     if (id.startsWith('sample-')) {
-      store.commit('setMission', { ...sampleProject.missions[0], projectId: 'sample' })
-      if (IS_RECRUIT_INSIGHT) {
-        store.commit('setMissionInsights', sampleMissionInsights)
-      }
-    } else {
-      fetchCfg.push({ name: 'MISSION', id })
-      if (IS_RECRUIT_INSIGHT) {
-        fetchCfg.push({ name: 'MISSION_INSIGHTS', id })
-      }
+      setSampleMission(store, id, ACTIVE_PAGE)
+      return $fetch([{ name: 'USER' }])
+    }
+
+    const fetchCfg = [{ name: 'USER' }, { name: 'MISSION', id }]
+    if (ACTIVE_PAGE.IS_RECRUIT_INSIGHT) {
+      fetchCfg.push({ name: 'MISSION_INSIGHTS', id })
     }
     return $fetch(fetchCfg, () => {
       const missionType = store.state.mission.type
       const IS_SURVEY = [SURVEY, USABILITY_LAB].includes(missionType)
-      if (IS_RECRUIT_OVERVIEW || (IS_INDEX && [IN_HOUSE, REMOTE].includes(missionType))) {
-        store.commit('missionPage/showRecruitOverview')
-      } else if (IS_RECRUIT_INSIGHT) {
-        store.commit('missionPage/showRecruitInsights')
-      } else if (IS_SURVEY_RESULTS || (IS_INDEX && IS_SURVEY)) {
-        store.commit('missionPage/showSurveyResults')
-      } else if (IS_SURVEY_SHARE) {
-        store.commit('missionPage/showSurveyShare')
-      }
+      setMissionPage(store, missionType, { ...ACTIVE_PAGE, IS_SURVEY })
+
       if (IS_SURVEY) {
         return $fetch([{ name: 'SURVEY', id }])
       }
     })
   }
+}
+
+function disableAnimationOnMissionSubPage(store, {
+  IS_RECRUIT_INSIGHT,
+  IS_RECRUIT_OVERVIEW,
+  IS_SURVEY_RESULTS,
+  IS_SURVEY_SHARE
+}) {
+  if (IS_RECRUIT_INSIGHT || IS_RECRUIT_OVERVIEW || IS_SURVEY_RESULTS || IS_SURVEY_SHARE) {
+    store.commit('missionPage/disableAnimation', true)
+  } else {
+    store.commit('missionPage/disableAnimation', false)
+  }
+}
+
+function setSampleMission(store, id, { IS_RECRUIT_INSIGHT }) {
+  store.commit('setMission', {
+    ...sampleProject.missions.find(mission => mission.id === id),
+    projectId: 'sample'
+  })
+  if (IS_RECRUIT_INSIGHT) {
+    store.commit('setMissionInsights', sampleMissionInsights)
+  }
+}
+
+function setMissionPage(store, missionType, activePage) {
+  const {
+    IS_RECRUIT_OVERVIEW,
+    IS_RECRUIT_INSIGHT,
+    IS_SURVEY,
+    IS_SURVEY_RESULTS,
+    IS_SURVEY_SHARE
+  } = activePage
+  const IS_INDEX = activePageIsIndex(activePage)
+
+  if (IS_RECRUIT_OVERVIEW || (IS_INDEX && [IN_HOUSE, REMOTE].includes(missionType))) {
+    store.commit('missionPage/showRecruitOverview')
+  } else if (IS_RECRUIT_INSIGHT) {
+    store.commit('missionPage/showRecruitInsights')
+  } else if (IS_SURVEY_RESULTS || (IS_INDEX && IS_SURVEY)) {
+    store.commit('missionPage/showSurveyResults')
+  } else if (IS_SURVEY_SHARE) {
+    store.commit('missionPage/showSurveyShare')
+  }
+}
+
+function activePageIsIndex({ IS_RECRUIT_INSIGHT, IS_RECRUIT_OVERVIEW, IS_SURVEY_RESULTS, IS_SURVEY_SHARE }) {
+  return !IS_RECRUIT_INSIGHT && !IS_RECRUIT_OVERVIEW && !IS_SURVEY_RESULTS && !IS_SURVEY_SHARE
 }
 </script>
