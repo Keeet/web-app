@@ -13,7 +13,7 @@
     <div v-if="mission.type === MISSIONS.REMOTE" class="mission-recruit-overview-session-remote-call border-left">
       <p
         class="mission-recruit-overview-session-remote-call-button"
-        :class="{ disabled: !recruited }"
+        :class="{ disabled: callDisabled }"
         @click="startCall"
       >
         Start call
@@ -46,7 +46,7 @@ export default {
       return this.$store.state.mission
     },
     isSample() {
-      return this.$store.state.mission.id.startsWith('sample')
+      return this.$store.state.mission.isSample
     },
     testUser() {
       return this.session.testUser
@@ -79,11 +79,14 @@ export default {
         return '#'
       }
       return `mailto:${this.testUser.email}`
+    },
+    callDisabled() {
+      return !this.recruited || this.isSample
     }
   },
   methods: {
     startCall() {
-      if (!this.recruited) {
+      if (this.callDisabled) {
         return
       }
       this.$router.push(`/video-session/${this.session.id}/company`)

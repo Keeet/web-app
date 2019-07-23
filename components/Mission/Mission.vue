@@ -65,12 +65,16 @@ export default {
           }
         ]
       } else if (this.isSurvey) {
+        const results = {
+          page: RESULTS,
+          label: 'Results',
+          link: `/missions/${this.mission.id}/results`
+        }
+        if (this.mission.isSample) {
+          return [results]
+        }
         return [
-          {
-            page: RESULTS,
-            label: 'Results',
-            link: `/missions/${this.mission.id}/results`
-          },
+          results,
           {
             page: SHARE,
             label: 'Share',

@@ -14,10 +14,10 @@
           {{ project.owner.firstName }} {{ project.owner.lastName }}
         </p>
       </div>
-      <div class="project-sidebar-delete">
+      <div v-if="!isSample" class="project-sidebar-delete">
         <ButtonText
           type="GREY_DELETE"
-          text="Delete project"
+          text="delete project"
           @click="$store.commit('projectPage/openDeleteConfirm')"
         />
       </div>

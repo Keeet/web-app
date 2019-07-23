@@ -10,8 +10,9 @@
     >
       <slot />
       <ButtonText
+        v-if="!mission.isSample"
         type="GREY_DELETE"
-        text="Delete mission"
+        text="delete mission"
         @click="$store.commit('missionPage/openDeleteConfirm')"
       />
     </SidebarLeft>

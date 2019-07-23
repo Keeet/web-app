@@ -4,118 +4,1073 @@
     "lastName": "Taylor",
     "profileImage": "/img/sample-project-owner.jpg"
   },
-  "title": "Sample Project",
-  "description": "This is a sample project. See how we organize all gathered user insights in our timeline.",
-  "createdAt": "2019-05-04T22:43:15Z",
-  "updatedAt": "2019-05-04T22:43:15Z",
-  "missions": [
+  "updatedAt":"2019-07-19T09:41:12.231Z",
+  "createdAt":"2019-07-19T09:41:12.229Z",
+  "title":"Sample project",
+  "description":null,
+  "missions":[
     {
-      "id": "sample-1",
-      "startDate": "2019-04-21T15:42:38.032Z",
-      "endDate": "2019-04-22T15:42:38.032Z",
-      "createdAt":"2019-04-21T15:42:38.032Z",
-      "type": "IN_HOUSE",
-      "title": "Testing 1",
-      "description":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+      "actualCount":64,
+      "averageDuration":102,
+      "results":[
+        {
+          "id":"83e9f3e9-a8ce-4977-97b4-3f6e01ff6cb2",
+          "type":"MULTI_SELECT",
+          "index":0,
+          "required":true,
+          "actualCount":64,
+          "results":[
+            {
+              "text":"Hulu+",
+              "absolute":9,
+              "relative":9.57
+            },
+            {
+              "text":"Redbox",
+              "absolute":3,
+              "relative":3.19
+            },
+            {
+              "text":"Blockbuster",
+              "absolute":5,
+              "relative":5.32
+            },
+            {
+              "text":"Amazon Prime",
+              "absolute":25,
+              "relative":26.6
+            },
+            {
+              "text":"Netflix",
+              "absolute":47,
+              "relative":50.0
+            },
+            {
+              "text":"Vudu",
+              "absolute":5,
+              "relative":5.32
+            }
+          ]
+        },
+        {
+          "id":"723798ee-676d-4941-8ac6-46592ab9cded",
+          "type":"SINGLE_SELECT",
+          "index":1,
+          "required":true,
+          "actualCount":64,
+          "results":[
+            {
+              "text":"No",
+              "absolute":20,
+              "relative":31.25
+            },
+            {
+              "text":"Yes",
+              "absolute":44,
+              "relative":68.75
+            }
+          ]
+        },
+        {
+          "id":"535fef9f-6f52-41f8-82bf-5d130831ceb9",
+          "type":"SINGLE_SELECT",
+          "index":2,
+          "required":true,
+          "actualCount":64,
+          "results":[
+            {
+              "text":"2-6 times a week",
+              "absolute":10,
+              "relative":15.63
+            },
+            {
+              "text":"Everyday",
+              "absolute":19,
+              "relative":29.69
+            },
+            {
+              "text":"Less than once a month",
+              "absolute":7,
+              "relative":10.94
+            },
+            {
+              "text":"None of the above",
+              "absolute":2,
+              "relative":3.13
+            },
+            {
+              "text":"Once a month",
+              "absolute":7,
+              "relative":10.94
+            },
+            {
+              "text":"Once a week",
+              "absolute":19,
+              "relative":29.69
+            }
+          ]
+        },
+        {
+          "id":"d72bbaf6-cf51-4711-b5eb-1a67d5105c6e",
+          "type":"LIKERT",
+          "index":3,
+          "required":true,
+          "actualCount":64,
+          "results":[
+            {
+              "index":0,
+              "absolute":5,
+              "relative":7.81
+            },
+            {
+              "index":1,
+              "absolute":11,
+              "relative":17.19
+            },
+            {
+              "index":2,
+              "absolute":9,
+              "relative":14.06
+            },
+            {
+              "index":3,
+              "absolute":27,
+              "relative":42.19
+            },
+            {
+              "index":4,
+              "absolute":12,
+              "relative":18.75
+            }
+          ]
+        },
+        {
+          "id":"1ed593ee-574c-4fd4-8e66-940b3cab52b3",
+          "type":"LINEAR_SCALE",
+          "index":4,
+          "required":true,
+          "actualCount":64,
+          "average":5.05,
+          "results":[
+            {
+              "index":1,
+              "absolute":1,
+              "relative":1.56
+            },
+            {
+              "index":2,
+              "absolute":3,
+              "relative":4.69
+            },
+            {
+              "index":3,
+              "absolute":9,
+              "relative":14.06
+            },
+            {
+              "index":4,
+              "absolute":7,
+              "relative":10.94
+            },
+            {
+              "index":5,
+              "absolute":11,
+              "relative":17.19
+            },
+            {
+              "index":6,
+              "absolute":25,
+              "relative":39.06
+            },
+            {
+              "index":7,
+              "absolute":8,
+              "relative":12.5
+            }
+          ]
+        },
+        {
+          "id":"7e2fed9f-2799-45f9-8de3-43e64d5b7adb",
+          "type":"SINGLE_SELECT",
+          "index":5,
+          "required":true,
+          "actualCount":64,
+          "results":[
+            {
+              "text":"No",
+              "absolute":32,
+              "relative":50.0
+            },
+            {
+              "text":"Yes",
+              "absolute":32,
+              "relative":50.0
+            }
+          ]
+        }
+      ],
+      "id":"sample-499c96b3",
+      "type":"SURVEY",
+      "title":"Competitor Research",
+      "description":null,
+      "language":"EN",
       "owner":{
         "firstName":"Michael",
         "lastName":"Davis",
         "profileImage":"/img/sample-michael-davis.jpg"
       },
-      "street": "Rosenthaler Str.",
-      "houseNumber": "101",
-      "zipCode": "10369",
-      "city": "Berlin",
-      "persona": {
-        "name": "Kevin",
-        "icon": "KEVIN"
+      "startDate":"2019-07-19T09:59:19.041Z",
+      "updatedAt":"2019-07-19T09:59:19.047Z",
+      "createdAt":"2019-07-19T09:59:19.046Z",
+      "welcomeTitle":"Hey!",
+      "welcomeDescription":"You have been invited to participate in a short test. Ready?",
+      "welcomeLogo":{
+        "contentType":"image/png",
+        "id":"30f52c25-6646-434b-b188-741a069d63db",
+        "updatedAt":"2019-07-19T09:56:22.714Z",
+        "createdAt":"2019-07-19T09:56:22.629Z",
+        "spacesUrl":"/img/sample-mission-welcome-closing.png",
+        "type":"MISSION"
       },
-      "language": "EN",
-      "duration": 60,
-      "sessions": [
-        {
-          "startsAt": "2019-06-06T09:00:00Z",
-          "testUser": {
-            "firstName": "Tim",
-            "lastName": "Helman",
-            "phone": "+4915224679362",
-            "email": "tim.helman@keeet.io"
+      "closingTitle":"Thank you!",
+      "closingDescription":"Thank you for taking the time. We really appreciate you commitment. We hope to see you again soon. Have a good one!",
+      "closingLogo":{
+        "contentType":"image/png",
+        "id":"ae4b568e-7d29-4e94-9b3f-8b46ed3b1f32",
+        "updatedAt":"2019-07-19T09:58:50.401Z",
+        "createdAt":"2019-07-19T09:58:50.342Z",
+        "spacesUrl":"/img/sample-mission-welcome-closing.png",
+        "type":"MISSION"
+      },
+      "color":"#E50914",
+      "orders":[],
+      "survey": {
+        "id":"499c96b3-027d-48ac-9197-e19c23e896a7",
+        "title":"Competitor Research",
+        "description":null,
+        "type":"SURVEY",
+        "language":"EN",
+        "welcomeTitle":"Hey!",
+        "welcomeDescription":"You have been invited to participate in a short test. Ready?",
+        "welcomeLogo":"/img/sample-mission-welcome-closing.png",
+        "closingTitle":"Thank you!",
+        "closingDescription":"Thank you for taking the time. We really appreciate you commitment. We hope to see you again soon. Have a good one!",
+        "closingLogo":"/img/sample-mission-welcome-closing.png",
+        "color":"#E50914",
+        "items":[
+          {
+            "id":"83e9f3e9-a8ce-4977-97b4-3f6e01ff6cb2",
+            "type":"MULTI_SELECT",
+            "index":0,
+            "required":true,
+            "text":" Indicate which online streaming/rental services you currently use:",
+            "otherAvailable":false,
+            "choices":[
+              "Netflix",
+              "Hulu+",
+              "Amazon Prime",
+              "Redbox",
+              "Vudu",
+              "Blockbuster",
+              "None of the above"
+            ]
+          },
+          {
+            "id":"723798ee-676d-4941-8ac6-46592ab9cded",
+            "type":"SINGLE_SELECT",
+            "index":1,
+            "required":true,
+            "text":"Do you currently have a Netflix subscription? ",
+            "otherAvailable":false,
+            "choices":[
+              "Yes",
+              "No"
+            ]
+          },
+          {
+            "id":"535fef9f-6f52-41f8-82bf-5d130831ceb9",
+            "type":"SINGLE_SELECT",
+            "index":2,
+            "required":true,
+            "text":" Indicate how many times you use your Netflix subscription in a given month.",
+            "otherAvailable":false,
+            "choices":[
+              "Everyday",
+              "2-6 times a week",
+              "Once a week",
+              "Once a month",
+              "Less than once a month",
+              "None of the above"
+            ]
+          },
+          {
+            "id":"d72bbaf6-cf51-4711-b5eb-1a67d5105c6e",
+            "type":"LIKERT",
+            "index":3,
+            "required":true,
+            "text":"Indicate your overall opinion of your Netflix subscription by selecting one of the following options.",
+            "answerType":"IMPRESSION"
+          },
+          {
+            "id":"1ed593ee-574c-4fd4-8e66-940b3cab52b3",
+            "type":"LINEAR_SCALE",
+            "index":4,
+            "required":true,
+            "text":"Indicate your opinion of Netflix's DVD/TV show options available to its customers by selecting the appropriate number. ",
+            "startValue":1,
+            "startLabel":"Very Bad",
+            "endValue":7,
+            "endLabel":"Very Good"
+          },
+          {
+            "id":"7e2fed9f-2799-45f9-8de3-43e64d5b7adb",
+            "type":"SINGLE_SELECT",
+            "index":5,
+            "required":true,
+            "text":"Would you pay a higher subscription fee for more online streaming content to be made available?",
+            "otherAvailable":false,
+            "choices":[
+              "Yes",
+              "No"
+            ]
           }
-        },
-        {
-          "startsAt": "2019-06-06T12:00:00Z"
-        },
-        {
-          "startsAt": "2019-06-06T13:15:00Z",
-          "testUser": {
-            "firstName": "Lucas",
-            "lastName": "Meindl",
-            "phone": "+4915224679362",
-            "email": "lucas.meindl@keeet.io"
-          }
-        },
-        {
-          "startsAt": "2019-08-06T06:30:00Z",
-          "testUser": {
-            "firstName": "Stephan",
-            "lastName": "Hemberg",
-            "phone": "+4915224679362",
-            "email": "stephan.hemberg@keeet.io"
-          }
-        },
-        {
-          "startsAt": "2019-08-06T08:00:00Z",
-          "testUser": {
-            "firstName": "Louis",
-            "lastName": "Withney",
-            "phone": "+4915224679362",
-            "email": "louis.withney@keeet.io"
-          }
-        },
-        {
-          "startsAt": "2019-06-06T11:00:00Z"
-        }
-      ]
+        ],
+        "cintProjectToken":null
+      }
     },
     {
-      "id": "sample-2",
-      "startDate":"2019-04-08T15:42:38.032Z",
-      "createdAt":"2019-04-08T15:42:38.032Z",
-      "type":"REMOTE",
-      "title": "Testing 2",
-      "description":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      "actualCount":58,
+      "averageDuration":163,
+      "results":[
+        {
+          "id":"0b3f8b00-f7ce-4f95-8817-0777c65b52f3",
+          "type":"FIRST_CLICK",
+          "index":0,
+          "required":true,
+          "actualCount":null,
+          "followUpResults":[
+
+          ],
+          "imageUrl":"/img/sample-mission-eaeb9729-item-0.jpg",
+          "clickPoints":[
+            {
+              "x":0.68841,
+              "y":0.74949
+            },
+            {
+              "x":0.58696,
+              "y":0.76578
+            },
+            {
+              "x":0.83333,
+              "y":0.72505
+            },
+            {
+              "x":0.83333,
+              "y":0.76171
+            },
+            {
+              "x":0.53623,
+              "y":0.75967
+            },
+            {
+              "x":0.46377,
+              "y":0.77393
+            },
+            {
+              "x":0.89493,
+              "y":0.75967
+            },
+            {
+              "x":0.8913,
+              "y":0.74134
+            },
+            {
+              "x":0.93116,
+              "y":0.74134
+            },
+            {
+              "x":0.93841,
+              "y":0.74338
+            },
+            {
+              "x":0.88406,
+              "y":0.7556
+            },
+            {
+              "x":0.78261,
+              "y":0.74338
+            },
+            {
+              "x":0.53986,
+              "y":0.75356
+            },
+            {
+              "x":0.51449,
+              "y":0.7556
+            },
+            {
+              "x":0.86594,
+              "y":0.80855
+            },
+            {
+              "x":0.87319,
+              "y":0.71487
+            },
+            {
+              "x":0.38043,
+              "y":0.75764
+            },
+            {
+              "x":0.55435,
+              "y":0.75967
+            },
+            {
+              "x":0.74275,
+              "y":0.5336
+            },
+            {
+              "x":0.92754,
+              "y":0.77597
+            },
+            {
+              "x":0.09058,
+              "y":0.7556
+            },
+            {
+              "x":0.89855,
+              "y":0.778
+            },
+            {
+              "x":0.83333,
+              "y":0.74338
+            },
+            {
+              "x":0.88406,
+              "y":0.74745
+            },
+            {
+              "x":0.63768,
+              "y":0.72912
+            },
+            {
+              "x":0.89493,
+              "y":0.73727
+            },
+            {
+              "x":0.50362,
+              "y":0.74338
+            },
+            {
+              "x":0.73913,
+              "y":0.82485
+            },
+            {
+              "x":0.88043,
+              "y":0.75967
+            },
+            {
+              "x":0.90942,
+              "y":0.73931
+            },
+            {
+              "x":0.11957,
+              "y":0.76375
+            },
+            {
+              "x":0.53261,
+              "y":0.74745
+            },
+            {
+              "x":0.87227,
+              "y":0.73158
+            },
+            {
+              "x":0.13043,
+              "y":0.73116
+            },
+            {
+              "x":0.87681,
+              "y":0.74134
+            },
+            {
+              "x":0.87681,
+              "y":0.74542
+            },
+            {
+              "x":0.91304,
+              "y":0.76375
+            },
+            {
+              "x":0.88406,
+              "y":0.74338
+            },
+            {
+              "x":0.8587,
+              "y":0.7556
+            },
+            {
+              "x":0.8442,
+              "y":0.76578
+            },
+            {
+              "x":0.89493,
+              "y":0.68839
+            },
+            {
+              "x":0.90942,
+              "y":0.77189
+            },
+            {
+              "x":0.8587,
+              "y":0.74542
+            },
+            {
+              "x":0.88768,
+              "y":0.7332
+            },
+            {
+              "x":0.86957,
+              "y":0.77189
+            },
+            {
+              "x":0.88043,
+              "y":0.72098
+            },
+            {
+              "x":0.8442,
+              "y":0.75153
+            },
+            {
+              "x":0.83333,
+              "y":0.76171
+            },
+            {
+              "x":0.8442,
+              "y":0.72098
+            },
+            {
+              "x":0.65942,
+              "y":0.76782
+            },
+            {
+              "x":0.88043,
+              "y":0.72912
+            },
+            {
+              "x":0.86957,
+              "y":0.73523
+            },
+            {
+              "x":0.87319,
+              "y":0.74745
+            },
+            {
+              "x":0.5365,
+              "y":0.31006
+            },
+            {
+              "x":0.91304,
+              "y":0.72912
+            },
+            {
+              "x":0.85145,
+              "y":0.74542
+            },
+            {
+              "x":0.90217,
+              "y":0.73523
+            },
+            {
+              "x":0.91304,
+              "y":0.77393
+            }
+          ],
+          "instruction":"Where would you click to see a more detailed description of the movie?",
+          "deviceFrame":"PHONE_PORTRAIT"
+        },
+        {
+          "id":"725bd239-a503-43f8-8e5d-da55dd5c14a1",
+          "type":"FIVE_SECOND_TEST",
+          "index":1,
+          "required":true,
+          "actualCount":null,
+          "followUpResults":[
+            {
+              "id":"2f5cf8d5-e799-4fdf-95d1-28e842c9b39f",
+              "type":"SINGLE_SELECT",
+              "index":0,
+              "required":true,
+              "actualCount":58,
+              "results":[
+                {
+                  "text":"No",
+                  "absolute":19,
+                  "relative":32.76
+                },
+                {
+                  "text":"Not sure",
+                  "absolute":6,
+                  "relative":10.34
+                },
+                {
+                  "text":"Yes",
+                  "absolute":33,
+                  "relative":56.9
+                }
+              ]
+            }
+          ],
+          "imageUrl":"/img/sample-mission-eaeb9729-item-1.jpg",
+          "duration":5,
+          "deviceFrame":"PHONE_PORTRAIT"
+        },
+        {
+          "id":"67ba8a5f-0b80-4170-9464-a6531a8fb19f",
+          "type":"DESIGN_QUESTION",
+          "index":2,
+          "required":true,
+          "actualCount":null,
+          "followUpResults":[
+            {
+              "id":"585a27e2-a9a4-482d-b7dc-1f5f6145bbfe",
+              "type":"LIKERT",
+              "index":1,
+              "required":true,
+              "actualCount":58,
+              "results":[
+                {
+                  "index":0,
+                  "absolute":5,
+                  "relative":8.62
+                },
+                {
+                  "index":1,
+                  "absolute":3,
+                  "relative":5.17
+                },
+                {
+                  "index":2,
+                  "absolute":4,
+                  "relative":6.9
+                },
+                {
+                  "index":3,
+                  "absolute":35,
+                  "relative":60.34
+                },
+                {
+                  "index":4,
+                  "absolute":11,
+                  "relative":18.97
+                }
+              ]
+            },
+            {
+              "id":"fd8d3046-8892-496d-82ed-cfcdb6eddd36",
+              "type":"SINGLE_SELECT",
+              "index":0,
+              "required":true,
+              "actualCount":58,
+              "results":[
+                {
+                  "text":"No",
+                  "absolute":8,
+                  "relative":13.79
+                },
+                {
+                  "text":"Yes",
+                  "absolute":50,
+                  "relative":86.21
+                }
+              ]
+            }
+          ],
+          "imageUrl":"/img/sample-mission-eaeb9729-item-2.jpg",
+          "deviceFrame":"PHONE_PORTRAIT"
+        },
+        {
+          "id":"d6a33d57-d4ee-47b4-90b3-b322cee07494",
+          "type":"PREFERENCE_TEST",
+          "index":3,
+          "required":true,
+          "actualCount":null,
+          "followUpResults":[
+
+          ],
+          "results":[
+            {
+              "image":"/img/sample-mission-eaeb9729-item-3a.png",
+              "absolute":10,
+              "relative":17.24
+            },
+            {
+              "image":"/img/sample-mission-eaeb9729-item-3b.png",
+              "absolute":48,
+              "relative":82.76
+            }
+          ],
+          "instruction":"What logo design do you like best?"
+        }
+      ],
+      "id":"sample-eaeb9729",
+      "type":"USABILITY_LAB",
+      "title":"Usability Netflix App",
+      "description":null,
+      "language":"EN",
       "owner":{
         "firstName":"Tom",
         "lastName":"Jackson",
         "profileImage":"/img/sample-tom-jackson.jpg"
       },
-      "sessions": []
+      "startDate":"2019-07-19T10:33:28.410Z",
+      "updatedAt":"2019-07-19T10:33:28.411Z",
+      "createdAt":"2019-07-19T10:33:28.410Z",
+      "welcomeTitle":"Hey streamers!",
+      "welcomeDescription":"You have been invited to participate in a short test. Ready?",
+      "welcomeLogo":{
+        "contentType":"image/png",
+        "id":"43392459-b50d-4622-80b3-7258bb4ae698",
+        "updatedAt":"2019-07-19T10:31:45.658Z",
+        "createdAt":"2019-07-19T10:31:45.612Z",
+        "spacesUrl":"/img/sample-mission-welcome-closing.png",
+        "type":"MISSION"
+      },
+      "closingTitle":"Thank you! ",
+      "closingDescription":"Thank you for taking the time. We really appreciate you commitment. We hope to see you again soon. Have a good one!",
+      "closingLogo":{
+        "contentType":"image/png",
+        "id":"074244c7-1b27-4faf-b044-1f943b0ea6c3",
+        "updatedAt":"2019-07-19T10:25:11.496Z",
+        "createdAt":"2019-07-19T10:25:11.473Z",
+        "spacesUrl":"/img/sample-mission-welcome-closing.png",
+        "type":"MISSION"
+      },
+      "color":"#E50914",
+      "orders":[],
+      "survey": {
+        "id":"eaeb9729-255f-4ccb-90ed-4c2323e79d38",
+        "title":"Usability Netflix App",
+        "description":null,
+        "type":"USABILITY_LAB",
+        "language":"EN",
+        "welcomeTitle":"Hey streamers!",
+        "welcomeDescription":"You have been invited to participate in a short test. Ready?",
+        "welcomeLogo":"/img/sample-mission-welcome-closing.png",
+        "closingTitle":"Thank you! ",
+        "closingDescription":"Thank you for taking the time. We really appreciate you commitment. We hope to see you again soon. Have a good one!",
+        "closingLogo":"/img/sample-mission-welcome-closing.png",
+        "color":"#E50914",
+        "items":[
+          {
+            "id":"0b3f8b00-f7ce-4f95-8817-0777c65b52f3",
+            "type":"FIRST_CLICK",
+            "index":0,
+            "followUps":[],
+            "image":"/img/sample-mission-eaeb9729-item-0.jpg",
+            "instruction":"Where would you click to see a more detailed description of the movie?",
+            "deviceFrame":"PHONE_PORTRAIT"
+          },
+          {
+            "id":"725bd239-a503-43f8-8e5d-da55dd5c14a1",
+            "type":"FIVE_SECOND_TEST",
+            "index":1,
+            "followUps":[
+              {
+                "id":"2f5cf8d5-e799-4fdf-95d1-28e842c9b39f",
+                "type":"SINGLE_SELECT",
+                "index":0,
+                "required":true,
+                "text":"Have you found a movie that you would like to watch straight away?",
+                "otherAvailable":false,
+                "choices":[
+                  "Yes",
+                  "No",
+                  "Not sure"
+                ]
+              }
+            ],
+            "image":"/img/sample-mission-eaeb9729-item-1.jpg",
+            "duration":5,
+            "deviceFrame":"PHONE_PORTRAIT"
+          },
+          {
+            "id":"67ba8a5f-0b80-4170-9464-a6531a8fb19f",
+            "type":"DESIGN_QUESTION",
+            "index":2,
+            "followUps":[
+              {
+                "id":"585a27e2-a9a4-482d-b7dc-1f5f6145bbfe",
+                "type":"LIKERT",
+                "index":1,
+                "required":true,
+                "text":"The entertainment suggestions from Netflix are very personalized and fit to my preferences. Do you agree?",
+                "answerType":"AGREEMENT"
+              },
+              {
+                "id":"fd8d3046-8892-496d-82ed-cfcdb6eddd36",
+                "type":"SINGLE_SELECT",
+                "index":0,
+                "required":true,
+                "text":"Would you like to have a more detailed series / movie description?",
+                "otherAvailable":false,
+                "choices":[
+                  "Yes",
+                  "No"
+                ]
+              }
+            ],
+            "image":"/img/sample-mission-eaeb9729-item-2.jpg",
+            "deviceFrame":"PHONE_PORTRAIT"
+          },
+          {
+            "id":"d6a33d57-d4ee-47b4-90b3-b322cee07494",
+            "type":"PREFERENCE_TEST",
+            "index":3,
+            "followUps":[],
+            "images":[
+              {
+                "id":"cbe9f690-332b-4e12-846a-3e4d9a9e906c",
+                "url":"/img/sample-mission-eaeb9729-item-3a.png"
+              },
+              {
+                "id":"b9975a39-c8f6-40ab-b0eb-d2a75e0bb410",
+                "url":"/img/sample-mission-eaeb9729-item-3b.png"
+              }
+            ],
+            "instruction":"What logo design do you like best?"
+          }
+        ],
+        "cintProjectToken":null
+      }
     },
     {
-      "id": "sample-3",
-      "createdAt":"2019-05-03T15:42:38.032Z",
-      "type":"USABILITY_LAB",
-      "title": "Testing 3",
-      "description":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
+      "startDate":"2019-07-23T08:00:00Z",
+      "id":"sample-ba3015f2",
+      "updatedAt":"2019-07-19T09:43:27.937Z",
+      "createdAt":"2019-07-19T09:43:04.450Z",
+      "type":"IN_HOUSE",
+      "title":"In-House User Interview",
+      "description":null,
       "owner":{
         "firstName":"Lauren",
         "lastName":"Todd",
         "profileImage":"/img/sample-lauren-todd.jpg"
       },
-      "sessions": []
+      "recruitmentOrders":[
+        {
+          "demographicData":{
+            "id":"9f7cb232-f713-422e-8bbc-c9449b3a82a4",
+            "updatedAt":"2019-07-19T09:43:04.460Z",
+            "createdAt":"2019-07-19T09:43:04.460Z",
+            "minAge":18,
+            "maxAge":30,
+            "occupations":[
+
+            ],
+            "genders":[
+              "MALE"
+            ],
+            "languages":[
+              "EN"
+            ],
+            "countries":[
+              "DE"
+            ],
+            "deviceSkills":[
+
+            ]
+          },
+          "specialCriteria":[
+            "Must use one of the following streaming services: Netflix, Amazon Prime Video, Maxdome, Sky"
+          ],
+          "participants":7,
+          "amount":null,
+          "amountNet":null,
+          "id":"33f20b06-0072-42d2-8665-de1be7fb83e3",
+          "updatedAt":"2019-07-19T09:43:04.463Z",
+          "createdAt":"2019-07-19T09:43:04.463Z",
+          "provider":"MANUAL"
+        }
+      ],
+      "country":"DE",
+      "city":"Berlin",
+      "zipCode":"10969",
+      "street":"Markgrafenstraße",
+      "houseNumber":"12-14",
+      "addressDescription":"",
+      "duration":60,
+      "studyType":"USER_INTERVIEW",
+      "sessions":[
+        {
+          "startsAt":"2019-07-23T08:00:00Z",
+          "id":"35eec4c5-51ac-4b92-977c-2a40feed7b5f",
+          "updatedAt":"2019-07-19T09:43:04.464Z",
+          "createdAt":"2019-07-19T09:43:04.464Z",
+          "testUser":null
+        },
+        {
+          "startsAt":"2019-07-23T09:00:00Z",
+          "id":"65f6effd-0124-4bb0-8f2b-e3064c8e5459",
+          "updatedAt":"2019-07-19T09:43:04.464Z",
+          "createdAt":"2019-07-19T09:43:04.464Z",
+          "testUser":null
+        },
+        {
+          "startsAt":"2019-07-24T08:00:00Z",
+          "id":"a1a29bb5-f824-49d1-868d-6df2212e4166",
+          "updatedAt":"2019-07-19T09:43:04.464Z",
+          "createdAt":"2019-07-19T09:43:04.464Z",
+          "testUser":null
+        },
+        {
+          "startsAt":"2019-07-24T10:00:00Z",
+          "id":"ccf0ce70-11e8-4946-82e1-78c6d23135cf",
+          "updatedAt":"2019-07-19T09:43:04.465Z",
+          "createdAt":"2019-07-19T09:43:04.465Z",
+          "testUser":null
+        },
+        {
+          "startsAt":"2019-07-24T11:00:00Z",
+          "id":"c3eefe1e-fd40-4177-af5e-e3387b8baec8",
+          "updatedAt":"2019-07-19T09:43:04.465Z",
+          "createdAt":"2019-07-19T09:43:04.465Z",
+          "testUser":null
+        },
+        {
+          "startsAt":"2019-07-23T10:00:00Z",
+          "id":"c2716a85-a1fe-46f9-9d9b-37fb544eb4ca",
+          "updatedAt":"2019-07-19T11:04:23.592Z",
+          "createdAt":"2019-07-19T09:43:04.464Z",
+          "testUser":{
+            "firstName":"Tom",
+            "lastName":"Wiener",
+            "email":null,
+            "phone":null,
+            "id":"be3126c1-0f99-4488-9ed5-dcd73239cf48",
+            "updatedAt":"2019-07-19T11:04:23.585Z",
+            "createdAt":"2019-07-19T11:04:23.585Z"
+          }
+        },
+        {
+          "startsAt":"2019-07-24T09:00:00Z",
+          "id":"624eadb2-126d-442f-8c69-f4cd8d65747b",
+          "updatedAt":"2019-07-19T11:04:23.253Z",
+          "createdAt":"2019-07-19T09:43:04.464Z",
+          "testUser":{
+            "firstName":"Sally",
+            "lastName":"Hofman",
+            "email":null,
+            "phone":null,
+            "id":"3a30c677-903e-4e10-874b-a09094fe150d",
+            "updatedAt":"2019-07-19T11:04:23.245Z",
+            "createdAt":"2019-07-19T11:04:23.245Z"
+          }
+        }
+      ],
+      "projectId":"e5c9ca0c-3bd7-4fd9-8dae-820e80ffc41c"
     },
     {
-      "id": "sample-4",
-      "createdAt":"2018-12-01T15:42:38.032Z",
-      "type":"SURVEY",
-      "title": "Testing 4",
-      "description":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      "startDate":"2019-07-30T08:00:00Z",
+      "id":"sample-a17db282",
+      "updatedAt":"2019-07-19T09:46:47.628Z",
+      "createdAt":"2019-07-19T09:46:47.627Z",
+      "type":"REMOTE",
+      "title":"Remote Competitor Research",
+      "description":null,
       "owner":{
         "firstName":"Tom",
         "lastName":"Jackson",
         "profileImage":"/img/sample-tom-jackson.jpg"
       },
-      "sessions": []
+      "recruitmentOrders":[
+        {
+          "demographicData":{
+            "id":"c0298d59-ce19-4f1a-afb7-6a5dd9309396",
+            "updatedAt":"2019-07-19T09:46:47.635Z",
+            "createdAt":"2019-07-19T09:46:47.635Z",
+            "minAge":18,
+            "maxAge":30,
+            "occupations":[],
+            "genders":[],
+            "languages":[
+              "EN"
+            ],
+            "countries":[
+              "DE"
+            ],
+            "deviceSkills":[
+
+            ]
+          },
+          "specialCriteria":[
+            "Must use the Netflix App.",
+            "Must spend at least 4h / week on Netflix."
+          ],
+          "participants":5,
+          "amount":null,
+          "amountNet":null,
+          "id":"7c1c6f56-5fc1-47d2-b2c2-bd7bfdc0ce91",
+          "updatedAt":"2019-07-19T09:46:47.636Z",
+          "createdAt":"2019-07-19T09:46:47.636Z",
+          "provider":"MANUAL"
+        }
+      ],
+      "duration":30,
+      "sessions":[
+        {
+          "startsAt":"2019-07-30T09:00:00Z",
+          "id":"024f80b1-81ea-43d3-9eb9-daf680dbd241",
+          "updatedAt":"2019-07-19T09:46:47.637Z",
+          "createdAt":"2019-07-19T09:46:47.637Z",
+          "testUser":null
+        },
+        {
+          "startsAt":"2019-07-30T10:00:00Z",
+          "id":"4ba79678-5d5b-4ceb-ace4-e80797a12191",
+          "updatedAt":"2019-07-19T09:46:47.637Z",
+          "createdAt":"2019-07-19T09:46:47.637Z",
+          "testUser":null
+        },
+        {
+          "startsAt":"2019-07-31T10:00:00Z",
+          "id":"938e8440-aa76-4d81-9c49-896d71594135",
+          "updatedAt":"2019-07-19T09:46:47.638Z",
+          "createdAt":"2019-07-19T09:46:47.638Z",
+          "testUser":null
+        },
+        {
+          "startsAt":"2019-07-31T09:00:00Z",
+          "id":"7b64ebf4-ce04-4b15-908f-8e6c8a6f37d7",
+          "updatedAt":"2019-07-19T11:04:23.422Z",
+          "createdAt":"2019-07-19T09:46:47.637Z",
+          "testUser":{
+            "firstName":"John",
+            "lastName":"Doe",
+            "email":null,
+            "phone":null,
+            "id":"2bcfcfc6-d93c-470e-aab9-0134651befa9",
+            "updatedAt":"2019-07-19T11:04:23.413Z",
+            "createdAt":"2019-07-19T11:04:23.413Z"
+          }
+        },
+        {
+          "startsAt":"2019-07-30T08:00:00Z",
+          "id":"c93c0f2b-b33e-4b07-90d6-397261b1698c",
+          "updatedAt":"2019-07-19T11:03:23.242Z",
+          "createdAt":"2019-07-19T09:46:47.636Z",
+          "testUser":{
+            "firstName":"Larissa",
+            "lastName":"Holmes",
+            "email":null,
+            "phone":null,
+            "id":"871b39e0-779a-4e25-b352-a939f3b4a9a1",
+            "updatedAt":"2019-07-19T11:03:23.235Z",
+            "createdAt":"2019-07-19T11:03:23.235Z"
+          }
+        }
+      ],
+      "projectId":"e5c9ca0c-3bd7-4fd9-8dae-820e80ffc41c"
     }
   ]
 }

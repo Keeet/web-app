@@ -22,7 +22,7 @@ export default {
   validate({ params: { id } }) {
     return !!id
   },
-  fetch({ app: { $fetch }, params: { id }, store, route }) {
+  fetch({ app: { $fetch }, params: { id }, store, route, error }) {
     const ACTIVE_PAGE = {
       IS_RECRUIT_INSIGHT: route.path.endsWith('insights'),
       IS_RECRUIT_OVERVIEW: route.path.endsWith('overview'),
@@ -33,7 +33,10 @@ export default {
     disableAnimationOnMissionSubPage(store, ACTIVE_PAGE)
 
     if (id.startsWith('sample-')) {
-      setSampleMission(store, id, ACTIVE_PAGE)
+      if (isInvalidSamplePage(ACTIVE_PAGE)) {
+        return error({ statusCode: 404, message: `invalid sample mission page: ${route.path}` })
+      }
+      setSampleMissionAndPage(store, id, ACTIVE_PAGE)
       return $fetch([{ name: 'USER' }])
     }
 
@@ -43,10 +46,9 @@ export default {
     }
     return $fetch(fetchCfg, () => {
       const missionType = store.state.mission.type
-      const IS_SURVEY = [SURVEY, USABILITY_LAB].includes(missionType)
-      setMissionPage(store, missionType, { ...ACTIVE_PAGE, IS_SURVEY })
+      setMissionPage(store, missionType, ACTIVE_PAGE)
 
-      if (IS_SURVEY) {
+      if (isSurveyMission(missionType)) {
         return $fetch([{ name: 'SURVEY', id }])
       }
     })
@@ -66,31 +68,41 @@ function disableAnimationOnMissionSubPage(store, {
   }
 }
 
-function setSampleMission(store, id, { IS_RECRUIT_INSIGHT }) {
+function isInvalidSamplePage({ IS_SURVEY_SHARE }) {
+  return IS_SURVEY_SHARE
+}
+
+function setSampleMissionAndPage(store, id, activePage) {
+  const sampleMission = sampleProject.missions.find(mission => mission.id === id)
   store.commit('setMission', {
-    ...sampleProject.missions.find(mission => mission.id === id),
+    ...sampleMission,
+    isSample: true,
     projectId: 'sample'
   })
-  if (IS_RECRUIT_INSIGHT) {
-    store.commit('setMissionInsights', sampleMissionInsights)
+  if (isRecruitMission(sampleMission.type)) {
+    if (activePage.IS_RECRUIT_INSIGHT) {
+      store.commit('setMissionInsights', sampleMissionInsights)
+    }
+  } else if (isSurveyMission(sampleMission.type)) {
+    store.commit('setSurvey', sampleMission.survey)
   }
+  setMissionPage(store, sampleMission.type, activePage)
 }
 
 function setMissionPage(store, missionType, activePage) {
   const {
     IS_RECRUIT_OVERVIEW,
     IS_RECRUIT_INSIGHT,
-    IS_SURVEY,
     IS_SURVEY_RESULTS,
     IS_SURVEY_SHARE
   } = activePage
   const IS_INDEX = activePageIsIndex(activePage)
 
-  if (IS_RECRUIT_OVERVIEW || (IS_INDEX && [IN_HOUSE, REMOTE].includes(missionType))) {
+  if (IS_RECRUIT_OVERVIEW || (IS_INDEX && isRecruitMission(missionType))) {
     store.commit('missionPage/showRecruitOverview')
   } else if (IS_RECRUIT_INSIGHT) {
     store.commit('missionPage/showRecruitInsights')
-  } else if (IS_SURVEY_RESULTS || (IS_INDEX && IS_SURVEY)) {
+  } else if (IS_SURVEY_RESULTS || (IS_INDEX && isSurveyMission(missionType))) {
     store.commit('missionPage/showSurveyResults')
   } else if (IS_SURVEY_SHARE) {
     store.commit('missionPage/showSurveyShare')
@@ -99,5 +111,13 @@ function setMissionPage(store, missionType, activePage) {
 
 function activePageIsIndex({ IS_RECRUIT_INSIGHT, IS_RECRUIT_OVERVIEW, IS_SURVEY_RESULTS, IS_SURVEY_SHARE }) {
   return !IS_RECRUIT_INSIGHT && !IS_RECRUIT_OVERVIEW && !IS_SURVEY_RESULTS && !IS_SURVEY_SHARE
+}
+
+function isRecruitMission(missionType) {
+  return [IN_HOUSE, REMOTE].includes(missionType)
+}
+
+function isSurveyMission(missionType) {
+  return [SURVEY, USABILITY_LAB].includes(missionType)
 }
 </script>
