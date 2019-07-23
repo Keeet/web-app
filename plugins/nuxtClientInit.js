@@ -2,10 +2,11 @@ import { isAuthUrl, isExternalUrl } from '../utils/urlUtils'
 
 export default (context) => {
   fetchUserIfLoggedIn(context)
-  // TODO: enable again
-  // window.setInterval(() => {
-  //   fetchUserIfLoggedIn(context)
-  // }, 10000)
+  if (!context.isDev) {
+    window.setInterval(() => {
+      fetchUserIfLoggedIn(context)
+    }, 10000)
+  }
 
   setCssVh()
   window.addEventListener('resize', setCssVh)
