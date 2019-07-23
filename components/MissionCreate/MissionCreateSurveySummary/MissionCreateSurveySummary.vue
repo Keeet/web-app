@@ -39,7 +39,7 @@
               text="Cancel"
               type="GREY"
               no-margin
-              @click="$store.commit('missionForm/previousStep')"
+              @click="$emit('cancelClick')"
             />
           </div>
           <div class="mission-create-survey-summary-buttons-flex-item">
@@ -55,7 +55,7 @@
           </div>
         </div>
         <ButtonText
-          text="Save and Continue"
+          :text="s.editExisting ? 'Update mission' : 'Create mission'"
           no-margin
           :disabled="!isValid"
           @disabledClick="$emit('submitDisabledClick')"

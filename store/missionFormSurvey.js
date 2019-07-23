@@ -1,3 +1,4 @@
+import uuidv4 from 'uuid'
 import {
   MISSION_SURVEY_ITEMS,
   MISSION_SURVEY_USABILITY_LAB_ITEMS,
@@ -169,6 +170,23 @@ export const getters = {
     mission.color = mission.color.hex
 
     return mission
+  },
+  buildSurvey: (state, getters) => ({ missionForm, dropzoneUploads }) => {
+    const survey = getters.buildMission({ missionForm })
+    survey.welcomeLogoId = survey.welcomeLogoId ? dropzoneUploads[survey.welcomeLogoId] : null
+    survey.closingLogoId = survey.closingLogoId ? dropzoneUploads[survey.closingLogoId] : null
+    survey.items.forEach((item, x) => {
+      item.id = uuidv4()
+      item.index = x
+      if (item.followUps) {
+        item.followUps.forEach((followUp, y) => {
+          followUp.id = uuidv4()
+          followUp.index = y
+        })
+      }
+      item.image = item.imageMediaId ? dropzoneUploads[item.imageMediaId] : null
+      item.images = item.imageMediaIds ? item.imageMediaIds.map(id => ({ url: dropzoneUploads[id] })) : null
+    })
   }
 }
 
@@ -177,6 +195,48 @@ export const mutations = {
     for (const key in defaultState) {
       state[key] = defaultState[key]
     }
+  },
+  initExisting(state, { survey, mission }) {
+    for (const key in defaultState) {
+      state[key] = defaultState[key]
+    }
+    const {
+      language,
+      customizeWelcome,
+      customizeClosing,
+      welcomeTitle,
+      welcomeDescription,
+      closingTitle,
+      closingDescription,
+      color,
+      redirectLink,
+      items
+    } = survey
+    const {
+      welcomeLogo,
+      closingLogo
+    } = mission
+
+    state.language = language || defaultState.language
+    state.customizeWelcome = customizeWelcome || defaultState.customizeWelcome
+    state.customizeClosing = customizeClosing || defaultState.customizeClosing
+    state.welcomeTitle = welcomeTitle || defaultState.welcomeTitle
+    state.welcomeDescription = welcomeDescription || defaultState.welcomeDescription
+    state.welcomeLogoId = welcomeLogo ? welcomeLogo.id : defaultState.welcomeLogoId
+    state.closingTitle = closingTitle || defaultState.closingTitle
+    state.closingDescription = closingDescription || defaultState.closingDescription
+    state.closingLogoId = closingLogo ? closingLogo.id : defaultState.closingLogoId
+    state.color = { hex: color }
+    state.redirectLink = redirectLink || defaultState.redirectLink
+    state.items = items.slice().sort((a, b) => a.index > b.index ? 1 : -1).map((item) => {
+      if (item.image) {
+        item.imageMediaId = item.image.id
+      } else if (item.images) {
+        item.imageMediaIds = item.images.map(image => image.id)
+      }
+      return item
+    })
+    state.itemAddIndex = -1
   },
   setLanguage(state, language) {
     state.language = language
@@ -248,7 +308,6 @@ export const mutations = {
     const items = state.items.slice()
     items.splice(state.itemAddIndex, 0, getDefaultItem(type))
     state.items = items
-    state.itemAddIndex = state.items.length
   },
   setItems(state, items) {
     state.items = items
