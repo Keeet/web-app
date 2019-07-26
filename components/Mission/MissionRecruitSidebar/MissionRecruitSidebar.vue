@@ -1,7 +1,7 @@
 <template>
   <MissionSidebar>
     <div class="mission-recruit-sidebar">
-      <MissionSidebarProgress
+      <MissionCountProgress
         title="RECRUITED"
         :count-current="recruitedCount"
         :count-total="mission.sessions.length"
@@ -29,14 +29,14 @@
 import SidebarLeftHeadline from '../../_shared/SidebarLeftHeadline/SidebarLeftHeadline'
 import { LANGUAGE_LABELS, MISSIONS } from '../../constants'
 import MissionRecruitSidebarLine from '../MissionRecruitSidebarLine/MissionRecruitSidebarLine'
-import MissionSidebarProgress from '../MissionSidebarProgress/MissionSidebarProgress'
 import MissionSidebar from '../MissionSidebar/MissionSidebar'
 import MissionPersonaCriteriaTextBoxes
   from '../../_shared/MissionPersonaCriteriaTextBoxes/MissionPersonaCriteriaTextBoxes'
+import MissionCountProgress from '../MissionCountProgress/MissionCountProgress'
 
 export default {
   name: 'MissionRecruitSidebar',
-  components: { MissionPersonaCriteriaTextBoxes, MissionSidebar, MissionSidebarProgress, MissionRecruitSidebarLine, SidebarLeftHeadline },
+  components: { MissionCountProgress, MissionPersonaCriteriaTextBoxes, MissionSidebar, MissionRecruitSidebarLine, SidebarLeftHeadline },
   data() {
     return { showProgress: false, LANGUAGE_LABELS }
   },

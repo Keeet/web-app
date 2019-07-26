@@ -1,18 +1,25 @@
 .mission-survey-share-box {
   background-color: #fff;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.07);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin: 20px 0;
   border-radius: 5px;
   padding: 30px;
 
-  .mission-survey-share-box-left {
+  .mission-survey-share-box-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    .mission-survey-share-box-left-title {
-      font-weight: 700;
-      margin-bottom: 10px;
+    .mission-survey-share-box-head-left {
+
+      .mission-survey-share-box-head-left-title {
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
     }
+  }
+
+  .mission-survey-share-box-body {
+    margin-top: 30px;
   }
 }

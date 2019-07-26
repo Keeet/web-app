@@ -5,9 +5,27 @@
       title="Keeet Panel"
       text="Test with our diverse panel of testers and gain insights in hours!"
     >
-      <nuxt-link :to="`/missions/${mission.id}/order`">
-        <ButtonText text="Place Order" no-margin />
-      </nuxt-link>
+      <template slot="right">
+        <nuxt-link :to="`/missions/${mission.id}/order`">
+          <ButtonText text="Place Order" no-margin />
+        </nuxt-link>
+      </template>
+      <template slot="body">
+        <div
+          v-for="(order, x) in sortedOrders"
+          :key="x"
+          class="mission-survey-share-order"
+        >
+          <p class="mission-survey-share-order-created">
+            {{ getFormattedOrderDate(order) }}
+          </p>
+          <MissionCountProgress
+            title="RESPONSES"
+            :count-current="order.actualCount"
+            :count-total="order.participants"
+          />
+        </div>
+      </template>
     </MissionSurveyShareBox>
     <MissionSurveyShareBox
       title="Your audience"
@@ -47,12 +65,14 @@ import MissionSurveyHeadline from '../MissionSurveyHeadline/MissionSurveyHeadlin
 import MissionSurveyShareBox from '../MissionSurveyShareBox/MissionSurveyShareBox'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
 import Input from '../../_shared/Input/Input'
-import { MISSION_STATUS } from '../../constants'
 import MissionSurveyRelease from '../../_shared/MissionSurveyRelease/MissionSurveyRelease'
+import MissionCountProgress from '../MissionCountProgress/MissionCountProgress'
+import { MISSION_STATUS } from '../../constants'
+import { getLocaleDateString } from '../../../utils/dateUtils'
 
 export default {
   name: 'MissionSurveyShare',
-  components: { MissionSurveyRelease, Input, ButtonText, MissionSurveyShareBox, MissionSurveyHeadline },
+  components: { MissionSurveyRelease, Input, ButtonText, MissionSurveyShareBox, MissionSurveyHeadline, MissionCountProgress },
   data() {
     return { copied: false }
   },
@@ -69,6 +89,11 @@ export default {
       }
       return `${window.location.origin}/survey/${this.mission.id}`
     },
+    sortedOrders() {
+      return this.mission.orders
+        .slice()
+        .sort((a, b) => a.createdAt > b.createdAt ? 1 : -1)
+    },
     isDraft() {
       return this.mission.status === MISSION_STATUS.DRAFT
     }
@@ -82,6 +107,10 @@ export default {
         this.copied = true
         window.setTimeout(() => { this.copied = false }, 3000)
       }
+    },
+    getFormattedOrderDate(order) {
+      const d = new Date(order.createdAt.toString())
+      return getLocaleDateString(d)
     }
   }
 }

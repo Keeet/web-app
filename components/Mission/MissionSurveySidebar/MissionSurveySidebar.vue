@@ -1,10 +1,13 @@
 <template>
   <MissionSidebar>
-    <MissionSidebarProgress
-      title="RESPONSES"
-      :count-current="mission.actualCount"
-    />
-    <MissionSurveySidebarCount
+    <div class="mission-survey-sidebar-responses">
+      <MissionCount
+        title="RESPONSES"
+        :text-large="mission.actualCount"
+        text-small="responses"
+      />
+    </div>
+    <MissionCount
       title="AVERAGE DURATION"
       :text-large="avgDuration"
       text-small="/ participant"
@@ -21,15 +24,14 @@
 
 <script>
 import MissionSidebar from '../MissionSidebar/MissionSidebar'
-import MissionSidebarProgress from '../MissionSidebarProgress/MissionSidebarProgress'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
-import MissionSurveySidebarCount from '../MissionSurveySidebarCount/MissionSurveySidebarCount'
 import { getDurationWithUnits } from '../../../utils/dateUtils'
 import { MISSION_SURVEY_PREVIEW_LOCAL_STORAGE_KEY } from '../../constants'
+import MissionCount from '../MissionCount/MissionCount'
 
 export default {
   name: 'MissionSurveySidebar',
-  components: { MissionSurveySidebarCount, ButtonText, MissionSidebarProgress, MissionSidebar },
+  components: { MissionCount, ButtonText, MissionSidebar },
   computed: {
     mission() {
       return this.$store.state.mission

@@ -1,14 +1,13 @@
-.mission-sidebar-progress {
-  margin-bottom: 40px;
+.mission-count-progress {
 
-  .mission-sidebar-progress-progress {
+  .mission-count-progress-bar {
     position: relative;
     height: 4px;
     background-color: $grey;
     border-radius: 2px;
     overflow: hidden;
 
-    .mission-sidebar-progress-progress-done {
+    .mission-count-progress-bar-done {
       position: absolute;
       left: 0;
       top: 0;
