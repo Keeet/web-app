@@ -8,7 +8,7 @@
       />
     </div>
     <SurveyItemMedia
-      :image="item.image"
+      :image="item.image.url"
       :frame="item.deviceFrame"
       :blur="!response.started"
     />
