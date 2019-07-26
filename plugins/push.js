@@ -10,7 +10,8 @@ const OPERATIONS = {
   UPSERT_PROJECT: 'UPSERT_PROJECT',
   DELETE_PROJECT: 'DELETE_PROJECT',
   CREATE_MISSION: 'CREATE_MISSION',
-  UPDATE_MISSION: 'UPDATE_MISSION',
+  UPDATE_MISSION_METADATA: 'UPDATE_MISSION_METADATA',
+  UPDATE_MISSION_SURVEY: 'UPDATE_MISSION_SURVEY',
   UPDATE_MISSION_STATUS: 'UPDATE_SURVEY_STATUS',
   DELETE_MISSION: 'DELETE_MISSION',
   SUBMIT_MISSION_ORDER: 'SUBMIT_MISSION_ORDER',
@@ -228,15 +229,53 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, in
         }).then(handleRes).catch(handleError)
       })
     },
-    updateMission({ id, title, description }) {
+    updateMissionMetadata({ id, title, description }) {
       return new Promise((resolve, reject) => {
-        const handleRes = handleResponse.bind(this, OPERATIONS.UPDATE_MISSION, null, resolve, reject)
+        const handleRes = handleResponse.bind(this, OPERATIONS.UPDATE_MISSION_METADATA, null, resolve, reject)
+        $axios({
+          method: 'put',
+          url: `/missions/${id}/metadata`,
+          data: {
+            title,
+            description
+          }
+        }).then(handleRes).catch(handleError)
+      })
+    },
+    updateMissionSurvey({
+      id,
+      title,
+      description,
+      language,
+      welcomeTitle,
+      welcomeDescription,
+      welcomeLogoId,
+      closingTitle,
+      closingDescription,
+      closingLogoId,
+      redirectLink,
+      color,
+      items,
+      projectId
+    }) {
+      return new Promise((resolve, reject) => {
+        const handleRes = handleResponse.bind(this, OPERATIONS.UPDATE_MISSION_SURVEY, { projectId }, resolve, reject)
         $axios({
           method: 'put',
           url: `/missions/${id}`,
           data: {
             title,
-            description
+            description,
+            language,
+            welcomeTitle,
+            welcomeDescription,
+            welcomeLogoId,
+            closingTitle,
+            closingDescription,
+            closingLogoId,
+            redirectLink,
+            color,
+            items
           }
         }).then(handleRes).catch(handleError)
       })
@@ -345,8 +384,10 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, in
         return [{ name: 'PROJECTS', forced: true }]
       case OPERATIONS.CREATE_MISSION:
         return [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: data.projectId, forced: true }]
-      case OPERATIONS.UPDATE_MISSION:
+      case OPERATIONS.UPDATE_MISSION_METADATA:
         return [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: data.projectId, forced: true }]
+      case OPERATIONS.UPDATE_MISSION_SURVEY:
+        return [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: params.projectId, forced: true }]
       case OPERATIONS.UPDATE_MISSION_STATUS:
         const fetchCfg = [{ name: 'MISSION', id: params.id, forced: true }]
         if ([MISSIONS.SURVEY, MISSIONS.USABILITY_LAB].includes(params.type)) {

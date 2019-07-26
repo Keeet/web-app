@@ -3,6 +3,7 @@ import { isNum } from '../utils/stringUtils'
 const MAX_PARTICIPANTS = 250
 
 const defaultState = {
+  id: null,
   projectId: null,
   type: null,
   title: '',
@@ -52,11 +53,13 @@ export const mutations = {
   },
   initExisting(state, { mission }) {
     const {
+      id,
       projectId,
       type,
       title
     } = mission
 
+    state.id = id
     state.projectId = projectId
     state.type = type
     state.title = title

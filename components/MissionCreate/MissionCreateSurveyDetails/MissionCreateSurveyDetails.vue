@@ -5,6 +5,9 @@
         title="Internal mission name"
         :placeholder="s.titlePlaceholder"
         :value="s.title"
+        :error="titleError"
+        dispatch-error="missionForm/handleValidationError"
+        :disable-error="!showError && !s.showErrors"
         mutation="missionForm/setTitle"
         @focusout="showError = true"
       />
@@ -47,6 +50,12 @@ export default {
           value: language
         }
       })
+    },
+    titleError() {
+      if (!this.s.editExisting) {
+        return
+      }
+      return this.s.title !== '' ? null : 'required'
     }
   }
 }

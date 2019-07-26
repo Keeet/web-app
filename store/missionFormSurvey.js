@@ -556,7 +556,9 @@ export const actions = {
   },
   submit({ state, getters }, { missionForm }) {
     const mission = getters.buildMission({ missionForm })
-    return this.$push.createMissionSurvey(mission)
+    return missionForm.editExisting
+      ? this.$push.updateMissionSurvey(mission)
+      : this.$push.createMissionSurvey(mission)
   }
 }
 

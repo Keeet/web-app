@@ -46,7 +46,7 @@ export const mutations = {
 export const actions = {
   submit({ state, commit }) {
     commit('pending')
-    this.$push.updateMission({
+    this.$push.updateMissionMetadata({
       ...state,
       description: state.description !== '' ? state.description : null
     }).then(() => {
