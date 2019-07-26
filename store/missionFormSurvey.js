@@ -4,7 +4,9 @@ import {
   MISSION_SURVEY_USABILITY_LAB_ITEMS,
   MISSION_SURVEY_USABILITY_LAB_FOLLOW_UP_REQUIRED,
   MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES,
-  LANGUAGES
+  LANGUAGES,
+  MISSION_SURVEY_CUSTOM_SCREEN_TYPES,
+  MISSION_SURVEY_CUSTOM_SCREEN_DEFAULT_COLOR
 } from '../components/constants'
 import { copy, flatMap, groupBy } from '../utils/objectUtils'
 
@@ -28,14 +30,16 @@ const {
 
 const { NO_FRAME } = MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES
 
+const { WELCOME, CLOSING } = MISSION_SURVEY_CUSTOM_SCREEN_TYPES
+
 const defaultWelcomeScreen = {
-  welcomeTitle: '',
-  welcomeDescription: '',
+  welcomeTitle: null,
+  welcomeDescription: null,
   welcomeLogoId: null
 }
 const defaultClosingScreen = {
-  closingTitle: '',
-  closingDescription: '',
+  closingTitle: null,
+  closingDescription: null,
   closingLogoId: null
 }
 
@@ -47,7 +51,7 @@ const defaultState = {
   customizeClosing: false,
   welcomeColorPickerOpened: false,
   closingColorPickerOpened: false,
-  color: { hex: '#0FBCF9' },
+  color: null,
   redirectLink: null,
   itemAddIndex: 0,
   items: [],
@@ -167,7 +171,7 @@ export const getters = {
       })
     }
     mission.items = formatItems(mission.items)
-    mission.color = mission.color.hex
+    mission.color = mission.color ? mission.color.hex : null
 
     return mission
   },
@@ -187,6 +191,7 @@ export const getters = {
       item.image = item.imageMediaId ? dropzoneUploads[item.imageMediaId] : null
       item.images = item.imageMediaIds ? item.imageMediaIds.map(id => ({ url: dropzoneUploads[id] })) : null
     })
+    return survey
   }
 }
 
@@ -241,17 +246,21 @@ export const mutations = {
   setLanguage(state, language) {
     state.language = language
   },
-  switchCustomizeWelcome(state) {
-    state.customizeWelcome = !state.customizeWelcome
+  setCustomizeWelcome(state, customizeWelcome) {
+    state.customizeWelcome = customizeWelcome
   },
-  switchCustomizeClosing(state) {
-    state.customizeClosing = !state.customizeClosing
+  setCustomizeClosing(state, customizeClosing) {
+    state.customizeClosing = customizeClosing
   },
   setColor(state, color) {
     state.color = color
   },
   resetColor(state) {
-    state.color = defaultState.color
+    state.color = null
+  },
+  initWelcomeScreen(state, { title, description }) {
+    state.welcomeTitle = title
+    state.welcomeDescription = description
   },
   setWelcomeTitle(state, title) {
     state.welcomeTitle = title
@@ -268,10 +277,14 @@ export const mutations = {
   closeWelcomeColorPicker(state) {
     state.welcomeColorPickerOpened = false
   },
-  resetWelcomeScreen(state, { title, description }) {
-    state.welcomeTitle = title
-    state.welcomeDescription = description
-    state.welcomeLogoId = defaultWelcomeScreen.welcomeLogoId
+  resetWelcomeScreen(state) {
+    state.welcomeTitle = null
+    state.welcomeDescription = null
+    state.welcomeLogoId = null
+  },
+  initClosingScreen(state, { title, description }) {
+    state.closingTitle = title
+    state.closingDescription = description
   },
   setClosingTitle(state, title) {
     state.closingTitle = title
@@ -288,10 +301,11 @@ export const mutations = {
   closeClosingColorPicker(state) {
     state.closingColorPickerOpened = false
   },
-  resetClosingScreen(state, { title, description }) {
-    state.closingTitle = title
-    state.closingDescription = description
-    state.closingLogoId = defaultClosingScreen.closingLogoId
+  resetClosingScreen(state) {
+    state.closingTitle = null
+    state.closingDescription = null
+    state.closingLogoId = null
+    state.redirectLink = null
   },
   setRedirectLink(state, redirectLink) {
     if (redirectLink === '') {
@@ -483,6 +497,38 @@ export const mutations = {
 }
 
 export const actions = {
+  switchCustomize({ state, commit }, { type, defaultValues }) {
+    let customScreenIsOpen, otherCustomScreenIsOpen, initMutation, resetMutation, switchMutation
+    switch (type) {
+      case WELCOME:
+        customScreenIsOpen = state.customizeWelcome
+        otherCustomScreenIsOpen = state.customizeClosing
+        initMutation = 'initWelcomeScreen'
+        resetMutation = 'resetWelcomeScreen'
+        switchMutation = 'setCustomizeWelcome'
+        break
+      case CLOSING:
+        customScreenIsOpen = state.customizeClosing
+        otherCustomScreenIsOpen = state.customizeWelcome
+        initMutation = 'initClosingScreen'
+        resetMutation = 'resetClosingScreen'
+        switchMutation = 'setCustomizeClosing'
+        break
+    }
+
+    if (!customScreenIsOpen) {
+      commit(initMutation, defaultValues)
+      if (!otherCustomScreenIsOpen) {
+        commit('setColor', getColorByHex(MISSION_SURVEY_CUSTOM_SCREEN_DEFAULT_COLOR))
+      }
+    } else {
+      commit(resetMutation)
+      if (!otherCustomScreenIsOpen) {
+        commit('resetColor')
+      }
+    }
+    commit(switchMutation, !customScreenIsOpen)
+  },
   fetchPricing({ state, commit, getters }, { globalGetters, missionForm, missionFormPersona }) {
     if (globalGetters['missionForm/participantsError']) {
       return
@@ -550,4 +596,8 @@ function getFlatMappedItems(items) {
   const itemsDeepArray = items
     .map(i => [i, ...(i.followUps ? i.followUps : [])])
   return flatMap(itemsDeepArray)
+}
+
+function getColorByHex(hex) {
+  return { hex }
 }
