@@ -123,6 +123,10 @@ export const MISSION_LABELS = {
   USABILITY_LAB: 'Usability Lab',
   SURVEY: 'Survey'
 }
+export const MISSION_STATUS = {
+  DRAFT: 'DRAFT',
+  RUNNING: 'RUNNING'
+}
 export const MISSION_INFO_DESCRIPTION = {
   IN_HOUSE: 'Recruit highly targeted test users to your office for:',
   REMOTE: 'Recruit highly targeted test users for remote:',

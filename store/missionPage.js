@@ -8,7 +8,8 @@ export const state = () => ({
   disableAnimation: false,
   insightFormOpened: false,
   deleteConfirmOpened: false,
-  surveyOrderBillingAddressOpened: false
+  surveyOrderBillingAddressOpened: false,
+  surveyReleaseOpened: false
 })
 
 export const mutations = {
@@ -44,5 +45,11 @@ export const mutations = {
   },
   hideSurveyOrderBillingAddress(state) {
     state.surveyOrderBillingAddressOpened = false
+  },
+  showSurveyRelease(state) {
+    state.surveyReleaseOpened = true
+  },
+  hideSurveyRelease(state) {
+    state.surveyReleaseOpened = false
   }
 }

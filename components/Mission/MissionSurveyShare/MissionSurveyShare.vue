@@ -13,7 +13,16 @@
       title="Your audience"
       text="Share link with your own audience!"
     >
-      <no-ssr>
+      <MissionSurveyRelease
+        v-if="missionPage.surveyReleaseOpened"
+        @close="$store.commit('missionPage/hideSurveyRelease')"
+      />
+      <ButtonText
+        v-if="isDraft"
+        text="Create public link"
+        @click="$store.commit('missionPage/showSurveyRelease')"
+      />
+      <no-ssr v-else>
         <div class="mission-survey-share-link">
           <div class="mission-survey-share-link-input">
             <Input :value="surveyLink" readonly no-margin />
@@ -38,9 +47,12 @@ import MissionSurveyHeadline from '../MissionSurveyHeadline/MissionSurveyHeadlin
 import MissionSurveyShareBox from '../MissionSurveyShareBox/MissionSurveyShareBox'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
 import Input from '../../_shared/Input/Input'
+import { MISSION_STATUS } from '../../constants'
+import MissionSurveyRelease from '../../_shared/MissionSurveyRelease/MissionSurveyRelease'
+
 export default {
   name: 'MissionSurveyShare',
-  components: { Input, ButtonText, MissionSurveyShareBox, MissionSurveyHeadline },
+  components: { MissionSurveyRelease, Input, ButtonText, MissionSurveyShareBox, MissionSurveyHeadline },
   data() {
     return { copied: false }
   },
@@ -48,11 +60,17 @@ export default {
     mission() {
       return this.$store.state.mission
     },
+    missionPage() {
+      return this.$store.state.missionPage
+    },
     surveyLink() {
       if (process.server) {
         return
       }
       return `${window.location.origin}/survey/${this.mission.id}`
+    },
+    isDraft() {
+      return this.mission.status === MISSION_STATUS.DRAFT
     }
   },
   methods: {
