@@ -153,9 +153,11 @@ export const getters = {
     })
   },
   buildMission: state => ({ missionForm }) => {
+    const { title, titlePlaceholder } = missionForm
     const mission = {
       ...copy(state),
-      ...copy(missionForm)
+      ...copy(missionForm),
+      title: title !== '' ? title : titlePlaceholder
     }
     function formatItems(items) {
       const { SINGLE_SELECT, MULTI_SELECT } = MISSION_SURVEY_ITEMS

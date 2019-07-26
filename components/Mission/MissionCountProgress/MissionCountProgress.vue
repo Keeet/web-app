@@ -65,7 +65,7 @@ export default {
     }
     window.setTimeout(() => {
       this.showProgress = true
-    }, 2000)
+    }, 1000)
   }
 }
 </script>

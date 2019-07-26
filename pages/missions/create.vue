@@ -8,8 +8,9 @@ export default {
   name: 'Create',
   layout: 'defaultNoFooter',
   components: { MissionCreate },
-  fetch({ app: { $fetch } }) {
-    return $fetch([{ name: 'USER' }, { name: 'COMPANY' }])
+  fetch({ app: { $fetch }, store }) {
+    const { projectId } = store.state.missionForm
+    return $fetch([{ name: 'USER' }, { name: 'COMPANY' }, { name: 'PROJECT', id: projectId }])
   }
 }
 </script>

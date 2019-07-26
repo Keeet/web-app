@@ -6,6 +6,7 @@ const defaultState = {
   projectId: null,
   type: null,
   title: '',
+  titlePlaceholder: '',
   participants: 0,
   submittedMissionId: null,
   invalidFields: [],
@@ -67,6 +68,9 @@ export const mutations = {
   },
   setTitle(state, title) {
     state.title = title
+  },
+  setTitlePlaceholder(state, titlePlaceholder) {
+    state.titlePlaceholder = titlePlaceholder
   },
   setParticipants(state, participants) {
     state.participants = participants

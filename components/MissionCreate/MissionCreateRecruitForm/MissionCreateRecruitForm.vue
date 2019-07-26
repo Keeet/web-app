@@ -4,12 +4,9 @@
       <MissionCreateRecruitFormHeadline text="Internal mission name" />
       <div class="mission-create-recruit-form-name">
         <Input
-          placeholder="Test campaign"
+          :placeholder="s.titlePlaceholder"
           :value="s.title"
           mutation="missionForm/setTitle"
-          :error="titleError"
-          dispatch-error="missionForm/handleValidationError"
-          :disable-error="!s.showErrors"
         />
       </div>
     </MissionCreateBox>
@@ -81,7 +78,6 @@ export default {
         recruit: missionFormRecruit
       }
     },
-    titleError() { return this.s.title !== '' ? null : 'required' },
     participantsError() {
       return this.$store.getters['missionForm/participantsError']
     },

@@ -36,12 +36,12 @@ export const getters = {
     })
   },
   buildMission: state => ({ missionForm, missionFormPersona }) => {
-    const { projectId, type, title, language, participants } = missionForm
+    const { projectId, type, title, titlePlaceholder, language, participants } = missionForm
     const { studyType, duration, sessions, location } = state
     const mission = {
       projectId,
       type,
-      title,
+      title: title !== '' ? title : titlePlaceholder,
       studyType,
       duration: parseInt(duration),
       language,

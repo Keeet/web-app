@@ -80,7 +80,7 @@ export default {
   mounted() {
     window.setTimeout(() => {
       this.showFill = true
-    }, 1000)
+    }, 500)
   }
 }
 </script>

@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { MISSIONS } from '../../constants'
+import { MISSION_LABELS, MISSIONS } from '../../constants'
 import Headline from '../../_shared/Headline/Headline'
 import MissionCreateTypeItem from '../MissionCreateTypeItem/MissionCreateTypeItem'
 
@@ -44,10 +44,14 @@ export default {
         this.$store.commit('missionFormSurvey/init')
         this.$store.commit('missionFormPersona/init')
         this.$store.commit('missionFormPersona/setCountry', this.$store.state.company.country)
+        this.$store.commit('missionForm/setTitlePlaceholder', `${MISSION_LABELS[type]} #${this.getCountOfExistingMissionsByType(type) + 1}`)
       }
       this.$store.commit('missionForm/setType', type)
       this.$store.commit('missionForm/hideErrors')
       this.$store.commit('missionForm/nextStep')
+    },
+    getCountOfExistingMissionsByType(type) {
+      return this.$store.state.project.missions.filter(mission => mission.type === type).length
     }
   }
 }
