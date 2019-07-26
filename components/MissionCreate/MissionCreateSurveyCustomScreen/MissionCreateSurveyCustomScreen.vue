@@ -3,8 +3,8 @@
     <MissionCreateBox>
       <div class="mission-create-survey-custom-screen-head">
         <div class="mission-create-survey-custom-screen-head-icon">
-          <img v-if="type === TYPES.WELCOME" src="../../../assets/img/welcomeEmoji.png">
-          <img v-else-if="type === TYPES.CLOSING" src="../../../assets/img/thankYouEmoji.png">
+          <img v-if="type === WELCOME" src="../../../assets/img/welcomeEmoji.png">
+          <img v-else-if="type === CLOSING" src="../../../assets/img/thankYouEmoji.png">
         </div>
         <div class="mission-create-survey-custom-screen-head-text">
           <p class="mission-create-survey-custom-screen-head-text-headline">
@@ -20,7 +20,7 @@
           @switch="switchCustomize"
         />
       </div>
-      <div v-show="sValues.opened" class="mission-create-survey-custom-screen-body">
+      <div v-if="sValues.opened" class="mission-create-survey-custom-screen-body">
         <div class="mission-create-survey-custom-screen-body-left">
           <Input
             :value="sValues.title"
@@ -38,7 +38,7 @@
             textarea
           />
           <Input
-            v-if="type === TYPES.CLOSING"
+            v-if="type === CLOSING"
             :value="s.redirectLink || ''"
             mutation="missionFormSurvey/setRedirectLink"
             title="Redirect Link"
@@ -71,16 +71,16 @@ import MissionCreateSurveyCustomScreenColor
 import MissionCreateSurveyCustomScreenBranding
   from '../MissionCreateSurveyCustomScreenBranding/MissionCreateSurveyCustomScreenBranding'
 import { isHttpsLink } from '../../../utils/stringUtils'
+import { MISSION_SURVEY_CUSTOM_SCREEN_TYPES } from '../../constants'
+import { getCustomScreenDefaultValues } from '../../../utils/intlUtils'
 
-const TYPES = {
-  WELCOME: 'WELCOME',
-  CLOSING: 'CLOSING'
-}
+const {
+  WELCOME,
+  CLOSING
+} = MISSION_SURVEY_CUSTOM_SCREEN_TYPES
 
 const MUTATIONS = {
   WELCOME: {
-    reset: 'missionFormSurvey/resetWelcomeScreen',
-    switchCustomize: 'missionFormSurvey/switchCustomizeWelcome',
     setTitle: 'missionFormSurvey/setWelcomeTitle',
     setDescription: 'missionFormSurvey/setWelcomeDescription',
     setLogoId: 'missionFormSurvey/setWelcomeLogoId',
@@ -88,8 +88,6 @@ const MUTATIONS = {
     closeColorPicker: 'missionFormSurvey/closeWelcomeColorPicker'
   },
   CLOSING: {
-    reset: 'missionFormSurvey/resetClosingScreen',
-    switchCustomize: 'missionFormSurvey/switchCustomizeClosing',
     setTitle: 'missionFormSurvey/setClosingTitle',
     setDescription: 'missionFormSurvey/setClosingDescription',
     setLogoId: 'missionFormSurvey/setClosingLogoId',
@@ -105,7 +103,7 @@ export default {
     type: {
       type: String,
       required: true,
-      validator: value => Object.keys(TYPES).includes(value)
+      validator: value => Object.keys(MISSION_SURVEY_CUSTOM_SCREEN_TYPES).includes(value)
     },
     title: {
       type: String,
@@ -117,7 +115,7 @@ export default {
     }
   },
   data() {
-    return { TYPES }
+    return { WELCOME, CLOSING }
   },
   computed: {
     s() {
@@ -125,7 +123,7 @@ export default {
     },
     sValues() {
       switch (this.type) {
-        case TYPES.WELCOME:
+        case WELCOME:
           return {
             opened: this.s.customizeWelcome,
             title: this.s.welcomeTitle,
@@ -133,7 +131,7 @@ export default {
             logoId: this.s.welcomeLogoId,
             colorPickerOpened: this.s.welcomeColorPickerOpened
           }
-        case TYPES.CLOSING:
+        case CLOSING:
           return {
             opened: this.s.customizeClosing,
             title: this.s.closingTitle,
@@ -159,8 +157,8 @@ export default {
   },
   watch: {
     language(newLanguage, oldLanguage) {
-      const currentLanguageValues = this.getDefaultTitleAndDescriptionByLanguage(oldLanguage)
-      const newLanguageValues = this.getDefaultTitleAndDescriptionByLanguage(newLanguage)
+      const currentLanguageValues = getCustomScreenDefaultValues.bind(this)(this.type, oldLanguage)
+      const newLanguageValues = getCustomScreenDefaultValues.bind(this)(this.type, newLanguage)
 
       const titleIsStillDefault = currentLanguageValues.title === this.sValues.title
       const descriptionIsStillDefault = currentLanguageValues.description === this.sValues.description
@@ -172,41 +170,15 @@ export default {
       }
     }
   },
-  mounted() {
-    this.init()
-  },
   methods: {
-    init() {
-      this.$store.commit(
-        this.mutations.reset,
-        this.getDefaultTitleAndDescriptionByLanguage(this.language)
-      )
-    },
-    getDefaultTitleAndDescriptionByLanguage(language) {
-      let intlTitleKey, intlDescriptionKey
-      switch (this.type) {
-        case TYPES.WELCOME:
-          intlTitleKey = 'survey.welcomeTitle'
-          intlDescriptionKey = 'survey.welcomeDescription'
-          break
-        case TYPES.CLOSING:
-          intlTitleKey = 'survey.closingTitle'
-          intlDescriptionKey = 'survey.closingDescription'
-          break
-      }
-      return {
-        title: this.$t(intlTitleKey, language),
-        description: this.$t(intlDescriptionKey, language)
-      }
-    },
     switchCustomize() {
-      this.$store.commit(this.mutations.switchCustomize)
-      if (!this.sValues.opened) {
-        this.init()
-        if (!this.s.customizeWelcome && !this.s.customizeClosing) {
-          this.$store.commit('missionFormSurvey/resetColor')
+      this.$store.dispatch(
+        'missionFormSurvey/switchCustomize',
+        {
+          type: this.type,
+          defaultValues: getCustomScreenDefaultValues.bind(this)(this.type, this.language)
         }
-      }
+      )
     }
   }
 }

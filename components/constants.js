@@ -157,6 +157,11 @@ export const MISSION_SURVEY_SELECT_MIN_ITEMS = 2
 // "other-responses" in the database accordingly (label must always match db-value)
 export const MISSION_SURVEY_SELECT_OTHER_LABEL = 'Other'
 export const MISSION_SURVEY_PREVIEW_LOCAL_STORAGE_KEY = 'surveyPreview'
+export const MISSION_SURVEY_CUSTOM_SCREEN_TYPES = {
+  WELCOME: 'WELCOME',
+  CLOSING: 'CLOSING'
+}
+export const MISSION_SURVEY_CUSTOM_SCREEN_DEFAULT_COLOR = '#0fbcf9'
 export const MISSION_SURVEY_ITEM_LIKERT = {
   AGREEMENT: 'AGREEMENT',
   OCCURRENCE: 'OCCURRENCE',

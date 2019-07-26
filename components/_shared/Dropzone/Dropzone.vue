@@ -72,6 +72,10 @@ export default {
     navAlignLeft: {
       type: Boolean,
       default: false
+    },
+    alreadyUploadedFileUrls: {
+      type: [Array, String],
+      default: null
     }
   },
   data() {
@@ -130,6 +134,10 @@ export default {
   },
   mounted() {
     this.dz = this.$refs[this.id].dropzone
+
+    if (this.alreadyUploadedFileUrls) {
+      this.setAlreadyUploadedFiles()
+    }
   },
   beforeDestroy() {
     if (this.dispatchError) {
@@ -150,6 +158,12 @@ export default {
         this.removeFile(newFile)
       })
       newFile.previewElement.appendChild(deleteTemplate)
+
+      if (newFile.alreadyUploaded) {
+        newFile.previewElement.querySelector('.dz-size').innerHTML = ''
+        newFile.previewElement.querySelector('.dz-filename').innerHTML = ''
+        return
+      }
       // do not ask why
       newFile.accepted = true
 
@@ -180,6 +194,29 @@ export default {
     clearItems() {
       this.dz.removeAllFiles(true)
       this.selected = []
+    },
+    setAlreadyUploadedFiles() {
+      const urls = Array.isArray(this.alreadyUploadedFileUrls)
+        ? this.alreadyUploadedFileUrls
+        : [this.alreadyUploadedFileUrls]
+      const files = urls.map(url => ({
+        dataURL: url,
+        alreadyUploaded: true,
+        upload: {
+          uuid: uuid.v4()
+        }
+      }))
+      files.forEach((file) => {
+        this.dz.files.push(file)
+        this.dz.emit('addedfile', file)
+        this.dz.createThumbnailFromUrl(file,
+          this.dz.options.thumbnailWidth,
+          this.dz.options.thumbnailHeight,
+          this.dz.options.thumbnailMethod, true, (thumbnail) => {
+            this.dz.emit('thumbnail', file, thumbnail)
+          })
+        this.dz.emit('complete', file)
+      })
     }
   }
 }

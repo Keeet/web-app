@@ -4,7 +4,7 @@
       <ButtonCircle class="mission-create-cancel" type="ARROW_LEFT" @click="cancel" />
       <MissionCreateType v-if="s.activeStep === 0" />
       <MissionCreateRecruit v-else-if="[MISSIONS.IN_HOUSE, MISSIONS.REMOTE].includes(s.type)" />
-      <MissionCreateSurvey v-else-if="[MISSIONS.SURVEY, MISSIONS.USABILITY_LAB].includes(s.type)" />
+      <MissionCreateSurvey v-else-if="[MISSIONS.SURVEY, MISSIONS.USABILITY_LAB].includes(s.type)" @cancel="cancel" />
     </div>
     <Loading v-if="s.pending" fixed-center />
     <MissionCreateRecruitSubmittedPopup v-if="s.recruit.submittedPopup" />
@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     cancel() {
-      if (this.s.activeStep === 0) {
+      if (this.s.activeStep === 0 || this.s.editExisting) {
         this.$router.back()
       } else {
         this.$store.commit('missionForm/previousStep')

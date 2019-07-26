@@ -10,6 +10,7 @@ const defaultState = {
   submittedMissionId: null,
   invalidFields: [],
   showErrors: false,
+  editExisting: false,
 
   init: false,
   activeStep: 0,
@@ -47,6 +48,19 @@ export const mutations = {
       state.participants = participants
       state.init = true
     }
+  },
+  initExisting(state, { mission }) {
+    const {
+      projectId,
+      type,
+      title
+    } = mission
+
+    state.projectId = projectId
+    state.type = type
+    state.title = title
+    state.init = true
+    state.editExisting = true
   },
   setType(state, type) {
     state.type = type

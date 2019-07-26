@@ -8,10 +8,10 @@
       </div>
       <div class="survey-custom-screen-text">
         <h1 class="survey-custom-screen-text-headline">
-          {{ sValues.title }}
+          {{ sValues.title || defaultValues.title }}
         </h1>
         <p class="survey-custom-screen-text-description">
-          {{ sValues.description }}
+          {{ sValues.description || defaultValues.description }}
         </p>
       </div>
     </div>
@@ -20,6 +20,7 @@
 
 <script>
 import SurveyStep from '../SurveyStep/SurveyStep'
+import { getCustomScreenDefaultValues } from '../../../utils/intlUtils'
 
 const TYPES = {
   WELCOME: 'WELCOME',
@@ -68,6 +69,9 @@ export default {
           }
       }
       return null
+    },
+    defaultValues() {
+      return getCustomScreenDefaultValues.bind(this)(this.type, this.s.language)
     },
     buttonText() {
       switch (this.type) {

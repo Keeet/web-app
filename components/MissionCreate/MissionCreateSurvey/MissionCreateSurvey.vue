@@ -22,6 +22,7 @@
       </div>
       <MissionCreateSurveySummary
         :is-valid="isValid"
+        @cancelClick="$emit('cancel')"
         @submitClick="submit"
         @submitDisabledClick="submitDisabledClick"
       />
@@ -30,7 +31,6 @@
 </template>
 
 <script>
-import uuidv4 from 'uuid'
 import { scrollToTopId } from '../../../utils/scrollUtils'
 import MissionCreateSurveyDetails from '../MissionCreateSurveyDetails/MissionCreateSurveyDetails'
 import MissionCreateSurveyCustomScreen from '../MissionCreateSurveyCustomScreen/MissionCreateSurveyCustomScreen'
@@ -69,23 +69,9 @@ export default {
   },
   methods: {
     setPreview() {
-      const { missionForm } = this.$store.state
-      const survey = this.$store.getters['missionFormSurvey/buildMission']({ missionForm })
-      const urls = this.$store.state.dropzoneUploads
-      survey.welcomeLogoId = survey.welcomeLogoId ? urls[survey.welcomeLogoId] : null
-      survey.closingLogoId = survey.closingLogoId ? urls[survey.closingLogoId] : null
-      survey.items.forEach((item, x) => {
-        item.id = uuidv4()
-        item.index = x
-        if (item.followUps) {
-          item.followUps.forEach((followUp, y) => {
-            followUp.id = uuidv4()
-            followUp.index = y
-          })
-        }
-        item.image = item.imageMediaId ? urls[item.imageMediaId] : null
-        item.images = item.imageMediaIds ? item.imageMediaIds.map(id => ({ url: urls[id] })) : null
-      })
+      const { missionForm, dropzoneUploads } = this.$store.state
+      const survey = this.$store.getters['missionFormSurvey/buildSurvey']({ missionForm, dropzoneUploads })
+
       window.localStorage.setItem(MISSION_SURVEY_PREVIEW_LOCAL_STORAGE_KEY, JSON.stringify({
         ...survey,
         previewValid: this.isValid,
