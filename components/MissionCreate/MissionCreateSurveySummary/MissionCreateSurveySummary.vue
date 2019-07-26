@@ -129,7 +129,6 @@ export default {
   watch: {
     flatMappedItemsPricingData() {
       if (this.s.survey.items.length === 0) {
-        // TODO: should be handled in backend -> empty item map should be supported
         this.$store.commit('missionFormSurvey/setPricing', null)
         return
       }
