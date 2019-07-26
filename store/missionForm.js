@@ -9,6 +9,7 @@ const defaultState = {
   title: '',
   titlePlaceholder: '',
   participants: 0,
+  participantsInit: 0,
   submittedMissionId: null,
   invalidFields: [],
   showErrors: false,
@@ -17,6 +18,7 @@ const defaultState = {
   init: false,
   activeStep: 0,
   inProgress: true,
+  confirmInProgressOpened: false,
   pending: false
 }
 
@@ -40,7 +42,7 @@ export const getters = {
 
 export const mutations = {
   init(state, { project, participants = null }) {
-    if (!state.init || !state.inProgress || !project || project.id !== state.projectId) {
+    if (!state.init || !state.inProgress || !project || project.id !== state.projectId || state.editExisting) {
       for (const key in defaultState) {
         state[key] = defaultState[key]
       }
@@ -48,10 +50,14 @@ export const mutations = {
         state.projectId = project.id
       }
       state.participants = participants
+      state.participantsInit = participants
       state.init = true
     }
   },
   initExisting(state, { mission }) {
+    for (const key in defaultState) {
+      state[key] = defaultState[key]
+    }
     const {
       id,
       projectId,
@@ -65,6 +71,10 @@ export const mutations = {
     state.title = title
     state.init = true
     state.editExisting = true
+  },
+  resetForm(state) {
+    state.title = defaultState.title
+    state.participants = state.participantsInit
   },
   setType(state, type) {
     state.type = type
@@ -101,11 +111,20 @@ export const mutations = {
     state.showErrors = false
   },
 
+  setActiveStep(state, activeStep) {
+    state.activeStep = activeStep
+  },
   nextStep(state) {
     state.activeStep++
   },
   previousStep(state) {
     state.activeStep--
+  },
+  showConfirmInProgress(state) {
+    state.confirmInProgressOpened = true
+  },
+  hideConfirmInProgress(state) {
+    state.confirmInProgressOpened = false
   },
   pending(state) {
     state.pending = true

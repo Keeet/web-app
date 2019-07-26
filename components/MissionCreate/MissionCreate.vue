@@ -8,6 +8,17 @@
     </div>
     <Loading v-if="s.pending" fixed-center />
     <MissionCreateRecruitSubmittedPopup v-if="s.recruit.submittedPopup" />
+    <Confirm
+      v-if="s.confirmInProgressOpened"
+      title="Continue form"
+      text="Do you want to continue with this mission form?"
+      label-confirm="Yes, continue"
+      label-cancel="No, discard changes"
+      full-width
+      @cancel="discardChanges"
+      @close="discardChanges"
+      @confirm="hideConfirmInProgress"
+    />
   </div>
 </template>
 
@@ -15,6 +26,7 @@
 import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
 import { MISSIONS } from '../constants'
 import Loading from '../_shared/Loading/Loading'
+import Confirm from '../_shared/Confirm/Confirm'
 import MissionCreateType from './MissionCreateType/MissionCreateType'
 import MissionCreateSurvey from './MissionCreateSurvey/MissionCreateSurvey'
 import MissionCreateRecruitSubmittedPopup
@@ -24,6 +36,7 @@ import MissionCreateRecruit from './MissionCreateRecruit/MissionCreateRecruit'
 export default {
   name: 'MissionCreate',
   components: {
+    Confirm,
     MissionCreateRecruit,
     MissionCreateRecruitSubmittedPopup,
     Loading,
@@ -55,6 +68,9 @@ export default {
   },
   mounted() {
     this.$ga.page(this.$router)
+    if (this.s.activeStep > 0 && !this.s.editExisting) {
+      this.$store.commit('missionForm/showConfirmInProgress')
+    }
   },
   methods: {
     cancel() {
@@ -63,6 +79,14 @@ export default {
       } else {
         this.$store.commit('missionForm/previousStep')
       }
+    },
+    hideConfirmInProgress() {
+      this.$store.commit('missionForm/hideConfirmInProgress')
+    },
+    discardChanges() {
+      this.$store.commit('missionForm/setActiveStep', 0)
+      this.$store.commit('missionForm/resetForm')
+      this.hideConfirmInProgress()
     }
   }
 }
