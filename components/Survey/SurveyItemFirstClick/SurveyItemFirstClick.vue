@@ -8,7 +8,7 @@
       />
     </div>
     <SurveyItemMedia
-      :image="item.image"
+      :image="item.image.url"
       :overlay-coordinates="overlayCoordinates"
       :blur="!response.started"
       :frame="item.deviceFrame"

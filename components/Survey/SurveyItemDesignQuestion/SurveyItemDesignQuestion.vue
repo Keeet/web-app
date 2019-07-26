@@ -1,7 +1,7 @@
 <template>
   <div class="survey-design-question">
     <SurveyItemMedia
-      :image="item.image"
+      :image="item.image.url"
       :frame="item.deviceFrame"
       @click="$emit('click')"
     />
