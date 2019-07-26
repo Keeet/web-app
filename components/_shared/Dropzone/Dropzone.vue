@@ -214,7 +214,7 @@ export default {
           this.dz.options.thumbnailHeight,
           this.dz.options.thumbnailMethod, true, (thumbnail) => {
             this.dz.emit('thumbnail', file, thumbnail)
-          })
+          }, true)
         this.dz.emit('complete', file)
       })
     }
