@@ -22,6 +22,11 @@
       :title="$t('survey.alreadySubmitted', $store.state.survey.language)"
       no-close
     />
+    <OverlayModal
+      v-else-if="isDraft"
+      title="This survey is still in draft"
+      no-close
+    />
   </div>
 </template>
 
@@ -31,7 +36,7 @@ import {
   BROWSER,
   OS,
   DEVICE_TYPE,
-  MISSION_SURVEY_PREVIEW_LOCAL_STORAGE_KEY
+  MISSION_SURVEY_PREVIEW_LOCAL_STORAGE_KEY, MISSION_STATUS
 } from '../constants'
 import OverlayModal from '../_shared/OverlayModal/OverlayModal'
 import SurveyCustomScreen from './SurveyCustomScreen/SurveyCustomScreen'
@@ -140,6 +145,9 @@ export default {
           ? JSON.stringify([ ...JSON.parse(submittedSurveysJSON), id ])
           : JSON.stringify([ id ])
       )
+    },
+    isDraft() {
+      return this.$store.state.survey.status === MISSION_STATUS.DRAFT
     }
   }
 }

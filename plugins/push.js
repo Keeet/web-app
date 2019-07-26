@@ -1,3 +1,5 @@
+import { MISSIONS } from '../components/constants'
+
 const OPERATIONS = {
   CREATE_COMPANY: 'CREATE_COMPANY',
   UPDATE_COMPANY: 'UPDATE_COMPANY',
@@ -9,6 +11,7 @@ const OPERATIONS = {
   DELETE_PROJECT: 'DELETE_PROJECT',
   CREATE_MISSION: 'CREATE_MISSION',
   UPDATE_MISSION: 'UPDATE_MISSION',
+  UPDATE_MISSION_STATUS: 'UPDATE_SURVEY_STATUS',
   DELETE_MISSION: 'DELETE_MISSION',
   SUBMIT_MISSION_ORDER: 'SUBMIT_MISSION_ORDER',
   CREATE_MISSION_INSIGHT_LINK: 'CREATE_MISSION_INSIGHT_LINK',
@@ -238,6 +241,15 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, in
         }).then(handleRes).catch(handleError)
       })
     },
+    updateMissionStatus({ id, status, type }) {
+      return new Promise((resolve, reject) => {
+        const handleRes = handleResponse.bind(this, OPERATIONS.UPDATE_MISSION_STATUS, { id, type }, resolve, reject)
+        $axios({
+          method: 'put',
+          url: `/missions/${id}/status/${status}`
+        }).then(handleRes).catch(handleError)
+      })
+    },
     deleteMission({ id, projectId }) {
       return new Promise((resolve, reject) => {
         const handleRes = handleResponse.bind(this, OPERATIONS.DELETE_MISSION, { projectId }, resolve, reject)
@@ -335,6 +347,12 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, in
         return [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: data.projectId, forced: true }]
       case OPERATIONS.UPDATE_MISSION:
         return [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: data.projectId, forced: true }]
+      case OPERATIONS.UPDATE_MISSION_STATUS:
+        const fetchCfg = [{ name: 'MISSION', id: params.id, forced: true }]
+        if ([MISSIONS.SURVEY, MISSIONS.USABILITY_LAB].includes(params.type)) {
+          fetchCfg.push({ name: 'SURVEY', id: params.id, forced: true })
+        }
+        return fetchCfg
       case OPERATIONS.DELETE_MISSION:
         return [{ name: 'PROJECT', id: params.projectId, forced: true }]
       case OPERATIONS.SUBMIT_MISSION_ORDER:

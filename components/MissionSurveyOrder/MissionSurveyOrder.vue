@@ -19,25 +19,37 @@
       />
     </div>
     <BillingMissing
-      v-if="$store.state.missionPage.surveyOrderBillingAddressOpened"
+      v-if="missionPage.surveyOrderBillingAddressOpened"
       no-admin-text="Your admin has to add a billing address before you can order testers."
       @hide="$store.commit('missionPage/hideSurveyOrderBillingAddress')"
+    />
+    <MissionSurveyRelease
+      v-if="missionPage.surveyReleaseOpened"
+      @close="$store.commit('missionPage/hideSurveyRelease')"
     />
   </div>
 </template>
 
 <script>
-import { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_LABELS, PERSONA_CRITERIA } from '../constants'
+import {
+  PERSONA_GENDERS,
+  PERSONA_GENDER_LABELS,
+  PERSONA_COUNTRIES,
+  COUNTRY_LABELS,
+  PERSONA_CRITERIA,
+  MISSION_STATUS
+} from '../constants'
 import MissionPersonaCriteria from '../_shared/MissionPersonaCriteria/MissionPersonaCriteria'
 import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
 import MissionOrderSummary from '../_shared/MissionOrderSummary/MissionOrderSummary'
 import BillingMissing from '../_shared/BillingMissing/BillingMissing'
+import MissionSurveyRelease from '../_shared/MissionSurveyRelease/MissionSurveyRelease'
 import MissionSurveyOrderParticipants from './MissionSurveyOrderParticipants/MissionSurveyOrderParticipants'
 import MissionSurveyOrderCountry from './MissionSurveyOrderCountry/MissionSurveyOrderCountry'
 
 export default {
   name: 'MissionSurveyOrder',
-  components: { BillingMissing, MissionSurveyOrderCountry, MissionOrderSummary, ButtonCircle, MissionSurveyOrderParticipants, MissionPersonaCriteria },
+  components: { MissionSurveyRelease, BillingMissing, MissionSurveyOrderCountry, MissionOrderSummary, ButtonCircle, MissionSurveyOrderParticipants, MissionPersonaCriteria },
   data() {
     return { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_LABELS, PERSONA_CRITERIA }
   },
@@ -57,6 +69,9 @@ export default {
       return this.$store.getters['missionFormSurvey/pricingChecksum']({
         missionForm: this.s
       })
+    },
+    missionPage() {
+      return this.$store.state.missionPage
     }
   },
   mounted() {
@@ -76,6 +91,10 @@ export default {
     submit() {
       if (!this.$store.state.company.billingConfig) {
         this.$store.commit('missionPage/showSurveyOrderBillingAddress')
+        return
+      }
+      if (this.mission.status === MISSION_STATUS.DRAFT) {
+        this.$store.commit('missionPage/showSurveyRelease')
         return
       }
       this.$push.submitMissionOrder({
