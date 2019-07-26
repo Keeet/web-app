@@ -4,7 +4,7 @@ export default function ({ store, redirect, route: { path }, query: { invitation
       return redirect('/personas')
     }
   }
-  if (path === '/missions/create') {
+  if (['/missions/create', '/missions/edit'].includes(path)) {
     if (!store.state.missionForm.init) {
       return redirect('/')
     }
