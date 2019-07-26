@@ -9,7 +9,10 @@
       :text-large="avgDuration"
       text-small="/ participant"
     />
+    <!--
+    TODO
     <ButtonText text="edit" @click="editMission" />
+    -->
     <div class="mission-survey-sidebar-preview-button">
       <ButtonText text="go to preview" @click="gotoPreview" />
     </div>
@@ -23,6 +26,7 @@ import ButtonText from '../../_shared/ButtonText/ButtonText'
 import MissionSurveySidebarCount from '../MissionSurveySidebarCount/MissionSurveySidebarCount'
 import { getDurationWithUnits } from '../../../utils/dateUtils'
 import { MISSION_SURVEY_PREVIEW_LOCAL_STORAGE_KEY } from '../../constants'
+
 export default {
   name: 'MissionSurveySidebar',
   components: { MissionSurveySidebarCount, ButtonText, MissionSidebarProgress, MissionSidebar },
@@ -38,15 +42,16 @@ export default {
     }
   },
   methods: {
-    editMission() {
-      const { mission, survey } = this
-      this.$store.commit('missionForm/initExisting', { mission })
-      this.$store.commit('missionFormSurvey/initExisting', { mission, survey })
-      this.$store.commit('missionFormPersona/init')
-      this.$store.commit('missionFormPersona/setCountry', survey.language)
-      this.$store.commit('missionForm/nextStep')
-      this.$router.push('/missions/edit')
-    },
+    // TODO
+    // editMission() {
+    //   const { mission, survey } = this
+    //   this.$store.commit('missionForm/initExisting', { mission })
+    //   this.$store.commit('missionFormSurvey/initExisting', { mission, survey })
+    //   this.$store.commit('missionFormPersona/init')
+    //   this.$store.commit('missionFormPersona/setCountry', survey.language)
+    //   this.$store.commit('missionForm/nextStep')
+    //   this.$router.push('/missions/edit')
+    // },
     gotoPreview() {
       window.localStorage.setItem(MISSION_SURVEY_PREVIEW_LOCAL_STORAGE_KEY, JSON.stringify({
         ...this.survey,
