@@ -47,7 +47,9 @@ export default {
     }
   },
   mounted() {
-    this.$sentry.captureException(new Error(JSON.stringify(this.error)))
+    if (this.$sentry) {
+      this.$sentry.captureException(new Error(JSON.stringify(this.error)))
+    }
   }
 }
 </script>

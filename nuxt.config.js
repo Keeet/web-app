@@ -75,7 +75,8 @@ module.exports = {
   ],
 
   sentry: {
-    dsn: 'https://af6d2d50fc6941a58a7d83f814e45e26@sentry.io/1505080'
+    dsn: 'https://af6d2d50fc6941a58a7d83f814e45e26@sentry.io/1505080',
+    disabled: process.env.NODE_ENV === 'development'
   },
 
   build: {
