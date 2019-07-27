@@ -59,7 +59,7 @@ export default {
       set(followUps) {
         this.$store.commit('missionFormSurvey/setItemFollowUps', {
           itemIndex: this.index,
-          followUps: followUps
+          followUps
         })
       }
     }
