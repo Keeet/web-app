@@ -71,7 +71,8 @@ module.exports = {
     '@nuxtjs/manifest',
     '@nuxtjs/style-resources',
     '@nuxtjs/sentry',
-    ['@netsells/nuxt-hotjar', { id: '1375940', sv: '6' }]
+    ['@netsells/nuxt-hotjar', { id: '1375940', sv: '6' }],
+    'nuxt-healthcheck'
   ],
 
   sentry: {

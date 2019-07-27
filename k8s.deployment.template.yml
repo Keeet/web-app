@@ -12,5 +12,17 @@ spec:
       containers:
         - name: web-app-${DRONE_BRANCH}
           image: keeet/web-app:${DRONE_COMMIT_SHA}
+          readinessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 10
       imagePullSecrets:
         - name: regcred
