@@ -17,7 +17,7 @@ Vue.prototype.$uaParserConstants = {
     'Chrome': CHROME,
     'Chromium': CHROME,
     'Edge': EDGE,
-    'IE': IE,
+    IE,
     'IEMobile': IE,
     'Firefox': FIREFOX
   },

@@ -1,6 +1,7 @@
 static/js/auth0-global.js
 static/js/jquery-3.2.1.min.js
 static/js/crisp.js
+static/js/heatmap.js
 
 .nuxt
 .idea
