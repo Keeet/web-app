@@ -538,7 +538,7 @@ export const actions = {
     return new Promise((resolve) => {
       this.$axios({
         method: 'post',
-        url: '/pricing/quantitative',
+        url: '/pricing/quantitativee',
         data: {
           items: {
             ...getters.itemsCountByType
