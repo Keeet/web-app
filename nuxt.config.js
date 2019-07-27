@@ -74,6 +74,10 @@ module.exports = {
     ['@netsells/nuxt-hotjar', { id: '1375940', sv: '6' }]
   ],
 
+  sentry: {
+    dsn: 'https://af6d2d50fc6941a58a7d83f814e45e26@sentry.io/1505080'
+  },
+
   build: {
     /*
     ** You can extend webpack config here

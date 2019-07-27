@@ -12,8 +12,5 @@ spec:
       containers:
         - name: web-app-${DRONE_BRANCH}
           image: keeet/web-app:${DRONE_COMMIT_SHA}
-          env:
-          - name: SENTRY_DSN
-            value: https://af6d2d50fc6941a58a7d83f814e45e26@sentry.io/1505080
       imagePullSecrets:
         - name: regcred
