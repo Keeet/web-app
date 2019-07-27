@@ -31,7 +31,7 @@
     "jwt-decode": "^2.2.0",
     "mixpanel": "^0.10.2",
     "net": "^1.0.2",
-    "nuxt": "2.8.1",
+    "nuxt": "2.7.1",
     "nuxt-dropzone": "^1.0.2",
     "nuxt-rfg-icon": "0.5.0",
     "tls": "0.0.1",
