@@ -11,6 +11,7 @@ export default {
     const fetchCfg = [{ name: 'USER' }]
     if (store.state.tokenCompanyId) {
       fetchCfg.push({ name: 'PROJECTS' })
+      fetchCfg.push({ name: 'COMPANY' })
     }
     return $fetch(fetchCfg)
   }
