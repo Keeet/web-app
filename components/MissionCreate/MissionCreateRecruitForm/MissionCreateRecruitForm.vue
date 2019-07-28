@@ -1,7 +1,9 @@
 <template>
   <div class="mission-create-recruit-form">
     <MissionCreateBox>
-      <MissionCreateRecruitFormHeadline text="Internal mission name" />
+      <MissionCreateRecruitFormHeadline
+        :text="$t('missionCreate.recruit.generalForm.titleLabel', $store.state.locale)"
+      />
       <div class="mission-create-recruit-form-name">
         <Input
           :placeholder="s.titlePlaceholder"
@@ -13,7 +15,9 @@
     <MissionCreateBox>
       <div class="mission-create-recruit-form-section">
         <div v-if="s.type === IN_HOUSE">
-          <MissionCreateRecruitFormHeadline text="Study type" />
+          <MissionCreateRecruitFormHeadline
+            :text="$t('missionCreate.recruit.generalForm.studyTypeLabel', $store.state.locale)"
+          />
           <div class="mission-create-recruit-form-study-type">
             <Select
               :value="s.recruit.studyType"
@@ -23,7 +27,9 @@
             />
           </div>
         </div>
-        <MissionCreateRecruitFormHeadline text="Number of participants" />
+        <MissionCreateRecruitFormHeadline
+          :text="$t('missionCreate.recruit.generalForm.participantsLabel', $store.state.locale)"
+        />
         <div class="mission-create-recruit-form-participants">
           <Input
             mutation="missionForm/setParticipants"
@@ -35,11 +41,17 @@
         </div>
       </div>
       <div class="mission-create-recruit-form-section">
-        <MissionCreateRecruitFormHeadline text="How long does the interview / test last?" underlined />
+        <MissionCreateRecruitFormHeadline
+          :text="$t('missionCreate.recruit.generalForm.durationLabel', $store.state.locale)"
+          underlined
+        />
         <MissionCreateRecruitFormDuration />
       </div>
       <div v-if="s.type === IN_HOUSE" class="mission-create-recruit-form-section">
-        <MissionCreateRecruitFormHeadline text="Where does the interview / test take place?" underlined />
+        <MissionCreateRecruitFormHeadline
+          :text="$t('missionCreate.recruit.generalForm.locationLabel', $store.state.locale)"
+          underlined
+        />
         <MissionCreateRecruitFormLocation />
       </div>
     </MissionCreateBox>

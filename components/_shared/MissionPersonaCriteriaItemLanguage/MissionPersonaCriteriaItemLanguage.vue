@@ -1,7 +1,7 @@
 <template>
   <div class="mission-persona-criteria-item-language">
     <p class="mission-persona-criteria-item-language-title">
-      Selecting a secondary language costs additional 5 &euro; per person.
+      {{ $t('shared.missionPersonaCriteria.language.selectSecondaryCosts', $store.state.locale) }}
     </p>
     <div class="mission-persona-criteria-item-language-body">
       <div class="mission-persona-criteria-item-language-body-item">
@@ -14,12 +14,12 @@
       <div class="mission-persona-criteria-item-language-body-item">
         <Select
           :options="[
-            { value: null, label: 'No secondary language' },
+            { value: null, label: $t('shared.missionPersonaCriteria.language.selectSecondaryNullLabel', $store.state.locale) },
             ...languageOptions
           ]"
           :value="$store.getters['missionFormPersona/secondaryLanguage']"
           mutation="missionFormPersona/setSecondaryLanguage"
-          placeholder="Select secondary language"
+          :placeholder="$t('shared.missionPersonaCriteria.language.selectSecondaryLabel', $store.state.locale)"
         />
       </div>
     </div>

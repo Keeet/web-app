@@ -28,9 +28,9 @@
     />
     <Confirm
       v-if="s.recruit.sessionErrorPopup"
-      title="Timeslot not available"
-      :text="`We need at least ${MISSION_CREATE_RECRUIT_MIN_ORDER_DURATION_DAYS} workdays to recruit your test users.`"
-      label-confirm="Earliest available timeslots"
+      :title="$t('missionCreate.recruit.calendar.notAvailableAlert.title', $store.state.locale)"
+      :text="$t('missionCreate.recruit.calendar.notAvailableAlert.text', $store.state.locale, { dayCount: MISSION_CREATE_RECRUIT_MIN_ORDER_DURATION_DAYS })"
+      :label-confirm="$t('missionCreate.recruit.calendar.notAvailableAlert.button', $store.state.locale)"
       label-confirm-arrow="RIGHT"
       :label-cancel="null"
       full-width

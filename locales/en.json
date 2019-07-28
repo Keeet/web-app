@@ -17,6 +17,32 @@
       "countryLabel": "Country*",
       "updateButton": "Save changes",
       "createButton": "Go"
+    },
+    "missionPersonaCriteria": {
+      "age": {
+        "headline": "Age (optional)",
+        "textBox": "{minAge} - {maxAge} years old"
+      },
+      "gender": {
+        "headline": "Gender (optional)"
+      },
+      "language": {
+        "headline": "Language (optional)",
+        "selectSecondaryCosts": "Selecting a secondary language costs additional 5 &euro; per person.",
+        "selectSecondaryLabel": "Select secondary language",
+        "selectSecondaryNullLabel": "No secondary language"
+      },
+      "country": {
+        "headline": "Country (optional)"
+      },
+      "deviceSkills": {
+        "headline": "Device skills (optional)"
+      },
+      "specialCriteria": {
+        "headline": "Special criteria (optional)",
+        "note": "Please only insert one special criteria per input. We will create screener questions to find eligible participants.",
+        "example": "e.g. Must own a car."
+      }
     }
   },
   "account": {
@@ -89,7 +115,7 @@
         "previewButton": "go to preview"
       }
     },
-    "deleteConfirm": {
+    "confirmDelete": {
       "title": "Are you sure?",
       "text": "Deleting this mission cannot be undone.",
       "confirm": "Yes",
@@ -154,7 +180,74 @@
       }
     }
   },
-  "missionCreate": {},
+  "missionCreate": {
+    "confirmInProgress": {
+      "title": "Continue form",
+      "text": "Do you want to continue with this mission form?",
+      "confirm": "Yes, continue",
+      "cancel": "No, discard changes"
+    },
+    "selectType": {
+      "headlineDefault": "What do you want to do?",
+      "headlineFirstMission": "Create your first mission",
+      "selectButton": "Select"
+    },
+    "recruit": {
+      "stepHeadline": "{index} / 4 {missionType} Mission",
+      "generalForm": {
+        "titleLabel": "Internal mission name",
+        "studyTypeLabel": "Study type",
+        "participantsLabel": "Number of participants",
+        "durationLabel": "How long does the interview / test last?",
+        "addLocationButton": "Add new location",
+        "locationLabel": "Where does the interview / test take place?",
+        "locationForm": {
+          "title": "Add new location",
+          "companyLabel": "Company Name*",
+          "companyPlaceholder": "Keeet",
+          "streetLabel": "Street*",
+          "streetPlaceholder": "Rosenthaler Str.",
+          "houseNumberLabel": "Number*",
+          "houseNumberPlaceholder": "101",
+          "additionalLabel": "Additional",
+          "additionalPlaceholder": "third backyard",
+          "cityLabel": "City*",
+          "cityPlaceholder": "Berlin",
+          "zipLabel": "ZIP*",
+          "zipPlaceholder": "10369",
+          "countryLabel": "Country*",
+          "submitButton": "Add"
+        }
+      },
+      "persona": {
+        "headline": "Target your participants"
+      },
+      "calendar": {
+        "headline": "When are you able to conduct the interview / test?",
+        "countSelectedTimeSlots": "{selected} of {total} time slots selected",
+        "resetButton": "reset",
+        "notAvailableAlert": {
+          "title": "Timeslot not available",
+          "text": "We need at least {dayCount} workdays to recruit your test users.",
+          "button": "Earliest available timeslots"
+        }
+      },
+      "summary": {
+        "overviewLabel": "Your {studyType}",
+        "overviewDurationValue": "{duration} min",
+        "overviewParticipantsValue": "{count} test users",
+        "targetAudienceLabel": "Target Audience",
+        "datesLabel": "Date & Time",
+        "billingMissionNoAdmin": "Your admin has to add a billing address before you can create In-House and Remote missions."
+      },
+      "submittedPopup": {
+        "title": "Next steps",
+        "text1": "We have received your mission! It can take up to 2 working days until we found eligible participants for you.",
+        "text2": "We will keep you updated on our progress. If you have any questions do not hesitate to contact us.",
+        "button": "Done"
+      }
+    }
+  },
   "missionSurveyOrder": {},
   "project": {},
   "projectCreate": {},

@@ -34,8 +34,8 @@ export default {
     },
     headline() {
       return this.s.projectFirstMission
-        ? 'Create your first mission'
-        : 'What do you want to do?'
+        ? this.$t('missionCreate.selectType.headlineFirstMission', this.$store.state.locale)
+        : this.$t('missionCreate.selectType.headlineDefault', this.$store.state.locale)
     }
   },
   methods: {

@@ -26,10 +26,10 @@
     </OverlayModal>
     <Confirm
       v-if="missionPage.deleteConfirmOpened"
-      :title="$t('mission.deleteConfirm.title', $store.state.locale)"
-      :text="$t('mission.deleteConfirm.text', $store.state.locale)"
-      :label-confirm="$t('mission.deleteConfirm.confirm', $store.state.locale)"
-      :label-cancel="$t('mission.deleteConfirm.cancel', $store.state.locale)"
+      :title="$t('mission.confirmDelete.title', $store.state.locale)"
+      :text="$t('mission.confirmDelete.text', $store.state.locale)"
+      :label-confirm="$t('mission.confirmDelete.confirm', $store.state.locale)"
+      :label-cancel="$t('mission.confirmDelete.cancel', $store.state.locale)"
       @close="closeDeleteConfirm"
       @cancel="closeDeleteConfirm"
       @confirm="deleteMission"
