@@ -2,11 +2,11 @@
   <div class="mission-create-survey-usability-lab-upload">
     <div class="mission-create-survey-usability-lab-upload-head">
       <p class="mission-create-survey-usability-lab-upload-headline">
-        Design
+        {{ $t('missionCreate.survey.items.upload.headline', $store.state.locale) }}
       </p>
       <div v-if="item.deviceFrame" class="mission-create-survey-usability-lab-upload-select">
         <p class="mission-create-survey-usability-lab-upload-select-label">
-          Device frame
+          {{ $t('missionCreate.survey.items.upload.deviceFrameLabel', $store.state.locale) }}
         </p>
         <div class="mission-create-survey-usability-lab-upload-select-input">
           <Select
@@ -36,10 +36,18 @@
             </div>
             <div class="mission-create-survey-usability-lab-upload-dropzone-empty-text">
               <p class="mission-create-survey-usability-lab-upload-dropzone-empty-text-title">
-                {{ multiUpload ? 'Upload images' : 'Upload an image' }}
+                {{
+                  multiUpload
+                    ? $t('missionCreate.survey.items.upload.emptyTitleMultiUpload', $store.state.locale)
+                    : $t('missionCreate.survey.items.upload.emptyTitleSingleUpload', $store.state.locale)
+                }}
               </p>
               <p class="mission-create-survey-usability-lab-upload-dropzone-empty-text-subtitle">
-                {{ multiUpload ? 'Click here or drag and drop images' : 'Click here or drag and drop an image' }}
+                {{
+                  multiUpload
+                    ? $t('missionCreate.survey.items.upload.emptySubtitleMultiUpload', $store.state.locale)
+                    : $t('missionCreate.survey.items.upload.emptySubtitleSingleUpload', $store.state.locale)
+                }}
               </p>
             </div>
           </div>

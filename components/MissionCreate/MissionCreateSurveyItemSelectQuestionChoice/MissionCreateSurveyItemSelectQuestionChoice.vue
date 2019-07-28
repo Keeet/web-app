@@ -5,7 +5,7 @@
     </div>
     <div class="mission-create-survey-item-select-question-choice-input">
       <Input
-        placeholder="Choice"
+        :placeholder="$t('missionCreate.survey.items.selectQuestion.choicePlaceholder', $store.state.locale)"
         :value="value"
         :error="error"
         dispatch-error="missionForm/handleValidationError"

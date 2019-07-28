@@ -27,13 +27,13 @@
         "headline": "Gender (optional)"
       },
       "language": {
-        "headline": "Language (optional)",
+        "headline": "Language",
         "selectSecondaryCosts": "Selecting a secondary language costs additional 5 &euro; per person.",
         "selectSecondaryLabel": "Select secondary language",
         "selectSecondaryNullLabel": "No secondary language"
       },
       "country": {
-        "headline": "Country (optional)"
+        "headline": "Country"
       },
       "deviceSkills": {
         "headline": "Device skills (optional)"
@@ -245,6 +245,106 @@
         "text1": "We have received your mission! It can take up to 2 working days until we found eligible participants for you.",
         "text2": "We will keep you updated on our progress. If you have any questions do not hesitate to contact us.",
         "button": "Done"
+      }
+    },
+    "survey": {
+      "details": {
+        "headline": "Mission Details",
+        "titleLabel": "Internal mission name",
+        "languageLabel": "Language*"
+      },
+      "customScreens": {
+        "switchLabel": "Customize",
+        "titleLabel": "Title",
+        "messageLabel": "Message",
+        "logoLabel": "Branding",
+        "logoUpload": "Upload a photo / logo",
+        "colorLabel": "Accent Color",
+        "welcomeScreen": {
+          "title": "Default Welcome Screen",
+          "subtitle": "The first thing your audience will see - a great opportunity to engage right away."
+        },
+        "closingScreen": {
+          "title": "Default Thank You Screen",
+          "subtitle": "The last thing your audience will see. Thank your participants for their effort and time.",
+          "redirectLinkLabel": "Redirect Link",
+          "redirectLinkPlaceholder": "https://"
+        }
+      },
+      "items": {
+        "addLine": "Add a new task",
+        "addBox": {
+          "headline": "Add a question",
+          "shortTextDescription": "Good for short answers, like names and what you had for lunch.",
+          "longTextDescription": "Good for long answers like the Meaning of life.",
+          "singleSelectDescription": "Give your participant options to choose from.",
+          "multiSelectDescription": "Give your participant options to choose from.",
+          "linearScaleDescription": "Give your participant a numbered scale to choose from.",
+          "likertDescription": "Ask your participant to respond to a statement about a topic and measure their attitude.",
+          "firstClickDescription": "Show your participants an interface and examine what they click on first to complete the task.",
+          "fiveSecondTestDescription": "Show your participants a design for set number of seconds and ask questions to test their recall afterwards.",
+          "questionListDescription": "Ask your participants a simple question to get even more insights.",
+          "designQuestionDescription": "Show your participants a design and ask simultaneously questions about what they see.",
+          "preferenceTestDescription": "Ask your participants to choose between different options.",
+          "instructionDescription": "Guide your participants through the survey by giving more detailed instructions."
+        },
+        "question": {
+          "titleDefaultLabel": "Question",
+          "titlePlaceholder": "Type question here",
+          "requiredLabel": "Required"
+        },
+        "selectQuestion": {
+          "add": "Add another choice",
+          "showOtherOption": "Show \"Other\" Option",
+          "choicePlaceholder": "Choice"
+        },
+        "likert": {
+          "answerTypeLabel": "Answer type"
+        },
+        "linearScale": {
+          "startValueLabel": "Start value",
+          "startValuePlaceholder": "Start label (left) - optional",
+          "endValueLabel": "End value",
+          "endValuePlaceholder": "End label (right) - optional"
+        },
+        "firstClick": {
+          "titleLabel": "Instruction",
+          "titlePlaceholder": "Where would you click to..."
+        },
+        "fiveSecondTest": {
+          "explanation": "We will warn participants that the following design will only be visible for a limited time.",
+          "durationLabel1": "Design shown for",
+          "durationLabel2": "seconds."
+        },
+        "preferenceTest": {
+          "instructionLabel": "Instruction",
+          "instructionPlaceholder": "Which design do you prefer?"
+        },
+        "instruction": {
+          "textLabel": "Instruction"
+        },
+        "followUp": {
+          "title": "Follow-up questions",
+          "addQuestion": "Add new question"
+        },
+        "upload": {
+          "headline": "Design",
+          "deviceFrameLabel": "Device frame",
+          "emptyTitleSingleUpload": "Upload an image",
+          "emptyTitleMultiUpload": "Upload images",
+          "emptySubtitleSingleUpload": "Click here or drag and drop an image",
+          "emptySubtitleMultiUpload": "Click here or drag and drop images"
+        }
+      },
+      "summary": {
+        "welcomeScreen": "Welcome Screen",
+        "closingScreen": "Thank-you Screen",
+        "durationDefault": "about 1 min",
+        "durationVariables": "{val1} - {val2} min",
+        "cancelButton": "Cancel",
+        "previewButton": "Preview",
+        "submitEditButton": "Update mission",
+        "submitCreateButton": "Create mission"
       }
     }
   },

@@ -26,11 +26,11 @@
         @click="addChoice"
       >
         <IconPlus />
-        Add another choice
+        {{ $t('missionCreate.survey.items.selectQuestion.add', $store.state.locale) }}
       </div>
       <SwitchButton
         :on="item.otherAvailable"
-        label="Show &quot;Other&quot; Option"
+        :label="$t('missionCreate.survey.items.selectQuestion.showOtherOption', $store.state.locale)"
         small
         :bg-color-class="bgColorClass || item.type"
         @switch="switchOtherAvailable"
