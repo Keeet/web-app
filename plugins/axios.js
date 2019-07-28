@@ -4,7 +4,8 @@ export default function ({ $axios, app: { $auth }, redirect, store, route, env: 
   $axios.defaults.baseURL = baseUrl
 
   $axios.interceptors.request.use(function (config) {
-    if (config.noAuth) {
+    if (config.headers.Authorization === 'none') {
+      delete config.headers.Authorization
       return config
     }
     if (config.data) {

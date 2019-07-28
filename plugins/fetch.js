@@ -129,7 +129,12 @@ function buildPathWithOptionalParams(pathTemplate, id) {
 }
 
 function buildAxiosCfg(noAuth, baseUrl, queryParams) {
-  const axiosCfg = { noAuth }
+  const axiosCfg = {}
+  if (noAuth) {
+    axiosCfg.headers = {
+      Authorization: 'none'
+    }
+  }
   if (baseUrl) {
     axiosCfg.baseURL = baseUrl
   }
