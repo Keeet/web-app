@@ -5,7 +5,7 @@ export default function ({ store, redirect, route: { path }, query: { invitation
     }
   }
   if (['/missions/create', '/missions/edit'].includes(path)) {
-    if (!store.state.missionForm.init) {
+    if (!store.state.missionForm.projectId) {
       return redirect('/')
     }
   }

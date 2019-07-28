@@ -5,6 +5,7 @@ const MAX_PARTICIPANTS = 250
 const defaultState = {
   id: null,
   projectId: null,
+  projectFirstMission: false,
   type: null,
   title: '',
   titlePlaceholder: '',
@@ -15,9 +16,7 @@ const defaultState = {
   showErrors: false,
   editExisting: false,
 
-  init: false,
   activeStep: 0,
-  inProgress: true,
   confirmInProgressOpened: false,
   pending: false
 }
@@ -42,17 +41,16 @@ export const getters = {
 
 export const mutations = {
   init(state, { project, participants = null }) {
-    if (!state.init || !state.inProgress || !project || project.id !== state.projectId || state.editExisting) {
-      for (const key in defaultState) {
-        state[key] = defaultState[key]
-      }
-      if (project) {
-        state.projectId = project.id
-      }
-      state.participants = participants
-      state.participantsInit = participants
-      state.init = true
+    for (const key in defaultState) {
+      state[key] = defaultState[key]
     }
+    if (project) {
+      const HAS_MISSIONS = project.missions && project.missions.length > 0
+      state.projectId = project.id
+      state.projectFirstMission = !HAS_MISSIONS
+    }
+    state.participants = participants
+    state.participantsInit = participants
   },
   initExisting(state, { mission }) {
     for (const key in defaultState) {
@@ -69,10 +67,10 @@ export const mutations = {
     state.projectId = projectId
     state.type = type
     state.title = title
-    state.init = true
     state.editExisting = true
   },
   resetForm(state) {
+    state.type = null
     state.title = defaultState.title
     state.participants = state.participantsInit
   },
@@ -131,11 +129,21 @@ export const mutations = {
   },
   submitted(state) {
     state.pending = false
-    state.inProgress = false
   }
 }
 
 export const actions = {
+  initProjectMission({ state, commit }, { project }) {
+    const IS_FIRST_STEP = state.activeStep === 0
+    const IS_SAME_PROJECT = state.projectId === project.id
+    if (!IS_FIRST_STEP && IS_SAME_PROJECT) {
+      return
+    }
+    commit('init', { project, participants: 5 })
+  },
+  initSurveyOrder({ commit }, { project }) {
+    commit('init', { project, participants: 50 })
+  },
   handleValidationError(context, { id, error }) {
     const invalidField = context.state.invalidFields.find(field => field.id === id)
 

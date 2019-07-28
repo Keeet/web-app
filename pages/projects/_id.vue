@@ -10,7 +10,7 @@ export default {
   name: 'Id',
   layout: 'defaultLean',
   components: { Project },
-  fetch({ app: { $fetch }, params, store }) {
+  fetch({ app: { $fetch }, params, store, redirect }) {
     const { id } = params
     const fetchCfg = [{ name: 'USER' }, { name: 'COMPANY' }, { name: 'PROJECTS' }]
 
@@ -19,7 +19,20 @@ export default {
     } else {
       fetchCfg.push({ name: 'PROJECT', id })
     }
-    return $fetch(fetchCfg)
+
+    return new Promise((resolve) => {
+      $fetch(fetchCfg).then((res) => {
+        const { missions } = store.state.project
+        const HAS_MISSIONS = missions && missions.length > 0
+
+        if (!HAS_MISSIONS) {
+          store.dispatch('missionForm/initProjectMission', { project: store.state.project })
+          resolve(redirect('/missions/create'))
+          return
+        }
+        resolve(res)
+      })
+    })
   }
 }
 </script>

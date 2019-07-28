@@ -15,7 +15,7 @@ export default {
     return $fetch(
       [{ name: 'USER' }, { name: 'MISSION', id }, { name: 'SURVEY', id }, { name: 'COMPANY' }],
       () => {
-        store.commit('missionForm/init', { project: null, participants: 50 })
+        store.dispatch('missionForm/initSurveyOrder', { project: null })
         store.commit('missionFormSurvey/init')
         store.commit('missionFormPersona/init')
         store.commit('missionFormPersona/setCountry', store.state.company.country)

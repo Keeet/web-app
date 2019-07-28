@@ -124,10 +124,7 @@ export default {
         : `${getMonthName(date)} ${year}`
     },
     createMission() {
-      this.$store.commit('missionForm/init', {
-        project: this.project,
-        participants: 5
-      })
+      this.$store.dispatch('missionForm/initProjectMission', { project: this.project })
       this.$router.push('/missions/create')
     }
   }

@@ -75,7 +75,11 @@ export default {
   methods: {
     cancel() {
       if (this.s.activeStep === 0 || this.s.editExisting) {
-        this.$router.back()
+        if (this.s.projectFirstMission) {
+          this.$router.push('/')
+        } else {
+          this.$router.back()
+        }
       } else {
         this.$store.commit('missionForm/previousStep')
       }

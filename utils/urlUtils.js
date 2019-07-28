@@ -8,9 +8,9 @@ export function isAuthUrl(route) {
 }
 
 export function isExternalUrl(route) {
-  const pattern = route.matched[0]
-  if (!pattern) {
-    return false
-  }
-  return EXTERNAL_PATTERN.includes(pattern.path)
+  return !!EXTERNAL_PATTERN.find(pattern => matchesPathPattern(route, pattern))
+}
+
+export function matchesPathPattern(route, pattern) {
+  return route.matched && route.matched[0] && route.matched[0].path === pattern
 }

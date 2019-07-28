@@ -1,6 +1,6 @@
 <template>
   <div class="mission-create-type">
-    <Headline text="What do you want to do?" center />
+    <Headline :text="headline" center />
     <div
       class="mission-create-type-items"
       data-aos="fade-up"
@@ -31,12 +31,18 @@ export default {
   computed: {
     s() {
       return this.$store.state.missionForm
+    },
+    headline() {
+      return this.s.projectFirstMission
+        ? 'Create your first mission'
+        : 'What do you want to do?'
     }
   },
   methods: {
     select(type) {
       // switch mission type OR select mission type for the first time
       if (this.s.type !== type) {
+        this.$store.commit('missionForm/resetForm')
         this.$store.commit('missionFormRecruit/init', {
           company: this.$store.state.company,
           missionType: type
@@ -44,7 +50,6 @@ export default {
         this.$store.commit('missionFormSurvey/init')
         this.$store.commit('missionFormPersona/init')
         this.$store.commit('missionFormPersona/setCountry', this.$store.state.company.country)
-        this.$store.commit('missionForm/resetForm')
         this.$store.commit('missionForm/setTitlePlaceholder', `${MISSION_LABELS[type]} #${this.getCountOfExistingMissionsByType(type) + 1}`)
       }
       this.$store.commit('missionForm/setType', type)
