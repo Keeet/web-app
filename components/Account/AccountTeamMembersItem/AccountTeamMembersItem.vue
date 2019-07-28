@@ -12,7 +12,7 @@
         <p class="account-team-members-item-text-name">
           {{ user.firstName }} {{ user.lastName }}
           <span v-if="user.id === myUser.id">
-            (you)
+            {{ $t('account.team.members.youLabel', $store.state.locale) }}
           </span>
         </p>
         <p class="account-team-members-item-text-email">

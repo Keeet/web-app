@@ -1,24 +1,27 @@
 <template>
   <div class="account">
     <div class="account-headline">
-      <Headline text="Account" :disable-animation="accountPage.disableAnimation" />
+      <Headline
+        :text="$t('account.title', $store.state.locale)"
+        :disable-animation="accountPage.disableAnimation"
+      />
     </div>
     <div class="account-nav">
       <NavUnderlined
         :items="[
           {
             page: ACCOUNT_PAGES.PROFILE,
-            label: 'Profile',
+            label: $t('account.profile.navLabel', $store.state.locale),
             link: '/account/profile'
           },
           {
             page: ACCOUNT_PAGES.TEAM,
-            label: 'Team',
+            label: $t('account.team.navLabel', $store.state.locale),
             link: '/account/team'
           },
           {
             page: ACCOUNT_PAGES.BILLING,
-            label: 'Billing',
+            label: $t('account.billing.navLabel', $store.state.locale),
             link: '/account/billing'
           }
         ]"

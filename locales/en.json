@@ -1,4 +1,79 @@
 {
+  "shared": {
+    "companyForm": {
+      "title": "Edit Company",
+      "companyLabel": "Company Name*",
+      "companyPlaceholder": "Keeet",
+      "streetLabel": "Street*",
+      "streetPlaceholder": "Rosenthaler Str.",
+      "houseNumberLabel": "Number*",
+      "houseNumberPlaceholder": "101",
+      "additionalLabel": "Additional",
+      "additionalPlaceholder": "third backyard",
+      "cityLabel": "City*",
+      "cityPlaceholder": "Berlin",
+      "zipLabel": "ZIP*",
+      "zipPlaceholder": "10369",
+      "countryLabel": "Country*",
+      "updateButton": "Save changes",
+      "createButton": "Go"
+    }
+  },
+  "account": {
+    "title": "Account",
+    "billing": {
+      "navLabel": "Billing",
+      "noAdmin": "Please contact the admin to edit the billing address.",
+      "form": {
+        "companyLabel": "Company Name",
+        "emailLabel": "Email*",
+        "emailPlaceholder": "billing@keeet.io",
+        "vatLabel": "VAT number / tax ID",
+        "streetLabel": "Street*",
+        "streetPlaceholder": "Rosenthaler Str.",
+        "houseNumberLabel": "Number*",
+        "houseNumberPlaceholder": "101",
+        "cityLabel": "City*",
+        "cityPlaceholder": "Berlin",
+        "zipLabel": "ZIP*",
+        "zipPlaceholder": "10369",
+        "countryLabel": "Country*",
+        "submit": "Submit"
+      }
+    },
+    "profile": {
+      "navLabel": "Profile",
+      "memberSince": "Member since {date}",
+      "editButton": "Edit Company"
+    },
+    "team": {
+      "navLabel": "Team",
+      "members": {
+        "title": "Members ({count})",
+        "youLabel": "(you)"
+      },
+      "invite": {
+        "title": "Invite members",
+        "emailLabel": "Email address",
+        "emailPlaceholder": "max.mustermann@gmail.com",
+        "selectRoleLabel": "Role",
+        "submit": "Invite"
+      }
+    }
+  },
+  "authCallback": {
+    "emailNotVerified": "Please verify your email",
+    "emailNotVerifiedDescription": "We sent a verification mail to your email address. Please check your inbox and click on the verification link to start using Keeet."
+  },
+  "dashboard": {
+    "createCompanyFormTitle": "Last Step",
+    "title": "Projects"
+  },
+  "mission": {},
+  "missionCreate": {},
+  "missionSurveyOrder": {},
+  "project": {},
+  "projectCreate": {},
   "survey": {
     "welcomeButton": "Start",
     "welcomeTitle": "Hey there!",
@@ -90,5 +165,6 @@
       "invalidOverlayTitle": "Invalid survey form",
       "invalidOverlayDescription": "Please check your survey form and fill all required fields"
     }
-  }
+  },
+  "twilio": {}
 }
