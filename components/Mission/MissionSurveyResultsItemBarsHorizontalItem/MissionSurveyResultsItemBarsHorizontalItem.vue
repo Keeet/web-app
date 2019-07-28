@@ -21,7 +21,7 @@
         {{ percentText }}
       </p>
       <p class="mission-survey-results-item-bars-horizontal-item-bar-responses">
-        {{ absolute }} {{ absolute === 1 ? 'response' : 'responses' }}
+        {{ $tc('mission.survey.results.countResponses', $store.state.locale, { count: absolute }) }}
       </p>
     </div>
   </div>

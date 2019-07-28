@@ -69,7 +69,91 @@
     "createCompanyFormTitle": "Last Step",
     "title": "Projects"
   },
-  "mission": {},
+  "mission": {
+    "countProgressTotal": "out of {total}",
+    "sidebar": {
+      "descriptionDefault": "Enter your mission description here. Share briefly why you are conducting this mission in order to keep everyone on the same page.",
+      "deleteButton": "delete mission",
+      "recruit": {
+        "recruitedLabel": "RECRUITED",
+        "targetAudience": "Target Audience",
+        "generalInformation": "General Information",
+        "duration": "{duration} min",
+        "participants": "{count} test users"
+      },
+      "survey": {
+        "responsesTitle": "RESPONSES",
+        "responsesLabel": "responses",
+        "averageDurationTitle": "AVERAGE DURATION",
+        "averageDurationLabel": "/ participant",
+        "previewButton": "go to preview"
+      }
+    },
+    "deleteConfirm": {
+      "title": "Are you sure?",
+      "text": "Deleting this mission cannot be undone.",
+      "confirm": "Yes",
+      "cancel": "Cancel"
+    },
+    "metadataForm": {
+      "title": "Edit Mission",
+      "nameLabel": "Name",
+      "namePlaceholder": "Mission name",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Enter your mission description here ...",
+      "submit": "Update"
+    },
+    "recruit": {
+      "overview": {
+        "navLabel": "Overview",
+        "session": {
+          "startCall": "Start call"
+        }
+      },
+      "insights": {
+        "navLabel": "Insights",
+        "recordingsTitle": "Recordings",
+        "form": {
+          "title": "Add external document",
+          "urlLabel": "Url",
+          "urlPlaceholder": "https://docs.google.com/document/d/1f3nxVg1h",
+          "titleLabel": "Title",
+          "titlePlaceholder": "Interview notes",
+          "descriptionLabel": "Description",
+          "submit": "Add"
+        }
+      }
+    },
+    "survey": {
+      "results": {
+        "navLabel": "Results",
+        "headline": "Response Summary",
+        "countOutOf": "{count} out of",
+        "countResponses": "0 responses | 1 response | {count} responses",
+        "heatmapSwitchLabel": "Heatmap",
+        "expandButton": "Expand",
+        "collapseButton": "Collapse",
+        "textQuestionNoResults": "No answers yet"
+      },
+      "share": {
+        "navLabel": "Share",
+        "headline": "Get test results within hours!",
+        "keeetPanel": {
+          "title": "Keeet Panel",
+          "text": "Test with our diverse panel of testers and gain insights in hours!",
+          "orderButton": "Place Order",
+          "orderResponsesLabel": "RESPONSES"
+        },
+        "companyAudience": {
+          "title": "Your audience",
+          "text": "Share link with your own audience!",
+          "createPublicLinkButton": "Create public link",
+          "copyLinkButton": "Copy Link",
+          "copyLinkSuccessfulMessage": "copied"
+        }
+      }
+    }
+  },
   "missionCreate": {},
   "missionSurveyOrder": {},
   "project": {},

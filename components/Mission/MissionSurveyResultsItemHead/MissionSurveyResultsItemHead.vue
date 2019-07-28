@@ -12,7 +12,8 @@
         v-if="isNum(result.actualCount) && result.type !== INSTRUCTION"
         class="mission-survey-results-item-head-text-subtitle"
       >
-        {{ result.actualCount }} out of {{ mission.actualCount }} response
+        {{ $t('mission.survey.results.countOutOf', $store.state.locale, { count: result.actualCount }) }}
+        {{ $tc('mission.survey.results.countResponses', $store.state.locale, { count: mission.actualCount }) }}
       </p>
     </div>
   </div>

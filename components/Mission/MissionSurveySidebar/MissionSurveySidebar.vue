@@ -2,19 +2,22 @@
   <MissionSidebar>
     <div class="mission-survey-sidebar-responses">
       <MissionCount
-        title="RESPONSES"
+        :title="$t('mission.sidebar.survey.responsesTitle', $store.state.locale)"
         :text-large="mission.actualCount"
-        text-small="responses"
+        :text-small="$t('mission.sidebar.survey.responsesLabel', $store.state.locale)"
       />
     </div>
     <MissionCount
-      title="AVERAGE DURATION"
+      :title="$t('mission.sidebar.survey.averageDurationTitle', $store.state.locale)"
       :text-large="avgDuration"
-      text-small="/ participant"
+      :text-small="$t('mission.sidebar.survey.averageDurationLabel', $store.state.locale)"
     />
     <ButtonText v-if="isDraft" text="edit" @click="editMission" />
     <div class="mission-survey-sidebar-preview-button">
-      <ButtonText text="go to preview" @click="gotoPreview" />
+      <ButtonText
+        :text="$t('mission.sidebar.survey.previewButton', $store.state.locale)"
+        @click="gotoPreview"
+      />
     </div>
   </MissionSidebar>
 </template>

@@ -12,13 +12,13 @@
       <ButtonText
         v-if="!mission.isSample"
         type="GREY_DELETE"
-        text="delete mission"
+        :text="$t('mission.sidebar.deleteButton', $store.state.locale)"
         @click="$store.commit('missionPage/openDeleteConfirm')"
       />
     </SidebarLeft>
     <OverlayModal
       v-if="missionMetadataForm.overlayOpened"
-      title="Edit Mission"
+      :title="$t('mission.metadataForm.title', $store.state.locale)"
       :loading="missionMetadataForm.pending"
       @close="$store.commit('missionMetadataForm/setOverlayOpened', false)"
     >
@@ -26,10 +26,10 @@
     </OverlayModal>
     <Confirm
       v-if="missionPage.deleteConfirmOpened"
-      title="Are you sure?"
-      text="Deleting this mission cannot be undone."
-      label-confirm="Yes"
-      label-cancel="Cancel"
+      :title="$t('mission.deleteConfirm.title', $store.state.locale)"
+      :text="$t('mission.deleteConfirm.text', $store.state.locale)"
+      :label-confirm="$t('mission.deleteConfirm.confirm', $store.state.locale)"
+      :label-cancel="$t('mission.deleteConfirm.cancel', $store.state.locale)"
       @close="closeDeleteConfirm"
       @cancel="closeDeleteConfirm"
       @confirm="deleteMission"
@@ -57,7 +57,7 @@ export default {
       return this.$store.state.mission.id.startsWith('sample')
     },
     description() {
-      return this.mission.description || 'Enter your mission description here. Share briefly why you are conducting this mission in order to keep everyone on the same page.'
+      return this.mission.description || this.$t('mission.sidebar.descriptionDefault', this.$store.state.locale)
     },
     missionMetadataForm() {
       return this.$store.state.missionMetadataForm
