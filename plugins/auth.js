@@ -14,7 +14,7 @@ const authConfig = {
   REDIRECT_PATH: '/auth/callback'
 }
 
-const SCOPE = 'openid profile email read:missions read:personas read:projects write:billing write:missions write:personas write:projects write:roles write:users start:sessions write:invitations write:insights'
+const SCOPE = 'openid profile email read:missions read:personas read:projects write:billing write:missions write:personas write:projects write:roles write:users start:sessions write:invitations write:insights super:admin'
 
 class AuthService {
   constructor({ store }) {
