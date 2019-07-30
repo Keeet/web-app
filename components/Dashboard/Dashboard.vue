@@ -19,7 +19,7 @@
     </div>
     <div class="dashboard-projects">
       <DashboardProject
-        v-if="!company.sampleProjectDeleted"
+        v-if="!company || !company.sampleProjectDeleted"
         :title="sampleProject.title"
         :description="sampleProject.description"
         :created-at="$store.state.user.createdAt"
