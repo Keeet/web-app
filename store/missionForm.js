@@ -74,6 +74,11 @@ export const mutations = {
     state.title = defaultState.title
     state.participants = state.participantsInit
   },
+  reset(state) {
+    for (const key in defaultState) {
+      state[key] = defaultState[key]
+    }
+  },
   setType(state, type) {
     state.type = type
   },
@@ -126,9 +131,6 @@ export const mutations = {
   },
   pending(state) {
     state.pending = true
-  },
-  submitted(state) {
-    state.pending = false
   }
 }
 

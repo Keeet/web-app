@@ -30,12 +30,13 @@ export default {
       }
     }
   },
+  beforeDestroy() {
+    this.$store.commit('missionFormRecruit/reset')
+    this.$store.commit('missionForm/reset')
+  },
   methods: {
     done() {
-      this.$router.push(`/missions/${this.s.submittedMissionId}`, () => {
-        this.$store.commit('missionFormRecruit/hideSubmittedPopup')
-        this.$store.commit('missionForm/submitted')
-      })
+      this.$router.push(`/missions/${this.s.submittedMissionId}`)
     }
   }
 }

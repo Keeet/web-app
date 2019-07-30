@@ -74,6 +74,11 @@ export const mutations = {
     state.location = { name, street, houseNumber, addressDescription, zipCode, city, country }
     state.locationId = COMPANY_LOCATION_ID
   },
+  reset(state) {
+    for (const key in defaultState) {
+      state[key] = defaultState[key]
+    }
+  },
   setStudyType(state, studyType) {
     state.studyType = studyType
   },
@@ -120,9 +125,6 @@ export const mutations = {
   },
   showSubmittedPopup(state) {
     state.submittedPopup = true
-  },
-  hideSubmittedPopup(state) {
-    state.submittedPopup = false
   },
   setPricing(state, pricing) {
     state.pricing = pricing

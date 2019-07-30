@@ -245,6 +245,11 @@ export const mutations = {
     })
     state.itemAddIndex = -1
   },
+  reset(state) {
+    for (const key in defaultState) {
+      state[key] = defaultState[key]
+    }
+  },
   setLanguage(state, language) {
     state.language = language
   },
@@ -554,11 +559,16 @@ export const actions = {
         .catch(this.$axios.handleErrorWithNuxt)
     })
   },
-  submit({ state, getters }, { missionForm }) {
+  submit({ state, getters, commit }, { missionForm }) {
     const mission = getters.buildMission({ missionForm })
-    return missionForm.editExisting
+    const submitCallback = missionForm.editExisting
       ? this.$push.updateMissionSurvey(mission)
       : this.$push.createMissionSurvey(mission)
+
+    return new Promise((resolve) => {
+      commit('reset')
+      submitCallback.then(resolve)
+    })
   }
 }
 

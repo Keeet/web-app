@@ -90,8 +90,9 @@ export default {
       this.$store.dispatch('missionFormSurvey/submit', {
         missionForm
       }).then(({ id }) => {
-        this.$store.commit('missionForm/submitted')
-        this.$router.push(`/missions/${id}`)
+        this.$router.push(`/missions/${id}`, () => {
+          this.$store.commit('missionForm/reset')
+        })
       })
     }
   }
