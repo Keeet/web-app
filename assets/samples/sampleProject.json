@@ -700,12 +700,16 @@
           ],
           "results":[
             {
-              "image":"/img/sample-mission-eaeb9729-item-3a.png",
+              "image": {
+                "url": "/img/sample-mission-eaeb9729-item-3a.png"
+              },
               "absolute":10,
               "relative":17.24
             },
             {
-              "image":"/img/sample-mission-eaeb9729-item-3b.png",
+              "image": {
+                "url": "/img/sample-mission-eaeb9729-item-3b.png"
+              },
               "absolute":48,
               "relative":82.76
             }
@@ -767,7 +771,9 @@
             "type":"FIRST_CLICK",
             "index":0,
             "followUps":[],
-            "image":"/img/sample-mission-eaeb9729-item-0.jpg",
+            "image": {
+              "url": "/img/sample-mission-eaeb9729-item-0.jpg"
+            },
             "instruction":"Where would you click to see a more detailed description of the movie?",
             "deviceFrame":"PHONE_PORTRAIT"
           },
@@ -790,7 +796,9 @@
                 ]
               }
             ],
-            "image":"/img/sample-mission-eaeb9729-item-1.jpg",
+            "image": {
+              "url": "/img/sample-mission-eaeb9729-item-1.jpg"
+            },
             "duration":5,
             "deviceFrame":"PHONE_PORTRAIT"
           },
@@ -820,7 +828,9 @@
                 ]
               }
             ],
-            "image":"/img/sample-mission-eaeb9729-item-2.jpg",
+            "image": {
+              "url": "/img/sample-mission-eaeb9729-item-2.jpg"
+            },
             "deviceFrame":"PHONE_PORTRAIT"
           },
           {
