@@ -23,7 +23,7 @@
       no-close
     />
     <OverlayModal
-      v-else-if="isDraft"
+      v-else-if="isDraft()"
       title="This survey is still in draft"
       no-close
     />
