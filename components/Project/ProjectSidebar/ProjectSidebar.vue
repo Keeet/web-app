@@ -14,7 +14,7 @@
           {{ project.owner.firstName }} {{ project.owner.lastName }}
         </p>
       </div>
-      <div v-if="!isSample" class="project-sidebar-delete">
+      <div class="project-sidebar-delete">
         <ButtonText
           type="GREY_DELETE"
           text="delete project"
@@ -67,11 +67,20 @@ export default {
       this.$store.commit('projectPage/closeDeleteConfirm')
     },
     deleteProject() {
-      this.$push.deleteProject(this.project.id).then(() => {
-        this.$store.commit('setProject', null)
-        this.closeDeleteConfirm()
-        this.$router.push('/')
-      })
+      if (this.isSample) {
+        const company = {
+          ...this.$store.state.company,
+          sampleProjectDeleted: true
+        }
+        this.$push.upsertCompany(company).then(this.afterDeleteProject)
+      } else {
+        this.$push.deleteProject(this.project.id).then(this.afterDeleteProject)
+      }
+    },
+    afterDeleteProject() {
+      this.$store.commit('setProject', null)
+      this.closeDeleteConfirm()
+      this.$router.push('/')
     }
   }
 }

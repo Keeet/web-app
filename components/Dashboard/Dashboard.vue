@@ -17,8 +17,9 @@
         <ButtonCircle type="CREATE" @click="create" />
       </div>
     </div>
-    <div v-if="!projects || !projects.length" class="dashboard-projects">
+    <div class="dashboard-projects">
       <DashboardProject
+        v-if="!company.sampleProjectDeleted"
         :title="sampleProject.title"
         :description="sampleProject.description"
         :created-at="$store.state.user.createdAt"
@@ -28,20 +29,6 @@
         data-aos-once="true"
         @click.native="$router.push('/projects/sample')"
       />
-      <DashboardProjectEmpty
-        data-aos="fade-up"
-        data-aos-duration="500"
-        data-aos-delay="50"
-        data-aos-once="true"
-      />
-      <DashboardProjectEmpty
-        data-aos="fade-up"
-        data-aos-duration="500"
-        data-aos-delay="100"
-        data-aos-once="true"
-      />
-    </div>
-    <div v-else class="dashboard-projects">
       <DashboardProject
         v-for="(project, index) in projects"
         :key="index"
@@ -51,6 +38,20 @@
         :owner="project.owner"
         :aos-delay="50 * index"
         @click.native="$router.push(`/projects/${project.id}`)"
+      />
+      <DashboardProjectEmpty
+        v-if="!projects || !projects.length"
+        data-aos="fade-up"
+        data-aos-duration="500"
+        data-aos-delay="50"
+        data-aos-once="true"
+      />
+      <DashboardProjectEmpty
+        v-if="!projects || !projects.length"
+        data-aos="fade-up"
+        data-aos-duration="500"
+        data-aos-delay="100"
+        data-aos-once="true"
       />
     </div>
   </div>
@@ -76,6 +77,9 @@ export default {
   computed: {
     projects() {
       return this.$store.state.projects
+    },
+    company() {
+      return this.$store.state.company
     },
     companyForm() {
       return this.$store.state.companyForm
