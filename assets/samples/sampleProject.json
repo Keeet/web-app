@@ -700,16 +700,12 @@
           ],
           "results":[
             {
-              "image": {
-                "url": "/img/sample-mission-eaeb9729-item-3a.png"
-              },
+              "image": "/img/sample-mission-eaeb9729-item-3a.png",
               "absolute":10,
               "relative":17.24
             },
             {
-              "image": {
-                "url": "/img/sample-mission-eaeb9729-item-3b.png"
-              },
+              "image": "/img/sample-mission-eaeb9729-item-3b.png",
               "absolute":48,
               "relative":82.76
             }
