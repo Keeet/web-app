@@ -9,7 +9,13 @@
     >
       <SidebarLeftHeadline text="Owner" />
       <div class="project-sidebar-owner">
-        <img class="project-sidebar-owner-img" :src="project.owner.profileImage">
+        <div class="project-sidebar-owner-img">
+          <ThumborImage
+            :width="90"
+            :height="90"
+            :src="project.owner.profileImage"
+          />
+        </div>
         <p class="project-sidebar-owner-name">
           {{ project.owner.firstName }} {{ project.owner.lastName }}
         </p>
@@ -40,10 +46,11 @@ import SidebarLeft from '../../_shared/SidebarLeft/SidebarLeft'
 import SidebarLeftHeadline from '../../_shared/SidebarLeftHeadline/SidebarLeftHeadline'
 import Confirm from '../../_shared/Confirm/Confirm'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
+import ThumborImage from '../../_shared/ThumborImage/ThumborImage'
 
 export default {
   name: 'ProjectSidebar',
-  components: { ButtonText, Confirm, SidebarLeftHeadline, SidebarLeft },
+  components: { ThumborImage, ButtonText, Confirm, SidebarLeftHeadline, SidebarLeft },
   computed: {
     project() {
       return this.$store.state.project

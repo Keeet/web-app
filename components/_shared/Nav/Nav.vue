@@ -20,7 +20,11 @@
       <nuxt-link to="/account">
         <div class="nav-profile">
           <div class="nav-profile-img">
-            <img :src="$store.state.user.profileImage">
+            <ThumborImage
+              :src="$store.state.user.profileImage"
+              :width="90"
+              :height="90"
+            />
           </div>
           <p class="nav-profile-welcome">
             Hello, {{ $store.state.user.firstName }}!
@@ -34,10 +38,11 @@
 <script>
 import Logo from '../Logo/Logo'
 import Staging from '../Staging/Staging'
+import ThumborImage from '../ThumborImage/ThumborImage'
 
 export default {
   name: 'Nav',
-  components: { Staging, Logo },
+  components: { ThumborImage, Staging, Logo },
   computed: {
     path() {
       return this.$route.path
