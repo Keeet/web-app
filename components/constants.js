@@ -130,14 +130,14 @@ export const MISSION_STATUS = {
 export const MISSION_INFO_DESCRIPTION = {
   IN_HOUSE: 'Recruit highly targeted test users to your office for:',
   REMOTE: 'Recruit highly targeted test users for remote:',
-  USABILITY_LAB: 'Use our survey to quickly:',
-  SURVEY: 'Use our Usability Lab to quickly test:'
+  SURVEY: 'Use our survey to quickly:',
+  USABILITY_LAB: 'Use our Usability Lab to quickly test:'
 }
 export const MISSION_INFO_USE_CASES = {
   IN_HOUSE: ['User interviews', 'Usability tests', 'Focus groups', 'Workshops'],
   REMOTE: ['User interviews', 'Usability tests'],
-  USABILITY_LAB: ['Get feedback on ideas', 'Validate hypothesis', 'Get insights', 'Do a competitor analysis'],
-  SURVEY: ['New ideas', 'Product concepts', 'Designs & images']
+  SURVEY: ['Get feedback on ideas', 'Validate hypothesis', 'Get insights', 'Do a competitor analysis'],
+  USABILITY_LAB: ['New ideas', 'Product concepts', 'Designs & images']
 }
 export const MISSION_CREATE_RECRUIT_MIN_ORDER_DURATION_DAYS = 2
 export const MISSION_SURVEY_ITEMS = {
