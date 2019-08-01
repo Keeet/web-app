@@ -111,4 +111,10 @@ class AuthService {
       now < jwtDecode(idToken).exp * 1000
     )
   }
+
+  hasScope(scope) {
+    const accessToken = this.store.state.accessToken
+    const jwt = jwtDecode(accessToken)
+    return jwt.scope.includes(scope)
+  }
 }

@@ -16,7 +16,8 @@ const OPERATIONS = {
   DELETE_MISSION: 'DELETE_MISSION',
   SUBMIT_MISSION_ORDER: 'SUBMIT_MISSION_ORDER',
   CREATE_MISSION_INSIGHT_LINK: 'CREATE_MISSION_INSIGHT_LINK',
-  SUBMIT_SURVEY: 'SUBMIT_SURVEY'
+  SUBMIT_SURVEY: 'SUBMIT_SURVEY',
+  UPDATE_SUPER_ADMIN_COMPANY: 'UPDATE_SUPER_ADMIN_COMPANY'
 }
 
 export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, inject) {
@@ -358,6 +359,15 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, in
           },
           noAuth: true
         }).then(resolve)
+      })
+    },
+    updateSuperAdminCompany(companyId) {
+      return new Promise((resolve, reject) => {
+        const handleRes = handleResponse.bind(this, OPERATIONS.UPDATE_SUPER_ADMIN_COMPANY, companyId, resolve, reject)
+        $axios({
+          method: 'put',
+          url: `/internal/companies/${companyId}`
+        }).then(handleRes).catch(handleError)
       })
     }
   })
