@@ -190,7 +190,7 @@ export const getters = {
           followUp.index = y
         })
       }
-      item.image = item.imageMediaId ? dropzoneUploads[item.imageMediaId] : null
+      item.image = item.imageMediaId ? { url: dropzoneUploads[item.imageMediaId] } : null
       item.images = item.imageMediaIds ? item.imageMediaIds.map(id => ({ url: dropzoneUploads[id] })) : null
     })
     return survey
