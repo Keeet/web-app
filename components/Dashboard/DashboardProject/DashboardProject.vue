@@ -27,7 +27,12 @@
             </p>
           </div>
           <div class="dashboard-project-owner">
-            <img :src="owner.profileImage" :title="`${owner.firstName} ${owner.lastName}`">
+            <ThumborImage
+              :src="owner.profileImage"
+              :title="`${owner.firstName} ${owner.lastName}`"
+              :width="90"
+              :height="90"
+            />
           </div>
         </div>
         <div class="dashboard-project-footer">
@@ -44,8 +49,10 @@
 </template>
 
 <script>
+import ThumborImage from '../../_shared/ThumborImage/ThumborImage'
 export default {
   name: 'DashboardProject',
+  components: { ThumborImage },
   props: {
     title: {
       type: String,
