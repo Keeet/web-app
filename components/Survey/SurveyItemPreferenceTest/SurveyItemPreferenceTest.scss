@@ -54,7 +54,7 @@ $survey-item-preference-test-slider-footer-height: 85px;
           cursor: pointer;
         }
 
-        img {
+        .survey-item-preference-test-gallery-item-img {
           max-width: 100%;
         }
       }
@@ -89,7 +89,7 @@ $survey-item-preference-test-slider-footer-height: 85px;
             max-width: 900px;
             text-align: center;
 
-            img {
+            .survey-item-preference-test-slider-item-inner-img {
               max-width: 100%;
               background-color: #fff;
               padding: 20px;
