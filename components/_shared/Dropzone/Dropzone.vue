@@ -200,7 +200,7 @@ export default {
         ? this.alreadyUploadedFileUrls
         : [this.alreadyUploadedFileUrls]
       const files = urls.map(url => ({
-        dataURL: url,
+        dataURL: `https://images.keeet.io/unsafe/300x300/${encodeURIComponent(url)}`,
         alreadyUploaded: true,
         upload: {
           uuid: uuid.v4()
