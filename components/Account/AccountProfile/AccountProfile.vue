@@ -3,7 +3,11 @@
     <AccountProfileItem>
       <template slot="icon">
         <div class="account-profile-user-icon">
-          <img :src="user.profileImage">
+          <ThumborImage
+            :src="user.profileImage"
+            :width="200"
+            :height="200"
+          />
         </div>
       </template>
       <template slot="text">
@@ -45,9 +49,10 @@ import { getLocaleDateString } from '../../../utils/dateUtils'
 import AccountProfileItem from '../AccountProfileItem/AccountProfileItem'
 import OverlayModal from '../../_shared/OverlayModal/OverlayModal'
 import CompanyForm from '../../_shared/CompanyForm/CompanyForm'
+import ThumborImage from '../../_shared/ThumborImage/ThumborImage'
 export default {
   name: 'AccountProfile',
-  components: { CompanyForm, OverlayModal, AccountProfileItem },
+  components: { ThumborImage, CompanyForm, OverlayModal, AccountProfileItem },
   computed: {
     user() {
       return this.$store.state.user

@@ -16,7 +16,12 @@
           :class="`count${item.images.length}`"
           @click="selectGalleryItem(x)"
         >
-          <img :src="image.url">
+          <ThumborImage
+            class="survey-item-preference-test-gallery-item-img"
+            :src="image.url"
+            :width="1000"
+            auto-width
+          />
         </div>
       </div>
       <div v-show="response.sliderActive" class="survey-item-preference-test-slider">
@@ -35,7 +40,12 @@
             >
               <div class="survey-item-preference-test-slider-item" @click="setSliderActive(false)">
                 <div class="survey-item-preference-test-slider-item-inner">
-                  <img :src="image.url">
+                  <ThumborImage
+                    class="survey-item-preference-test-slider-item-inner-img"
+                    :src="image.url"
+                    :width="1000"
+                    auto-width
+                  />
                 </div>
               </div>
             </slide>
@@ -74,9 +84,11 @@
 
 <script>
 import ButtonText from '../../_shared/ButtonText/ButtonText'
+import ThumborImage from '../../_shared/ThumborImage/ThumborImage'
+
 export default {
   name: 'SurveyItemPreferenceTest',
-  components: { ButtonText },
+  components: { ThumborImage, ButtonText },
   data() {
     return {
       activeSliderItem: 0
