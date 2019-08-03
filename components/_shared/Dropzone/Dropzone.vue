@@ -90,7 +90,7 @@ export default {
     options() {
       const options = {
         url: `${process.env.baseUrl}${this.path}`,
-        acceptedFiles: 'image/*',
+        acceptedFiles: 'image/jpg,image/jpeg,image/png',
         maxFilesize: 10,
         dictDefaultMessage: '',
         dictResponseError: 'Request failed with status code {{statusCode}}',
