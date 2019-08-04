@@ -44,7 +44,8 @@ export default {
       if (this.s.type !== type) {
         this.$store.commit('missionForm/resetForm')
         this.$store.commit('missionFormRecruit/init', {
-          missionType: type
+          missionType: type,
+          company: this.$store.state.company
         })
         this.$store.commit('missionFormSurvey/init')
         this.$store.commit('missionFormPersona/init')

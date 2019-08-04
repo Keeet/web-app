@@ -58,7 +58,7 @@ export const getters = {
 }
 
 export const mutations = {
-  init(state, { missionType }) {
+  init(state, { missionType, company }) {
     for (const key in defaultState) {
       state[key] = defaultState[key]
     }
@@ -66,6 +66,9 @@ export const mutations = {
       state.duration = 45
     } else if (missionType === MISSIONS.REMOTE) {
       state.duration = 30
+    }
+    if (company.locations && company.locations.length) {
+      state.location = company.locations[0]
     }
   },
   reset(state) {
