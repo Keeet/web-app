@@ -115,4 +115,10 @@ class AuthService {
   getLoginRedirectUrl(redirectUrl) {
     return `/auth/login?redirectUrl=${encodeURIComponent(redirectUrl)}`
   }
+
+  hasScope(scope) {
+    const accessToken = this.store.state.accessToken
+    const jwt = jwtDecode(accessToken)
+    return jwt.scope.includes(scope)
+  }
 }
