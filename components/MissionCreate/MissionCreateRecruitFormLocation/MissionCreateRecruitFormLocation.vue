@@ -1,15 +1,10 @@
 <template>
   <div class="mission-create-recruit-form-location">
     <MissionCreateRecruitFormLocationItem
-      :location="companyLocation"
-      :active="s.recruit.locationId === 'COMPANY'"
-      @click.native="setCompanyLocation"
-    />
-    <MissionCreateRecruitFormLocationItem
       v-for="(location, x) in company.locations"
       :key="x"
       :location="location"
-      :active="location.id === s.recruit.locationId"
+      :active="location.id === selectedLocation.id"
       @click.native="setLocation(location)"
     />
     <MissionCreateRecruitFormLocationItem create @click.native="openLocationForm" />
@@ -34,15 +29,11 @@ export default {
     company() {
       return this.$store.state.company
     },
-    companyLocation() {
-      const { name, street, houseNumber, addressDescription, zipCode, city, country } = this.company
-      return { name, street, houseNumber, addressDescription, zipCode, city, country }
+    selectedLocation() {
+      return this.s.recruit.location
     }
   },
   methods: {
-    setCompanyLocation() {
-      this.$store.commit('missionFormRecruit/setLocation', this.companyLocation)
-    },
     setLocation(location) {
       this.$store.commit('missionFormRecruit/setLocation', location)
     },

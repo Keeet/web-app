@@ -1,12 +1,9 @@
 import { MISSIONS, MISSION_RECRUIT_STUDY_TYPES } from '../components/constants'
 
-const COMPANY_LOCATION_ID = 'COMPANY'
-
 const defaultState = {
   studyType: MISSION_RECRUIT_STUDY_TYPES.USER_INTERVIEW,
   duration: null,
   location: null,
-  locationId: null,
   locationFormOpened: false,
   sessions: [],
   activeCalendarDay: null,
@@ -61,7 +58,7 @@ export const getters = {
 }
 
 export const mutations = {
-  init(state, { company, missionType }) {
+  init(state, { missionType }) {
     for (const key in defaultState) {
       state[key] = defaultState[key]
     }
@@ -70,9 +67,6 @@ export const mutations = {
     } else if (missionType === MISSIONS.REMOTE) {
       state.duration = 30
     }
-    const { name, street, houseNumber, addressDescription, zipCode, city, country } = company
-    state.location = { name, street, houseNumber, addressDescription, zipCode, city, country }
-    state.locationId = COMPANY_LOCATION_ID
   },
   reset(state) {
     for (const key in defaultState) {
@@ -86,7 +80,6 @@ export const mutations = {
     state.duration = duration
   },
   setLocation(state, location) {
-    state.locationId = location.id ? location.id : COMPANY_LOCATION_ID
     state.location = location
   },
   openLocationForm(state) {
