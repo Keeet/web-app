@@ -1,12 +1,19 @@
 <template>
-  <div class="mission-persona-criteria-item" :class="{opened, last}">
+  <div class="mission-persona-criteria-item" :class="{opened: opened || alwaysOpened, last}">
     <div class="mission-persona-criteria-item-head">
-      <p class="mission-persona-criteria-item-head-text" @click="!opened ? commitSwitch() : () => {}">
+      <p
+        class="mission-persona-criteria-item-head-text"
+        :class="{ error }"
+        @click="!opened && !alwaysOpened ? commitSwitch() : () => {}"
+      >
         {{ headline }}
       </p>
-      <SwitchButton :on="opened" @switch="commitSwitch" />
+      <p v-if="error" class="mission-persona-criteria-item-head-error">
+        {{ error }}
+      </p>
+      <SwitchButton v-if="!alwaysOpened" :on="opened" @switch="commitSwitch" />
     </div>
-    <div v-show="opened" class="mission-persona-criteria-item-body">
+    <div v-show="opened || alwaysOpened" class="mission-persona-criteria-item-body">
       <div v-if="type === SLIDER" class="mission-persona-criteria-item-slider">
         <vue-slider
           v-model="sliderVModel"
@@ -90,11 +97,15 @@ export default {
     },
     opened: {
       type: Boolean,
-      required: true
+      default: null
+    },
+    alwaysOpened: {
+      type: Boolean,
+      default: false
     },
     switchMutation: {
       type: String,
-      required: true
+      default: null
     },
     sliderRange: {
       type: Array,
@@ -118,6 +129,10 @@ export default {
     },
     selectOptions: {
       type: Array,
+      default: null
+    },
+    error: {
+      type: String,
       default: null
     }
   },

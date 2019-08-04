@@ -43,8 +43,7 @@ export default {
       }
     },
     languageOptions() {
-      const { DE, EN, FR, ES } = LANGUAGES
-      return [DE, EN, FR, ES].map((language) => {
+      return Object.keys(LANGUAGES).map((language) => {
         return {
           label: LANGUAGE_LABELS[language],
           value: language
