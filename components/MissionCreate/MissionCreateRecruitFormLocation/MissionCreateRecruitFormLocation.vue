@@ -58,7 +58,7 @@ export default {
       this.$store.commit('missionFormRecruit/setLocation', location)
     },
     openLocationForm() {
-      this.$store.commit('locationForm/init')
+      this.$store.commit('locationForm/init', { company: this.company })
       this.$store.commit('missionFormRecruit/openLocationForm')
     },
     errorHandler(error = null) {
