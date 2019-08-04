@@ -44,12 +44,11 @@ export default {
       if (this.s.type !== type) {
         this.$store.commit('missionForm/resetForm')
         this.$store.commit('missionFormRecruit/init', {
-          company: this.$store.state.company,
-          missionType: type
+          missionType: type,
+          company: this.$store.state.company
         })
         this.$store.commit('missionFormSurvey/init')
         this.$store.commit('missionFormPersona/init')
-        this.$store.commit('missionFormPersona/setCountry', this.$store.state.company.country)
         this.$store.commit('missionForm/setTitlePlaceholder', `${MISSION_LABELS[type]} #${this.getCountOfExistingMissionsByType(type) + 1}`)
       }
       this.$store.commit('missionForm/setType', type)

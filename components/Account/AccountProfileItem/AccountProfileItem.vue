@@ -14,7 +14,12 @@
         <slot name="text" />
       </div>
       <div class="account-profile-item-button">
-        <ButtonText v-if="buttonText" :text="buttonText" @click="$emit('clickButton')" />
+        <ButtonText
+          v-if="buttonText"
+          :text="buttonText"
+          no-margin
+          @click="$emit('clickButton')"
+        />
       </div>
     </div>
   </div>

@@ -22,7 +22,7 @@ const OPERATIONS = {
 export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, inject) {
   inject('push', {
 
-    upsertCompany({ id, name, country, city, zipCode, street, houseNumber, addressDescription, sampleProjectDeleted }) {
+    upsertCompany({ id, name, sampleProjectDeleted }) {
       const onCreate = !id
       const method = onCreate ? 'post' : 'put'
       return new Promise((resolve, reject) => {
@@ -32,12 +32,6 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, in
           data: {
             id,
             name,
-            country,
-            city,
-            zipCode,
-            street,
-            houseNumber,
-            addressDescription,
             sampleProjectDeleted
           }
         }).then((res) => {

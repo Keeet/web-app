@@ -27,9 +27,6 @@
         <p class="account-profile-text-headline">
           {{ company.name }}
         </p>
-        <p>{{ company.street }}, {{ company.houseNumber }}</p>
-        <p>{{ company.zipCode }}, {{ company.city }}</p>
-        <p>{{ company.country }}</p>
       </template>
     </AccountProfileItem>
     <OverlayModal
