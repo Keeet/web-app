@@ -1,8 +1,10 @@
 .mission-create-recruit-form-location-item {
+  position: relative;
   border-radius: 5px;
   border: 2px solid $grey;
   display: inline-block;
   margin: 15px;
+  transition: border .5s;
 
   &:hover {
     cursor: pointer;
@@ -10,6 +12,20 @@
 
   &.active {
     border: 2px solid $blue-primary;
+  }
+
+  &.error {
+    border: 1px solid $red-error;
+  }
+
+  .mission-create-recruit-form-location-item-error {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    padding-bottom: 5px;
+    font-size: 75%;
+    font-weight: 500;
+    color: $red-error;
   }
 
   .mission-create-recruit-form-location-item-inner {
