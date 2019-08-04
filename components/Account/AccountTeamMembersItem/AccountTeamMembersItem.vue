@@ -23,6 +23,12 @@
     <div class="account-team-members-item-role">
       <SelectCustom
         v-if="$hasRole('ADMIN') && myUser.id !== user.id"
+        v-closable="{
+          excludeClasses: [
+            'account-team-members-item-role'
+          ],
+          handler: 'closeRoleDropdown'
+        }"
         :opened="index === accountPage.roleDropdownOpenedIndex"
         :value="user.role"
         :options="selectRoleOptions"
@@ -91,10 +97,16 @@ export default {
   methods: {
     clickHead() {
       if (this.index !== this.accountPage.roleDropdownOpenedIndex) {
-        this.$store.commit('accountPage/openRoleDropdown', this.index)
+        this.openRoleDropdown()
       } else {
-        this.$store.commit('accountPage/closeRoleDropdown')
+        this.closeRoleDropdown()
       }
+    },
+    openRoleDropdown() {
+      this.$store.commit('accountPage/openRoleDropdown', this.index)
+    },
+    closeRoleDropdown() {
+      this.$store.commit('accountPage/closeRoleDropdown')
     },
     select(role) {
       if (role !== this.user.role) {

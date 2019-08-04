@@ -12,10 +12,16 @@
       <div class="account-team-invite-form-rows">
         <div class="account-team-invite-form-role">
           <SelectCustom
+            v-closable="{
+              excludeClasses: [
+                'account-team-invite-form-role'
+              ],
+              handler: 'closeRoleDropdown'
+            }"
             :opened="s.roleDropdownOpened"
             :value="s.role"
             :options="selectRoleOptions"
-            @clickHead="$store.commit('userInviteForm/switchRoleDropdown')"
+            @clickHead="switchRoleDropdown"
             @select="select"
           >
             <template slot="selected">
@@ -87,6 +93,14 @@ export default {
         this.$store.commit('userInviteForm/init', ROLES.USER)
         this.$store.commit('userInviteForm/submitted')
       })
+    },
+    switchRoleDropdown() {
+      this.$store.commit('userInviteForm/switchRoleDropdown')
+    },
+    closeRoleDropdown() {
+      if (this.s.roleDropdownOpened) {
+        this.switchRoleDropdown()
+      }
     }
   }
 }
