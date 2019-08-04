@@ -19,7 +19,8 @@ export const state = () => ({
   missionInsights: null,
   survey: null,
   personas: null,
-  dropzoneUploads: {}
+  dropzoneUploads: {},
+  superAdminCompanies: null
 })
 
 export const getters = {
@@ -114,6 +115,9 @@ export const mutations = {
     const dropzoneUploads = { ...state.dropzoneUploads }
     dropzoneUploads[id] = url
     state.dropzoneUploads = dropzoneUploads
+  },
+  setSuperAdminCompanies(state, superAdminCompanies) {
+    state.superAdminCompanies = superAdminCompanies
   }
 }
 

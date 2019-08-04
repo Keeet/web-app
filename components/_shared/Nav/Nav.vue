@@ -12,6 +12,11 @@
         </p>
       </nuxt-link>
       <Staging />
+      <nuxt-link v-if="showInternal" to="/internal/companies">
+        <p class="nav-item nav-item-internal" :class="{active: path === '/internal/companies'}">
+          Internal
+        </p>
+      </nuxt-link>
     </div>
     <div class="nav-right">
       <a class="request-feature" href="https://keeet.nolt.io" target="_blank">
@@ -46,6 +51,9 @@ export default {
   computed: {
     path() {
       return this.$route.path
+    },
+    showInternal() {
+      return this.$auth.hasScope('super:admin')
     }
   }
 }
