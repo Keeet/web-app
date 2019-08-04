@@ -1,4 +1,4 @@
-export default function ({ store, redirect, route: { path }, query: { invitationId, redirectParams } }) {
+export default function ({ store, redirect, route: { path }, query: { invitationId, redirectParams }, app: { $auth } }) {
   if (path === '/personas/create' || path === '/personas/edit') {
     if (!store.state.personaForm.init) {
       return redirect('/personas')
@@ -8,6 +8,9 @@ export default function ({ store, redirect, route: { path }, query: { invitation
     if (!store.state.missionForm.projectId) {
       return redirect('/')
     }
+  }
+  if (path === '/internal/companies' && !$auth.hasScope('super:admin')) {
+    return redirect('/')
   }
 
   // invitationId is passed to login screen using the redirect url -> _invitationId.vue
