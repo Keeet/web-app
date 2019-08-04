@@ -1,28 +1,93 @@
 export const COUNTRIES = {
+  AT: 'AT',
+  BE: 'BE',
+  CA: 'CA',
+  CH: 'CH',
   DE: 'DE',
-  GB: 'GB',
+  DK: 'DK',
+  ES: 'ES',
+  FI: 'FI',
   FR: 'FR',
-  ES: 'ES'
+  GB: 'GB',
+  IE: 'IE',
+  IT: 'IT',
+  LU: 'LU',
+  NL: 'NL',
+  NO: 'NO',
+  PL: 'PL',
+  PT: 'PT',
+  SE: 'SE',
+  TR: 'TR',
+  US: 'US'
 }
 export const COUNTRY_LABELS = {
+  AT: 'Austria',
+  BE: 'Belgium',
+  CA: 'Canada',
+  CH: 'Switzerland',
   DE: 'Germany',
-  GB: 'United Kingdom',
+  DK: 'Denmark',
+  ES: 'Spain',
+  FI: 'Finland',
   FR: 'France',
-  ES: 'Spain'
+  GB: 'United Kingdom',
+  IE: 'Ireland',
+  IT: 'Italy',
+  LU: 'Luxembourg',
+  NL: 'Netherlands',
+  NO: 'Norway',
+  PL: 'Poland',
+  PT: 'Portugal',
+  SE: 'Sweden',
+  TR: 'Turkey',
+  US: 'United States'
 }
+export const COUNTRIES_MISSION_RECRUIT = [
+  COUNTRIES.DE,
+  COUNTRIES.AT,
+  COUNTRIES.CH,
+  COUNTRIES.US,
+  COUNTRIES.GB
+]
 
 export const LANGUAGES = {
+  DA: 'DA',
   DE: 'DE',
   EN: 'EN',
+  ES: 'ES',
+  FI: 'FI',
   FR: 'FR',
-  ES: 'ES'
+  IT: 'IT',
+  NL: 'NL',
+  NO: 'NO',
+  PL: 'PL',
+  PT: 'PT',
+  RU: 'RU',
+  SV: 'SV',
+  TR: 'TR'
 }
 export const LANGUAGE_LABELS = {
+  DA: 'Danish',
   DE: 'German',
   EN: 'English',
+  ES: 'Spanish',
+  FI: 'Finnish',
   FR: 'French',
-  ES: 'Spanish'
+  IT: 'Italian',
+  NL: 'Dutch',
+  NO: 'Norwegian',
+  PL: 'Polish',
+  PT: 'Portuguese',
+  RU: 'Russian',
+  SV: 'Swedish',
+  TR: 'Turkish'
 }
+export const LANGUAGES_PLATFORM = [
+  LANGUAGES.DE,
+  LANGUAGES.EN,
+  LANGUAGES.ES,
+  LANGUAGES.FR
+]
 
 export const ROLES = {
   VIEWER: 'VIEWER',

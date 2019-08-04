@@ -66,13 +66,9 @@
       </div>
       <Select
         title="Country*"
-        :options="[{
-          label: COUNTRY_LABELS['DE'],
-          value: 'DE'
-        }]"
+        :options="countryOptions"
         :value="s.country"
         mutation="locationForm/setCountry"
-        readonly
       />
       <ButtonText text="Add" :disabled="!formValid" @click="submitForm" @disabledClick="showErrors = true" />
     </OverlayModal>
@@ -80,7 +76,7 @@
 </template>
 
 <script>
-import { COUNTRY_LABELS } from '../../constants'
+import { COUNTRIES_MISSION_RECRUIT, COUNTRY_LABELS } from '../../constants'
 import OverlayModal from '../../_shared/OverlayModal/OverlayModal'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
 import Select from '../../_shared/Select/Select'
@@ -97,6 +93,12 @@ export default {
   computed: {
     s() {
       return this.$store.state.locationForm
+    },
+    countryOptions() {
+      return COUNTRIES_MISSION_RECRUIT.map(country => ({
+        label: COUNTRY_LABELS[country],
+        value: country
+      }))
     },
     nameError() { return this.s.name !== '' ? null : 'required' },
     streetError() { return this.s.street !== '' ? null : 'required' },

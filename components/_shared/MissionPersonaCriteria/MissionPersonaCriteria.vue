@@ -1,6 +1,24 @@
 <template>
   <div class="mission-persona-criteria">
     <MissionPersonaCriteriaItem
+      v-if="shouldShow(PERSONA_CRITERIA.LANGUAGE)"
+      headline="Language"
+      type="LANGUAGE"
+      always-opened
+    />
+    <MissionPersonaCriteriaItem
+      v-if="shouldShow(PERSONA_CRITERIA.COUNTRY)"
+      :id="countryId"
+      headline="Country"
+      type="CHECKLIST"
+      :value="s.persona.countries"
+      mutation="missionFormPersona/setCountries"
+      :checklist-values="PERSONA_COUNTRIES"
+      :checklist-labels="COUNTRY_LABELS"
+      always-opened
+      :error="countryError"
+    />
+    <MissionPersonaCriteriaItem
       v-if="shouldShow(PERSONA_CRITERIA.AGE)"
       headline="Age (optional)"
       type="SLIDER"
@@ -20,24 +38,6 @@
       mutation="missionFormPersona/setGender"
       switch-mutation="missionFormPersona/switchGendersOpened"
       :select-options="genderOptions"
-    />
-    <MissionPersonaCriteriaItem
-      v-if="shouldShow(PERSONA_CRITERIA.LANGUAGE)"
-      headline="Language (optional)"
-      type="LANGUAGE"
-      :opened="s.persona.languagesOpened"
-      switch-mutation="missionFormPersona/switchLanguagesOpened"
-    />
-    <MissionPersonaCriteriaItem
-      v-if="shouldShow(PERSONA_CRITERIA.COUNTRY)"
-      headline="Country (optional)"
-      type="CHECKLIST"
-      :opened="s.persona.countriesOpened"
-      :value="s.persona.countries"
-      mutation="missionFormPersona/setCountries"
-      switch-mutation="missionFormPersona/switchCountriesOpened"
-      :checklist-values="PERSONA_COUNTRIES"
-      :checklist-labels="COUNTRY_LABELS"
     />
     <MissionPersonaCriteriaItem
       v-if="shouldShow(PERSONA_CRITERIA.DEVICE_SKILL)"
@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import uuid from 'uuid'
 import {
   PERSONA_GENDERS,
   PERSONA_GENDER_LABELS,
@@ -91,7 +92,8 @@ export default {
       COUNTRY_LABELS,
       PERSONA_DEVICE_SKILLS,
       PERSONA_DEVICE_SKILL_LABELS,
-      PERSONA_CRITERIA
+      PERSONA_CRITERIA,
+      countryId: null
     }
   },
   computed: {
@@ -122,7 +124,21 @@ export default {
         },
         ...options
       ]
+    },
+    countryError() {
+      return this.s.persona.countries.length ? null : 'required'
     }
+  },
+  watch: {
+    countryError(error) {
+      this.$store.dispatch('missionForm/handleValidationError', {
+        id: this.countryId,
+        error
+      })
+    }
+  },
+  mounted() {
+    this.countryId = uuid.v4()
   },
   methods: {
     shouldShow(criteria) {

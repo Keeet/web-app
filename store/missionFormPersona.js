@@ -128,12 +128,6 @@ export const mutations = {
     }
     state.countriesOpened = !state.countriesOpened
   },
-  switchLanguagesOpened(state) {
-    if (state.languagesOpened) {
-      state.languages = defaultState.languages
-    }
-    state.languagesOpened = !state.languagesOpened
-  },
   switchDeviceSkillsOpened(state) {
     if (state.deviceSkillsOpened) {
       state.deviceSkills = defaultState.deviceSkills
