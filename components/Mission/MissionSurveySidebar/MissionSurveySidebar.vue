@@ -46,7 +46,6 @@ export default {
       this.$store.commit('missionForm/initExisting', { mission })
       this.$store.commit('missionFormSurvey/initExisting', { mission, survey })
       this.$store.commit('missionFormPersona/init')
-      this.$store.commit('missionFormPersona/setCountry', survey.language)
       this.$store.commit('missionForm/nextStep')
       this.$router.push('/missions/edit')
     },

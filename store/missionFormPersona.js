@@ -1,4 +1,4 @@
-import { LANGUAGES } from '../components/constants'
+import { LANGUAGES, COUNTRIES } from '../components/constants'
 
 const defaultState = {
   /**
@@ -11,7 +11,7 @@ const defaultState = {
   minAge: null,
   maxAge: null,
   genders: [],
-  countries: [],
+  countries: [COUNTRIES.DE],
   languages: [LANGUAGES.EN],
   deviceSkills: [],
   specialCriteria: [],
