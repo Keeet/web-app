@@ -1,11 +1,11 @@
 <template>
-  <div class="company">
+  <div class="internal-companies-item">
     <div>
-      <div class="name">
+      <div class="internal-companies-item-name">
         {{ name }}
       </div>
-      <div class="companyId">
-        {{ company_id }}
+      <div class="internal-companies-item-company-id">
+        {{ companyId }}
       </div>
     </div>
   </div>
@@ -13,14 +13,13 @@
 
 <script>
 export default {
-  name: 'CompanyItem',
-  components: {},
+  name: 'InternalCompaniesItem',
   props: {
     name: {
       type: String,
       required: true
     },
-    company_id: {
+    companyId: {
       type: String,
       required: true
     }
@@ -29,5 +28,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "CompanyItem";
+  @import "InternalCompaniesItem";
 </style>

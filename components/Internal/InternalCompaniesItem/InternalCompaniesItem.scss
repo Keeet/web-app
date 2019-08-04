@@ -1,4 +1,4 @@
-.company {
+.internal-companies-item {
   width: 100%;
   padding: 15px;
   background: #ffffff;
@@ -10,14 +10,15 @@
   &:hover {
     cursor: pointer;
   }
-}
 
-.name {
-  font-size: 20px;
-}
+  .internal-companies-item-name {
+    font-size: 20px;
+  }
 
-.companyId {
-  font-size: 16px;
-  margin-top: 10px;
-  color: $grey-mid-dark;
+  .internal-companies-item-company-id {
+    font-size: 16px;
+    margin-top: 10px;
+    color: $grey-mid-dark;
+  }
+
 }

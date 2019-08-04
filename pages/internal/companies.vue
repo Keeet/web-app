@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import CompanyList from '../../components/Internal/CompanyList'
+import CompanyList from '../../components/Internal/InternalCompanies/InternalCompanies'
 export default {
   components: { CompanyList },
   fetch({ app: { $fetch } }) {
