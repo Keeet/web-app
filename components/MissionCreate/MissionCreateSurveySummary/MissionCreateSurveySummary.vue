@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import { MISSIONS } from '../../constants'
+import { COUNTRIES, MISSIONS } from '../../constants'
 import MissionCreateSurveySummaryItem from '../MissionCreateSurveySummaryItem/MissionCreateSurveySummaryItem'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
 import { flatMap } from '../../../utils/objectUtils'
@@ -135,7 +135,12 @@ export default {
       this.$store.dispatch('missionFormSurvey/fetchPricing', {
         globalGetters: this.$store.getters,
         missionForm: this.s,
-        missionFormPersona: this.s.persona
+        missionFormPersona: {
+          ...this.s.persona,
+          // no country selected -> we can use any country by default,
+          // since we just need the estimated duration and no country respective pricing
+          countries: [COUNTRIES.DE]
+        }
       })
     }
   },
