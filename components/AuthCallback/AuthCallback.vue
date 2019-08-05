@@ -27,7 +27,8 @@ export default {
     this.$auth.handleAuthentication().then(() => {
       const { redirectUrl } = this.$route.query
       if (redirectUrl) {
-        this.$router.push(decodeURI(redirectUrl))
+        const formattedRedirectUrl = redirectUrl.replace('?redirectParams=', '?')
+        this.$router.push(formattedRedirectUrl)
       } else {
         this.$router.push('/')
       }

@@ -113,6 +113,6 @@ class AuthService {
   }
 
   getLoginRedirectUrl(redirectUrl) {
-    return `/auth/login?redirectUrl=${encodeURI(redirectUrl)}`
+    return `/auth/login?redirectUrl=${encodeURIComponent(redirectUrl)}`
   }
 }

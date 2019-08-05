@@ -8,6 +8,14 @@ export default {
   layout: 'blank',
   mounted() {
     const { redirectUrl } = this.$route.query
+    const splitRedirectUrl = redirectUrl.split('?')
+    const queryParams = splitRedirectUrl[1]
+
+    if (queryParams) {
+      this.$auth.login(`${splitRedirectUrl[0]}?redirectParams=${encodeURIComponent(queryParams)}`)
+      return
+    }
+
     this.$auth.login(redirectUrl)
   }
 }
