@@ -348,7 +348,10 @@
       }
     }
   },
-  "missionSurveyOrder": {},
+  "missionSurveyOrder": {
+    "billingMissingNoAdmin": "Your admin has to add a billing address before you can order testers.",
+    "participantsLabel": "Number of responses"
+  },
   "project": {},
   "projectCreate": {},
   "survey": {
