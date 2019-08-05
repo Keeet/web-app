@@ -1,13 +1,16 @@
 <template>
   <div class="mission-survey-share">
-    <MissionSurveyHeadline text="Get test results within hours!" />
+    <MissionSurveyHeadline :text="$t('mission.survey.share.headline', $store.state.locale)" />
     <MissionSurveyShareBox
-      title="Keeet Panel"
-      text="Test with our diverse panel of testers and gain insights in hours!"
+      :title="$t('mission.survey.share.keeetPanel.title', $store.state.locale)"
+      :text="$t('mission.survey.share.keeetPanel.text', $store.state.locale)"
     >
       <template slot="right">
         <nuxt-link :to="`/missions/${mission.id}/order`">
-          <ButtonText text="Place Order" no-margin />
+          <ButtonText
+            :text="$t('mission.survey.share.keeetPanel.orderButton', $store.state.locale)"
+            no-margin
+          />
         </nuxt-link>
       </template>
       <template slot="body">
@@ -20,7 +23,7 @@
             {{ getFormattedOrderDate(order) }}
           </p>
           <MissionCountProgress
-            title="RESPONSES"
+            :title="$t('mission.survey.share.keeetPanel.orderResponsesLabel', $store.state.locale)"
             :count-current="order.actualCount"
             :count-total="order.participants"
           />
@@ -28,8 +31,8 @@
       </template>
     </MissionSurveyShareBox>
     <MissionSurveyShareBox
-      title="Your audience"
-      text="Share link with your own audience!"
+      :title="$t('mission.survey.share.companyAudience.title', $store.state.locale)"
+      :text="$t('mission.survey.share.companyAudience.text', $store.state.locale)"
     >
       <MissionSurveyRelease
         v-if="missionPage.surveyReleaseOpened"
@@ -37,7 +40,7 @@
       />
       <ButtonText
         v-if="isDraft"
-        text="Create public link"
+        :text="$t('mission.survey.share.companyAudience.createPublicLinkButton', $store.state.locale)"
         @click="$store.commit('missionPage/showSurveyRelease')"
       />
       <no-ssr v-else>
@@ -46,12 +49,12 @@
             <Input :value="surveyLink" readonly no-margin />
           </div>
           <div class="mission-survey-share-link-copy">
-            <ButtonText text="Copy Link" no-margin @click="copyLinkToClipboard" />
+            <ButtonText :text="$t('mission.survey.share.companyAudience.copyLinkButton', $store.state.locale)" no-margin @click="copyLinkToClipboard" />
             <p
               class="mission-survey-share-link-copy-confirmation"
               :class="{ active: copied }"
             >
-              copied
+              {{ $t('mission.survey.share.companyAudience.copyLinkSuccessfulMessage', $store.state.locale) }}
             </p>
           </div>
         </div>

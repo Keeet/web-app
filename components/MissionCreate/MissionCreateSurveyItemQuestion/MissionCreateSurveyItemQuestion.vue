@@ -2,8 +2,8 @@
   <div class="mission-create-survey-item-question">
     <!-- eslint-disable -->
     <Input
-      :title="title || 'Question'"
-      placeholder="Type question here"
+      :title="title || $t('missionCreate.survey.items.question.titleDefaultLabel', $store.state.locale)"
+      :placeholder="$t('missionCreate.survey.items.question.titlePlaceholder', $store.state.locale)"
       :value="value"
       :error="error"
       dispatch-error="missionForm/handleValidationError"
@@ -15,7 +15,7 @@
       <template slot="additional">
         <div class="mission-create-survey-item-question-switch">
           <SwitchButton
-            label="Required"
+            :label="$t('missionCreate.survey.items.question.requiredLabel', $store.state.locale)"
             :on="required"
             :bg-color-class="bgColorClass || type"
             small

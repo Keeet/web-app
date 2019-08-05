@@ -2,10 +2,10 @@
   <div class="auth-callback">
     <div v-if="notVerified" class="not-verified">
       <p class="not-verified-title">
-        Please verify your email
+        {{ $t('authCallback.emailNotVerified', $store.state.locale) }}
       </p>
       <p class="not-verified-description">
-        We sent a verification mail to your email address. Please check your inbox and click on the verification link to start using Keeet.
+        {{ $t('authCallback.emailNotVerifiedDescription', $store.state.locale) }}
       </p>
       <ButtonText text="Back to login" @click="$auth.logOut()" />
     </div>

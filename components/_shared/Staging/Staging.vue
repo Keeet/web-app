@@ -1,6 +1,8 @@
 <template>
   <div v-if="branch" class="staging">
-    <span>staging: {{ branch }}</span>
+    <span>
+      {{ $t('shared.staging.activeBranch', $store.state.locale, { branch }) }}
+    </span>
     <IconCancel @click="goToProd" />
   </div>
 </template>

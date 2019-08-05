@@ -1,7 +1,7 @@
 <template>
   <div class="mission-create-survey-custom-screen-branding">
     <p class="mission-create-survey-custom-screen-branding-title">
-      Branding
+      {{ $t('missionCreate.survey.customScreens.logoLabel', $store.state.locale) }}
     </p>
     <div class="mission-create-survey-custom-screen-branding-dropzone">
       <Dropzone :path="MEDIA_UPLOAD_PATH.MISSION" :mutation="logoIdMutation" :thumbnail-width="400">
@@ -9,7 +9,7 @@
           <div class="mission-create-survey-custom-screen-branding-dropzone-empty">
             <IconFileImage />
             <p class="mission-create-survey-custom-screen-branding-dropzone-empty-text">
-              Upload a photo / logo
+              {{ $t('missionCreate.survey.customScreens.logoUpload', $store.state.locale) }}
             </p>
           </div>
         </template>

@@ -2,17 +2,17 @@
   <div>
     <OverlayModal
       v-if="$hasRole('ADMIN')"
-      title="Add billing address"
+      :title="$t('shared.billingMissing.billingFormTitle', $store.state.locale)"
       @close="hide"
     >
       <BillingForm @submitted="hide" />
     </OverlayModal>
     <Confirm
       v-else
-      title="Billing address missing"
+      :title="$t('shared.billingMissing.noAdmin.title', $store.state.locale)"
       :text="noAdminText"
-      label-confirm="Billing preferences"
-      label-cancel="Cancel"
+      :label-confirm="$t('shared.billingMissing.noAdmin.confirmLabel', $store.state.locale)"
+      :label-cancel="$t('shared.billingMissing.noAdmin.cancelLabel', $store.state.locale)"
       full-width
       no-close
       @confirm="$router.push('/account/billing')"

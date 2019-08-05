@@ -2,8 +2,8 @@
   <div class="mission-create-survey-item-preference-test">
     <div class="mission-create-survey-item-preference-test-instruction">
       <Input
-        title="Instruction"
-        placeholder="Which design do you prefer?"
+        :title="$t('missionCreate.survey.items.preferenceTest.instructionLabel', $store.state.locale)"
+        :placeholder="$t('missionCreate.survey.items.preferenceTest.instructionPlaceholder', $store.state.locale)"
         :value="item.instruction"
         :error="error"
         dispatch-error="missionForm/handleValidationError"

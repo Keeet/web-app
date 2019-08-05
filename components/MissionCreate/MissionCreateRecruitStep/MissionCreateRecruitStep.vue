@@ -10,7 +10,9 @@
       @invalidNext="invalidNextClick"
     >
       <div class="mission-create-recruit-step-head">
-        <MissionCreateHeadline :text="`${index} / 4 ${MISSION_LABELS[s.type]} Mission`" />
+        <MissionCreateHeadline
+          :text="$t('missionCreate.recruit.stepHeadline', $store.state.locale, { index, missionType: MISSION_LABELS[s.type] })"
+        />
         <MissionCreateSubHeadline v-if="subheadline" :text="subheadline" />
       </div>
       <div class="mission-create-recruit-step-body">

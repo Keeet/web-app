@@ -1,15 +1,15 @@
 <template>
   <div class="company-form">
     <Input
-      title="Company name*"
-      placeholder="Keeet"
+      :title="$t('shared.companyForm.companyLabel', $store.state.locale)"
+      :placeholder="$t('shared.companyForm.companyPlaceholder', $store.state.locale)"
       :value="s.name"
       mutation="companyForm/setName"
       :error="nameError"
       :disable-error="!showErrors"
     />
     <ButtonText
-      :text="edit ? 'Save changes' : 'Go'"
+      :text="submitText"
       :disabled="!formValid"
       @click="submitForm"
       @disabledClick="showErrors = true"
@@ -50,6 +50,11 @@ export default {
       return (
         !this.nameError
       )
+    },
+    submitText() {
+      return this.edit
+        ? this.$t('shared.companyForm.updateButton', this.$store.state.locale)
+        : this.$t('shared.companyForm.createButton', this.$store.state.locale)
     }
   },
   methods: {
