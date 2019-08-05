@@ -7,6 +7,8 @@
       prev-step-mutation="missionForm/previousStep"
       :active="s.activeStep === index"
       :valid="s.invalidFields.length === 0"
+      @next="$mpApp.trackMissionForm('stepForward')"
+      @prev="$mpApp.trackMissionForm('stepBack')"
       @invalidNext="invalidNextClick"
     >
       <div class="mission-create-recruit-step-head">

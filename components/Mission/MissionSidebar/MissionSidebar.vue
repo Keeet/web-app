@@ -65,13 +65,16 @@ export default {
   },
   methods: {
     editMissionMetadata() {
+      this.$mpApp.trackMission('openEditMetadata', this.$store)
       this.$store.commit('missionMetadataForm/init', this.mission)
       this.$store.commit('missionMetadataForm/setOverlayOpened', true)
     },
     closeDeleteConfirm() {
+      this.$mpApp.trackMission('abortDelete', this.$store)
       this.$store.commit('missionPage/closeDeleteConfirm')
     },
     deleteMission() {
+      this.$mpApp.trackMission('delete', this.$store)
       const { id, projectId } = this.mission
       this.$push.deleteMission({ id, projectId }).then(() => {
         this.$store.commit('setMission', null)

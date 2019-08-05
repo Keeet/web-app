@@ -67,10 +67,12 @@ export default {
   },
   methods: {
     editProject() {
+      this.$mpApp.trackProject('openEdit', this.$store)
       this.$store.commit('projectForm/init', this.project)
       this.$store.commit('projectForm/setOverlayOpened', true)
     },
     closeDeleteConfirm() {
+      this.$mpApp.trackProject('abortDelete', this.$store)
       this.$store.commit('projectPage/closeDeleteConfirm')
     },
     deleteProject() {
@@ -79,8 +81,10 @@ export default {
           ...this.$store.state.company,
           sampleProjectDeleted: true
         }
+        this.$mpApp.trackProject('deleteSample', this.$store)
         this.$push.upsertCompany(company).then(this.afterDeleteProject)
       } else {
+        this.$mpApp.trackProject('delete', this.$store)
         this.$push.deleteProject(this.project.id).then(this.afterDeleteProject)
       }
     },

@@ -18,8 +18,8 @@
     <ButtonText
       :text="$t('project.form.submitButton', $store.state.locale)"
       :disabled="!formValid"
-      @click="$store.dispatch('projectForm/submit')"
-      @disabledClick="showErrors = true"
+      @click="submit"
+      @disabledClick="disabledClick"
     />
   </div>
 </template>
@@ -51,6 +51,16 @@ export default {
     },
     formValid() {
       return !this.titleError
+    }
+  },
+  methods: {
+    disabledClick() {
+      this.$mpApp.trackProject('attemptSubmitEditInvalid', this.$store)
+      this.showErrors = true
+    },
+    submit() {
+      this.$mpApp.trackProject('submitEdit', this.$store)
+      this.$store.dispatch('projectForm/submit')
     }
   }
 }

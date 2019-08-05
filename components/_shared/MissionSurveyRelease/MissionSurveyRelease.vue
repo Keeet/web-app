@@ -24,6 +24,7 @@ export default {
   },
   methods: {
     confirm() {
+      this.$mpApp.trackMission('setStateRunning', this.$store)
       const { id, type } = this.$store.state.mission
       this.pending = true
       this.$push.updateMissionStatus({

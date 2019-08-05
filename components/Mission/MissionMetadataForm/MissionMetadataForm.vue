@@ -18,7 +18,7 @@
     <ButtonText
       :text="$t('mission.metadataForm.submit', $store.state.locale)"
       :disabled="!formValid"
-      @click="$store.dispatch('missionMetadataForm/submit')"
+      @click="submit"
       @disabledClick="showErrors = true"
     />
   </div>
@@ -41,6 +41,12 @@ export default {
     titleError() { return this.s.title !== '' ? null : 'required' },
     formValid() {
       return !this.titleError
+    }
+  },
+  methods: {
+    submit() {
+      this.$mpApp.trackMission('submitMetadata', this.$store)
+      this.$store.dispatch('missionMetadataForm/submit')
     }
   }
 }

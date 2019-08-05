@@ -1,7 +1,7 @@
 <template>
   <div class="project-create">
     <div class="project-create-cancel">
-      <ButtonCircle type="ARROW_LEFT" @click="$router.back()" />
+      <ButtonCircle type="ARROW_LEFT" @click="cancel" />
     </div>
     <div v-if="!s.pending" class="project-create-form">
       <Headline :text="$t('projectCreate.headline', $store.state.locale)" center />
@@ -73,7 +73,12 @@ export default {
   },
   methods: {
     submit() {
+      this.$mpApp.trackProjectCreate('submit')
       this.$store.dispatch('projectForm/submit', { redirectToProject: true })
+    },
+    cancel() {
+      this.$mpApp.trackProjectCreate('abort')
+      this.$router.back()
     }
   }
 }

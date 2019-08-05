@@ -8,6 +8,7 @@ export default {
   layout: 'blank',
   mounted() {
     const { redirectUrl } = this.$route.query
+    this.$mpApp.track('redirectAuth0')
     this.$auth.login(redirectUrl)
   }
 }

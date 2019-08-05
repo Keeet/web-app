@@ -75,12 +75,14 @@ export default {
   methods: {
     cancel() {
       if (this.s.activeStep === 0 || this.s.editExisting) {
+        this.$mpApp.trackMissionForm('abort', this.$store)
         if (this.s.projectFirstMission) {
           this.$router.push('/')
         } else {
           this.$router.back()
         }
       } else {
+        this.$mpApp.trackMissionForm('stepBack', this.$store)
         this.$store.commit('missionForm/previousStep')
       }
     },

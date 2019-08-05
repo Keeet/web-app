@@ -75,7 +75,7 @@ class AuthService {
   renewTokensOrRedirectToLogin(redirectUrl, { redirect, router }) {
     return new Promise((resolve, reject) => {
       this.renewTokens().then(resolve).catch(() => {
-        const authRedirect = `/auth/login?redirectUrl=${encodeURI(redirectUrl)}`
+        const authRedirect = this.getLoginRedirectUrl(redirectUrl)
         if (redirect) {
           redirect(authRedirect)
         } else if (router) {
@@ -110,6 +110,10 @@ class AuthService {
       now < jwtDecode(accessToken).exp * 1000 &&
       now < jwtDecode(idToken).exp * 1000
     )
+  }
+
+  getLoginRedirectUrl(redirectUrl) {
+    return `/auth/login?redirectUrl=${encodeURI(redirectUrl)}`
   }
 
   hasScope(scope) {

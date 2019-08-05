@@ -32,8 +32,7 @@ export default {
         this.$router.push('/')
       }
     }).catch((err) => {
-      // eslint-disable-next-line no-console
-      console.error(err)
+      this.$mpApp.track('emailNotVerified')
       const { error, errorDescription } = err
       if (error === 'unauthorized' && errorDescription === 'NOT_VERIFIED') {
         this.notVerified = true

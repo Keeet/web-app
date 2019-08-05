@@ -87,6 +87,7 @@ export default {
   },
   methods: {
     deleteItem() {
+      this.$mpApp.trackMissionForm('deleteSurveyItem', this.$store)
       this.$store.commit('missionFormSurvey/deleteItem', this.index)
       if (this.items.length) {
         this.$store.commit('missionFormSurvey/setItemAddIndex', -1)
