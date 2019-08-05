@@ -18,7 +18,6 @@ export default {
         store.dispatch('missionForm/initSurveyOrder', { project: null })
         store.commit('missionFormSurvey/init')
         store.commit('missionFormPersona/init')
-        store.commit('missionFormPersona/setCountry', store.state.company.country)
         store.commit('missionFormSurvey/setItems', store.state.survey.items)
         return store.dispatch('missionFormSurvey/fetchPricing', {
           globalGetters: store.getters,
