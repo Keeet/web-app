@@ -352,7 +352,21 @@
     "billingMissingNoAdmin": "Your admin has to add a billing address before you can order testers.",
     "participantsLabel": "Number of responses"
   },
-  "project": {},
+  "project": {
+    "form": {
+      "headline": "Edit Project",
+      "nameLabel": "Name",
+      "namePlaceholder": "Project name",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Enter you project description here to explain what you want to achieve with this research session...",
+      "submitButton": "Update"
+    },
+    "missionLabel": "Info",
+    "empty": {
+      "title": "Create your first mission",
+      "text": "Plan your first research session and gain new valuable insights."
+    }
+  },
   "projectCreate": {},
   "survey": {
     "welcomeButton": "Start",

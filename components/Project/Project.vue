@@ -3,7 +3,7 @@
     <ProjectSidebar />
     <OverlayModal
       v-if="projectForm.overlayOpened"
-      title="Edit Project"
+      :title="$t('project.form.headline', $store.state.locale)"
       :loading="projectForm.pending"
       @close="$store.commit('projectForm/setOverlayOpened', false)"
     >
