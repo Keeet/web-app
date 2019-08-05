@@ -1,22 +1,69 @@
 {
   "shared": {
-    "companyForm": {
-      "title": "Edit Company",
-      "companyLabel": "Company Name*",
-      "companyPlaceholder": "Keeet",
+    "billingForm": {
+      "companyLabel": "Company Name",
+      "emailLabel": "Email*",
+      "emailPlaceholder": "billing@keeet.io",
+      "vatLabel": "VAT number / tax ID",
       "streetLabel": "Street*",
       "streetPlaceholder": "Rosenthaler Str.",
       "houseNumberLabel": "Number*",
       "houseNumberPlaceholder": "101",
-      "additionalLabel": "Additional",
-      "additionalPlaceholder": "third backyard",
       "cityLabel": "City*",
       "cityPlaceholder": "Berlin",
       "zipLabel": "ZIP*",
       "zipPlaceholder": "10369",
       "countryLabel": "Country*",
+      "submit": "Submit"
+    },
+    "billingMissing": {
+      "billingFormTitle": "Add billing address",
+      "noAdmin": {
+        "title": "Billing address missing",
+        "confirmLabel": "Billing preferences",
+        "cancelLabel": "Cancel"
+      }
+    },
+    "companyForm": {
+      "title": "Edit Company",
+      "companyLabel": "Company Name*",
+      "companyPlaceholder": "Keeet",
       "updateButton": "Save changes",
       "createButton": "Go"
+    },
+    "dropzone": {
+      "singleDelete": "delete",
+      "multiDelete": "delete all"
+    },
+    "error": {
+      "default": {
+        "headline": "Oops something went wrong."
+      },
+      "404": {
+        "headline": "Oops something went wrong.",
+        "subheadline": "The page you are looking for was not found."
+      },
+      "cancelButton": "Back to Homepage"
+    },
+    "footer": {
+      "landingPageLink": "Keeet",
+      "imprintLink": "Imprint",
+      "termsLink": "Terms of Service",
+      "privacyLink": "Privacy Policy",
+      "logoutLink": "Logout"
+    },
+    "formStep": {
+      "nextButton": "Next",
+      "prevButton": "Back"
+    },
+    "missionOrderSummary": {
+      "headline": "Order summary",
+      "sumLabel": "Total",
+      "footerNote": "Includes incentives and excludes VAT.",
+      "cancelButton": "Back",
+      "defaultSubmitButton": "Order",
+      "countParticipants": "0 participants | 1 participant | {count} participants",
+      "countResponses": "0 responses | 1 response | {count} responses"
     },
     "missionPersonaCriteria": {
       "age": {
@@ -28,7 +75,7 @@
       },
       "language": {
         "headline": "Language",
-        "selectSecondaryCosts": "Selecting a secondary language costs additional 5 &euro; per person.",
+        "selectSecondaryCosts": "Selecting a secondary language costs additional 5 € per person.",
         "selectSecondaryLabel": "Select secondary language",
         "selectSecondaryNullLabel": "No secondary language"
       },
@@ -43,29 +90,31 @@
         "note": "Please only insert one special criteria per input. We will create screener questions to find eligible participants.",
         "example": "e.g. Must own a car."
       }
+    },
+    "missionSideBox": {
+      "headline": "{missionLabel} Mission"
+    },
+    "missionSurveyRelease": {
+      "title": "Release mission",
+      "text": "Your mission is still a draft. Released missions cannot be edited any more.",
+      "confirmLabel": "Release mission",
+      "cancelLabel": "Cancel"
+    },
+    "nav": {
+      "dashboardLink": "Dashboard",
+      "internalLink": "Internal",
+      "requestFeatureLink": "Request feature",
+      "welcome": "Hello, {name}"
+    },
+    "staging": {
+      "activeBranch": "staging: {branch}"
     }
   },
   "account": {
     "title": "Account",
     "billing": {
       "navLabel": "Billing",
-      "noAdmin": "Please contact the admin to edit the billing address.",
-      "form": {
-        "companyLabel": "Company Name",
-        "emailLabel": "Email*",
-        "emailPlaceholder": "billing@keeet.io",
-        "vatLabel": "VAT number / tax ID",
-        "streetLabel": "Street*",
-        "streetPlaceholder": "Rosenthaler Str.",
-        "houseNumberLabel": "Number*",
-        "houseNumberPlaceholder": "101",
-        "cityLabel": "City*",
-        "cityPlaceholder": "Berlin",
-        "zipLabel": "ZIP*",
-        "zipPlaceholder": "10369",
-        "countryLabel": "Country*",
-        "submit": "Submit"
-      }
+      "noAdmin": "Please contact the admin to edit the billing address."
     },
     "profile": {
       "navLabel": "Profile",

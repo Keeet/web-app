@@ -2,13 +2,13 @@
   <div class="billing-form">
     <div class="billing-form-inner" :class="{ pending: s.pending }">
       <Input
-        :title="$t('account.billing.form.companyLabel', $store.state.locale)"
+        :title="$t('shared.billingForm.companyLabel', $store.state.locale)"
         :value="company.name"
         readonly
       />
       <Input
-        :title="$t('account.billing.form.emailLabel', $store.state.locale)"
-        :placeholder="$t('account.billing.form.emailPlaceholder', $store.state.locale)"
+        :title="$t('shared.billingForm.emailLabel', $store.state.locale)"
+        :placeholder="$t('shared.billingForm.emailPlaceholder', $store.state.locale)"
         :value="s.email"
         mutation="billingForm/setEmail"
         :error="$store.getters['billingForm/emailError']"
@@ -16,15 +16,15 @@
         dispatch-error="billingForm/handleValidationError"
       />
       <Input
-        :title="$t('account.billing.form.vatLabel', $store.state.locale)"
+        :title="$t('shared.billingForm.vatLabel', $store.state.locale)"
         :value="s.vatTaxId"
         mutation="billingForm/setVatTaxId"
       />
       <div class="billing-form-rows">
         <div class="billing-form-rows-item">
           <Input
-            :title="$t('account.billing.form.streetLabel', $store.state.locale)"
-            :placeholder="$t('account.billing.form.streetPlaceholder', $store.state.locale)"
+            :title="$t('shared.billingForm.streetLabel', $store.state.locale)"
+            :placeholder="$t('shared.billingForm.streetPlaceholder', $store.state.locale)"
             :value="s.street"
             mutation="billingForm/setStreet"
             :error="$store.getters['billingForm/streetError']"
@@ -34,8 +34,8 @@
         </div>
         <div class="billing-form-rows-item">
           <Input
-            :title="$t('account.billing.form.houseNumberLabel', $store.state.locale)"
-            :placeholder="$t('account.billing.form.houseNumberPlaceholder', $store.state.locale)"
+            :title="$t('shared.billingForm.houseNumberLabel', $store.state.locale)"
+            :placeholder="$t('shared.billingForm.houseNumberPlaceholder', $store.state.locale)"
             :value="s.houseNumber"
             mutation="billingForm/setHouseNumber"
             :error="$store.getters['billingForm/houseNumberError']"
@@ -47,8 +47,8 @@
       <div class="billing-form-rows">
         <div class="billing-form-rows-item">
           <Input
-            :title="$t('account.billing.form.cityLabel', $store.state.locale)"
-            :placeholder="$t('account.billing.form.cityPlaceholder', $store.state.locale)"
+            :title="$t('shared.billingForm.cityLabel', $store.state.locale)"
+            :placeholder="$t('shared.billingForm.cityPlaceholder', $store.state.locale)"
             :value="s.city"
             mutation="billingForm/setCity"
             :error="$store.getters['billingForm/cityError']"
@@ -58,8 +58,8 @@
         </div>
         <div class="billing-form-rows-item">
           <Input
-            :title="$t('account.billing.form.zipLabel', $store.state.locale)"
-            :placeholder="$t('account.billing.form.zipPlaceholder', $store.state.locale)"
+            :title="$t('shared.billingForm.zipLabel', $store.state.locale)"
+            :placeholder="$t('shared.billingForm.zipPlaceholder', $store.state.locale)"
             :value="s.zipCode"
             mutation="billingForm/setZipCode"
             :error="$store.getters['billingForm/zipCodeError']"
@@ -69,14 +69,14 @@
         </div>
       </div>
       <Select
-        :title="$t('account.billing.form.countryLabel', $store.state.locale)"
+        :title="$t('shared.billingForm.countryLabel', $store.state.locale)"
         :options="countryOptions"
         :value="s.country"
         mutation="billingForm/setCountry"
       />
       <div class="billing-form-submit">
         <ButtonText
-          :text="$t('account.billing.form.submit', $store.state.locale)"
+          :text="$t('shared.billingForm.submit', $store.state.locale)"
           :disabled="submitButtonDisabled"
           no-margin
           @disabledClick="disabledSubmit"
