@@ -464,5 +464,12 @@
       "invalidOverlayDescription": "Please check your survey form and fill all required fields"
     }
   },
-  "twilio": {}
+  "twilio": {
+    "joinButton": "Join session",
+    "cancelAppButton": "Back to app",
+    "cancelMissionButton": "Back to mission",
+    "connecting": "Connecting to video stream...",
+    "waiting": "Waiting for other participant...",
+    "otherDisconnected": "The other participant has left the room..."
+  }
 }
