@@ -3,14 +3,23 @@
     <MissionCreateRecruitCalendarPlugin :single-select="singleTimeslot" />
     <div v-if="!singleTimeslot" class="mission-create-recruit-calendar-menu">
       <div :id="validationId" class="mission-create-recruit-calendar-menu-count" :class="{ valid: !validationError }">
-        <p>{{ s.recruit.sessions.length }} of {{ s.participants }} time slots selected</p>
+        <p>
+          {{
+            $t('missionCreate.recruit.calendar.countSelectedTimeSlots', $store.state.locale, {
+              selected: s.recruit.sessions.length,
+              total: s.participants
+            })
+          }}
+        </p>
         <IconCheck v-if="!validationError" />
       </div>
       <span
         class="mission-create-recruit-calendar-menu-reset"
         :class="{ disabled: s.recruit.sessions.length === 0 }"
         @click="$store.commit('missionFormRecruit/resetSessions')"
-      >reset</span>
+      >
+        {{ $t('missionCreate.recruit.calendar.resetButton', $store.state.locale) }}
+      </span>
     </div>
   </div>
 </template>

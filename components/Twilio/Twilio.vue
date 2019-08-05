@@ -18,10 +18,13 @@
         </div>
       </div>
       <div v-if="twilio.joinButtonActive" class="twilio-join-room-button">
-        <ButtonText text="Join session" @click="joinCall" />
+        <ButtonText
+          :text="$t('twilio.joinButton', $store.state.locale)"
+          @click="joinCall"
+        />
         <ButtonText
           v-if="twilio.isCompany"
-          :text="missionId ? 'Back to mission' : 'Back to app'"
+          :text="cancelText"
           type="GREY"
           @click="companyCancel"
         />
@@ -62,6 +65,11 @@ export default {
     missionId() {
       const mission = this.$store.state.mission
       return mission ? mission.id : null
+    },
+    cancelText() {
+      return this.missionId
+        ? this.$t('twilio.cancelMissionButton', this.$store.state.locale)
+        : this.$t('twilio.cancelAppButton', this.$store.state.locale)
     }
   },
   mounted() {
@@ -86,18 +94,18 @@ export default {
   methods: {
     joinCall() {
       this.$store.commit('twilio/hideJoinButton')
-      this.$store.commit('twilio/showLoading', 'Connecting to video stream...')
+      this.$store.commit('twilio/showLoading', this.$t('twilio.connecting', this.$store.state.locale))
       this.$twilioHelper.joinRoom(this.twilio.roomName, this.twilio.token, {
         joined: (room) => {
           this.$store.commit('twilio/setRoom', room)
           this.$store.commit('twilio/showCall')
-          this.$store.commit('twilio/showLoading', 'Waiting for other participant...')
+          this.$store.commit('twilio/showLoading', this.$t('twilio.waiting', this.$store.state.locale))
         },
         participantConnected: (participant) => {
           this.renderParticipantTracks(participant)
         },
         participantDisconnected: () => {
-          this.$store.commit('twilio/showLoading', 'The other participant has left the room...')
+          this.$store.commit('twilio/showLoading', this.$t('twilio.otherDisconnected', this.$store.state.locale))
           this.setRemoteVideoTrack(null)
         },
         // eslint-disable-next-line no-console

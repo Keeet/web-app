@@ -5,7 +5,7 @@
         <Select
           :value="item.answerType"
           :options="answerTypeOptions"
-          title="Answer type"
+          :title="$t('missionCreate.survey.items.likert.answerTypeLabel', $store.state.locale)"
           no-margin
           @change="setAnswerType"
         />

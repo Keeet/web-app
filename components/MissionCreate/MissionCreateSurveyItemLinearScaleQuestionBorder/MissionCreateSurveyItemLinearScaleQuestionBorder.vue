@@ -2,7 +2,11 @@
   <div class="mission-create-survey-item-linear-scale-question-border">
     <div class="mission-create-survey-item-linear-scale-question-border-select">
       <p class="mission-create-survey-item-linear-scale-question-border-select-label">
-        {{ isStart ? 'Start value' : 'End value' }}
+        {{
+          isStart
+            ? $t('missionCreate.survey.items.linearScale.startValueLabel', $store.state.locale)
+            : $t('missionCreate.survey.items.linearScale.endValueLabel', $store.state.locale)
+        }}
       </p>
       <div class="mission-create-survey-item-linear-scale-question-border-select-dropdown">
         <Select
@@ -68,8 +72,8 @@ export default {
     },
     labelPlaceholder() {
       return this.isStart
-        ? 'Start label (left) - optional'
-        : 'End label (right) - optional'
+        ? this.$t('missionCreate.survey.items.linearScale.startValuePlaceholder', this.$store.state.locale)
+        : this.$t('missionCreate.survey.items.linearScale.endValuePlaceholder', this.$store.state.locale)
     },
     labelError() {
       const fillBothError = 'fill this or keep both empty'

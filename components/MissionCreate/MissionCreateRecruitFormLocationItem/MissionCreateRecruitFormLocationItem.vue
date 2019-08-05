@@ -23,7 +23,7 @@
           <IconPlus />
         </div>
         <p class="mission-create-recruit-form-location-item-empty-text">
-          Add new location
+          {{ $t('missionCreate.recruit.generalForm.addLocationButton', $store.state.locale) }}
         </p>
       </div>
     </div>

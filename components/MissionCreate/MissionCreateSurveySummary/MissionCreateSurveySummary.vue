@@ -3,7 +3,11 @@
     <MissionSideBox :type="s.type" wrapper-class="mission-create-survey">
       <template slot="body">
         <div class="mission-create-survey-summary-scrollable">
-          <MissionCreateSurveySummaryItem type="WELCOME" title="Welcome Screen" no-drag />
+          <MissionCreateSurveySummaryItem
+            type="WELCOME"
+            :title="$t('missionCreate.survey.summary.welcomeScreen', $store.state.locale)"
+            no-drag
+          />
           <div class="mission-create-survey-summary-sortable">
             <draggable
               v-model="items"
@@ -21,7 +25,11 @@
               />
             </draggable>
           </div>
-          <MissionCreateSurveySummaryItem type="CLOSING" title="Thank-you Screen" no-drag />
+          <MissionCreateSurveySummaryItem
+            type="CLOSING"
+            :title="$t('missionCreate.survey.summary.closingScreen', $store.state.locale)"
+            no-drag
+          />
         </div>
         <div class="mission-create-survey-summary-duration">
           <div class="mission-create-survey-summary-duration-icon">
@@ -36,7 +44,7 @@
         <div class="mission-create-survey-summary-buttons-flex">
           <div class="mission-create-survey-summary-buttons-flex-item">
             <ButtonText
-              text="Cancel"
+              :text="$t('missionCreate.survey.summary.cancelButton', $store.state.locale)"
               type="GREY"
               no-margin
               @click="$emit('cancelClick')"
@@ -44,7 +52,7 @@
           </div>
           <div class="mission-create-survey-summary-buttons-flex-item">
             <ButtonText
-              text="Preview"
+              :text="$t('missionCreate.survey.summary.previewButton', $store.state.locale)"
               type="GREY"
               icon="LINK_EXTERNAL"
               no-margin
@@ -55,7 +63,7 @@
           </div>
         </div>
         <ButtonText
-          :text="s.editExisting ? 'Update mission' : 'Create mission'"
+          :text="submitButtonText"
           no-margin
           :disabled="!isValid"
           @disabledClick="$emit('submitDisabledClick')"
@@ -120,10 +128,15 @@ export default {
       const { pricing } = this.s.survey
       const d = pricing ? pricing.duration : 0
       if (d <= 60) {
-        return 'about 1 min'
+        return this.$t('missionCreate.survey.summary.durationDefault', this.$store.state.locale)
       }
       const min = parseInt(d / 60)
-      return `${min} - ${min + 1} min`
+      return this.$t('missionCreate.survey.summary.durationVariables', this.$store.state.locale, { val1: min, val2: min + 1 })
+    },
+    submitButtonText() {
+      return this.s.editExisting
+        ? this.$t('missionCreate.survey.summary.submitEditButton', this.$store.state.locale)
+        : this.$t('missionCreate.survey.summary.submitCreateButton', this.$store.state.locale)
     }
   },
   watch: {

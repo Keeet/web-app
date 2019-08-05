@@ -15,11 +15,15 @@
           {{ user.firstName }} {{ user.lastName }}
         </p>
         <p>{{ user.email }}</p>
-        <p>Member since {{ formattedCreatedAt }}</p>
+        <p>{{ $t('account.profile.memberSince', $store.state.locale, { date: formattedCreatedAt }) }}</p>
         <p>{{ formattedRole }}</p>
       </template>
     </AccountProfileItem>
-    <AccountProfileItem :button-text="$hasRole('ADMIN') ? 'Edit Company' : null" :aos-delay="300" @clickButton="editCompany">
+    <AccountProfileItem
+      :button-text="$hasRole('ADMIN') ? $t('account.profile.editButton', $store.state.locale) : null"
+      :aos-delay="300"
+      @clickButton="editCompany"
+    >
       <template slot="icon">
         <IconLocation />
       </template>
@@ -31,7 +35,7 @@
     </AccountProfileItem>
     <OverlayModal
       v-if="accountPage.showEditCompany"
-      title="Edit company"
+      :title="$t('account.profile.form.title', $store.state.locale)"
       :loading="companyForm.pending"
       @close="closeEditCompanyForm"
     >

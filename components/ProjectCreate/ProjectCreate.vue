@@ -4,7 +4,7 @@
       <ButtonCircle type="ARROW_LEFT" @click="$router.back()" />
     </div>
     <div v-if="!s.pending" class="project-create-form">
-      <Headline text="Give your project a name!" center />
+      <Headline :text="$t('projectCreate.headline', $store.state.locale)" center />
       <div
         data-aos="fade-in"
         data-aos-duration="700"
@@ -17,13 +17,18 @@
             :value="s.title"
             :error="titleError"
             mutation="projectForm/setTitle"
-            placeholder="Project Name"
+            :placeholder="$t('projectCreate.namePlaceholder', $store.state.locale)"
             :disable-error="!showErrors"
             @enter="() => { formValid ? submit() : showErrors = true }"
           />
         </div>
         <div class="project-create-form-submit">
-          <ButtonText text="Create" :disabled="!formValid" @click="submit" @disabledClick="showErrors = true" />
+          <ButtonText
+            :text="$t('projectCreate.submitButton', $store.state.locale)"
+            :disabled="!formValid"
+            @click="submit"
+            @disabledClick="showErrors = true"
+          />
         </div>
       </div>
     </div>

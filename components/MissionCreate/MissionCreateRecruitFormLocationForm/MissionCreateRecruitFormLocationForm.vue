@@ -1,13 +1,13 @@
 <template>
   <div class="mission-create-recruit-form-location-form">
     <OverlayModal
-      title="Add new location"
+      :title="$t('missionCreate.recruit.generalForm.locationForm.title', $store.state.locale)"
       :loading="s.pending"
       @close="$store.commit('missionFormRecruit/closeLocationForm')"
     >
       <Input
-        title="Company name*"
-        placeholder="Keeet"
+        :title="$t('missionCreate.recruit.generalForm.locationForm.companyLabel', $store.state.locale)"
+        :placeholder="$t('missionCreate.recruit.generalForm.locationForm.companyPlaceholder', $store.state.locale)"
         :value="s.name"
         mutation="locationForm/setName"
         :error="nameError"
@@ -16,8 +16,8 @@
       <div class="mission-create-recruit-form-location-form-street">
         <div class="mission-create-recruit-form-location-form-street-name">
           <Input
-            title="Street*"
-            placeholder="Rosenthaler Str."
+            :title="$t('missionCreate.recruit.generalForm.locationForm.streetLabel', $store.state.locale)"
+            :placeholder="$t('missionCreate.recruit.generalForm.locationForm.streetPlaceholder', $store.state.locale)"
             :value="s.street"
             mutation="locationForm/setStreet"
             :error="streetError"
@@ -26,8 +26,8 @@
         </div>
         <div class="mission-create-recruit-form-location-form-street-nb">
           <Input
-            title="Number*"
-            placeholder="101"
+            :title="$t('missionCreate.recruit.generalForm.locationForm.houseNumberLabel', $store.state.locale)"
+            :placeholder="$t('missionCreate.recruit.generalForm.locationForm.houseNumberPlaceholder', $store.state.locale)"
             :value="s.houseNumber"
             mutation="locationForm/setHouseNumber"
             :error="houseNumberError"
@@ -36,8 +36,8 @@
         </div>
       </div>
       <Input
-        title="Additional"
-        placeholder="third backyard"
+        :title="$t('missionCreate.recruit.generalForm.locationForm.additionalLabel', $store.state.locale)"
+        :placeholder="$t('missionCreate.recruit.generalForm.locationForm.additionalPlaceholder', $store.state.locale)"
         :value="s.addressDescription"
         mutation="locationForm/setAddressDescription"
         :error="null"
@@ -45,8 +45,8 @@
       <div class="mission-create-recruit-form-location-form-city">
         <div class="mission-create-recruit-form-location-form-city-name">
           <Input
-            title="City*"
-            placeholder="Berlin"
+            :title="$t('missionCreate.recruit.generalForm.locationForm.cityLabel', $store.state.locale)"
+            :placeholder="$t('missionCreate.recruit.generalForm.locationForm.cityPlaceholder', $store.state.locale)"
             :value="s.city"
             mutation="locationForm/setCity"
             :error="cityError"
@@ -55,8 +55,8 @@
         </div>
         <div class="mission-create-recruit-form-location-form-city-zip">
           <Input
-            title="ZIP*"
-            placeholder="10369"
+            :title="$t('missionCreate.recruit.generalForm.locationForm.zipLabel', $store.state.locale)"
+            :placeholder="$t('missionCreate.recruit.generalForm.locationForm.zipPlaceholder', $store.state.locale)"
             :value="s.zipCode"
             mutation="locationForm/setZipCode"
             :error="zipCodeError"
@@ -65,12 +65,17 @@
         </div>
       </div>
       <Select
-        title="Country*"
+        :title="$t('missionCreate.recruit.generalForm.locationForm.countryLabel', $store.state.locale)"
         :options="countryOptions"
         :value="s.country"
         mutation="locationForm/setCountry"
       />
-      <ButtonText text="Add" :disabled="!formValid" @click="submitForm" @disabledClick="showErrors = true" />
+      <ButtonText
+        :text="$t('missionCreate.recruit.generalForm.locationForm.submitButton', $store.state.locale)"
+        :disabled="!formValid"
+        @click="submitForm"
+        @disabledClick="showErrors = true"
+      />
     </OverlayModal>
   </div>
 </template>

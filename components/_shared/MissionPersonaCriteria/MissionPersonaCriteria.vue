@@ -2,14 +2,14 @@
   <div class="mission-persona-criteria">
     <MissionPersonaCriteriaItem
       v-if="shouldShow(PERSONA_CRITERIA.LANGUAGE)"
-      headline="Language"
+      :headline="$t('shared.missionPersonaCriteria.language.headline', $store.state.locale)"
       type="LANGUAGE"
       always-opened
     />
     <MissionPersonaCriteriaItem
       v-if="shouldShow(PERSONA_CRITERIA.COUNTRY)"
       :id="countryId"
-      headline="Country"
+      :headline="$t('shared.missionPersonaCriteria.country.headline', $store.state.locale)"
       type="CHECKLIST"
       :value="s.persona.countries"
       mutation="missionFormPersona/setCountries"
@@ -20,7 +20,7 @@
     />
     <MissionPersonaCriteriaItem
       v-if="shouldShow(PERSONA_CRITERIA.AGE)"
-      headline="Age (optional)"
+      :headline="$t('shared.missionPersonaCriteria.age.headline', $store.state.locale)"
       type="SLIDER"
       :opened="s.persona.ageOpened"
       :value="[s.persona.minAge, s.persona.maxAge]"
@@ -31,7 +31,7 @@
     />
     <MissionPersonaCriteriaItem
       v-if="shouldShow(PERSONA_CRITERIA.GENDER)"
-      headline="Gender (optional)"
+      :headline="$t('shared.missionPersonaCriteria.gender.headline', $store.state.locale)"
       type="SELECT"
       :opened="s.persona.gendersOpened"
       :value="gender"
@@ -41,7 +41,7 @@
     />
     <MissionPersonaCriteriaItem
       v-if="shouldShow(PERSONA_CRITERIA.DEVICE_SKILL)"
-      headline="Device skills (optional)"
+      :headline="$t('shared.missionPersonaCriteria.deviceSkills.headline', $store.state.locale)"
       type="CHECKLIST"
       :opened="s.persona.deviceSkillsOpened"
       :value="s.persona.deviceSkills"
@@ -52,7 +52,7 @@
     />
     <MissionPersonaCriteriaItem
       v-if="shouldShow(PERSONA_CRITERIA.SPECIAL_CRITERIA)"
-      headline="Special criteria (optional)"
+      :headline="$t('shared.missionPersonaCriteria.specialCriteria.headline', $store.state.locale)"
       type="SPECIAL_CRITERIA"
       :opened="s.persona.specialCriteriaOpened"
       :value="s.persona.specialCriteria"

@@ -8,19 +8,19 @@
       </nuxt-link>
       <nuxt-link to="/">
         <p class="nav-item" :class="{active: path === '/'}">
-          Dashboard
+          {{ $t('shared.nav.dashboardLink', $store.state.locale) }}
         </p>
       </nuxt-link>
       <Staging />
       <nuxt-link v-if="showInternal" to="/internal/companies">
         <p class="nav-item nav-item-internal" :class="{active: path === '/internal/companies'}">
-          Internal
+          {{ $t('shared.nav.internalLink', $store.state.locale) }}
         </p>
       </nuxt-link>
     </div>
     <div class="nav-right">
       <a class="request-feature" href="https://keeet.nolt.io" target="_blank">
-        Request feature
+        {{ $t('shared.nav.requestFeatureLink', $store.state.locale) }}
       </a>
       <nuxt-link to="/account">
         <div class="nav-profile">
@@ -32,7 +32,7 @@
             />
           </div>
           <p class="nav-profile-welcome">
-            Hello, {{ $store.state.user.firstName }}!
+            {{ $t('shared.nav.welcome', $store.state.locale, { name: $store.state.user.firstName }) }}
           </p>
         </div>
       </nuxt-link>

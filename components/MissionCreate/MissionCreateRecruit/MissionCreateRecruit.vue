@@ -14,7 +14,7 @@
     </MissionCreateRecruitStep>
     <MissionCreateRecruitStep
       :index="3"
-      subheadline="When are you able to conduct the interview / test?"
+      :subheadline="$t('missionCreate.recruit.calendar.headline', $store.state.locale)"
     >
       <MissionCreateRecruitCalendar />
     </MissionCreateRecruitStep>
@@ -26,7 +26,7 @@
       <MissionCreateRecruitSummary />
       <BillingMissing
         v-if="$store.state.missionFormRecruit.billingModalOpened"
-        no-admin-text="Your admin has to add a billing address before you can create In-House and Remote missions."
+        :no-admin-text="$t('missionCreate.recruit.summary.billingMissionNoAdmin', $store.state.locale)"
         @hide="$store.commit('missionFormRecruit/hideBillingModal')"
       />
     </MissionCreateRecruitStep>

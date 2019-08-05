@@ -7,7 +7,7 @@
     data-aos-anchor="body"
   >
     <div class="mission-survey-results">
-      <MissionSurveyHeadline text="Response Summary" />
+      <MissionSurveyHeadline :text="$t('mission.survey.results.headline', $store.state.locale)" />
       <div class="mission-survey-results-items">
         <MissionSurveyResultsBox
           v-for="(result, x) in mission.results"

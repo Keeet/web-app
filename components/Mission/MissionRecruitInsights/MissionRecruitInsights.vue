@@ -29,7 +29,7 @@
       data-aos-anchor=".mission-recruit-insights"
     >
       <p class="mission-recruit-insights-section-headline">
-        Recordings
+        {{ $t('mission.recruit.insights.recordingsTitle', $store.state.locale) }}
       </p>
       <div class="mission-recruit-insights-recordings">
         <MissionRecruitInsightsItem

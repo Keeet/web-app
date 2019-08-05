@@ -2,7 +2,7 @@
   <div class="mission-create-survey-custom-screen-color">
     <div class="mission-create-survey-custom-screen-color-head">
       <p class="mission-create-survey-custom-screen-color-head-text">
-        Accent Color
+        {{ $t('missionCreate.survey.customScreens.colorLabel', $store.state.locale) }}
       </p>
       <div
         class="mission-create-survey-custom-screen-color-head-selected"

@@ -1,9 +1,9 @@
 <template>
   <Confirm
-    title="Release mission"
-    text="Your mission is still a draft. Released missions cannot be edited any more."
-    label-confirm="Release mission"
-    label-cancel="Cancel"
+    :title="$t('shared.missionSurveyRelease.title', $store.state.locale)"
+    :text="$t('shared.missionSurveyRelease.text', $store.state.locale)"
+    :label-confirm="$t('shared.missionSurveyRelease.confirmLabel', $store.state.locale)"
+    :label-cancel="$t('shared.missionSurveyRelease.cancelLabel', $store.state.locale)"
     full-width
     :loading="pending"
     @confirm="confirm"

@@ -1,16 +1,21 @@
 <template>
   <div class="mission-create-recruit-submitted-popup">
-    <OverlayModal title="Next steps" @close="done">
+    <OverlayModal
+      :title="$t('missionCreate.recruit.submittedPopup.title', $store.state.locale)"
+      @close="done"
+    >
       <IconClockBlue />
       <p class="mission-create-recruit-submitted-popup-text">
-        We have received your mission! It can take up to 2 working days until we found eligible participants for you.
+        {{ $t('missionCreate.recruit.submittedPopup.text1', $store.state.locale) }}
       </p>
       <IconProgress />
       <p class="mission-create-recruit-submitted-popup-text">
-        We will keep you updated on our progress. If you
-        have any questions do not hesitate to contact us.
+        {{ $t('missionCreate.recruit.submittedPopup.text2', $store.state.locale) }}
       </p>
-      <ButtonText text="Done" @click="done" />
+      <ButtonText
+        :text="$t('missionCreate.recruit.submittedPopup.button', $store.state.locale)"
+        @click="done"
+      />
     </OverlayModal>
   </div>
 </template>
