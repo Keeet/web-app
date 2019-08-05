@@ -21,7 +21,7 @@
       <div class="project-mission-info" @click="openMission">
         <div class="project-mission-info-label">
           <p class="project-mission-info-label-text">
-            Info
+            {{ $t('project.missionLabel', $store.state.locale) }}
           </p>
         </div>
         <ProjectMissionSection :type="mission.type" grow>

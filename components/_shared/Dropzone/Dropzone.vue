@@ -11,7 +11,11 @@
     />
     <span class="dropzone-nav" :class="{ navAlignLeft }">
       <span v-if="!isEmpty" class="dropzone-nav-delete" @click="clearItems">
-        {{ multiUpload ? 'delete all' : 'delete' }}
+        {{
+          multiUpload
+            ? $t('shared.dropzone.multiDelete', $store.state.locale)
+            : $t('shared.dropzone.singleDelete', $store.state.locale)
+        }}
       </span>
       <span v-if="error && !disableError" class="dropzone-nav-error">
         {{ error }}

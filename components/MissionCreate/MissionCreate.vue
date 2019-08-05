@@ -10,10 +10,10 @@
     <MissionCreateRecruitSubmittedPopup v-if="s.recruit.submittedPopup" />
     <Confirm
       v-if="s.confirmInProgressOpened"
-      title="Continue form"
-      text="Do you want to continue with this mission form?"
-      label-confirm="Yes, continue"
-      label-cancel="No, discard changes"
+      :title="$t('missionCreate.confirmInProgress.title', $store.state.locale)"
+      :text="$t('missionCreate.confirmInProgress.text', $store.state.locale)"
+      :label-confirm="$t('missionCreate.confirmInProgress.confirm', $store.state.locale)"
+      :label-cancel="$t('missionCreate.confirmInProgress.cancel', $store.state.locale)"
       full-width
       @cancel="discardChanges"
       @close="discardChanges"

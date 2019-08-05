@@ -8,10 +8,10 @@
     >
       <img src="../../../assets/img/project-missions-empty.png">
       <p class="project-missions-empty-title">
-        Create your first mission
+        {{ $t('project.empty.title', $store.state.locale) }}
       </p>
       <p class="project-missions-empty-text">
-        Plan your first research session and gain new valuable insights.
+        {{ $t('project.empty.text', $store.state.locale) }}
       </p>
     </div>
   </div>

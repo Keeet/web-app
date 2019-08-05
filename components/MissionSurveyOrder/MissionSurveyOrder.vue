@@ -20,7 +20,7 @@
     </div>
     <BillingMissing
       v-if="missionPage.surveyOrderBillingAddressOpened"
-      no-admin-text="Your admin has to add a billing address before you can order testers."
+      :no-admin-text="$t('missionSurveyOrder.billingMissionNoAdmin', $store.state.locale)"
       @hide="$store.commit('missionPage/hideSurveyOrderBillingAddress')"
     />
     <MissionSurveyRelease

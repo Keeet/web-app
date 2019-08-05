@@ -6,9 +6,12 @@
       :index="x"
       @delete="deleteSpecialCriteria(x)"
     />
-    <MissionPersonaCriteriaItemSpecialCriteriaInput placeholder="e.g. Must own a car." @add="addSpecialCriteria" />
+    <MissionPersonaCriteriaItemSpecialCriteriaInput
+      :placeholder="$t('shared.missionPersonaCriteria.specialCriteria.example', $store.state.locale)"
+      @add="addSpecialCriteria"
+    />
     <p class="mission-persona-criteria-item-special-criteria-note">
-      Please only insert one special criteria per input. We will create screener questions to find eligible participants.
+      {{ $t('shared.missionPersonaCriteria.specialCriteria.note', $store.state.locale) }}
     </p>
   </div>
 </template>

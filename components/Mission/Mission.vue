@@ -55,19 +55,19 @@ export default {
         return [
           {
             page: OVERVIEW,
-            label: 'Overview',
+            label: this.$t('mission.recruit.overview.navLabel', this.$store.state.locale),
             link: `/missions/${this.mission.id}/overview`
           },
           {
             page: INSIGHTS,
-            label: 'Insights',
+            label: this.$t('mission.recruit.insights.navLabel', this.$store.state.locale),
             link: `/missions/${this.mission.id}/insights`
           }
         ]
       } else if (this.isSurvey) {
         const results = {
           page: RESULTS,
-          label: 'Results',
+          label: this.$t('mission.survey.results.navLabel', this.$store.state.locale),
           link: `/missions/${this.mission.id}/results`
         }
         if (this.mission.isSample) {
@@ -77,7 +77,7 @@ export default {
           results,
           {
             page: SHARE,
-            label: 'Share',
+            label: this.$t('mission.survey.share.navLabel', this.$store.state.locale),
             link: `/missions/${this.mission.id}/share`
           }
         ]

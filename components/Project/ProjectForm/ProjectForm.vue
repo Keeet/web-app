@@ -1,22 +1,22 @@
 <template>
   <div class="project-form">
     <Input
-      title="Name"
+      :title="$t('project.form.nameLabel', $store.state.locale)"
       :value="s.title"
       mutation="projectForm/setTitle"
-      placeholder="Project name"
+      :placeholder="$t('project.form.namePlaceholder', $store.state.locale)"
       :error="titleError"
       :disable-error="!showErrors"
     />
     <Input
-      title="Description"
+      :title="$t('project.form.descriptionLabel', $store.state.locale)"
       :value="s.description"
       mutation="projectForm/setDescription"
-      placeholder="Enter you project description here to explain what you want to achieve with this research session …"
+      :placeholder="$t('project.form.descriptionPlaceholder', $store.state.locale)"
       textarea
     />
     <ButtonText
-      text="Update"
+      :text="$t('project.form.submitButton', $store.state.locale)"
       :disabled="!formValid"
       @click="$store.dispatch('projectForm/submit')"
       @disabledClick="showErrors = true"

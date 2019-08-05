@@ -1,7 +1,7 @@
 <template>
   <div class="mission-create-recruit-persona">
     <p class="mission-create-recruit-persona-headline">
-      Target your participants
+      {{ $t('missionCreate.recruit.persona.headline', $store.state.locale) }}
     </p>
     <MissionPersonaCriteria
       :criteria="criteria"

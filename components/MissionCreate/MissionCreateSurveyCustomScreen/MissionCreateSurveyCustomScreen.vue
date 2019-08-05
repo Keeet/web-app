@@ -16,7 +16,7 @@
         </div>
         <SwitchButton
           :on="sValues.opened"
-          label="Customize"
+          :label="$t('missionCreate.survey.customScreens.switchLabel', $store.state.locale)"
           @switch="switchCustomize"
         />
       </div>
@@ -25,14 +25,14 @@
           <Input
             :value="sValues.title"
             :mutation="mutations.setTitle"
-            title="Title"
+            :title="$t('missionCreate.survey.customScreens.titleLabel', $store.state.locale)"
             :error="titleError"
             dispatch-error="missionForm/handleValidationError"
           />
           <Input
             :value="sValues.description"
             :mutation="mutations.setDescription"
-            title="Message"
+            :title="$t('missionCreate.survey.customScreens.messageLabel', $store.state.locale)"
             :error="descriptionError"
             dispatch-error="missionForm/handleValidationError"
             textarea
@@ -41,8 +41,8 @@
             v-if="type === CLOSING"
             :value="s.redirectLink || ''"
             mutation="missionFormSurvey/setRedirectLink"
-            title="Redirect Link"
-            placeholder="https://"
+            :title="$t('missionCreate.survey.customScreens.closingScreen.redirectLinkLabel', $store.state.locale)"
+            :placeholder="$t('missionCreate.survey.customScreens.closingScreen.redirectLinkPlaceholder', $store.state.locale)"
             :error="redirectLinkError"
             dispatch-error="missionForm/handleValidationError"
           />
