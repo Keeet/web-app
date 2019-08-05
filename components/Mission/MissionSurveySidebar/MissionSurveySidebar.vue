@@ -12,7 +12,7 @@
       :text-large="avgDuration"
       text-small="/ participant"
     />
-    <ButtonText text="edit" @click="editMission" />
+    <ButtonText v-if="isDraft" text="edit" @click="editMission" />
     <div class="mission-survey-sidebar-preview-button">
       <ButtonText text="go to preview" @click="gotoPreview" />
     </div>
@@ -23,7 +23,7 @@
 import MissionSidebar from '../MissionSidebar/MissionSidebar'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
 import { getDurationWithUnits } from '../../../utils/dateUtils'
-import { MISSION_SURVEY_PREVIEW_LOCAL_STORAGE_KEY } from '../../constants'
+import { MISSION_STATUS, MISSION_SURVEY_PREVIEW_LOCAL_STORAGE_KEY } from '../../constants'
 import MissionCount from '../MissionCount/MissionCount'
 
 export default {
@@ -38,6 +38,9 @@ export default {
     },
     avgDuration() {
       return getDurationWithUnits(this.mission.averageDuration)
+    },
+    isDraft() {
+      return this.mission.status === MISSION_STATUS.DRAFT
     }
   },
   methods: {
