@@ -367,7 +367,11 @@
       "text": "Plan your first research session and gain new valuable insights."
     }
   },
-  "projectCreate": {},
+  "projectCreate": {
+    "headline": "Give your project a name!",
+    "namePlaceholder": "Project Name",
+    "submitButton": "Create"
+  },
   "survey": {
     "welcomeButton": "Start",
     "welcomeTitle": "Hey there!",
