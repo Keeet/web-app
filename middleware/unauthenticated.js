@@ -5,9 +5,9 @@ export default function ({ store, redirect, route, app: { $auth } }) {
     if (!isAuthUrl(route)) {
       if (!isExternalUrl(route)) {
         if (!store.state.accessToken) {
-          resolve(redirect('/auth/login'))
+          resolve(redirect($auth.getLoginRedirectUrl(route.fullPath)))
         } else if (!$auth.isAuthenticated()) {
-          $auth.renewTokensOrRedirectToLogin(route.path, { redirect })
+          $auth.renewTokensOrRedirectToLogin(route.fullPath, { redirect })
             .then(resolve)
             .catch(() => {})
         } else if (route.path !== '/' && !store.state.tokenCompanyId) {
