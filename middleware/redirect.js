@@ -1,4 +1,4 @@
-export default function ({ store, redirect, route: { path }, query: { invitationId, redirectParams }, app: { $auth } }) {
+export default function ({ store, redirect, route: { path }, query: { invitationId }, app: { $auth } }) {
   if (path === '/personas/create' || path === '/personas/edit') {
     if (!store.state.personaForm.init) {
       return redirect('/personas')

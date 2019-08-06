@@ -392,7 +392,7 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, in
       case OPERATIONS.UPDATE_MISSION_METADATA:
         return [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: data.projectId, forced: true }]
       case OPERATIONS.UPDATE_MISSION_SURVEY:
-        return [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: params.projectId, forced: true }]
+        return [{ name: 'MISSION', id: data.id, forced: true }, { name: 'SURVEY', id: data.id, forced: true }, { name: 'PROJECT', id: params.projectId, forced: true }]
       case OPERATIONS.UPDATE_MISSION_STATUS:
         const fetchCfg = [{ name: 'MISSION', id: params.id, forced: true }]
         if ([MISSIONS.SURVEY, MISSIONS.USABILITY_LAB].includes(params.type)) {
