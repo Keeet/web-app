@@ -73,11 +73,11 @@ export default {
   },
   methods: {
     submit() {
-      this.$mpApp.trackProjectCreate('submit')
+      this.$mpAppHelper.trackProjectCreate('submit')
       this.$store.dispatch('projectForm/submit', { redirectToProject: true })
     },
     cancel() {
-      this.$mpApp.trackProjectCreate('abort')
+      this.$mpAppHelper.trackProjectCreate('abort')
       this.$router.back()
     }
   }

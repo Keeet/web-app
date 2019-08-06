@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     select(type) {
-      this.$mpApp.trackMissionForm('selectType', this.$store)
+      this.$mpAppHelper.trackMissionForm('selectType', this.$store)
       // switch mission type OR select mission type for the first time
       if (this.s.type !== type) {
         this.$store.commit('missionForm/resetForm')

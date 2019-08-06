@@ -94,7 +94,7 @@ export default {
   },
   methods: {
     create() {
-      this.$mpApp.trackProjectCreate('open')
+      this.$mpAppHelper.trackProjectCreate('open')
       this.$store.commit('projectForm/init')
       this.$router.push('/projects/create')
     },

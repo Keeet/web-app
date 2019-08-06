@@ -79,7 +79,7 @@ export default {
       }))
     },
     submitDisabledClick() {
-      this.$mpApp.trackMissionForm('attemptSubmitInvalidForm', this.$store)
+      this.$mpAppHelper.trackMissionForm('attemptSubmitInvalidForm', this.$store)
       if (!this.s.showErrors) {
         this.$store.commit('missionForm/showErrors')
       }
@@ -87,7 +87,7 @@ export default {
     },
     submit() {
       const { missionForm } = this.$store.state
-      this.$mpApp.trackMissionForm('submit', this.$store)
+      this.$mpAppHelper.trackMissionForm('submit', this.$store)
       this.$store.commit('missionForm/pending')
       this.$store.dispatch('missionFormSurvey/submit', {
         missionForm

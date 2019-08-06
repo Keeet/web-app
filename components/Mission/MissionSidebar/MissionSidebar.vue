@@ -65,20 +65,21 @@ export default {
   },
   methods: {
     editMissionMetadata() {
-      this.$mpApp.trackMission('openEditMetadata', this.$store)
+      this.$mpAppHelper.trackMission('openEditMetadata', this.$store)
       this.$store.commit('missionMetadataForm/init', this.mission)
       this.$store.commit('missionMetadataForm/setOverlayOpened', true)
     },
-    closeDeleteConfirm() {
-      this.$mpApp.trackMission('abortDelete', this.$store)
+    closeDeleteConfirm(deleted = false) {
+      if (!deleted) {
+        this.$mpAppHelper.trackMission('abortDelete', this.$store)
+      }
       this.$store.commit('missionPage/closeDeleteConfirm')
     },
     deleteMission() {
-      this.$mpApp.trackMission('delete', this.$store)
+      this.$mpAppHelper.trackMission('delete', this.$store)
       const { id, projectId } = this.mission
       this.$push.deleteMission({ id, projectId }).then(() => {
-        this.$store.commit('setMission', null)
-        this.closeDeleteConfirm()
+        this.closeDeleteConfirm(true)
         this.$router.push(`/projects/${projectId}`)
       })
     }

@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import mixpanel from 'mixpanel-browser'
 import { firstLetterUppercase } from '../utils/stringUtils'
 
 const devMock = {
@@ -7,17 +8,20 @@ const devMock = {
   identify: () => {}
 }
 
-const mpSurvey = require('mixpanel-browser')
-mpSurvey.init('9cb45f865cae08d46aaf988c7acc4026')
-Vue.prototype.$mpSurvey = process.env.NODE_ENV === 'production'
+mixpanel.init('9cb45f865cae08d46aaf988c7acc4026', {}, 'mpSurvey')
+mixpanel.init('6c1bce81a6ee95e4298342cd9ff334e8', {}, 'mpApp')
+
+const { mpSurvey, mpApp } = mixpanel
+
+Vue.prototype.$mpSurvey = process.env.NODE_ENV !== 'production'
   ? mpSurvey
   : devMock
 
-const mpApp = require('mixpanel-browser')
-mpApp.init('6c1bce81a6ee95e4298342cd9ff334e8')
 Vue.prototype.$mpApp = process.env.NODE_ENV !== 'production'
+  ? mpApp
+  : devMock
+Vue.prototype.$mpAppHelper = process.env.NODE_ENV !== 'production'
   ? {
-    track: mpApp.track,
     trackProject: (eventName) => {
       mpApp.track(fullEventName('project', eventName))
     },

@@ -7,8 +7,8 @@
       prev-step-mutation="missionForm/previousStep"
       :active="s.activeStep === index"
       :valid="s.invalidFields.length === 0"
-      @next="$mpApp.trackMissionForm('stepForward')"
-      @prev="$mpApp.trackMissionForm('stepBack')"
+      @next="$mpAppHelper.trackMissionForm('stepForward', $store)"
+      @prev="$mpAppHelper.trackMissionForm('stepBack', $store)"
       @invalidNext="invalidNextClick"
     >
       <div class="mission-create-recruit-step-head">
@@ -27,9 +27,9 @@
           :price-checksum="priceChecksum"
           :submit-label="last ? 'Order' : 'Continue'"
           wrapper-class="mission-create-recruit-step-body"
-          @cancel="$store.commit('missionForm/previousStep')"
+          @cancel="previousStep"
           @invalidSubmit="invalidNextClick"
-          @submit="last ? $emit('submit') : $store.commit('missionForm/nextStep')"
+          @submit="last ? $emit('submit') : nextStep()"
         />
       </div>
     </FormStep>
@@ -89,6 +89,14 @@ export default {
         this.$store.commit('missionForm/showErrors')
       }
       scrollToTopId(this.s.invalidFields.map(field => field.id))
+    },
+    nextStep() {
+      this.$mpAppHelper.trackMissionForm('stepForward', this.$store)
+      this.$store.commit('missionForm/nextStep')
+    },
+    previousStep() {
+      this.$mpAppHelper.trackMissionForm('stepBack', this.$store)
+      this.$store.commit('missionForm/previousStep')
     }
   }
 }

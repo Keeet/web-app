@@ -86,21 +86,21 @@ export default {
       }
     },
     cancel() {
-      this.$mpApp.trackMissionSurveyOrder('abort', this.$store)
+      this.$mpAppHelper.trackMissionSurveyOrder('abort', this.$store)
       this.$router.push(`/missions/${this.mission.id}/share`)
     },
     submit() {
       if (!this.$store.state.company.billingConfig) {
-        this.$mpApp.trackMissionSurveyOrder('attemptSubmitWithoutBillingAddress', this.$store)
+        this.$mpAppHelper.trackMissionSurveyOrder('attemptSubmitWithoutBillingAddress', this.$store)
         this.$store.commit('missionPage/showSurveyOrderBillingAddress')
         return
       }
       if (this.mission.status === MISSION_STATUS.DRAFT) {
-        this.$mpApp.trackMissionSurveyOrder('attemptSubmitDraft', this.$store)
+        this.$mpAppHelper.trackMissionSurveyOrder('attemptSubmitDraft', this.$store)
         this.$store.commit('missionPage/showSurveyRelease')
         return
       }
-      this.$mpApp.trackMissionSurveyOrder('submit', this.$store)
+      this.$mpAppHelper.trackMissionSurveyOrder('submit', this.$store)
       this.$push.submitMissionOrder({
         ...this.buildOrderRequest(),
         missionId: this.mission.id

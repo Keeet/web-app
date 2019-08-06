@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     submit() {
-      this.$mpApp.trackMission('submitMetadata', this.$store)
+      this.$mpAppHelper.trackMission('submitMetadata', this.$store)
       this.$store.dispatch('missionMetadataForm/submit')
     }
   }

@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     addItem() {
-      this.$mpApp.trackMissionForm('addSurveyItem', this.$store)
+      this.$mpAppHelper.trackMissionForm('addSurveyItem', this.$store)
       if (this.s.showErrors) {
         this.$store.commit('missionForm/hideErrors')
       }

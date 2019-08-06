@@ -55,11 +55,11 @@ export default {
   },
   methods: {
     disabledClick() {
-      this.$mpApp.trackProject('attemptSubmitEditInvalid', this.$store)
+      this.$mpAppHelper.trackProject('attemptSubmitEditInvalid', this.$store)
       this.showErrors = true
     },
     submit() {
-      this.$mpApp.trackProject('submitEdit', this.$store)
+      this.$mpAppHelper.trackProject('submitEdit', this.$store)
       this.$store.dispatch('projectForm/submit')
     }
   }

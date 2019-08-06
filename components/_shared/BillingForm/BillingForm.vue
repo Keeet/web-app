@@ -131,14 +131,14 @@ export default {
   },
   methods: {
     disabledSubmit() {
-      this.$mpApp.trackBilling('attemptSubmitInvalidForm')
+      this.$mpAppHelper.trackBilling('attemptSubmitInvalidForm')
       if (this.hasChangedSinceInit) {
         this.showErrors = true
         scrollToTopId(this.s.invalidFields.map(field => field.id))
       }
     },
     submit() {
-      this.$mpApp.trackBilling('submit')
+      this.$mpAppHelper.trackBilling('submit')
       this.$store.dispatch('billingForm/submit').then(() => {
         this.$store.commit('billingForm/init', this.company.billingConfig)
         this.$emit('submitted')

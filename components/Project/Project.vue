@@ -124,7 +124,7 @@ export default {
         : `${getMonthName(date)} ${year}`
     },
     createMission() {
-      this.$mpApp.trackMissionForm('open', this.$store)
+      this.$mpAppHelper.trackMissionForm('open', this.$store)
       this.$store.dispatch('missionForm/initProjectMission', { project: this.project })
       this.$router.push('/missions/create')
     }
