@@ -18,7 +18,7 @@ export default ({ app: { $fetch }, store }, inject) => {
 
     inject('mpSurvey', mixpanelActive ? mpSurvey : devMock)
     inject('mpApp', mixpanelActive ? mpApp : devMock)
-    inject('mpAppHelper', mixpanelActive ? {
+    inject('mpAppHelper', {
       trackProject: (eventName) => {
         mpApp.track(fullEventName('project', eventName))
       },
@@ -49,7 +49,7 @@ export default ({ app: { $fetch }, store }, inject) => {
       trackBilling: (eventName) => {
         mpApp.track(eventName('billing', eventName))
       }
-    } : devMock)
+    })
   })
 }
 
