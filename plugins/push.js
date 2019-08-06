@@ -17,7 +17,8 @@ const OPERATIONS = {
   SUBMIT_MISSION_ORDER: 'SUBMIT_MISSION_ORDER',
   CREATE_MISSION_INSIGHT_LINK: 'CREATE_MISSION_INSIGHT_LINK',
   SUBMIT_SURVEY: 'SUBMIT_SURVEY',
-  UPDATE_SUPER_ADMIN_COMPANY: 'UPDATE_SUPER_ADMIN_COMPANY'
+  UPDATE_SUPER_ADMIN_COMPANY: 'UPDATE_SUPER_ADMIN_COMPANY',
+  SET_TEST_COMPANY: 'SET_TEST_COMPANY'
 }
 
 export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, inject) {
@@ -361,6 +362,18 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, in
         $axios({
           method: 'put',
           url: `/internal/companies/${companyId}`
+        }).then(handleRes).catch(handleError)
+      })
+    },
+    setTestCompany(auth0UserId) {
+      return new Promise((resolve, reject) => {
+        const handleRes = handleResponse.bind(this, OPERATIONS.SET_TEST_COMPANY, null, resolve, reject)
+        $axios({
+          method: 'post',
+          url: 'internal/user/test',
+          data: {
+            auth0UserId
+          }
         }).then(handleRes).catch(handleError)
       })
     }

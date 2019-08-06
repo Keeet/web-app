@@ -19,7 +19,7 @@
         <div v-else>
           <Headline
             :text="$t('shared.error.default.headline', $store.state.locale)"
-            :subline="error.message"
+            :subline="error.message.toString()"
           />
         </div>
         <div

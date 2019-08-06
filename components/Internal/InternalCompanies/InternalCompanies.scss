@@ -1,4 +1,13 @@
 .internal-companies {
-  width: 600px;
-  min-height: 100px;
+
+  .internal-companies-headline {
+    font-weight: 500;
+    font-size: 120%;
+    margin-bottom: 20px;
+  }
+
+  .internal-companies-items {
+    width: 600px;
+    min-height: 100px;
+  }
 }

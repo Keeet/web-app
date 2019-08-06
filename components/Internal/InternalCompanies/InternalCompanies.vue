@@ -1,14 +1,19 @@
 <template>
-  <div v-if="!pending" class="internal-companies">
-    <InternalCompaniesItem
-      v-for="(company, index) in companies"
-      :key="index"
-      :name="company.name"
-      :company-id="company.id"
-      @click.native="selectCompany(company.id)"
-    />
+  <div class="internal-companies">
+    <p class="internal-companies-headline">
+      Switch company
+    </p>
+    <div v-if="!pending" class="internal-companies-items">
+      <InternalCompaniesItem
+        v-for="(company, index) in companies"
+        :key="index"
+        :name="company.name"
+        :company-id="company.id"
+        @click.native="selectCompany(company.id)"
+      />
+    </div>
+    <Loading v-else />
   </div>
-  <Loading v-else />
 </template>
 
 <script>
