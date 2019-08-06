@@ -59,6 +59,7 @@ export default {
   },
   methods: {
     submitForm() {
+      this.$mpApp.track('createCompanySubmit')
       this.$store.dispatch('companyForm/submit').then(() => {
         this.$emit('submit')
       })

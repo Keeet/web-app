@@ -27,7 +27,7 @@
       <BillingMissing
         v-if="$store.state.missionFormRecruit.billingModalOpened"
         :no-admin-text="$t('missionCreate.recruit.summary.billingMissionNoAdmin', $store.state.locale)"
-        @hide="$store.commit('missionFormRecruit/hideBillingModal')"
+        @hide="hideBillingMissing"
       />
     </MissionCreateRecruitStep>
   </div>
@@ -52,13 +52,18 @@ export default {
     MissionCreateRecruitForm
   },
   methods: {
+    hideBillingMissing() {
+      this.$mpAppHelper.trackMissionForm('hideBillingMissing', this.$store)
+      this.$store.commit('missionFormRecruit/hideBillingModal')
+    },
     submit() {
       const { missionForm, missionFormPersona, company: { billingConfig } } = this.$store.state
       if (!billingConfig) {
+        this.$mpAppHelper.trackMissionForm('attemptSubmitWithoutBilling', this.$store)
         this.$store.commit('missionFormRecruit/showBillingModal')
         return
       }
-
+      this.$mpAppHelper.trackMissionForm('submit', this.$store)
       this.$store.commit('missionForm/pending')
       this.$store.dispatch('missionFormRecruit/submit', {
         missionForm,

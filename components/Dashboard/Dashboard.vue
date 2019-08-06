@@ -87,14 +87,25 @@ export default {
   },
   mounted() {
     this.$ga.page(this.$router)
+    this.handleMixpanelTracking()
   },
   beforeMount() {
     this.$store.commit('companyForm/init')
   },
   methods: {
     create() {
+      this.$mpAppHelper.trackProjectCreate('open')
       this.$store.commit('projectForm/init')
       this.$router.push('/projects/create')
+    },
+    handleMixpanelTracking() {
+      if (!this.$store.state.tokenCompanyId) {
+        this.$mpApp.alias(this.$store.state.user.id)
+        this.$mpApp.track('loginNoCompany')
+      } else {
+        this.$mpApp.identify(this.$store.state.user.id)
+        this.$mpApp.track('login')
+      }
     }
   }
 }
