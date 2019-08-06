@@ -179,8 +179,8 @@ export const getters = {
   },
   buildSurvey: (state, getters) => ({ missionForm, dropzoneUploads }) => {
     const survey = getters.buildMission({ missionForm })
-    survey.welcomeLogoId = survey.welcomeLogoId ? dropzoneUploads[survey.welcomeLogoId] : null
-    survey.closingLogoId = survey.closingLogoId ? dropzoneUploads[survey.closingLogoId] : null
+    survey.welcomeLogo = survey.welcomeLogoId ? dropzoneUploads[survey.welcomeLogoId] : null
+    survey.closingLogo = survey.closingLogoId ? dropzoneUploads[survey.closingLogoId] : null
     survey.items.forEach((item, x) => {
       item.id = uuidv4()
       item.index = x
@@ -190,8 +190,8 @@ export const getters = {
           followUp.index = y
         })
       }
-      item.image = item.imageMediaId ? { url: dropzoneUploads[item.imageMediaId] } : null
-      item.images = item.imageMediaIds ? item.imageMediaIds.map(id => ({ url: dropzoneUploads[id] })) : null
+      item.image = item.imageMediaId ? { url: dropzoneUploads[item.imageMediaId] || item.image.url } : null
+      item.images = item.imageMediaIds ? item.imageMediaIds.map((id, x) => ({ url: dropzoneUploads[id] || item[x].image.url })) : null
     })
     return survey
   }
