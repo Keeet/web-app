@@ -134,9 +134,10 @@ export const actions = {
       }
       if (parsed.auth && parsed.id_token) {
         commit('setTokens', { accessToken: parsed.auth, idToken: parsed.id_token })
-      }
-      if (parsed.isTest) {
-        commit('setTestUser')
+
+        if (jwtDecode(parsed.auth)['https://keeet.io/isTest']) {
+          commit('setTestUser')
+        }
       }
     }
   }
