@@ -13,8 +13,9 @@ mixpanel.init('6c1bce81a6ee95e4298342cd9ff334e8', {}, 'mpApp')
 const { mpSurvey, mpApp } = mixpanel
 
 export default ({ app: { $fetch }, store }, inject) => {
-  fetchCompanyIfMissing({ store, $fetch }).then(() => {
-    const mixpanelActive = process.env.NODE_ENV === 'production' && !store.state.company.test
+  fetchCompanyIfLoggedInAndMissing({ store, $fetch }).then(() => {
+    const mixpanelActive =
+      process.env.NODE_ENV === 'production' && (!store.state.company.test || !store.state.tokenCompanyId)
 
     inject('mpSurvey', mixpanelActive ? mpSurvey : devMock)
     inject('mpApp', mixpanelActive ? mpApp : devMock)
@@ -53,9 +54,9 @@ export default ({ app: { $fetch }, store }, inject) => {
   })
 }
 
-function fetchCompanyIfMissing({ store, $fetch }) {
+function fetchCompanyIfLoggedInAndMissing({ store, $fetch }) {
   return new Promise((resolve) => {
-    if (!store.state.company) {
+    if (store.state.tokenCompanyId && !store.state.company) {
       $fetch([{ name: 'COMPANY' }]).then(resolve)
     } else {
       resolve()
