@@ -72,6 +72,13 @@ export default {
       this.$store.commit('missionForm/showConfirmInProgress')
     }
   },
+  beforeDestroy() {
+    if (this.s.editExisting) {
+      this.$store.commit('missionForm/reset')
+      this.$store.commit('missionFormRecruit/reset')
+      this.$store.commit('missionFormSurvey/reset')
+    }
+  },
   methods: {
     cancel() {
       if (this.s.activeStep === 0 || this.s.editExisting) {
