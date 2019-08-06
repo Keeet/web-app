@@ -352,7 +352,9 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, in
             orderId,
             cintUserId
           },
-          noAuth: true
+          headers: {
+            Authorization: 'none'
+          }
         }).then(resolve)
       })
     },
