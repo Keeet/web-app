@@ -89,11 +89,13 @@ export default {
   },
   methods: {
     next() {
+      this.$emit('next')
       if (this.nextStepMutation) {
         this.$store.commit(this.nextStepMutation)
       }
     },
     prev() {
+      this.$emit('prev')
       if (this.prevStepMutation) {
         this.$store.commit(this.prevStepMutation)
       }

@@ -126,6 +126,7 @@ export default {
   },
   methods: {
     dzChange(value) {
+      this.$mpAppHelper.trackMissionForm('uploadImageInteraction', this.$store)
       if (this.multiUpload) {
         this.$store.commit('missionFormSurvey/setItemImageMediaIds', {
           imageMediaIds: value,

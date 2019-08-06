@@ -172,6 +172,7 @@ export default {
   },
   methods: {
     switchCustomize() {
+      this.$mpAppHelper.trackMissionForm('switchCustomScreen', this.$store)
       this.$store.dispatch(
         'missionFormSurvey/switchCustomize',
         {

@@ -67,10 +67,14 @@ export default {
   },
   methods: {
     editProject() {
+      this.$mpAppHelper.trackProject('openEdit', this.$store)
       this.$store.commit('projectForm/init', this.project)
       this.$store.commit('projectForm/setOverlayOpened', true)
     },
-    closeDeleteConfirm() {
+    closeDeleteConfirm(deleted = false) {
+      if (!deleted) {
+        this.$mpAppHelper.trackProject('abortDelete', this.$store)
+      }
       this.$store.commit('projectPage/closeDeleteConfirm')
     },
     deleteProject() {
@@ -79,14 +83,16 @@ export default {
           ...this.$store.state.company,
           sampleProjectDeleted: true
         }
+        this.$mpAppHelper.trackProject('deleteSample', this.$store)
         this.$push.upsertCompany(company).then(this.afterDeleteProject)
       } else {
+        this.$mpAppHelper.trackProject('delete', this.$store)
         this.$push.deleteProject(this.project.id).then(this.afterDeleteProject)
       }
     },
     afterDeleteProject() {
       this.$store.commit('setProject', null)
-      this.closeDeleteConfirm()
+      this.closeDeleteConfirm(true)
       this.$router.push('/')
     }
   }

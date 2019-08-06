@@ -17,14 +17,14 @@ import Loading from '../../_shared/Loading/Loading'
 export default {
   name: 'InternalCompanies',
   components: { Loading, InternalCompaniesItem },
-  computed: {
-    companies() {
-      return this.$store.state.superAdminCompanies
-    }
-  },
   data() {
     return {
       pending: false
+    }
+  },
+  computed: {
+    companies() {
+      return this.$store.state.superAdminCompanies
     }
   },
   methods: {
