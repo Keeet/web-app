@@ -8,6 +8,7 @@ export const state = () => ({
   accessToken: null,
   idToken: null,
   auth0User: null,
+  isTestUser: false,
   tokenCompanyId: null,
   locale: LANGUAGES.EN,
   user: null,
@@ -53,6 +54,9 @@ export const mutations = {
     state.idToken = idToken
     state.auth0User = jwtDecode(idToken)
     state.tokenCompanyId = jwtDecode(accessToken)['https://keeet.io/companyId']
+  },
+  setTestUser(state) {
+    state.isTestUser = true
   },
   setLocale(state, locale) {
     state.locale = locale
@@ -125,8 +129,14 @@ export const actions = {
   nuxtServerInit({ commit }, { req }) {
     if (req.headers.cookie) {
       const parsed = cookieParser.parse(req.headers.cookie)
-      if (parsed && parsed.auth && parsed.id_token) {
+      if (!parsed) {
+        return
+      }
+      if (parsed.auth && parsed.id_token) {
         commit('setTokens', { accessToken: parsed.auth, idToken: parsed.id_token })
+      }
+      if (parsed.isTest) {
+        commit('setTestUser')
       }
     }
   }
