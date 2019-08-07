@@ -1,7 +1,13 @@
 import { MISSIONS, MISSION_RECRUIT_STUDY_TYPES } from '../components/constants'
 
+const {
+  USER_INTERVIEW,
+  WORKSHOP,
+  FOCUS_GROUP
+} = MISSION_RECRUIT_STUDY_TYPES
+
 const defaultState = {
-  studyType: MISSION_RECRUIT_STUDY_TYPES.USER_INTERVIEW,
+  studyType: USER_INTERVIEW,
   duration: null,
   location: null,
   locationFormOpened: false,
@@ -35,6 +41,17 @@ export const getters = {
   buildMission: state => ({ missionForm, missionFormPersona }) => {
     const { projectId, type, title, titlePlaceholder, language, participants } = missionForm
     const { studyType, duration, sessions, location } = state
+
+    const sessionStartDates = sessions.map(session => session.start.toISOString())
+    const formattedSessions = []
+    if ([WORKSHOP, FOCUS_GROUP].includes(studyType)) {
+      [...Array(participants).keys()].forEach(() => {
+        formattedSessions.push(sessionStartDates[0])
+      })
+    } else {
+      Array.prototype.push.apply(formattedSessions, sessionStartDates)
+    }
+
     const mission = {
       projectId,
       type,
@@ -43,7 +60,7 @@ export const getters = {
       duration: parseInt(duration),
       language,
       participants,
-      sessions: sessions.map(session => session.start.toISOString()),
+      sessions: formattedSessions,
       demographicData: missionFormPersona,
       specialCriteria: missionFormPersona.specialCriteria.map(sc => sc.value)
     }
