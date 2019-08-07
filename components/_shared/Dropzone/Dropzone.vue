@@ -77,8 +77,8 @@ export default {
       type: Boolean,
       default: false
     },
-    alreadyUploadedFileUrls: {
-      type: [Array, String],
+    alreadyUploadedFiles: {
+      type: [Array, Object],
       default: null
     }
   },
@@ -139,7 +139,7 @@ export default {
   mounted() {
     this.dz = this.$refs[this.id].dropzone
 
-    if (this.alreadyUploadedFileUrls) {
+    if (this.alreadyUploadedFiles) {
       this.setAlreadyUploadedFiles()
     }
   },
@@ -200,15 +200,16 @@ export default {
       this.selected = []
     },
     setAlreadyUploadedFiles() {
-      const urls = Array.isArray(this.alreadyUploadedFileUrls)
-        ? this.alreadyUploadedFileUrls
-        : [this.alreadyUploadedFileUrls]
-      const files = urls.map(url => ({
-        dataURL: `https://images.keeet.io/unsafe/300x300/${encodeURIComponent(url)}`,
+      const propFiles = Array.isArray(this.alreadyUploadedFiles)
+        ? this.alreadyUploadedFiles
+        : [this.alreadyUploadedFiles]
+      const files = propFiles.map(file => ({
+        dataURL: `https://images.keeet.io/unsafe/300x300/${encodeURIComponent(file.url)}`,
         alreadyUploaded: true,
         upload: {
           uuid: uuid.v4()
-        }
+        },
+        id: file.id
       }))
       files.forEach((file) => {
         this.dz.files.push(file)
@@ -220,6 +221,10 @@ export default {
             this.dz.emit('thumbnail', file, thumbnail)
           }, true)
         this.dz.emit('complete', file)
+        this.selected.push({
+          dzId: file.upload.uuid,
+          id: file.id
+        })
       })
     }
   }
