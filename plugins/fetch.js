@@ -58,6 +58,11 @@ const config = {
     mutation: 'twilio/initUser',
     baseUrl: 'https://streaming.keeet.io',
     noAuth: true
+  },
+  SUPER_ADMIN_COMPANIES: {
+    path: '/internal/companies',
+    mutation: 'setSuperAdminCompanies',
+    key: 'superAdminCompanies'
   }
 }
 

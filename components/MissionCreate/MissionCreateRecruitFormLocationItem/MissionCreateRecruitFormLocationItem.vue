@@ -1,5 +1,8 @@
 <template>
-  <div class="mission-create-recruit-form-location-item" :class="{ active }">
+  <div class="mission-create-recruit-form-location-item" :class="{ active, error }">
+    <p v-if="error" class="mission-create-recruit-form-location-item-error">
+      {{ error }}
+    </p>
     <div class="mission-create-recruit-form-location-item-inner">
       <div v-if="location && !create" class="mission-create-recruit-form-location-item-content">
         <div class="mission-create-recruit-form-location-item-content-icon">
@@ -20,7 +23,7 @@
           <IconPlus />
         </div>
         <p class="mission-create-recruit-form-location-item-empty-text">
-          Add new location
+          {{ $t('missionCreate.recruit.generalForm.addLocationButton', $store.state.locale) }}
         </p>
       </div>
     </div>
@@ -44,6 +47,10 @@ export default {
     create: {
       type: Boolean,
       default: false
+    },
+    error: {
+      type: String,
+      default: null
     }
   },
   data() {

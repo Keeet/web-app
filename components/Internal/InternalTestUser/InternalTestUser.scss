@@ -1,0 +1,32 @@
+.internal-test-user {
+  margin-bottom: 60px;
+  width: 600px;
+
+  .internal-test-user-headline {
+    font-weight: 500;
+    font-size: 120%;
+    margin-bottom: 20px;
+  }
+
+  .internal-test-user-form {
+    background-color: #fff;
+    padding: 0 20px;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.05);
+
+    .internal-test-user-form-pending {
+      width: 50px;
+      margin: 0 auto;
+    }
+
+    .internal-test-user-form-inner {
+      display: flex;
+      align-items: center;
+
+      .internal-test-user-form-input {
+        flex-grow: 1;
+        margin-right: 20px;
+      }
+    }
+  }
+}

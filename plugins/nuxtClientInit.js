@@ -1,4 +1,4 @@
-import { isAuthUrl, isExternalUrl } from '../utils/urlUtils'
+import { isAuthUrl, isExternalUrl, matchesPathPattern } from '../utils/urlUtils'
 
 export default (context) => {
   fetchUserIfLoggedIn(context)
@@ -10,6 +10,10 @@ export default (context) => {
 
   setCssVh()
   window.addEventListener('resize', setCssVh)
+
+  window.onbeforeunload = function () {
+    return shouldWarnOnReload(context)
+  }
 }
 
 function setCssVh() {
@@ -34,4 +38,16 @@ function fetchUserIfLoggedIn({ store, redirect, route, app: { $fetch, $auth } })
       })
     }
   })
+}
+
+function shouldWarnOnReload({ store, route }) {
+  const IS_SURVEY = matchesPathPattern(route, '/survey/:id?')
+  if (IS_SURVEY && store.state.surveyForm.activeItemIndex !== null && route.path !== '/survey/preview' && !store.state.surveyForm.activeClosing) {
+    return true
+  }
+  const IS_MISSION_CREATE_OR_UPDATE = ['/missions/create', '/missions/edit'].includes(route.path)
+  if (IS_MISSION_CREATE_OR_UPDATE && store.state.missionForm.activeStep !== 0) {
+    return true
+  }
+  return undefined
 }

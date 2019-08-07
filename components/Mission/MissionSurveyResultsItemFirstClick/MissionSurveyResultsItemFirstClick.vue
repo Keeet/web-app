@@ -3,7 +3,7 @@
     <div class="mission-survey-results-first-click-switch">
       <SwitchButton
         :on="heatmapEnabled"
-        label="Heatmap"
+        :label="$t('mission.survey.results.heatmapSwitchLabel', $store.state.locale)"
         small
         bg-color-class="FIRST_CLICK"
         @switch="heatmapEnabled = !heatmapEnabled"

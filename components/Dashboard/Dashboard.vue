@@ -2,14 +2,14 @@
   <div class="dashboard">
     <OverlayModal
       v-if="!$store.state.tokenCompanyId"
-      title="Last Step"
+      :title="$t('dashboard.createCompanyFormTitle', $store.state.locale)"
       no-close
       :loading="companyForm.pending"
     >
       <CompanyForm />
     </OverlayModal>
     <div class="dashboard-head">
-      <Headline text="Projects" />
+      <Headline :text="$t('dashboard.title', $store.state.locale)" />
       <div v-if="$hasAnyRole(['ADMIN', 'USER'])" class="dashboard-create">
         <div v-if="!projects || !projects.length" class="dashboard-create-start">
           <IconStartHereDashboard />
@@ -87,14 +87,25 @@ export default {
   },
   mounted() {
     this.$ga.page(this.$router)
+    this.handleMixpanelTracking()
   },
   beforeMount() {
     this.$store.commit('companyForm/init')
   },
   methods: {
     create() {
+      this.$mpAppHelper.trackProjectCreate('open')
       this.$store.commit('projectForm/init')
       this.$router.push('/projects/create')
+    },
+    handleMixpanelTracking() {
+      if (!this.$store.state.tokenCompanyId) {
+        this.$mpApp.alias(this.$store.state.user.id)
+        this.$mpApp.track('loginNoCompany')
+      } else {
+        this.$mpApp.identify(this.$store.state.user.id)
+        this.$mpApp.track('login')
+      }
     }
   }
 }

@@ -1,13 +1,15 @@
 <template>
   <div class="mission-survey-order">
     <ButtonCircle class="mission-survey-order-cancel" type="ARROW_LEFT" @click="$router.back()" />
-    <div class="mission-survey-order-body">
+    <div v-if="!missionPage.surveyOrderPending" class="mission-survey-order-body">
       <div class="mission-survey-order-body-content">
         <div class="mission-survey-order-body-content-head">
           <MissionSurveyOrderParticipants />
           <MissionSurveyOrderCountry />
         </div>
-        <MissionPersonaCriteria :criteria="[PERSONA_CRITERIA.AGE, PERSONA_CRITERIA.GENDER]" />
+        <MissionPersonaCriteria
+          :criteria="[PERSONA_CRITERIA.AGE, PERSONA_CRITERIA.GENDER]"
+        />
       </div>
       <MissionOrderSummary
         v-if="s.survey.items.length"
@@ -18,9 +20,12 @@
         @submit="submit"
       />
     </div>
+    <div v-else class="mission-survey-order-pending">
+      <Loading fixed-center />
+    </div>
     <BillingMissing
       v-if="missionPage.surveyOrderBillingAddressOpened"
-      no-admin-text="Your admin has to add a billing address before you can order testers."
+      :no-admin-text="$t('missionSurveyOrder.billingMissionNoAdmin', $store.state.locale)"
       @hide="$store.commit('missionPage/hideSurveyOrderBillingAddress')"
     />
     <MissionSurveyRelease
@@ -34,7 +39,6 @@
 import {
   PERSONA_GENDERS,
   PERSONA_GENDER_LABELS,
-  PERSONA_COUNTRIES,
   COUNTRY_LABELS,
   PERSONA_CRITERIA,
   MISSION_STATUS
@@ -44,14 +48,15 @@ import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
 import MissionOrderSummary from '../_shared/MissionOrderSummary/MissionOrderSummary'
 import BillingMissing from '../_shared/BillingMissing/BillingMissing'
 import MissionSurveyRelease from '../_shared/MissionSurveyRelease/MissionSurveyRelease'
+import Loading from '../_shared/Loading/Loading'
 import MissionSurveyOrderParticipants from './MissionSurveyOrderParticipants/MissionSurveyOrderParticipants'
 import MissionSurveyOrderCountry from './MissionSurveyOrderCountry/MissionSurveyOrderCountry'
 
 export default {
   name: 'MissionSurveyOrder',
-  components: { MissionSurveyRelease, BillingMissing, MissionSurveyOrderCountry, MissionOrderSummary, ButtonCircle, MissionSurveyOrderParticipants, MissionPersonaCriteria },
+  components: { Loading, MissionSurveyRelease, BillingMissing, MissionSurveyOrderCountry, MissionOrderSummary, ButtonCircle, MissionSurveyOrderParticipants, MissionPersonaCriteria },
   data() {
-    return { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_LABELS, PERSONA_CRITERIA }
+    return { PERSONA_GENDERS, PERSONA_GENDER_LABELS, COUNTRY_LABELS, PERSONA_CRITERIA }
   },
   computed: {
     mission() {
@@ -86,22 +91,29 @@ export default {
       }
     },
     cancel() {
+      this.$mpAppHelper.trackMissionSurveyOrder('abort', this.$store)
       this.$router.push(`/missions/${this.mission.id}/share`)
     },
     submit() {
       if (!this.$store.state.company.billingConfig) {
+        this.$mpAppHelper.trackMissionSurveyOrder('attemptSubmitWithoutBillingAddress', this.$store)
         this.$store.commit('missionPage/showSurveyOrderBillingAddress')
         return
       }
       if (this.mission.status === MISSION_STATUS.DRAFT) {
+        this.$mpAppHelper.trackMissionSurveyOrder('attemptSubmitDraft', this.$store)
         this.$store.commit('missionPage/showSurveyRelease')
         return
       }
+      this.$mpAppHelper.trackMissionSurveyOrder('submit', this.$store)
+      this.$store.commit('missionPage/surveyOrderPending')
       this.$push.submitMissionOrder({
         ...this.buildOrderRequest(),
         missionId: this.mission.id
       }).then(() => {
-        this.$router.push(`/missions/${this.mission.id}`)
+        this.$router.push(`/missions/${this.mission.id}`, () => {
+          this.$store.commit('missionPage/surveyOrderSubmitted')
+        })
       })
     }
   }

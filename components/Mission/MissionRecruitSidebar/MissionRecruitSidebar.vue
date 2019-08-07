@@ -2,24 +2,24 @@
   <MissionSidebar>
     <div class="mission-recruit-sidebar">
       <MissionCountProgress
-        title="RECRUITED"
+        :title="$t('mission.sidebar.recruit.recruitedLabel', $store.state.locale)"
         :count-current="recruitedCount"
-        :count-total="mission.sessions.length"
+        :count-total="participants"
       />
-      <SidebarLeftHeadline text="Target audience" />
+      <SidebarLeftHeadline :text="$t('mission.sidebar.recruit.targetAudience', $store.state.locale)" />
       <MissionRecruitSidebarLine type="PERSONA" grey-bg>
-        <MissionPersonaCriteriaTextBoxes :persona="mission.recruitmentOrders[0].demographicData" />
+        <MissionPersonaCriteriaTextBoxes :persona="persona" />
       </MissionRecruitSidebarLine>
-      <SidebarLeftHeadline text="General Information" />
+      <SidebarLeftHeadline :text="$t('mission.sidebar.recruit.generalInformation', $store.state.locale)" />
       <MissionRecruitSidebarLine v-if="isInHouse" type="LOCATION" :grey-bg="isInHouse">
         <p>{{ mission.street }}, {{ mission.houseNumber }}</p>
         <p>{{ mission.zipCode }} {{ mission.city }}</p>
       </MissionRecruitSidebarLine>
       <MissionRecruitSidebarLine type="DURATION" :grey-bg="!isInHouse">
-        {{ mission.duration }} min
+        {{ $t('mission.sidebar.recruit.duration', $store.state.locale, { duration: mission.duration }) }}
       </MissionRecruitSidebarLine>
       <MissionRecruitSidebarLine type="PARTICIPANTS" :grey-bg="isInHouse">
-        {{ mission.sessions.length }} test users
+        {{ $t('mission.sidebar.recruit.participants', $store.state.locale, { count: participants }) }}
       </MissionRecruitSidebarLine>
     </div>
   </MissionSidebar>
@@ -49,6 +49,16 @@ export default {
     },
     isInHouse() {
       return this.mission.type === MISSIONS.IN_HOUSE
+    },
+    participants() {
+      return this.mission.recruitmentOrders[0].participants
+    },
+    persona() {
+      const orders = this.mission.recruitmentOrders[0]
+      return {
+        ...orders.demographicData,
+        specialCriteria: orders.specialCriteria
+      }
     }
   }
 }

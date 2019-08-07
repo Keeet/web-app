@@ -1,7 +1,13 @@
 <template>
   <div class="mission-survey-results-item-bars-horizontal-item" :class="{ first, last }">
     <div class="mission-survey-results-item-bars-horizontal-item-subject">
-      <img v-if="surveyType === PREFERENCE_TEST" :src="subject">
+      <ThumborImage
+        v-if="surveyType === PREFERENCE_TEST"
+        class="mission-survey-results-item-bars-horizontal-item-subject-img"
+        :src="subject"
+        :width="500"
+        auto-width
+      />
       <span v-else>{{ subject }}</span>
     </div>
     <div class="mission-survey-results-item-bars-horizontal-item-bar">
@@ -15,7 +21,7 @@
         {{ percentText }}
       </p>
       <p class="mission-survey-results-item-bars-horizontal-item-bar-responses">
-        {{ absolute }} {{ absolute === 1 ? 'response' : 'responses' }}
+        {{ $tc('mission.survey.results.countResponses', absolute, { count: absolute }) }}
       </p>
     </div>
   </div>
@@ -23,9 +29,11 @@
 
 <script>
 import { MISSION_SURVEY_ITEMS, MISSION_SURVEY_USABILITY_LAB_ITEMS } from '../../constants'
+import ThumborImage from '../../_shared/ThumborImage/ThumborImage'
 
 export default {
   name: 'MissionSurveyResultsItemBarsHorizontalItem',
+  components: { ThumborImage },
   props: {
     subject: {
       type: String,

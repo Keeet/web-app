@@ -16,7 +16,7 @@
         :class="{ disabled: callDisabled }"
         @click="startCall"
       >
-        Start call
+        {{ $t('mission.recruit.overview.session.startCall', $store.state.locale) }}
       </p>
     </div>
   </div>

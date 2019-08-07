@@ -1,27 +1,27 @@
 <template>
   <OverlayModal
-    title="Add external document"
+    :title="$t('mission.recruit.insights.form.title', $store.state.locale)"
     :loading="s.pending"
     @close="$store.commit('missionPage/closeInsightForm')"
   >
     <Input
-      title="Url"
-      placeholder="https://docs.google.com/document/d/1f3nxVg1h"
+      :title="$t('mission.recruit.insights.form.urlLabel', $store.state.locale)"
+      :placeholder="$t('mission.recruit.insights.form.urlPlaceholder', $store.state.locale)"
       :error="urlError"
       :disable-error="!showErrors"
       :value="s.url"
       mutation="missionInsightsForm/setUrl"
     />
     <Input
-      title="Titel"
-      placeholder="Interview notes"
+      :title="$t('mission.recruit.insights.form.titleLabel', $store.state.locale)"
+      :placeholder="$t('mission.recruit.insights.form.titlePlaceholder', $store.state.locale)"
       :error="titleError"
       :disable-error="!showErrors"
       :value="s.title"
       mutation="missionInsightsForm/setTitle"
     />
     <Input
-      title="Description"
+      :title="$t('mission.recruit.insights.form.descriptionLabel', $store.state.locale)"
       :value="s.description"
       :error="descriptionError"
       :disable-error="!showErrors"
@@ -29,7 +29,7 @@
       textarea
     />
     <ButtonText
-      text="Add"
+      :text="$t('mission.recruit.insights.form.submit', $store.state.locale)"
       :disabled="!valid"
       @disabledClick="showErrors = true"
       @click="submit"

@@ -1,10 +1,12 @@
 <template>
   <div class="mission-create-survey-item-five-second-test">
     <p class="mission-create-survey-item-five-second-test-explanation">
-      We will warn participants that the following design will only be visible for a limited time.
+      {{ $t('missionCreate.survey.items.fiveSecondTest.explanation', $store.state.locale) }}
     </p>
     <div class="mission-create-survey-item-five-second-test-input">
-      <p>Design shown for</p>
+      <p>
+        {{ $t('missionCreate.survey.items.fiveSecondTest.durationLabel1', $store.state.locale) }}
+      </p>
       <div class="mission-create-survey-item-five-second-test-input-item">
         <Input
           :value="item.duration.toString()"
@@ -14,7 +16,9 @@
           @change="setDuration"
         />
       </div>
-      <p>seconds.</p>
+      <p>
+        {{ $t('missionCreate.survey.items.fiveSecondTest.durationLabel2', $store.state.locale) }}
+      </p>
     </div>
     <MissionCreateSurveyUsabilityLabUpload :index="index" />
   </div>

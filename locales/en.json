@@ -1,4 +1,426 @@
 {
+  "shared": {
+    "billingForm": {
+      "companyLabel": "Company Name",
+      "emailLabel": "Email*",
+      "emailPlaceholder": "billing@keeet.io",
+      "vatLabel": "VAT number / tax ID",
+      "streetLabel": "Street*",
+      "streetPlaceholder": "Rosenthaler Str.",
+      "houseNumberLabel": "Number*",
+      "houseNumberPlaceholder": "101",
+      "cityLabel": "City*",
+      "cityPlaceholder": "Berlin",
+      "zipLabel": "ZIP*",
+      "zipPlaceholder": "10369",
+      "countryLabel": "Country*",
+      "submit": "Submit"
+    },
+    "billingMissing": {
+      "billingFormTitle": "Add billing address",
+      "noAdmin": {
+        "title": "Billing address missing",
+        "confirmLabel": "Billing preferences",
+        "cancelLabel": "Cancel"
+      }
+    },
+    "companyForm": {
+      "title": "Edit Company",
+      "companyLabel": "Company Name*",
+      "companyPlaceholder": "Keeet",
+      "updateButton": "Save changes",
+      "createButton": "Go"
+    },
+    "dropzone": {
+      "singleDelete": "delete",
+      "multiDelete": "delete all"
+    },
+    "error": {
+      "default": {
+        "headline": "Oops something went wrong."
+      },
+      "404": {
+        "headline": "Oops something went wrong.",
+        "subheadline": "The page you are looking for was not found."
+      },
+      "cancelButton": "Back to Homepage"
+    },
+    "footer": {
+      "landingPageLink": "Keeet",
+      "imprintLink": "Imprint",
+      "termsLink": "Terms of Service",
+      "privacyLink": "Privacy Policy",
+      "logoutLink": "Logout"
+    },
+    "formStep": {
+      "nextButton": "Next",
+      "prevButton": "Back"
+    },
+    "missionOrderSummary": {
+      "headline": "Order summary",
+      "sumLabel": "Total",
+      "footerNote": "Includes incentives and excludes VAT.",
+      "cancelButton": "Back",
+      "defaultSubmitButton": "Order",
+      "countParticipants": "0 participants | 1 participant | {count} participants",
+      "countResponses": "0 responses | 1 response | {count} responses"
+    },
+    "missionPersonaCriteria": {
+      "age": {
+        "headline": "Age (optional)",
+        "textBox": "{minAge} - {maxAge} years old"
+      },
+      "gender": {
+        "headline": "Gender (optional)"
+      },
+      "language": {
+        "headline": "Language",
+        "selectSecondaryCosts": "Selecting a secondary language costs additional 5 € per person.",
+        "selectSecondaryLabel": "Select secondary language",
+        "selectSecondaryNullLabel": "No secondary language"
+      },
+      "country": {
+        "headline": "Country"
+      },
+      "deviceSkills": {
+        "headline": "Device skills (optional)"
+      },
+      "specialCriteria": {
+        "headline": "Special criteria (optional)",
+        "note": "Please only insert one special criteria per input. We will create screener questions to find eligible participants.",
+        "example": "e.g. Must own a car."
+      }
+    },
+    "missionSideBox": {
+      "headline": "{missionLabel} Mission"
+    },
+    "missionSurveyRelease": {
+      "title": "Release mission",
+      "text": "Your mission is still a draft. Released missions cannot be edited any more.",
+      "confirmLabel": "Release mission",
+      "cancelLabel": "Cancel"
+    },
+    "nav": {
+      "dashboardLink": "Dashboard",
+      "internalLink": "Internal",
+      "requestFeatureLink": "Request feature",
+      "welcome": "Hello, {name}"
+    },
+    "staging": {
+      "activeBranch": "staging: {branch}"
+    }
+  },
+  "account": {
+    "title": "Account",
+    "billing": {
+      "navLabel": "Billing",
+      "noAdmin": "Please contact the admin to edit the billing address."
+    },
+    "profile": {
+      "navLabel": "Profile",
+      "memberSince": "Member since {date}",
+      "editButton": "Edit Company"
+    },
+    "team": {
+      "navLabel": "Team",
+      "members": {
+        "title": "Members ({count})",
+        "youLabel": "(you)"
+      },
+      "invite": {
+        "title": "Invite members",
+        "emailLabel": "Email address",
+        "emailPlaceholder": "max.mustermann@gmail.com",
+        "selectRoleLabel": "Role",
+        "submit": "Invite"
+      }
+    }
+  },
+  "authCallback": {
+    "emailNotVerified": "Please verify your email",
+    "emailNotVerifiedDescription": "We sent a verification mail to your email address. Please check your inbox and click on the verification link to start using Keeet."
+  },
+  "dashboard": {
+    "createCompanyFormTitle": "Last Step",
+    "title": "Projects"
+  },
+  "mission": {
+    "countProgressTotal": "out of {total}",
+    "sidebar": {
+      "descriptionDefault": "Enter your mission description here. Share briefly why you are conducting this mission in order to keep everyone on the same page.",
+      "deleteButton": "delete mission",
+      "recruit": {
+        "recruitedLabel": "RECRUITED",
+        "targetAudience": "Target Audience",
+        "generalInformation": "General Information",
+        "duration": "{duration} min",
+        "participants": "{count} test users"
+      },
+      "survey": {
+        "responsesTitle": "RESPONSES",
+        "responsesLabel": "responses",
+        "averageDurationTitle": "AVERAGE DURATION",
+        "averageDurationLabel": "/ participant",
+        "previewButton": "go to preview"
+      }
+    },
+    "confirmDelete": {
+      "title": "Are you sure?",
+      "text": "Deleting this mission cannot be undone.",
+      "confirm": "Yes",
+      "cancel": "Cancel"
+    },
+    "metadataForm": {
+      "title": "Edit Mission",
+      "nameLabel": "Name",
+      "namePlaceholder": "Mission name",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Enter your mission description here ...",
+      "submit": "Update"
+    },
+    "recruit": {
+      "overview": {
+        "navLabel": "Overview",
+        "session": {
+          "startCall": "Start call"
+        }
+      },
+      "insights": {
+        "navLabel": "Insights",
+        "recordingsTitle": "Recordings",
+        "form": {
+          "title": "Add external document",
+          "urlLabel": "Url",
+          "urlPlaceholder": "https://docs.google.com/document/d/1f3nxVg1h",
+          "titleLabel": "Title",
+          "titlePlaceholder": "Interview notes",
+          "descriptionLabel": "Description",
+          "submit": "Add"
+        }
+      }
+    },
+    "survey": {
+      "results": {
+        "navLabel": "Results",
+        "headline": "Response Summary",
+        "countOutOf": "{count} out of",
+        "countResponses": "0 responses | 1 response | {count} responses",
+        "heatmapSwitchLabel": "Heatmap",
+        "expandButton": "Expand",
+        "collapseButton": "Collapse",
+        "textQuestionNoResults": "No answers yet"
+      },
+      "share": {
+        "navLabel": "Share",
+        "headline": "Get test results within hours!",
+        "keeetPanel": {
+          "title": "Keeet Panel",
+          "text": "Test with our diverse panel of testers and gain insights in hours!",
+          "orderButton": "Place Order",
+          "orderResponsesLabel": "RESPONSES"
+        },
+        "companyAudience": {
+          "title": "Your audience",
+          "text": "Share link with your own audience!",
+          "createPublicLinkButton": "Create public link",
+          "copyLinkButton": "Copy Link",
+          "copyLinkSuccessfulMessage": "copied"
+        }
+      }
+    }
+  },
+  "missionCreate": {
+    "confirmInProgress": {
+      "title": "Continue form",
+      "text": "Do you want to continue with this mission form?",
+      "confirm": "Yes, continue",
+      "cancel": "No, discard changes"
+    },
+    "selectType": {
+      "headlineDefault": "What do you want to do?",
+      "headlineFirstMission": "Create your first mission",
+      "selectButton": "Select"
+    },
+    "recruit": {
+      "stepHeadline": "{index} / 4 {missionType} Mission",
+      "generalForm": {
+        "titleLabel": "Internal mission name",
+        "studyTypeLabel": "Study type",
+        "participantsLabel": "Number of participants",
+        "durationLabel": "How long does the interview / test last?",
+        "addLocationButton": "Add new location",
+        "locationLabel": "Where does the interview / test take place?",
+        "locationForm": {
+          "title": "Add new location",
+          "companyLabel": "Company Name*",
+          "companyPlaceholder": "Keeet",
+          "streetLabel": "Street*",
+          "streetPlaceholder": "Rosenthaler Str.",
+          "houseNumberLabel": "Number*",
+          "houseNumberPlaceholder": "101",
+          "additionalLabel": "Additional",
+          "additionalPlaceholder": "third backyard",
+          "cityLabel": "City*",
+          "cityPlaceholder": "Berlin",
+          "zipLabel": "ZIP*",
+          "zipPlaceholder": "10369",
+          "countryLabel": "Country*",
+          "submitButton": "Add"
+        }
+      },
+      "persona": {
+        "headline": "Target your participants"
+      },
+      "calendar": {
+        "headline": "When are you able to conduct the interview / test?",
+        "countSelectedTimeSlots": "{selected} of {total} time slots selected",
+        "resetButton": "reset",
+        "notAvailableAlert": {
+          "title": "Timeslot not available",
+          "text": "We need at least {dayCount} workdays to recruit your test users.",
+          "button": "Earliest available timeslots"
+        }
+      },
+      "summary": {
+        "overviewLabel": "Your {studyType}",
+        "overviewDurationValue": "{duration} min",
+        "overviewParticipantsValue": "{count} test users",
+        "targetAudienceLabel": "Target Audience",
+        "datesLabel": "Date & Time",
+        "billingMissionNoAdmin": "Your admin has to add a billing address before you can create In-House and Remote missions."
+      },
+      "submittedPopup": {
+        "title": "Next steps",
+        "text1": "We have received your mission! It can take up to 2 working days until we found eligible participants for you.",
+        "text2": "We will keep you updated on our progress. If you have any questions do not hesitate to contact us.",
+        "button": "Done"
+      }
+    },
+    "survey": {
+      "details": {
+        "headline": "Mission Details",
+        "titleLabel": "Internal mission name",
+        "languageLabel": "Language*"
+      },
+      "customScreens": {
+        "switchLabel": "Customize",
+        "titleLabel": "Title",
+        "messageLabel": "Message",
+        "logoLabel": "Branding",
+        "logoUpload": "Upload a photo / logo",
+        "colorLabel": "Accent Color",
+        "welcomeScreen": {
+          "title": "Default Welcome Screen",
+          "subtitle": "The first thing your audience will see - a great opportunity to engage right away."
+        },
+        "closingScreen": {
+          "title": "Default Thank You Screen",
+          "subtitle": "The last thing your audience will see. Thank your participants for their effort and time.",
+          "redirectLinkLabel": "Redirect Link",
+          "redirectLinkPlaceholder": "https://"
+        }
+      },
+      "items": {
+        "addLine": "Add a new task",
+        "addBox": {
+          "headline": "Add a question",
+          "shortTextDescription": "Good for short answers, like names and what you had for lunch.",
+          "longTextDescription": "Good for long answers like the Meaning of life.",
+          "singleSelectDescription": "Give your participant options to choose from.",
+          "multiSelectDescription": "Give your participant options to choose from.",
+          "linearScaleDescription": "Give your participant a numbered scale to choose from.",
+          "likertDescription": "Ask your participant to respond to a statement about a topic and measure their attitude.",
+          "firstClickDescription": "Show your participants an interface and examine what they click on first to complete the task.",
+          "fiveSecondTestDescription": "Show your participants a design for set number of seconds and ask questions to test their recall afterwards.",
+          "questionListDescription": "Ask your participants a simple question to get even more insights.",
+          "designQuestionDescription": "Show your participants a design and ask simultaneously questions about what they see.",
+          "preferenceTestDescription": "Ask your participants to choose between different options.",
+          "instructionDescription": "Guide your participants through the survey by giving more detailed instructions."
+        },
+        "question": {
+          "titleDefaultLabel": "Question",
+          "titlePlaceholder": "Type question here",
+          "requiredLabel": "Required"
+        },
+        "selectQuestion": {
+          "add": "Add another choice",
+          "showOtherOption": "Show \"Other\" Option",
+          "choicePlaceholder": "Choice"
+        },
+        "likert": {
+          "answerTypeLabel": "Answer type"
+        },
+        "linearScale": {
+          "startValueLabel": "Start value",
+          "startValuePlaceholder": "Start label (left) - optional",
+          "endValueLabel": "End value",
+          "endValuePlaceholder": "End label (right) - optional"
+        },
+        "firstClick": {
+          "titleLabel": "Instruction",
+          "titlePlaceholder": "Where would you click to..."
+        },
+        "fiveSecondTest": {
+          "explanation": "We will warn participants that the following design will only be visible for a limited time.",
+          "durationLabel1": "Design shown for",
+          "durationLabel2": "seconds."
+        },
+        "preferenceTest": {
+          "instructionLabel": "Instruction",
+          "instructionPlaceholder": "Which design do you prefer?"
+        },
+        "instruction": {
+          "textLabel": "Instruction"
+        },
+        "followUp": {
+          "title": "Follow-up questions",
+          "addQuestion": "Add new question"
+        },
+        "upload": {
+          "headline": "Design",
+          "deviceFrameLabel": "Device frame",
+          "emptyTitleSingleUpload": "Upload an image",
+          "emptyTitleMultiUpload": "Upload images",
+          "emptySubtitleSingleUpload": "Click here or drag and drop an image",
+          "emptySubtitleMultiUpload": "Click here or drag and drop images"
+        }
+      },
+      "summary": {
+        "welcomeScreen": "Welcome Screen",
+        "closingScreen": "Thank-you Screen",
+        "durationDefault": "about 1 min",
+        "durationVariables": "{val1} - {val2} min",
+        "cancelButton": "Cancel",
+        "previewButton": "Preview",
+        "submitEditButton": "Update mission",
+        "submitCreateButton": "Create mission"
+      }
+    }
+  },
+  "missionSurveyOrder": {
+    "billingMissingNoAdmin": "Your admin has to add a billing address before you can order testers.",
+    "participantsLabel": "Number of responses"
+  },
+  "project": {
+    "form": {
+      "headline": "Edit Project",
+      "nameLabel": "Name",
+      "namePlaceholder": "Project name",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Enter you project description here to explain what you want to achieve with this research session...",
+      "submitButton": "Update"
+    },
+    "missionLabel": "Info",
+    "empty": {
+      "title": "Create your first mission",
+      "text": "Plan your first research session and gain new valuable insights."
+    }
+  },
+  "projectCreate": {
+    "headline": "Give your project a name!",
+    "namePlaceholder": "Project Name",
+    "submitButton": "Create"
+  },
   "survey": {
     "welcomeButton": "Start",
     "welcomeTitle": "Hey there!",
@@ -90,5 +512,13 @@
       "invalidOverlayTitle": "Invalid survey form",
       "invalidOverlayDescription": "Please check your survey form and fill all required fields"
     }
+  },
+  "twilio": {
+    "joinButton": "Join session",
+    "cancelAppButton": "Back to app",
+    "cancelMissionButton": "Back to mission",
+    "connecting": "Connecting to video stream...",
+    "waiting": "Waiting for other participant...",
+    "otherDisconnected": "The other participant has left the room..."
   }
 }

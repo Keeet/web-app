@@ -9,7 +9,13 @@
     >
       <SidebarLeftHeadline text="Owner" />
       <div class="project-sidebar-owner">
-        <img class="project-sidebar-owner-img" :src="project.owner.profileImage">
+        <div class="project-sidebar-owner-img">
+          <ThumborImage
+            :width="90"
+            :height="90"
+            :src="project.owner.profileImage"
+          />
+        </div>
         <p class="project-sidebar-owner-name">
           {{ project.owner.firstName }} {{ project.owner.lastName }}
         </p>
@@ -40,10 +46,11 @@ import SidebarLeft from '../../_shared/SidebarLeft/SidebarLeft'
 import SidebarLeftHeadline from '../../_shared/SidebarLeftHeadline/SidebarLeftHeadline'
 import Confirm from '../../_shared/Confirm/Confirm'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
+import ThumborImage from '../../_shared/ThumborImage/ThumborImage'
 
 export default {
   name: 'ProjectSidebar',
-  components: { ButtonText, Confirm, SidebarLeftHeadline, SidebarLeft },
+  components: { ThumborImage, ButtonText, Confirm, SidebarLeftHeadline, SidebarLeft },
   computed: {
     project() {
       return this.$store.state.project
@@ -60,10 +67,14 @@ export default {
   },
   methods: {
     editProject() {
+      this.$mpAppHelper.trackProject('openEdit', this.$store)
       this.$store.commit('projectForm/init', this.project)
       this.$store.commit('projectForm/setOverlayOpened', true)
     },
-    closeDeleteConfirm() {
+    closeDeleteConfirm(deleted = false) {
+      if (!deleted) {
+        this.$mpAppHelper.trackProject('abortDelete', this.$store)
+      }
       this.$store.commit('projectPage/closeDeleteConfirm')
     },
     deleteProject() {
@@ -72,15 +83,18 @@ export default {
           ...this.$store.state.company,
           sampleProjectDeleted: true
         }
+        this.$mpAppHelper.trackProject('deleteSample', this.$store)
         this.$push.upsertCompany(company).then(this.afterDeleteProject)
       } else {
+        this.$mpAppHelper.trackProject('delete', this.$store)
         this.$push.deleteProject(this.project.id).then(this.afterDeleteProject)
       }
     },
     afterDeleteProject() {
-      this.$store.commit('setProject', null)
-      this.closeDeleteConfirm()
-      this.$router.push('/')
+      this.$router.push('/', () => {
+        this.$store.commit('setProject', null)
+        this.closeDeleteConfirm(true)
+      })
     }
   }
 }

@@ -21,7 +21,7 @@
       <div class="form-step-nav" :class="{onlyPrev: !showNext && !submit && showPrev}">
         <ButtonText
           v-if="showNext && !submit"
-          text="Next"
+          :text="$t('shared.formStep.nextButton', $store.state.locale)"
           type="BLUE"
           arrow="RIGHT"
           :disabled="!valid"
@@ -38,7 +38,7 @@
         />
         <ButtonText
           v-if="showPrev"
-          text="Back"
+          :text="$t('shared.formStep.prevButton', $store.state.locale)"
           type="BLUE_BORDER"
           arrow="LEFT"
           @click="prev"
@@ -89,11 +89,13 @@ export default {
   },
   methods: {
     next() {
+      this.$emit('next')
       if (this.nextStepMutation) {
         this.$store.commit(this.nextStepMutation)
       }
     },
     prev() {
+      this.$emit('prev')
       if (this.prevStepMutation) {
         this.$store.commit(this.prevStepMutation)
       }

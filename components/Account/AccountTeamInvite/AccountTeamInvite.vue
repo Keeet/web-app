@@ -4,23 +4,31 @@
       <Input
         :value="s.email"
         mutation="userInviteForm/setEmail"
-        placeholder="max.mustermann@gmail.com"
-        title="Email address"
+        :title="$t('account.team.invite.emailLabel', $store.state.locale)"
+        :placeholder="$t('account.team.invite.emailPlaceholder', $store.state.locale)"
         :disable-error="!showErrors"
         :error="emailError"
       />
       <div class="account-team-invite-form-rows">
         <div class="account-team-invite-form-role">
           <SelectCustom
+            v-closable="{
+              excludeClasses: [
+                'account-team-invite-form-role'
+              ],
+              handler: 'closeRoleDropdown'
+            }"
             :opened="s.roleDropdownOpened"
             :value="s.role"
             :options="selectRoleOptions"
-            @clickHead="$store.commit('userInviteForm/switchRoleDropdown')"
+            @clickHead="switchRoleDropdown"
             @select="select"
           >
             <template slot="selected">
               <p class="account-team-invite-form-role-selected">
-                <span class="account-team-invite-form-role-selected-label">Role</span> {{ ROLE_LABELS[s.role] }}
+                <span class="account-team-invite-form-role-selected-label">
+                  {{ $t('account.team.invite.selectRoleLabel', $store.state.locale) }}
+                </span> {{ ROLE_LABELS[s.role] }}
               </p>
             </template>
             <template v-for="(role, x) in selectRoleOptions" :slot="role">
@@ -33,7 +41,7 @@
           </SelectCustom>
         </div>
         <ButtonText
-          text="Invite"
+          :text="$t('account.team.invite.submit', $store.state.locale)"
           :disabled="!valid"
           @click="inviteUser"
           @disabledClick="showErrors = true"
@@ -87,6 +95,14 @@ export default {
         this.$store.commit('userInviteForm/init', ROLES.USER)
         this.$store.commit('userInviteForm/submitted')
       })
+    },
+    switchRoleDropdown() {
+      this.$store.commit('userInviteForm/switchRoleDropdown')
+    },
+    closeRoleDropdown() {
+      if (this.s.roleDropdownOpened) {
+        this.switchRoleDropdown()
+      }
     }
   }
 }

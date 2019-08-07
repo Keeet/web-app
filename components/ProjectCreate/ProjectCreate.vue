@@ -1,10 +1,10 @@
 <template>
   <div class="project-create">
     <div class="project-create-cancel">
-      <ButtonCircle type="ARROW_LEFT" @click="$router.back()" />
+      <ButtonCircle type="ARROW_LEFT" @click="cancel" />
     </div>
     <div v-if="!s.pending" class="project-create-form">
-      <Headline text="Give your project a name!" center />
+      <Headline :text="$t('projectCreate.headline', $store.state.locale)" center />
       <div
         data-aos="fade-in"
         data-aos-duration="700"
@@ -17,13 +17,18 @@
             :value="s.title"
             :error="titleError"
             mutation="projectForm/setTitle"
-            placeholder="Project Name"
+            :placeholder="$t('projectCreate.namePlaceholder', $store.state.locale)"
             :disable-error="!showErrors"
             @enter="() => { formValid ? submit() : showErrors = true }"
           />
         </div>
         <div class="project-create-form-submit">
-          <ButtonText text="Create" :disabled="!formValid" @click="submit" @disabledClick="showErrors = true" />
+          <ButtonText
+            :text="$t('projectCreate.submitButton', $store.state.locale)"
+            :disabled="!formValid"
+            @click="submit"
+            @disabledClick="showErrors = true"
+          />
         </div>
       </div>
     </div>
@@ -68,7 +73,12 @@ export default {
   },
   methods: {
     submit() {
+      this.$mpAppHelper.trackProjectCreate('submit')
       this.$store.dispatch('projectForm/submit', { redirectToProject: true })
+    },
+    cancel() {
+      this.$mpAppHelper.trackProjectCreate('abort')
+      this.$router.back()
     }
   }
 }

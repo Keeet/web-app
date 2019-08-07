@@ -16,7 +16,12 @@
           :class="`count${item.images.length}`"
           @click="selectGalleryItem(x)"
         >
-          <img :src="image.url">
+          <ThumborImage
+            class="survey-item-preference-test-gallery-item-img"
+            :src="image.url"
+            :width="1000"
+            auto-width
+          />
         </div>
       </div>
       <div v-show="response.sliderActive" class="survey-item-preference-test-slider">
@@ -25,7 +30,7 @@
             :per-page="1"
             :min-swipe-distance="50"
             :navigate-to="activeSliderItem"
-            :pagination-active-color="s.color"
+            :pagination-active-color="s.color || '#717AFA'"
             :mouse-drag="false"
             @page-change="carouselChange"
           >
@@ -33,9 +38,18 @@
               v-for="(image, x) in item.images"
               :key="x"
             >
-              <div class="survey-item-preference-test-slider-item" @click="setSliderActive(false)">
+              <div
+                class="survey-item-preference-test-slider-item"
+                :style="{ height: sliderItemHeight ? `${sliderItemHeight}px` : null }"
+                @click="setSliderActive(false)"
+              >
                 <div class="survey-item-preference-test-slider-item-inner">
-                  <img :src="image.url">
+                  <ThumborImage
+                    class="survey-item-preference-test-slider-item-inner-img"
+                    :src="image.url"
+                    :width="1000"
+                    auto-width
+                  />
                 </div>
               </div>
             </slide>
@@ -74,12 +88,16 @@
 
 <script>
 import ButtonText from '../../_shared/ButtonText/ButtonText'
+import ThumborImage from '../../_shared/ThumborImage/ThumborImage'
+import { offsetTop } from '../../../utils/scrollUtils'
+
 export default {
   name: 'SurveyItemPreferenceTest',
-  components: { ButtonText },
+  components: { ThumborImage, ButtonText },
   data() {
     return {
-      activeSliderItem: 0
+      activeSliderItem: 0,
+      sliderItemHeight: 0
     }
   },
   computed: {
@@ -105,12 +123,21 @@ export default {
       return this.activeSliderItemIndex > 0
     }
   },
+  mounted() {
+    window.addEventListener('resize', this.setSliderHeight)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.setSliderHeight)
+  },
   methods: {
     selectGalleryItem(index) {
       if (this.response.started) {
         this.setSliderActive(true)
         this.activeSliderItem = [index, false]
       }
+      this.$nextTick(() => {
+        this.setSliderHeight()
+      })
     },
     setSliderActive(sliderActive) {
       this.$store.commit('surveyForm/setPreferenceTestSliderActive', sliderActive)
@@ -131,6 +158,12 @@ export default {
     selectImage() {
       this.$store.commit('surveyForm/setPreferenceTestSelectedImageId', this.activeSliderItemImage.id)
       this.$store.dispatch('surveyForm/nextStep')
+    },
+    setSliderHeight() {
+      const slider = document.querySelector('.survey-item-preference-test-slider')
+      const sliderFooter = document.querySelector('.survey-item-preference-test-slider-footer')
+
+      this.sliderItemHeight = window.innerHeight - offsetTop(slider) - sliderFooter.offsetHeight
     }
   }
 }

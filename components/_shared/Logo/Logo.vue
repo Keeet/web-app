@@ -1,6 +1,6 @@
 <template>
   <div class="logo">
-    Keeet
+    <img src="/img/logo.png" />
   </div>
 </template>
 

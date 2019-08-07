@@ -21,7 +21,7 @@
       <div class="project-mission-info" @click="openMission">
         <div class="project-mission-info-label">
           <p class="project-mission-info-label-text">
-            Info
+            {{ $t('project.missionLabel', $store.state.locale) }}
           </p>
         </div>
         <ProjectMissionSection :type="mission.type" grow>
@@ -36,7 +36,13 @@
         </ProjectMissionSection>
         <ProjectMissionSection headline="Owner" :type="mission.type" no-shrink no-border>
           <div class="project-mission-owner">
-            <img class="project-mission-owner-img" :src="mission.owner.profileImage">
+            <div class="project-mission-owner-img">
+              <ThumborImage
+                :width="90"
+                :height="90"
+                :src="mission.owner.profileImage"
+              />
+            </div>
             <p class="project-mission-owner-name">
               {{ mission.owner.firstName }} {{ mission.owner.lastName }}
             </p>
@@ -51,10 +57,11 @@
 import { getLocaleDateString } from '../../../utils/dateUtils'
 import { MISSIONS, MISSION_LABELS } from '../../constants'
 import ProjectMissionSection from '../ProjectMissionSection/ProjectMissionSection'
+import ThumborImage from '../../_shared/ThumborImage/ThumborImage'
 
 export default {
   name: 'ProjectMission',
-  components: { ProjectMissionSection },
+  components: { ThumborImage, ProjectMissionSection },
   props: {
     mission: {
       type: Object,

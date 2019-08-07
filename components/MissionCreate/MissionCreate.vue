@@ -10,10 +10,10 @@
     <MissionCreateRecruitSubmittedPopup v-if="s.recruit.submittedPopup" />
     <Confirm
       v-if="s.confirmInProgressOpened"
-      title="Continue form"
-      text="Do you want to continue with this mission form?"
-      label-confirm="Yes, continue"
-      label-cancel="No, discard changes"
+      :title="$t('missionCreate.confirmInProgress.title', $store.state.locale)"
+      :text="$t('missionCreate.confirmInProgress.text', $store.state.locale)"
+      :label-confirm="$t('missionCreate.confirmInProgress.confirm', $store.state.locale)"
+      :label-cancel="$t('missionCreate.confirmInProgress.cancel', $store.state.locale)"
       full-width
       @cancel="discardChanges"
       @close="discardChanges"
@@ -72,15 +72,24 @@ export default {
       this.$store.commit('missionForm/showConfirmInProgress')
     }
   },
+  beforeDestroy() {
+    if (this.s.editExisting) {
+      this.$store.commit('missionForm/reset')
+      this.$store.commit('missionFormRecruit/reset')
+      this.$store.commit('missionFormSurvey/reset')
+    }
+  },
   methods: {
     cancel() {
       if (this.s.activeStep === 0 || this.s.editExisting) {
+        this.$mpAppHelper.trackMissionForm('abort', this.$store)
         if (this.s.projectFirstMission) {
           this.$router.push('/')
         } else {
           this.$router.back()
         }
       } else {
+        this.$mpAppHelper.trackMissionForm('stepBack', this.$store)
         this.$store.commit('missionForm/previousStep')
       }
     },

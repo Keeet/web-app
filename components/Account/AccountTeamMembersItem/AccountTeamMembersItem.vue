@@ -2,13 +2,17 @@
   <div class="account-team-members-item">
     <div class="account-team-members-item-left">
       <div class="account-team-members-item-icon">
-        <img :src="user.profileImage">
+        <ThumborImage
+          :src="user.profileImage"
+          :width="90"
+          :height="90"
+        />
       </div>
       <div class="account-team-members-item-text">
         <p class="account-team-members-item-text-name">
           {{ user.firstName }} {{ user.lastName }}
           <span v-if="user.id === myUser.id">
-            (you)
+            {{ $t('account.team.members.youLabel', $store.state.locale) }}
           </span>
         </p>
         <p class="account-team-members-item-text-email">
@@ -19,6 +23,12 @@
     <div class="account-team-members-item-role">
       <SelectCustom
         v-if="$hasRole('ADMIN') && myUser.id !== user.id"
+        v-closable="{
+          excludeClasses: [
+            'account-team-members-item-role'
+          ],
+          handler: 'closeRoleDropdown'
+        }"
         :opened="index === accountPage.roleDropdownOpenedIndex"
         :value="user.role"
         :options="selectRoleOptions"
@@ -52,10 +62,11 @@
 import SelectCustom from '../../_shared/SelectCustom/SelectCustom'
 import { ROLES, ROLE_LABELS } from '../../constants'
 import AccountTeamRole from '../AccountTeamRole/AccountTeamRole'
+import ThumborImage from '../../_shared/ThumborImage/ThumborImage'
 
 export default {
   name: 'AccountTeamMembersItem',
-  components: { AccountTeamRole, SelectCustom },
+  components: { ThumborImage, AccountTeamRole, SelectCustom },
   props: {
     user: {
       type: Object,
@@ -86,10 +97,16 @@ export default {
   methods: {
     clickHead() {
       if (this.index !== this.accountPage.roleDropdownOpenedIndex) {
-        this.$store.commit('accountPage/openRoleDropdown', this.index)
+        this.openRoleDropdown()
       } else {
-        this.$store.commit('accountPage/closeRoleDropdown')
+        this.closeRoleDropdown()
       }
+    },
+    openRoleDropdown() {
+      this.$store.commit('accountPage/openRoleDropdown', this.index)
+    },
+    closeRoleDropdown() {
+      this.$store.commit('accountPage/closeRoleDropdown')
     },
     select(role) {
       if (role !== this.user.role) {

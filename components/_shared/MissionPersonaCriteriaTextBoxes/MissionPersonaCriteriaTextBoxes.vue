@@ -1,6 +1,9 @@
 <template>
   <div class="mission-persona-criteria-text-boxes">
-    <TextBox v-if="p.minAge && p.maxAge" :text="`${p.minAge} - ${p.maxAge} years old`" />
+    <TextBox
+      v-if="p.minAge && p.maxAge"
+      :text="$t('shared.missionPersonaCriteria.age.textBox', $store.state.locale, { minAge: p.minAge, maxAge: p.maxAge })"
+    />
     <TextBox v-if="gender" :text="gender" />
     <TextBox v-if="language" :text="language" />
     <TextBox v-if="country" :text="country" />

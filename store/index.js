@@ -1,5 +1,5 @@
 import { flatMap } from '../utils/objectUtils'
-import { LANGUAGES } from '../components/constants'
+import { LANGUAGES, MISSIONS } from '../components/constants'
 
 const cookieParser = process.server ? require('cookieparser') : undefined
 const jwtDecode = require('jwt-decode')
@@ -8,6 +8,7 @@ export const state = () => ({
   accessToken: null,
   idToken: null,
   auth0User: null,
+  isTestUser: false,
   tokenCompanyId: null,
   locale: LANGUAGES.EN,
   user: null,
@@ -19,7 +20,8 @@ export const state = () => ({
   missionInsights: null,
   survey: null,
   personas: null,
-  dropzoneUploads: {}
+  dropzoneUploads: {},
+  superAdminCompanies: null
 })
 
 export const getters = {
@@ -53,6 +55,9 @@ export const mutations = {
     state.auth0User = jwtDecode(idToken)
     state.tokenCompanyId = jwtDecode(accessToken)['https://keeet.io/companyId']
   },
+  setTestUser(state) {
+    state.isTestUser = true
+  },
   setLocale(state, locale) {
     state.locale = locale
   },
@@ -81,6 +86,16 @@ export const mutations = {
     state.project = project
   },
   setMission(state, mission) {
+    if (mission.type === MISSIONS.SURVEY || mission.type === MISSIONS.USABILITY_LAB) {
+      mission.results = mission.results
+        .map((result) => {
+          if (result.followUpResults) {
+            result.followUpResults = result.followUpResults.sort((a, b) => a.index > b.index ? 1 : -1)
+          }
+          return result
+        })
+        .sort((a, b) => a.index > b.index ? 1 : -1)
+    }
     state.mission = mission
   },
   setMissionInsights(state, missionInsights) {
@@ -114,6 +129,9 @@ export const mutations = {
     const dropzoneUploads = { ...state.dropzoneUploads }
     dropzoneUploads[id] = url
     state.dropzoneUploads = dropzoneUploads
+  },
+  setSuperAdminCompanies(state, superAdminCompanies) {
+    state.superAdminCompanies = superAdminCompanies
   }
 }
 
@@ -121,8 +139,15 @@ export const actions = {
   nuxtServerInit({ commit }, { req }) {
     if (req.headers.cookie) {
       const parsed = cookieParser.parse(req.headers.cookie)
-      if (parsed && parsed.auth && parsed.id_token) {
+      if (!parsed) {
+        return
+      }
+      if (parsed.auth && parsed.id_token) {
         commit('setTokens', { accessToken: parsed.auth, idToken: parsed.id_token })
+
+        if (jwtDecode(parsed.auth)['https://keeet.io/isTest']) {
+          commit('setTestUser')
+        }
       }
     }
   }

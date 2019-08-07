@@ -3,7 +3,7 @@
     <ProjectSidebar />
     <OverlayModal
       v-if="projectForm.overlayOpened"
-      title="Edit Project"
+      :title="$t('project.form.headline', $store.state.locale)"
       :loading="projectForm.pending"
       @close="$store.commit('projectForm/setOverlayOpened', false)"
     >
@@ -124,6 +124,7 @@ export default {
         : `${getMonthName(date)} ${year}`
     },
     createMission() {
+      this.$mpAppHelper.trackMissionForm('open', this.$store)
       this.$store.dispatch('missionForm/initProjectMission', { project: this.project })
       this.$router.push('/missions/create')
     }

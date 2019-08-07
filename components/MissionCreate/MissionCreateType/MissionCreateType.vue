@@ -34,22 +34,22 @@ export default {
     },
     headline() {
       return this.s.projectFirstMission
-        ? 'Create your first mission'
-        : 'What do you want to do?'
+        ? this.$t('missionCreate.selectType.headlineFirstMission', this.$store.state.locale)
+        : this.$t('missionCreate.selectType.headlineDefault', this.$store.state.locale)
     }
   },
   methods: {
     select(type) {
+      this.$mpAppHelper.trackMissionForm('selectType', this.$store)
       // switch mission type OR select mission type for the first time
       if (this.s.type !== type) {
         this.$store.commit('missionForm/resetForm')
         this.$store.commit('missionFormRecruit/init', {
-          company: this.$store.state.company,
-          missionType: type
+          missionType: type,
+          company: this.$store.state.company
         })
         this.$store.commit('missionFormSurvey/init')
         this.$store.commit('missionFormPersona/init')
-        this.$store.commit('missionFormPersona/setCountry', this.$store.state.company.country)
         this.$store.commit('missionForm/setTitlePlaceholder', `${MISSION_LABELS[type]} #${this.getCountOfExistingMissionsByType(type) + 1}`)
       }
       this.$store.commit('missionForm/setType', type)

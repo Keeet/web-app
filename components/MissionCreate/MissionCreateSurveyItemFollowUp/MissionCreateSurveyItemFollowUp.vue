@@ -2,7 +2,7 @@
   <div class="mission-create-survey-item-follow-up">
     <div v-if="item.followUps.length">
       <p v-if="item.type !== QUESTION_LIST" class="mission-create-survey-item-follow-up-headline">
-        Follow-up questions
+        {{ $t('missionCreate.survey.items.followUp.title', $store.state.locale) }}
       </p>
       <div class="mission-create-survey-item-follow-up-questions">
         <draggable
@@ -26,7 +26,7 @@
       :class="item.type"
       @click="addFollowUp"
     >
-      Add new question
+      {{ $t('missionCreate.survey.items.followUp.addQuestion', $store.state.locale) }}
     </p>
   </div>
 </template>
