@@ -111,6 +111,12 @@ export default {
     },
     isEmpty() {
       return !this.dz || !this.dz.files.length
+    },
+    dzFilesPending() {
+      if (!this.dz || !this.selected) {
+        return []
+      }
+      return !!this.dz.files.find(file => ['added', 'queued', 'uploading'].includes(file.status))
     }
   },
   watch: {
@@ -125,6 +131,11 @@ export default {
       this.$emit('change', result)
       if (this.mutation) {
         this.$store.commit(this.mutation, result)
+      }
+    },
+    dzFilesPending(pending) {
+      if (this.dispatchError) {
+        this.$store.dispatch(this.dispatchError, { id: this.errorId, error: pending ? 'pending' : null })
       }
     },
     error: {
@@ -209,7 +220,8 @@ export default {
         upload: {
           uuid: uuid.v4()
         },
-        id: file.id
+        id: file.id,
+        status: 'success'
       }))
       files.forEach((file) => {
         this.dz.files.push(file)
