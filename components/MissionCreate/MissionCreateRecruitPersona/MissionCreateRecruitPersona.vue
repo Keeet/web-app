@@ -6,12 +6,13 @@
     <MissionPersonaCriteria
       :criteria="criteria"
       :selectable-countries="selectableCountries"
+      :selectable-languages="selectableLanguages"
     />
   </div>
 </template>
 
 <script>
-import { COUNTRIES_TESTING_TIME, MISSIONS, PERSONA_CRITERIA } from '../../constants'
+import { COUNTRIES_TESTING_TIME, LANGUAGES_TESTING_TIME, MISSIONS, PERSONA_CRITERIA } from '../../constants'
 import MissionPersonaCriteria from '../../_shared/MissionPersonaCriteria/MissionPersonaCriteria'
 
 export default {
@@ -36,6 +37,9 @@ export default {
     },
     selectableCountries() {
       return COUNTRIES_TESTING_TIME
+    },
+    selectableLanguages() {
+      return LANGUAGES_TESTING_TIME
     }
   }
 }

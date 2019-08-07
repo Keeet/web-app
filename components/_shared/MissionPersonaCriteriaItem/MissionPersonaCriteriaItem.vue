@@ -46,6 +46,7 @@
       </div>
       <MissionPersonaCriteriaItemLanguage
         v-else-if="type === LANGUAGE"
+        :selectable-languages="selectableLanguages"
       />
       <MissionPersonaCriteriaItemSpecialCriteria
         v-else-if="type === SPECIAL_CRITERIA"
@@ -133,6 +134,10 @@ export default {
     },
     error: {
       type: String,
+      default: null
+    },
+    selectableLanguages: {
+      type: Array,
       default: null
     }
   },

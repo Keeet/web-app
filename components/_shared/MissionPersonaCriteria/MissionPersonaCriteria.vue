@@ -4,6 +4,7 @@
       v-if="shouldShow(PERSONA_CRITERIA.LANGUAGE)"
       :headline="$t('shared.missionPersonaCriteria.language.headline', $store.state.locale)"
       type="LANGUAGE"
+      :selectable-languages="selectableLanguages"
       always-opened
     />
     <MissionPersonaCriteriaItem
@@ -83,6 +84,10 @@ export default {
       default: () => []
     },
     selectableCountries: {
+      type: Array,
+      default: null
+    },
+    selectableLanguages: {
       type: Array,
       default: null
     }

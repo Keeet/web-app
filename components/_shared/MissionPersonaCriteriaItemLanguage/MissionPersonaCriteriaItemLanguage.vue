@@ -32,9 +32,16 @@ import Select from '../Select/Select'
 export default {
   name: 'MissionPersonaCriteriaItemLanguage',
   components: { Select },
+  props: {
+    selectableLanguages: {
+      type: Array,
+      default: null
+    }
+  },
   computed: {
     languageOptions() {
-      return Object.keys(LANGUAGES).map(language => ({
+      const languages = this.selectableLanguages || Object.keys(LANGUAGES)
+      return languages.map(language => ({
         value: language,
         label: LANGUAGE_LABELS[language]
       }))
