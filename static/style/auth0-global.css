@@ -42,14 +42,18 @@ p {
   position: relative;
   z-index: 1;
   margin-top: 40px;
+  display: flex;
+  justify-content: center;
 }
+
 @media only screen and (min-width: 600px) {
   .logo {
     margin-top: 120px;
   }
 }
 .logo img {
-    width: 100%;
+  width: 80%;
+  max-width: 200px;
 }
 
 #loading {
