@@ -49,6 +49,7 @@
         </div>
         <div class="mission-create-survey-custom-screen-body-right">
           <MissionCreateSurveyCustomScreenBranding
+            :type="type"
             :logo-id-mutation="mutations.setLogoId"
           />
           <MissionCreateSurveyCustomScreenColor
