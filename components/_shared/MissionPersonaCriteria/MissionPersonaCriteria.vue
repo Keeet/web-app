@@ -13,7 +13,7 @@
       type="CHECKLIST"
       :value="s.persona.countries"
       mutation="missionFormPersona/setCountries"
-      :checklist-values="PERSONA_COUNTRIES"
+      :checklist-values="COUNTRIES_MISSION_RECRUIT"
       :checklist-labels="COUNTRY_LABELS"
       always-opened
       :error="countryError"
@@ -66,7 +66,7 @@ import uuid from 'uuid'
 import {
   PERSONA_GENDERS,
   PERSONA_GENDER_LABELS,
-  PERSONA_COUNTRIES,
+  COUNTRIES_MISSION_RECRUIT,
   COUNTRY_LABELS,
   PERSONA_DEVICE_SKILLS,
   PERSONA_DEVICE_SKILL_LABELS,
@@ -88,7 +88,7 @@ export default {
     return {
       PERSONA_GENDERS,
       PERSONA_GENDER_LABELS,
-      PERSONA_COUNTRIES,
+      COUNTRIES_MISSION_RECRUIT,
       COUNTRY_LABELS,
       PERSONA_DEVICE_SKILLS,
       PERSONA_DEVICE_SKILL_LABELS,
