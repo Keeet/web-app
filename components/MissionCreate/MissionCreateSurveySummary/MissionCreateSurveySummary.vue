@@ -140,21 +140,24 @@ export default {
     }
   },
   watch: {
-    flatMappedItemsPricingData() {
-      if (this.s.survey.items.length === 0) {
-        this.$store.commit('missionFormSurvey/setPricing', null)
-        return
-      }
-      this.$store.dispatch('missionFormSurvey/fetchPricing', {
-        globalGetters: this.$store.getters,
-        missionForm: this.s,
-        missionFormPersona: {
-          ...this.s.persona,
-          // no country selected -> we can use any country by default,
-          // since we just need the estimated duration and no country respective pricing
-          countries: [COUNTRIES.DE]
+    flatMappedItemsPricingData: {
+      immediate: true,
+      handler() {
+        if (this.s.survey.items.length === 0) {
+          this.$store.commit('missionFormSurvey/setPricing', null)
+          return
         }
-      })
+        this.$store.dispatch('missionFormSurvey/fetchPricing', {
+          globalGetters: this.$store.getters,
+          missionForm: this.s,
+          missionFormPersona: {
+            ...this.s.persona,
+            // no country selected -> we can use any country by default,
+            // since we just need the estimated duration and no country respective pricing
+            countries: [COUNTRIES.DE]
+          }
+        })
+      }
     }
   },
   methods: {
