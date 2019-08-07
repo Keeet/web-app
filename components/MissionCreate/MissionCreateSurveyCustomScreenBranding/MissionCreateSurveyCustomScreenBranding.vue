@@ -9,6 +9,7 @@
         :mutation="logoIdMutation"
         :thumbnail-width="200"
         :thumbnail-height="200"
+        :already-uploaded-files="alreadyUploadedFile"
       >
         <template slot="empty">
           <div class="mission-create-survey-custom-screen-branding-dropzone-empty">
@@ -24,12 +25,23 @@
 </template>
 
 <script>
-import { MEDIA_UPLOAD_PATH } from '../../constants'
+import { MEDIA_UPLOAD_PATH, MISSION_SURVEY_CUSTOM_SCREEN_TYPES } from '../../constants'
 import Dropzone from '../../_shared/Dropzone/Dropzone'
+
+const {
+  WELCOME,
+  CLOSING
+} = MISSION_SURVEY_CUSTOM_SCREEN_TYPES
+
 export default {
   name: 'MissionCreateSurveyCustomScreenBranding',
   components: { Dropzone },
   props: {
+    type: {
+      type: String,
+      required: true,
+      validator: value => Object.keys(MISSION_SURVEY_CUSTOM_SCREEN_TYPES).includes(value)
+    },
     logoIdMutation: {
       type: String,
       required: true
@@ -41,6 +53,22 @@ export default {
   computed: {
     s() {
       return this.$store.state.missionFormSurvey
+    },
+    alreadyUploadedFile() {
+      const { welcomeLogo, closingLogo } = this.s
+      if (this.type === WELCOME && welcomeLogo) {
+        return {
+          id: welcomeLogo.id,
+          url: welcomeLogo.spacesUrl
+        }
+      }
+      if (this.type === CLOSING && closingLogo) {
+        return {
+          id: closingLogo.id,
+          url: closingLogo.spacesUrl
+        }
+      }
+      return null
     }
   }
 }

@@ -35,12 +35,14 @@ const { WELCOME, CLOSING } = MISSION_SURVEY_CUSTOM_SCREEN_TYPES
 const defaultWelcomeScreen = {
   welcomeTitle: null,
   welcomeDescription: null,
-  welcomeLogoId: null
+  welcomeLogoId: null,
+  welcomeLogo: null // only needed for edit
 }
 const defaultClosingScreen = {
   closingTitle: null,
   closingDescription: null,
-  closingLogoId: null
+  closingLogoId: null,
+  closingLogo: null // only needed for edit
 }
 
 const defaultState = {
@@ -213,8 +215,6 @@ export const mutations = {
     }
     const {
       language,
-      customizeWelcome,
-      customizeClosing,
       welcomeTitle,
       welcomeDescription,
       closingTitle,
@@ -229,14 +229,21 @@ export const mutations = {
     } = mission
 
     state.language = language || defaultState.language
-    state.customizeWelcome = customizeWelcome || defaultState.customizeWelcome
-    state.customizeClosing = customizeClosing || defaultState.customizeClosing
+
     state.welcomeTitle = welcomeTitle || defaultState.welcomeTitle
     state.welcomeDescription = welcomeDescription || defaultState.welcomeDescription
     state.welcomeLogoId = welcomeLogo ? welcomeLogo.id : defaultState.welcomeLogoId
+    state.welcomeLogo = welcomeLogo
     state.closingTitle = closingTitle || defaultState.closingTitle
     state.closingDescription = closingDescription || defaultState.closingDescription
     state.closingLogoId = closingLogo ? closingLogo.id : defaultState.closingLogoId
+    state.closingLogo = closingLogo
+
+    state.customizeWelcome = welcomeTitle || welcomeDescription || welcomeLogo
+      ? true : defaultState.customizeWelcome
+    state.customizeClosing = closingTitle || closingDescription || closingLogo
+      ? true : defaultState.customizeClosing
+
     state.color = { hex: color }
     state.redirectLink = redirectLink || defaultState.redirectLink
     state.items = items.slice().sort((a, b) => a.index > b.index ? 1 : -1).map((item) => {
