@@ -20,18 +20,14 @@ export default {
       fetchCfg.push({ name: 'PROJECT', id })
     }
 
-    return new Promise((resolve) => {
-      $fetch(fetchCfg).then((res) => {
-        const { missions } = store.state.project
-        const HAS_MISSIONS = missions && missions.length > 0
+    return $fetch(fetchCfg, () => {
+      const { missions } = store.state.project
+      const HAS_MISSIONS = missions && missions.length > 0
 
-        if (!HAS_MISSIONS) {
-          store.dispatch('missionForm/initProjectMission', { project: store.state.project })
-          resolve(redirect('/missions/create'))
-          return
-        }
-        resolve(res)
-      })
+      if (!HAS_MISSIONS) {
+        store.dispatch('missionForm/initProjectMission', { project: store.state.project })
+        return redirect('/missions/create')
+      }
     })
   }
 }
