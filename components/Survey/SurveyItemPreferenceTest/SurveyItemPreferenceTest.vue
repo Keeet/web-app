@@ -30,7 +30,7 @@
             :per-page="1"
             :min-swipe-distance="50"
             :navigate-to="activeSliderItem"
-            :pagination-active-color="s.color"
+            :pagination-active-color="s.color || '#717AFA'"
             :mouse-drag="false"
             @page-change="carouselChange"
           >
