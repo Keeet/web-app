@@ -47,7 +47,7 @@ export default ({ app: { $fetch }, store }, inject) => {
       })
     },
     trackBilling: (eventName) => {
-      mpApp.track(eventName('billing', eventName))
+      mpApp.track(fullEventName('billing', eventName))
     }
   })
 }
