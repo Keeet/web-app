@@ -26,7 +26,7 @@
         dispatch-error="missionForm/handleValidationError"
         :disable-error="!showError && !s.showErrors"
         :nav-align-left="!!item.deviceFrame"
-        :already-uploaded-file-urls="alreadyUploadedFileUrls"
+        :already-uploaded-files="alreadyUploadedFiles"
         @change="dzChange"
       >
         <template slot="empty">
@@ -114,12 +114,12 @@ export default {
           label: MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAME_LABELS[deviceFrame]
         }))
     },
-    alreadyUploadedFileUrls() {
+    alreadyUploadedFiles() {
       if (this.item.image) {
-        return this.item.image.url
+        return this.item.image
       }
       if (this.item.images) {
-        return this.item.images.map(image => image.url)
+        return this.item.images
       }
       return null
     }

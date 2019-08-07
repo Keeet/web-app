@@ -191,7 +191,11 @@ export const getters = {
         })
       }
       item.image = item.imageMediaId ? { url: dropzoneUploads[item.imageMediaId] || item.image.url } : null
-      item.images = item.imageMediaIds ? item.imageMediaIds.map((id, x) => ({ url: dropzoneUploads[id] || item[x].image.url })) : null
+      item.images = item.imageMediaIds
+        ? item.imageMediaIds.map((id, x) => ({
+          url: dropzoneUploads[id] || item.images.find(image => image.id === id).url
+        }))
+        : null
     })
     return survey
   }
