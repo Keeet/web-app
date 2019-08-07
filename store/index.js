@@ -1,5 +1,5 @@
 import { flatMap } from '../utils/objectUtils'
-import { LANGUAGES } from '../components/constants'
+import { LANGUAGES, MISSIONS } from '../components/constants'
 
 const cookieParser = process.server ? require('cookieparser') : undefined
 const jwtDecode = require('jwt-decode')
@@ -86,14 +86,16 @@ export const mutations = {
     state.project = project
   },
   setMission(state, mission) {
-    mission.results = mission.results
-      .map((result) => {
-        if (result.followUpResults) {
-          result.followUpResults = result.followUpResults.sort((a, b) => a.index > b.index ? 1 : -1)
-        }
-        return result
-      })
-      .sort((a, b) => a.index > b.index ? 1 : -1)
+    if (mission.type === MISSIONS.SURVEY || mission.type === MISSIONS.USABILITY_LAB) {
+      mission.results = mission.results
+        .map((result) => {
+          if (result.followUpResults) {
+            result.followUpResults = result.followUpResults.sort((a, b) => a.index > b.index ? 1 : -1)
+          }
+          return result
+        })
+        .sort((a, b) => a.index > b.index ? 1 : -1)
+    }
     state.mission = mission
   },
   setMissionInsights(state, missionInsights) {
