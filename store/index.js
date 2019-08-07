@@ -86,6 +86,14 @@ export const mutations = {
     state.project = project
   },
   setMission(state, mission) {
+    mission.results = mission.results
+      .map((result) => {
+        if (result.followUpResults) {
+          result.followUpResults = result.followUpResults.sort((a, b) => a.index > b.index ? 1 : -1)
+        }
+        return result
+      })
+      .sort((a, b) => a.index > b.index ? 1 : -1)
     state.mission = mission
   },
   setMissionInsights(state, missionInsights) {
