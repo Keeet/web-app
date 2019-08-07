@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { LANGUAGES, LANGUAGE_LABELS } from '../../constants'
+import { LANGUAGES_PLATFORM, LANGUAGE_LABELS } from '../../constants'
 import MissionCreateBox from '../MissionCreateBox/MissionCreateBox'
 import Input from '../../_shared/Input/Input'
 import Select from '../../_shared/Select/Select'
@@ -43,10 +43,10 @@ export default {
       }
     },
     languageOptions() {
-      return Object.keys(LANGUAGES).map((language) => {
+      return Object.entries(LANGUAGES_PLATFORM).map((language) => {
         return {
-          label: LANGUAGE_LABELS[language],
-          value: language
+          label: LANGUAGE_LABELS[language[1]],
+          value: language[1]
         }
       })
     },

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { COUNTRIES, COUNTRY_LABELS } from '../../constants'
+import { COUNTRIES_SURVEY_RECRUIT, COUNTRY_LABELS } from '../../constants'
 import Select from '../../_shared/Select/Select'
 export default {
   name: 'MissionSurveyOrderCountry',
@@ -20,10 +20,13 @@ export default {
       return this.$store.state.missionFormPersona
     },
     options() {
-      return Object.keys(COUNTRIES).map(value => ({
-        value,
-        label: COUNTRY_LABELS[value]
-      }))
+      return Object.entries(COUNTRIES_SURVEY_RECRUIT).map((value) => {
+        const countryValue = value[1]
+        return {
+          value: countryValue,
+          label: COUNTRY_LABELS[countryValue]
+        }
+      })
     }
   }
 }
