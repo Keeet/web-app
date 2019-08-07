@@ -8,7 +8,7 @@
       />
       <SidebarLeftHeadline :text="$t('mission.sidebar.recruit.targetAudience', $store.state.locale)" />
       <MissionRecruitSidebarLine type="PERSONA" grey-bg>
-        <MissionPersonaCriteriaTextBoxes :persona="mission.recruitmentOrders[0].demographicData" />
+        <MissionPersonaCriteriaTextBoxes :persona="persona" />
       </MissionRecruitSidebarLine>
       <SidebarLeftHeadline :text="$t('mission.sidebar.recruit.generalInformation', $store.state.locale)" />
       <MissionRecruitSidebarLine v-if="isInHouse" type="LOCATION" :grey-bg="isInHouse">
@@ -52,6 +52,13 @@ export default {
     },
     participants() {
       return this.mission.recruitmentOrders[0].participants
+    },
+    persona() {
+      const orders = this.mission.recruitmentOrders[0]
+      return {
+        ...orders.demographicData,
+        specialCriteria: orders.specialCriteria
+      }
     }
   }
 }
