@@ -4,7 +4,7 @@
       <MissionCountProgress
         :title="$t('mission.sidebar.recruit.recruitedLabel', $store.state.locale)"
         :count-current="recruitedCount"
-        :count-total="mission.sessions.length"
+        :count-total="participants"
       />
       <SidebarLeftHeadline :text="$t('mission.sidebar.recruit.targetAudience', $store.state.locale)" />
       <MissionRecruitSidebarLine type="PERSONA" grey-bg>
@@ -19,7 +19,7 @@
         {{ $t('mission.sidebar.recruit.duration', $store.state.locale, { duration: mission.duration }) }}
       </MissionRecruitSidebarLine>
       <MissionRecruitSidebarLine type="PARTICIPANTS" :grey-bg="isInHouse">
-        {{ $t('mission.sidebar.recruit.participants', $store.state.locale, { count: mission.sessions.length }) }}
+        {{ $t('mission.sidebar.recruit.participants', $store.state.locale, { count: participants }) }}
       </MissionRecruitSidebarLine>
     </div>
   </MissionSidebar>
@@ -49,6 +49,9 @@ export default {
     },
     isInHouse() {
       return this.mission.type === MISSIONS.IN_HOUSE
+    },
+    participants() {
+      return this.mission.recruitmentOrders[0].participants
     }
   }
 }
