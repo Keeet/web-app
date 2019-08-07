@@ -10,6 +10,7 @@
         :thumbnail-width="200"
         :thumbnail-height="200"
         :already-uploaded-files="alreadyUploadedFile"
+        dispatch-error="missionForm/handleValidationError"
       >
         <template slot="empty">
           <div class="mission-create-survey-custom-screen-branding-dropzone-empty">
