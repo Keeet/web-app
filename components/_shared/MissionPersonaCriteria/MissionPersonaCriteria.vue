@@ -7,13 +7,13 @@
       always-opened
     />
     <MissionPersonaCriteriaItem
-      v-if="shouldShow(PERSONA_CRITERIA.COUNTRY)"
+      v-if="shouldShow(PERSONA_CRITERIA.COUNTRY) && selectableCountries"
       :id="countryId"
       :headline="$t('shared.missionPersonaCriteria.country.headline', $store.state.locale)"
       type="CHECKLIST"
       :value="s.persona.countries"
       mutation="missionFormPersona/setCountries"
-      :checklist-values="PERSONA_COUNTRIES"
+      :checklist-values="selectableCountries"
       :checklist-labels="COUNTRY_LABELS"
       always-opened
       :error="countryError"
@@ -66,7 +66,6 @@ import uuid from 'uuid'
 import {
   PERSONA_GENDERS,
   PERSONA_GENDER_LABELS,
-  PERSONA_COUNTRIES,
   COUNTRY_LABELS,
   PERSONA_DEVICE_SKILLS,
   PERSONA_DEVICE_SKILL_LABELS,
@@ -82,13 +81,16 @@ export default {
     criteria: {
       type: Array,
       default: () => []
+    },
+    selectableCountries: {
+      type: Array,
+      default: null
     }
   },
   data() {
     return {
       PERSONA_GENDERS,
       PERSONA_GENDER_LABELS,
-      PERSONA_COUNTRIES,
       COUNTRY_LABELS,
       PERSONA_DEVICE_SKILLS,
       PERSONA_DEVICE_SKILL_LABELS,

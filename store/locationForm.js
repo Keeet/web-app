@@ -1,4 +1,4 @@
-import { COUNTRIES, COUNTRIES_MISSION_RECRUIT } from '../components/constants'
+import { COUNTRIES, COUNTRIES_TESTING_TIME } from '../components/constants'
 
 const defaultState = {
   id: null,
@@ -20,7 +20,7 @@ export const mutations = {
     for (const key in defaultState) {
       state[key] = defaultState[key]
     }
-    state.country = company.locations && company.locations.length && COUNTRIES_MISSION_RECRUIT.includes(company.locations[0].country)
+    state.country = company.locations && company.locations.length && COUNTRIES_TESTING_TIME.includes(company.locations[0].country)
       ? company.locations[0].country
       : COUNTRIES.DE
   },

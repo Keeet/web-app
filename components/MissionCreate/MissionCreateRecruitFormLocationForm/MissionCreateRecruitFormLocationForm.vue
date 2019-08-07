@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import { COUNTRIES_MISSION_RECRUIT, COUNTRY_LABELS } from '../../constants'
+import { COUNTRIES_TESTING_TIME, COUNTRY_LABELS } from '../../constants'
 import OverlayModal from '../../_shared/OverlayModal/OverlayModal'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
 import Select from '../../_shared/Select/Select'
@@ -100,7 +100,7 @@ export default {
       return this.$store.state.locationForm
     },
     countryOptions() {
-      return COUNTRIES_MISSION_RECRUIT.map(country => ({
+      return COUNTRIES_TESTING_TIME.map(country => ({
         label: COUNTRY_LABELS[country],
         value: country
       }))

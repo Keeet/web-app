@@ -7,7 +7,9 @@
           <MissionSurveyOrderParticipants />
           <MissionSurveyOrderCountry />
         </div>
-        <MissionPersonaCriteria :criteria="[PERSONA_CRITERIA.AGE, PERSONA_CRITERIA.GENDER]" />
+        <MissionPersonaCriteria
+          :criteria="[PERSONA_CRITERIA.AGE, PERSONA_CRITERIA.GENDER]"
+        />
       </div>
       <MissionOrderSummary
         v-if="s.survey.items.length"
@@ -34,7 +36,6 @@
 import {
   PERSONA_GENDERS,
   PERSONA_GENDER_LABELS,
-  PERSONA_COUNTRIES,
   COUNTRY_LABELS,
   PERSONA_CRITERIA,
   MISSION_STATUS
@@ -51,7 +52,7 @@ export default {
   name: 'MissionSurveyOrder',
   components: { MissionSurveyRelease, BillingMissing, MissionSurveyOrderCountry, MissionOrderSummary, ButtonCircle, MissionSurveyOrderParticipants, MissionPersonaCriteria },
   data() {
-    return { PERSONA_GENDERS, PERSONA_GENDER_LABELS, PERSONA_COUNTRIES, COUNTRY_LABELS, PERSONA_CRITERIA }
+    return { PERSONA_GENDERS, PERSONA_GENDER_LABELS, COUNTRY_LABELS, PERSONA_CRITERIA }
   },
   computed: {
     mission() {
