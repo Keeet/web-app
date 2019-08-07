@@ -42,12 +42,25 @@ export const COUNTRY_LABELS = {
   TR: 'Turkey',
   US: 'United States'
 }
-export const COUNTRIES_MISSION_RECRUIT = [
+export const COUNTRIES_TESTING_TIME = [
   COUNTRIES.DE,
   COUNTRIES.AT,
   COUNTRIES.CH,
   COUNTRIES.US,
   COUNTRIES.GB
+]
+export const COUNTRIES_CINT = [
+  COUNTRIES.DE,
+  COUNTRIES.AT,
+  COUNTRIES.CH,
+  COUNTRIES.US,
+  COUNTRIES.GB,
+  COUNTRIES.IE,
+  COUNTRIES.FR,
+  COUNTRIES.ES,
+  COUNTRIES.LU,
+  COUNTRIES.BE,
+  COUNTRIES.CA
 ]
 
 export const LANGUAGES = {
@@ -82,6 +95,7 @@ export const LANGUAGE_LABELS = {
   SV: 'Swedish',
   TR: 'Turkish'
 }
+// remember to add countries to COUNTRIES_CINT in case of changing this array
 export const LANGUAGES_PLATFORM = [
   LANGUAGES.DE,
   LANGUAGES.EN,
@@ -157,12 +171,6 @@ export const PERSONA_GENDER_LABELS = {
   FEMALE: 'Female',
   MIXED: 'Mixed'
 }
-export const PERSONA_COUNTRIES = [
-  COUNTRIES.DE,
-  COUNTRIES.GB,
-  COUNTRIES.FR,
-  COUNTRIES.ES
-]
 export const PERSONA_DEVICE_SKILLS = {
   DESKTOP: 'DESKTOP',
   SMART_PHONE: 'SMART_PHONE',
