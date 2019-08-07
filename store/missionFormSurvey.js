@@ -35,14 +35,12 @@ const { WELCOME, CLOSING } = MISSION_SURVEY_CUSTOM_SCREEN_TYPES
 const defaultWelcomeScreen = {
   welcomeTitle: null,
   welcomeDescription: null,
-  welcomeLogoId: null,
-  welcomeLogo: null // only needed for edit
+  welcomeLogoId: null
 }
 const defaultClosingScreen = {
   closingTitle: null,
   closingDescription: null,
-  closingLogoId: null,
-  closingLogo: null // only needed for edit
+  closingLogoId: null
 }
 
 const defaultState = {
@@ -181,8 +179,8 @@ export const getters = {
   },
   buildSurvey: (state, getters) => ({ missionForm, dropzoneUploads }) => {
     const survey = getters.buildMission({ missionForm })
-    survey.welcomeLogo = survey.welcomeLogoId ? dropzoneUploads[survey.welcomeLogoId] : null
-    survey.closingLogo = survey.closingLogoId ? dropzoneUploads[survey.closingLogoId] : null
+    survey.welcomeLogoId = survey.welcomeLogoId ? dropzoneUploads[survey.welcomeLogoId] : null
+    survey.closingLogoId = survey.closingLogoId ? dropzoneUploads[survey.closingLogoId] : null
     survey.items.forEach((item, x) => {
       item.id = uuidv4()
       item.index = x
@@ -192,12 +190,8 @@ export const getters = {
           followUp.index = y
         })
       }
-      item.image = item.imageMediaId ? { url: dropzoneUploads[item.imageMediaId] || item.image.url } : null
-      item.images = item.imageMediaIds
-        ? item.imageMediaIds.map((id, x) => ({
-          url: dropzoneUploads[id] || item.images.find(image => image.id === id).url
-        }))
-        : null
+      item.image = item.imageMediaId ? { url: dropzoneUploads[item.imageMediaId] } : null
+      item.images = item.imageMediaIds ? item.imageMediaIds.map(id => ({ url: dropzoneUploads[id] })) : null
     })
     return survey
   }
@@ -215,6 +209,8 @@ export const mutations = {
     }
     const {
       language,
+      customizeWelcome,
+      customizeClosing,
       welcomeTitle,
       welcomeDescription,
       closingTitle,
@@ -229,21 +225,14 @@ export const mutations = {
     } = mission
 
     state.language = language || defaultState.language
-
+    state.customizeWelcome = customizeWelcome || defaultState.customizeWelcome
+    state.customizeClosing = customizeClosing || defaultState.customizeClosing
     state.welcomeTitle = welcomeTitle || defaultState.welcomeTitle
     state.welcomeDescription = welcomeDescription || defaultState.welcomeDescription
     state.welcomeLogoId = welcomeLogo ? welcomeLogo.id : defaultState.welcomeLogoId
-    state.welcomeLogo = welcomeLogo
     state.closingTitle = closingTitle || defaultState.closingTitle
     state.closingDescription = closingDescription || defaultState.closingDescription
     state.closingLogoId = closingLogo ? closingLogo.id : defaultState.closingLogoId
-    state.closingLogo = closingLogo
-
-    state.customizeWelcome = welcomeTitle || welcomeDescription || welcomeLogo
-      ? true : defaultState.customizeWelcome
-    state.customizeClosing = closingTitle || closingDescription || closingLogo
-      ? true : defaultState.customizeClosing
-
     state.color = { hex: color }
     state.redirectLink = redirectLink || defaultState.redirectLink
     state.items = items.slice().sort((a, b) => a.index > b.index ? 1 : -1).map((item) => {

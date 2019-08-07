@@ -11,11 +11,7 @@
     />
     <span class="dropzone-nav" :class="{ navAlignLeft }">
       <span v-if="!isEmpty" class="dropzone-nav-delete" @click="clearItems">
-        {{
-          multiUpload
-            ? $t('shared.dropzone.multiDelete', $store.state.locale)
-            : $t('shared.dropzone.singleDelete', $store.state.locale)
-        }}
+        {{ multiUpload ? 'delete all' : 'delete' }}
       </span>
       <span v-if="error && !disableError" class="dropzone-nav-error">
         {{ error }}
@@ -77,8 +73,8 @@ export default {
       type: Boolean,
       default: false
     },
-    alreadyUploadedFiles: {
-      type: [Array, Object],
+    alreadyUploadedFileUrls: {
+      type: [Array, String],
       default: null
     }
   },
@@ -94,7 +90,7 @@ export default {
     options() {
       const options = {
         url: `${process.env.baseUrl}${this.path}`,
-        acceptedFiles: 'image/jpg,image/jpeg,image/png',
+        acceptedFiles: 'image/*',
         maxFilesize: 10,
         dictDefaultMessage: '',
         dictResponseError: 'Request failed with status code {{statusCode}}',
@@ -111,12 +107,6 @@ export default {
     },
     isEmpty() {
       return !this.dz || !this.dz.files.length
-    },
-    dzFilesPending() {
-      if (!this.dz || !this.selected) {
-        return []
-      }
-      return !!this.dz.files.find(file => ['added', 'queued', 'uploading'].includes(file.status))
     }
   },
   watch: {
@@ -133,11 +123,6 @@ export default {
         this.$store.commit(this.mutation, result)
       }
     },
-    dzFilesPending(pending) {
-      if (this.dispatchError) {
-        this.$store.dispatch(this.dispatchError, { id: this.errorId, error: pending ? 'pending' : null })
-      }
-    },
     error: {
       immediate: true,
       handler(error) {
@@ -150,7 +135,7 @@ export default {
   mounted() {
     this.dz = this.$refs[this.id].dropzone
 
-    if (this.alreadyUploadedFiles) {
+    if (this.alreadyUploadedFileUrls) {
       this.setAlreadyUploadedFiles()
     }
   },
@@ -211,17 +196,15 @@ export default {
       this.selected = []
     },
     setAlreadyUploadedFiles() {
-      const propFiles = Array.isArray(this.alreadyUploadedFiles)
-        ? this.alreadyUploadedFiles
-        : [this.alreadyUploadedFiles]
-      const files = propFiles.map(file => ({
-        dataURL: `https://images.keeet.io/unsafe/300x300/${encodeURIComponent(file.url)}`,
+      const urls = Array.isArray(this.alreadyUploadedFileUrls)
+        ? this.alreadyUploadedFileUrls
+        : [this.alreadyUploadedFileUrls]
+      const files = urls.map(url => ({
+        dataURL: url,
         alreadyUploaded: true,
         upload: {
           uuid: uuid.v4()
-        },
-        id: file.id,
-        status: 'success'
+        }
       }))
       files.forEach((file) => {
         this.dz.files.push(file)
@@ -233,10 +216,6 @@ export default {
             this.dz.emit('thumbnail', file, thumbnail)
           }, true)
         this.dz.emit('complete', file)
-        this.selected.push({
-          dzId: file.upload.uuid,
-          id: file.id
-        })
       })
     }
   }

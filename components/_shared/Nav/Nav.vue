@@ -8,31 +8,22 @@
       </nuxt-link>
       <nuxt-link to="/">
         <p class="nav-item" :class="{active: path === '/'}">
-          {{ $t('shared.nav.dashboardLink', $store.state.locale) }}
+          Dashboard
         </p>
       </nuxt-link>
       <Staging />
-      <nuxt-link v-if="showInternal" to="/internal">
-        <p class="nav-item nav-item-internal" :class="{active: path === '/internal'}">
-          {{ $t('shared.nav.internalLink', $store.state.locale) }}
-        </p>
-      </nuxt-link>
     </div>
     <div class="nav-right">
       <a class="request-feature" href="https://keeet.nolt.io" target="_blank">
-        {{ $t('shared.nav.requestFeatureLink', $store.state.locale) }}
+        Request feature
       </a>
       <nuxt-link to="/account">
         <div class="nav-profile">
           <div class="nav-profile-img">
-            <ThumborImage
-              :src="$store.state.user.profileImage"
-              :width="90"
-              :height="90"
-            />
+            <img :src="$store.state.user.profileImage">
           </div>
           <p class="nav-profile-welcome">
-            {{ $t('shared.nav.welcome', $store.state.locale, { name: $store.state.user.firstName }) }}
+            Hello, {{ $store.state.user.firstName }}!
           </p>
         </div>
       </nuxt-link>
@@ -43,17 +34,13 @@
 <script>
 import Logo from '../Logo/Logo'
 import Staging from '../Staging/Staging'
-import ThumborImage from '../ThumborImage/ThumborImage'
 
 export default {
   name: 'Nav',
-  components: { ThumborImage, Staging, Logo },
+  components: { Staging, Logo },
   computed: {
     path() {
       return this.$route.path
-    },
-    showInternal() {
-      return this.$auth.hasScope('super:admin')
     }
   }
 }

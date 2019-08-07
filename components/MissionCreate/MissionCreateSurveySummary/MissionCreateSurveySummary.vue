@@ -3,11 +3,7 @@
     <MissionSideBox :type="s.type" wrapper-class="mission-create-survey">
       <template slot="body">
         <div class="mission-create-survey-summary-scrollable">
-          <MissionCreateSurveySummaryItem
-            type="WELCOME"
-            :title="$t('missionCreate.survey.summary.welcomeScreen', $store.state.locale)"
-            no-drag
-          />
+          <MissionCreateSurveySummaryItem type="WELCOME" title="Welcome Screen" no-drag />
           <div class="mission-create-survey-summary-sortable">
             <draggable
               v-model="items"
@@ -25,11 +21,7 @@
               />
             </draggable>
           </div>
-          <MissionCreateSurveySummaryItem
-            type="CLOSING"
-            :title="$t('missionCreate.survey.summary.closingScreen', $store.state.locale)"
-            no-drag
-          />
+          <MissionCreateSurveySummaryItem type="CLOSING" title="Thank-you Screen" no-drag />
         </div>
         <div class="mission-create-survey-summary-duration">
           <div class="mission-create-survey-summary-duration-icon">
@@ -44,7 +36,7 @@
         <div class="mission-create-survey-summary-buttons-flex">
           <div class="mission-create-survey-summary-buttons-flex-item">
             <ButtonText
-              :text="$t('missionCreate.survey.summary.cancelButton', $store.state.locale)"
+              text="Cancel"
               type="GREY"
               no-margin
               @click="$emit('cancelClick')"
@@ -52,7 +44,7 @@
           </div>
           <div class="mission-create-survey-summary-buttons-flex-item">
             <ButtonText
-              :text="$t('missionCreate.survey.summary.previewButton', $store.state.locale)"
+              text="Preview"
               type="GREY"
               icon="LINK_EXTERNAL"
               no-margin
@@ -63,7 +55,7 @@
           </div>
         </div>
         <ButtonText
-          :text="submitButtonText"
+          :text="s.editExisting ? 'Update mission' : 'Create mission'"
           no-margin
           :disabled="!isValid"
           @disabledClick="$emit('submitDisabledClick')"
@@ -75,7 +67,7 @@
 </template>
 
 <script>
-import { COUNTRIES, MISSIONS } from '../../constants'
+import { MISSIONS } from '../../constants'
 import MissionCreateSurveySummaryItem from '../MissionCreateSurveySummaryItem/MissionCreateSurveySummaryItem'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
 import { flatMap } from '../../../utils/objectUtils'
@@ -128,36 +120,23 @@ export default {
       const { pricing } = this.s.survey
       const d = pricing ? pricing.duration : 0
       if (d <= 60) {
-        return this.$t('missionCreate.survey.summary.durationDefault', this.$store.state.locale)
+        return 'about 1 min'
       }
       const min = parseInt(d / 60)
-      return this.$t('missionCreate.survey.summary.durationVariables', this.$store.state.locale, { val1: min, val2: min + 1 })
-    },
-    submitButtonText() {
-      return this.s.editExisting
-        ? this.$t('missionCreate.survey.summary.submitEditButton', this.$store.state.locale)
-        : this.$t('missionCreate.survey.summary.submitCreateButton', this.$store.state.locale)
+      return `${min} - ${min + 1} min`
     }
   },
   watch: {
-    flatMappedItemsPricingData: {
-      immediate: true,
-      handler() {
-        if (this.s.survey.items.length === 0) {
-          this.$store.commit('missionFormSurvey/setPricing', null)
-          return
-        }
-        this.$store.dispatch('missionFormSurvey/fetchPricing', {
-          globalGetters: this.$store.getters,
-          missionForm: this.s,
-          missionFormPersona: {
-            ...this.s.persona,
-            // no country selected -> we can use any country by default,
-            // since we just need the estimated duration and no country respective pricing
-            countries: [COUNTRIES.DE]
-          }
-        })
+    flatMappedItemsPricingData() {
+      if (this.s.survey.items.length === 0) {
+        this.$store.commit('missionFormSurvey/setPricing', null)
+        return
       }
+      this.$store.dispatch('missionFormSurvey/fetchPricing', {
+        globalGetters: this.$store.getters,
+        missionForm: this.s,
+        missionFormPersona: this.s.persona
+      })
     }
   },
   methods: {

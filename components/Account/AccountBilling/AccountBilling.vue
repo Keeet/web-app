@@ -1,7 +1,7 @@
 <template>
   <div class="account-billing">
     <div v-if="!$hasRole('ADMIN')" class="account-billing-no-admin">
-      {{ $t('account.billing.noAdmin', $store.state.locale) }}
+      Please contact the admin to edit the billing address.
     </div>
     <BillingForm v-else />
   </div>

@@ -1,15 +1,12 @@
 import { MISSIONS, MISSION_RECRUIT_STUDY_TYPES } from '../components/constants'
 
-const {
-  USER_INTERVIEW,
-  WORKSHOP,
-  FOCUS_GROUP
-} = MISSION_RECRUIT_STUDY_TYPES
+const COMPANY_LOCATION_ID = 'COMPANY'
 
 const defaultState = {
-  studyType: USER_INTERVIEW,
+  studyType: MISSION_RECRUIT_STUDY_TYPES.USER_INTERVIEW,
   duration: null,
   location: null,
+  locationId: null,
   locationFormOpened: false,
   sessions: [],
   activeCalendarDay: null,
@@ -41,17 +38,6 @@ export const getters = {
   buildMission: state => ({ missionForm, missionFormPersona }) => {
     const { projectId, type, title, titlePlaceholder, language, participants } = missionForm
     const { studyType, duration, sessions, location } = state
-
-    const sessionStartDates = sessions.map(session => session.start.toISOString())
-    const formattedSessions = []
-    if ([WORKSHOP, FOCUS_GROUP].includes(studyType)) {
-      [...Array(participants).keys()].forEach(() => {
-        formattedSessions.push(sessionStartDates[0])
-      })
-    } else {
-      Array.prototype.push.apply(formattedSessions, sessionStartDates)
-    }
-
     const mission = {
       projectId,
       type,
@@ -60,7 +46,7 @@ export const getters = {
       duration: parseInt(duration),
       language,
       participants,
-      sessions: formattedSessions,
+      sessions: sessions.map(session => session.start.toISOString()),
       demographicData: missionFormPersona,
       specialCriteria: missionFormPersona.specialCriteria.map(sc => sc.value)
     }
@@ -75,7 +61,7 @@ export const getters = {
 }
 
 export const mutations = {
-  init(state, { missionType, company }) {
+  init(state, { company, missionType }) {
     for (const key in defaultState) {
       state[key] = defaultState[key]
     }
@@ -84,9 +70,9 @@ export const mutations = {
     } else if (missionType === MISSIONS.REMOTE) {
       state.duration = 30
     }
-    if (company.locations && company.locations.length) {
-      state.location = company.locations[0]
-    }
+    const { name, street, houseNumber, addressDescription, zipCode, city, country } = company
+    state.location = { name, street, houseNumber, addressDescription, zipCode, city, country }
+    state.locationId = COMPANY_LOCATION_ID
   },
   reset(state) {
     for (const key in defaultState) {
@@ -100,6 +86,7 @@ export const mutations = {
     state.duration = duration
   },
   setLocation(state, location) {
+    state.locationId = location.id ? location.id : COMPANY_LOCATION_ID
     state.location = location
   },
   openLocationForm(state) {

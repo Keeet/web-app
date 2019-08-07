@@ -20,12 +20,12 @@
     >
       <div class="survey-item-media-img-scroll-content">
         <div class="survey-item-media-img-scroll-content-inner">
-          <ThumborImage
+          <img
+            class="survey-item-media-img"
             :src="image"
-            :width="imageWidth"
             @load="imageLoaded = true"
-            @click.native="clickImage"
-          />
+            @click="clickImage"
+          >
           <div
             v-if="heatmapPoints"
             class="survey-item-media-heatmap-wrapper"
@@ -54,13 +54,9 @@
 import uuidv4 from 'uuid'
 import { MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES } from '../../constants'
 import { offsetLeft, offsetTop } from '../../../utils/scrollUtils'
-import ThumborImage from '../../_shared/ThumborImage/ThumborImage'
-
-const IMAGE_SELECTOR = '.survey-item-media-img-scroll-content-inner .thumbor-image'
 
 export default {
   name: 'SurveyItemMedia',
-  components: { ThumborImage },
   props: {
     image: {
       type: String,
@@ -108,27 +104,6 @@ export default {
     imagesLoaded() {
       const noFrame = this.frame === MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES.NO_FRAME
       return (this.frameLoaded || noFrame) && this.imageLoaded
-    },
-    imageWidth() {
-      const {
-        PHONE_PORTRAIT,
-        PHONE_LANDSCAPE,
-        TABLET_PORTRAIT,
-        TABLET_LANDSCAPE
-      } = MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAMES
-
-      switch (this.frame) {
-        case PHONE_PORTRAIT:
-          return 400
-        case PHONE_LANDSCAPE:
-          return 800
-        case TABLET_PORTRAIT:
-          return 600
-        case TABLET_LANDSCAPE:
-          return 1000
-        default:
-          return 1400
-      }
     }
   },
   watch: {
@@ -164,7 +139,7 @@ export default {
   methods: {
     onResize() {
       const frameWrapper = this.root.querySelector('.survey-item-media-img-scroll')
-      const image = frameWrapper.querySelector(IMAGE_SELECTOR)
+      const image = frameWrapper.querySelector('.survey-item-media-img')
       const isScrollable = frameWrapper.offsetHeight < image.offsetHeight && frameWrapper.offsetHeight
 
       if (isScrollable && !this.scrollable) {
@@ -188,7 +163,7 @@ export default {
       this.calculateOverlayCoordinates()
     },
     clickImage(event) {
-      const image = this.getScrollableFrame().querySelector(IMAGE_SELECTOR)
+      const image = this.getScrollableFrame().querySelector('.survey-item-media-img')
       const x = (event.pageX - offsetLeft(image)) / image.offsetWidth
       const y = (event.pageY - offsetTop(image) + this.scrollPosition) / image.offsetHeight
       if (!this.blur) {
@@ -201,7 +176,7 @@ export default {
         return
       }
       const imageWrapper = this.getScrollableFrame()
-      const image = this.getScrollableFrame().querySelector(IMAGE_SELECTOR)
+      const image = this.getScrollableFrame().querySelector('.survey-item-media-img')
       const x = offsetLeft(image) + (this.overlayCoordinates.x * image.offsetWidth)
       const y = offsetTop(image) + (this.overlayCoordinates.y * image.offsetHeight) - imageWrapper.scrollTop - window.scrollY
       this.calculatedOverlayCoordinates = { x, y }

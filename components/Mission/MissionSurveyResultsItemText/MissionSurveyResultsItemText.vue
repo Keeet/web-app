@@ -2,7 +2,7 @@
   <div v-if="!result.results.length" class="mission-survey-results-item-empty">
     <IconInboxEmpty />
     <p class="mission-survey-results-item-empty-text">
-      {{ $t('mission.survey.results.textQuestionNoResults', $store.state.locale) }}
+      No answers yet
     </p>
   </div>
   <div v-else class="mission-survey-results-item-text" :class="{ isFollowUp: !!parentResult }">

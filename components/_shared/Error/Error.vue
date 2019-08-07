@@ -11,16 +11,10 @@
           >
             <IconError404 />
           </div>
-          <Headline
-            :text="$t('shared.error.404.headline', $store.state.locale)"
-            :subline="$t('shared.error.404.subheadline', $store.state.locale)"
-          />
+          <Headline text="Oops something went wrong." subline="The page you are looking for was not found." />
         </div>
         <div v-else>
-          <Headline
-            :text="$t('shared.error.default.headline', $store.state.locale)"
-            :subline="error.message.toString()"
-          />
+          <Headline text="Oops something went wrong." :subline="error.message" />
         </div>
         <div
           class="error-body-home"
@@ -30,7 +24,7 @@
           data-aos-once="true"
         >
           <nuxt-link to="/">
-            <ButtonText :text="$t('shared.error.cancelButton', $store.state.locale)" />
+            <ButtonText text="Back to Homepage" />
           </nuxt-link>
         </div>
       </div>

@@ -1,13 +1,13 @@
 <template>
   <div class="mission-create-recruit-form-location-form">
     <OverlayModal
-      :title="$t('missionCreate.recruit.generalForm.locationForm.title', $store.state.locale)"
+      title="Add new location"
       :loading="s.pending"
       @close="$store.commit('missionFormRecruit/closeLocationForm')"
     >
       <Input
-        :title="$t('missionCreate.recruit.generalForm.locationForm.companyLabel', $store.state.locale)"
-        :placeholder="$t('missionCreate.recruit.generalForm.locationForm.companyPlaceholder', $store.state.locale)"
+        title="Company name*"
+        placeholder="Keeet"
         :value="s.name"
         mutation="locationForm/setName"
         :error="nameError"
@@ -16,8 +16,8 @@
       <div class="mission-create-recruit-form-location-form-street">
         <div class="mission-create-recruit-form-location-form-street-name">
           <Input
-            :title="$t('missionCreate.recruit.generalForm.locationForm.streetLabel', $store.state.locale)"
-            :placeholder="$t('missionCreate.recruit.generalForm.locationForm.streetPlaceholder', $store.state.locale)"
+            title="Street*"
+            placeholder="Rosenthaler Str."
             :value="s.street"
             mutation="locationForm/setStreet"
             :error="streetError"
@@ -26,8 +26,8 @@
         </div>
         <div class="mission-create-recruit-form-location-form-street-nb">
           <Input
-            :title="$t('missionCreate.recruit.generalForm.locationForm.houseNumberLabel', $store.state.locale)"
-            :placeholder="$t('missionCreate.recruit.generalForm.locationForm.houseNumberPlaceholder', $store.state.locale)"
+            title="Number*"
+            placeholder="101"
             :value="s.houseNumber"
             mutation="locationForm/setHouseNumber"
             :error="houseNumberError"
@@ -36,8 +36,8 @@
         </div>
       </div>
       <Input
-        :title="$t('missionCreate.recruit.generalForm.locationForm.additionalLabel', $store.state.locale)"
-        :placeholder="$t('missionCreate.recruit.generalForm.locationForm.additionalPlaceholder', $store.state.locale)"
+        title="Additional"
+        placeholder="third backyard"
         :value="s.addressDescription"
         mutation="locationForm/setAddressDescription"
         :error="null"
@@ -45,8 +45,8 @@
       <div class="mission-create-recruit-form-location-form-city">
         <div class="mission-create-recruit-form-location-form-city-name">
           <Input
-            :title="$t('missionCreate.recruit.generalForm.locationForm.cityLabel', $store.state.locale)"
-            :placeholder="$t('missionCreate.recruit.generalForm.locationForm.cityPlaceholder', $store.state.locale)"
+            title="City*"
+            placeholder="Berlin"
             :value="s.city"
             mutation="locationForm/setCity"
             :error="cityError"
@@ -55,8 +55,8 @@
         </div>
         <div class="mission-create-recruit-form-location-form-city-zip">
           <Input
-            :title="$t('missionCreate.recruit.generalForm.locationForm.zipLabel', $store.state.locale)"
-            :placeholder="$t('missionCreate.recruit.generalForm.locationForm.zipPlaceholder', $store.state.locale)"
+            title="ZIP*"
+            placeholder="10369"
             :value="s.zipCode"
             mutation="locationForm/setZipCode"
             :error="zipCodeError"
@@ -65,23 +65,22 @@
         </div>
       </div>
       <Select
-        :title="$t('missionCreate.recruit.generalForm.locationForm.countryLabel', $store.state.locale)"
-        :options="countryOptions"
+        title="Country*"
+        :options="[{
+          label: COUNTRY_LABELS['DE'],
+          value: 'DE'
+        }]"
         :value="s.country"
         mutation="locationForm/setCountry"
+        readonly
       />
-      <ButtonText
-        :text="$t('missionCreate.recruit.generalForm.locationForm.submitButton', $store.state.locale)"
-        :disabled="!formValid"
-        @click="submitForm"
-        @disabledClick="showErrors = true"
-      />
+      <ButtonText text="Add" :disabled="!formValid" @click="submitForm" @disabledClick="showErrors = true" />
     </OverlayModal>
   </div>
 </template>
 
 <script>
-import { COUNTRIES_TESTING_TIME, COUNTRY_LABELS } from '../../constants'
+import { COUNTRY_LABELS } from '../../constants'
 import OverlayModal from '../../_shared/OverlayModal/OverlayModal'
 import ButtonText from '../../_shared/ButtonText/ButtonText'
 import Select from '../../_shared/Select/Select'
@@ -98,12 +97,6 @@ export default {
   computed: {
     s() {
       return this.$store.state.locationForm
-    },
-    countryOptions() {
-      return COUNTRIES_TESTING_TIME.map(country => ({
-        label: COUNTRY_LABELS[country],
-        value: country
-      }))
     },
     nameError() { return this.s.name !== '' ? null : 'required' },
     streetError() { return this.s.street !== '' ? null : 'required' },
@@ -127,8 +120,8 @@ export default {
       this.$store.dispatch('locationForm/submitCompanyLocation').then((newLocation) => {
         const { id } = newLocation
         const newCompanyLocation = this.$store.getters.getCompanyLocationById(id)
+        this.$store.commit('missionFormRecruit/setLocation', newCompanyLocation)
         this.$store.commit('missionFormRecruit/closeLocationForm')
-        this.$emit('submitted', newCompanyLocation)
       })
     }
   }

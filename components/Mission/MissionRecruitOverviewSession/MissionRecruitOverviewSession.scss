@@ -37,8 +37,8 @@
     .mission-recruit-overview-session-remote-call-button {
       padding: 10px 15px;
       line-height: 20px;
-      color: #fff;
-      background-color: rgba($blue-primary, 0.8);
+      color: $green;
+      background-color: rgba($green, 0.1);
       border-radius: 5px;
       font-weight: 400;
       transition: background-color 0.5s;
@@ -53,7 +53,7 @@
 
       &:not(.disabled):hover {
         cursor: pointer;
-        background-color: $blue-primary;
+        background-color: rgba($green, 0.2);
       }
     }
   }

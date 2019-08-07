@@ -9,15 +9,15 @@
         <MissionCreateSurveyDetails />
         <MissionCreateSurveyCustomScreen
           type="WELCOME"
-          :title="$t('missionCreate.survey.customScreens.welcomeScreen.title', $store.state.locale)"
-          :subtitle="$t('missionCreate.survey.customScreens.welcomeScreen.subtitle', $store.state.locale)"
+          title="Default Welcome Screen"
+          subtitle="The first thing your audience will see - a great opportunity to engage right away."
         />
         <MissionCreateSurveyItems />
         <MissionCreateSurveyAdd :index="items.length" />
         <MissionCreateSurveyCustomScreen
           type="CLOSING"
-          :title="$t('missionCreate.survey.customScreens.closingScreen.title', $store.state.locale)"
-          :subtitle="$t('missionCreate.survey.customScreens.closingScreen.subtitle', $store.state.locale)"
+          title="Default Thank You Screen"
+          subtitle="The last thing your audience will see. Thank your participants for their effort and time."
         />
       </div>
       <MissionCreateSurveySummary
@@ -79,7 +79,6 @@ export default {
       }))
     },
     submitDisabledClick() {
-      this.$mpAppHelper.trackMissionForm('attemptSubmitInvalidForm', this.$store)
       if (!this.s.showErrors) {
         this.$store.commit('missionForm/showErrors')
       }
@@ -87,7 +86,6 @@ export default {
     },
     submit() {
       const { missionForm } = this.$store.state
-      this.$mpAppHelper.trackMissionForm('submit', this.$store)
       this.$store.commit('missionForm/pending')
       this.$store.dispatch('missionFormSurvey/submit', {
         missionForm

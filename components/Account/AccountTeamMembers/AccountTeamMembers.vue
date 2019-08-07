@@ -1,4 +1,4 @@
-a<template>
+<template>
   <div class="account-team-members">
     <AccountTeamMembersItem
       :user="user"

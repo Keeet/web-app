@@ -1,7 +1,7 @@
 <template>
   <div :id="id" class="mission-create-survey-add-box">
     <MissionCreateBox
-      :headline="$t('missionCreate.survey.items.addBox.headline', $store.state.locale)"
+      headline="Add a question"
       :closable="closable"
       @close="$store.commit('missionFormSurvey/setItemAddIndex', -1)"
     >

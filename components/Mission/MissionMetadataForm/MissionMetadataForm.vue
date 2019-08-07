@@ -1,24 +1,24 @@
 <template>
   <div>
     <Input
-      :title="$t('mission.metadataForm.nameLabel', $store.state.locale)"
-      :placeholder="$t('mission.metadataForm.namePlaceholder', $store.state.locale)"
+      title="Name"
       :value="s.title"
       mutation="missionMetadataForm/setTitle"
+      placeholder="Mission name"
       :error="titleError"
       :disable-error="!showErrors"
     />
     <Input
-      :title="$t('mission.metadataForm.descriptionLabel', $store.state.locale)"
-      :placeholder="$t('mission.metadataForm.descriptionPlaceholder', $store.state.locale)"
+      title="Description"
       :value="s.description"
       mutation="missionMetadataForm/setDescription"
+      placeholder="Enter your project description here ..."
       textarea
     />
     <ButtonText
-      :text="$t('mission.metadataForm.submit', $store.state.locale)"
+      text="Update"
       :disabled="!formValid"
-      @click="submit"
+      @click="$store.dispatch('missionMetadataForm/submit')"
       @disabledClick="showErrors = true"
     />
   </div>
@@ -41,12 +41,6 @@ export default {
     titleError() { return this.s.title !== '' ? null : 'required' },
     formValid() {
       return !this.titleError
-    }
-  },
-  methods: {
-    submit() {
-      this.$mpAppHelper.trackMission('submitMetadata', this.$store)
-      this.$store.dispatch('missionMetadataForm/submit')
     }
   }
 }

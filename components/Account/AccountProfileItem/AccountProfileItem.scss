@@ -5,15 +5,21 @@
   padding: 30px 50px;
   border-radius: 5px;
   margin: 50px 0;
-  align-items: center;
 
   .account-profile-item-icon {
     width: 120px;
     margin-right: 40px;
+    align-self: center;
   }
 
   .account-profile-item-text {
     flex-grow: 1;
+    align-self: center;
     line-height: 170%;
+  }
+
+  .account-profile-item-button {
+    align-self: flex-start;
+    margin-top: -15px;
   }
 }

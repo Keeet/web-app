@@ -1,4 +1,4 @@
-import { COUNTRIES, COUNTRIES_TESTING_TIME } from '../components/constants'
+import { COUNTRIES } from '../components/constants'
 
 const defaultState = {
   id: null,
@@ -8,7 +8,7 @@ const defaultState = {
   addressDescription: '',
   zipCode: '',
   city: '',
-  country: null,
+  country: COUNTRIES.DE,
 
   pending: false
 }
@@ -16,13 +16,24 @@ const defaultState = {
 export const state = () => (defaultState)
 
 export const mutations = {
-  init(state, { company }) {
-    for (const key in defaultState) {
-      state[key] = defaultState[key]
+  init(state, location) {
+    if (location) {
+      const { id, name, street, houseNumber, city, addressDescription, zipCode, country } = location
+      state.id = id
+      state.name = name
+      state.street = street
+      state.houseNumber = houseNumber
+      state.addressDescription = addressDescription
+      state.city = city
+      state.zipCode = zipCode
+      state.country = country
+
+      state.pending = false
+    } else {
+      for (const key in defaultState) {
+        state[key] = defaultState[key]
+      }
     }
-    state.country = company.locations && company.locations.length && COUNTRIES_TESTING_TIME.includes(company.locations[0].country)
-      ? company.locations[0].country
-      : COUNTRIES.DE
   },
   setName(state, name) {
     state.name = name

@@ -1,15 +1,76 @@
 <template>
   <div class="company-form">
     <Input
-      :title="$t('shared.companyForm.companyLabel', $store.state.locale)"
-      :placeholder="$t('shared.companyForm.companyPlaceholder', $store.state.locale)"
+      title="Company name*"
+      placeholder="Keeet"
       :value="s.name"
       mutation="companyForm/setName"
       :error="nameError"
       :disable-error="!showErrors"
     />
+    <div class="company-form-street">
+      <div class="company-form-street-name">
+        <Input
+          title="Street*"
+          placeholder="Rosenthaler Str."
+          :value="s.street"
+          mutation="companyForm/setStreet"
+          :error="streetError"
+          :disable-error="!showErrors"
+        />
+      </div>
+      <div class="company-form-street-nb">
+        <Input
+          title="Number*"
+          placeholder="101"
+          :value="s.houseNumber"
+          mutation="companyForm/setHouseNumber"
+          :error="houseNumberError"
+          :disable-error="!showErrors"
+        />
+      </div>
+    </div>
+    <Input
+      title="Additional"
+      placeholder="third backyard"
+      :value="s.addressDescription"
+      mutation="companyForm/setAddressDescription"
+      :error="null"
+    />
+    <div class="company-form-city">
+      <div class="company-form-city-name">
+        <Input
+          title="City*"
+          placeholder="Berlin"
+          :value="s.city"
+          mutation="companyForm/setCity"
+          :error="cityError"
+          :disable-error="!showErrors"
+        />
+      </div>
+      <div class="company-form-city-zip">
+        <Input
+          title="ZIP*"
+          placeholder="10369"
+          :value="s.zipCode"
+          mutation="companyForm/setZipCode"
+          :error="zipCodeError"
+          :disable-error="!showErrors"
+        />
+      </div>
+    </div>
+    <Select
+      title="Country*"
+      :options="[{
+        label: COUNTRY_LABELS['DE'],
+        value: 'DE'
+      }]"
+      :value="s.country"
+      mutation="companyForm/setCountry"
+      readonly
+    />
     <ButtonText
-      :text="submitText"
+      :text="edit ? 'Save changes' : 'Go'"
       :disabled="!formValid"
       @click="submitForm"
       @disabledClick="showErrors = true"
@@ -21,10 +82,10 @@
 import { COUNTRY_LABELS } from '../../constants'
 import Input from '../Input/Input'
 import ButtonText from '../ButtonText/ButtonText'
-
+import Select from '../Select/Select'
 export default {
   name: 'CompanyForm',
-  components: { ButtonText, Input },
+  components: { Select, ButtonText, Input },
   props: {
     id: {
       type: String,
@@ -46,20 +107,24 @@ export default {
       return this.$store.state.companyForm
     },
     nameError() { return this.s.name !== '' ? null : 'required' },
+    streetError() { return this.s.street !== '' ? null : 'required' },
+    houseNumberError() { return this.s.houseNumber !== '' ? null : 'required' },
+    zipCodeError() { return this.s.zipCode.match(/^[0-9]+$/) ? null : 'must be a number' },
+    cityError() { return this.s.city !== '' ? null : 'required' },
+    countryError() { return this.s.country !== '' ? null : 'required' },
     formValid() {
       return (
-        !this.nameError
+        !this.nameError &&
+        !this.streetError &&
+        !this.houseNumberError &&
+        !this.cityError &&
+        !this.zipCodeError &&
+        !this.countryError
       )
-    },
-    submitText() {
-      return this.edit
-        ? this.$t('shared.companyForm.updateButton', this.$store.state.locale)
-        : this.$t('shared.companyForm.createButton', this.$store.state.locale)
     }
   },
   methods: {
     submitForm() {
-      this.$mpApp.track('createCompanySubmit')
       this.$store.dispatch('companyForm/submit').then(() => {
         this.$emit('submit')
       })

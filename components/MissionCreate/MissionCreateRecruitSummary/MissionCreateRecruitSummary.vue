@@ -1,14 +1,14 @@
 <template>
   <div class="mission-create-recruit-summary">
-    <MissionCreateSubHeadline :text="$t('missionCreate.recruit.summary.overviewLabel', $store.state.locale, { studyType })" />
+    <MissionCreateSubHeadline :text="`Your ${studyType}`" />
     <MissionCreateBox>
       <MissionCreateRecruitSummaryIcons />
     </MissionCreateBox>
-    <MissionCreateSubHeadline :text="$t('missionCreate.recruit.summary.targetAudienceLabel', $store.state.locale)" />
+    <MissionCreateSubHeadline text="Target Audience" />
     <MissionCreateBox>
       <MissionPersonaCriteriaTextBoxes :persona="s.persona" />
     </MissionCreateBox>
-    <MissionCreateSubHeadline :text="$t('missionCreate.recruit.summary.datesLabel', $store.state.locale)" />
+    <MissionCreateSubHeadline text="Date & Time" />
     <MissionCreateRecruitTimeslots />
   </div>
 </template>

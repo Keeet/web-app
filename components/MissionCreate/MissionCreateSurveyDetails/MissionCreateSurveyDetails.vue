@@ -1,8 +1,8 @@
 <template>
   <div class="mission-create-survey-details">
-    <MissionCreateBox :headline="$t('missionCreate.survey.details.headline', $store.state.locale)">
+    <MissionCreateBox headline="Mission Details">
       <Input
-        :title="$t('missionCreate.survey.details.titleLabel', $store.state.locale)"
+        title="Internal mission name"
         :placeholder="s.titlePlaceholder"
         :value="s.title"
         :error="titleError"
@@ -13,7 +13,7 @@
       />
       <div class="mission-create-survey-details-language">
         <Select
-          :title="$t('missionCreate.survey.details.languageLabel', $store.state.locale)"
+          title="Language*"
           :options="languageOptions"
           :value="s.survey.language"
           mutation="missionFormSurvey/setLanguage"
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { LANGUAGE_LABELS, LANGUAGES_PLATFORM } from '../../constants'
+import { LANGUAGES, LANGUAGE_LABELS } from '../../constants'
 import MissionCreateBox from '../MissionCreateBox/MissionCreateBox'
 import Input from '../../_shared/Input/Input'
 import Select from '../../_shared/Select/Select'
@@ -43,7 +43,8 @@ export default {
       }
     },
     languageOptions() {
-      return LANGUAGES_PLATFORM.map((language) => {
+      const { DE, EN, FR, ES } = LANGUAGES
+      return [DE, EN, FR, ES].map((language) => {
         return {
           label: LANGUAGE_LABELS[language],
           value: language

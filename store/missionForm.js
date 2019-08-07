@@ -60,15 +60,13 @@ export const mutations = {
       id,
       projectId,
       type,
-      title,
-      participants
+      title
     } = mission
 
     state.id = id
     state.projectId = projectId
     state.type = type
     state.title = title
-    state.participants = participants || 1 // since survey/usabilityHub don't have participants on create/update
     state.editExisting = true
   },
   resetForm(state) {

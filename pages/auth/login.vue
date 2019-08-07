@@ -16,7 +16,6 @@ export default {
       return
     }
 
-    this.$mpApp.track('redirectAuth0')
     this.$auth.login(redirectUrl)
   }
 }

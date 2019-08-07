@@ -1,11 +1,7 @@
 .survey-item-linear-scale {
   width: 95%;
   max-width: 700px;
-  margin: 10px auto 0;
-
-  @media #{$md} {
-    margin-top: 30px;
-  }
+  margin: 30px auto 0;
 
   .survey-item-linear-scale-labels {
     display: flex;

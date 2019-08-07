@@ -16,15 +16,13 @@ const OPERATIONS = {
   DELETE_MISSION: 'DELETE_MISSION',
   SUBMIT_MISSION_ORDER: 'SUBMIT_MISSION_ORDER',
   CREATE_MISSION_INSIGHT_LINK: 'CREATE_MISSION_INSIGHT_LINK',
-  SUBMIT_SURVEY: 'SUBMIT_SURVEY',
-  UPDATE_SUPER_ADMIN_COMPANY: 'UPDATE_SUPER_ADMIN_COMPANY',
-  SET_TEST_COMPANY: 'SET_TEST_COMPANY'
+  SUBMIT_SURVEY: 'SUBMIT_SURVEY'
 }
 
 export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, inject) {
   inject('push', {
 
-    upsertCompany({ id, name, sampleProjectDeleted }) {
+    upsertCompany({ id, name, country, city, zipCode, street, houseNumber, addressDescription, sampleProjectDeleted }) {
       const onCreate = !id
       const method = onCreate ? 'post' : 'put'
       return new Promise((resolve, reject) => {
@@ -34,6 +32,12 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, in
           data: {
             id,
             name,
+            country,
+            city,
+            zipCode,
+            street,
+            houseNumber,
+            addressDescription,
             sampleProjectDeleted
           }
         }).then((res) => {
@@ -352,31 +356,8 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, in
             orderId,
             cintUserId
           },
-          headers: {
-            Authorization: 'none'
-          }
+          noAuth: true
         }).then(resolve)
-      })
-    },
-    updateSuperAdminCompany(companyId) {
-      return new Promise((resolve, reject) => {
-        const handleRes = handleResponse.bind(this, OPERATIONS.UPDATE_SUPER_ADMIN_COMPANY, companyId, resolve, reject)
-        $axios({
-          method: 'put',
-          url: `/internal/companies/${companyId}`
-        }).then(handleRes).catch(handleError)
-      })
-    },
-    setTestCompany(auth0UserId) {
-      return new Promise((resolve, reject) => {
-        const handleRes = handleResponse.bind(this, OPERATIONS.SET_TEST_COMPANY, null, resolve, reject)
-        $axios({
-          method: 'post',
-          url: 'internal/user/test',
-          data: {
-            auth0UserId
-          }
-        }).then(handleRes).catch(handleError)
       })
     }
   })
@@ -407,7 +388,7 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, in
       case OPERATIONS.UPDATE_MISSION_METADATA:
         return [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: data.projectId, forced: true }]
       case OPERATIONS.UPDATE_MISSION_SURVEY:
-        return [{ name: 'MISSION', id: data.id, forced: true }, { name: 'SURVEY', id: data.id, forced: true }, { name: 'PROJECT', id: params.projectId, forced: true }]
+        return [{ name: 'MISSION', id: data.id, forced: true }, { name: 'PROJECT', id: params.projectId, forced: true }]
       case OPERATIONS.UPDATE_MISSION_STATUS:
         const fetchCfg = [{ name: 'MISSION', id: params.id, forced: true }]
         if ([MISSIONS.SURVEY, MISSIONS.USABILITY_LAB].includes(params.type)) {

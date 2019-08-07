@@ -1,7 +1,7 @@
 <template>
   <div class="mission-persona-criteria-item-language">
     <p class="mission-persona-criteria-item-language-title">
-      {{ $t('shared.missionPersonaCriteria.language.selectSecondaryCosts', $store.state.locale) }}
+      Selecting a secondary language costs additional 5 &euro; per person.
     </p>
     <div class="mission-persona-criteria-item-language-body">
       <div class="mission-persona-criteria-item-language-body-item">
@@ -14,12 +14,12 @@
       <div class="mission-persona-criteria-item-language-body-item">
         <Select
           :options="[
-            { value: null, label: $t('shared.missionPersonaCriteria.language.selectSecondaryNullLabel', $store.state.locale) },
+            { value: null, label: 'No secondary language' },
             ...languageOptions
           ]"
           :value="$store.getters['missionFormPersona/secondaryLanguage']"
           mutation="missionFormPersona/setSecondaryLanguage"
-          :placeholder="$t('shared.missionPersonaCriteria.language.selectSecondaryLabel', $store.state.locale)"
+          placeholder="Select secondary language"
         />
       </div>
     </div>
@@ -32,16 +32,9 @@ import Select from '../Select/Select'
 export default {
   name: 'MissionPersonaCriteriaItemLanguage',
   components: { Select },
-  props: {
-    selectableLanguages: {
-      type: Array,
-      default: null
-    }
-  },
   computed: {
     languageOptions() {
-      const languages = this.selectableLanguages || Object.keys(LANGUAGES)
-      return languages.map(language => ({
+      return Object.keys(LANGUAGES).map(language => ({
         value: language,
         label: LANGUAGE_LABELS[language]
       }))

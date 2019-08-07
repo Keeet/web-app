@@ -3,11 +3,7 @@
     <AccountProfileItem>
       <template slot="icon">
         <div class="account-profile-user-icon">
-          <ThumborImage
-            :src="user.profileImage"
-            :width="200"
-            :height="200"
-          />
+          <img :src="user.profileImage">
         </div>
       </template>
       <template slot="text">
@@ -15,15 +11,11 @@
           {{ user.firstName }} {{ user.lastName }}
         </p>
         <p>{{ user.email }}</p>
-        <p>{{ $t('account.profile.memberSince', $store.state.locale, { date: formattedCreatedAt }) }}</p>
+        <p>Member since {{ formattedCreatedAt }}</p>
         <p>{{ formattedRole }}</p>
       </template>
     </AccountProfileItem>
-    <AccountProfileItem
-      :button-text="$hasRole('ADMIN') ? $t('account.profile.editButton', $store.state.locale) : null"
-      :aos-delay="300"
-      @clickButton="editCompany"
-    >
+    <AccountProfileItem :button-text="$hasRole('ADMIN') ? 'Edit Company' : null" :aos-delay="300" @clickButton="editCompany">
       <template slot="icon">
         <IconLocation />
       </template>
@@ -31,11 +23,14 @@
         <p class="account-profile-text-headline">
           {{ company.name }}
         </p>
+        <p>{{ company.street }}, {{ company.houseNumber }}</p>
+        <p>{{ company.zipCode }}, {{ company.city }}</p>
+        <p>{{ company.country }}</p>
       </template>
     </AccountProfileItem>
     <OverlayModal
       v-if="accountPage.showEditCompany"
-      :title="$t('account.profile.form.title', $store.state.locale)"
+      title="Edit company"
       :loading="companyForm.pending"
       @close="closeEditCompanyForm"
     >
@@ -50,10 +45,9 @@ import { getLocaleDateString } from '../../../utils/dateUtils'
 import AccountProfileItem from '../AccountProfileItem/AccountProfileItem'
 import OverlayModal from '../../_shared/OverlayModal/OverlayModal'
 import CompanyForm from '../../_shared/CompanyForm/CompanyForm'
-import ThumborImage from '../../_shared/ThumborImage/ThumborImage'
 export default {
   name: 'AccountProfile',
-  components: { ThumborImage, CompanyForm, OverlayModal, AccountProfileItem },
+  components: { CompanyForm, OverlayModal, AccountProfileItem },
   computed: {
     user() {
       return this.$store.state.user

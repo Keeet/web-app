@@ -1,5 +1,5 @@
 export const firstLetterUppercase = (string) => {
-  return `${string.substr(0, 1).toUpperCase()}${string.substr(1)}`
+  return `${string.substr(0, 1).toUpperCase()}${string.substr(1).toLowerCase()}`
 }
 
 export const specialCharsToDashes = (string, lowerCase = true) => {

@@ -4,8 +4,7 @@ module.exports = {
   mode: 'universal',
 
   env: {
-    baseUrl: process.env.BASE_URL || 'https://api.keeet.io',
-    selfBaseUrl: 'https://app.keeet.io'
+    baseUrl: process.env.BASE_URL || 'https://api.keeet.io'
   },
 
   server: {

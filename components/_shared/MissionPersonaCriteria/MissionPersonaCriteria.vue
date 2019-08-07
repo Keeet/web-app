@@ -1,27 +1,8 @@
 <template>
   <div class="mission-persona-criteria">
     <MissionPersonaCriteriaItem
-      v-if="shouldShow(PERSONA_CRITERIA.LANGUAGE)"
-      :headline="$t('shared.missionPersonaCriteria.language.headline', $store.state.locale)"
-      type="LANGUAGE"
-      :selectable-languages="selectableLanguages"
-      always-opened
-    />
-    <MissionPersonaCriteriaItem
-      v-if="shouldShow(PERSONA_CRITERIA.COUNTRY) && selectableCountries"
-      :id="countryId"
-      :headline="$t('shared.missionPersonaCriteria.country.headline', $store.state.locale)"
-      type="CHECKLIST"
-      :value="s.persona.countries"
-      mutation="missionFormPersona/setCountries"
-      :checklist-values="selectableCountries"
-      :checklist-labels="COUNTRY_LABELS"
-      always-opened
-      :error="countryError"
-    />
-    <MissionPersonaCriteriaItem
       v-if="shouldShow(PERSONA_CRITERIA.AGE)"
-      :headline="$t('shared.missionPersonaCriteria.age.headline', $store.state.locale)"
+      headline="Age (optional)"
       type="SLIDER"
       :opened="s.persona.ageOpened"
       :value="[s.persona.minAge, s.persona.maxAge]"
@@ -32,7 +13,7 @@
     />
     <MissionPersonaCriteriaItem
       v-if="shouldShow(PERSONA_CRITERIA.GENDER)"
-      :headline="$t('shared.missionPersonaCriteria.gender.headline', $store.state.locale)"
+      headline="Gender (optional)"
       type="SELECT"
       :opened="s.persona.gendersOpened"
       :value="gender"
@@ -41,8 +22,26 @@
       :select-options="genderOptions"
     />
     <MissionPersonaCriteriaItem
+      v-if="shouldShow(PERSONA_CRITERIA.LANGUAGE)"
+      headline="Language (optional)"
+      type="LANGUAGE"
+      :opened="s.persona.languagesOpened"
+      switch-mutation="missionFormPersona/switchLanguagesOpened"
+    />
+    <MissionPersonaCriteriaItem
+      v-if="shouldShow(PERSONA_CRITERIA.COUNTRY)"
+      headline="Country (optional)"
+      type="CHECKLIST"
+      :opened="s.persona.countriesOpened"
+      :value="s.persona.countries"
+      mutation="missionFormPersona/setCountries"
+      switch-mutation="missionFormPersona/switchCountriesOpened"
+      :checklist-values="PERSONA_COUNTRIES"
+      :checklist-labels="COUNTRY_LABELS"
+    />
+    <MissionPersonaCriteriaItem
       v-if="shouldShow(PERSONA_CRITERIA.DEVICE_SKILL)"
-      :headline="$t('shared.missionPersonaCriteria.deviceSkills.headline', $store.state.locale)"
+      headline="Device skills (optional)"
       type="CHECKLIST"
       :opened="s.persona.deviceSkillsOpened"
       :value="s.persona.deviceSkills"
@@ -53,7 +52,7 @@
     />
     <MissionPersonaCriteriaItem
       v-if="shouldShow(PERSONA_CRITERIA.SPECIAL_CRITERIA)"
-      :headline="$t('shared.missionPersonaCriteria.specialCriteria.headline', $store.state.locale)"
+      headline="Special criteria (optional)"
       type="SPECIAL_CRITERIA"
       :opened="s.persona.specialCriteriaOpened"
       :value="s.persona.specialCriteria"
@@ -63,10 +62,10 @@
 </template>
 
 <script>
-import uuid from 'uuid'
 import {
   PERSONA_GENDERS,
   PERSONA_GENDER_LABELS,
+  PERSONA_COUNTRIES,
   COUNTRY_LABELS,
   PERSONA_DEVICE_SKILLS,
   PERSONA_DEVICE_SKILL_LABELS,
@@ -82,25 +81,17 @@ export default {
     criteria: {
       type: Array,
       default: () => []
-    },
-    selectableCountries: {
-      type: Array,
-      default: null
-    },
-    selectableLanguages: {
-      type: Array,
-      default: null
     }
   },
   data() {
     return {
       PERSONA_GENDERS,
       PERSONA_GENDER_LABELS,
+      PERSONA_COUNTRIES,
       COUNTRY_LABELS,
       PERSONA_DEVICE_SKILLS,
       PERSONA_DEVICE_SKILL_LABELS,
-      PERSONA_CRITERIA,
-      countryId: null
+      PERSONA_CRITERIA
     }
   },
   computed: {
@@ -131,21 +122,7 @@ export default {
         },
         ...options
       ]
-    },
-    countryError() {
-      return this.s.persona.countries.length ? null : 'required'
     }
-  },
-  watch: {
-    countryError(error) {
-      this.$store.dispatch('missionForm/handleValidationError', {
-        id: this.countryId,
-        error
-      })
-    }
-  },
-  mounted() {
-    this.countryId = uuid.v4()
   },
   methods: {
     shouldShow(criteria) {

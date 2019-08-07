@@ -1,25 +1,25 @@
 <template>
   <div class="project-form">
     <Input
-      :title="$t('project.form.nameLabel', $store.state.locale)"
+      title="Name"
       :value="s.title"
       mutation="projectForm/setTitle"
-      :placeholder="$t('project.form.namePlaceholder', $store.state.locale)"
+      placeholder="Project name"
       :error="titleError"
       :disable-error="!showErrors"
     />
     <Input
-      :title="$t('project.form.descriptionLabel', $store.state.locale)"
+      title="Description"
       :value="s.description"
       mutation="projectForm/setDescription"
-      :placeholder="$t('project.form.descriptionPlaceholder', $store.state.locale)"
+      placeholder="Enter you project description here to explain what you want to achieve with this research session …"
       textarea
     />
     <ButtonText
-      :text="$t('project.form.submitButton', $store.state.locale)"
+      text="Update"
       :disabled="!formValid"
-      @click="submit"
-      @disabledClick="disabledClick"
+      @click="$store.dispatch('projectForm/submit')"
+      @disabledClick="showErrors = true"
     />
   </div>
 </template>
@@ -51,16 +51,6 @@ export default {
     },
     formValid() {
       return !this.titleError
-    }
-  },
-  methods: {
-    disabledClick() {
-      this.$mpAppHelper.trackProject('attemptSubmitEditInvalid', this.$store)
-      this.showErrors = true
-    },
-    submit() {
-      this.$mpAppHelper.trackProject('submitEdit', this.$store)
-      this.$store.dispatch('projectForm/submit')
     }
   }
 }

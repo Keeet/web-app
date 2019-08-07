@@ -2,13 +2,13 @@
   <div class="billing-form">
     <div class="billing-form-inner" :class="{ pending: s.pending }">
       <Input
-        :title="$t('shared.billingForm.companyLabel', $store.state.locale)"
+        title="Company Name"
         :value="company.name"
         readonly
       />
       <Input
-        :title="$t('shared.billingForm.emailLabel', $store.state.locale)"
-        :placeholder="$t('shared.billingForm.emailPlaceholder', $store.state.locale)"
+        title="Email*"
+        placeholder="billing@keeet.io"
         :value="s.email"
         mutation="billingForm/setEmail"
         :error="$store.getters['billingForm/emailError']"
@@ -16,15 +16,15 @@
         dispatch-error="billingForm/handleValidationError"
       />
       <Input
-        :title="$t('shared.billingForm.vatLabel', $store.state.locale)"
+        title="VAT number / tax ID"
         :value="s.vatTaxId"
         mutation="billingForm/setVatTaxId"
       />
       <div class="billing-form-rows">
         <div class="billing-form-rows-item">
           <Input
-            :title="$t('shared.billingForm.streetLabel', $store.state.locale)"
-            :placeholder="$t('shared.billingForm.streetPlaceholder', $store.state.locale)"
+            title="Street*"
+            placeholder="Rosenthaler Str."
             :value="s.street"
             mutation="billingForm/setStreet"
             :error="$store.getters['billingForm/streetError']"
@@ -34,8 +34,8 @@
         </div>
         <div class="billing-form-rows-item">
           <Input
-            :title="$t('shared.billingForm.houseNumberLabel', $store.state.locale)"
-            :placeholder="$t('shared.billingForm.houseNumberPlaceholder', $store.state.locale)"
+            title="Number*"
+            placeholder="101"
             :value="s.houseNumber"
             mutation="billingForm/setHouseNumber"
             :error="$store.getters['billingForm/houseNumberError']"
@@ -47,8 +47,8 @@
       <div class="billing-form-rows">
         <div class="billing-form-rows-item">
           <Input
-            :title="$t('shared.billingForm.cityLabel', $store.state.locale)"
-            :placeholder="$t('shared.billingForm.cityPlaceholder', $store.state.locale)"
+            title="City*"
+            placeholder="Berlin"
             :value="s.city"
             mutation="billingForm/setCity"
             :error="$store.getters['billingForm/cityError']"
@@ -58,8 +58,8 @@
         </div>
         <div class="billing-form-rows-item">
           <Input
-            :title="$t('shared.billingForm.zipLabel', $store.state.locale)"
-            :placeholder="$t('shared.billingForm.zipPlaceholder', $store.state.locale)"
+            title="ZIP*"
+            placeholder="10369"
             :value="s.zipCode"
             mutation="billingForm/setZipCode"
             :error="$store.getters['billingForm/zipCodeError']"
@@ -69,14 +69,14 @@
         </div>
       </div>
       <Select
-        :title="$t('shared.billingForm.countryLabel', $store.state.locale)"
+        title="Country*"
         :options="countryOptions"
         :value="s.country"
         mutation="billingForm/setCountry"
       />
       <div class="billing-form-submit">
         <ButtonText
-          :text="$t('shared.billingForm.submit', $store.state.locale)"
+          text="Submit"
           :disabled="submitButtonDisabled"
           no-margin
           @disabledClick="disabledSubmit"
@@ -131,14 +131,12 @@ export default {
   },
   methods: {
     disabledSubmit() {
-      this.$mpAppHelper.trackBilling('attemptSubmitInvalidForm')
       if (this.hasChangedSinceInit) {
         this.showErrors = true
         scrollToTopId(this.s.invalidFields.map(field => field.id))
       }
     },
     submit() {
-      this.$mpAppHelper.trackBilling('submit')
       this.$store.dispatch('billingForm/submit').then(() => {
         this.$store.commit('billingForm/init', this.company.billingConfig)
         this.$emit('submitted')

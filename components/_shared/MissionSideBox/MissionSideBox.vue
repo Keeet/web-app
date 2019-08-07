@@ -11,7 +11,7 @@
             <IconMissionUsabilityLab v-else-if="type === USABILITY_LAB" />
           </div>
           <div class="mission-side-box-head-text">
-            {{ $t('shared.missionSideBox.headline', $store.state.locale, { missionLabel }) }}
+            {{ missionLabel }} Mission
           </div>
         </div>
         <div class="mission-side-box-body">
