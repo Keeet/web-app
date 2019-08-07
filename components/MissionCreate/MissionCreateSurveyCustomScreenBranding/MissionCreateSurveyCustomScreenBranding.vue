@@ -4,7 +4,7 @@
       {{ $t('missionCreate.survey.customScreens.logoLabel', $store.state.locale) }}
     </p>
     <div class="mission-create-survey-custom-screen-branding-dropzone">
-      <Dropzone :path="MEDIA_UPLOAD_PATH.MISSION" :mutation="logoIdMutation" :thumbnail-width="400">
+      <Dropzone :path="MEDIA_UPLOAD_PATH.MISSION" :mutation="logoIdMutation" :thumbnail-width="200" :thumbnail-height="200">
         <template slot="empty">
           <div class="mission-create-survey-custom-screen-branding-dropzone-empty">
             <IconFileImage />
