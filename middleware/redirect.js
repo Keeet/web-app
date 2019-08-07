@@ -9,7 +9,7 @@ export default function ({ store, redirect, route: { path }, query: { invitation
       return redirect('/')
     }
   }
-  if (path === '/internal/companies' && !$auth.hasScope('super:admin')) {
+  if (path === '/internal' && !$auth.hasScope('super:admin')) {
     return redirect('/')
   }
 

@@ -12,8 +12,8 @@
         </p>
       </nuxt-link>
       <Staging />
-      <nuxt-link v-if="showInternal" to="/internal/companies">
-        <p class="nav-item nav-item-internal" :class="{active: path === '/internal/companies'}">
+      <nuxt-link v-if="showInternal" to="/internal">
+        <p class="nav-item nav-item-internal" :class="{active: path === '/internal'}">
           {{ $t('shared.nav.internalLink', $store.state.locale) }}
         </p>
       </nuxt-link>
