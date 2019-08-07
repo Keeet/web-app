@@ -91,9 +91,10 @@ export default {
       }
     },
     afterDeleteProject() {
-      this.$store.commit('setProject', null)
-      this.closeDeleteConfirm(true)
-      this.$router.push('/')
+      this.$router.push('/', () => {
+        this.$store.commit('setProject', null)
+        this.closeDeleteConfirm(true)
+      })
     }
   }
 }
