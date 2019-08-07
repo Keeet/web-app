@@ -12,7 +12,10 @@
       create
       @click.native="openLocationForm"
     />
-    <MissionCreateRecruitFormLocationForm v-if="s.recruit.locationFormOpened" />
+    <MissionCreateRecruitFormLocationForm
+      v-if="s.recruit.locationFormOpened"
+      @submitted="setLocation"
+    />
   </div>
 </template>
 
@@ -56,6 +59,7 @@ export default {
   methods: {
     setLocation(location) {
       this.$store.commit('missionFormRecruit/setLocation', location)
+      this.$store.commit('missionFormPersona/setCountry', location.country)
     },
     openLocationForm() {
       this.$store.commit('locationForm/init', { company: this.company })

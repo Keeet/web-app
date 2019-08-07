@@ -127,8 +127,8 @@ export default {
       this.$store.dispatch('locationForm/submitCompanyLocation').then((newLocation) => {
         const { id } = newLocation
         const newCompanyLocation = this.$store.getters.getCompanyLocationById(id)
-        this.$store.commit('missionFormRecruit/setLocation', newCompanyLocation)
         this.$store.commit('missionFormRecruit/closeLocationForm')
+        this.$emit('submitted', newCompanyLocation)
       })
     }
   }
