@@ -1,7 +1,7 @@
 <template>
   <div class="mission-survey-order">
     <ButtonCircle class="mission-survey-order-cancel" type="ARROW_LEFT" @click="$router.back()" />
-    <div class="mission-survey-order-body">
+    <div v-if="!missionPage.surveyOrderPending" class="mission-survey-order-body">
       <div class="mission-survey-order-body-content">
         <div class="mission-survey-order-body-content-head">
           <MissionSurveyOrderParticipants />
@@ -19,6 +19,9 @@
         @cancel="cancel"
         @submit="submit"
       />
+    </div>
+    <div v-else class="mission-survey-order-pending">
+      <Loading fixed-center />
     </div>
     <BillingMissing
       v-if="missionPage.surveyOrderBillingAddressOpened"
@@ -45,12 +48,13 @@ import ButtonCircle from '../_shared/ButtonCircle/ButtonCircle'
 import MissionOrderSummary from '../_shared/MissionOrderSummary/MissionOrderSummary'
 import BillingMissing from '../_shared/BillingMissing/BillingMissing'
 import MissionSurveyRelease from '../_shared/MissionSurveyRelease/MissionSurveyRelease'
+import Loading from '../_shared/Loading/Loading'
 import MissionSurveyOrderParticipants from './MissionSurveyOrderParticipants/MissionSurveyOrderParticipants'
 import MissionSurveyOrderCountry from './MissionSurveyOrderCountry/MissionSurveyOrderCountry'
 
 export default {
   name: 'MissionSurveyOrder',
-  components: { MissionSurveyRelease, BillingMissing, MissionSurveyOrderCountry, MissionOrderSummary, ButtonCircle, MissionSurveyOrderParticipants, MissionPersonaCriteria },
+  components: { Loading, MissionSurveyRelease, BillingMissing, MissionSurveyOrderCountry, MissionOrderSummary, ButtonCircle, MissionSurveyOrderParticipants, MissionPersonaCriteria },
   data() {
     return { PERSONA_GENDERS, PERSONA_GENDER_LABELS, COUNTRY_LABELS, PERSONA_CRITERIA }
   },
@@ -102,11 +106,14 @@ export default {
         return
       }
       this.$mpAppHelper.trackMissionSurveyOrder('submit', this.$store)
+      this.$store.commit('missionPage/surveyOrderPending')
       this.$push.submitMissionOrder({
         ...this.buildOrderRequest(),
         missionId: this.mission.id
       }).then(() => {
-        this.$router.push(`/missions/${this.mission.id}`)
+        this.$router.push(`/missions/${this.mission.id}`, () => {
+          this.$store.commit('missionPage/surveyOrderSubmitted')
+        })
       })
     }
   }
