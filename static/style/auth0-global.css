@@ -31,7 +31,7 @@ button:focus {
 
 a {
   text-decoration: none;
-  color: #0fbcf9;
+  color: #717AFA;
 }
 
 p {
@@ -41,7 +41,6 @@ p {
 .logo {
   position: relative;
   z-index: 1;
-  text-align: center;
   margin-top: 40px;
 }
 @media only screen and (min-width: 600px) {
@@ -49,10 +48,8 @@ p {
     margin-top: 120px;
   }
 }
-.logo-text {
-  font-size: 300%;
-  font-weight: 700;
-  color: #0fbcf9;
+.logo img {
+    width: 100%;
 }
 
 #loading {
@@ -94,7 +91,7 @@ p {
 }
 .form-header-title {
   text-align: center;
-  color: #0fbcf9;
+  color: #717AFA;
   font-weight: 500;
   font-size: 160%;
 }
@@ -122,7 +119,7 @@ p {
   font-weight: 500;
 }
 .form-button.colored {
-  background-color: #0fbcf9;
+  background-color: #717AFA;
   color: #fff;
 }
 .form-button.white {
@@ -144,7 +141,7 @@ p {
   text-align: center;
 }
 .form-footer-button {
-  color: #0fbcf9;
+  color: #717AFA;
 }
 .form-footer-button:hover {
   cursor: pointer;
@@ -160,7 +157,7 @@ p {
   transform: translateX(50%) scale(0.9);
   width: 90%;
   max-width: 400px;
-  border: 1px solid #0fbcf9;
+  border: 1px solid #717AFA;
   border-radius: 5px;
   background-color: #fff;
 }
@@ -202,7 +199,7 @@ p {
 }
 #message:not(.error) .message-cross-inner.message {
   display: block;
-  background-color: #0fbcf9;
+  background-color: #717AFA;
 }
 #message.error .message-cross-inner.error {
   display: block;
