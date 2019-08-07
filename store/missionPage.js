@@ -9,6 +9,7 @@ export const state = () => ({
   insightFormOpened: false,
   deleteConfirmOpened: false,
   surveyOrderBillingAddressOpened: false,
+  surveyOrderPending: false,
   surveyReleaseOpened: false
 })
 
@@ -45,6 +46,12 @@ export const mutations = {
   },
   hideSurveyOrderBillingAddress(state) {
     state.surveyOrderBillingAddressOpened = false
+  },
+  surveyOrderPending(state) {
+    state.surveyOrderPending = true
+  },
+  surveyOrderSubmitted(state) {
+    state.surveyOrderPending = false
   },
   showSurveyRelease(state) {
     state.surveyReleaseOpened = true
