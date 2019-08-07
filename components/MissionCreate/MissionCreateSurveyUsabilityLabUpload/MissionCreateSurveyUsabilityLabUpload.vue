@@ -2,11 +2,11 @@
   <div class="mission-create-survey-usability-lab-upload">
     <div class="mission-create-survey-usability-lab-upload-head">
       <p class="mission-create-survey-usability-lab-upload-headline">
-        {{ $t('missionCreate.survey.items.upload.headline', $store.state.locale) }}
+        Design
       </p>
       <div v-if="item.deviceFrame" class="mission-create-survey-usability-lab-upload-select">
         <p class="mission-create-survey-usability-lab-upload-select-label">
-          {{ $t('missionCreate.survey.items.upload.deviceFrameLabel', $store.state.locale) }}
+          Device frame
         </p>
         <div class="mission-create-survey-usability-lab-upload-select-input">
           <Select
@@ -26,7 +26,7 @@
         dispatch-error="missionForm/handleValidationError"
         :disable-error="!showError && !s.showErrors"
         :nav-align-left="!!item.deviceFrame"
-        :already-uploaded-files="alreadyUploadedFiles"
+        :already-uploaded-file-urls="alreadyUploadedFileUrls"
         @change="dzChange"
       >
         <template slot="empty">
@@ -36,18 +36,10 @@
             </div>
             <div class="mission-create-survey-usability-lab-upload-dropzone-empty-text">
               <p class="mission-create-survey-usability-lab-upload-dropzone-empty-text-title">
-                {{
-                  multiUpload
-                    ? $t('missionCreate.survey.items.upload.emptyTitleMultiUpload', $store.state.locale)
-                    : $t('missionCreate.survey.items.upload.emptyTitleSingleUpload', $store.state.locale)
-                }}
+                {{ multiUpload ? 'Upload images' : 'Upload an image' }}
               </p>
               <p class="mission-create-survey-usability-lab-upload-dropzone-empty-text-subtitle">
-                {{
-                  multiUpload
-                    ? $t('missionCreate.survey.items.upload.emptySubtitleMultiUpload', $store.state.locale)
-                    : $t('missionCreate.survey.items.upload.emptySubtitleSingleUpload', $store.state.locale)
-                }}
+                {{ multiUpload ? 'Click here or drag and drop images' : 'Click here or drag and drop an image' }}
               </p>
             </div>
           </div>
@@ -114,19 +106,18 @@ export default {
           label: MISSION_SURVEY_USABILITY_LAB_ITEM_DEVICE_FRAME_LABELS[deviceFrame]
         }))
     },
-    alreadyUploadedFiles() {
+    alreadyUploadedFileUrls() {
       if (this.item.image) {
-        return this.item.image
+        return this.item.image.url
       }
       if (this.item.images) {
-        return this.item.images
+        return this.item.images.map(image => image.url)
       }
       return null
     }
   },
   methods: {
     dzChange(value) {
-      this.$mpAppHelper.trackMissionForm('uploadImageInteraction', this.$store)
       if (this.multiUpload) {
         this.$store.commit('missionFormSurvey/setItemImageMediaIds', {
           imageMediaIds: value,

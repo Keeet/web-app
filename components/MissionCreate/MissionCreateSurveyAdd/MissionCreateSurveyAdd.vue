@@ -10,7 +10,7 @@
         <IconPlus />
       </div>
       <p class="mission-create-survey-item-add-body-text">
-        {{ $t('missionCreate.survey.items.addLine', $store.state.locale) }}
+        Add a new task
       </p>
     </div>
     <hr class="mission-create-survey-item-add-line">

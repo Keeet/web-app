@@ -2,8 +2,8 @@
   <div class="mission-create-survey-item-first-click">
     <div class="mission-create-survey-item-first-click-instruction">
       <Input
-        :title="$t('missionCreate.survey.items.firstClick.titleLabel', $store.state.locale)"
-        :placeholder="$t('missionCreate.survey.items.firstClick.titlePlaceholder', $store.state.locale)"
+        title="Instruction"
+        placeholder="Where would you click to..."
         :error="error"
         dispatch-error="missionForm/handleValidationError"
         :disable-error="!showError && !s.showErrors"

@@ -2,12 +2,7 @@
   <SurveyStep :button-text="buttonText" :button-link="buttonLink">
     <div class="survey-custom-screen">
       <div class="survey-custom-screen-logo">
-        <ThumborImage
-          v-if="sValues.logo"
-          :width="300"
-          :src="sValues.logo"
-          auto-width
-        />
+        <img v-if="sValues.logo" :src="sValues.logo">
         <img v-else-if="type === TYPES.WELCOME" src="../../../assets/img/welcomeEmoji.png" class="default">
         <img v-else-if="type === TYPES.CLOSING" src="../../../assets/img/thankYouEmoji.png" class="default">
       </div>
@@ -26,7 +21,6 @@
 <script>
 import SurveyStep from '../SurveyStep/SurveyStep'
 import { getCustomScreenDefaultValues } from '../../../utils/intlUtils'
-import ThumborImage from '../../_shared/ThumborImage/ThumborImage'
 
 const TYPES = {
   WELCOME: 'WELCOME',
@@ -35,7 +29,7 @@ const TYPES = {
 
 export default {
   name: 'SurveyCustomScreen',
-  components: { ThumborImage, SurveyStep },
+  components: { SurveyStep },
   props: {
     type: {
       type: String,

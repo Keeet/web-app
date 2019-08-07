@@ -1,7 +1,7 @@
 <template>
   <div class="mission-create-survey-item-instruction">
     <Input
-      :title="$t('missionCreate.survey.items.instruction.textLabel', $store.state.locale)"
+      title="Instruction"
       :value="item.text"
       :error="instructionError"
       dispatch-error="missionForm/handleValidationError"

@@ -12,13 +12,13 @@
       <ButtonText
         v-if="!mission.isSample"
         type="GREY_DELETE"
-        :text="$t('mission.sidebar.deleteButton', $store.state.locale)"
+        text="delete mission"
         @click="$store.commit('missionPage/openDeleteConfirm')"
       />
     </SidebarLeft>
     <OverlayModal
       v-if="missionMetadataForm.overlayOpened"
-      :title="$t('mission.metadataForm.title', $store.state.locale)"
+      title="Edit Mission"
       :loading="missionMetadataForm.pending"
       @close="$store.commit('missionMetadataForm/setOverlayOpened', false)"
     >
@@ -26,10 +26,10 @@
     </OverlayModal>
     <Confirm
       v-if="missionPage.deleteConfirmOpened"
-      :title="$t('mission.confirmDelete.title', $store.state.locale)"
-      :text="$t('mission.confirmDelete.text', $store.state.locale)"
-      :label-confirm="$t('mission.confirmDelete.confirm', $store.state.locale)"
-      :label-cancel="$t('mission.confirmDelete.cancel', $store.state.locale)"
+      title="Are you sure?"
+      text="Deleting this mission cannot be undone."
+      label-confirm="Yes"
+      label-cancel="Cancel"
       @close="closeDeleteConfirm"
       @cancel="closeDeleteConfirm"
       @confirm="deleteMission"
@@ -57,7 +57,7 @@ export default {
       return this.$store.state.mission.id.startsWith('sample')
     },
     description() {
-      return this.mission.description || this.$t('mission.sidebar.descriptionDefault', this.$store.state.locale)
+      return this.mission.description || 'Enter your mission description here. Share briefly why you are conducting this mission in order to keep everyone on the same page.'
     },
     missionMetadataForm() {
       return this.$store.state.missionMetadataForm
@@ -65,21 +65,17 @@ export default {
   },
   methods: {
     editMissionMetadata() {
-      this.$mpAppHelper.trackMission('openEditMetadata', this.$store)
       this.$store.commit('missionMetadataForm/init', this.mission)
       this.$store.commit('missionMetadataForm/setOverlayOpened', true)
     },
-    closeDeleteConfirm(deleted = false) {
-      if (!deleted) {
-        this.$mpAppHelper.trackMission('abortDelete', this.$store)
-      }
+    closeDeleteConfirm() {
       this.$store.commit('missionPage/closeDeleteConfirm')
     },
     deleteMission() {
-      this.$mpAppHelper.trackMission('delete', this.$store)
       const { id, projectId } = this.mission
       this.$push.deleteMission({ id, projectId }).then(() => {
-        this.closeDeleteConfirm(true)
+        this.$store.commit('setMission', null)
+        this.closeDeleteConfirm()
         this.$router.push(`/projects/${projectId}`)
       })
     }

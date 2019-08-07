@@ -1,11 +1,7 @@
 <template>
   <div class="survey-item-five-second-test">
     <div v-if="!response.started" class="survey-item-five-second-test-button">
-      <div v-if="pending" class="survey-item-five-second-test-button-pending">
-        <Loading />
-      </div>
       <ButtonText
-        v-else
         :text="$t('survey.items.fiveSecondTest.viewImageButton', s.language)"
         :bg-color="s.color"
         @click="startTest"
@@ -15,7 +11,6 @@
       :image="item.image.url"
       :frame="item.deviceFrame"
       :blur="!response.started"
-      @imageLoad="pending = false"
     />
   </div>
 </template>
@@ -23,14 +18,9 @@
 <script>
 import ButtonText from '../../_shared/ButtonText/ButtonText'
 import SurveyItemMedia from '../SurveyItemMedia/SurveyItemMedia'
-import Loading from '../../_shared/Loading/Loading'
-
 export default {
   name: 'SurveyItemFiveSecondTest',
-  components: { Loading, SurveyItemMedia, ButtonText },
-  data() {
-    return { pending: true }
-  },
+  components: { SurveyItemMedia, ButtonText },
   computed: {
     s() {
       return this.$store.state.survey

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { COUNTRIES_CINT, COUNTRY_LABELS } from '../../constants'
+import { COUNTRIES, COUNTRY_LABELS } from '../../constants'
 import Select from '../../_shared/Select/Select'
 export default {
   name: 'MissionSurveyOrderCountry',
@@ -20,7 +20,7 @@ export default {
       return this.$store.state.missionFormPersona
     },
     options() {
-      return COUNTRIES_CINT.map(value => ({
+      return Object.keys(COUNTRIES).map(value => ({
         value,
         label: COUNTRY_LABELS[value]
       }))

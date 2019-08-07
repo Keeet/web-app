@@ -21,12 +21,7 @@
         </li>
       </ul>
       <div class="mission-create-type-item-text-button">
-        <ButtonText
-          type="GREY"
-          :text="$t('missionCreate.selectType.selectButton', $store.state.locale)"
-          no-margin
-          :bg-color-class="type"
-        />
+        <ButtonText type="GREY" text="Select" no-margin :bg-color-class="type" />
       </div>
     </div>
   </div>

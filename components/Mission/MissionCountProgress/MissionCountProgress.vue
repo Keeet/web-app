@@ -3,7 +3,7 @@
     <MissionCount
       :title="title"
       :text-large="countCurrent"
-      :text-small="$t('mission.countProgressTotal', $store.state.locale, { total: countTotalFormatted })"
+      :text-small="`out of ${countTotalFormatted}`"
     />
     <div class="mission-count-progress-bar">
       <div

@@ -13,11 +13,11 @@
     </MissionCreateRecruitSummaryIconsItem>
     <MissionCreateRecruitSummaryIconsItem
       type="DURATION"
-      :text="$t('missionCreate.recruit.summary.overviewDurationValue', $store.state.locale, { duration: s.recruit.duration })"
+      :text="`${s.recruit.duration} min`"
     />
     <MissionCreateRecruitSummaryIconsItem
       type="PARTICIPANTS"
-      :text="$t('missionCreate.recruit.summary.overviewParticipantsValue', $store.state.locale, { count: parseInt(s.participants) })"
+      :text="`${parseInt(s.participants)} test users`"
     />
   </div>
 </template>

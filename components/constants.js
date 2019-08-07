@@ -1,114 +1,28 @@
 export const COUNTRIES = {
-  AT: 'AT',
-  BE: 'BE',
-  CA: 'CA',
-  CH: 'CH',
   DE: 'DE',
-  DK: 'DK',
-  ES: 'ES',
-  FI: 'FI',
-  FR: 'FR',
   GB: 'GB',
-  IE: 'IE',
-  IT: 'IT',
-  LU: 'LU',
-  NL: 'NL',
-  NO: 'NO',
-  PL: 'PL',
-  PT: 'PT',
-  SE: 'SE',
-  TR: 'TR',
-  US: 'US'
+  FR: 'FR',
+  ES: 'ES'
 }
 export const COUNTRY_LABELS = {
-  AT: 'Austria',
-  BE: 'Belgium',
-  CA: 'Canada',
-  CH: 'Switzerland',
   DE: 'Germany',
-  DK: 'Denmark',
-  ES: 'Spain',
-  FI: 'Finland',
-  FR: 'France',
   GB: 'United Kingdom',
-  IE: 'Ireland',
-  IT: 'Italy',
-  LU: 'Luxembourg',
-  NL: 'Netherlands',
-  NO: 'Norway',
-  PL: 'Poland',
-  PT: 'Portugal',
-  SE: 'Sweden',
-  TR: 'Turkey',
-  US: 'United States'
+  FR: 'France',
+  ES: 'Spain'
 }
-export const COUNTRIES_TESTING_TIME = [
-  COUNTRIES.DE,
-  COUNTRIES.AT,
-  COUNTRIES.CH,
-  COUNTRIES.US,
-  COUNTRIES.GB
-]
-export const COUNTRIES_CINT = [
-  COUNTRIES.DE,
-  COUNTRIES.AT,
-  COUNTRIES.CH,
-  COUNTRIES.US,
-  COUNTRIES.GB,
-  COUNTRIES.IE,
-  COUNTRIES.FR,
-  COUNTRIES.ES,
-  COUNTRIES.LU,
-  COUNTRIES.BE,
-  COUNTRIES.CA
-]
 
 export const LANGUAGES = {
-  DA: 'DA',
   DE: 'DE',
   EN: 'EN',
-  ES: 'ES',
-  FI: 'FI',
   FR: 'FR',
-  IT: 'IT',
-  NL: 'NL',
-  NO: 'NO',
-  PL: 'PL',
-  PT: 'PT',
-  RU: 'RU',
-  SV: 'SV',
-  TR: 'TR'
+  ES: 'ES'
 }
 export const LANGUAGE_LABELS = {
-  DA: 'Danish',
   DE: 'German',
   EN: 'English',
-  ES: 'Spanish',
-  FI: 'Finnish',
   FR: 'French',
-  IT: 'Italian',
-  NL: 'Dutch',
-  NO: 'Norwegian',
-  PL: 'Polish',
-  PT: 'Portuguese',
-  RU: 'Russian',
-  SV: 'Swedish',
-  TR: 'Turkish'
+  ES: 'Spanish'
 }
-// remember to add countries to COUNTRIES_CINT in case of changing this array
-export const LANGUAGES_PLATFORM = [
-  LANGUAGES.DE,
-  LANGUAGES.EN,
-  LANGUAGES.ES,
-  LANGUAGES.FR
-]
-export const LANGUAGES_TESTING_TIME = [
-  LANGUAGES.DE,
-  LANGUAGES.EN,
-  LANGUAGES.FR,
-  LANGUAGES.NL,
-  LANGUAGES.IT
-]
 
 export const ROLES = {
   VIEWER: 'VIEWER',
@@ -178,6 +92,12 @@ export const PERSONA_GENDER_LABELS = {
   FEMALE: 'Female',
   MIXED: 'Mixed'
 }
+export const PERSONA_COUNTRIES = [
+  COUNTRIES.DE,
+  COUNTRIES.GB,
+  COUNTRIES.FR,
+  COUNTRIES.ES
+]
 export const PERSONA_DEVICE_SKILLS = {
   DESKTOP: 'DESKTOP',
   SMART_PHONE: 'SMART_PHONE',
@@ -245,7 +165,7 @@ export const MISSION_SURVEY_CUSTOM_SCREEN_TYPES = {
   WELCOME: 'WELCOME',
   CLOSING: 'CLOSING'
 }
-export const MISSION_SURVEY_CUSTOM_SCREEN_DEFAULT_COLOR = '#717AFA'
+export const MISSION_SURVEY_CUSTOM_SCREEN_DEFAULT_COLOR = '#0fbcf9'
 export const MISSION_SURVEY_ITEM_LIKERT = {
   AGREEMENT: 'AGREEMENT',
   OCCURRENCE: 'OCCURRENCE',

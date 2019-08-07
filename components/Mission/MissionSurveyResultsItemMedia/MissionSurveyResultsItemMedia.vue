@@ -19,12 +19,8 @@
     >
       <div class="mission-survey-results-item-media-expand-shadow" />
       <IconAngleDown />
-      <span v-if="!expanded">
-        {{ $t('mission.survey.results.expandButton', $store.state.locale) }}
-      </span>
-      <span v-else>
-        {{ $t('mission.survey.results.collapseButton', $store.state.locale) }}
-      </span>
+      <span v-if="!expanded">Expand</span>
+      <span v-else>Collapse</span>
     </div>
   </div>
 </template>

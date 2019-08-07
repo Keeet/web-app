@@ -1,15 +1,9 @@
 <template>
   <div class="account-team">
-    <AccountTeamBox
-      :title="$t('account.team.members.title', $store.state.locale, { count: companyUsers.length })"
-    >
+    <AccountTeamBox :title="`Members (${companyUsers.length})`">
       <AccountTeamMembers />
     </AccountTeamBox>
-    <AccountTeamBox
-      v-if="$hasRole('ADMIN')"
-      :title="$t('account.team.invite.title', $store.state.locale)"
-      :aos-delay="300"
-    >
+    <AccountTeamBox v-if="$hasRole('ADMIN')" title="Invite members" :aos-delay="300">
       <AccountTeamInvite />
     </AccountTeamBox>
   </div>

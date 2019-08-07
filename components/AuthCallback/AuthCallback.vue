@@ -2,10 +2,10 @@
   <div class="auth-callback">
     <div v-if="notVerified" class="not-verified">
       <p class="not-verified-title">
-        {{ $t('authCallback.emailNotVerified', $store.state.locale) }}
+        Please verify your email
       </p>
       <p class="not-verified-description">
-        {{ $t('authCallback.emailNotVerifiedDescription', $store.state.locale) }}
+        We sent a verification mail to your email address. Please check your inbox and click on the verification link to start using Keeet.
       </p>
       <ButtonText text="Back to login" @click="$auth.logOut()" />
     </div>
@@ -33,7 +33,8 @@ export default {
         this.$router.push('/')
       }
     }).catch((err) => {
-      this.$mpApp.track('emailNotVerified')
+      // eslint-disable-next-line no-console
+      console.error(err)
       const { error, errorDescription } = err
       if (error === 'unauthorized' && errorDescription === 'NOT_VERIFIED') {
         this.notVerified = true

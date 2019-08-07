@@ -27,7 +27,7 @@ export default {
       store.commit('accountPage/disableAnimation', false)
     }
 
-    return $fetch(fetchCfg, () => {
+    return $fetch(fetchCfg).then(() => {
       if (IS_TEAM) {
         store.commit('accountPage/showTeam')
       } else if (IS_BILLING) {

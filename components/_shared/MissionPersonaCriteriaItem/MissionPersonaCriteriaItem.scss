@@ -26,16 +26,6 @@
       &:hover {
         cursor: pointer;
       }
-
-      &.error {
-        color: $red-error;
-      }
-    }
-
-    .mission-persona-criteria-item-head-error {
-      font-size: 80%;
-      font-weight: 500;
-      color: $red-error;
     }
   }
 

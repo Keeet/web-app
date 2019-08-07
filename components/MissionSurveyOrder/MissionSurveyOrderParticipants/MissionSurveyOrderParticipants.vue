@@ -1,7 +1,7 @@
 <template>
   <div class="mission-survey-order-participants">
     <p class="mission-survey-order-participants-label">
-      {{ $t('missionSurveyOrder.participantsLabel', $store.state.locale) }}
+      Number of responses
     </p>
     <div class="mission-survey-order-participants-input">
       <Input

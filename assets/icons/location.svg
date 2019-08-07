@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 51.056">
   <g id="Gruppe_1111" data-name="Gruppe 1111" transform="translate(-5975 -4415.001)">
     <g id="Gruppe_1110" data-name="Gruppe 1110">
-      <path id="Pfad_626" data-name="Pfad 626" d="M1724.591-672.12s4.023-.894,5.363,2.681c0,0,4.469-.894,4.917,3.129" transform="translate(4316.107 5126.897)" fill="none" stroke="#717AFA" stroke-miterlimit="10" stroke-width="2"/>
+      <path id="Pfad_626" data-name="Pfad 626" d="M1724.591-672.12s4.023-.894,5.363,2.681c0,0,4.469-.894,4.917,3.129" transform="translate(4316.107 5126.897)" fill="none" stroke="#0fbcf9" stroke-miterlimit="10" stroke-width="2"/>
       <rect id="Rechteck_221" data-name="Rechteck 221" width="4.469" height="5.105" transform="translate(6020.587 4459.694)" fill="#d2dae2"/>
       <rect id="Rechteck_222" data-name="Rechteck 222" width="4.469" height="2.682" transform="translate(6018.799 4462.375)" fill="#d2dae2"/>
       <rect id="Rechteck_223" data-name="Rechteck 223" width="12.514" height="4.916" transform="translate(6029.525 4417.683)" fill="#d2dae2"/>
@@ -22,7 +22,7 @@
       <line id="Linie_31" data-name="Linie 31" y2="2.576" transform="translate(6018.669 4462.368)" fill="none" stroke="#485460" stroke-miterlimit="10" stroke-width="2"/>
       <path id="Pfad_625" data-name="Pfad 625" d="M1607.324-642.391h-2.235v2.235" transform="translate(4404.771 5104.767)" fill="none" stroke="#485460" stroke-miterlimit="10" stroke-width="2"/>
       <line id="Linie_32" data-name="Linie 32" y2="5.319" transform="translate(6025.279 4459.694)" fill="none" stroke="#485460" stroke-miterlimit="10" stroke-width="2"/>
-      <path id="Pfad_627" data-name="Pfad 627" d="M1470-666.856h20.112s4.022-.894,3.575-6.257-6.257-5.81-6.257-5.81-5.363-.894-6.7,4.469c0,0-5.81-1.788-6.7,4.023" transform="translate(4505 5131.913)" fill="none" stroke="#717AFA" stroke-miterlimit="10" stroke-width="2"/>
+      <path id="Pfad_627" data-name="Pfad 627" d="M1470-666.856h20.112s4.022-.894,3.575-6.257-6.257-5.81-6.257-5.81-5.363-.894-6.7,4.469c0,0-5.81-1.788-6.7,4.023" transform="translate(4505 5131.913)" fill="none" stroke="#0fbcf9" stroke-miterlimit="10" stroke-width="2"/>
     </g>
   </g>
 </svg>

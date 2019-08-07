@@ -1,3 +1,5 @@
+$survey-item-preference-test-slider-footer-height: 85px;
+
 .survey-item-preference-test {
 
   .survey-item-preference-test-button {
@@ -52,7 +54,7 @@
           cursor: pointer;
         }
 
-        .survey-item-preference-test-gallery-item-img {
+        img {
           max-width: 100%;
         }
       }
@@ -62,19 +64,20 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      margin: 0 -#{$survey-step-body-padding-left-right} -#{$survey-step-body-padding-bottom} -#{$survey-step-body-padding-left-right};
+      margin-left: -$survey-step-body-padding-left-right;
+      margin-right: -$survey-step-body-padding-left-right;
+      margin-bottom: -$survey-step-body-padding-bottom;
 
       .survey-item-preference-test-slider-body {
         overflow: hidden;
         width: 100%;
 
         .survey-item-preference-test-slider-item {
+          $reservated-height: $survey-step-body-padding-top + $survey-item-body-title-min-height + $survey-item-preference-test-slider-footer-height;
           width: 100%;
+          height: calc(100vh - #{$reservated-height});
+          height: calc((var(--vh, 1vh) * 100) - #{$reservated-height});
           overflow-y: auto;
-
-          // initial value which will be overwritten by setSliderHeight() in SurveyItemPreferenceTest.vue
-          // -> dirty hack to trick "justify-content: center" from ".survey-item-body-inner"
-          height: 100vh;
 
           &:hover {
             cursor: pointer;
@@ -86,7 +89,7 @@
             max-width: 900px;
             text-align: center;
 
-            .survey-item-preference-test-slider-item-inner-img {
+            img {
               max-width: 100%;
               background-color: #fff;
               padding: 20px;
@@ -98,7 +101,7 @@
 
       .survey-item-preference-test-slider-footer {
         position: relative;
-        height: 85px;
+        height: $survey-item-preference-test-slider-footer-height;
         background-color: #fff;
         box-shadow: 0 -1px 8px 0 rgba(0, 0, 0, 0.2);
 
@@ -155,6 +158,10 @@
 
     .VueCarousel-dot {
       margin-top: 0 !important;
+
+      &.VueCarousel-dot--active {
+        background-color: $blue-primary;
+      }
     }
   }
 }

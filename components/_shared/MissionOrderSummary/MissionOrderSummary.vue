@@ -5,9 +5,7 @@
         <table v-if="pricing" class="mission-order-summary-table">
           <tbody>
             <tr class="mission-order-summary-table-head">
-              <td>
-                {{ $t('shared.missionOrderSummary.headline', $store.state.locale) }}
-              </td>
+              <td>Order summary</td>
               <td>&euro;</td>
             </tr>
             <tr class="mission-order-summary-table-base-price">
@@ -23,26 +21,24 @@
             <MissionOrderSummaryCriteria v-if="getPrice(DEVICE_SKILL)" :criteria="DEVICE_SKILL" :price="getPrice(DEVICE_SKILL)" />
             <MissionOrderSummaryCriteria v-if="getPrice(SPECIAL_CRITERIA)" :criteria="SPECIAL_CRITERIA" :price="getPrice(SPECIAL_CRITERIA)" last />
             <tr class="mission-order-summary-table-sum">
-              <td>
-                {{ $t('shared.missionOrderSummary.sumLabel', $store.state.locale) }}
-              </td>
+              <td>Total</td>
               <td>{{ pricing.totalPrice.toFixed(2) }}</td>
             </tr>
           </tbody>
         </table>
         <p class="mission-order-summary-note">
-          {{ $t('shared.missionOrderSummary.footerNote', $store.state.locale) }}
+          Includes incentives and excludes VAT.
         </p>
       </div>
     </template>
     <template slot="buttons">
       <ButtonText
-        :text="$t('shared.missionOrderSummary.cancelButton', $store.state.locale)"
+        text="Back"
         type="GREY"
         @click="$emit('cancel')"
       />
       <ButtonText
-        :text="submitLabel || $t('shared.missionOrderSummary.defaultSubmitButton', $store.state.locale)"
+        :text="submitLabel"
         :disabled="!isValid"
         @click="$emit('submit')"
         @disabledClick="invalidSubmit"
@@ -77,7 +73,7 @@ export default {
     },
     submitLabel: {
       type: String,
-      default: null
+      default: 'Order'
     }
   },
   data() {
@@ -106,11 +102,10 @@ export default {
       return !this.s.invalidFields.length
     },
     count() {
-      const count = this.s.participants
       if (this.isRecruit) {
-        return this.$tc('shared.missionOrderSummary.countParticipants', count, { count })
+        return `${this.s.participants} participants`
       } else if (this.isSurvey) {
-        return this.$tc('shared.missionOrderSummary.countResponses', count, { count })
+        return `${this.s.participants} responses`
       }
       return null
     },
