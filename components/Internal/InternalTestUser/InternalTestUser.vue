@@ -7,7 +7,7 @@
       <div v-if="$store.state.internal.testUserIdPending" class="internal-test-user-form-pending">
         <Loading />
       </div>
-      <div class="internal-test-user-form-inner" v-else>
+      <div v-else class="internal-test-user-form-inner">
         <Input
           class="internal-test-user-form-input"
           placeholder="Auth0UserId"

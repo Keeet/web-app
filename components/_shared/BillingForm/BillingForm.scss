@@ -8,12 +8,22 @@
       z-index: -1;
     }
 
-    .billing-form-rows {
-      display: flex;
-      justify-content: space-between;
+    .billing-form-payment {
+      margin: 30px 0;
 
-      .billing-form-rows-item {
-        width: 48%;
+      .billing-form-payment-bank-transfer {
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
+        font-size: 80%;
+
+        input {
+          margin: 0 8px;
+        }
+
+        label:hover, input:hover {
+          cursor: pointer;
+        }
       }
     }
 

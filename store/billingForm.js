@@ -1,9 +1,9 @@
-import { COUNTRIES } from '../components/constants'
+import { BILLING_TYPES, COUNTRIES } from '../components/constants'
 import { isEmail, isNum } from '../utils/stringUtils'
 
 const defaultState = {
   initialBillingConfig: '',
-  type: 'BILL',
+  type: BILLING_TYPES.CREDIT_CARD,
   email: '',
   street: '',
   houseNumber: '',
@@ -12,7 +12,10 @@ const defaultState = {
   country: COUNTRIES.DE,
   vatTaxId: '',
   invalidFields: [],
+  bankTransferCheckbox: false,
+  creditCardError: null,
 
+  showErrors: false,
   pending: false
 }
 
@@ -76,6 +79,12 @@ export const mutations = {
   setVatTaxId(state, vatTaxId) {
     state.vatTaxId = vatTaxId
   },
+  setBankTransferCheckbox(state, bankTransferCheckbox) {
+    state.bankTransferCheckbox = bankTransferCheckbox
+  },
+  setCreditCardError(state, creditCardError) {
+    state.creditCardError = creditCardError
+  },
 
   addInvalidField(state, invalidField) {
     const invalidFields = state.invalidFields.slice()
@@ -89,6 +98,9 @@ export const mutations = {
       invalidFields.splice(index, 1)
       state.invalidFields = invalidFields
     }
+  },
+  showErrors(state) {
+    state.showErrors = true
   },
   pending(state) {
     state.pending = true

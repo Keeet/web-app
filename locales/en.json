@@ -1,19 +1,32 @@
 {
   "shared": {
     "billingForm": {
-      "companyLabel": "Company Name",
-      "emailLabel": "Email*",
-      "emailPlaceholder": "billing@keeet.io",
-      "vatLabel": "VAT number / tax ID",
-      "streetLabel": "Street*",
-      "streetPlaceholder": "Rosenthaler Str.",
-      "houseNumberLabel": "Number*",
-      "houseNumberPlaceholder": "101",
-      "cityLabel": "City*",
-      "cityPlaceholder": "Berlin",
-      "zipLabel": "ZIP*",
-      "zipPlaceholder": "10369",
-      "countryLabel": "Country*",
+      "address": {
+        "companyLabel": "Company Name",
+        "emailLabel": "Email*",
+        "emailPlaceholder": "billing@keeet.io",
+        "vatLabel": "VAT number / tax ID",
+        "streetLabel": "Street*",
+        "streetPlaceholder": "Rosenthaler Str.",
+        "houseNumberLabel": "Number*",
+        "houseNumberPlaceholder": "101",
+        "cityLabel": "City*",
+        "cityPlaceholder": "Berlin",
+        "zipLabel": "ZIP*",
+        "zipPlaceholder": "10369",
+        "countryLabel": "Country*"
+      },
+      "stripe": {
+        "errors": {
+          "invalidNumber": "Invalid credit card number",
+          "invalidExpiryMonth": "Invalid expiry month",
+          "invalidExpiryYear": "Invalid expiry year",
+          "invalidExpiryYearPast": "Expiry year cannot be in the past",
+          "incompleteExpiry": "Expiry date is incomplete",
+          "invalidCvc": "Invalid cvc"
+        }
+      },
+      "useBankTransfer": "Use bank transfer instead of credit card payments",
       "submit": "Submit"
     },
     "billingMissing": {

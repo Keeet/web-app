@@ -1,79 +1,16 @@
 <template>
   <div class="billing-form">
     <div class="billing-form-inner" :class="{ pending: s.pending }">
-      <Input
-        :title="$t('shared.billingForm.companyLabel', $store.state.locale)"
-        :value="company.name"
-        readonly
-      />
-      <Input
-        :title="$t('shared.billingForm.emailLabel', $store.state.locale)"
-        :placeholder="$t('shared.billingForm.emailPlaceholder', $store.state.locale)"
-        :value="s.email"
-        mutation="billingForm/setEmail"
-        :error="$store.getters['billingForm/emailError']"
-        :disable-error="!showErrors"
-        dispatch-error="billingForm/handleValidationError"
-      />
-      <Input
-        :title="$t('shared.billingForm.vatLabel', $store.state.locale)"
-        :value="s.vatTaxId"
-        mutation="billingForm/setVatTaxId"
-      />
-      <div class="billing-form-rows">
-        <div class="billing-form-rows-item">
-          <Input
-            :title="$t('shared.billingForm.streetLabel', $store.state.locale)"
-            :placeholder="$t('shared.billingForm.streetPlaceholder', $store.state.locale)"
-            :value="s.street"
-            mutation="billingForm/setStreet"
-            :error="$store.getters['billingForm/streetError']"
-            :disable-error="!showErrors"
-            dispatch-error="billingForm/handleValidationError"
-          />
-        </div>
-        <div class="billing-form-rows-item">
-          <Input
-            :title="$t('shared.billingForm.houseNumberLabel', $store.state.locale)"
-            :placeholder="$t('shared.billingForm.houseNumberPlaceholder', $store.state.locale)"
-            :value="s.houseNumber"
-            mutation="billingForm/setHouseNumber"
-            :error="$store.getters['billingForm/houseNumberError']"
-            :disable-error="!showErrors"
-            dispatch-error="billingForm/handleValidationError"
-          />
+      <BillingFormAddress />
+      <div class="billing-form-payment">
+        <BillingFormCreditCard />
+        <div class="billing-form-payment-bank-transfer">
+          <input id="billing-form-payment-bank-transfer-input" v-model="bankTransferCheckbox" type="checkbox" :value="true">
+          <label for="billing-form-payment-bank-transfer-input">
+            {{ $t('shared.billingForm.useBankTransfer', $store.state.locale) }}
+          </label>
         </div>
       </div>
-      <div class="billing-form-rows">
-        <div class="billing-form-rows-item">
-          <Input
-            :title="$t('shared.billingForm.cityLabel', $store.state.locale)"
-            :placeholder="$t('shared.billingForm.cityPlaceholder', $store.state.locale)"
-            :value="s.city"
-            mutation="billingForm/setCity"
-            :error="$store.getters['billingForm/cityError']"
-            :disable-error="!showErrors"
-            dispatch-error="billingForm/handleValidationError"
-          />
-        </div>
-        <div class="billing-form-rows-item">
-          <Input
-            :title="$t('shared.billingForm.zipLabel', $store.state.locale)"
-            :placeholder="$t('shared.billingForm.zipPlaceholder', $store.state.locale)"
-            :value="s.zipCode"
-            mutation="billingForm/setZipCode"
-            :error="$store.getters['billingForm/zipCodeError']"
-            :disable-error="!showErrors"
-            dispatch-error="billingForm/handleValidationError"
-          />
-        </div>
-      </div>
-      <Select
-        :title="$t('shared.billingForm.countryLabel', $store.state.locale)"
-        :options="countryOptions"
-        :value="s.country"
-        mutation="billingForm/setCountry"
-      />
       <div class="billing-form-submit">
         <ButtonText
           :text="$t('shared.billingForm.submit', $store.state.locale)"
@@ -93,31 +30,21 @@
 </template>
 
 <script>
-import { COUNTRIES, COUNTRY_LABELS } from '../../constants'
-import Input from '../Input/Input'
-import Select from '../Select/Select'
 import ButtonText from '../ButtonText/ButtonText'
 import { scrollToTopId } from '../../../utils/scrollUtils'
 import Loading from '../Loading/Loading'
+import BillingFormCreditCard from '../BillingFormCreditCard/BillingFormCreditCard'
+import BillingFormAddress from '../BillingFormAddress/BillingFormAddress'
 
 export default {
   name: 'BillingForm',
-  components: { Loading, ButtonText, Select, Input },
-  data() {
-    return { showErrors: false }
-  },
+  components: { BillingFormAddress, BillingFormCreditCard, Loading, ButtonText },
   computed: {
     s() {
       return this.$store.state.billingForm
     },
     company() {
       return this.$store.state.company
-    },
-    countryOptions() {
-      return Object.keys(COUNTRIES).map(country => ({
-        value: country,
-        label: COUNTRY_LABELS[country]
-      }))
     },
     hasChangedSinceInit() {
       return this.$store.getters['billingForm/hasChanged']
@@ -127,13 +54,21 @@ export default {
         this.s.invalidFields.length > 0 ||
         !this.hasChangedSinceInit
       )
+    },
+    bankTransferCheckbox: {
+      get() {
+        return this.s.bankTransferCheckbox
+      },
+      set(value) {
+        this.$store.commit('billingForm/setBankTransferCheckbox', value)
+      }
     }
   },
   methods: {
     disabledSubmit() {
       this.$mpAppHelper.trackBilling('attemptSubmitInvalidForm')
       if (this.hasChangedSinceInit) {
-        this.showErrors = true
+        this.$store.commit('billingForm/showErrors')
         scrollToTopId(this.s.invalidFields.map(field => field.id))
       }
     },

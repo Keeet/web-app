@@ -1,0 +1,41 @@
+.billing-form-credit-card {
+  position: relative;
+  transition: opacity .5s;
+
+  &.inactive {
+    opacity: 0.3;
+  }
+
+  .billing-form-credit-card-overlay {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  .billing-form-credit-card-error {
+    position: absolute;
+    bottom: 100%;
+    padding-bottom: 4px;
+    right: 3px;
+    color: $red-error;
+    font-size: 75%;
+    font-weight: 500;
+  }
+
+  .StripeElement {
+    box-sizing: border-box;
+
+    padding: 14px 16px;
+
+    border: 1px solid $grey;
+    border-radius: 5px;
+    background-color: white;
+  }
+
+  .StripeElement--invalid {
+    border-color: $red-error;
+  }
+}

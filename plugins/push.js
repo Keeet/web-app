@@ -70,7 +70,7 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, in
       })
     },
 
-    upsertCompanyBilling({ type, email, vatTaxId, street, houseNumber, zipCode, city, country }) {
+    upsertCompanyBilling({ type, email, vatTaxId, street, houseNumber, zipCode, city, country, stripeCreditCardToken }) {
       return new Promise((resolve, reject) => {
         const handleRes = handleResponse.bind(this, OPERATIONS.UPSERT_COMPANY_BILLING, null, resolve, reject)
         $axios({
@@ -84,7 +84,8 @@ export default function ({ $axios, app: { $fetch, $auth }, redirect, error }, in
             houseNumber,
             zipCode,
             city,
-            country
+            country,
+            stripeCreditCardToken
           }
         }).then(handleRes).catch(handleError)
       })

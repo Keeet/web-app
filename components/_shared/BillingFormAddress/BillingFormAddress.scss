@@ -1,0 +1,11 @@
+.billing-form-address {
+
+  .billing-form-address-rows {
+    display: flex;
+    justify-content: space-between;
+
+    .billing-form-address-rows-item {
+      width: 48%;
+    }
+  }
+}
