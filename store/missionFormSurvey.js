@@ -136,7 +136,7 @@ const defaultStateItem = {
   }
 }
 
-export const state = () => defaultState
+export const state = () => ({ ...defaultState })
 
 export const getters = {
   itemsCountByType(state) {

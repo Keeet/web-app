@@ -25,7 +25,7 @@ const defaultState = {
   specialCriteriaOpened: false
 }
 
-export const state = () => (defaultState)
+export const state = () => ({ ...defaultState })
 
 export const getters = {
   primaryLanguage(state) {

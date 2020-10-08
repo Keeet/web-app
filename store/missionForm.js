@@ -21,7 +21,7 @@ const defaultState = {
   pending: false
 }
 
-export const state = () => (defaultState)
+export const state = () => ({ ...defaultState })
 
 export const getters = {
   // TODO: move all validation into getters

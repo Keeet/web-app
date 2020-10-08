@@ -8,7 +8,7 @@ const defaultState = {
   inProgress: true
 }
 
-export const state = () => (defaultState)
+export const state = () => ({ ...defaultState })
 
 export const mutations = {
   init(state, project) {

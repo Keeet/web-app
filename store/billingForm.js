@@ -16,7 +16,7 @@ const defaultState = {
   pending: false
 }
 
-export const state = () => (defaultState)
+export const state = () => ({ ...defaultState })
 
 export const getters = {
   emailError(state) {

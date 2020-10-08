@@ -19,7 +19,7 @@ const defaultState = {
   billingModalOpened: false
 }
 
-export const state = () => (defaultState)
+export const state = () => ({ ...defaultState })
 
 export const getters = {
   pricingChecksum: state => ({ missionForm, missionFormPersona }) => {

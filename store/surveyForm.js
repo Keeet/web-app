@@ -94,7 +94,7 @@ const defaultState = {
   submit: false
 }
 
-export const state = () => (defaultState)
+export const state = () => ({ ...defaultState })
 
 export const getters = {
   activeItem({ activeItemIndex, activeFollowUpIndex, items }) {
