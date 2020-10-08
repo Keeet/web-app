@@ -22,7 +22,7 @@
     "@nuxtjs/axios": "5.5.4",
     "@nuxtjs/sentry": "3.0.0",
     "aos": "2.3.4",
-    "auth0-js": "9.11.2",
+    "auth0-js": "9.13.2",
     "consola": "latest",
     "cookieparser": "0.1.0",
     "cross-env": "5.2.0",
